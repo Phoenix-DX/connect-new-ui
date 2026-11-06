@@ -4,12 +4,7 @@ The route `/UBTConnect/AssembleDetail`, read from the TST compiled code and from
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/AssembleDetail/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Static check.** This route has no TST capture (`migration/screens/AssembleDetail/no-capture.json`).
-
-- The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
-- The tool observed no call and has no screenshot.
-- Closure: 127 files, 0 without compiled code.
+**Live code.** TST changed 32 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `AssembleCommon_VirtualMeetingURL`, `AssembleEventDetail`, `AssembleEventDetail_LocalitiesList`, `AssembleEventDetail_LocalitySubdivisionList`, `AssembleEventDetail_Section`, `AssembleSummaryCard`, `AssembleSummaryCard__Header`, `AssembleSummary_Card_Row`, `ScreenBlock_AssembleDetail`, `Connect2_Assemble_MUI`, `js`, `NC_Card_Item_Visual`, `NC_Result_Item_Badge`, `NC_Result_Item__Card`, `NC_Result_Item__Image`, `Connect2_LegacyShared`, `js`, `FocusScrollAnchorOnBack`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `AssembleDetail`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `ShareSheet`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -20,8 +15,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | UI flow | `Legacy_AssembleFlow` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/AssembleDetail/AssembleDetailPage.tsx`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 83 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Screenshots | [`migration/screens/AssembleDetail/parity`](../../screens/AssembleDetail/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 31 shared blocks, 28 app shell files. React: 272 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -29,13 +24,13 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 12: React makes 9, **0 missing**, 3 not a gap of the web app |
 | Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
-| Questions | 0 (+ 4 declared on TST outside the call graph) (see [section 4](#4-questions)) |
+| Questions | 0 (+ 6 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 10 of 10 |
-| Shared blocks and components on the route | OutSystems 83, React 9 with user actions: see the last section |
-| App shell on this route | 6 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 31, React 9 with user actions: see the last section |
+| App shell on this route | 2 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
@@ -49,12 +44,12 @@ Missing TST calls that a rule of `route-check/config.json` (`notApplicable`, use
 
 **Native only.** TST offers the external share options only when AppManager_GetIsNative is true; the React app is never native. Evidence: ShareSheet Action_SetExternalShareOptions appends Share via, Copy link, WhatsApp, Signal and Outlook inside `if (AppManager_GetIsNative)` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js:2418-2475); SharePopup appends "Share to other apps" after AppManager_GetIsNative (UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js:274-288); ShareEntity_ByURL calls the SocialSharing plugin (UBTConnect_Utils.controller.js:5319+); app/src/platform/session/clientVars.ts:40 (DeviceInfo_IsNative false).
 
-- `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
-- `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
+- `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink`. Chain on TST: ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink.
+- `UBTConnect_Utils/ActionCS_CreateShareProfileLink`. Chain on TST: event navigateTo_ShareObject of AssembleEventDetail_LocalitySubdivisionList → event navigateTo_ShareObject of AssembleEventDetail_LocalitiesList → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink.
 
 **Telemetry (decision U17).** The call belongs to the application-event pipeline (zOnApplicationEvent_Wrapper → getAppEventName → cacheLocalApplicationEvents). Telemetry is not wired in the mock phase (decision U17). Evidence: Connect2_LegacyShared.controller.js:989-1240 (CacheLocalApplicationEvents); migration/app-shell.spec.md:349,384 (U17: no telemetry in the mock phase); app/src/lib/orbit/actions.ts:318-321.
 
-- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
+- `Connect2_LegacyShared/ActionGetAllApplicationEvents`. Chain on TST: event navigateTo_ShareObject of AssembleEventDetail → event navigateTo_ShareObject of ScreenBlock_AssembleDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents.
 
 
 ## 4. Questions
@@ -70,6 +65,8 @@ React calls of the screen without a TST chain in the code of the route. TST make
 | `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../../app/src/lib/legacyShared/actions.ts#L45) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
 | `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../../../app/src/lib/legacyShared/actions.ts#L298) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
 | `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:301`](../../../app/src/api/message/repository.ts#L301) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
+| `/api/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../../app/src/api/bookmark/repository.ts#L27) | extra-actions | live UBTConnect_Utils.controller.js (2026-11-05, migration/sources/runtime/): ServerAction.AddBookmark2 (In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added) and DeleteBookmarkByBookmarkId2 (BookmarkId; Success) called by UBTConnect_Utils.ToggleBookmarkItem_C2; the October copies sat in U |
+| `/api/UBTConnect_Utils/ServiceAPIAddBookmark2` | `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../../app/src/api/bookmark/repository.ts#L16) | extra-actions | live UBTConnect_Utils.controller.js (2026-11-05, migration/sources/runtime/): ServerAction.AddBookmark2 (In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added) and DeleteBookmarkByBookmarkId2 (BookmarkId; Success) called by UBTConnect_Utils.ToggleBookmarkItem_C2; the October copies sat in U |
 | `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
 
 React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
@@ -88,18 +85,18 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` | data action | `AssembleDetail` | AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes | no capture | `fetchAssembleNotes()` [`api/event/repository.ts:101`](../../../app/src/api/event/repository.ts#L101) (page) | `AssembleDetail → useAssembleNotes → fetchAssembleNotes`<br>[`pages/AssembleDetail/AssembleDetailPage.tsx`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | implemented |
-| 2 | `Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` | data action | `AssembleEventDetail` | AssembleEventDetail.OnReady → AssembleEventDetail.onReady → AssembleEventDetail.DataActionGetAssembleEvent<br>AssembleEventDetail fetch at start → AssembleEventDetail.DataActionGetAssembleEvent | no capture | `fetchAssembleEvent()` [`api/event/repository.ts:107`](../../../app/src/api/event/repository.ts#L107) (page) | `AssembleEventDetail → useAssembleEventDetail → fetchAssembleEvent`<br>[`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx) | implemented |
-| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event bookmarkButtonClicked of ContextMenu → AssembleEventDetail_AttendeeSubdivision.handler_OnClickBookmarkButton → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event onClick_Item of NC_Result_Item__Image → AssembleEventDetail_AttendeeSubdivision.handler_OnClickHousehold → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>(+2 more chains) | no capture | – | – | not applicable (telemetry) |
-| 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → NotesSheet.handler_OnSubmitNote → server AddNote | no capture | `addNote()` [`api/note/repository.ts:54`](../../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
-| 5 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
-| 6 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 7 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | onKeyUp in Input → Input.onKeyup → event event_Submit of Input → ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no capture | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 8 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no capture | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 9 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no capture | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
-| 10 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | AssembleEventDetail_AttendeeSubdivision.handler_OnClickShareConnect → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink<br>AssembleEventDetail_AttendeeSubdivision.handler_OnShareToOthers → event navigateTo_ShareObject of AssembleEventDetail_AttendeeSubdivision → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
-| 11 | `UBTConnect_Utils/ServiceAPIAddBookmark2` | service action | `UBTConnect_Utils` | onClick in ItemOptionsMenu → event bookmarkToggle of ItemOptionsMenu → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server AddBookmark2 | no capture | `addC2Bookmark()` [`api/bookmark/repository.ts:16`](../../../app/src/api/bookmark/repository.ts#L16) (page) | `AssembleEventDetail_AttendeeSubdivision → useAttendeeSubdivision → bookmarkServerActions → addC2Bookmark`<br>[`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx) | implemented |
-| 12 | `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2` | service action | `UBTConnect_Utils` | onClick in ItemOptionsMenu → event bookmarkToggle of ItemOptionsMenu → … → UBTConnect_Utils.toggleBookmarkItem_C2 → server DeleteBookmarkByBookmarkId2 | no capture | `deleteC2Bookmark()` [`api/bookmark/repository.ts:27`](../../../app/src/api/bookmark/repository.ts#L27) (page) | `AssembleEventDetail_AttendeeSubdivision → useAttendeeSubdivision → bookmarkServerActions → deleteC2Bookmark`<br>[`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx) | implemented |
+| 1 | `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` | data action | `AssembleDetail` | AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes | yes | `fetchAssembleNotes()` [`api/event/repository.ts:101`](../../../app/src/api/event/repository.ts#L101) (page) | `AssembleDetail → useAssembleNotes → fetchAssembleNotes`<br>[`pages/AssembleDetail/AssembleDetailPage.tsx`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | implemented |
+| 2 | `Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` | data action | `AssembleEventDetail` | AssembleEventDetail.OnReady → AssembleEventDetail.onReady → AssembleEventDetail.DataActionGetAssembleEvent<br>AssembleEventDetail fetch at start → AssembleEventDetail.DataActionGetAssembleEvent | yes | `fetchAssembleEvent()` [`api/event/repository.ts:107`](../../../app/src/api/event/repository.ts#L107) (page) | `AssembleEventDetail → useAssembleEventDetail → fetchAssembleEvent`<br>[`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx) | implemented |
+| 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | event navigateTo_ShareObject of AssembleEventDetail → event navigateTo_ShareObject of ScreenBlock_AssembleDetail → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | not applicable (telemetry) |
+| 4 | `UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIDeleteNoteByNoteId` | service action | `NoteListActions` | Note_Item_List.deleteButton_OnClick → event onDeleteRequested of Note_Item_List → NoteListActions.handler_OnDeleteNoteRequested → server DeleteNoteByNoteId | no | `deleteNote()` [`api/note/repository.ts:73`](../../../app/src/api/note/repository.ts#L73) (page) | `NoteListActionsContainer → deleteNote`<br>[`containers/NoteListActions/NoteListActionsContainer.tsx`](../../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | implemented |
+| 5 | `UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIUpdateNote` | service action | `NoteListActions` | event onSaveEditedNote of Note_Item_List → NoteListActions.handler_OnSaveEditedNote → server UpdateNote | no | `updateNote()` [`api/note/repository.ts:66`](../../../app/src/api/note/repository.ts#L66) (page) | `NoteListActionsContainer → updateNote`<br>[`containers/NoteListActions/NoteListActionsContainer.tsx`](../../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | implemented |
+| 6 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no | `addNote()` [`api/note/repository.ts:54`](../../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
+| 7 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
+| 8 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | ShareSheet.handler_OnClickRecentMember → ShareSheet.action_SubmitShare → server CS_ShareObject<br>ShareSheet.handler_OnClickSend → ShareSheet.action_SubmitShare → server CS_ShareObject | no | `csShareObject()` [`api/share/shareSheet.ts:25`](../../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 9 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 10 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 11 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 12 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | event navigateTo_ShareObject of AssembleEventDetail_LocalitySubdivisionList → event navigateTo_ShareObject of AssembleEventDetail_LocalitiesList → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
 
 ## 6. User actions
 
@@ -190,7 +187,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -214,14 +211,14 @@ Declared inputs of the route: `EventId: Text`, `SeriesId: Text`, `Start: DateTim
 
 | Hook | Keys read | Place |
 |---|---|---|
-| `useSearchParams` | none | [`pages/AssembleDetail/AssembleDetailPage.tsx:52`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L52) |
+| `useSearchParams` | none | [`pages/AssembleDetail/AssembleDetailPage.tsx:53`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L53) |
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `AssembleDetailPage.tsx` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:88`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L88) |
-| `AssembleDetailPage.tsx` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:106`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L106) |
-| `AssembleDetailPage.tsx` | `ContactByEmailMember` | `In_EntityId` = `a.memberId`<br>`In_EntityType` = `CONNECT_ENTITY_MEMBER`<br>`In_ContactName` = `split.Out_Name`<br>`In_ContactLocality` = `a.contactLocality`<br>`In_AuditEventId` = `AUDIT_EMAIL_HOUSEHOLD`<br>`In_ContactCountry` = `a.contactCountry`<br>`In_EmailTo` = `a.emailTo`<br>`In_ContactSurname` = `split.Out_Surname`<br>`In_AvatarURL` = `a.avatarURL` | [`pages/AssembleDetail/AssembleDetailPage.tsx:113`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L113) |
-| `AssembleDetailPage.tsx` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `objectId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:127`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L127) |
+| `AssembleDetailPage.tsx` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:92`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L92) |
+| `AssembleDetailPage.tsx` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:110`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L110) |
+| `AssembleDetailPage.tsx` | `ContactByEmailMember` | `In_EntityId` = `a.memberId`<br>`In_EntityType` = `CONNECT_ENTITY_MEMBER`<br>`In_ContactName` = `split.Out_Name`<br>`In_ContactLocality` = `a.contactLocality`<br>`In_AuditEventId` = `AUDIT_EMAIL_HOUSEHOLD`<br>`In_ContactCountry` = `a.contactCountry`<br>`In_EmailTo` = `a.emailTo`<br>`In_ContactSurname` = `split.Out_Surname`<br>`In_AvatarURL` = `a.avatarURL` | [`pages/AssembleDetail/AssembleDetailPage.tsx:117`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L117) |
+| `AssembleDetailPage.tsx` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `objectId` | [`pages/AssembleDetail/AssembleDetailPage.tsx:131`](../../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx#L131) |
 
 ## 8. Lifecycle
 
@@ -319,119 +316,57 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
-| `AddNote` | `UBTConnectLibrary` | [`components/note/AddNote/AddNote.tsx`](../../../app/src/components/note/AddNote/AddNote.tsx) | 0 |
-| `CircleButton_IconPrimary` | `UBTConnectLibrary` | [`components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx`](../../../app/src/components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx) | 0 |
-| `CircleButton_WithLabel` | `UBTConnectLibrary` | [`components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx`](../../../app/src/components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx) | 0 |
-| `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
-| `InputCounter` | `UBTConnectLibrary` | [`components/ui/InputCounter/InputCounter.tsx`](../../../app/src/components/ui/InputCounter/InputCounter.tsx) | 0 |
+| `ScreenBlock_AssembleDetail` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleDetailView.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleDetailView.tsx), [`pages/AssembleDetail/hooks/assembleDetailState.ts`](../../../app/src/pages/AssembleDetail/hooks/assembleDetailState.ts), [`pages/AssembleDetail/hooks/useAssembleDetail.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleDetail.ts) | 0 |
+| `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
+| `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
+| `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
+| `NewConnectContent` | `Connect2_LegacyShared` | [`components/ui/NewConnectContent/NewConnectContent.tsx`](../../../app/src/components/ui/NewConnectContent/NewConnectContent.tsx) | 0 |
+| `AssembleEventDetail` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx), [`pages/AssembleDetail/hooks/assembleEventDetailState.ts`](../../../app/src/pages/AssembleDetail/hooks/assembleEventDetailState.ts), [`pages/AssembleDetail/hooks/useAssembleEventDetail.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleEventDetail.ts) | 0 |
+| `AssembleSummaryCard` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx`](../../../app/src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx), [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx`](../../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx) | 1 |
+| `NC_Result_Item__Card` | `Connect2_LegacyShared` | [`components/ui/ResultItemCard/ResultItemCard.tsx`](../../../app/src/components/ui/ResultItemCard/ResultItemCard.tsx) | 0 |
+| `NC_Card_Item_Visual` | `Connect2_LegacyShared` | [`components/ui/CardItemVisual/CardItemVisual.tsx`](../../../app/src/components/ui/CardItemVisual/CardItemVisual.tsx) | 0 |
+| `AssembleSummaryCard__Header` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCardHeader/AssembleSummaryCardHeader.tsx`](../../../app/src/components/assemble/AssembleSummaryCardHeader/AssembleSummaryCardHeader.tsx) | 0 |
+| `AssembleSummary_Card_Row` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCardRow/AssembleSummaryCardRow.tsx`](../../../app/src/components/assemble/AssembleSummaryCardRow/AssembleSummaryCardRow.tsx) | 0 |
+| `AssembleCommon_VirtualMeetingURL` | `Connect2_Assemble_MUI` | [`components/assemble/VirtualMeetingUrl/VirtualMeetingUrl.tsx`](../../../app/src/components/assemble/VirtualMeetingUrl/VirtualMeetingUrl.tsx) | 1 |
 | `NoteListActions` | `UBTConnect_Utils` | [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | 2 |
 | `Note_Item_List` | `UBTConnectLibrary` | [`components/note/NoteList/NoteList.tsx`](../../../app/src/components/note/NoteList/NoteList.tsx) | 0 |
 | `Popup` | `UBTConnectLibrary` | [`components/ui/Popup/Popup.tsx`](../../../app/src/components/ui/Popup/Popup.tsx) | 0 |
-| `Note_Item` | `UBTConnectLibrary` | [`components/note/NoteItem/NoteItem.tsx`](../../../app/src/components/note/NoteItem/NoteItem.tsx) | 0 |
-| `TextArea_WithCounter` | `UBTConnectLibrary` | [`components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx`](../../../app/src/components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx) | 0 |
-| `KebabButton_BookmarkNotes` | `UBTConnectLibrary` | [`components/note/BookmarkNotesKebab/BookmarkNotesKebab.tsx`](../../../app/src/components/note/BookmarkNotesKebab/BookmarkNotesKebab.tsx) | 0 |
-| `ContextMenu` | `UBTConnectLibrary` | [`components/ui/ContextMenu/ContextMenu.tsx`](../../../app/src/components/ui/ContextMenu/ContextMenu.tsx) | 0 |
-| `ContextMenu_Item` | `UBTConnectLibrary` | [`components/ui/ContextMenuItem/ContextMenuItem.tsx`](../../../app/src/components/ui/ContextMenuItem/ContextMenuItem.tsx) | 0 |
-| `PopupMenu` | `UBTConnectLibrary` | [`components/ui/PopupMenu/PopupMenu.tsx`](../../../app/src/components/ui/PopupMenu/PopupMenu.tsx) | 0 |
-| `TextEllipsis` | `UBTConnectLibrary` | [`components/ui/TextEllipsis/TextEllipsis.tsx`](../../../app/src/components/ui/TextEllipsis/TextEllipsis.tsx) | 0 |
-| `BottomSheet` | `UBTConnectLibrary` | [`components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx`](../../../app/src/components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx) | 0 |
-| `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
-| `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
-| `BottomSheet` | `OutSystemsUI_2_23` | [`components/ui/BottomSheet/BottomSheet.tsx`](../../../app/src/components/ui/BottomSheet/BottomSheet.tsx) | 0 |
-| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../../app/src/containers/ShareSheet/useShareSheet.ts) | 4 |
-| `SearchResult_Item` | `UBTConnect_Utils` | [`components/search/SearchResultItem/SearchResultItem.tsx`](../../../app/src/components/search/SearchResultItem/SearchResultItem.tsx) | 1 |
-| `TagContent` | `UBTConnectLibrary` | [`components/ui/TagContent/TagContent.tsx`](../../../app/src/components/ui/TagContent/TagContent.tsx) | 0 |
-| `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
-| `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
-| `AvatarImage` | `UBTConnectLibrary` | [`components/ui/AvatarImage/AvatarImage.tsx`](../../../app/src/components/ui/AvatarImage/AvatarImage.tsx) | 0 |
-| `EmptyList` | `UBTConnectLibrary` | [`components/ui/EmptyState/EmptyState.tsx`](../../../app/src/components/ui/EmptyState/EmptyState.tsx) | 0 |
-| `ShareSheet_SectionTitle` | `UBTConnect_Utils` | [`components/share/ShareSheetSectionTitle/ShareSheetSectionTitle.tsx`](../../../app/src/components/share/ShareSheetSectionTitle/ShareSheetSectionTitle.tsx) | 0 |
-| `ShareSheet_Section` | `UBTConnect_Utils` | [`components/share/ShareSheetSection/ShareSheetSection.tsx`](../../../app/src/components/share/ShareSheetSection/ShareSheetSection.tsx) | 0 |
-| `Input` | `UBTConnectLibrary` | [`components/ui/Input/Input.tsx`](../../../app/src/components/ui/Input/Input.tsx) | 0 |
-| `InputWithIcon` | `OutSystemsUI_2_23` | [`components/ui/InputWithIcon/InputWithIcon.tsx`](../../../app/src/components/ui/InputWithIcon/InputWithIcon.tsx) | 0 |
+| `ItemCard_ActionBar` | `UBTConnectLibrary` | [`components/note/ItemCardActions/ItemCard_ActionBar.tsx`](../../../app/src/components/note/ItemCardActions/ItemCard_ActionBar.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `AssembleEventDetail_Section` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_Section.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_Section.tsx) | 0 |
+| `AssembleEventDetail_LocalitiesList` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_LocalitiesList.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_LocalitiesList.tsx) | 0 |
+| `AssembleEventDetail_LocalitySubdivisionList` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_LocalitySubdivisionList.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_LocalitySubdivisionList.tsx), [`pages/AssembleDetail/hooks/useLocalitySubdivisionList.ts`](../../../app/src/pages/AssembleDetail/hooks/useLocalitySubdivisionList.ts) | 0 |
+| `NC_Result_Item__Image` | `Connect2_LegacyShared` | [`components/ui/ResultItemMedia/ResultItemMedia.tsx`](../../../app/src/components/ui/ResultItemMedia/ResultItemMedia.tsx) | 0 |
+| `NC_Result_Item_Badge` | `Connect2_LegacyShared` | [`components/ui/ResultItemBadge/ResultItemBadge.tsx`](../../../app/src/components/ui/ResultItemBadge/ResultItemBadge.tsx) | 0 |
+| `FocusScrollAnchorOnBack` | `NavigationHandler` | [`pages/AssembleDetail/components/FocusScrollAnchorOnBack.tsx`](../../../app/src/pages/AssembleDetail/components/FocusScrollAnchorOnBack.tsx) | 0 |
 | `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
+| `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
+| `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
 | `App_IconBadge` | `UBTConnect` | [`components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx`](../../../app/src/components/layout/BottomBarIconBadge/BottomBarIconBadge.tsx) | 0 |
 | `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../../app/src/components/ui/Badge/Badge.tsx) | 0 |
-| `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |
-| `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
-| `ItemCard_ActionBar` | `UBTConnectLibrary` | [`components/note/ItemCardActions/ItemCard_ActionBar.tsx`](../../../app/src/components/note/ItemCardActions/ItemCard_ActionBar.tsx) | 0 |
-| `ScreenBlock_AssembleDetail` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleDetailView.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleDetailView.tsx), [`pages/AssembleDetail/hooks/assembleDetailState.ts`](../../../app/src/pages/AssembleDetail/hooks/assembleDetailState.ts), [`pages/AssembleDetail/hooks/useAssembleDetail.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleDetail.ts) | 0 |
-| `FocusScrollAnchorOnBack` | `NavigationHandler` | [`pages/AssembleDetail/components/FocusScrollAnchorOnBack.tsx`](../../../app/src/pages/AssembleDetail/components/FocusScrollAnchorOnBack.tsx) | 0 |
-| `AssembleEventDetail` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx), [`pages/AssembleDetail/hooks/assembleEventDetailState.ts`](../../../app/src/pages/AssembleDetail/hooks/assembleEventDetailState.ts), [`pages/AssembleDetail/hooks/useAssembleEventDetail.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleEventDetail.ts) | 0 |
-| `AssembleEventDetail_ContactList` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_ContactList.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_ContactList.tsx), [`pages/AssembleDetail/hooks/assembleEventContacts.ts`](../../../app/src/pages/AssembleDetail/hooks/assembleEventContacts.ts), [`pages/AssembleDetail/hooks/useAssembleEventContactList.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleEventContactList.ts) | 0 |
-| `AssembleEventDetail_Contact` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_Contact.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_Contact.tsx), [`pages/AssembleDetail/hooks/useAssembleEventContact.ts`](../../../app/src/pages/AssembleDetail/hooks/useAssembleEventContact.ts) | 3 |
-| `ContactByMessage_Wrapper` | `UBTConnect_Utils` | [`components/contact/ContactByMessage/ContactByMessage.tsx`](../../../app/src/components/contact/ContactByMessage/ContactByMessage.tsx) | 1 |
-| `ContactPopup_ByMessage` | `UBTConnect_Utils` | [`components/contact/ContactPopupByMessage/ContactPopupByMessage.tsx`](../../../app/src/components/contact/ContactPopupByMessage/ContactPopupByMessage.tsx) | 0 |
-| `ContactPopup` | `UBTConnect_Utils` | [`components/contact/ContactPopup/ContactPopup.tsx`](../../../app/src/components/contact/ContactPopup/ContactPopup.tsx) | 0 |
-| `ContactPopup_ByPhone` | `UBTConnect_Utils` | [`components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx`](../../../app/src/components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx) | 1 |
-| `Dialog_AccessRestrictedAction_Legacy` | `UBTConnect_Utils` | [`platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`](../../../app/src/platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx) | 0 |
-| `Person_Contact_Options` | `Connect2_LegacyShared` | [`components/contact/PersonContactOptions/PersonContactOptions.tsx`](../../../app/src/components/contact/PersonContactOptions/PersonContactOptions.tsx) | 0 |
-| `NC_Result_Item__Image` | `Connect2_LegacyShared` | [`components/ui/ResultItemMedia/ResultItemMedia.tsx`](../../../app/src/components/ui/ResultItemMedia/ResultItemMedia.tsx) | 0 |
-| `NC_Result_Item__Image__Skeleton` | `Connect2_LegacyShared` | [`pages/AssembleDetail/components/NC_Result_Item__Image__Skeleton.tsx`](../../../app/src/pages/AssembleDetail/components/NC_Result_Item__Image__Skeleton.tsx) | 0 |
-| `AssembleEventDetail_LocalitiesList` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_LocalitiesList.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_LocalitiesList.tsx) | 0 |
-| `AssembleEventDetail_LocalitySubdivisionList` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_LocalitySubdivisionList.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_LocalitySubdivisionList.tsx), [`pages/AssembleDetail/hooks/useLocalitySubdivisionList.ts`](../../../app/src/pages/AssembleDetail/hooks/useLocalitySubdivisionList.ts) | 0 |
-| `AssembleEventDetail_AttendeeSubdivision` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivision.tsx), [`pages/AssembleDetail/hooks/attendeeSubdivisionState.ts`](../../../app/src/pages/AssembleDetail/hooks/attendeeSubdivisionState.ts), [`pages/AssembleDetail/hooks/useAttendeeSubdivision.ts`](../../../app/src/pages/AssembleDetail/hooks/useAttendeeSubdivision.ts) | 4 |
-| `ShareableObject_Generic` | `UBTConnect_Utils` | [`components/share/ShareableObject/ShareableObject.tsx`](../../../app/src/components/share/ShareableObject/ShareableObject.tsx) | 0 |
-| `BookmarkNoteAddEdit` | `Connect2_LegacyShared` | [`pages/AssembleDetail/components/BookmarkNoteAddEdit.tsx`](../../../app/src/pages/AssembleDetail/components/BookmarkNoteAddEdit.tsx) | 0 |
-| `InputCounter` | `Connect2_LegacyShared` | [`components/ui/LegacyInputCounter/LegacyInputCounter.tsx`](../../../app/src/components/ui/LegacyInputCounter/LegacyInputCounter.tsx) | 0 |
-| `ContextMenu` | `Connect2_LegacyShared` | [`pages/AssembleDetail/components/ContextMenu.tsx`](../../../app/src/pages/AssembleDetail/components/ContextMenu.tsx) | 0 |
-| `ItemOptionsMenu` | `Connect2_LegacyShared` | [`components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx`](../../../app/src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx) | 0 |
-| `PopupMenu` | `Connect2_LegacyShared` | [`components/ui/LegacyPopupMenu/LegacyPopupMenu.tsx`](../../../app/src/components/ui/LegacyPopupMenu/LegacyPopupMenu.tsx) | 0 |
-| `NC_Result_Item__Tag` | `Connect2_LegacyShared` | [`pages/AssembleDetail/components/NC_Result_Item__Tag.tsx`](../../../app/src/pages/AssembleDetail/components/NC_Result_Item__Tag.tsx) | 0 |
-| `ScrollAnchor` | `NavigationHandler` | [`platform/navigation/ScrollAnchor/ScrollAnchor.tsx`](../../../app/src/platform/navigation/ScrollAnchor/ScrollAnchor.tsx) | 0 |
-| `NC_Result_Item_Badge` | `Connect2_LegacyShared` | [`components/ui/ResultItemBadge/ResultItemBadge.tsx`](../../../app/src/components/ui/ResultItemBadge/ResultItemBadge.tsx) | 0 |
-| `AssembleEventDetail_AttendeeSubdivisionList_Skelet` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivisionList_Skelet.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_AttendeeSubdivisionList_Skelet.tsx) | 0 |
-| `NC_Card_Item_Text__Skeleton` | `Connect2_LegacyShared` | [`components/ui/CardTextSkeleton/CardTextSkeleton.tsx`](../../../app/src/components/ui/CardTextSkeleton/CardTextSkeleton.tsx) | 0 |
-| `AssembleEventDetail_Section` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail_Section.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail_Section.tsx) | 0 |
-| `AssembleSummaryCard` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx`](../../../app/src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx), [`containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx`](../../../app/src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx) | 1 |
-| `AssembleCommon_VirtualMeetingURL` | `Connect2_Assemble_MUI` | [`components/assemble/VirtualMeetingUrl/VirtualMeetingUrl.tsx`](../../../app/src/components/assemble/VirtualMeetingUrl/VirtualMeetingUrl.tsx) | 1 |
-| `AssembleCommon_VirtualMeetingDetails` | `Connect2_Assemble_MUI` | [`components/assemble/VirtualMeetingDetails/VirtualMeetingDetails.tsx`](../../../app/src/components/assemble/VirtualMeetingDetails/VirtualMeetingDetails.tsx) | 0 |
-| `AssembleCommon_VirtualMeetingDetails_Entry` | `Connect2_Assemble_MUI` | [`components/assemble/VirtualMeetingDetailsEntry/VirtualMeetingDetailsEntry.tsx`](../../../app/src/components/assemble/VirtualMeetingDetailsEntry/VirtualMeetingDetailsEntry.tsx) | 0 |
-| `LabelWithCopyIcon` | `Connect2_LegacyShared` | [`components/ui/LabelWithCopyIcon/LabelWithCopyIcon.tsx`](../../../app/src/components/ui/LabelWithCopyIcon/LabelWithCopyIcon.tsx) | 0 |
-| `AlignCenter` | `OutSystemsUI_2_23` | [`components/ui/AlignCenter/AlignCenter.tsx`](../../../app/src/components/ui/AlignCenter/AlignCenter.tsx) | 0 |
-| `NewConnectContent` | `Connect2_LegacyShared` | [`components/ui/NewConnectContent/NewConnectContent.tsx`](../../../app/src/components/ui/NewConnectContent/NewConnectContent.tsx) | 0 |
-| `AssembleSummary_Card_Row` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCardRow/AssembleSummaryCardRow.tsx`](../../../app/src/components/assemble/AssembleSummaryCardRow/AssembleSummaryCardRow.tsx) | 0 |
-| `AssembleSummaryCard__Header` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummaryCardHeader/AssembleSummaryCardHeader.tsx`](../../../app/src/components/assemble/AssembleSummaryCardHeader/AssembleSummaryCardHeader.tsx) | 0 |
-| `NC_Card_Item_Visual` | `Connect2_LegacyShared` | [`components/ui/CardItemVisual/CardItemVisual.tsx`](../../../app/src/components/ui/CardItemVisual/CardItemVisual.tsx) | 0 |
-| `NC_Result_Item__Card` | `Connect2_LegacyShared` | [`components/ui/ResultItemCard/ResultItemCard.tsx`](../../../app/src/components/ui/ResultItemCard/ResultItemCard.tsx) | 0 |
-| `AssembleSummaryDetailHeader_Skeleton` | `Connect2_Assemble_MUI` | [`components/assemble/AssembleSummarySkeleton/AssembleSummarySkeleton.tsx`](../../../app/src/components/assemble/AssembleSummarySkeleton/AssembleSummarySkeleton.tsx) | 0 |
-| `AssembleEventDetail__Error` | `Connect2_Assemble_MUI` | [`pages/AssembleDetail/components/AssembleEventDetail__Error.tsx`](../../../app/src/pages/AssembleDetail/components/AssembleEventDetail__Error.tsx) | 0 |
-| `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
-| `Layout` | `Connect2_LegacyShared` | [`components/layout/LegacyLayout/LegacyLayout.tsx`](../../../app/src/components/layout/LegacyLayout/LegacyLayout.tsx) | 0 |
-| `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
-| `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
+| `ShareSheet` | `UBTConnect_Utils` | [`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx), [`containers/ShareSheet/components/ShareSheetFirstStep.tsx`](../../../app/src/containers/ShareSheet/components/ShareSheetFirstStep.tsx), [`containers/ShareSheet/components/ShareSheetSearchStep.tsx`](../../../app/src/containers/ShareSheet/components/ShareSheetSearchStep.tsx), [`containers/ShareSheet/shareSheetState.ts`](../../../app/src/containers/ShareSheet/shareSheetState.ts), [`containers/ShareSheet/useShareSheet.ts`](../../../app/src/containers/ShareSheet/useShareSheet.ts) | 4 |
+| `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
 
-<details><summary>User actions of the shared blocks (25)</summary>
+<details><summary>User actions of the shared blocks (15)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `AssembleCommon_VirtualMeetingURL` | `onClick (HTML element)` | `meetingInfo_Toggle` | – | asks for a confirmation |
-| 2 | `AssembleEventDetail_AttendeeSubdivision` | `onClick_Item of Image` | `handler_OnClickHousehold` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 3 | `AssembleEventDetail_AttendeeSubdivision` | `bookmarkButtonClicked of ContextMenu` | `handler_OnClickBookmarkButton` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext, AddBookmark2, DeleteBookmarkByBookmarkId2; asks for a confirmation |
-| 4 | `AssembleEventDetail_AttendeeSubdivision` | `shareProfileToOthers of ContextMenu` | `handler_OnShareToOthers` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 5 | `AssembleEventDetail_AttendeeSubdivision` | `shareProfileToConnect of ContextMenu` | `handler_OnClickShareConnect` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 6 | `AssembleEventDetail_Contact` | `onClick_Item of Image` | `handler_OnClickHostContact` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext; asks for a confirmation |
-| 7 | `AssembleEventDetail_Contact` | `callClicked of Options` | `handler_OptionsCall` | – | shows a message |
-| 8 | `AssembleEventDetail_Contact` | `emailClicked of Options`<br>`event_Email of Wrapper` | `handler_ContactByEmail` | – | shows a message |
-| 9 | `AssembleSummaryCard` | `onClick (HTML element)` | `linkAddressOnClick` | – | shows a message |
-| 10 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
-| 11 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 12 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 13 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 14 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 15 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
-| 16 | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
-| 17 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
-| 18 | `NoteListActions` | `onDeleteRequested of List` | `handler_OnDeleteNoteRequested` | – | calls DeleteNoteByNoteId; shows a message |
-| 19 | `NoteListActions` | `onSaveEditedNote of List` | `handler_OnSaveEditedNote` | – | calls UpdateNote; shows a message |
-| 20 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
-| 21 | `SearchResult_Item` | `clicked of IconText` | `onClick_UpgradeSubscription` | – | opens an external link |
-| 22 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
-| 23 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
-| 24 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
-| 25 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+| 2 | `AssembleSummaryCard` | `onClick (HTML element)` | `linkAddressOnClick` | – | shows a message |
+| 3 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
+| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 9 | `NoteListActions` | `onDeleteRequested of List` | `handler_OnDeleteNoteRequested` | – | calls DeleteNoteByNoteId; shows a message |
+| 10 | `NoteListActions` | `onSaveEditedNote of List` | `handler_OnSaveEditedNote` | – | calls UpdateNote; shows a message |
+| 11 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
+| 12 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
+| 13 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
+| 14 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
+| 15 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
 
 </details>
 

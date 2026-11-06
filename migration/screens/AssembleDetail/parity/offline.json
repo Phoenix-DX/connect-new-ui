@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "d36d25ded2aa4d2b3e71",
+ "fingerprint": "35d39a95d303e190aa7d",
  "options": {
   "text": true,
   "style": true,
@@ -27,13 +27,11 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T09:07:47.843Z",
- "counts": {
-  "structure": 1,
-  "pseudo": 1
- },
+ "at": "2026-11-06T09:27:09.041Z",
+ "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE": 1,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
@@ -61,16 +59,5 @@
   "diffPng": "migration/screens/AssembleDetail/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > aside.aside-navigation.menu > div#b2-b1-b2-Navigation > div#b2-b1-Menu > div#b2-Menu",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > header#b2-b1-b2-Header.header > div.header-top > div.display-flex.header-content > div.align-items-center.display-flex.full-width > h1.header-title.text-align-center > div#b2-b1-b2-Title > div#b2-b1-Title > span",
-   "detail": "::after extra in build"
-  }
- ]
+ "diffs": []
 }

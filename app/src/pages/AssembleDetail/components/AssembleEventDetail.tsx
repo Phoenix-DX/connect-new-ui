@@ -29,9 +29,10 @@ export interface AssembleEventDetailProps
   inputs: AssembleEventDetailParameters;
   /** The flags of the halls, read by the page. */
   flags: AttendeeSubdivisionFlags;
-  /** The MeetingNotes placeholder (the notes preview and its action bar), rendered once the meeting is fetched. The
-      live TST block of 2026-11-05 has no Section_MeetingNotes ("Meeting Note", the summary text) any more; the survey
-      copy of 2026-10-13 had one (decision 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md row 11). */
+  /** The MeetingNotes placeholder (the notes preview and its action bar), rendered in `<scope>-MeetingNotes` once the
+      meeting is fetched (capture of 2026-11-06: `b2-b4-MeetingNotes` is absent while loading). The live TST block of
+      2026-11-05 has no Section_MeetingNotes ("Meeting Note", the summary text) any more; the survey copy of 2026-10-13
+      had one (decision 2026-11-05, migration/clarify/auto-decisions-2026-11-05.md row 11). */
   meetingNotes?: ReactNode;
 }
 
@@ -112,7 +113,7 @@ export function AssembleEventDetail({
           )}
         </div>
         <div className="padding-x-base" data-container="" id={`${scope}-DIV_Content`}>
-          {isDataFetched && meetingNotes}
+          {isDataFetched && <div id={`${scope}-MeetingNotes`}>{meetingNotes}</div>}
           <AssembleEventDetail_Section
             id={`${scope}-Section_Attendees`}
             isVisible={!isDataFetched || attendees.length > 0 || special.length > 0 || guests.length > 0}

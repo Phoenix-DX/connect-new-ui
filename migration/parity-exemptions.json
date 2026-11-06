@@ -1707,6 +1707,40 @@
    "detailRegex": "^0\\.[0-2]\\d% pixels differ .*worst 40px tile [0-5]\\.\\d%",
    "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then. The pixels that differ are the button's fill and text.",
    "evidence": "migration/sources/runtime/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-ROW-MARGIN",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "margin-left"
+   ],
+   "pathRegex": "\\[Assemble\\.AssembleSummary_Card_Row\\].*Placeholder_Icon_Right\\.OSInline\\.assemble-summary-row__icon-placeholder--right$",
+   "reason": "The right icon placeholder of a summary row has margin-left auto, so its computed margin follows the width of the row text; the capture masks that text (\"•••••• • •••••••\"), the fictional meeting text has another width.",
+   "evidence": "migration/screens/AssembleDetail/parity/default.json (2026-11-06); analysis/dom/default.html rows of AssembleEventDetail; same family as CAPTURE-BADGE-MASKED-TEXT-HOMEFEED"
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-DESCRIPTION-WIDTH",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "Result_Item_Text_Cont > div#[^ ]*Description_Placeholder\\.font-size-xs\\.text-neutral-7$",
+   "reason": "The empty description placeholder of the locality row is as wide as the locality title above it; the capture masks the title (\"••••••\"), the fictional locality name has another width.",
+   "evidence": "migration/screens/AssembleDetail/parity/default.json (2026-11-06): 28×0 vs 81×0"
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^offline$",
+   "pathRegex": "h1\\.header-title\\.text-align-center > div#[^ ]*Title > div#[^ ]*Title > span$",
+   "reason": "Offline the fetch fails and the React title stays empty, so OutSystemsReactWidgets.css [data-expression]:empty:after adds the ::after. The capture navigated from the AssembleEvents list, whose SetPreloadObject gave the title before the fetch; the parity opens the route by URL without that preload object.",
+   "evidence": "migration/screens/AssembleDetail/parity/offline.json (2026-11-06); analysis/states.json via; OutSystemsReactWidgets.css:219"
   }
  ],
  "ignoreClasses": [

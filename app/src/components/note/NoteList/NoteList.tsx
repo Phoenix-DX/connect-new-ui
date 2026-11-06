@@ -122,7 +122,7 @@ export function NoteList({
           PaddingSize: { GeneralSizeId: UBT_Size.Small },
           MarginSize: { BottomSizeId: UBT_Size.ExtraSmall },
           BorderOptions: { Radius: { GeneralSizeId: UBT_Shape.Soft } },
-          HeightOptions: { Min: '88px' },
+          HeightOptions: { Min: '44px' },
         }}
       >
         {short.showNotesTotal && inShowPreviewOnly ? (

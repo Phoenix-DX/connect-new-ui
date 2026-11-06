@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 2,
- "fingerprint": "1bca4219c66a2c791cea",
+ "fingerprint": "e598b721434d676d16f0",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T06:55:16.145Z",
+ "at": "2026-11-06T09:35:03.756Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,

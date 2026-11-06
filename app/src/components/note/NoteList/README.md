@@ -17,7 +17,9 @@ The pack lists no input; they are in the compiled model (:12-47). Events: `OnSho
 `onOnSaveEditRequested`. Placeholders: none.
 
 Markup (view :181-848): CustomContainer (background neutral-2 in preview else neutral-0, padding s, margin bottom xs,
-radius soft, min height 88px). It holds one of these:
+radius soft, min height 44px: view :225 of the survey copy and :229 of the live copy
+`migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js`; the AssembleDetail capture of
+2026-11-06 shows `min-height: 44px`). It holds one of these:
 
 - When ShowNotesTotal and preview: a List of ShortList Note_Items, and a "Show all notes (Total)" CustomText.
   The CustomText is cyan-dark, xxs, semi-bold, with padding top s. It shows only while no note is edited. Its text is ""

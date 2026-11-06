@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "436511e5bfc78f1edd83",
+ "fingerprint": "9755e201c3626ec94837",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-05T13:09:39.045Z",
+ "at": "2026-11-06T09:32:53.893Z",
  "counts": {},
  "exemptionsUsed": {
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,

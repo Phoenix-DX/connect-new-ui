@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "e06b24cb4757b95cfe05",
+ "fingerprint": "4f528f3d6ef664218ec6",
  "options": {
   "text": true,
   "style": true,
@@ -27,24 +27,21 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T09:07:41.361Z",
- "counts": {
-  "structure": 3,
-  "pseudo": 1,
-  "position": 1,
-  "pixel": 1
- },
+ "at": "2026-11-06T09:27:02.810Z",
+ "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-ROW-MARGIN": 3,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-DESCRIPTION-WIDTH": 1,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.26098,
-  "maxCell": 1,
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
   "maxCellRatio": 0.03,
-  "diffPixels": 85637,
-  "comparedPixels": 328142,
+  "diffPixels": 20,
+  "comparedPixels": 312032,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -55,13 +52,10 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 8,
   "hotspots": [
-   "0,80 (1600px)",
-   "40,80 (1600px)",
-   "80,80 (1600px)",
-   "240,80 (1600px)",
-   "280,80 (1600px)"
+   "200,800 (11px)",
+   "200,760 (9px)"
   ],
   "diffPng": "migration/screens/AssembleDetail/parity/default.diff.png"
  },
@@ -81,36 +75,5 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > aside.aside-navigation.menu > div#b2-b1-b2-Navigation > div#b2-b1-Menu > div#b2-Menu",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > header#b2-b1-b2-Header.header > div.header-top > div.display-flex.header-content > div.align-items-center.display-flex.full-width > h1.header-title.text-align-center > div#b2-b1-b2-Title > div#b2-b1-Title > span",
-   "detail": "::after extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle",
-   "detail": "offset in parent 0,0 → 0,211"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b3.OSBlockWidget[Reusable.NewConnectContent] > div#b2-b3-Content.ignore-backwards-compatibility-content > div#b2-$b4.OSBlockWidget[Assemble.AssembleEventDetail] > div.assemble-detail-content",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b3.OSBlockWidget[Reusable.NewConnectContent] > div#b2-b3-Content.ignore-backwards-compatibility-content > div#b2-$b4.OSBlockWidget[Assemble.AssembleEventDetail] > div#b2-b4-$b1.OSBlockWidget[Assemble.AssembleEventDetail__Error]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "26.10% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 0,80 (1600px); 40,80 (1600px); 80,80 (1600px); 240,80 (1600px); 280,80 (1600px); see migration/screens/AssembleDetail/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

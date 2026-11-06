@@ -34,10 +34,11 @@ const SCOPE = 'b2';
 type AssembleDetailScreenEvents = AssembleEventContactEvents & AttendeeSubdivisionEvents;
 
 /** @origin UBTConnect.Legacy_AssembleFlow.AssembleDetail
-    Inputs EventId, SeriesId, Start (DateTime) and AssembleEventTypeTile. CommonUI_InsideLayout, then
-    ScreenBlock_AssembleDetail (AssembleDetailView, flows in useAssembleDetail) with BottomBarMenu in its BottomBar, and
-    a household ShareSheet whose IsShareOpen is never set to True (only Handler_CloseShareSheet writes it). The block
-    restarts when EventId, SeriesId or Start changes. The flags are read here. Handlers of the block events:
+    Inputs EventId, SeriesId, Start (DateTime) and AssembleEventTypeTile. CommonUI_InsideLayout ($b1), then
+    ScreenBlock_AssembleDetail ($b2; AssembleDetailView, flows in useAssembleDetail) with the MeetingNotes ($b3, $b4)
+    and BottomBarMenu ($b5) in its placeholders, a household ShareSheet ($b6) whose IsShareOpen is never set to True
+    (only Handler_CloseShareSheet writes it) and the NotesSheet ($b7) (instance ids: the capture of 2026-11-06). The
+    block restarts when EventId, SeriesId or Start changes. The flags are read here. Handlers of the block events:
     - NavigateTo_Household → HouseholdDetails(HouseholdId);
     - NavigateTo_HouseholdCarousel: GetHasCarouselEnabled (flag C2EnableCarousel) and a preloaded id list (AssignFromObject)
       with the household → SetPreloadObject(CarouselHouseholdItem of every id) and
@@ -61,13 +62,14 @@ export default function AssembleDetail() {
   const [shareableObjectId] = useViewState('ShareableObjectId', '');
   // GetAssembleNotes (fetched at start) and IsAddNote, with the note handlers of the screen (route-actions gap 8).
   const notes = useAssembleNotes({ inputs, isShareOpen, shareableObjectId });
-  /* The MeetingNotes placeholder of ScreenBlock_AssembleDetail (AssembleDetail.mvc.js:312-412): NoteListActions in
-     preview with the notes of the meeting, then ItemCard_ActionBar with Add note (ActionBarOptions: ShowAddNote,
-     IsAddNoteEnabled). Show all and Add note open the notes sheet (OpenNoteSheet). */
+  /* The MeetingNotes placeholder of ScreenBlock_AssembleDetail (AssembleDetail.mvc.js:312-412, rendered as
+     `b2-MeetingNotes`): NoteListActions ($b3) in preview with the notes of the meeting, then a `margin-top-xs`
+     container (:384) with ItemCard_ActionBar ($b4) with Add note (ActionBarOptions: ShowAddNote, IsAddNoteEnabled).
+     Show all and Add note open the notes sheet (OpenNoteSheet). */
   const meetingNotes = (
-    <>
+    <div id={`${SCOPE}-MeetingNotes`}>
       <NoteListActionsContainer
-        id="$b6"
+        id="$b3"
         inShowPreviewOnly
         notes={notes.notes}
         inItemId={inputs.EventId}
@@ -76,12 +78,14 @@ export default function AssembleDetail() {
         onOnSaveEditNote={notes.onNotesChanged}
         onOnNoteDeleted={notes.onNoteDeleted}
       />
-      <ItemCard_ActionBar
-        id="$b7"
-        actionBarOptions={{ showUnbookmark: false, showAddNote: true, showShare: false }}
-        onEventAddNote={notes.openNoteSheet}
-      />
-    </>
+      <div className="margin-top-xs" data-container="">
+        <ItemCard_ActionBar
+          id="$b4"
+          actionBarOptions={{ showUnbookmark: false, showAddNote: true, showShare: false }}
+          onEventAddNote={notes.openNoteSheet}
+        />
+      </div>
+    </div>
   );
 
   const navigateToHousehold = (householdId: string) => {
@@ -132,7 +136,7 @@ export default function AssembleDetail() {
         }}
       />
       <ShareSheetContainer
-        id="$b4"
+        id="$b6"
         inShareObjectTypeId={SHARE_OBJECT_HOUSEHOLD}
         inIsOpen={isShareOpen}
         inShareableObjectId={shareableObjectId}
@@ -141,7 +145,7 @@ export default function AssembleDetail() {
         }}
       />
       <NotesSheet
-        id="$b5"
+        id="$b7"
         inIsOpen={notes.isAddNote}
         inNotes={notes.notes}
         inItemId={inputs.EventId}
@@ -190,7 +194,7 @@ function AssembleDetailBlock({
           scrollAnchorId={String(state.preloadedFromListIndex)}
         />
       }
-      bottomBar={<BottomBar id="$b3" />}
+      bottomBar={<BottomBar id="$b5" />}
     />
   );
 }

@@ -1153,3 +1153,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-06,MilestoneDetail,fix,137000,sub-milestone,,"real capture 2026-11-06: TST id aliases, HasGuestArrangements; parity clean"
 2026-11-06,AcceptPendingPolicies,fix,150000,sub-policies,,"first real capture 2026-11-06 (pending policy account): heading, row structure, seed 1 policy; parity clean (offline spinner phase)"
 2026-11-06,EventDetail,fix,230000,sub-eventdetail,,"real capture 2026-11-06: TST id aliases, event 7301 booklet/meeting/meal milestone, Friday-23 rule; parity clean"
+2026-11-06,AssembleDetail,fix,165000,sub-assemble,,"first real capture 2026-11-06: id aliases, menu placeholder empty, ids as captured; shared ResultItemBadge px size and NoteList 44px"
