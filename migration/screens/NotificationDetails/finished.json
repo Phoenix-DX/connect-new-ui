@@ -1,9 +1,10 @@
 {
- "finishedAt": "2026-10-29T15:06:49",
+ "finishedAt": "2026-11-06T10:54:09",
  "files": {
-  "src/pages/NotificationDetails/NotificationDetails.test.tsx": "5fafdb0c664b71b6",
-  "src/pages/NotificationDetails/NotificationDetailsPage.tsx": "06721267f5fee400",
-  "src/pages/NotificationDetails/inputs.ts": "413c18e8de2a2683",
-  "src/pages/NotificationDetails/mocks.ts": "6e8c63ae4ef61d18"
+  "src/pages/NotificationDetails/NotificationDetails.test.tsx": "57375196107906c9",
+  "src/pages/NotificationDetails/NotificationDetailsPage.tsx": "376eb3f27d83af8a",
+  "src/pages/NotificationDetails/hooks/useNotificationDetail.ts": "88a497e6866f2d13",
+  "src/pages/NotificationDetails/inputs.ts": "22047d2949b71c78",
+  "src/pages/NotificationDetails/mocks.ts": "a91ee0e3027af0e6"
  }
 }

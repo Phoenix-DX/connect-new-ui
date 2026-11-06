@@ -21,3 +21,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-29T15:06:56): confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 21,23 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)
+
+## Q4 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: No new decision for the barcode plugin: the ADR-11 adapter and the fictional scanner of OrbitAdminEventDetail Q1 (A); Shared code: OrbitErrorMessage and the Popup widget move to `components/orbit/` (page-template rule "a second page moves; Auto decision, row 10 (O2): the duplicated helpers of the two admin pages move to `lib/orbit/actions.ts` now. They reuse; Auto decision, row 8 (F2, Fable): see "Unclear points".; Row 13 (dedupe): the admin detail view, the QR popup and the scan hook are shared with OrbitAdminEventDetail.; Q1 and Q2 are facts answered by the MCP (2026-10-29): "Server facts". No user decision.
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-06T10:52:19): confirm (user, 2026-11-06: 'confirm' for Bookmarks, NotificationDetails, OrbitAdminMilestoneDetail, Search)

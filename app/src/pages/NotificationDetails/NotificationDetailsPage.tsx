@@ -18,6 +18,7 @@ import {
 import { messageTitle } from '@/containers/MessageInstance/messageDetailState';
 import { MessageInfoType } from '@/containers/MessageInstance/staticEntities';
 import { formatDateTime } from '@/lib/osDateTime';
+import { OS_NULL_DATE } from '@/lib/osDateTime';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { useNavigateBack } from '@/platform/navigation';
 import { useNotificationDetail } from './hooks/useNotificationDetail';
@@ -34,8 +35,8 @@ const SECTION_OPTIONS = {
   PaddingSize: { GeneralSizeId: UBT_Size.Small },
 };
 
-/** The default values of GetMessageInstance.Message that the view reads before the first answer. */
-const NULL_DATE_TIME = '1900-01-01T00:00:00';
+/** The null date of the message (the view reads it before the first answer). */
+const NULL_DATE_TIME = `${OS_NULL_DATE}T00:00:00`;
 
 /** The inline style of the content container (ND:466-473), as its extended property writes it. */
 const CONTENT_BORDER_STYLE = {

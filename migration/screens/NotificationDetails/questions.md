@@ -27,3 +27,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-29T15:06:46): confirm (auto-confirmed, user instruction 2026-10-29 window 7, Fable review; auto decision rows 18 in migration/clarify/auto-decisions-2026-10-29.md; final ci 4686 tests, final sweep 2026-10-29)
+
+## Q5 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the; Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.; Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.; Mock data: the captured record (Id 5496739, Title "Your Host on Wednesday", Summary empty, read) is served for the Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-06T10:54:06): confirm (user, 2026-11-06: 'confirm' for Bookmarks, NotificationDetails, OrbitAdminMilestoneDetail, Search)

@@ -2,10 +2,11 @@
 // with the saved session (read-only guard on with the plan's allow list; PIN unlock / sign-in by site_auth.cjs), click
 // the nth element matching a selector, and record the URL the app navigates to. Only id / code parameter values are
 // kept; text parameters are recorded by name (the capture plan uses fictional text, Q3 a). No response body is read.
-// Usage (project root): node tools/tst/route_discovery.cjs <jobs.json> [--out migration/capture-ids.json]
+// Usage (project root): node tools/tst/route_discovery.cjs <jobs.json> [--out migration/capture-ids.json] [--storage .auth/state.json]
 //   jobs: [ { "from": "/UBTConnect/MessageList", "click": "<css selector>", "nth": 0, "expect": "MessageDetail" } ]
 //   "keepText": true keeps text values too: only for app labels (menu subjects, place names), never personal data.
-//   "pre": ["<selector>", …] clicked first (e.g. a tab); "dump": true lists the block names on the target (names only).
+//   "pre": ["<selector>", …] clicked first (e.g. a tab); "dump": true lists the block names on the target (names only);
+//   "force": true clicks without the visibility checks (a card inside a carousel).
 const path = require('path');
 const fs = require('fs');
 const { chromium } = require(require.resolve('playwright', { paths: [process.cwd()] }));
@@ -13,7 +14,8 @@ const SK = path.resolve('tools/pipeline');
 const auth = require(path.join(SK, 'site_auth.cjs'));
 const guard = require(path.join(SK, 'readonly_guard.cjs'));
 
-const STORAGE = '.auth/state.json';
+const storageArg = process.argv.indexOf('--storage');
+const STORAGE = storageArg > 0 ? process.argv[storageArg + 1] : '.auth/state.json';   // the saved session of one account
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const log = m => console.log(`  [auth] ${m}`);
 const ID_PARAM = /(Id|ID|Code|Group|GUID)$/;
@@ -60,6 +62,7 @@ async function settle(page, profile, secrets, url) {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
         if (!unlocked) { await settle(page, profile, secrets, url); unlocked = true; }   // same tab keeps the unlock
         else { await page.waitForSelector('.layout', { timeout: 20000 }).catch(() => {}); await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(1500); }
+        if (job.settleMs) await sleep(job.settleMs);   // "settleMs": extra wait for lists whose skeleton clears late
         for (const sel of job.pre || []) { await page.locator(sel).first().click({ timeout: 15000 }); await sleep(2000); }
         if (!job.click) {   // look only: list the blocks shown after the pre clicks (names only)
           await page.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {}); await sleep(1500);
@@ -70,7 +73,8 @@ async function settle(page, profile, secrets, url) {
         const loc = page.locator(job.click).nth(job.nth || 0);
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const before = new URL(page.url()).pathname;
-        await loc.click();
+        if (job.dispatch) await loc.dispatchEvent('click');   // "dispatch": true fires the click on the element itself (a skeleton overlay covers the list)
+        else await loc.click(job.force ? { force: true } : {});   // "force": true skips the visibility checks (cards in a carousel)
         await page.waitForURL(u => new URL(u).pathname !== before, { timeout: 20000 });
         const to = new URL(page.url());
         const screen = to.pathname.split('/').pop();
@@ -85,7 +89,10 @@ async function settle(page, profile, secrets, url) {
           const skip = /^(BasePatterns|Adaptive|Layout|Layouts|NavigationHandler|LayoutRuntime|Utilities|Private|App_PIN|PIN|Fingerprint|OutSystemsUIOverrides)\.|SkeletonSection|Icon$|IconInline/;
           console.log('   blocks:', Object.entries(names).filter(([n]) => !skip.test(n)).sort((a, b) => b[1] - a[1]).slice(0, 25).map(([n, k]) => `${n}×${k}`).join(', '));
         }
-      } catch (e) { console.log(`FAILED ${job.from} [${job.click}]: ${String(e.message).split('\n')[0].slice(0, 160)}`); }
+      } catch (e) {   // the first lines of the Playwright message carry the reason (not visible, covered, no navigation)
+        const why = String(e.message).split('\n').filter(l => l.trim() && !/^\s*[-=]+/.test(l)).slice(0, 10).map(l => l.trim().replace(/\x1b\[\d+m/g, '')).join(' | ');
+        console.log(`FAILED ${job.from} [${job.click}]: ${why.slice(0, 1200)}`);
+      }
     }
     const blocked = [...new Set(ctx.__blocked)];
     if (blocked.length) console.log('guard blocked:', blocked.join(', '));

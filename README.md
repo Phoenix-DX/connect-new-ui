@@ -77,6 +77,8 @@ call that is not a read. Only the actions that the user confirmed in `migration/
   `.auth/accounts.json` holds several test accounts by role (each role a list of users; one password and PIN). The
   tools take the accounts in the file's order (`--role a,b` limits the roles). When a sign-in fails, or a screen is
   out of reach for the signed-in account, they move to the next account. Logs name the account as `<role>#<n>`, never the user.
+- `batch_capture.cjs login --auto --account <label>` signs in with one account of the list and saves its session
+  (`--storage .auth/state-<label>.json`); `route_discovery.cjs --storage <file>` runs with that session.
 - `batch_capture.cjs`, `flag_probe.cjs` and `route_discovery.cjs` load the saved session (`.auth/state.json`)
   themselves. A new tab of a saved session starts locked, so the tool enters the PIN.
 - `journey_capture.cjs` starts a new browser and signs in once at the start of each run. All journeys of the run

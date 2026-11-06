@@ -9,7 +9,7 @@
  *        Opens a visible browser. YOU log in (the script never sees or types credentials), then press
  *        Enter in the terminal; the session is saved to --storage. Keep .auth/ out of git and delete it
  *        when the capture campaign ends.
- *   node batch_capture.cjs login --auto [--profile <site.json>] [--credentials .auth/credentials.json] --storage .auth/state.json
+ *   node batch_capture.cjs login --auto [--profile <site.json>] [--credentials .auth/credentials.json] [--role a,b] [--account global#2] --storage .auth/state.json
  *        Signs in by itself with the site profile (site_auth.cjs: login page → identity provider → PIN) and the
  *        test account in the secrets file or environment. --base defaults to the profile's base.
  *   With a site profile and secrets available, "run" also signs in again and unlocks the PIN by itself whenever the
@@ -334,8 +334,14 @@ async function main() {
   if (PROFILE && o['no-auto'] !== undefined) PROFILE = null;
   if (PROFILE) {
     ACCOUNTS = auth.loadAccounts({ roles: o.role ? String(o.role).split(',').map(s => s.trim()) : null, log: authLog });   // --role a,b: those roles only
+    if (o.account) {   // --account <label>[,<label>]: those accounts only, in this order (labels of site_auth.loadAccounts: global#2 …)
+      const want = String(o.account).split(',').map(s => s.trim());
+      ACCOUNTS = want.map(l => ACCOUNTS.find(a => a.role === l)).filter(Boolean);
+      if (!ACCOUNTS.length) throw new Error(`--account: none of ${want.join(', ')} is in .auth/accounts.json`);
+    }
     SECRETS = auth.loadSecrets(PROFILE, o);   // environment or --credentials, else the first account, else .auth/credentials.json
     if (ACCOUNTS.length && SECRETS && !/^accounts:/.test(SECRETS._source)) ACCOUNTS = [];   // explicit secrets (environment, --credentials) win
+    if (ACCOUNTS.length) SECRETS = ACCOUNTS[0].secrets;   // --role / --account: the first chosen account is the default
     o.base = o.base || PROFILE.base;
     console.log(`site profile: ${PROFILE.name} (${PROFILE._file}); secrets: ${SECRETS ? 'found (' + SECRETS._source + ')' : 'NOT found: automatic sign-in off'}` +
                 (ACCOUNTS.length > 1 ? `; ${ACCOUNTS.length} accounts: ${ACCOUNTS.map(a => a.role).join(' → ')}` : ''));

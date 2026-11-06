@@ -4,7 +4,9 @@ Only after the user answered "confirm" in the conversation (CLAUDE.md rules 2 an
 --confirm; route.py counts only answers that start with "confirm". A route with any unexempted parity difference is
 reported and left alone.
 Run from the project root, with the dev server up:
-    python3 tools/parity/restamp.py --confirm "confirm (user, <date>: <their words>)" Route1 [Route2 ...]
+    python3 tools/parity/restamp.py --confirm "confirm (user, <date>: <their words>)" [--base <ref>] [--no-scope-guard] Route1 [Route2 ...]
+--base and --no-scope-guard go to route.py ready and finish (the scope guard diffs the branch from main; after a
+repository-wide change use --no-scope-guard, or --base <the commit before the route work>).
 """
 import argparse
 import glob
@@ -19,6 +21,8 @@ NODE_BIN = os.path.expanduser("~/.nvm/versions/node/v24.21.0/bin")
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--confirm", required=True, help="the user's review answer; must start with 'confirm'")
+ap.add_argument("--base", default=None, help="git base of the scope guard (route.py ready/finish --base)")
+ap.add_argument("--no-scope-guard", action="store_true", help="skip the scope guard in ready and finish")
 ap.add_argument("routes", nargs="+")
 args = ap.parse_args()
 if not args.confirm.startswith("confirm"):
@@ -47,12 +51,13 @@ for s in args.routes:
         print(f"  NOT CLEAN: {', '.join(dirty)}", flush=True)
         continue
     run("step", s, "parity")
-    code, out = run("ready", s)
+    gate = (["--base", args.base] if args.base else []) + (["--no-scope-guard"] if args.no_scope_guard else [])
+    code, out = run("ready", s, *gate)
     m = re.search(r"review round \d+, (Q\d+)", out)
     if code != 0 or not m:
         print("  ready FAILED:\n    " + "\n    ".join(out.strip().splitlines()[-8:]), flush=True)
         continue
     code, out = run("answer", s, m.group(1), "--by", "user", "--answer", args.confirm)
     print("  " + out.strip().splitlines()[-1], flush=True)
-    code, out = run("finish", s)
+    code, out = run("finish", s, *gate)
     print("  " + (out.strip().splitlines()[-1] if out.strip() else f"finish exit {code}"), flush=True)
