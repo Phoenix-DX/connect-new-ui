@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup` · pack
 `migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.md` · compiled source
-`migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`
+`migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`
 
 | Input                  | Type                    | Prop                    | Default                      |
 | ---------------------- | ----------------------- | ----------------------- | ---------------------------- |

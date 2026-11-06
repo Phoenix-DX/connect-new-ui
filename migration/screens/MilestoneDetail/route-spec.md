@@ -1,6 +1,6 @@
 # Screen spec: MilestoneDetail
 
-Sources: `S` = analysis/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js, `MW` = …Connect2_OrbitMobile_MUI.
+Sources: `S` = migration/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js, `MW` = …Connect2_OrbitMobile_MUI.
 Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js, `SB` = …ScreenBlock_AccommodationHost.mvc.js, `C` =
 migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `LS` = migration/runtime-sources/Connect2_LegacyShared.controller.js,
 `DOM` = analysis/dom/default.html.

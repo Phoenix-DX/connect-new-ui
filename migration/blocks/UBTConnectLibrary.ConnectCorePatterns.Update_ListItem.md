@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.Update_ListItem
 
 - Kind: shared; build screens using it: HomeFeed, MessageDetail, Updates_SingleList
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectCorePatterns.ContextMenu, UBTConnectLibrary.ConnectPatterns.AvatarDouble, UBTConnectLibrary.ConnectPatterns.AvatarImage, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.TagContent (queue: -)
 
 ## Inputs
@@ -287,4 +287,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc$view", ["OutSy
                                                     _validationProps: {
                                                         validationService: validationService
 ```
-(… 743 more lines in `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js`)
+(… 743 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js`)

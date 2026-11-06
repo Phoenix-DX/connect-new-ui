@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.BlankSlate
 
 - Kind: osui; build screens using it: CommunityBusinessDetails_CoomingSoon
-- Compiled source: `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/OutSystemsUI_2_23.Content.BlankSlate.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Content.BlankSlate.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

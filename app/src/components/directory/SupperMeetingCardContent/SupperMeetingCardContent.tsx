@@ -16,7 +16,7 @@ export interface SupperMeetingCardContentProps {
   inShowAddress?: boolean;
 }
 
-/** Content of a supper meeting card (p:migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/
+/** Content of a supper meeting card (p:migration/sources/pretty/
     UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content.mvc.js:158-275): ImageCard__Content titled Name
     whose bottom section holds SupperMeeting_ImageCard_Content_Statistics (BretherenCount, gender split
     GetDescriptor_Subdivision_GenderSplit(BrothersCount, SistersCount), HouseholdCount) and, with In_ShowAddress, a

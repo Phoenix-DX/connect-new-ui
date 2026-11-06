@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen` · pack
 `migration/blocks/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.md` · compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc.js`
+`migration/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc.js`
 
 | Input       | Type    | Prop          | Default |
 | ----------- | ------- | ------------- | ------- |

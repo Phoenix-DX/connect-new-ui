@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Notes.NotesSheet
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.BackNavigationHandler, UBTConnectLibrary.ConnectPatterns.AddNote, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnect_Utils.CW_Notes.NoteListActions (queue: UBTConnectLibrary.ConnectPatterns.AddNote, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnect_Utils.CW_Notes.NoteListActions)
 
 ## Inputs

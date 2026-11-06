@@ -1,7 +1,7 @@
 # SharePopup
 
 OutSystems: `UBTConnect_Utils.CW_CTA_PopUps.SharePopup` · pack `migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.md`
-· compiled source `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js`
+· compiled source `migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js`
 
 | Input               | Type                 | Prop                 | Default                      |
 | ------------------- | -------------------- | -------------------- | ---------------------------- |

@@ -64,7 +64,7 @@ function iconClasses(icon: string): [string, string] {
   return [C.IconCaret, C.IconHidden];
 }
 
-/** OutSystems UI AccordionItem (p:migration/screens/HostSurvey/analysis/sources/pretty/OutSystemsUI_2_23.Content.
+/** OutSystems UI AccordionItem (p:migration/sources/pretty/OutSystemsUI_2_23.Content.
     AccordionItem.mvc.js view :190-260; provider hand-written from OutSystemsUI.js AccordionItem :4249-4612). Markup as
     the view: item, title wrapper (title placeholder, icon, custom icon), content wrapper (content placeholder). Build:
     open/closed classes, icon type and position, click zone, role / aria / tabindex (setA11YProperties :4456-4473,

@@ -1,5 +1,5 @@
 /* Client actions of Connect2_Assemble_MUI used by the shared Assemble blocks, ported 1:1 from
-   migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as
+   migration/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as
    controller.js:<line>). */
 import { dayOfWeek, formatDateTime } from '@/lib/osDateTime';
 import { log } from '@/platform/log/log';

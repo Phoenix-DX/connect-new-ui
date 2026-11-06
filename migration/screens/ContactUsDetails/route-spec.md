@@ -1,10 +1,10 @@
 # Route spec: ContactUsDetails
 
 Evidence keys:
-- `P` = `analysis/sources/pretty/UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js` (model :1-183, view :185-1643, controller :1645-2590)
-- `DI` = `analysis/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js`
-- `UC` = `analysis/sources/raw/UBTConnect.controller.js`
-- `UL` = `analysis/sources/raw/UBTConnectLibrary.controller.js`
+- `P` = `migration/sources/pretty/UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js` (model :1-183, view :185-1643, controller :1645-2590)
+- `DI` = `migration/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js`
+- `UC` = `migration/sources/raw/UBTConnect.controller.js`
+- `UL` = `migration/sources/raw/UBTConnectLibrary.controller.js`
 - `JSU` = `migration/shell/sources/UBTJavaScriptUtils.controller.js`
 - `RT` = `migration/runtime-sources/OutSystems.js`
 

@@ -37,7 +37,7 @@ export interface HouseholdClick {
   householdIdList: string[];
 }
 
-/** An LDM event card (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js view):
+/** An LDM event card (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js view):
     EventCard_Box (In_EventType LDM) with EventCard_Info_V2 (CardClicked → EventClicked(EventHostId, EventId)) and
     EventCard_Guests (In_GuestCount, the guests, In_IsExpandable); HouseholdClicked adds the event's EventHostId,
     EventId, Hosting and the HouseholderId list of its guests.

@@ -124,14 +124,14 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:71`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L71) |
-| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:75`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L75) |
+| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:71`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L71) |
+| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:75`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L75) |
 
 Navigations with parameters: none.
 
@@ -155,8 +155,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactByEmailOneSchoolGlobal` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:561`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L561)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.ContactMember = In_ContactName ([`L450`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L450))<br>2. ContactByEmailForm.EmailTo = In_EmailTo ([`L453`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L453))<br>3. ContactByEmailForm.FirstName = In_ContactName ([`L456`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L456)) |
-| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
+| `ContactByEmailOneSchoolGlobal` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:561`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L561)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.ContactMember = In_ContactName ([`L450`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L450))<br>2. ContactByEmailForm.EmailTo = In_EmailTo ([`L453`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L453))<br>3. ContactByEmailForm.FirstName = In_ContactName ([`L456`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L456)) |
+| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -209,7 +209,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:586`](../../migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L586) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:586`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js#L586) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

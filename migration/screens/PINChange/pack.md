@@ -356,5 +356,5 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/PINChange/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/PINChange/analysis/sources/pretty/UBTConnect.App_PIN.PINChange.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.App_PIN.PINChange.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/PINChange/analysis/css-relevant.md` only when a visual diff cannot be explained by markup

@@ -118,7 +118,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -144,8 +144,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `LayoutBlank` | OnReady ([`UBTConnect.App_Common.LayoutBlank.mvc.js:543`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L543)) | `onReady` | 1. Execute Action: LayoutReady ([`L436`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L436))<br>2. Execute Action: SetLang ([`L439`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L439))<br>3. Execute Action: AddFavicon ([`L443`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L443)) |
-| `LayoutBlank` | OnDestroy ([`UBTConnect.App_Common.LayoutBlank.mvc.js:562`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L562)) | `onDestroy` | 1. Execute Action: LayoutDestroy ([`L408`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L408)) |
+| `LayoutBlank` | OnReady ([`UBTConnect.App_Common.LayoutBlank.mvc.js:543`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L543)) | `onReady` | 1. Execute Action: LayoutReady ([`L436`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L436))<br>2. Execute Action: SetLang ([`L439`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L439))<br>3. Execute Action: AddFavicon ([`L443`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L443)) |
+| `LayoutBlank` | OnDestroy ([`UBTConnect.App_Common.LayoutBlank.mvc.js:562`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L562)) | `onDestroy` | 1. Execute Action: LayoutDestroy ([`L408`](../../migration/sources/raw/UBTConnect.App_Common.LayoutBlank.mvc.js#L408)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
@@ -176,9 +176,9 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `Splash` | get | `UBTConnect.App_PIN_Header_FinalHeightPercentage` | [`UBTConnect.App_Common.Splash.mvc.js:156`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L156), [`UBTConnect.App_Common.Splash.mvc.js:157`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L157), [`UBTConnect.App_Common.Splash.mvc.js:264`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L264) |
-| `Splash` | get | `UBTConnect.LastURL` | [`UBTConnect.App_Common.Splash.mvc.js:423`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L423), [`UBTConnect.App_Common.Splash.mvc.js:514`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L514) |
-| `Splash` | set | `UBTConnect.LastURL` | [`UBTConnect.App_Common.Splash.mvc.js:428`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L428) |
+| `Splash` | get | `UBTConnect.App_PIN_Header_FinalHeightPercentage` | [`UBTConnect.App_Common.Splash.mvc.js:156`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L156), [`UBTConnect.App_Common.Splash.mvc.js:157`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L157), [`UBTConnect.App_Common.Splash.mvc.js:264`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L264) |
+| `Splash` | get | `UBTConnect.LastURL` | [`UBTConnect.App_Common.Splash.mvc.js:423`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L423), [`UBTConnect.App_Common.Splash.mvc.js:514`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L514) |
+| `Splash` | set | `UBTConnect.LastURL` | [`UBTConnect.App_Common.Splash.mvc.js:428`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L428) |
 
 ### 9.2 React
 
@@ -195,7 +195,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Common.Splash.mvc.js:571`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L571) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Common.Splash.mvc.js:571`](../../migration/sources/raw/UBTConnect.App_Common.Splash.mvc.js#L571) |
 | React | access `anonymous`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -208,8 +208,8 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `OfflineDataSyncEvents` | `onSync` | `SecurityException` ([`UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js:303`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L303)) | 1. Execute Action: EndWithSecurityError ([`L310`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L310)) |
-| `OfflineDataSyncEvents` | `onSync` | `AllExceptions` ([`UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js:317`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L317)) | 1. Execute Action: EndWithError ([`L324`](../../migration/screens/Splash/analysis/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L324)) |
+| `OfflineDataSyncEvents` | `onSync` | `SecurityException` ([`UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js:303`](../../migration/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L303)) | 1. Execute Action: EndWithSecurityError ([`L310`](../../migration/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L310)) |
+| `OfflineDataSyncEvents` | `onSync` | `AllExceptions` ([`UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js:317`](../../migration/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L317)) | 1. Execute Action: EndWithError ([`L324`](../../migration/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js#L324)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 

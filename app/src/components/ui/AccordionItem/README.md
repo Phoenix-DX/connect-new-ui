@@ -2,7 +2,7 @@
 
 OutSystems UI: `OutSystemsUI_2_23.Content.AccordionItem` · pack
 `migration/blocks/OutSystemsUI_2_23.Content.AccordionItem.md` · compiled source
-`migration/screens/HostSurvey/analysis/sources/pretty/OutSystemsUI_2_23.Content.AccordionItem.mvc.js`
+`migration/sources/pretty/OutSystemsUI_2_23.Content.AccordionItem.mvc.js`
 
 | Input          | Type                     | Prop             | Default                       |
 | -------------- | ------------------------ | ---------------- | ----------------------------- |

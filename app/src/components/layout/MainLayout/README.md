@@ -1,7 +1,7 @@
 # Layout_MainPages
 
 OutSystems: `UBTConnectLibrary.Layouts.Layout_MainPages` · pack `migration/blocks/UBTConnectLibrary.Layouts.Layout_MainPages.md`
-· compiled source `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
+· compiled source `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_MainPages.mvc.js`
 
 | Input                       | Type    | Prop                          | Default |
 | --------------------------- | ------- | ----------------------------- | ------- |

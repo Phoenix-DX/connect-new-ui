@@ -21,7 +21,7 @@ export interface EventDetail_BannerProps {
   onSetContainerHeight: (bannerHeight: number) => void;
 }
 
-/** Banner of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js
+/** Banner of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js
     = B; view :180-560, controller :565-860). The hall photo, an overlay and the text box, each `height` /
     `min-height` ActiveHeight px: "Host" / "Guest", the locality (bold) and FormatDateForEventBanner(EventDate), then
     for a host the Adults / Children counts ("Adult" / "Child" for 1) and the "Contact Coordinator" button (enabled when

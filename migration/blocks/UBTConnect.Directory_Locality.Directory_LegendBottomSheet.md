@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Locality.Directory_LegendBottomSheet
 
 - Kind: shared; build screens using it: CountryDetails, CountryList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.PreventBackNavigation, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText (queue: UBTConnectLibrary.ConnectPatterns.BottomSheet)
 
 ## Inputs
@@ -285,4 +285,4 @@ define("UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc$view", ["O
                                                     rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral7;
                                                     rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.small;
 ```
-(… 410 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js`)
+(… 410 more lines in `migration/sources/pretty/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js`)

@@ -187,7 +187,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -195,10 +195,10 @@ Screen inputs: none. `setInputs` of `OrbitLanding` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `OrbitLanding` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbit` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:281`](../../migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L281) |
-| `OrbitLanding` | `TransportDetail` | `In_TargetMemberId` = `targetMemberId`<br>`In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId`<br>`In_MilestoneId` = `milestoneId`<br>`In_HeaderClass` = `headerClass`<br>`In_MilestoneName` = `milestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:330`](../../migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L330) |
-| `OrbitLanding` | `PassportScan` | `LoginMemberId` = `loginMemberId`<br>`TargetId` = `targetMemberId` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:421`](../../migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L421) |
-| `OrbitLanding` | `EventDetail` | `In_EventId` = `eventId`<br>`In_MemberId` = `memberId`<br>`In_FromNotification` = `false`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:483`](../../migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L483) |
+| `OrbitLanding` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbit` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:281`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L281) |
+| `OrbitLanding` | `TransportDetail` | `In_TargetMemberId` = `targetMemberId`<br>`In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId`<br>`In_MilestoneId` = `milestoneId`<br>`In_HeaderClass` = `headerClass`<br>`In_MilestoneName` = `milestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:330`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L330) |
+| `OrbitLanding` | `PassportScan` | `LoginMemberId` = `loginMemberId`<br>`TargetId` = `targetMemberId` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:421`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L421) |
+| `OrbitLanding` | `EventDetail` | `In_EventId` = `eventId`<br>`In_MemberId` = `memberId`<br>`In_FromNotification` = `false`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:483`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L483) |
 
 ### 7.2 React
 
@@ -258,7 +258,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:571`](../../migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L571) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js:571`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js#L571) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

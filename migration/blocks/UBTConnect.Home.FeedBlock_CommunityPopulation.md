@@ -1,7 +1,7 @@
 # UBTConnect.Home.FeedBlock_CommunityPopulation
 
 - Kind: shared; build screens using it: CountryList, HomeFeed
-- Compiled source: `migration/screens/CountryList/analysis/sources/pretty/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: -)
 
 ## Inputs

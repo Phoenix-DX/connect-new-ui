@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Reusable.NewConnectContent` · pack
 `migration/blocks/Connect2_LegacyShared.Reusable.NewConnectContent.md` · source
-`migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Reusable.NewConnectContent.mvc.js`
+`migration/sources/pretty/Connect2_LegacyShared.Reusable.NewConnectContent.mvc.js`
 
 No inputs, no events, no actions. Placeholder `Content` → `children`, rendered in
 `<div class="ignore-backwards-compatibility-content">`.

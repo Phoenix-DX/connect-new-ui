@@ -173,7 +173,7 @@ describe('directory map screens actions', () => {
 });
 
 /* Notes_InterchangeId_ComposeId and Notes_InterchangeId_ExtractId (UBTConnect.controller.js, TST publish of
-   2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/). Fictional ids. */
+   2026-10-29, copy in migration/sources/raw/). Fictional ids. */
 describe('Notes_InterchangeId_ComposeId / Notes_InterchangeId_ExtractId', () => {
   it('ComposeId: "<LocalityId>:<InterchangeLocalityId>", or the interchange id alone', () => {
     expect(notes_InterchangeId_ComposeId('252', '5')).toBe('252:5');

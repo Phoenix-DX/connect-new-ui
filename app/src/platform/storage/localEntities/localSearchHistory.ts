@@ -8,8 +8,8 @@ import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSche
    E = migration/runtime-sources/Connect2_LegacyShared.entities.js (entity metadata);
    A = migration/runtime-sources/Connect2_LegacyShared.aggregates.IDB.js (the IndexedDB aggregates TST runs: index
    USERID or ID, getAll(only(value)), then the filter in JS, sort, max records);
-   B = migration/screens/MessageList/analysis/sources/pretty/Connect2_LegacyShared.UtilityFlow.MessageSearchHistory.mvc.js;
-   C = migration/screens/MessageList/analysis/sources/raw/Connect2_LegacyShared.controller.js.
+   B = migration/sources/pretty/Connect2_LegacyShared.UtilityFlow.MessageSearchHistory.mvc.js;
+   C = migration/sources/raw/Connect2_LegacyShared.controller.js.
    Storage: IndexedDB as TST and the other client entities (database.ts, recentSearch.ts): one object store per entity
    table in the app database, keyed by the primary-key column, one index per column; memory where there is none. */
 

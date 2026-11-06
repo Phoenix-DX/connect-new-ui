@@ -17,7 +17,7 @@ Locality_Details.
 The data actions come from `src/api/household/`. The old `api.ts`, `logic.ts`, `types.ts` and block `mocks.ts` no
 longer exist. The callers read the flags with `useHouseholdDetailsFlags()` and pass `flags`. The container gives
 `entityActions`, `renderMemberActions` and `shareSheet` to the view as slots. Compiled source:
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
+`migration/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
 (view :241-1886, controller :1887-3058); line numbers in the code are from this file.
 
 The page reads the route input in `pages/HouseholdDetails/inputs.ts`.

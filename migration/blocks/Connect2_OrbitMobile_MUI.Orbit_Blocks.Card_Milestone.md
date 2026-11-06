@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone
 
 - Kind: shared; build screens using it: EventDetail, OrbitLanding
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc.js`
 - Child blocks: Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template (queue: Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template)
 
 ## Inputs
@@ -286,4 +286,4 @@ define("Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc$view", ["OutSys
                                 style: "bold margin-bottom-base",
                                 value: model.getCachedValue(idService.getId("sb19aButoEyALHnG+I29Fw.Value"), function() {
 ```
-(… 562 more lines in `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc.js`)
+(… 562 more lines in `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.mvc.js`)

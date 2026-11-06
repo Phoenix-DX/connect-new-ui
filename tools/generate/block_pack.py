@@ -22,6 +22,10 @@ import html
 import html.parser
 import json
 import os
+import sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
+import sources_store  # noqa: E402
 import re
 import subprocess
 
@@ -128,8 +132,8 @@ def find_source(name):
     """Pretty source from a screen capture; else the survey's copy (blocks no captured screen loaded), saved under
     migration/blocks/sources/ so agents can grep it."""
     global _SURVEY
-    for p in sorted(glob.glob(f"migration/screens/*/analysis/sources/pretty/{name}.mvc.js")):
-        return p, open(p, encoding="utf-8", errors="replace").read()
+    for p in sources_store.find(f"{name}.mvc.js", "pretty"):  # the shared store of the captures
+        return p, sources_store.read(p)
     if _SURVEY is None:
         try:
             _SURVEY = json.load(open("capture/survey-UBTConnect.json", encoding="utf-8")).get("sources", {})

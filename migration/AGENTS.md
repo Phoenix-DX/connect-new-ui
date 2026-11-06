@@ -41,8 +41,9 @@ Never use screenshots or memory of "how apps usually look" to decide markup, cla
 ### Where the compiled code is (check all before calling a source "missing")
 - Screen and block views (`*.mvc.js`): `capture/survey-UBTConnect.json` → `sources` (every screen and block, even ones
   no capture loaded); readable copies of block sources in `migration/blocks/sources/`.
-- Module controllers and models (`<Module>.controller.js`, `<Module>.model.js`): `migration/screens/*/analysis/sources/raw/`
-  (identical copies across screens), `migration/shell/sources/`, `migration/contract/sources/raw/`.
+- Module controllers and models (`<Module>.controller.js`, `<Module>.model.js`): the shared store `migration/sources/raw/`
+  (one copy per content; `migration/screens/<S>/analysis/manifest.json` names the files of a route),
+  `migration/shell/sources/`, `migration/contract/sources/raw/`.
 - OutSystems runtime, OSUI providers, plugin and SDK scripts, `moduleinfo.json`, `OutSystemsSettings.js`:
   `migration/runtime-sources/` (index: `migration/knowledge/runtime-sources.md`).
 - Static-entity values of TST by name: `migration/knowledge/static-entities-tst.json`.

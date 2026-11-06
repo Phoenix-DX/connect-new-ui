@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
 
 - Kind: shared; build screens using it: BookmarksByGroup, ConnectShare, MyBookmarks
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js`
 - Child blocks: UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction (queue: -)
 
 ## Inputs

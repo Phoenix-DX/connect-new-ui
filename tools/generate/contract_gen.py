@@ -33,7 +33,7 @@ Evidence (types are never guessed)
   * Compiled code, one copy per file name, live TST first (user decision I10-6 (a), 2026-10-29): 1. the live survey
     capture/survey-UBTConnect.json, 2. files fetched read-only into migration/runtime-sources (knowledge/
     runtime-sources.md), 3. producer-module *.model.js in migration/contract/sources/raw and route captures
-    (migration/screens/*/analysis/sources/raw), newest file first. If the live survey is missing (it is not committed)
+    (the shared store migration/sources/raw, named by the route manifests), newest file first. If the live survey is missing (it is not committed)
     a warning is printed and the old order applies: fetched copies newest first, then the survey of 2026-10-13
     (capture/survey-UBTConnect-2026-10-13.json). A route capture copy can be older than TST (Notifications.mvc.js
     of 2026-10-14 lacks ActionMarkAsRead), so it must not win over the live code.
@@ -112,6 +112,8 @@ OLD_SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect-2026-10-13.json")
 SCREENS_DIR = os.path.join(ROOT, "migration", "screens")
 RUNTIME_SOURCES = os.path.join(ROOT, "migration", "runtime-sources")  # files fetched read-only from TST (knowledge/runtime-sources.md)
 CONTRACT_SOURCES = os.path.join(ROOT, "migration", "contract", "sources", "raw")  # producer *.model.js fetched from TST
+sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
+import sources_store  # noqa: E402
 FIXTURES_DIR = os.path.join(ROOT, "app", "src", "mocks", "fixtures")
 
 # read-only guard rule of the skill (readonly_guard.cjs / record_har.cjs)
@@ -258,7 +260,7 @@ class Sources:
         # leaves its structures unresolved.
         # Order (user decision I10-6 (a), 2026-10-29; live TST code is the source of truth, context-062): 1. the live
         # survey (capture/survey-UBTConnect.json), 2. migration/runtime-sources, 3. producer models in
-        # migration/contract/sources/raw and route captures (migration/screens/*/analysis/sources/raw), newest file
+        # migration/contract/sources/raw and route captures (migration/sources/raw), newest file
         # first, 4. nothing else. If the live survey is missing (it is not committed) the old order applies: fetched
         # copies by modification time, the older survey (capture/survey-UBTConnect-2026-10-13.json) as the last resort.
         norm = lambda t: t.replace("\ufeff", "").replace("\r\n", "\n").strip()  # BOM, line endings
@@ -275,14 +277,15 @@ class Sources:
                 self.text[name] = txt
                 self.origin[name] = "capture/survey-UBTConnect.json#" + name
         by_age = lambda ps: sorted(ps, key=lambda p: (-os.path.getmtime(p), p))
+        # the route captures' compiled files live once in the shared store (tools/common/sources_store.py)
         tiers = [glob.glob(os.path.join(RUNTIME_SOURCES, "*.js")),
                  glob.glob(os.path.join(CONTRACT_SOURCES, "*.js")) +
-                 glob.glob(os.path.join(SCREENS_DIR, "*", "analysis", "sources", "raw", "*.js"))]
+                 [os.path.join(ROOT, p) for p in sources_store.all_files("raw") if p.endswith(".js")]]
         if not live:
             tiers = [tiers[0] + tiers[1]]
         for tier in tiers:
             for p in by_age(tier):
-                b = os.path.basename(p)
+                b = sources_store.base_name(p)
                 if b not in self.text:
                     self.text[b] = open(p, encoding="utf-8").read()
                     self.origin[b] = rel(p)

@@ -1,7 +1,7 @@
 # UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectCorePatterns.ActionsMenu, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper, UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone, UBTConnect_Utils.CW_CTA_PopUps.SharePopup, UBTConnect_Utils.CW_Notes.NotesSheet, UBTConnect_Utils.CW_Share.ShareSheet, UBTConnect_Utils.CW_Share.ShareableObject_Generic (queue: UBTConnectLibrary.ConnectCorePatterns.ActionsMenu, UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper, UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone, UBTConnect_Utils.CW_CTA_PopUps.SharePopup, UBTConnect_Utils.CW_Notes.NotesSheet, UBTConnect_Utils.CW_Share.ShareSheet, UBTConnect_Utils.CW_Share.ShareableObject_Generic)
 
 ## Inputs
@@ -290,4 +290,4 @@ define("UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$vie
                     }, function() {
                         return model.variables.entityTypeIn;
 ```
-(… 414 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`)
+(… 414 more lines in `migration/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`)

@@ -132,7 +132,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in the `analysis/sources/raw/` folders of the captured routes (static check).
+The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
@@ -174,7 +174,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 | Block | Event | Action | Steps |
 |---|---|---|---|
 | `ContactByEmailOrbitHost` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:737`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L737)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.EmailTo = In_HostEmail ([`L704`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L704)) |
-| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/screens/ContactByEmailMember/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/screens/ContactByEmailMember/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
+| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 

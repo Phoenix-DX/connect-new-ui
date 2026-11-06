@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.ButtonLoading
 
 - Kind: osui; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, Login, Profile, Services
-- Compiled source: `migration/screens/ContactByEmailMember/analysis/sources/pretty/OutSystemsUI_2_23.Utilities.ButtonLoading.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Utilities.ButtonLoading.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

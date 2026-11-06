@@ -6,7 +6,7 @@
    - `RV` = OutSystemsReactView.js: ValidationWidget ≈208400-210600, InputWithVariableWidget ≈210600-212300
      (validate ≈211720), web block instance ≈194800-196100 (validate ≈195588).
    - App messages: UBTConnect.languageResources.js (MessagesProvider, the home module's overrides), copy in
-     migration/screens/Profile/analysis/sources/pretty/UBTConnect.languageResources.js:1-30; every UBTConnect screen
+     migration/sources/pretty/UBTConnect.languageResources.js:1-30; every UBTConnect screen
      controller is built with it (e.g. Profile.mvc.js:4137 `ControllerFactory(Controller, UBTConnectLanguageResources)`).
    No React here: the bindings are in OSValidation.tsx. */
 

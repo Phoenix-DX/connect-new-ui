@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/screens/Profile/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectCorePatterns.ContextMenu (queue: -)
 
 ## Inputs

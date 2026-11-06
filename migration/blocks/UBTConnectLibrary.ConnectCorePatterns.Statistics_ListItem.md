@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem
 
 - Kind: shared; build screens using it: BrowseCountries, BrowseDirectory, Locality_Details
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.AvatarImage, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText (queue: -)
 
 ## Inputs
@@ -289,4 +289,4 @@ define("UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc$view", ["O
                                                         },
                                                         _idProps: {
 ```
-(… 365 more lines in `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc.js`)
+(… 365 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.mvc.js`)

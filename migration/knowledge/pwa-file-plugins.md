@@ -1,5 +1,5 @@
 # File open/download when the original runs as a PWA (browser, no Cordova)
-Paths: RS=migration/runtime-sources, UT=migration/screens/OrbitLanding/analysis/sources/raw/UBTConnect_Utils.controller.js.
+Paths: RS=migration/runtime-sources, UT=migration/sources/raw/UBTConnect_Utils.controller.js.
 Static reading only. Nothing ran. FileViewerPlugin.osfileviewerlib_bundle.js is NOT in RS (see Open items).
 ## 1. Plugin checks in a browser without Cordova
 - CheckFilePlugin (RS/FilePlugin.controller.js:201+): runs requireScript scripts/FilePlugin.wrapper.js, then IsCordovaDefined

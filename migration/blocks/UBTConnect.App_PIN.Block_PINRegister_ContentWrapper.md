@@ -1,7 +1,7 @@
 # UBTConnect.App_PIN.Block_PINRegister_ContentWrapper
 
 - Kind: shared; build screens using it: PINChange, PINRegister
-- Compiled source: `migration/screens/PINRegister/analysis/sources/pretty/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBT_AppManager.PIN.Pincode_Register (queue: UBT_AppManager.PIN.Pincode_Register)
 
 ## Inputs
@@ -289,4 +289,4 @@ define("UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc$view", ["OutSyst
                                 _handleError: function(ex) {
                                     controller.handleError(ex);
 ```
-(… 102 more lines in `migration/screens/PINRegister/analysis/sources/pretty/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js`)
+(… 102 more lines in `migration/sources/pretty/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js`)

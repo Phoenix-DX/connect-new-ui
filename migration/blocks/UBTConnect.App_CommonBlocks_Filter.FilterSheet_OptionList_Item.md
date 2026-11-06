@@ -1,7 +1,7 @@
 # UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item
 
 - Kind: shared; build screens using it: CountryDetails, Notes, Search, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.Input, UBTConnectLibrary.ConnectPatterns.SelectionOption_List (queue: UBTConnectLibrary.ConnectPatterns.Input, UBTConnectLibrary.ConnectPatterns.SelectionOption_List)
 
 ## Inputs
@@ -288,4 +288,4 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc$view"
                                 content: new PlaceholderContent(function() {
                                     return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
 ```
-(… 296 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js`)
+(… 296 more lines in `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js`)

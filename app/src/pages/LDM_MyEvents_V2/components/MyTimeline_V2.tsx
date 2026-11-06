@@ -29,7 +29,7 @@ export interface MyTimeline_V2Props {
   onEventsSwipeUp: () => unknown;
 }
 
-/** The timeline (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2.mvc.js view :200-420).
+/** The timeline (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2.mvc.js view :200-420).
     With events: MinHeight_Enforcer (`timeline-ldm-height`) with "Upcoming Event(s)" (EventDetail_SubSection with a
     bottom border, List_UpcomingEvents of EventCard_V2) when there are upcoming events, and "Past Events"
     (List_PastEvents: one `past-event-cont` per month, its CurrentMonthDate and List_PastEventsData of EventCard_V2)

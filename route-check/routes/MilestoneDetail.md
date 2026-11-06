@@ -342,26 +342,26 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_FromNotification` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:95`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L95) |
-| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:99`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L99) |
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:103`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L103) |
-| `In_HostId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:107`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L107) |
-| `In_OrbitMilestoneTypeId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:111`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L111) |
-| `In_MilestoneName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:115`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L115) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:119`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L119) |
+| `In_FromNotification` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:95`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L95) |
+| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:99`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L99) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:103`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L103) |
+| `In_HostId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:107`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L107) |
+| `In_OrbitMilestoneTypeId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:111`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L111) |
+| `In_MilestoneName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:115`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L115) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:119`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L119) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `MilestoneDetail` | `ContactByEmailOrbitHost` | `In_HostName` = `in_ContactName`<br>`In_EntityType` = `UBTConnectModel.staticEntities.connect_Entity.member`<br>`In_Subject` = `in_Subject`<br>`In_ContactCountry` = `in_ContactCountry`<br>`In_FormattedDateTime` = `in_FormattedDateTime`<br>`In_ContactLocality` = `in_ContactLocality`<br>`In_HostEmail` = `in_EmailTo`<br>`In_Surname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_AvatarURL` = `in_AvatarURL`<br>`In_EntityId` = `in_HostId`<br>`In_MilestoneTitle` = `in_MilestoneTitle`<br>`In_EventName` = `in_EventName` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:437`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L437) |
-| `MilestoneDetail` | `GuestArrangements` | `In_EventId` = `in_EventId`<br>`In_EventName` = `in_EventName`<br>`In_MilestoneTitle` = `milestoneTitle`<br>`In_HostId` = `hostId`<br>`In_MemberId` = `memberId`<br>`In_MilestoneId` = `in_MilestoneId`<br>`In_OrbitMilestoneTypeId` = `milestoneTypeId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:552`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L552) |
-| `MilestoneDetail` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:628`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L628) |
-| `MilestoneDetail` | `ContactByEmailOrbitHelpdesk` | `In_Subject` = `subject`<br>`In_MilestoneId` = `""`<br>`In_EventName` = `eventName`<br>`In_EventId` = `in_EventId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:674`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L674) |
+| `MilestoneDetail` | `ContactByEmailOrbitHost` | `In_HostName` = `in_ContactName`<br>`In_EntityType` = `UBTConnectModel.staticEntities.connect_Entity.member`<br>`In_Subject` = `in_Subject`<br>`In_ContactCountry` = `in_ContactCountry`<br>`In_FormattedDateTime` = `in_FormattedDateTime`<br>`In_ContactLocality` = `in_ContactLocality`<br>`In_HostEmail` = `in_EmailTo`<br>`In_Surname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_AvatarURL` = `in_AvatarURL`<br>`In_EntityId` = `in_HostId`<br>`In_MilestoneTitle` = `in_MilestoneTitle`<br>`In_EventName` = `in_EventName` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:437`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L437) |
+| `MilestoneDetail` | `GuestArrangements` | `In_EventId` = `in_EventId`<br>`In_EventName` = `in_EventName`<br>`In_MilestoneTitle` = `milestoneTitle`<br>`In_HostId` = `hostId`<br>`In_MemberId` = `memberId`<br>`In_MilestoneId` = `in_MilestoneId`<br>`In_OrbitMilestoneTypeId` = `milestoneTypeId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:552`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L552) |
+| `MilestoneDetail` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:628`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L628) |
+| `MilestoneDetail` | `ContactByEmailOrbitHelpdesk` | `In_Subject` = `subject`<br>`In_MilestoneId` = `""`<br>`In_EventName` = `eventName`<br>`In_EventId` = `in_EventId` | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:674`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L674) |
 
 ### 7.2 React
 
@@ -423,7 +423,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:754`](../../migration/screens/MilestoneDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L754) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:754`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js#L754) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

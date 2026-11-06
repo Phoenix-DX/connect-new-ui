@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.md` · compiled source
-`migration/screens/OrbitLanding/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.mvc.js`
 
 | Input           | Type                                      | Prop             | Default      |
 | --------------- | ----------------------------------------- | ---------------- | ------------ |

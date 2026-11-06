@@ -383,27 +383,27 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:77`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L77) |
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:81`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L81) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:85`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L85) |
-| `In_FromNotification` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:89`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L89) |
+| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:77`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L77) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:81`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L81) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:85`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L85) |
+| `In_FromNotification` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:89`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L89) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `EventDetail` | `QRCodeGenerate` | `In_EventId` = `in_EventId`<br>`In_MemberId` = `in_MemberId`<br>`In_EventName` = `in_EventName`<br>`In_EventStartDate` = `event_EventStartDate`<br>`In_EventEndDate` = `event_EventEndDate`<br>`In_EventLocation` = `event_EventLocation` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:373`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L373) |
-| `EventDetail` | `ContactByEmailOrbitHelpdesk` | `In_MilestoneId` = `""`<br>`In_EventId` = `in_EventId`<br>`In_Subject` = `subject`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:449`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L449) |
-| `EventDetail` | `ViewDocuments` | `In_EventEndDate` = `event_EventEndDate`<br>`In_MemberId` = `in_MemberId`<br>`In_EventName` = `in_EventName`<br>`In_EventId` = `in_EventId`<br>`In_EventLocation` = `event_EventLocation`<br>`In_EventStartDate` = `event_EventStartDate` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:516`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L516) |
-| `EventDetail` | `EventBooklet` | `In_EventName` = `in_EventName`<br>`In_EventId` = `in_EventId` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:580`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L580) |
-| `EventDetail` | `MilestoneDetail` | `In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId`<br>`In_FromNotification` = `false`<br>`In_HostId` = `hostId`<br>`In_EventId` = `eventId`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventName` = `eventName`<br>`In_MilestoneName` = `milestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:622`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L622) |
-| `EventDetail` | `HelpersDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `preloadEventName`<br>`In_HostId` = `hostId`<br>`In_OrbitMilestoneTypeId` = `UBTConnectModel.staticEntities.orbitMilestoneType.helper`<br>`In_MilestoneName` = `preloadMilestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:725`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L725) |
-| `EventDetail` | `TransportDetail` | `In_HeaderClass` = `headerClass`<br>`In_MilestoneName` = `milestoneName`<br>`In_MilestoneId` = `milestoneId`<br>`In_TargetMemberId` = `in_MemberId`<br>`In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:810`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L810) |
-| `EventDetail` | `HostSurvey` | `In_MemberId` = `householderId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventId` = `in_EventId`<br>`In_EventName` = `in_EventName`<br>`In_EventEndDate` = `eventEndDate` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:894`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L894) |
+| `EventDetail` | `QRCodeGenerate` | `In_EventId` = `in_EventId`<br>`In_MemberId` = `in_MemberId`<br>`In_EventName` = `in_EventName`<br>`In_EventStartDate` = `event_EventStartDate`<br>`In_EventEndDate` = `event_EventEndDate`<br>`In_EventLocation` = `event_EventLocation` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:373`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L373) |
+| `EventDetail` | `ContactByEmailOrbitHelpdesk` | `In_MilestoneId` = `""`<br>`In_EventId` = `in_EventId`<br>`In_Subject` = `subject`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:449`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L449) |
+| `EventDetail` | `ViewDocuments` | `In_EventEndDate` = `event_EventEndDate`<br>`In_MemberId` = `in_MemberId`<br>`In_EventName` = `in_EventName`<br>`In_EventId` = `in_EventId`<br>`In_EventLocation` = `event_EventLocation`<br>`In_EventStartDate` = `event_EventStartDate` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:516`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L516) |
+| `EventDetail` | `EventBooklet` | `In_EventName` = `in_EventName`<br>`In_EventId` = `in_EventId` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:580`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L580) |
+| `EventDetail` | `MilestoneDetail` | `In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId`<br>`In_FromNotification` = `false`<br>`In_HostId` = `hostId`<br>`In_EventId` = `eventId`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventName` = `eventName`<br>`In_MilestoneName` = `milestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:622`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L622) |
+| `EventDetail` | `HelpersDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `preloadEventName`<br>`In_HostId` = `hostId`<br>`In_OrbitMilestoneTypeId` = `UBTConnectModel.staticEntities.orbitMilestoneType.helper`<br>`In_MilestoneName` = `preloadMilestoneName` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:725`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L725) |
+| `EventDetail` | `TransportDetail` | `In_HeaderClass` = `headerClass`<br>`In_MilestoneName` = `milestoneName`<br>`In_MilestoneId` = `milestoneId`<br>`In_TargetMemberId` = `in_MemberId`<br>`In_OrbitMilestoneTypeId` = `orbitMilestoneTypeId` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:810`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L810) |
+| `EventDetail` | `HostSurvey` | `In_MemberId` = `householderId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventId` = `in_EventId`<br>`In_EventName` = `in_EventName`<br>`In_EventEndDate` = `eventEndDate` | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:894`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L894) |
 
 ### 7.2 React
 
@@ -469,7 +469,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:1003`](../../migration/screens/EventDetail/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L1003) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:1003`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js#L1003) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

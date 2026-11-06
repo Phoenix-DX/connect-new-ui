@@ -1,7 +1,7 @@
 # Leaflet.Leaflet.LeafletMap
 
 - Kind: shared; build screens using it: BrowseDirectory, CountryDetails
-- Compiled source: `migration/screens/BrowseDirectory/analysis/sources/pretty/Leaflet.Leaflet.LeafletMap.mvc.js`
+- Compiled source: `migration/sources/pretty/Leaflet.Leaflet.LeafletMap.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

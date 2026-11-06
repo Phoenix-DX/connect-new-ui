@@ -11,7 +11,7 @@ export interface EventDetail_SectionProps {
   children?: ReactNode;
 }
 
-/** Section of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js
+/** Section of the LDM event detail (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js
     view :140-200): the title in `event-detail-section-title` + `-host` or `-guest`, then Section_Placeholder
     (`event-detail-section-placeholder` + ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic.
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section */

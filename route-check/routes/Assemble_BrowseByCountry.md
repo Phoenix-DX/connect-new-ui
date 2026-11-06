@@ -119,7 +119,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -127,7 +127,7 @@ Screen inputs: none. `setInputs` of `Assemble_BrowseByCountry` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Assemble_BrowseByCountry` | `AssembleEvents` | `ShowBackNavigation` = `true`<br>`SubdivisionId` = `inSubdivisionId`<br>`IsUserSubdivision` = `isUserSubdivision` | [`UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js:234`](../../migration/screens/Assemble_BrowseByCountry/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js#L234) |
+| `Assemble_BrowseByCountry` | `AssembleEvents` | `ShowBackNavigation` = `true`<br>`SubdivisionId` = `inSubdivisionId`<br>`IsUserSubdivision` = `isUserSubdivision` | [`UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js:234`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js#L234) |
 
 ### 7.2 React
 
@@ -181,7 +181,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js:320`](../../migration/screens/Assemble_BrowseByCountry/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js#L320) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js:320`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.Assemble_BrowseByCountry.mvc.js#L320) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

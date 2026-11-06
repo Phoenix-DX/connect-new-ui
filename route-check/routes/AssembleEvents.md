@@ -125,20 +125,20 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `SubdivisionId` | LongInteger | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:77`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L77) |
-| `ShowBackNavigation` | Boolean | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:81`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L81) |
-| `IsUserSubdivision` | Boolean | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:85`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L85) |
+| `SubdivisionId` | LongInteger | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:77`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L77) |
+| `ShowBackNavigation` | Boolean | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:81`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L81) |
+| `IsUserSubdivision` | Boolean | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:85`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L85) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `AssembleEvents` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.assemble` | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:451`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L451) |
-| `AssembleEvents` | `AssembleDetail` | `Start` = `start`<br>`EventId` = `assembleEventId`<br>`SeriesId` = `assembleParentEventId` | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:571`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L571) |
+| `AssembleEvents` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.assemble` | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:451`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L451) |
+| `AssembleEvents` | `AssembleDetail` | `Start` = `start`<br>`EventId` = `assembleEventId`<br>`SeriesId` = `assembleParentEventId` | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:571`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L571) |
 
 ### 7.2 React
 
@@ -197,7 +197,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:659`](../../migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L659) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js:659`](../../migration/sources/raw/UBTConnect.Legacy_AssembleFlow.AssembleEvents.mvc.js#L659) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

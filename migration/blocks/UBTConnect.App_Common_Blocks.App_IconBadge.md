@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks.App_IconBadge
 
 - Kind: shared; build screens using it: BookmarksByGroup, BrowseCountries, BrowseDirectory, CountryDetails, CountryList, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Menu, MessageDetail, MessageList, MyBookmarks, Notes, Notifications, OneSchoolGlobalDetails, Search, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnectLibrary.OutSystemsUIOverrides.IconBadge (queue: UBTConnectLibrary.OutSystemsUIOverrides.IconBadge)
 
 ## Inputs

@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Layout.MenuIcon_Back
 
 - Kind: shared; build screens using it: ConnectShare, LegacyShareObject, MessageDetail, MessageList
-- Compiled source: `migration/screens/ConnectShare/analysis/sources/pretty/Connect2_LegacyShared.Layout.MenuIcon_Back.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Layout.MenuIcon_Back.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

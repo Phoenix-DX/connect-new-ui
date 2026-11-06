@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.BottomSheet
 
 - Kind: osui; build screens using it: BookmarksByGroup, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, Notifications, OneSchoolGlobalDetails, Photobook, Profile, Search, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

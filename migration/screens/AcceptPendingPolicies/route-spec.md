@@ -2,7 +2,7 @@
 
 Sources: `capture/survey-UBTConnect.json` → `UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js` ("SCR") and
 `UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js` ("BLK"); `UBTConnect.controller.js` TST copy in
-`migration/screens/MessageList/analysis/sources/raw/` ("UC"). No capture, no `analysis/` folder, no pack
+`migration/sources/raw/` ("UC"). No capture, no `analysis/` folder, no pack
 (`context_pack.py` needs `analysis/facts.json`): the user decided Q7 c (build from the compiled code,
 `migration/capture-notes.md`).
 

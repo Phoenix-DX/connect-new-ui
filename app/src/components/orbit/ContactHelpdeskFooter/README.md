@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js`
 
 No inputs. Event `Click` → `onClick`. No placeholders.
 

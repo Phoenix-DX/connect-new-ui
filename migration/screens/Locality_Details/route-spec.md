@@ -50,7 +50,7 @@ The tree uses "›" for "contains". Each item below is one part of the tree, in 
 - BottomBarMenu [shared].
 - CommonUI_InsideLayout [shared].
 
-[pack.md Block plan; analysis/sources/pretty/ for the tag blocks,
+[pack.md Block plan; migration/sources/pretty/ for the tag blocks,
 extracted from capture/survey-UBTConnect.json]
 
 ## 2a. Architecture diagram

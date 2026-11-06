@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Directory.LocalityListDetail` · pack
 `migration/blocks/Connect2_LegacyShared.Directory.LocalityListDetail.md` · compiled source
-`migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`
+`migration/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`
 
 | Input             | Type                              | Prop                | Default |
 | ----------------- | --------------------------------- | ------------------- | ------- |

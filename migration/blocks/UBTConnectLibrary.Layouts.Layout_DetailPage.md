@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.Layout_DetailPage
 
 - Kind: shared; build screens using it: BrowseCountries, BrowseDirectory, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, FeedItemDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, Menu, MyEntertaining, OneSchoolGlobalDetails, PINBiometricsMenu, Search, Services, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
 - Child blocks: NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top, UBTConnectLibrary.ConnectPatterns.Icon (queue: -)
 
 ## Inputs
@@ -442,4 +442,4 @@ define("UBTConnectLibrary.Layouts.Layout_DetailPage.mvc$view", ["OutSystems/Clie
                 },
                 _widgetRecordProvider: widgetsRecordProvider
 ```
-(… 56 more lines in `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`)
+(… 56 more lines in `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`)

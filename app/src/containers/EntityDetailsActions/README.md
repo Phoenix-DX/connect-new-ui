@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` · pack
 `migration/blocks/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.md` · compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
+`migration/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
 
 | Input                        | Type                            | Prop                          | Default        |
 | ---------------------------- | ------------------------------- | ----------------------------- | -------------- |

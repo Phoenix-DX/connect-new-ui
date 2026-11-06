@@ -1,7 +1,7 @@
 # EntitiesCarousel
 
 `UBTConnect.Directory_Caroussel.EntitiesCarousel`: the swipeable carousel of HouseholdCarousel and SupperMeeting_Carousel.
-Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js`.
+Compiled source: `migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js`.
 
 | Input                                                  | Prop                      | Default |
 | ------------------------------------------------------ | ------------------------- | ------- |

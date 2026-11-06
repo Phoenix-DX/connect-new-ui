@@ -1,8 +1,8 @@
 # Screen spec: HostSurvey
 
-Sources: S = `analysis/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js`; HS =
-`analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey.mvc.js`;
-block sources `analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.*.mvc.js`; C =
+Sources: S = `migration/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js`; HS =
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey.mvc.js`;
+block sources `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.*.mvc.js`; C =
 `migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js`; DOM = `analysis/dom/default.html`.
 
 ## 0. Summary

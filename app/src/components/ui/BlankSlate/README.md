@@ -1,7 +1,7 @@
 # BlankSlate (OutSystems UI)
 
 OutSystems: `OutSystemsUI_2_23.Content.BlankSlate` · pack `migration/blocks/OutSystemsUI_2_23.Content.BlankSlate.md` ·
-compiled source `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/OutSystemsUI_2_23.Content.BlankSlate.mvc.js`
+compiled source `migration/sources/pretty/OutSystemsUI_2_23.Content.BlankSlate.mvc.js`
 
 | Input         | Type    | Prop            | Default |
 | ------------- | ------- | --------------- | ------- |

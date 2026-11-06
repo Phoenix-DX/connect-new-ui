@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.TagToggle
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Notes, Profile, Search, SupperMeeting_Carousel, Updates_SingleList
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText (queue: -)
 
 ## Inputs

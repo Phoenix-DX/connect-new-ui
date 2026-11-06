@@ -1,6 +1,6 @@
 # Screen spec: Household_Relations
 
-Abbreviations: **S** = `analysis/sources/pretty/UBTConnect.Directory_Household.Household_Relations.mvc.js`,
+Abbreviations: **S** = `migration/sources/pretty/UBTConnect.Directory_Household.Household_Relations.mvc.js`,
 **B** = `…/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js`,
 **MR** = `…/UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js`, **dom** = `analysis/dom/`.
 

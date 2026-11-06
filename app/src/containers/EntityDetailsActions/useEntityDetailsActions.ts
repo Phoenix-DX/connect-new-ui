@@ -65,7 +65,7 @@ export function useEntityDetailsActions({
   const wasRestored = useWasRestoredFromCache();
   const [isRestoredFromCache] = useState(() => wasRestored && isLoaded);
   // EnableOptions: a record whose unset fields keep the ActionsMenuEnableOptions defaults (UBTConnectLibrary.model.js
-  // ActionsMenuEnableOptionsRec, copy in migration/screens/SupperMeeting_Details/analysis/sources/raw/ :4135-4156), as
+  // ActionsMenuEnableOptionsRec, copy in migration/sources/raw/ :4135-4156), as
   // HouseholdDetails_Block's literal sets only EnableNotes / EnableShare (HouseholdDetails_Block.mvc.js:1509-1514).
   const [localEnableOptions, setLocalEnableOptions] = useViewState<ActionsMenuEnableOptions>(`${scope}-EnableOptions`, {
     ...ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT,

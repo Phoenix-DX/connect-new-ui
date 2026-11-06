@@ -39,7 +39,7 @@ export interface SearchInputElement extends HTMLInputElement {
 }
 
 /** SearchInput defaults: the structure's attribute defaults, UBTConnectLibrary.model.js:1477-1516 (SearchInputRec,
-    BrowseDirectory copy in migration/screens/BrowseDirectory/analysis/sources/raw/). A caller's record literal leaves
+    BrowseDirectory copy in migration/sources/raw/). A caller's record literal leaves
     the fields it does not set at these values. */
 function withDefaults(o: SearchInput): Required<SearchInput> {
   return {

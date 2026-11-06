@@ -1,6 +1,6 @@
 # Screen spec: LDM_MyEvents_V2
 
-Sources: `analysis/sources/pretty/` (= `p/`), `analysis/dom/{default,loading,offline}.html`, `analysis/calls.md`,
+Sources: `migration/sources/pretty/` (= `p/`), `analysis/dom/{default,loading,offline}.html`, `analysis/calls.md`,
 `pack.md`, `migration/knowledge/orbit-assemble-ldm.md`. LDM = Lord's Day Meal (user, 2026-10-21); the UI lives in the Orbit module
 `Connect2_OrbitMobile_MUI` (only V2 is built, user 2026-10-16).
 

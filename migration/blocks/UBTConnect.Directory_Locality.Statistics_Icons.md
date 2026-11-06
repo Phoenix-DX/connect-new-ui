@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Locality.Statistics_Icons
 
 - Kind: shared; build screens using it: CountryDetails, CountryList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Statistics_Icons.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Locality.Statistics_Icons.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText (queue: -)
 
 ## Inputs
@@ -286,4 +286,4 @@ define("UBTConnect.Directory_Locality.Statistics_Icons.mvc$view", ["OutSystems/C
                                                 validationService: validationService
                                             },
 ```
-(… 207 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Statistics_Icons.mvc.js`)
+(… 207 more lines in `migration/sources/pretty/UBTConnect.Directory_Locality.Statistics_Icons.mvc.js`)

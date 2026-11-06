@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit
 
 - Kind: shared; build screens using it: EventDetail, GuestArrangements, HelpersDetail, MilestoneDetail
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Content.DEPRECATED_Accordion (queue: OutSystemsUI_2_23.Content.DEPRECATED_Accordion)
 
 ## Inputs

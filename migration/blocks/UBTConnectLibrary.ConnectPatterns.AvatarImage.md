@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.AvatarImage
 
 - Kind: shared; build screens using it: BrowseCountries, BrowseDirectory, HomeFeed, LegacyShareObject, Locality_Details, MessageDetail, Notes, Notifications, Updates_SingleList
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Utilities.InlineSVG, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.Icon (queue: -)
 
 ## Inputs
@@ -286,4 +286,4 @@ define("UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc$view", ["OutSystems/Cl
                                         },
                                         _idProps: {
 ```
-(… 19 more lines in `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`)
+(… 19 more lines in `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`)

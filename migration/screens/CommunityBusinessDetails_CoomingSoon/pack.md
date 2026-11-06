@@ -334,5 +334,5 @@ export interface Household_MarkersItem {
 ## Look up on demand
 
 - `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)
-- `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
+- `migration/sources/pretty/UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon.mvc.js`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole
 - `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/css-relevant.md` only when a visual diff cannot be explained by markup

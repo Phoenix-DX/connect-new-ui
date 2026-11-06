@@ -17,7 +17,7 @@ export interface OrbitAccordionProps {
   children?: ReactNode;
 }
 
-/** Orbit accordion (migration/screens/EventDetail/analysis/sources/pretty/
+/** Orbit accordion (migration/sources/pretty/
     Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js, view :159-214): OutSystems UI
     DEPRECATED_Accordion with ExtendedClass `orbit-accordion` + ` orbit-accordion-colored-content` (In_ColoredContent)
     + " " + In_ExtendedClass when not empty, MultipleItems = In_MultipleItems, and the Content placeholder in its own

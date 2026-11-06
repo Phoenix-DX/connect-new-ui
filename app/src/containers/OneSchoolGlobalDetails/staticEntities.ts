@@ -6,7 +6,7 @@
 export const UBT_Icons_ExpandMore = 'connect-icon-expand_more';
 
 /** Type_OneschoolGlobal_SubsectionRec attribute defaults (UBTConnect.model.js:194-198, raw copy in
-    analysis/sources/raw): the two ButtonGroup values, captured "Upcoming events" / "About our campus"
+    migration/sources/raw/): the two ButtonGroup values, captured "Upcoming events" / "About our campus"
     (dom/default.html:516-524). */
 export const Type_OneschoolGlobal_Subsection = {
   UpcomingEvents: 'Upcoming events',

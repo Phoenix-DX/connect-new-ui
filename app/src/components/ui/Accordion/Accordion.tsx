@@ -16,7 +16,7 @@ export interface AccordionProps {
   children?: ReactNode;
 }
 
-/** OutSystems UI Accordion (p:migration/screens/HostSurvey/analysis/sources/pretty/OutSystemsUI_2_23.Content.Accordion.
+/** OutSystems UI Accordion (p:migration/sources/pretty/OutSystemsUI_2_23.Content.Accordion.
     mvc.js view :160-175: the Content placeholder `osui-accordion`, named after the UniqueId; provider hand-written from
     runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js Accordion :4066-4245). Build: ExtendedClass, role "list" on the
     first `.list` inside (else on itself, setA11YProperties :4072-4075), Initialized. Items register through the

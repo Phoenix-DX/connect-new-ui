@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem
 
 - Kind: shared; build screens using it: EventBooklet, EventDetail, HostSurvey
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

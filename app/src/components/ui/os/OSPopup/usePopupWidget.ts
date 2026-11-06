@@ -3,7 +3,7 @@ import { getShellState, subscribe } from '@/platform/session/session';
 
 /* Page-level side effects of the OutSystems platform Popup widget (OSWidgets.Popup, "OutSystems/ReactWidgets/Popup" in
    migration/runtime-sources/OutSystemsReactWidgets.js; readable copy
-   migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js:2819-2912). Every port of a Popup
+   migration/sources/pretty/OutSystemsReactWidgets.js:2819-2912). Every port of a Popup
    widget calls the hook for as long as the widget is in the view, open or not: a closed widget (ShowPopup False)
    renders nothing but still runs these effects on mount, on every update and on unmount. */
 

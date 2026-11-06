@@ -1,7 +1,7 @@
 # NotesSheet
 
 OutSystems: `UBTConnect_Utils.CW_Notes.NotesSheet` · pack `migration/blocks/UBTConnect_Utils.CW_Notes.NotesSheet.md`
-(compiled source `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`)
+(compiled source `migration/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`)
 
 | Input             | Type           | Prop               | Default |
 | ----------------- | -------------- | ------------------ | ------- |
@@ -20,7 +20,7 @@ FooterHeight 72px; OnToggle → BottomSheetOnToggle; Initialized → BottomSheet
 In_Notes, In_ItemId, In_NoteCategoryId, In_ShowPreviewOnly False), footer (unless a note is being edited) a
 CustomContainer `notes-sheet-footer` (stylesheet `css/UBTConnect_Utils.CW_Notes.NotesSheet.css`) with AddNote; and a
 BackNavigationHandler (its flow is empty). TST code of 2026-10-27:
-`migration/screens/HouseholdDetails/analysis/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`.
+`migration/sources/pretty/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`.
 
 Controller (:416-944):
 

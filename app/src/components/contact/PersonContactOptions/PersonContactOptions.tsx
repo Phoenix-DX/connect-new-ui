@@ -20,7 +20,7 @@ export interface PersonContactOptionsProps {
   onEmailClicked?: (email: string) => void;
 }
 
-/** Call / mobile / work / email icon links of a person (migration/screens/LDM_EventDetail_V2/analysis/sources/pretty/
+/** Call / mobile / work / email icon links of a person (migration/sources/pretty/
     Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js view :80-355). Each link is Visible and Enabled only
     when its input is not '' (:171-175, :214-218, :258-262, :302-306) and raises CallClicked / EmailClicked with the
     value; the block's own `callClicked$Action` / `emailClicked$Action` are empty (:393-398), the work is in the event

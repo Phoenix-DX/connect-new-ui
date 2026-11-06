@@ -2,7 +2,7 @@
 
 OutSystems UI: `OutSystemsUI_2_23.Content.DEPRECATED_Accordion` · pack
 `migration/blocks/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.mvc.js` ·
+`migration/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.mvc.js` ·
 stack: hand-written component with the captured DOM and classes, no library.
 
 | Input         | Type    | Prop            | Default |

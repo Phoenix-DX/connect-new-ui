@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "member click / directory access",
   "question": "Clicking a guest (photo or name) runs CheckDirectoryAccess → server GetDirectoryAccess (Connect2_OrbitMobile_MUI), which is not in the API contract (CR-MilestoneDetail-1). Until the CR lands, what does the click do? A) navigate to HouseholdDetails(HouseholdId) as if access were granted (the capture account has full permission), then OnApplicationEvent_ViewHousehold to the log; the RecordDisabled → App_Subscription_ShowUpgradePopUp branch waits for the CR. B) the click does nothing until the CR.",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2451-2535 (OnHandle_ClickedMember); runtime-sources/Connect2_OrbitMobile_MUI.controller.js:1085-1150 (CheckDirectoryAccess: HasAccess = not RecordDisabled); app/src/api/openapi.yaml has no GetDirectoryAccess",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2451-2535 (OnHandle_ClickedMember); runtime-sources/Connect2_OrbitMobile_MUI.controller.js:1085-1150 (CheckDirectoryAccess: HasAccess = not RecordDisabled); app/src/api/openapi.yaml has no GetDirectoryAccess",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",
@@ -23,7 +23,7 @@
   "kind": "decision",
   "topic": "phone popup",
   "question": "The phone icon of a guest runs BuildMemberCallData: Connect2_LegacyShared GetCacheableMemberContactList and GetCacheableTimezoneInfo (memory-cache callbacks around server actions that are neither ported nor in the API contract, CR-MilestoneDetail-2). Until the CR lands: A) open ContactPopup_ByPhone with the guest's name, photo and MemberInformation.Phone (the compiled empty-contact-list branch, without timezone/locality), Call → OnApplicationEvent_CallMember to the log and close; B) the phone icon does nothing until the CR.",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2121-2260 (BuildMemberCallData), :2301-2355 (OnHandle_CallClicked), :2617-2700 (OnHandle_ClickedMemberPhone); runtime-sources/Connect2_LegacyShared.controller.js:3416 (GetCacheableMemberContactList), :4253 (GetCacheableTimezoneInfo)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2121-2260 (BuildMemberCallData), :2301-2355 (OnHandle_CallClicked), :2617-2700 (OnHandle_ClickedMemberPhone); runtime-sources/Connect2_LegacyShared.controller.js:3416 (GetCacheableMemberContactList), :4253 (GetCacheableTimezoneInfo)",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",
@@ -42,7 +42,7 @@
   "kind": "decision",
   "topic": "from notification / GetGmpMilestoneHost",
   "question": "ScreenBlock_MilestoneWrapper calls DataActionGetGmpMilestoneHost only when In_FromNotification is True or an input (In_HostId, In_OrbitMilestoneTypeId, In_MilestoneName) is missing; the action is not in the API contract (CR-MilestoneDetail-1) and no state was captured. A) In_FromNotification=True renders <NotCaptured> for the wrapper's notification branch (skeleton → type block or Failed layout) and the call is skipped; with missing inputs and not from a notification the view uses the inputs as given (as compiled) and the call is skipped; B) build the notification branch with a fictional GetGmpMilestoneHost answer outside the contract.",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:257-260 (view conditions), :1211-1290 (OnReady: FromCache / From Notification? / Missing optional values?), :1795-1830 (Failed layout, NoInformation)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:257-260 (view conditions), :1211-1290 (OnReady: FromCache / From Notification? / Missing optional values?), :1795-1830 (Failed layout, NoInformation)",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",
@@ -61,7 +61,7 @@
   "kind": "decision",
   "topic": "accommodation document",
   "question": "The header document icon (HasDocument = Get_Document.DocumentURL <> \"\") opens the file through UBTConnect_Utils OpenInApp_TryOpenFileInApp and the FileTransfer HandleDownload plugin callbacks, none of which are ported (CR-MilestoneDetail-3). The capture has no document (DocumentURL empty). A) the mock world has no accommodation document (as captured); the icon renders when HasDocument, its click is not ported until the CR; B) give the mock a document and open DocumentURL in a new tab.",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:367-415 (HeaderRight icon), :1840-1860 (HasDocument), :1900-1973 (OnClick_OpenDocument), :1974-2032 / :2567-2616 (HandleDownload callbacks); analysis/calls.md DataActionGet_Document (DocumentURL EMPTY)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:367-415 (HeaderRight icon), :1840-1860 (HasDocument), :1900-1973 (OnClick_OpenDocument), :1974-2032 / :2567-2616 (HandleDownload callbacks); analysis/calls.md DataActionGet_Document (DocumentURL EMPTY)",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",
@@ -80,7 +80,7 @@
   "kind": "decision",
   "topic": "other milestone types",
   "question": "ScreenBlock_MilestoneWrapper renders ScreenBlock_MealGuest / MealHost / MealHelper / AccommodationGuest / AccommodationHelper for the other milestone types; none of them was rendered in a capture (only accommodation-host). A) build ScreenBlock_AccommodationHost now and render <NotCaptured> for the other types (each comes with its own capture: the Orbit landing / EventDetail of a guest or helper account); B) build all five blocks from compiled code without a capture.",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:257-1010 (type branches); pack.md Gaps (ScreenBlock_AccommodationGuest/Helper, MealGuest/Host/Helper not rendered)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:257-1010 (type branches); pack.md Gaps (ScreenBlock_AccommodationGuest/Helper, MealGuest/Host/Helper not rendered)",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",

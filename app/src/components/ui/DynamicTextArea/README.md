@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.DynamicTextArea` · pack
 `migration/blocks/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.md` · compiled source
-`migration/screens/ContactByEmailOneSchoolGlobal/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js`
+`migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js`
 
 | Input        | Type    | Prop          | Default |
 | ------------ | ------- | ------------- | ------- |

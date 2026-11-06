@@ -223,22 +223,22 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `EventHostId` | LongInteger | yes | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:65`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L65) |
-| `EventId` | LongInteger | yes | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:69`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L69) |
+| `EventHostId` | LongInteger | yes | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:65`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L65) |
+| `EventId` | LongInteger | yes | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:69`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L69) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `LDM_EventDetail_V2` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:350`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L350) |
-| `LDM_EventDetail_V2` | `HouseholdDetails` | `HouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:356`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L356) |
-| `LDM_EventDetail_V2` | `HouseholdDetails` | `HouseholdId` = `event_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:413`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L413) |
-| `LDM_EventDetail_V2` | `ContactByEmailLDMCoordinator` | `In_EmailTo` = `event_EmailTo`<br>`In_ContactName` = `event_ContactName`<br>`In_EventDate` = `event_Date`<br>`In_AvatarURL` = `event_AvatarURL`<br>`In_Subject` = `event_Subject`<br>`In_EventLocality` = `event_Locality` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:509`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L509) |
-| `LDM_EventDetail_V2` | `ContactByEmailMember` | `In_AvatarURL` = `event_AvatarURL`<br>`In_EmailTo` = `event_EmailTo`<br>`In_LDMEventLocality` = `event_Locality`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_IsHousehold` = `true`<br>`In_ContactCountry` = `event_ContactCountry`<br>`In_ContactLocality` = `event_ContactLocality`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_LDMEventDate` = `event_Date`<br>`In_HouseholdHeaderName` = `getNameAndSurname_ByFullName.out_Surname` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:524`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L524) |
+| `LDM_EventDetail_V2` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:350`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L350) |
+| `LDM_EventDetail_V2` | `HouseholdDetails` | `HouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:356`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L356) |
+| `LDM_EventDetail_V2` | `HouseholdDetails` | `HouseholdId` = `event_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:413`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L413) |
+| `LDM_EventDetail_V2` | `ContactByEmailLDMCoordinator` | `In_EmailTo` = `event_EmailTo`<br>`In_ContactName` = `event_ContactName`<br>`In_EventDate` = `event_Date`<br>`In_AvatarURL` = `event_AvatarURL`<br>`In_Subject` = `event_Subject`<br>`In_EventLocality` = `event_Locality` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:509`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L509) |
+| `LDM_EventDetail_V2` | `ContactByEmailMember` | `In_AvatarURL` = `event_AvatarURL`<br>`In_EmailTo` = `event_EmailTo`<br>`In_LDMEventLocality` = `event_Locality`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_IsHousehold` = `true`<br>`In_ContactCountry` = `event_ContactCountry`<br>`In_ContactLocality` = `event_ContactLocality`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_LDMEventDate` = `event_Date`<br>`In_HouseholdHeaderName` = `getNameAndSurname_ByFullName.out_Surname` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:524`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L524) |
 
 ### 7.2 React
 
@@ -300,7 +300,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:709`](../../migration/screens/LDM_EventDetail_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L709) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js:709`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js#L709) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

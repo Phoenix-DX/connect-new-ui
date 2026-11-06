@@ -75,7 +75,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -83,7 +83,7 @@ Screen inputs: none. `setInputs` of `ContactUsMenu` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `ContactUsMenu` | `ContactUsDetails` | `In_ContactSubjectId` = `textToIdentifier(contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndex…`<br>`In_ContactSubjectTitle` = `contactUs_Menu.getCurrent(iterationContext).sectionTitle`<br>`In_ListMenuOptionLabel` = `contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndexOf.position).labe…` | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:431`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L431) |
+| `ContactUsMenu` | `ContactUsDetails` | `In_ContactSubjectId` = `textToIdentifier(contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndex…`<br>`In_ContactSubjectTitle` = `contactUs_Menu.getCurrent(iterationContext).sectionTitle`<br>`In_ListMenuOptionLabel` = `contactUs_Menu.getCurrent(iterationContext).menuOptions.getItem(listIndexOf.position).labe…` | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:431`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L431) |
 
 ### 7.2 React
 
@@ -105,7 +105,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactUsMenu` | OnInitialize ([`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:475`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L475)) | `screenEvent_OnInitialize` | 1. Execute Action: PIN_Check ([`L358`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L358))<br>2. IgnorePolices = GetUserId = NullIdentifier or PIN_Check.NeedRegister ([`L362`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L362))<br>3. IgnoreLockedScreen = GetUserId <> NullIdentifier and PIN_Check.NeedRegister ([`L365`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L365))<br>4. JavaScript: IsViewRestoredFromCache ([`L368`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L368))<br>5. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L375`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L375))<br>6. If isViewRestoredFromCache.isRestoredFromCache ([`L376`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L376))<br>7. Else ([`L378`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L378))<br>8. Execute Action: Get_ContactUsMenuSections ([`L380`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L380))<br>9. ContactUs_Menu = Get_ContactUsMenuSections.Out_ContactUsMenuSections ([`L384`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L384)) |
+| `ContactUsMenu` | OnInitialize ([`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:475`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L475)) | `screenEvent_OnInitialize` | 1. Execute Action: PIN_Check ([`L358`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L358))<br>2. IgnorePolices = GetUserId = NullIdentifier or PIN_Check.NeedRegister ([`L362`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L362))<br>3. IgnoreLockedScreen = GetUserId <> NullIdentifier and PIN_Check.NeedRegister ([`L365`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L365))<br>4. JavaScript: IsViewRestoredFromCache ([`L368`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L368))<br>5. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L375`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L375))<br>6. If isViewRestoredFromCache.isRestoredFromCache ([`L376`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L376))<br>7. Else ([`L378`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L378))<br>8. Execute Action: Get_ContactUsMenuSections ([`L380`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L380))<br>9. ContactUs_Menu = Get_ContactUsMenuSections.Out_ContactUsMenuSections ([`L384`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L384)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -168,7 +168,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:500`](../../migration/screens/ContactUsMenu/analysis/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L500) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js:500`](../../migration/sources/raw/UBTConnect.App_Menu_ContactUs.ContactUsMenu.mvc.js#L500) |
 | React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.InlineSVG
 
 - Kind: osui; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, ConnectShare, ContactByEmailMember, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

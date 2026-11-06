@@ -1,5 +1,5 @@
 /* Client actions and JavaScript nodes the route's card blocks call (runtime-sources/Connect2_OrbitMobile_MUI
-   .controller.js = C, analysis/sources/pretty/*.mvc.js). The ones LDM_EventDetail_V2 calls too are shared
+   .controller.js = C, migration/sources/pretty/*.mvc.js). The ones LDM_EventDetail_V2 calls too are shared
    (CR-LDM_EventDetail_V2-1): flipHouseholdName (src/lib/legacyShared), getLocalityName,
    addAuditEvent_LDM and getCurrentTimeInMill (src/lib/orbit). The date actions of the
    timeline flows are in hooks/ldmMyEventsState.ts. */

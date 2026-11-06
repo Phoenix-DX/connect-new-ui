@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "uncaptured branches",
   "question": "The capture shows only a guest view with the host allocation pending (IsPublished False). Build the other branches of the compiled view (host view: Adults/Children in the banner, Special Needs section with Dietary/Mobility/Other sub-sections; published allocation: host photo, name, address + Directions, Guest Households list of EventDetail_ListItem rows) from the compiled code, or render them as NotCaptured?",
-  "evidence": "analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)",
   "mcp": "MCP not available to route agents",
   "options": [
    "A: build from the compiled code with fictional data",

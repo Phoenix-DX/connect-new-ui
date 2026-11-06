@@ -92,13 +92,13 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `MyCalendarEventSourceId` | Text | yes | [`UBTConnect.Calendar.MyEntertaining.mvc.js:59`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L59) |
+| `MyCalendarEventSourceId` | Text | yes | [`UBTConnect.Calendar.MyEntertaining.mvc.js:59`](../../migration/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L59) |
 
 Navigations with parameters: none.
 
@@ -166,7 +166,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Calendar.MyEntertaining.mvc.js:259`](../../migration/screens/MyEntertaining/analysis/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L259) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Calendar.MyEntertaining.mvc.js:259`](../../migration/sources/raw/UBTConnect.Calendar.MyEntertaining.mvc.js#L259) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

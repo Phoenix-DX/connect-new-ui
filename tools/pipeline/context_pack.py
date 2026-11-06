@@ -19,7 +19,7 @@ What goes in, in priority order (lower sections are cut first when over budget, 
                    client variables, lifecycle, JavaScript nodes
   6. gaps          blocks referenced but never rendered, images not captured
   7. other states  compacted markup of the other captured states
-  8. look-up list  exact files to open only if the pack is not enough (sources/pretty/..., dom/<state>.html)
+  8. look-up list  exact files to open only if the pack is not enough (migration/sources/pretty/..., dom/<state>.html)
 Token estimate: characters / 3.5.
 """
 import argparse, json, os, re, sys
@@ -31,6 +31,8 @@ except ImportError:
     sys.exit("beautifulsoup4 is required: pip install beautifulsoup4")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
+import sources_store  # noqa: E402
 
 VOID = {"img", "input", "br", "hr", "meta", "link", "source", "area", "col", "embed", "wbr"}
 
@@ -288,10 +290,11 @@ def main():
         other.append(f"### state `{fn[:-5]}`\n```html\n{m}\n```")
 
     lookup = [f"- `{an}/dom/<state>.html` full markup (line numbers in collapsed markers refer to dom/default.html)"]
+    pretty = sources_store.manifest_dir(a.analysis)["pretty"]  # the shared store paths of this route's sources
     for f in facts.get("renderedFiles", []):
         key = ".".join(f.replace(".mvc.js", "").split(".")[1:])
         if cls.kind(key)[0] in ("own", "shared-missing") or f == facts.get("screenFile"):
-            lookup.append(f"- `{an}/sources/pretty/{f}`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole")
+            lookup.append(f"- `{pretty.get(f, an + '/sources/pretty/' + f)}`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole")
     lookup.append(f"- `{an}/css-relevant.md` only when a visual diff cannot be explained by markup")
 
     try:

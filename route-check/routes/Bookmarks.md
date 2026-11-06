@@ -152,7 +152,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -194,8 +194,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 | `Bookmarks` | OnReady ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:2039`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2039)) | `screenEvent_OnReady` | 1. Execute Action: Reset_PillsValues ([`L1758`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1758))<br>2. Execute Action: Refresh_GetBookmarksData ([`L1761`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1761)) |
 | `Bookmarks_Card_List` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:661`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L661)) | `onInitialize` | none |
 | `Bookmarks_Card_List` | OnReady ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:679`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L679)) | `onReady` | none |
-| `Bookmarks_FilterSheet` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:585`](../../migration/screens/Bookmarks/analysis/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L310`](../../migration/screens/Bookmarks/analysis/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L310)) |
-| `Bookmarks_FilterSheet` | OnParametersChanged ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:606`](../../migration/screens/Bookmarks/analysis/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/screens/Bookmarks/analysis/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L286)) |
+| `Bookmarks_FilterSheet` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:585`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L310`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L310)) |
+| `Bookmarks_FilterSheet` | OnParametersChanged ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:606`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L286)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (2)</summary>
 

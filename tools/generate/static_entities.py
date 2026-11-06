@@ -4,14 +4,17 @@
 Values: migration/runtime-sources/moduleinfo.json (GET /UBTConnect/moduleservices/moduleinfo on TST, read-only,
 user-approved 2026-10-15) → data.modules[<espaceKey>].staticEntities[<entityKey>][<recordKey>] = value.
 Names: the compiled <Module>.model.js files; the first copy found wins, in this order: migration/runtime-sources (live
-TST copies since the source switch of 2026-10-28), the screen captures' sources/raw, migration/contract/sources/raw:
+TST copies since the source switch of 2026-10-28), the shared store of the captures (migration/sources/raw), migration/contract/sources/raw:
   <M>Model.staticEntities.<entity> = {}; var get<E>Record = function (record) {
     return <M>Model.module.staticEntities["<entityKey>"][record]; };
   Object.defineProperty(<M>Model.staticEntities.<entity>, "<record>", { get: ... get<E>Record("<recordKey>") ... });
 Writes migration/knowledge/static-entities-tst.json: {"<Module>.<entity>": {"<record>": value}}.
 Usage (project root): python3 tools/generate/static_entities.py [--grep <regex>]
 """
-import argparse, glob, json, os, re
+import argparse, glob, json, os, re, sys
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
+import sources_store  # noqa: E402
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--grep")
@@ -22,9 +25,10 @@ for mod in info["data"]["modules"].values():
     for ek, recs in (mod.get("staticEntities") or {}).items():
         values.setdefault(ek, {}).update(recs)
 files = {}
-for p in (sorted(glob.glob("migration/runtime-sources/*.model.js")) + glob.glob("migration/screens/*/analysis/sources/raw/*.model.js")
+for p in (sorted(glob.glob("migration/runtime-sources/*.model.js"))
+          + sorted(p for p in sources_store.all_files("raw") if sources_store.base_name(p).endswith(".model.js"))
           + glob.glob("migration/contract/sources/raw/*.model.js")):
-    files.setdefault(os.path.basename(p), p)
+    files.setdefault(sources_store.base_name(p), p)
 out = {}
 # own entities: return <M>Model.module.staticEntities["<ek>"][record]; referenced ones (another producer module):
 # return OS.ApplicationInfo.getModules()["<moduleKey>"].staticEntities["<ek>"][record];

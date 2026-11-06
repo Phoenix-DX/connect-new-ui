@@ -30,7 +30,7 @@ BottomBarMenu) changes nothing in the captures, so neither is a prop.
 `Swipeable.tsx` has the Swipeable touch tracking.
 
 Ported from `OutSystemsReactWidgets.js`; `W:<n>` = line of the readable copy
-`migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js`.
+`migration/sources/pretty/OutSystemsReactWidgets.js`.
 
 - **ListItemBasic** (W:1519-1540) when both action placeholders are empty (`leftActions` and `rightActions`
   undefined): one `<div data-list-item data-not-scrollable class=<className>>` with the OnClick.

@@ -49,7 +49,7 @@ export type ContractModule = ModuleOf<ActionPath>;
    On TST applicationDefaultTimeout is 0 (runtime-sources/moduleinfo.json), no call sets its own timeout (no
    withTimeout in the compiled code; every callDataAction / callAggregate* passes `undefined`), so the module value
    decides. A timeout of 0 would mean none (OutSystems.js:3 offset 71295, `if(r)`). Sources (o: runtime-sources/,
-   s: screens/<S>/analysis/sources/): */
+   s: migration/sources/): */
 export const SERVER_REQUEST_TIMEOUT: Readonly<Record<ContractModule, number>> = {
   Connect2_Assemble_MUI: 10, // s:AssembleEvents raw/Connect2_Assemble_MUI.controller.js:1745
   Connect2_LegacyShared: 10, // o:Connect2_LegacyShared.controller.js:7976

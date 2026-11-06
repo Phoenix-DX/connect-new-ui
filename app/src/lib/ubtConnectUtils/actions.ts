@@ -1,5 +1,5 @@
 /* Client actions of UBTConnect_Utils used by the shared blocks, ported 1:1 from UBTConnect_Utils.controller.js
-   (copy in migration/screens/Login/analysis/sources/raw/). */
+   (copy in migration/sources/raw/). */
 import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
 import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
@@ -162,7 +162,7 @@ export const containsIgnoreCase = (text: string, search: string): boolean =>
 
 /**
  * OpenInApp_OpenExternalLink(Url, InNewTab = False) (UBTConnect_Utils.controller.js:4491-4538, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/):
+ * migration/sources/raw/):
  * - CheckInAppBrowserPlugin.IsAvailable and the Url holds "http://" or "https://" (:4508-4511): InAppBrowser Open(Url,
  *   Target SYSTEM when InNewTab, else IN_APP_BROWSER) (:4513-4514). The clone has no Cordova InAppBrowser: decision U18
  *   (app-shell.spec.md §12a) puts a new tab in the in-app browser's place, so the plugin counts as available and both
@@ -197,7 +197,7 @@ export function getOperatingSystem(): string {
 
 /**
  * OpenInApp_OpenApp(Package) (UBTConnect_Utils.controller.js:4360-4462, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/), browser path:
+ * migration/sources/raw/), browser path:
  * - CheckAppLauncherPlugin (:4384): `!!window.cordova && !!window.plugins.launcher`
  *   (runtime-sources/Connect2_AppLauncherPlugin.controller.js:302) is False without Cordova, so CanLaunchWithData /
  *   LaunchWithData (:4386-4412) never run.
@@ -226,7 +226,7 @@ export function openInApp_OpenApp(packageName: string): void {
 
 /** Note_SendFeedbackMessages(ActionType, IsSuccess, IsNotFound = False) (UBTConnect_Utils.controller.js, define
     "UBTConnect_Utils.controller$Note_SendFeedbackMessages", TST copy in
-    migration/screens/SupperMeeting_Details/analysis/sources/raw/): the add / edit / delete message, as a Success or an
+    migration/sources/raw/): the add / edit / delete message, as a Success or an
     Error feedback message; another action type shows nothing. */
 export function note_SendFeedbackMessages(actionType: string, isSuccess: boolean, isNotFound = false): void {
   let message: string;
@@ -244,7 +244,7 @@ export function note_SendFeedbackMessages(actionType: string, isSuccess: boolean
 }
 
 /** CleanAddressForMaps(Address) (UBTConnect_Utils.controller.js:1153-1215, JS node CleanAddressJS; copy in
-    migration/screens/Login/analysis/sources/raw/): newlines / carriage returns, then runs of whitespace, become one
+    migration/sources/raw/): newlines / carriage returns, then runs of whitespace, become one
     space. Returns AddressSafe. */
 export function cleanAddressForMaps(address: string): string {
   return address.replace(/(\n|\r)+/g, ' ').replace(/\s+/g, ' ');
@@ -355,7 +355,7 @@ export const getHasPhotobookAccess = (): boolean => flagValue('mobilePhotobook')
 /* ---- F11 (CR-MilestoneDetail-3): open a document ---- */
 
 /** OpenInApp_ViewFile_Fallback(DownloadUrl) (UBTConnect_Utils.controller.js:4830-4895, copy in
-    migration/screens/OrbitLanding/analysis/sources/raw/): CheckInAppBrowserPlugin.IsAvailable → InAppBrowser
+    migration/sources/raw/): CheckInAppBrowserPlugin.IsAvailable → InAppBrowser
     Open(DownloadUrl, Target SYSTEM); else the JS node `window.setTimeout(() => window.open(DownloadUrl, "_blank"))`.
     As in openInApp_OpenExternalLink, decision U18 counts the in-app browser as available and opens a new tab. */
 export function openInApp_ViewFile_Fallback(downloadUrl: string): void {
@@ -379,7 +379,7 @@ const isCordovaDefined = (): boolean => (window as Window & { cordova?: unknown 
 
 /**
  * OpenInApp_TryOpenFileInApp(Filename, DownloadUrl, FolderToSave, FileExtension) → IsInApp, Filepath
- * (UBTConnect_Utils.controller.js:4568-4816, copy in migration/screens/OrbitLanding/analysis/sources/raw/). Once
+ * (UBTConnect_Utils.controller.js:4568-4816, copy in migration/sources/raw/). Once
  * through a do-while(False): Get_FileExtension(Filename); with an extension, CheckFileTransferPlugin, CheckFilePlugin and
  * CheckFileViewerPlugin; when all three are available, a PDF is downloaded into the cache folder FolderToSave
  * (CreateDirectory, GetMetadata, DownloadFile: the FileTransfer plugin then answers through HandleDownload), any other
@@ -434,7 +434,7 @@ export function openPolicy(
 }
 
 /** DropdownTags_CloseOtherOnClick (controller.js:1462-1489, JavaScript1 :1490-1516; copy in
-    migration/screens/AssembleEvents/analysis/sources/raw/UBTConnect_Utils.controller.js): on every
+    migration/sources/raw/UBTConnect_Utils.controller.js): on every
     `.osui-dropdown-tags` present now, a capture-phase click listener that closes each other one through
     DropdownAPI.Close(its `name`, the unique id) when it has a name. As compiled, the listeners are never removed and
     elements rendered later get none. CR-EventBooklet-2. */

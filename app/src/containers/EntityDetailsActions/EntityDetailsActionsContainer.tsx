@@ -35,7 +35,7 @@ function ConnectSharePortal({ children }: { children: ReactNode }) {
   );
 }
 
-/** Entity actions (TST code of 2026-10-27: migration/screens/HouseholdDetails/analysis/sources/pretty/
+/** Entity actions (TST code of 2026-10-27: migration/sources/pretty/
     UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js): SkeletonSection (loading while not
     isLoaded or bookmarks / notes not synched, unless the fetch failed) with the ActionsMenu, then
     ContactByMessage_Wrapper, ContactPopup_ByPhone, SharePopup, the extended-share popup (ShareSheet, only with

@@ -1,6 +1,6 @@
 # Route spec: EmailContact
 
-Sources (analysis/sources/):
+Sources (migration/sources/):
 - `S` = UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js (survey copy). The TST copy in
   migration/runtime-sources/ differs only in debugger ids.
 - `CF` = Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.

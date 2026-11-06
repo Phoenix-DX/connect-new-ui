@@ -1,6 +1,6 @@
 # Screen spec: OrbitLanding
 
-Sources: SCR = `analysis/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js`, SB =
+Sources: SCR = `migration/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js`, SB =
 `…/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js`, HM =
 `…/Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection.mvc.js`, dom = `analysis/dom/<state>.html`.
 

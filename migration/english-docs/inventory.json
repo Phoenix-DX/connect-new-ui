@@ -1,30 +1,30 @@
 {
- "builtAt": "2026-10-21T10:14:13",
+ "builtAt": "2026-11-05T21:36:00",
  "groups": {
   "A": [
    {
     "path": "RUNBOOK.md",
-    "words": 1209
+    "words": 1278
    },
    {
     "path": "migration/scope-review.md",
-    "words": 4838
+    "words": 4946
    },
    {
     "path": "migration/scope-plan.md",
-    "words": 854
+    "words": 849
    },
    {
-    "path": "migration/tools/sitemap.py",
-    "words": 1437
+    "path": "tools/generate/sitemap.py",
+    "words": 1415
    },
    {
     "path": "migration/sitemap.md",
-    "words": 4323
+    "words": 4103
    },
    {
     "path": "migration/sitemap.html",
-    "words": 3485
+    "words": 3255
    },
    {
     "path": "migration/contexts/context-003-scope-decided.md",
@@ -32,115 +32,127 @@
    },
    {
     "path": "migration/contexts/context-005-catalog-flags.md",
-    "words": 386
+    "words": 387
    },
    {
     "path": "migration/contexts/context-029-build-kb.md",
-    "words": 364
+    "words": 374
    },
    {
     "path": "migration/knowledge/auto-decisions-2026-10-16.md",
-    "words": 3171
+    "words": 3206
    },
    {
     "path": "migration/knowledge/orbit-assemble-ldm.md",
-    "words": 397
+    "words": 449
    },
    {
     "path": "migration/knowledge/runtime-sources.md",
-    "words": 1370
+    "words": 3107
    },
    {
     "path": "migration/screens/ConnectShare/questions.md",
-    "words": 943
+    "words": 946
    },
    {
     "path": "migration/screens/ConnectShare/questions.json",
-    "words": 1226
+    "words": 1229
    },
    {
     "path": "migration/screens/Menu/questions.md",
-    "words": 877
+    "words": 880
    },
    {
     "path": "migration/screens/Menu/questions.json",
-    "words": 1153
+    "words": 1156
    }
   ],
   "pilot": [
    {
     "path": "migration/screens/Login/route-spec.md",
-    "words": 1454
+    "words": 1657
    },
    {
     "path": "migration/screens/HomeFeed/route-spec.md",
-    "words": 3208
+    "words": 3673
    },
    {
     "path": "migration/screens/Locality_Details/route-spec.md",
-    "words": 1556
+    "words": 2249
    },
    {
     "path": "migration/app-shell.spec.md",
-    "words": 5375
+    "words": 5797
    },
    {
     "path": "app/src/shared/UBTConnect/BottomBarMenu/README.md",
-    "words": 289
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnect/CommonUI_InsideLayout/README.md",
-    "words": 256
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnectLibrary/Layout_LoginFlow/README.md",
-    "words": 229
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnectLibrary/Layout_HomePage/README.md",
-    "words": 324
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnect_Utils/ShareSheet/README.md",
-    "words": 498
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnect/Directory_EntityDetailsActions/README.md",
-    "words": 439
+    "words": 0
    },
    {
     "path": "app/src/shared/osui/Carousel/README.md",
-    "words": 622
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnectLibrary/TagToggle/README.md",
-    "words": 127
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnect/App_NotificationIcon/README.md",
-    "words": 138
+    "words": 0
    },
    {
     "path": "app/src/shared/UBTConnect/UnsupportedVersion_Wrapper/README.md",
-    "words": 139
+    "words": 0
    }
   ],
   "B": [
    {
     "path": "app/docs/README.md",
-    "words": 199
+    "words": 222
    },
    {
     "path": "app/docs/architecture/overview.md",
-    "words": 836
+    "words": 1845
+   },
+   {
+    "path": "app/docs/architecture/refactor-plan-review.md",
+    "words": 3229
+   },
+   {
+    "path": "app/docs/architecture/refactor-plan-v2.md",
+    "words": 7129
+   },
+   {
+    "path": "app/docs/architecture/refactor-plan.md",
+    "words": 3198
    },
    {
     "path": "app/docs/guides/api-and-mocks.md",
-    "words": 932
+    "words": 1408
    },
    {
     "path": "app/docs/guides/device.md",
-    "words": 473
+    "words": 844
    },
    {
     "path": "app/docs/guides/getting-started.md",
@@ -148,1015 +160,715 @@
    },
    {
     "path": "app/docs/guides/os-widgets.md",
-    "words": 681
+    "words": 945
+   },
+   {
+    "path": "app/docs/guides/page-template.md",
+    "words": 2423
    },
    {
     "path": "app/docs/guides/pwa.md",
-    "words": 3091
+    "words": 3527
    },
    {
     "path": "app/docs/guides/quality.md",
-    "words": 255
+    "words": 1219
    },
    {
     "path": "app/docs/guides/shared-code.md",
-    "words": 842
+    "words": 1142
    },
    {
     "path": "app/docs/guides/shell.md",
-    "words": 3030
+    "words": 4980
    },
    {
     "path": "app/docs/known-original-bugs.md",
-    "words": 601
+    "words": 1329
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails/README.md",
-    "words": 111
+    "path": "app/docs/refactor/CHANGELOG.md",
+    "words": 13963
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails_Entry/README.md",
-    "words": 117
+    "path": "app/docs/refactor/baseline.md",
+    "words": 2412
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingURL/README.md",
-    "words": 149
+    "path": "app/docs/refactor/calls-by-domain.md",
+    "words": 2201
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryCard/README.md",
-    "words": 166
+    "path": "app/docs/refactor/duplicates.md",
+    "words": 3178
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryCard__Header/README.md",
-    "words": 57
+    "path": "app/docs/refactor/reports/P0-2.md",
+    "words": 1429
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton/README.md",
-    "words": 100
+    "path": "app/docs/refactor/reports/P1-1.md",
+    "words": 1436
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummary_Card_Row/README.md",
-    "words": 46
+    "path": "app/docs/refactor/reports/P1-2.md",
+    "words": 1436
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry/README.md",
-    "words": 240
+    "path": "app/docs/refactor/reports/P1-3.md",
+    "words": 1436
    },
    {
-    "path": "app/src/shared/Connect2_Assemble_MUI/Assemble_FilterSubdivisionByLocality/README.md",
-    "words": 193
+    "path": "app/docs/refactor/reports/P1-4.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI/README.md",
-    "words": 280
+    "path": "app/docs/refactor/reports/P1-fix.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/ConnectBlankSlate/README.md",
-    "words": 104
+    "path": "app/docs/refactor/reports/P1-verify.md",
+    "words": 1485
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/FreeSubscriptionActionDialog/README.md",
-    "words": 146
+    "path": "app/docs/refactor/reports/P2-1.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/HandleImageLoadError/README.md",
-    "words": 122
+    "path": "app/docs/refactor/reports/P2-2.md",
+    "words": 1436
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/InputCounter/README.md",
-    "words": 191
+    "path": "app/docs/refactor/reports/P2-3.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/ItemOptionsMenu/README.md",
-    "words": 218
+    "path": "app/docs/refactor/reports/P2-4-pilot.md",
+    "words": 256
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/LabelWithCopyIcon/README.md",
-    "words": 101
+    "path": "app/docs/refactor/reports/P2-4.md",
+    "words": 1431
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/Layout/README.md",
-    "words": 239
+    "path": "app/docs/refactor/reports/P3-1.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/Layout_Orbit/README.md",
-    "words": 239
+    "path": "app/docs/refactor/reports/P3-2.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/LocalityListDetail/README.md",
-    "words": 152
+    "path": "app/docs/refactor/reports/P3-3.md",
+    "words": 1436
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/MenuIcon_Back/README.md",
-    "words": 65
+    "path": "app/docs/refactor/reports/P3-4.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI/README.md",
-    "words": 167
+    "path": "app/docs/refactor/reports/P3.md",
+    "words": 853
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/MessageList_NoResults/README.md",
-    "words": 107
+    "path": "app/docs/refactor/reports/P4-1.md",
+    "words": 1433
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/README.md",
-    "words": 129
+    "path": "app/docs/refactor/reports/P4-2.md",
+    "words": 1433
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton/README.md",
-    "words": 76
+    "path": "app/docs/refactor/reports/P4-3.md",
+    "words": 1438
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NC_Card_Item_Visual/README.md",
-    "words": 188
+    "path": "app/docs/refactor/reports/P4-4.md",
+    "words": 1441
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item_Badge/README.md",
-    "words": 116
+    "path": "app/docs/refactor/reports/P4-5.md",
+    "words": 1433
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item__Card/README.md",
-    "words": 138
+    "path": "app/docs/refactor/reports/P4-F4.md",
+    "words": 214
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item__Image/README.md",
-    "words": 231
+    "path": "app/docs/refactor/reports/P4-F6.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NetworkWarning/README.md",
-    "words": 125
+    "path": "app/docs/refactor/reports/P5-1.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/NewConnectContent/README.md",
-    "words": 77
+    "path": "app/docs/refactor/reports/P5-2-app.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/Person_Contact_Options/README.md",
-    "words": 182
+    "path": "app/docs/refactor/reports/P5-2-country.md",
+    "words": 703
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/PopupMenu/README.md",
-    "words": 263
+    "path": "app/docs/refactor/reports/P5-2-locality.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/RadioButtonListItem/README.md",
-    "words": 169
+    "path": "app/docs/refactor/reports/P5-2-member.md",
+    "words": 379
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/Result_Item_Image/README.md",
-    "words": 422
+    "path": "app/docs/refactor/reports/P5-2-update.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_LegacyShared/Spinner/README.md",
-    "words": 109
+    "path": "app/docs/refactor/reports/P5-3-bookmark.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_MyBookmarks_MUI/NoBookmarks/README.md",
-    "words": 110
+    "path": "app/docs/refactor/reports/P5-3-event.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit/README.md",
-    "words": 161
+    "path": "app/docs/refactor/reports/P5-3-message.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Event/README.md",
-    "words": 136
+    "path": "app/docs/refactor/reports/P5-3-note.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation/README.md",
-    "words": 445
+    "path": "app/docs/refactor/reports/P5-3-notification.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/README.md",
-    "words": 264
+    "path": "app/docs/refactor/reports/P5-4.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Template/README.md",
-    "words": 174
+    "path": "app/docs/refactor/reports/P5-F9.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer/README.md",
-    "words": 91
+    "path": "app/docs/refactor/reports/P6-F15.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/DaySelector/README.md",
-    "words": 117
+    "path": "app/docs/refactor/reports/P6-F16.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ErrorScreen/README.md",
-    "words": 188
+    "path": "app/docs/refactor/reports/P6-F17.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection/README.md",
-    "words": 163
+    "path": "app/docs/refactor/reports/P6-G1-A.md",
+    "words": 1423
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem/README.md",
-    "words": 241
+    "path": "app/docs/refactor/reports/P6-G1-B-AcceptPendingPolicies.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors/README.md",
-    "words": 271
-   },
-   {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/MilestoneHeader/README.md",
-    "words": 311
-   },
-   {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit/README.md",
-    "words": 140
-   },
-   {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/NoResults/README.md",
-    "words": 97
-   },
-   {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions/README.md",
-    "words": 194
-   },
-   {
-    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading/README.md",
-    "words": 208
-   },
-   {
-    "path": "app/src/shared/Leaflet/LeafletMap/README.md",
-    "words": 579
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/BackNavigationHandler/README.md",
-    "words": 111
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/LayoutRuntime_Top/README.md",
-    "words": 71
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/NavigationConfirmationDialog/README.md",
-    "words": 184
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/NavigationHandler/README.md",
-    "words": 100
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/PreventBackNavigation/README.md",
-    "words": 91
-   },
-   {
-    "path": "app/src/shared/NavigationHandler/ScrollAnchor/README.md",
-    "words": 130
-   },
-   {
-    "path": "app/src/shared/README.md",
-    "words": 25
-   },
-   {
-    "path": "app/src/shared/ReactiveHtmlSanitizer/SanitizedHtml/README.md",
-    "words": 322
-   },
-   {
-    "path": "app/src/shared/UBTConnect/App_IconBadge/README.md",
-    "words": 179
-   },
-   {
-    "path": "app/src/shared/UBTConnect/App_NotificationRefresh/README.md",
-    "words": 98
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Block_PINRegister_ContentWrapper/README.md",
-    "words": 257
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Block_PINUnlock_ContentWrapper/README.md",
-    "words": 308
-   },
-   {
-    "path": "app/src/shared/UBTConnect/BottomBarContent/README.md",
-    "words": 94
-   },
-   {
-    "path": "app/src/shared/UBTConnect/CacheControl_UserInfo_Wrapper/README.md",
-    "words": 52
-   },
-   {
-    "path": "app/src/shared/UBTConnect/CarouselTag/README.md",
-    "words": 89
-   },
-   {
-    "path": "app/src/shared/UBTConnect/ContactByEmailForm/README.md",
-    "words": 273
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Dialog_CustomChoice/README.md",
-    "words": 193
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Dialog_Navigation/README.md",
-    "words": 144
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Directory_EmptyState/README.md",
-    "words": 124
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Directory_LegendBottomSheet/README.md",
-    "words": 141
-   },
-   {
-    "path": "app/src/shared/UBTConnect/EntitiesCarouse_lSupperMeetingDetails/README.md",
-    "words": 105
-   },
-   {
-    "path": "app/src/shared/UBTConnect/EntitiesCarousel/README.md",
-    "words": 337
-   },
-   {
-    "path": "app/src/shared/UBTConnect/EntitiesCarousel_Element/README.md",
-    "words": 212
-   },
-   {
-    "path": "app/src/shared/UBTConnect/EntitiesCarousel_HeaderGenerator/README.md",
-    "words": 114
-   },
-   {
-    "path": "app/src/shared/UBTConnect/EntitiesCarousel_HouseholdDetails/README.md",
-    "words": 119
-   },
-   {
-    "path": "app/src/shared/UBTConnect/FeedBlock_CommunityPopulation/README.md",
-    "words": 121
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Feed_Embeded/README.md",
-    "words": 495
-   },
-   {
-    "path": "app/src/shared/UBTConnect/FilterSheet/README.md",
-    "words": 294
-   },
-   {
-    "path": "app/src/shared/UBTConnect/FilterSheet_Icon/README.md",
-    "words": 108
-   },
-   {
-    "path": "app/src/shared/UBTConnect/FilterSheet_OptionChoice_Item/README.md",
-    "words": 96
-   },
-   {
-    "path": "app/src/shared/UBTConnect/FilterSheet_OptionList_Item/README.md",
-    "words": 134
-   },
-   {
-    "path": "app/src/shared/UBTConnect/HandleOnResumeOpenLink/README.md",
-    "words": 76
-   },
-   {
-    "path": "app/src/shared/UBTConnect/HouseholdDetails_Block/README.md",
-    "words": 458
-   },
-   {
-    "path": "app/src/shared/UBTConnect/HouseholdDetails_Members_Block/README.md",
-    "words": 208
-   },
-   {
-    "path": "app/src/shared/UBTConnect/HouseholdDetails_TimelinePhoto/README.md",
-    "words": 210
-   },
-   {
-    "path": "app/src/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List/README.md",
-    "words": 86
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Household_GalleryCard/README.md",
-    "words": 94
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Household_GalleryCard_List/README.md",
-    "words": 165
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Menu_List/README.md",
-    "words": 278
-   },
-   {
-    "path": "app/src/shared/UBTConnect/OfflineDataSyncEvents/README.md",
-    "words": 94
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Policy_Checker/README.md",
-    "words": 95
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SectionSeparator/README.md",
-    "words": 88
-   },
-   {
-    "path": "app/src/shared/UBTConnect/StatisticsList/README.md",
-    "words": 221
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Statistics_Icons/README.md",
-    "words": 137
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Statistics_TypedItem/README.md",
-    "words": 193
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SubLayout_Browse_Section/README.md",
-    "words": 73
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SubLayout_DirectoryDetailScreen/README.md",
-    "words": 126
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section/README.md",
-    "words": 128
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SupperMeeting_DetailsBlock/README.md",
-    "words": 178
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SupperMeeting_HouseholdList/README.md",
-    "words": 141
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content/README.md",
-    "words": 101
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content_IconText/README.md",
-    "words": 109
-   },
-   {
-    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content_Statistics/README.md",
-    "words": 113
-   },
-   {
-    "path": "app/src/shared/UBTConnect/UnsupportedVersion/README.md",
-    "words": 192
-   },
-   {
-    "path": "app/src/shared/UBTConnect/UnsupportedVersion_Browser/README.md",
-    "words": 67
-   },
-   {
-    "path": "app/src/shared/UBTConnect/UnsupportedVersion_Native/README.md",
-    "words": 56
-   },
-   {
-    "path": "app/src/shared/UBTConnect/UnsupportedVersion_WebView/README.md",
-    "words": 50
-   },
-   {
-    "path": "app/src/shared/UBTConnect/Version/README.md",
-    "words": 163
-   },
-   {
-    "path": "app/src/shared/UBTConnect/WelcomeToConnect/README.md",
-    "words": 82
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ActionsMenu/README.md",
-    "words": 152
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/AddNote/README.md",
-    "words": 134
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/AvatarDouble/README.md",
-    "words": 151
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/AvatarImage/README.md",
-    "words": 217
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Badge/README.md",
-    "words": 210
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/BottomSheet/README.md",
-    "words": 469
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Button/README.md",
-    "words": 144
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/CircleButton/README.md",
-    "words": 223
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/CircleButton_IconPrimary/README.md",
-    "words": 201
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/CircleButton_WithLabel/README.md",
-    "words": 233
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Columns_Three/README.md",
-    "words": 169
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Columns_Two/README.md",
-    "words": 171
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ComingSoon/README.md",
-    "words": 116
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ContextMenu/README.md",
-    "words": 299
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ContextMenu_Item/README.md",
-    "words": 140
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/CustomContainer/README.md",
-    "words": 191
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/CustomText/README.md",
-    "words": 209
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/DynamicTextArea/README.md",
-    "words": 133
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/EmptyList/README.md",
-    "words": 121
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/FixedFooter/README.md",
-    "words": 138
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/HighlightSearch/README.md",
-    "words": 162
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/HorizontalTagList/README.md",
-    "words": 173
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Icon/README.md",
-    "words": 160
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/IconBadge/README.md",
-    "words": 150
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/IconInline_Internal/README.md",
-    "words": 78
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/IconSVG/README.md",
-    "words": 119
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/IconText/README.md",
-    "words": 213
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ImageCard_LazyLoading/README.md",
-    "words": 199
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ImageCard__Content/README.md",
-    "words": 152
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/ImageCard__Content__Tag/README.md",
-    "words": 79
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Input/README.md",
-    "words": 372
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/InputCounter/README.md",
-    "words": 203
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/KebabButtonMenu/README.md",
-    "words": 128
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/KebabButton_BookmarkNotes/README.md",
-    "words": 124
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Layout_DetailPage/README.md",
-    "words": 376
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Layout_MainPages/README.md",
-    "words": 245
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/README.md",
-    "words": 316
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/LazyImage/README.md",
-    "words": 328
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Member_ListItem/README.md",
-    "words": 133
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/NonMember_ListItem/README.md",
-    "words": 189
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Note_Item/README.md",
-    "words": 298
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Note_Item_List/README.md",
-    "words": 311
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Popup/README.md",
-    "words": 218
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/PopupMenu/README.md",
-    "words": 330
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SVG_Background_Custom/README.md",
-    "words": 194
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SVG_Background_LoginWrapper/README.md",
-    "words": 95
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SeeMoreSection/README.md",
-    "words": 138
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SelectionOption_List/README.md",
-    "words": 190
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SkeletonSection/README.md",
-    "words": 177
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/StaticInput/README.md",
-    "words": 135
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Statistics_ListItem/README.md",
-    "words": 169
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SubLayout_HomePageSearch/README.md",
-    "words": 92
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/SubLayout_Section/README.md",
-    "words": 125
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/TagContent/README.md",
-    "words": 175
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/TextArea_WithCounter/README.md",
-    "words": 174
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/TextEllipsis/README.md",
-    "words": 99
-   },
-   {
-    "path": "app/src/shared/UBTConnectLibrary/Update_ListItem/README.md",
-    "words": 293
-   },
-   {
-    "path": "app/src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/README.md",
-    "words": 460
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/AddressPopup/README.md",
-    "words": 127
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/AddressPopup_Wrapper/README.md",
-    "words": 194
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/Button/README.md",
-    "words": 219
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/CacheControl/README.md",
-    "words": 162
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/CacheControl_AllCountries/README.md",
-    "words": 151
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/CacheControl_AllLocalities/README.md",
-    "words": 151
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/CacheControl_Policies/README.md",
-    "words": 169
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/CacheControl_UserInfo/README.md",
-    "words": 145
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ContactByMessage_Wrapper/README.md",
-    "words": 129
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ContactPopup/README.md",
-    "words": 445
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ContactPopup_ByMessage/README.md",
-    "words": 119
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ContactPopup_ByPhone/README.md",
-    "words": 144
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy/README.md",
-    "words": 126
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/NoteListActions/README.md",
-    "words": 330
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/NotesSheet/README.md",
-    "words": 324
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/SearchResult_Item/README.md",
-    "words": 233
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/SharePopup/README.md",
-    "words": 281
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ShareSheet_Section/README.md",
-    "words": 100
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ShareSheet_SectionTitle/README.md",
-    "words": 110
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/ShareableObject_Generic/README.md",
-    "words": 135
-   },
-   {
-    "path": "app/src/shared/UBTConnect_Utils/UBT_LazyImage/README.md",
-    "words": 495
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager/InactivityTimer/README.md",
-    "words": 142
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager/PinCode/README.md",
-    "words": 296
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager/Pincode_Register/README.md",
-    "words": 187
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager/Pincode_Unlock/README.md",
-    "words": 230
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager_Mobile/FingerprintScanner/README.md",
-    "words": 129
-   },
-   {
-    "path": "app/src/shared/UBT_AppManager_Mobile/PinUnlock_MobileWrapper/README.md",
-    "words": 202
-   },
-   {
-    "path": "app/src/shared/osui/Accordion/README.md",
-    "words": 165
-   },
-   {
-    "path": "app/src/shared/osui/AccordionItem/README.md",
-    "words": 258
-   },
-   {
-    "path": "app/src/shared/osui/AlignCenter/README.md",
-    "words": 84
-   },
-   {
-    "path": "app/src/shared/osui/Animate/README.md",
-    "words": 111
-   },
-   {
-    "path": "app/src/shared/osui/BlankSlate/README.md",
-    "words": 117
-   },
-   {
-    "path": "app/src/shared/osui/BottomBarItem/README.md",
+    "path": "app/docs/refactor/reports/P6-G1-B-Login.md",
     "words": 120
    },
    {
-    "path": "app/src/shared/osui/BottomSheet/README.md",
-    "words": 516
+    "path": "app/docs/refactor/reports/P6-G1-B-Menu.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/ButtonLoading/README.md",
-    "words": 240
+    "path": "app/docs/refactor/reports/P6-G1-B-PINBiometricsMenu.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/Card/README.md",
-    "words": 136
+    "path": "app/docs/refactor/reports/P6-G1-B-PINChange.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/Columns2/README.md",
-    "words": 152
+    "path": "app/docs/refactor/reports/P6-G1-B-PINRegister.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/Columns3/README.md",
-    "words": 142
+    "path": "app/docs/refactor/reports/P6-G1-B-PINUnlock.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/Columns4/README.md",
-    "words": 98
+    "path": "app/docs/refactor/reports/P6-G1-B-Profile.md",
+    "words": 147
    },
    {
-    "path": "app/src/shared/osui/DEPRECATED_Accordion/README.md",
-    "words": 226
+    "path": "app/docs/refactor/reports/P6-G1-B-Shared.md",
+    "words": 1420
    },
    {
-    "path": "app/src/shared/osui/DEPRECATED_AccordionItem/README.md",
-    "words": 388
+    "path": "app/docs/refactor/reports/P6-G1-B-Splash.md",
+    "words": 651
    },
    {
-    "path": "app/src/shared/osui/DEPRECATED_ButtonLoading/README.md",
+    "path": "app/docs/refactor/reports/P6-G1-B-TermsAndPoliciesMenu.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G1-C.md",
+    "words": 1428
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G1.md",
+    "words": 287
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-A.md",
+    "words": 199
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailLDMCoordinator.md",
+    "words": 120
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailMember-routes.md",
+    "words": 153
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailMember.md",
+    "words": 183
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailOneSchoolGlobal.md",
+    "words": 156
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailOrbitHelpdesk.md",
+    "words": 102
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactByEmailOrbitHost.md",
+    "words": 102
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactUsDetails.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-ContactUsMenu.md",
+    "words": 120
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-EmailContact.md",
+    "words": 93
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-EmailTarget.md",
+    "words": 93
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-B-Shared.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2-C.md",
+    "words": 1428
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G2.md",
+    "words": 332
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-A.md",
+    "words": 286
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-FeedItemDetail.md",
     "words": 144
    },
    {
-    "path": "app/src/shared/osui/DEPRECATED_GalleryV2/README.md",
+    "path": "app/docs/refactor/reports/P6-G3-B-HomeFeed-Page.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-HomeFeed.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-MessageDetail.md",
+    "words": 165
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-MessageList.md",
+    "words": 246
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-Notifications.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-Search.md",
+    "words": 252
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-Services.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-Shared.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-B-Updates_SingleList.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3-C.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G3.md",
+    "words": 460
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-A.md",
+    "words": 460
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-Assemble_BrowseByCountry.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-BrowseCountries.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-BrowseDirectory.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-CommunityBusinessDetails_CoomingSoon.md",
+    "words": 174
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-CountryDetails.md",
+    "words": 282
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-CountryList.md",
+    "words": 174
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G4-B-HouseholdCarousel.md",
     "words": 201
    },
    {
-    "path": "app/src/shared/osui/DropdownSearch/README.md",
-    "words": 359
+    "path": "app/docs/refactor/reports/P6-G4-B-Household_Relations.md",
+    "words": 309
    },
    {
-    "path": "app/src/shared/osui/DropdownTags/README.md",
-    "words": 198
+    "path": "app/docs/refactor/reports/P6-G4-B-Locality_Details.md",
+    "words": 282
    },
    {
-    "path": "app/src/shared/osui/Gallery/README.md",
-    "words": 218
+    "path": "app/docs/refactor/reports/P6-G4-B-OneSchoolGlobalDetails.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/InlineSVG/README.md",
-    "words": 159
+    "path": "app/docs/refactor/reports/P6-G4-B-Photobook.md",
+    "words": 255
    },
    {
-    "path": "app/src/shared/osui/InputWithIcon/README.md",
-    "words": 176
+    "path": "app/docs/refactor/reports/P6-G4-B-Shared.md",
+    "words": 1433
    },
    {
-    "path": "app/src/shared/osui/NetworkStatusChanged/README.md",
-    "words": 126
+    "path": "app/docs/refactor/reports/P6-G4-B-SupperMeeting_Carousel.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/OfflineDataSyncCore/README.md",
-    "words": 144
+    "path": "app/docs/refactor/reports/P6-G4-B-SupperMeeting_Details.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/PullToRefresh/README.md",
-    "words": 108
+    "path": "app/docs/refactor/reports/P6-G4-C.md",
+    "words": 1428
    },
    {
-    "path": "app/src/shared/osui/RangeSlider/README.md",
-    "words": 293
+    "path": "app/docs/refactor/reports/P6-G4.md",
+    "words": 657
    },
    {
-    "path": "app/src/shared/osui/Separator/README.md",
-    "words": 121
+    "path": "app/docs/refactor/reports/P6-G5-A.md",
+    "words": 1434
    },
    {
-    "path": "app/src/shared/osui/SwipeEvents/README.md",
-    "words": 106
+    "path": "app/docs/refactor/reports/P6-G5-B-AssembleDetail.md",
+    "words": 1459
    },
    {
-    "path": "app/src/shared/osui/Tag/README.md",
-    "words": 132
+    "path": "app/docs/refactor/reports/P6-G5-B-AssembleEvents.md",
+    "words": 120
    },
    {
-    "path": "app/src/shared/osui/Tooltip/README.md",
-    "words": 239
+    "path": "app/docs/refactor/reports/P6-G5-B-EventBooklet-routes.md",
+    "words": 90
    },
    {
-    "path": "app/src/shared/osui/TouchEvents/README.md",
-    "words": 274
+    "path": "app/docs/refactor/reports/P6-G5-B-EventBooklet.md",
+    "words": 120
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-EventDetail.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-GuestArrangements.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-HelpersDetail.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-HostSurvey.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-LDM_Email_V2-route.md",
+    "words": 90
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-LDM_Email_V2.md",
+    "words": 408
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-LDM_EventDetail_V2.md",
+    "words": 435
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-LDM_MyEvents_V2.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-MilestoneDetail.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-MyEntertaining.md",
+    "words": 120
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-OrbitAdminEventDetail.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-OrbitAdminLanding.md",
+    "words": 408
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-OrbitLanding.md",
+    "words": 588
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-Shared.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-B-TransportDetail.md",
+    "words": 102
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5-C.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G5.md",
+    "words": 898
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-A.md",
+    "words": 217
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-BookmarksByGroup.md",
+    "words": 1101
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-ConnectShare.md",
+    "words": 147
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-LegacyShareObject.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-MyBookmarks.md",
+    "words": 174
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-Notes.md",
+    "words": 1101
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-QRCodeGenerate.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-Shared.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-B-ViewDocuments.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6-C.md",
+    "words": 1428
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-G6.md",
+    "words": 773
+   },
+   {
+    "path": "app/docs/refactor/reports/P6-end.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-0.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-1.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-2.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-3.md",
+    "words": 1434
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-4.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-5.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P7-6.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/P7.md",
+    "words": 1641
+   },
+   {
+    "path": "app/docs/refactor/reports/P8-1.md",
+    "words": 1431
+   },
+   {
+    "path": "app/docs/refactor/reports/P8-2.md",
+    "words": 1548
+   },
+   {
+    "path": "app/docs/refactor/reports/P9-1.md",
+    "words": 1423
+   },
+   {
+    "path": "app/docs/refactor/reports/P9-4.md",
+    "words": 1420
+   },
+   {
+    "path": "app/docs/refactor/reports/final.md",
+    "words": 2424
    },
    {
     "path": "app/src/shell/testSession.ts",
-    "words": 810
+    "words": 0
    },
    {
     "path": "migration/capture-notes.md",
-    "words": 369
+    "words": 393
    },
    {
     "path": "migration/knowledge/audit-a1-empty-handlers.md",
-    "words": 1121
+    "words": 1145
    },
    {
     "path": "migration/knowledge/auth.md",
     "words": 353
    },
    {
+    "path": "migration/knowledge/error-handling-tst.md",
+    "words": 558
+   },
+   {
     "path": "migration/knowledge/feature-flag-helpers.md",
-    "words": 481
+    "words": 503
    },
    {
     "path": "migration/knowledge/mock-fixtures.md",
-    "words": 612
+    "words": 724
    },
    {
     "path": "migration/knowledge/navigation.md",
-    "words": 252
+    "words": 288
    },
    {
     "path": "migration/knowledge/orbit-assemble-ldm.md",
-    "words": 397
+    "words": 449
    },
    {
     "path": "migration/knowledge/pwa-file-plugins.md",
-    "words": 664
+    "words": 698
    },
    {
     "path": "migration/knowledge/pwa-tst-service-worker.md",
-    "words": 526
+    "words": 535
    },
    {
     "path": "migration/knowledge/runtime-sources.md",
-    "words": 1370
+    "words": 3107
    },
    {
     "path": "migration/knowledge/shell-facts.md",
-    "words": 2246
+    "words": 2324
    },
    {
     "path": "migration/knowledge/shell-observed.md",
-    "words": 408
+    "words": 507
    },
    {
     "path": "migration/knowledge/stack-baseline.md",
-    "words": 603
+    "words": 618
    },
    {
     "path": "migration/knowledge/static-entities.md",
-    "words": 235
+    "words": 461
+   },
+   {
+    "path": "migration/knowledge/tst-drift-2026-11-05.md",
+    "words": 1039
    },
    {
     "path": "migration/patterns/P-BACK.md",
-    "words": 64
+    "words": 75
    },
    {
     "path": "migration/patterns/P-CALLS.md",
-    "words": 88
+    "words": 93
    },
    {
     "path": "migration/patterns/P-DATA.md",
-    "words": 86
+    "words": 88
    },
    {
     "path": "migration/patterns/P-DIALOG.md",
-    "words": 69
+    "words": 73
    },
    {
     "path": "migration/patterns/P-FLAGS.md",
-    "words": 103
+    "words": 102
    },
    {
     "path": "migration/patterns/P-FORM.md",
@@ -1168,19 +880,19 @@
    },
    {
     "path": "migration/patterns/P-MOCKS.md",
-    "words": 106
+    "words": 105
    },
    {
     "path": "migration/patterns/P-MUTATION.md",
-    "words": 102
+    "words": 108
    },
    {
     "path": "migration/patterns/P-OSUI.md",
-    "words": 123
+    "words": 132
    },
    {
     "path": "migration/patterns/P-PARAMS.md",
-    "words": 80
+    "words": 86
    },
    {
     "path": "migration/patterns/P-STATES.md",
@@ -1188,255 +900,271 @@
    },
    {
     "path": "migration/pwa/pwa-discussion-plan.md",
-    "words": 4143
+    "words": 4267
    },
    {
     "path": "migration/screens/AcceptPendingPolicies/route-spec.md",
-    "words": 1778
+    "words": 1882
    },
    {
     "path": "migration/screens/AssembleDetail/route-spec.md",
-    "words": 1110
+    "words": 1212
    },
    {
     "path": "migration/screens/AssembleEvents/route-spec.md",
-    "words": 1272
+    "words": 1352
    },
    {
     "path": "migration/screens/Assemble_BrowseByCountry/route-spec.md",
-    "words": 1040
+    "words": 1088
    },
    {
-    "path": "migration/screens/BookmarksByGroup/route-spec.md",
-    "words": 1011
+    "path": "migration/screens/Bookmarks/route-spec.md",
+    "words": 1129
    },
    {
     "path": "migration/screens/BrowseCountries/route-spec.md",
-    "words": 763
+    "words": 779
    },
    {
     "path": "migration/screens/BrowseDirectory/route-spec.md",
-    "words": 1298
+    "words": 1368
    },
    {
     "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/route-spec.md",
-    "words": 821
+    "words": 839
    },
    {
     "path": "migration/screens/ConnectShare/route-spec.md",
-    "words": 1160
+    "words": 1240
    },
    {
     "path": "migration/screens/ContactByEmailLDMCoordinator/route-spec.md",
-    "words": 718
+    "words": 772
    },
    {
     "path": "migration/screens/ContactByEmailMember/route-spec.md",
-    "words": 1098
+    "words": 1280
    },
    {
     "path": "migration/screens/ContactByEmailOneSchoolGlobal/route-spec.md",
-    "words": 1128
+    "words": 1252
    },
    {
     "path": "migration/screens/ContactByEmailOrbitHelpdesk/route-spec.md",
-    "words": 668
+    "words": 673
    },
    {
     "path": "migration/screens/ContactByEmailOrbitHost/route-spec.md",
-    "words": 723
+    "words": 754
    },
    {
     "path": "migration/screens/ContactUsDetails/route-spec.md",
-    "words": 1632
+    "words": 1708
    },
    {
     "path": "migration/screens/ContactUsMenu/route-spec.md",
-    "words": 982
+    "words": 989
    },
    {
     "path": "migration/screens/CountryDetails/route-spec.md",
-    "words": 1412
+    "words": 1450
    },
    {
     "path": "migration/screens/CountryList/route-spec.md",
-    "words": 1231
+    "words": 1256
    },
    {
     "path": "migration/screens/EmailContact/route-spec.md",
-    "words": 1090
+    "words": 1193
    },
    {
     "path": "migration/screens/EmailTarget/route-spec.md",
-    "words": 1091
+    "words": 1114
    },
    {
     "path": "migration/screens/EventBooklet/route-spec.md",
-    "words": 2469
+    "words": 2609
    },
    {
     "path": "migration/screens/EventDetail/route-spec.md",
-    "words": 1895
+    "words": 2026
    },
    {
     "path": "migration/screens/FeedItemDetail/route-spec.md",
-    "words": 1170
+    "words": 1190
    },
    {
     "path": "migration/screens/GuestArrangements/route-spec.md",
-    "words": 1127
+    "words": 1217
    },
    {
     "path": "migration/screens/HelpersDetail/route-spec.md",
-    "words": 1134
+    "words": 1177
    },
    {
     "path": "migration/screens/HostSurvey/route-spec.md",
-    "words": 741
+    "words": 801
    },
    {
     "path": "migration/screens/HouseholdCarousel/route-spec.md",
-    "words": 1794
+    "words": 1897
    },
    {
     "path": "migration/screens/HouseholdDetails/route-spec.md",
-    "words": 1324
+    "words": 1364
    },
    {
     "path": "migration/screens/Household_Relations/route-spec.md",
-    "words": 2035
+    "words": 2094
    },
    {
     "path": "migration/screens/LDM_Email_V2/route-spec.md",
-    "words": 1448
+    "words": 1485
    },
    {
     "path": "migration/screens/LDM_EventDetail_V2/route-spec.md",
-    "words": 1237
+    "words": 1342
    },
    {
     "path": "migration/screens/LDM_MyEvents_V2/route-spec.md",
-    "words": 1014
+    "words": 1074
    },
    {
     "path": "migration/screens/LegacyShareObject/route-spec.md",
-    "words": 2219
+    "words": 2305
    },
    {
     "path": "migration/screens/Menu/route-spec.md",
-    "words": 1149
+    "words": 1203
    },
    {
     "path": "migration/screens/MessageDetail/route-spec.md",
-    "words": 1411
+    "words": 1543
    },
    {
     "path": "migration/screens/MessageList/route-spec.md",
-    "words": 2592
+    "words": 2695
    },
    {
     "path": "migration/screens/MilestoneDetail/route-spec.md",
-    "words": 1107
-   },
-   {
-    "path": "migration/screens/MyBookmarks/route-spec.md",
-    "words": 800
+    "words": 1168
    },
    {
     "path": "migration/screens/MyEntertaining/route-spec.md",
-    "words": 1220
+    "words": 1265
    },
    {
     "path": "migration/screens/Notes/route-spec.md",
-    "words": 1021
+    "words": 1107
+   },
+   {
+    "path": "migration/screens/NotificationDetails/route-spec.md",
+    "words": 596
    },
    {
     "path": "migration/screens/Notifications/route-spec.md",
-    "words": 1445
+    "words": 1574
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalCarousel/route-spec.md",
+    "words": 1130
    },
    {
     "path": "migration/screens/OneSchoolGlobalDetails/route-spec.md",
-    "words": 1219
+    "words": 1304
    },
    {
     "path": "migration/screens/OrbitAdminEventDetail/route-spec.md",
-    "words": 1549
+    "words": 1662
    },
    {
     "path": "migration/screens/OrbitAdminLanding/route-spec.md",
-    "words": 1098
+    "words": 1142
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestoneDetail/route-spec.md",
+    "words": 1776
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestones/route-spec.md",
+    "words": 916
    },
    {
     "path": "migration/screens/OrbitLanding/route-spec.md",
-    "words": 1228
+    "words": 1327
    },
    {
     "path": "migration/screens/PINBiometricsMenu/route-spec.md",
-    "words": 773
+    "words": 792
    },
    {
     "path": "migration/screens/PINChange/route-spec.md",
-    "words": 901
+    "words": 911
    },
    {
     "path": "migration/screens/PINRegister/route-spec.md",
-    "words": 1063
+    "words": 1114
    },
    {
     "path": "migration/screens/PINUnlock/route-spec.md",
-    "words": 1120
+    "words": 1141
+   },
+   {
+    "path": "migration/screens/PassportScan/route-spec.md",
+    "words": 1191
    },
    {
     "path": "migration/screens/Photobook/route-spec.md",
-    "words": 646
+    "words": 687
    },
    {
     "path": "migration/screens/Profile/route-spec.md",
-    "words": 1481
+    "words": 1620
    },
    {
     "path": "migration/screens/QRCodeGenerate/route-spec.md",
-    "words": 1076
+    "words": 1123
    },
    {
     "path": "migration/screens/Search/route-spec.md",
-    "words": 1520
+    "words": 1536
    },
    {
     "path": "migration/screens/Services/route-spec.md",
-    "words": 1598
+    "words": 1693
    },
    {
     "path": "migration/screens/Splash/route-spec.md",
-    "words": 1155
+    "words": 1194
    },
    {
     "path": "migration/screens/SupperMeeting_Carousel/route-spec.md",
-    "words": 1604
+    "words": 1618
    },
    {
     "path": "migration/screens/SupperMeeting_Details/route-spec.md",
-    "words": 1630
+    "words": 1703
    },
    {
     "path": "migration/screens/TermsAndPoliciesMenu/route-spec.md",
-    "words": 915
+    "words": 929
    },
    {
     "path": "migration/screens/TransportDetail/route-spec.md",
-    "words": 995
+    "words": 1039
    },
    {
     "path": "migration/screens/Updates_SingleList/route-spec.md",
-    "words": 1639
+    "words": 1694
    },
    {
     "path": "migration/screens/ViewDocuments/route-spec.md",
-    "words": 1075
+    "words": 1142
    },
    {
     "path": "migration/shell/README.md",
-    "words": 23
+    "words": 31
    },
    {
     "path": "migration/shell/client-variables.md",
@@ -1446,27 +1174,27 @@
   "generated": [
    {
     "path": "app/docs/reference/api.md",
-    "words": 1524
+    "words": 1677
    },
    {
     "path": "app/docs/reference/flags.md",
-    "words": 347
+    "words": 346
    },
    {
     "path": "app/docs/reference/screens.md",
-    "words": 1064
+    "words": 1059
    },
    {
     "path": "app/docs/reference/shared-blocks.md",
-    "words": 1823
+    "words": 1829
    },
    {
     "path": "app/docs/reference/stack.md",
-    "words": 3187
+    "words": 5935
    },
    {
     "path": "app/docs/guides/screens.md",
-    "words": 251
+    "words": 321
    },
    {
     "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.md",
@@ -2414,7 +2142,7 @@
    },
    {
     "path": "migration/catalog/contract-report.md",
-    "words": 5549
+    "words": 6022
    },
    {
     "path": "migration/catalog/foundation-queue.md",
@@ -2422,15 +2150,15 @@
    },
    {
     "path": "migration/survey/osui.md",
-    "words": 448
+    "words": 441
    },
    {
     "path": "migration/survey/routes.md",
-    "words": 3031
+    "words": 3090
    },
    {
     "path": "migration/survey/shared-blocks.md",
-    "words": 1728
+    "words": 1837
    },
    {
     "path": "migration/survey/shell.md",
@@ -2438,15 +2166,15 @@
    },
    {
     "path": "migration/survey/variants.md",
-    "words": 129
+    "words": 94
    },
    {
     "path": "migration/architecture.md",
-    "words": 4385
+    "words": 7108
    },
    {
     "path": "migration/flags.md",
-    "words": 3222
+    "words": 3348
    },
    {
     "path": "migration/fixture-coverage.md",
@@ -2454,7 +2182,7 @@
    },
    {
     "path": "migration/board.md",
-    "words": 2730
+    "words": 2833
    },
    {
     "path": "migration/knowledge/auto-decisions-2026-10-15.md",
@@ -2464,7 +2192,7 @@
   "out": [
    {
     "path": "migration/contexts/INDEX.md",
-    "words": 874
+    "words": 2337
    },
    {
     "path": "migration/contexts/context-001-auto-login.md",
@@ -2581,6 +2309,190 @@
    {
     "path": "migration/contexts/context-031-coverage-atlas-removed.md",
     "words": 367
+   },
+   {
+    "path": "migration/contexts/context-032-english-docs-ste.md",
+    "words": 399
+   },
+   {
+    "path": "migration/contexts/context-033-ui-flows-dashboard.md",
+    "words": 444
+   },
+   {
+    "path": "migration/contexts/context-034-refactor-plan-review.md",
+    "words": 366
+   },
+   {
+    "path": "migration/contexts/context-035-refactor-agent-team.md",
+    "words": 324
+   },
+   {
+    "path": "migration/contexts/context-036-refactor-phase-0.md",
+    "words": 327
+   },
+   {
+    "path": "migration/contexts/context-037-refactor-phase-1.md",
+    "words": 425
+   },
+   {
+    "path": "migration/contexts/context-038-refactor-phase-2.md",
+    "words": 250
+   },
+   {
+    "path": "migration/contexts/context-039-refactor-phase-3.md",
+    "words": 247
+   },
+   {
+    "path": "migration/contexts/context-040-refactor-phase-4.md",
+    "words": 319
+   },
+   {
+    "path": "migration/contexts/context-041-refactor-phase-5-paused.md",
+    "words": 458
+   },
+   {
+    "path": "migration/contexts/context-042-refactor-phase-5.md",
+    "words": 372
+   },
+   {
+    "path": "migration/contexts/context-043-refactor-g1-fix-p6-g1-paused.md",
+    "words": 398
+   },
+   {
+    "path": "migration/contexts/context-044-refactor-p6-g1-done.md",
+    "words": 407
+   },
+   {
+    "path": "migration/contexts/context-045-refactor-p6-g2-g3.md",
+    "words": 382
+   },
+   {
+    "path": "migration/contexts/context-046-refactor-p6-g4.md",
+    "words": 322
+   },
+   {
+    "path": "migration/contexts/context-047-refactor-p6-g5.md",
+    "words": 329
+   },
+   {
+    "path": "migration/contexts/context-048-refactor-phase6-done.md",
+    "words": 340
+   },
+   {
+    "path": "migration/contexts/context-049-refactor-phase7-done.md",
+    "words": 327
+   },
+   {
+    "path": "migration/contexts/context-050-refactor-user-decisions-batch.md",
+    "words": 304
+   },
+   {
+    "path": "migration/contexts/context-051-refactor-p8-p9-done.md",
+    "words": 355
+   },
+   {
+    "path": "migration/contexts/context-052-refactor-user-decisions-2026-10-25.md",
+    "words": 312
+   },
+   {
+    "path": "migration/contexts/context-053-libraries-dashboard.md",
+    "words": 413
+   },
+   {
+    "path": "migration/contexts/context-054-clarify-screens-g1.md",
+    "words": 395
+   },
+   {
+    "path": "migration/contexts/context-055-clarify-screens-g2-g4-shared.md",
+    "words": 401
+   },
+   {
+    "path": "migration/contexts/context-056-clarify-screens-p2.md",
+    "words": 335
+   },
+   {
+    "path": "migration/contexts/context-057-clarify-screens-done.md",
+    "words": 374
+   },
+   {
+    "path": "migration/contexts/context-058-clarify-minor-fixes.md",
+    "words": 540
+   },
+   {
+    "path": "migration/contexts/context-059-clarify-build-wave.md",
+    "words": 476
+   },
+   {
+    "path": "migration/contexts/context-060-clarify-build-decisions.md",
+    "words": 378
+   },
+   {
+    "path": "migration/contexts/context-061-survey-drift-check.md",
+    "words": 299
+   },
+   {
+    "path": "migration/contexts/context-062-tst-source-switch.md",
+    "words": 342
+   },
+   {
+    "path": "migration/contexts/context-063-item2-fetch-errors.md",
+    "words": 353
+   },
+   {
+    "path": "migration/contexts/context-064-item3-dropdowns.md",
+    "words": 289
+   },
+   {
+    "path": "migration/contexts/context-065-item4-original-bugs.md",
+    "words": 222
+   },
+   {
+    "path": "migration/contexts/context-066-item5-tooltip-loader.md",
+    "words": 287
+   },
+   {
+    "path": "migration/contexts/context-067-item6-getshare-inputs.md",
+    "words": 246
+   },
+   {
+    "path": "migration/contexts/context-068-item7-decisions.md",
+    "words": 216
+   },
+   {
+    "path": "migration/contexts/context-069-item8-flow-scope.md",
+    "words": 333
+   },
+   {
+    "path": "migration/contexts/context-070-items9-10-wave.md",
+    "words": 347
+   },
+   {
+    "path": "migration/contexts/context-071-drift-wave.md",
+    "words": 377
+   },
+   {
+    "path": "migration/contexts/context-072-app-principal-review.md",
+    "words": 297
+   },
+   {
+    "path": "migration/contexts/context-073-app-conventions-review.md",
+    "words": 259
+   },
+   {
+    "path": "migration/contexts/context-074-route-actions-pilot.md",
+    "words": 503
+   },
+   {
+    "path": "migration/contexts/context-075-tst-drift-waves.md",
+    "words": 701
+   },
+   {
+    "path": "migration/contexts/context-076-folder-reorg.md",
+    "words": 474
+   },
+   {
+    "path": "migration/contexts/context-077-migration-cleanup.md",
+    "words": 321
    },
    {
     "path": "migration/change-requests/CR-AcceptPendingPolicies-1.md",
@@ -2744,7 +2656,7 @@
    },
    {
     "path": "migration/change-requests/CR-MessageList-2.md",
-    "words": 188
+    "words": 199
    },
    {
     "path": "migration/change-requests/CR-MessageList-3.md",
@@ -2828,7 +2740,7 @@
    },
    {
     "path": "migration/change-requests/CR-QRCodeGenerate-1.md",
-    "words": 582
+    "words": 585
    },
    {
     "path": "migration/change-requests/CR-Search-1.md",
@@ -2896,35 +2808,31 @@
    },
    {
     "path": "migration/screens/AcceptPendingPolicies/notes.md",
-    "words": 85
+    "words": 97
    },
    {
     "path": "migration/screens/AssembleDetail/notes.md",
-    "words": 78
+    "words": 90
    },
    {
     "path": "migration/screens/AssembleEvents/notes.md",
-    "words": 78
+    "words": 90
    },
    {
     "path": "migration/screens/Assemble_BrowseByCountry/notes.md",
-    "words": 78
+    "words": 90
    },
    {
     "path": "migration/screens/Bookmarks/notes.md",
-    "words": 30
-   },
-   {
-    "path": "migration/screens/BookmarksByGroup/notes.md",
-    "words": 59
+    "words": 62
    },
    {
     "path": "migration/screens/BrowseCountries/notes.md",
-    "words": 36
+    "words": 48
    },
    {
     "path": "migration/screens/BrowseDirectory/notes.md",
-    "words": 42
+    "words": 54
    },
    {
     "path": "migration/screens/CommunityBusinessDetails/notes.md",
@@ -2932,11 +2840,11 @@
    },
    {
     "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/notes.md",
-    "words": 41
+    "words": 53
    },
    {
     "path": "migration/screens/ConnectShare/notes.md",
-    "words": 79
+    "words": 91
    },
    {
     "path": "migration/screens/ContactByEmailContacts/notes.md",
@@ -2944,87 +2852,87 @@
    },
    {
     "path": "migration/screens/ContactByEmailLDMCoordinator/notes.md",
-    "words": 65
+    "words": 77
    },
    {
     "path": "migration/screens/ContactByEmailMember/notes.md",
-    "words": 57
+    "words": 69
    },
    {
     "path": "migration/screens/ContactByEmailOneSchoolGlobal/notes.md",
-    "words": 63
+    "words": 75
    },
    {
     "path": "migration/screens/ContactByEmailOrbitHelpdesk/notes.md",
-    "words": 80
+    "words": 92
    },
    {
     "path": "migration/screens/ContactByEmailOrbitHost/notes.md",
-    "words": 80
+    "words": 92
    },
    {
     "path": "migration/screens/ContactUsDetails/notes.md",
-    "words": 63
+    "words": 75
    },
    {
     "path": "migration/screens/ContactUsMenu/notes.md",
-    "words": 49
+    "words": 61
    },
    {
     "path": "migration/screens/CountryDetails/notes.md",
-    "words": 42
-   },
-   {
-    "path": "migration/screens/CountryList/notes.md",
     "words": 54
    },
    {
+    "path": "migration/screens/CountryList/notes.md",
+    "words": 66
+   },
+   {
     "path": "migration/screens/EmailContact/notes.md",
-    "words": 132
+    "words": 144
    },
    {
     "path": "migration/screens/EmailTarget/notes.md",
-    "words": 85
+    "words": 97
    },
    {
     "path": "migration/screens/EventBooklet/notes.md",
-    "words": 122
+    "words": 134
    },
    {
     "path": "migration/screens/EventDetail/notes.md",
-    "words": 89
+    "words": 101
    },
    {
     "path": "migration/screens/FeedItemDetail/notes.md",
-    "words": 65
+    "words": 77
    },
    {
     "path": "migration/screens/GuestArrangements/notes.md",
-    "words": 117
+    "words": 129
    },
    {
     "path": "migration/screens/HelpersDetail/notes.md",
-    "words": 93
+    "words": 105
    },
    {
     "path": "migration/screens/HomeFeed/notes.md",
-    "words": 162
+    "words": 174
    },
    {
     "path": "migration/screens/HostSurvey/notes.md",
-    "words": 87
+    "words": 99
    },
    {
     "path": "migration/screens/HouseholdCarousel/notes.md",
-    "words": 44
+    "words": 56
    },
    {
     "path": "migration/screens/HouseholdDetails/notes.md",
-    "words": 44
+    "words": 56
    },
    {
     "path": "migration/screens/Household_Relations/notes.md",
-    "words": 50
+    "words": 62
    },
    {
     "path": "migration/screens/InvalidPermissions/notes.md",
@@ -3036,7 +2944,7 @@
    },
    {
     "path": "migration/screens/LDM_Email_V2/notes.md",
-    "words": 73
+    "words": 85
    },
    {
     "path": "migration/screens/LDM_EventDetail/notes.md",
@@ -3044,27 +2952,23 @@
    },
    {
     "path": "migration/screens/LDM_EventDetail_V2/notes.md",
-    "words": 93
-   },
-   {
-    "path": "migration/screens/LDM_MyEvents/notes.md",
-    "words": 73
+    "words": 105
    },
    {
     "path": "migration/screens/LDM_MyEvents_V2/notes.md",
-    "words": 101
+    "words": 119
    },
    {
     "path": "migration/screens/LegacyShareObject/notes.md",
-    "words": 53
+    "words": 71
    },
    {
     "path": "migration/screens/Locality_Details/notes.md",
-    "words": 59
+    "words": 71
    },
    {
     "path": "migration/screens/Login/notes.md",
-    "words": 82
+    "words": 94
    },
    {
     "path": "migration/screens/Map/notes.md",
@@ -3072,23 +2976,19 @@
    },
    {
     "path": "migration/screens/Menu/notes.md",
-    "words": 63
+    "words": 75
    },
    {
     "path": "migration/screens/MessageDetail/notes.md",
-    "words": 108
+    "words": 120
    },
    {
     "path": "migration/screens/MessageList/notes.md",
-    "words": 66
+    "words": 78
    },
    {
     "path": "migration/screens/MilestoneDetail/notes.md",
-    "words": 107
-   },
-   {
-    "path": "migration/screens/MyBookmarks/notes.md",
-    "words": 57
+    "words": 119
    },
    {
     "path": "migration/screens/MyCalendar/notes.md",
@@ -3096,7 +2996,7 @@
    },
    {
     "path": "migration/screens/MyEntertaining/notes.md",
-    "words": 58
+    "words": 70
    },
    {
     "path": "migration/screens/New_BookmarksByGroup/notes.md",
@@ -3108,15 +3008,23 @@
    },
    {
     "path": "migration/screens/Notes/notes.md",
-    "words": 49
+    "words": 61
+   },
+   {
+    "path": "migration/screens/NotificationDetails/notes.md",
+    "words": 35
    },
    {
     "path": "migration/screens/Notifications/notes.md",
-    "words": 80
+    "words": 92
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalCarousel/notes.md",
+    "words": 41
    },
    {
     "path": "migration/screens/OneSchoolGlobalDetails/notes.md",
-    "words": 44
+    "words": 56
    },
    {
     "path": "migration/screens/OneSchoolGlobalEventDetail/notes.md",
@@ -3124,31 +3032,43 @@
    },
    {
     "path": "migration/screens/OrbitAdminEventDetail/notes.md",
-    "words": 101
+    "words": 113
    },
    {
     "path": "migration/screens/OrbitAdminLanding/notes.md",
-    "words": 99
+    "words": 111
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestoneDetail/notes.md",
+    "words": 35
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestones/notes.md",
+    "words": 35
    },
    {
     "path": "migration/screens/OrbitLanding/notes.md",
-    "words": 121
+    "words": 133
    },
    {
     "path": "migration/screens/PINBiometricsMenu/notes.md",
-    "words": 59
+    "words": 71
    },
    {
     "path": "migration/screens/PINChange/notes.md",
-    "words": 73
+    "words": 85
    },
    {
     "path": "migration/screens/PINRegister/notes.md",
-    "words": 82
+    "words": 94
    },
    {
     "path": "migration/screens/PINUnlock/notes.md",
-    "words": 90
+    "words": 102
+   },
+   {
+    "path": "migration/screens/PassportScan/notes.md",
+    "words": 35
    },
    {
     "path": "migration/screens/PersonalEventDetails/notes.md",
@@ -3160,15 +3080,15 @@
    },
    {
     "path": "migration/screens/Photobook/notes.md",
-    "words": 64
+    "words": 76
    },
    {
     "path": "migration/screens/Profile/notes.md",
-    "words": 63
+    "words": 75
    },
    {
     "path": "migration/screens/QRCodeGenerate/notes.md",
-    "words": 87
+    "words": 99
    },
    {
     "path": "migration/screens/Recurrence/notes.md",
@@ -3180,11 +3100,11 @@
    },
    {
     "path": "migration/screens/Search/notes.md",
-    "words": 89
+    "words": 101
    },
    {
     "path": "migration/screens/Services/notes.md",
-    "words": 55
+    "words": 73
    },
    {
     "path": "migration/screens/ShareObject/notes.md",
@@ -3192,19 +3112,19 @@
    },
    {
     "path": "migration/screens/Splash/notes.md",
-    "words": 100
+    "words": 112
    },
    {
     "path": "migration/screens/SupperMeeting_Carousel/notes.md",
-    "words": 36
+    "words": 48
    },
    {
     "path": "migration/screens/SupperMeeting_Details/notes.md",
-    "words": 42
+    "words": 54
    },
    {
     "path": "migration/screens/TermsAndPoliciesMenu/notes.md",
-    "words": 57
+    "words": 69
    },
    {
     "path": "migration/screens/TestOpenShare/notes.md",
@@ -3212,15 +3132,15 @@
    },
    {
     "path": "migration/screens/TransportDetail/notes.md",
-    "words": 87
+    "words": 111
    },
    {
     "path": "migration/screens/Updates_SingleList/notes.md",
-    "words": 57
+    "words": 75
    },
    {
     "path": "migration/screens/ViewDocuments/notes.md",
-    "words": 81
+    "words": 93
    },
    {
     "path": "migration/screens/ViewEventList/notes.md",
@@ -3243,8 +3163,8 @@
     "words": 354
    },
    {
-    "path": "migration/screens/BookmarksByGroup/questions.md",
-    "words": 953
+    "path": "migration/screens/Bookmarks/questions.md",
+    "words": 1330
    },
    {
     "path": "migration/screens/BrowseCountries/questions.md",
@@ -3356,7 +3276,7 @@
    },
    {
     "path": "migration/screens/LegacyShareObject/questions.md",
-    "words": 1202
+    "words": 1222
    },
    {
     "path": "migration/screens/Locality_Details/questions.md",
@@ -3379,24 +3299,28 @@
     "words": 1118
    },
    {
-    "path": "migration/screens/MyBookmarks/questions.md",
-    "words": 767
-   },
-   {
     "path": "migration/screens/MyEntertaining/questions.md",
     "words": 830
    },
    {
     "path": "migration/screens/Notes/questions.md",
-    "words": 968
+    "words": 1879
+   },
+   {
+    "path": "migration/screens/NotificationDetails/questions.md",
+    "words": 677
    },
    {
     "path": "migration/screens/Notifications/questions.md",
     "words": 2025
    },
    {
+    "path": "migration/screens/OneSchoolGlobalCarousel/questions.md",
+    "words": 1078
+   },
+   {
     "path": "migration/screens/OneSchoolGlobalDetails/questions.md",
-    "words": 858
+    "words": 1163
    },
    {
     "path": "migration/screens/OrbitAdminEventDetail/questions.md",
@@ -3405,6 +3329,14 @@
    {
     "path": "migration/screens/OrbitAdminLanding/questions.md",
     "words": 705
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestoneDetail/questions.md",
+    "words": 527
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestones/questions.md",
+    "words": 462
    },
    {
     "path": "migration/screens/OrbitLanding/questions.md",
@@ -3427,6 +3359,10 @@
     "words": 1039
    },
    {
+    "path": "migration/screens/PassportScan/questions.md",
+    "words": 746
+   },
+   {
     "path": "migration/screens/Photobook/questions.md",
     "words": 862
    },
@@ -3444,7 +3380,7 @@
    },
    {
     "path": "migration/screens/Services/questions.md",
-    "words": 724
+    "words": 742
    },
    {
     "path": "migration/screens/Splash/questions.md",
@@ -3464,7 +3400,7 @@
    },
    {
     "path": "migration/screens/TransportDetail/questions.md",
-    "words": 401
+    "words": 421
    },
    {
     "path": "migration/screens/Updates_SingleList/questions.md",
@@ -3491,7 +3427,7 @@
     "words": 18
    },
    {
-    "path": "migration/screens/BookmarksByGroup/feedback.md",
+    "path": "migration/screens/Bookmarks/feedback.md",
     "words": 18
    },
    {
@@ -3635,10 +3571,6 @@
     "words": 18
    },
    {
-    "path": "migration/screens/MyBookmarks/feedback.md",
-    "words": 18
-   },
-   {
     "path": "migration/screens/MyEntertaining/feedback.md",
     "words": 18
    },
@@ -3647,7 +3579,15 @@
     "words": 18
    },
    {
+    "path": "migration/screens/NotificationDetails/feedback.md",
+    "words": 18
+   },
+   {
     "path": "migration/screens/Notifications/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalCarousel/feedback.md",
     "words": 18
    },
    {
@@ -3660,6 +3600,14 @@
    },
    {
     "path": "migration/screens/OrbitAdminLanding/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestoneDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OrbitAdminMilestones/feedback.md",
     "words": 18
    },
    {
@@ -3680,6 +3628,10 @@
    },
    {
     "path": "migration/screens/PINUnlock/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/PassportScan/feedback.md",
     "words": 18
    },
    {
@@ -3744,11 +3696,11 @@
    },
    {
     "path": "migration/AGENTS.md",
-    "words": 1812
+    "words": 1964
    },
    {
     "path": "CLAUDE.md",
-    "words": 698
+    "words": 895
    }
   ]
  }

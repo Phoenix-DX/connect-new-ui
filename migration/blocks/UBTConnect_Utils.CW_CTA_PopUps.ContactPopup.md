@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_CTA_PopUps.ContactPopup
 
 - Kind: shared; build screens using it: ContactUsDetails, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, MessageDetail, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.PreventBackNavigation, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.Button, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.LazyImage, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: -)
 
 ## Inputs
@@ -284,4 +284,4 @@ define("UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc$view", ["OutSystems/Clie
                                             return [React.createElement(OSWidgets.Expression, {
                                                 value: model.variables.targetTimeLabelVar,
 ```
-(… 534 more lines in `migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`)
+(… 534 more lines in `migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`)

@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Utilities.TouchEvents
 
 - Kind: osui; build screens using it: Photobook
-- Compiled source: `migration/screens/Photobook/analysis/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

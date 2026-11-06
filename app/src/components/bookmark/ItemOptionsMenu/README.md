@@ -1,7 +1,7 @@
 # ItemOptionsMenu
 
 OutSystems: `Connect2_LegacyShared.Utility.ItemOptionsMenu` · compiled source
-`migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js` (no
+`migration/sources/pretty/Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js` (no
 pack: built in wave 8 O-B3 from the BookmarksByGroup copy)
 
 | Input                | Type    | Prop                  | Default |

@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector.mvc.js`
 
 | Input      | Type    | Prop         | Default |
 | ---------- | ------- | ------------ | ------- |

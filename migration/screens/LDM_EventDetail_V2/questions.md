@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] uncaptured branches (answered)
 - Question: The capture shows only a guest view with the host allocation pending (IsPublished False). Build the other branches of the compiled view (host view: Adults/Children in the banner, Special Needs section with Dietary/Mobility/Other sub-sections; published allocation: host photo, name, address + Directions, Guest Households list of EventDetail_ListItem rows) from the compiled code, or render them as NotCaptured?
-- Evidence: analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)
+- Evidence: migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js view :319-1100; EventDetail_Banner/HostCard/Section/ListItem .mvc.js views; survey sources EventDetail_SpecialNeeds_ListItem.mvc.js; dom/default.html:66-148 (only the pending guest view)
 - OutSystems MCP: MCP not available to route agents
 - Options: A: build from the compiled code with fictional data | B: NotCaptured (recommended: A)
 - Answer (user, 2026-10-16T10:42:47): A (recommended), auto-accepted (user instruction 2026-10-16 night): uncaptured host and published branches built from the compiled code

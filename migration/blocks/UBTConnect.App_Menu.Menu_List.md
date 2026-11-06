@@ -1,7 +1,7 @@
 # UBTConnect.App_Menu.Menu_List
 
 - Kind: shared; build screens using it: ContactUsMenu, Menu, PINBiometricsMenu, TermsAndPoliciesMenu
-- Compiled source: `migration/screens/ContactUsMenu/analysis/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`
 - Child blocks: UBTConnect.App_Common_Blocks.SectionSeparator, UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.IconText, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: -)
 
 ## Inputs
@@ -294,4 +294,4 @@ define("UBTConnect.App_Menu.Menu_List.mvc$view", ["OutSystems/ClientRuntime/Main
                                                     },
                                                     _widgetRecordProvider: widgetsRecordProvider,
 ```
-(… 284 more lines in `migration/screens/ContactUsMenu/analysis/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`)
+(… 284 more lines in `migration/sources/pretty/UBTConnect.App_Menu.Menu_List.mvc.js`)

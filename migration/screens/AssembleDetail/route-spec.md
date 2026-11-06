@@ -8,7 +8,7 @@ The other sources come from `capture/survey-UBTConnect.json`: `Connect2_Assemble
 `…_LocalitySubdivisionList` ("LS"), `…_AttendeeSubdivision` ("AS"), `…_ContactList` ("CL"), `…_Contact` ("CT"),
 `NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack` ("FSA"), `Connect2_LegacyShared.Utility.ShowMoreShowLessContainer`,
 `.NewConnect_Skeleton.NC_Result_Item__Image__Skeleton`, `.NewConnect_Utilities.NC_Result_Item__Tag`, `.Share.ContextMenu`,
-`.MyBookmarks.BookmarkNoteAddEdit`. Assemble controller: `migration/screens/AssembleEvents/analysis/sources/pretty/
+`.MyBookmarks.BookmarkNoteAddEdit`. Assemble controller: `migration/sources/pretty/
 Connect2_Assemble_MUI.controller.js` ("C"). No capture, no `analysis/`, no pack.
 
 The user decided no-capture (`no-capture.json`, 2026-10-16: not reachable read-only with the test account).

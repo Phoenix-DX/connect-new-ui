@@ -232,7 +232,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -278,8 +278,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 | `Notes` | OnReady ([`UBTConnect.Notes.Notes.mvc.js:2253`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L2253)) | `screenEvent_Ready` | 1. Execute Action: ResetPillsVallues ([`L1744`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1744))<br>2. Execute Action: Refresh_GetNotes ([`L1747`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1747)) |
 | `NoteCard_List` | OnInitialize ([`UBTConnect.Notes.NoteCard_List.mvc.js:740`](../../migration/runtime-sources/live/UBTConnect.Notes.NoteCard_List.mvc.js#L740)) | `onInitialize` | none |
 | `NoteCard_List` | OnReady ([`UBTConnect.Notes.NoteCard_List.mvc.js:758`](../../migration/runtime-sources/live/UBTConnect.Notes.NoteCard_List.mvc.js#L758)) | `onReady` | none |
-| `Notes_FilterSheet` | OnInitialize ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:585`](../../migration/screens/Notes/analysis/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L429`](../../migration/screens/Notes/analysis/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L429)) |
-| `Notes_FilterSheet` | OnParametersChanged ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:606`](../../migration/screens/Notes/analysis/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/screens/Notes/analysis/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L286)) |
+| `Notes_FilterSheet` | OnInitialize ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:585`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L429`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L429)) |
+| `Notes_FilterSheet` | OnParametersChanged ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:606`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L286)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (2)</summary>
 

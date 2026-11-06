@@ -64,7 +64,7 @@ export interface SyncLocalEntities {
 }
 export const NO_LOCAL_ENTITIES: SyncLocalEntities = { bookmarks_C2: [], notes: [] };
 
-/** Sync_Info_Main (UC:16557-16655 of migration/screens/EventDetail/analysis/sources/raw/UBTConnect.controller.js);
+/** Sync_Info_Main (UC:16557-16655 of migration/sources/raw/UBTConnect.controller.js);
     errors are swallowed by its AllExceptions handler (UC:16611-16626), and its outputs then keep their defaults, empty
     lists. After Sync_Info_GetMain, when not from the login, SyncAllOrbitStaticEntities(Sync_Info_GetMain.
     OrbitStaticEntities) (UC:16579-16583; shell/localEntities/orbitStaticEntities.ts, CR-EventDetail-1); its error too

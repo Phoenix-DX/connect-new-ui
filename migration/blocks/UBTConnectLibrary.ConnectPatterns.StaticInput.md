@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.StaticInput
 
 - Kind: shared; build screens using it: CommunityBusinessDetails_CoomingSoon, CountryList, HomeFeed, Locality_Details, Profile
-- Compiled source: `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.StaticInput.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.TextEllipsis (queue: UBTConnectLibrary.ConnectPatterns.TextEllipsis)
 
 ## Inputs

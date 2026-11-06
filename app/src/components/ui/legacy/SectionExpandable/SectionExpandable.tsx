@@ -25,7 +25,7 @@ export interface SectionExpandableProps {
 }
 
 /** OutSystems UI 2.23 DEPRECATED_AccordionItem (`:<n>` = line of
-    migration/screens/EventDetail/analysis/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js).
+    migration/sources/pretty/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js).
     View :183-347: SectionItem `osui-deprecated section-expandable ` + (` open is--open` | `is--closed`) +
     (` is--disabled`) + " " + ExtendedClass with data-expanded / aria-expanded / aria-disabled; TitleWrapper
     (`section-expandable-title`, click → OnClick) holding the Title placeholder (`dividers full-width`, + ` text-ellipsis`

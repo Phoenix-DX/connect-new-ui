@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.md` · source
-`migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.mvc.js`
 
 | Input             | Type    | Prop               | Default |
 | ----------------- | ------- | ------------------ | ------- |

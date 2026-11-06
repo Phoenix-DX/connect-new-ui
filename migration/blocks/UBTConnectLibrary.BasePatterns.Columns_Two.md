@@ -1,7 +1,7 @@
 # UBTConnectLibrary.BasePatterns.Columns_Two
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Adaptive.Columns2 (queue: OutSystemsUI_2_23.Adaptive.Columns2)
 
 ## Inputs

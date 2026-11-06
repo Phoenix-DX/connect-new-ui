@@ -1,6 +1,6 @@
 # Route spec: OneSchoolGlobalCarousel
 
-Source: TST compiled code (`analysis/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js`,
+Source: TST compiled code (`migration/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalCarousel.mvc.js`,
 `sources/` extracted from the live survey by `migration/clarify/tools/extract_sources.py`), capture `analysis/dom/`.
 
 ## Summary

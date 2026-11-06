@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper` · pack
 `migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.md` · compiled source
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js`
+`migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js`
 
 | Input          | Type                                         | Prop            | Default |
 | -------------- | -------------------------------------------- | --------------- | ------- |

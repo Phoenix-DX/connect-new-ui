@@ -2,7 +2,7 @@
    so that neither imports the other's types (P3-3: no import cycle). */
 
 /* The AppManager user record kept in the client variable UBT_AppManager.AppManager_UserExtended (JSON). Record from
-   UBT_AppManager.model.js:1117-1165 (TST copy in migration/screens/BookmarksByGroup/analysis/sources/raw/); fields
+   UBT_AppManager.model.js:1117-1165 (TST copy in migration/sources/raw/); fields
    named as in OutSystems, Text default "" and Boolean default False. */
 export interface AppManager_CachedUserInfoRec {
   isCommunityMember: boolean;

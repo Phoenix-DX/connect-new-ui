@@ -1,6 +1,6 @@
 /* Client actions of the Leaflet module used by LeafletMap and the map screens, ported 1:1 from Leaflet.controller.js
-   (line numbers below: pretty copy migration/screens/CountryDetails/analysis/sources/pretty/; raw copies in
-   migration/screens/{CountryDetails,BrowseDirectory}/analysis/sources/raw/). Like the JS nodes, they keep the map and its
+   (line numbers below: pretty copy migration/sources/pretty/; raw copies in
+   migration/sources/raw/). Like the JS nodes, they keep the map and its
    layers as properties of the map element (document.getElementById(MapId)[<LL_* name>]). */
 import type { MarkerClusterGroup } from 'leaflet';
 import L from './leaflet';

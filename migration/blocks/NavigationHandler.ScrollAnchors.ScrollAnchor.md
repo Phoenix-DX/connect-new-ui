@@ -1,7 +1,7 @@
 # NavigationHandler.ScrollAnchors.ScrollAnchor
 
 - Kind: shared; build screens using it: BookmarksByGroup, Notifications, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js`
+- Compiled source: `migration/sources/pretty/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

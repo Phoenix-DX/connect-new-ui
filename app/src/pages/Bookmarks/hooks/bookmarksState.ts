@@ -5,7 +5,7 @@ import { LocalityMenu, longIntegerText, notes_InterchangeId_ExtractId } from '@/
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 
 /* The screen variables of UBTConnect.Bookmarks.Bookmarks and the pure parts of its client actions
-   (p = migration/screens/Bookmarks/analysis/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js). */
+   (p = migration/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js). */
 
 /** UBTConnect BookmarkCategory (TST values, migration/knowledge/static-entities-tst.json). */
 const BookmarkCategory = {

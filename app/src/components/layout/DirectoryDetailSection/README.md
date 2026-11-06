@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section` · pack
 `migration/blocks/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.md` · compiled source
-`migration/screens/ContactUsDetails/analysis/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js`
+`migration/sources/pretty/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc.js`
 
 | Input            | Type            | Prop              | Default            |
 | ---------------- | --------------- | ----------------- | ------------------ |

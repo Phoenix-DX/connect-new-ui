@@ -1,7 +1,7 @@
 # Route spec: OrbitAdminLanding
 
-Sources: SCR = `analysis/sources/pretty/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js`, SB =
-`analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js`,
+Sources: SCR = `migration/sources/pretty/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js`, SB =
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js`,
 dom = `analysis/dom/<state>.html`.
 
 ## Summary

@@ -9,7 +9,8 @@ Usage (from the project root):
   python3 tools/route-check/check_route.py --status             # done, next route, routes without capture
 
 Sources (README.md has the details):
-  1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,sources/raw},
+  1. TST, in this repository (TST wins): migration/screens/<S>/analysis/{facts.json,calls.json,manifest.json} and the
+     shared store migration/sources/raw (tools/common/sources_store.py),
      migration/survey/screens.json, app/src/api/openapi.yaml.
   2. MCP (DEV, read only): the UI flow of each screen (module UBTConnect).
   3. React: route-check/.cache/data/react-shell.json and react-<Route>.json (react_calls.mjs).
@@ -31,6 +32,8 @@ def cfg(*keys):
         v = v[k]
     return os.path.join(ROOT, v)
 sys.path.insert(0, TOOLS)
+sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
+import sources_store  # noqa: E402
 import mcp_client  # noqa: E402
 import os_extras  # noqa: E402
 import render_v2  # noqa: E402
@@ -173,9 +176,10 @@ def tst_route(screen):
         return None
     facts = load(os.path.join(base, "facts.json"))
     calls = load(os.path.join(base, "calls.json"))["calls"] if os.path.exists(os.path.join(base, "calls.json")) else []
-    srcdir = os.path.join(base, "sources", "raw")
-    sources = {f: open(os.path.join(srcdir, f), encoding="utf-8", errors="replace").read() for f in os.listdir(srcdir)} \
-        if os.path.isdir(srcdir) else {}
+    # the compiled files of the capture are in the shared store; the manifest of the route names them
+    store = sources_store.route_files(screen, "raw")
+    sources = {f: sources_store.read(p) for f, p in store.items()}
+    dirs = {f: os.path.dirname(p) for f, p in store.items()}
     # TST wins and the live code is the newest truth (user 2026-11-05): a captured file that TST changed since the
     # capture is read from migration/runtime-sources/live/ (the drift report migration/knowledge/tst-drift-2026-11-05.md),
     # and its facts (js, call graph) are computed again from the live code. The capture keeps the observed calls.
@@ -186,10 +190,9 @@ def tst_route(screen):
             lp = os.path.join(live_dir, f)
             if os.path.exists(lp):
                 live[f] = open(lp, encoding="utf-8", errors="replace").read()
-    dirs = {}
     if live:
         sources.update(live)
-        dirs = {f: os.path.relpath(live_dir, ROOT) for f in live}
+        dirs.update({f: os.path.relpath(live_dir, ROOT) for f in live})
         facts = os_static.refresh(facts, sources, set(live))
     return {"facts": facts, "calls": calls, "sources": sources, "live": sorted(live), "dirs": dirs}
 
@@ -640,9 +643,7 @@ def check(route):
     react_inputs = re.findall(r'"([^"]+)"', gm.group(1)) if gm else []
     result = {"route": route, "screenFile": sfile, "screenFileRaw": facts.get("screenFile"), "osExtras": os_x,
               "reactExtras": react_x, "reactExtrasAll": react_x_all, "reactInputsDeclared": react_inputs,
-              "osRaw": tst["dirs"] if tst.get("static") else (
-                  {**{f: os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT) for f in rendered}, **tst.get("dirs", {})}
-                  if tst.get("dirs") else os.path.relpath(os.path.join(cfg("tst", "screens"), route, "analysis", "sources", "raw"), ROOT)),
+              "osRaw": tst["dirs"],  # {file: folder}: the shared store, or runtime-sources/live for a drifted file
               "live": tst.get("live", []),
               "static": {"missing": tst["missing"], "closure": facts["static"]["closure"]} if tst.get("static") else None,
               "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,

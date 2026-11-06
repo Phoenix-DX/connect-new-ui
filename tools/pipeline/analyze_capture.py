@@ -48,6 +48,8 @@ try:
     import jsbeautifier
 except ImportError:
     jsbeautifier = None
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "common"))
+import sources_store  # noqa: E402  (the shared store of the compiled sources: tools/common/sources_store.py)
 
 
 def load(path):
@@ -232,13 +234,15 @@ def bundle_styles(ui, out_dir):
         parts.append("/* ==== %s ==== */\n%s" % (k, rewrite(v, base)))
         order.append(k)
     bundle = "\n".join(parts)
-    write(os.path.join(out_dir, "styles", "bundle.css"), bundle)
-    write(os.path.join(out_dir, "styles", "assets.json"), json.dumps(keep))
     # images referenced from the DOM (same origin, captured) are useful to the builder too
     for k, a in assets.items():
         if a.get("dataUrl") and k not in keep and re.search(r"\.(png|jpe?g|gif|svg|webp)$", k):
             keep[k] = a["dataUrl"]
-    write(os.path.join(out_dir, "styles", "assets.json"), json.dumps(keep))
+    # the styles go to the shared store; the manifest of the analysis folder names them (sources_store)
+    m = sources_store.manifest_dir(out_dir)
+    m["styles"]["bundle.css"] = sources_store.put("styles", "bundle.css", bundle)
+    m["styles"]["assets.json"] = sources_store.put("styles", "assets.json", json.dumps(keep))
+    sources_store.write_manifest_dir(out_dir, m)
     return bundle, order, sorted(missing), sorted(keep)
 
 
@@ -847,10 +851,13 @@ def main():
     sources = dict(ui.get("blocks", {}).get("sources", {}))
     for r in a.runtime:
         sources.update(load(r).get("files", {}) or {})
+    # raw and pretty copies go to the shared store (migration/sources); the manifest of this analysis folder names them
+    m = sources_store.manifest_dir(out)
     for k, v in sources.items():
-        write(os.path.join(out, "sources", "raw", k), v)
+        m["raw"][k] = sources_store.put("raw", k, v)
         if k.endswith(".mvc.js") or len(v) < 400000:
-            write(os.path.join(out, "sources", "pretty", k), pretty_js(v))
+            m["pretty"][k] = sources_store.put("pretty", k, pretty_js(v))
+    sources_store.write_manifest_dir(out, m)
 
     # DOM + blocks
     states = [("default" if ui.get("label") in (None, "default") else ui["label"], ui)] + [(load(s).get("label", os.path.basename(s)), load(s)) for s in a.state]

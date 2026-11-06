@@ -13,7 +13,7 @@ export interface EventCard_Info_V2Props {
   onCardClicked: () => void;
 }
 
-/** The event lines of an LDM card (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
+/** The event lines of an LDM card (migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
     .mvc.js view): the LDM logo and EventName, the clock and FormatDateTime(TextToDate(EventDate), "dddd, d MMMM
     yyyy"), the host icon with, when EventHostId > 0, NameLocation (HostFullName / "(" + HostLocality + ")"), else
     HostFullName alone. A click anywhere triggers CardClicked (OnClick_CardInfo).

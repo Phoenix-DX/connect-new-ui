@@ -1,4 +1,4 @@
-/* Client actions used only by AssembleDetail. C = migration/screens/AssembleEvents/analysis/sources/pretty/
+/* Client actions used only by AssembleDetail. C = migration/sources/pretty/
    Connect2_Assemble_MUI.controller.js; FSA = migration/screens/AssembleDetail/sources/NavigationHandler.ScrollAnchors
    .FocusScrollAnchorOnBack.mvc.js. DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings. */
 import { hasAccessToRegion } from '@/lib/assemble/actions';

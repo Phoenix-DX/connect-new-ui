@@ -23,7 +23,7 @@ import {
    - reads: ScreenBlock_EventDetail aggregate GetLocalSurveyStatusByJSONName (host survey row, Host Allocation),
      HostAllocation_HelperItem aggregate GetLocalOrbitMilestoneTypeHelper, MilestoneHeader GetLocalOrbitMilestoneTypeById,
      ScreenBlock_HostSurvey aggregates GetLocalHostSurveySteps, GetLocalHouseFloors, GetLocalGenderPreferences, … (HS =
-     migration/screens/HostSurvey/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.
+     migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.
      ScreenBlock_HostSurvey.mvc.js; CR-HostSurvey-1).
 
    Storage (F12, CR-HelpersDetail-1, CR-HostSurvey-1): as the original, the rows live in the device database, one

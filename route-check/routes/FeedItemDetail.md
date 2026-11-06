@@ -131,7 +131,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in the `analysis/sources/raw/` folders of the captured routes (static check).
+The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
@@ -141,7 +141,7 @@ The OutSystems files are in `migration/runtime-sources/` and in the `analysis/so
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Feed_Embeded` | `LegacyShareObject` | `In_ShareObjectTypeId` = `UBTConnectModel.staticEntities.type_ShareObject.feed`<br>`In_CustomTitle` = `shareFeedItem_Title`<br>`In_ObjectId` = `sharePopUp_Id` | [`UBTConnect.Home.Feed_Embeded.mvc.js:438`](../../migration/screens/HomeFeed/analysis/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L438) |
+| `Feed_Embeded` | `LegacyShareObject` | `In_ShareObjectTypeId` = `UBTConnectModel.staticEntities.type_ShareObject.feed`<br>`In_CustomTitle` = `shareFeedItem_Title`<br>`In_ObjectId` = `sharePopUp_Id` | [`UBTConnect.Home.Feed_Embeded.mvc.js:438`](../../migration/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L438) |
 
 ### 7.2 React
 
@@ -185,7 +185,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `Feed_Embeded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Home.Feed_Embeded.mvc.js:157`](../../migration/screens/HomeFeed/analysis/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L157) |
+| `Feed_Embeded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Home.Feed_Embeded.mvc.js:157`](../../migration/sources/raw/UBTConnect.Home.Feed_Embeded.mvc.js#L157) |
 
 ### 9.2 React
 

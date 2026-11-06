@@ -147,7 +147,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -155,7 +155,7 @@ Screen inputs: none. `setInputs` of `MessageList` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `MessageList` | `MessageDetail` | `MessageInstanceId` = `messageInstanceId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:337`](../../migration/screens/MessageList/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L337) |
+| `MessageList` | `MessageDetail` | `MessageInstanceId` = `messageInstanceId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:337`](../../migration/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L337) |
 
 ### 7.2 React
 
@@ -177,7 +177,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `MessageList` | OnReady ([`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:506`](../../migration/screens/MessageList/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L506)) | `onReady` | 1. Execute Action: ClearAllNotifications ([`L304`](../../migration/screens/MessageList/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L304)) |
+| `MessageList` | OnReady ([`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:506`](../../migration/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L506)) | `onReady` | 1. Execute Action: ClearAllNotifications ([`L304`](../../migration/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L304)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -236,7 +236,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:530`](../../migration/screens/MessageList/analysis/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L530) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js:530`](../../migration/sources/raw/UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js#L530) |
 | React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

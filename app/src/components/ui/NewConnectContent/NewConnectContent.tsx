@@ -10,7 +10,7 @@ export interface NewConnectContentProps {
   children?: ReactNode;
 }
 
-/** Content wrapper (p:migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Reusable.
+/** Content wrapper (p:migration/sources/pretty/Connect2_LegacyShared.Reusable.
     NewConnectContent.mvc.js view): Placeholder Content with the style `ignore-backwards-compatibility-content`. No
     inputs, no actions. */
 export function NewConnectContent({ id, children }: NewConnectContentProps) {

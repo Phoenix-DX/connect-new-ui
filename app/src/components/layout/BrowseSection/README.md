@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.SubLayout.SubLayout_Browse_Section` · pack
 `migration/blocks/UBTConnect.SubLayout.SubLayout_Browse_Section.md` · compiled source
-`migration/screens/BrowseDirectory/analysis/sources/pretty/UBTConnect.SubLayout.SubLayout_Browse_Section.mvc.js`
+`migration/sources/pretty/UBTConnect.SubLayout.SubLayout_Browse_Section.mvc.js`
 
 No inputs, no events. Placeholders `Placeholder_TopSection`, `Placeholder_BottomSection` → `placeholderTopSection`,
 `placeholderBottomSection`.

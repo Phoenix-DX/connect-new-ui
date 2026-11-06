@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection` · pack
 `migration/blocks/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.md` · source
-`migration/screens/LDM_MyEvents/analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc.js`
+`migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc.js`
 
 | Input              | Type    | Prop                | Default |
 | ------------------ | ------- | ------------------- | ------- |

@@ -33,7 +33,7 @@ export interface OrbitLayoutProps {
   onOnPullToRefresh?: () => void;
 }
 
-/** Orbit screen layout (migration/screens/EventDetail/analysis/sources/pretty/
+/** Orbit screen layout (migration/sources/pretty/
     Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js, view :103-329): LayoutRuntime_Top, then
     BaseLayout_UpdatedOSUI inside `orbit-theme backwards-compatibility`, with ExtendedClass "orbit-theme " +
     ExtendedClasses, CustomClass, UsePullToRefresh and each placeholder in its own container (HeaderSearch empty;

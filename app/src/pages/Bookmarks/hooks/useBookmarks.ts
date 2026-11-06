@@ -67,7 +67,7 @@ async function get_LocalDynamicBookmarkPills() {
   return fetchBookmarkPills([...new Set(rows.map((r) => r.BookmarkCategoryId))]);
 }
 
-/** The flows of the screen Bookmarks (p = analysis/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js).
+/** The flows of the screen Bookmarks (p = migration/sources/pretty/UBTConnect.Bookmarks.Bookmarks.mvc.js).
     - OnInitialize (p:1372-1444): Bookmarks_Loading, the skeleton pills and cards, Years = GetBookmarks_FilterYear. The
       port keeps no variable on a back navigation, so a restored view starts from OnInitialize too.
     - OnReady (p:1576-1608): Reset_PillsValues, then Refresh_GetBookmarksData.

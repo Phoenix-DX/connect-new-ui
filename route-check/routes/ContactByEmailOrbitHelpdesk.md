@@ -130,21 +130,21 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_EventId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:113`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L113) |
-| `In_MilestoneId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:117`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L117) |
-| `In_TargetMemberId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:121`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L121) |
-| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:125`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L125) |
-| `In_MilestoneTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:129`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L129) |
-| `In_EventName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:133`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L133) |
-| `In_HostName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:137`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L137) |
-| `In_HostEmail` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:141`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L141) |
-| `In_FormattedDateTime` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:145`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L145) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:113`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L113) |
+| `In_MilestoneId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:117`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L117) |
+| `In_TargetMemberId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:121`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L121) |
+| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:125`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L125) |
+| `In_MilestoneTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:129`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L129) |
+| `In_EventName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:133`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L133) |
+| `In_HostName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:137`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L137) |
+| `In_HostEmail` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:141`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L141) |
+| `In_FormattedDateTime` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:145`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L145) |
 
 Navigations with parameters: none.
 
@@ -168,8 +168,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactByEmailOrbitHelpdesk` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:632`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L632)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = "" ([`L492`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L492))<br>2. ContactByEmailForm.ContactMember = "" ([`L495`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L495))<br>3. ContactByEmailForm.EmailTo = "" ([`L498`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L498))<br>4. ContactByEmailForm.Subject = In_Subject ([`L501`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L501)) |
-| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
+| `ContactByEmailOrbitHelpdesk` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:632`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L632)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = "" ([`L492`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L492))<br>2. ContactByEmailForm.ContactMember = "" ([`L495`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L495))<br>3. ContactByEmailForm.EmailTo = "" ([`L498`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L498))<br>4. ContactByEmailForm.Subject = In_Subject ([`L501`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L501)) |
+| `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -223,7 +223,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:657`](../../migration/screens/ContactByEmailOrbitHelpdesk/analysis/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L657) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:657`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js#L657) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

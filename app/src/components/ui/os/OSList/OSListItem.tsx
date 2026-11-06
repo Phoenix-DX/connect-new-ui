@@ -3,7 +3,7 @@ import { ListItemSwipeable } from './ListItemSwipeable';
 
 /* OutSystems platform ListItem and ListItemAction widgets (OSWidgets.ListItem / OSWidgets.ListItemAction), ported from
    OutSystemsReactWidgets.js. Line references `W:<n>` point to the readable copy
-   migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js (prettier of
+   migration/sources/pretty/OutSystemsReactWidgets.js (prettier of
    migration/runtime-sources/OutSystemsReactWidgets.js). The swipe: ListItemSwipeable.tsx and Swipeable.tsx. */
 
 type Handler = () => unknown;

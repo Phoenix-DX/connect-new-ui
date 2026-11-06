@@ -34,7 +34,7 @@ function checkIOsPlatform(): boolean {
   return platform.includes('iphone') || platform.includes('ipad') || platform.includes('ipod');
 }
 
-/** UBTConnect.App_Common_Blocks.External_Link (analysis/sources/pretty/UBTConnect.App_Common_Blocks.External_Link.mvc.js;
+/** UBTConnect.App_Common_Blocks.External_Link (migration/sources/pretty/UBTConnect.App_Common_Blocks.External_Link.mvc.js;
     only OneSchoolGlobalDetails uses it, catalog/blocks.md:199). View: IconText (text In_Link.Text, spacing xs, text
     primary when enabled else neutral 7, font size FontSize, regular, underlined) with the Icon OpenNew (same colour,
     NonStandard_16, visible IconVisible). Clicked → LinkClicked (:284-318): on iOS Navigate to In_Link.Link (runtime

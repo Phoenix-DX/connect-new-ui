@@ -16,7 +16,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q3 [decision] itemcard-withnotes-tst-change (answered)
 - Question: ItemCard_WithNotes changed on TST after the Notes capture: the total-notes text is empty when the total is 0 (ItemCard_WithNotes.mvc.js pretty:645) and a container gets margin-top-s (:736, :915). The shared React block follows the older Notes capture, so Bookmarks offline differs (skeleton cards: text '' vs '0', margin-top-s, ~150 layout/position lines). Update the shared block to the new TST code?
-- Evidence: migration/screens/Bookmarks/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js:645,736,915; migration/screens/Bookmarks/parity/offline.json; migration/screens/Notes/analysis/dom/loading.html has no margin-top-s
+- Evidence: migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js:645,736,915; migration/screens/Bookmarks/parity/offline.json; migration/screens/Notes/analysis/dom/loading.html has no margin-top-s
 - Options: a) update components/note/ItemCardWithNotes to the TST code and re-capture Notes (TST wins); b) keep the block as Notes captured it and exempt the Bookmarks offline skeleton cards; c) a prop per caller (old/new behaviour) (recommended: a)
 - Answer (user, 2026-10-29T10:38:14): (a) (user, 2026-10-29): update the shared block ItemCard_WithNotes to the current TST code (empty total-notes text when the total is 0; margin-top-s; ItemCard_WithNotes.mvc.js pretty:645, 736, 915), re-capture Notes on TST (read-only), re-run parity of Notes and Bookmarks.
 

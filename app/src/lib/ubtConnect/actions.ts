@@ -82,7 +82,7 @@ function serializeSwipeCallbackParameters(p: Updates_CarouselSwipeCallbackParame
 
 /**
  * Directory_Updates_GetCarouselPreloadedHouseholds(In_ParametersList) (UBTConnect.controller.js:1828-1925, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/): for each item, in order (:1843-1880), a read item gets an empty
+ * migration/sources/raw/): for each item, in order (:1843-1880), a read item gets an empty
  * swipe callback (ActionId NullTextIdentifier, Parameters "", :1849-1856); an unread one gets UpdatesCarousel_SetIsRead
  * with its Updates_CarouselSwipeCallbackParameters as JSON (:1858-1866); ListAppend {Household = HouseholdId,
  * SwipeAction} (:1869-1875); Out_CarouselPreloadedHouseholds (:1884). Records are values: each appended item keeps its
@@ -143,7 +143,7 @@ export function getDescriptor_Subdivision_HouseholdCount(in_HouseholdCount: numb
 }
 
 /** Get_NoteCategoryId_ByEntityTypeId(EntityTypeId) (UBTConnect.controller.js:6403-6489, copy in
-    migration/screens/SupperMeeting_Details/analysis/sources/raw/): the note category of each entity type; any other
+    migration/sources/raw/): the note category of each entity type; any other
     type raises InvalidAction "Notes not available". */
 export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string {
   switch (entityTypeId) {
@@ -167,14 +167,14 @@ export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string 
 }
 
 /** Notes_InterchangeId_ComposeId(LocalityId, InterchangeLocalityId) (UBTConnect.controller.js, TST publish of
-    2026-10-29, copy in migration/screens/Notes/analysis/sources/raw/): the note item id of an interchange,
+    2026-10-29, copy in migration/sources/raw/): the note item id of an interchange,
     "<LocalityId>:<InterchangeLocalityId>" when LocalityId is not empty, else InterchangeLocalityId. */
 export function notes_InterchangeId_ComposeId(localityId: string, interchangeLocalityId: string): string {
   return localityId !== '' ? `${localityId}:${interchangeLocalityId}` : interchangeLocalityId;
 }
 
 /** Notes_InterchangeId_ExtractId(NoteInterchangeId) (UBTConnect.controller.js:15189-15260, TST publish of 2026-10-29,
-    copy in migration/screens/Notes/analysis/sources/raw/): JSUtils_String_Split(NoteInterchangeId, ":"); an empty list
+    copy in migration/sources/raw/): JSUtils_String_Split(NoteInterchangeId, ":"); an empty list
     or one part gives LocalityId = NoteInterchangeId (InterchangeLocalityId stays ""), else LocalityId = part 0 and
     InterchangeLocalityId = part 1. */
 export function notes_InterchangeId_ExtractId(noteInterchangeId: string): {
@@ -506,7 +506,7 @@ export function get_IsInsideRenderBuffer(
 }
 
 /** Carousel_SetCurrentPosition(In_CarouselWidgetId, In_Position) (UBTConnect.controller.js:908-, copy in
-    migration/screens/SupperMeeting_Carousel/analysis/sources/raw/; SetCurrentPositionJS): writes the Carousel's
+    migration/sources/raw/; SetCurrentPositionJS): writes the Carousel's
     StartingPosition config, so a later redraw keeps the current slide. A failure is only logged (the JS catch). */
 export function carousel_SetCurrentPosition(in_CarouselWidgetId: string, in_Position: number): void {
   try {

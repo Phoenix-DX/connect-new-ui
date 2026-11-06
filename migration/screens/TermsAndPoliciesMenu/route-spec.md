@@ -1,7 +1,7 @@
 # Route spec: TermsAndPoliciesMenu
 
-Sources: `SCR` = `analysis/sources/pretty/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js`; `UTL` =
-`analysis/sources/raw/UBTConnect_Utils.controller.js` (OpenPolicy); `APC` = `migration/shell/sources/ApplicationPolicies_CW.controller.js`.
+Sources: `SCR` = `migration/sources/pretty/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js`; `UTL` =
+`migration/sources/raw/UBTConnect_Utils.controller.js` (OpenPolicy); `APC` = `migration/shell/sources/ApplicationPolicies_CW.controller.js`.
 
 ## Summary
 | Item | Value |

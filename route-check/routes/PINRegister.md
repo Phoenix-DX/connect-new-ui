@@ -179,7 +179,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -205,7 +205,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Block_PINRegister_ContentWrapper` | OnInitialize ([`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:698`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L698)) | `screenEvent_OnInitialize` | 1. If enableName ([`L572`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L572))<br>2. Execute Action: AppManager_GetCachedUserInfo ([`L574`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L574))<br>3. UserName = AppManager_GetCachedUserInfo.UserInformation.FirstName + " " + AppManager_GetCachedUserInfo.UserInformation.LastName ([`L578`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L578))<br>4. Else ([`L581`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L581)) |
+| `Block_PINRegister_ContentWrapper` | OnInitialize ([`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:698`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L698)) | `screenEvent_OnInitialize` | 1. If enableName ([`L572`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L572))<br>2. Execute Action: AppManager_GetCachedUserInfo ([`L574`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L574))<br>3. UserName = AppManager_GetCachedUserInfo.UserInformation.FirstName + " " + AppManager_GetCachedUserInfo.UserInformation.LastName ([`L578`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L578))<br>4. Else ([`L581`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L581)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
@@ -229,8 +229,8 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `Block_PINRegister_ContentWrapper` | set | `UBTConnect.IsNavigateToHomeOnBack` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:626`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L626), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:647`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L647) |
-| `Block_PINRegister_ContentWrapper` | get | `UBTConnect.LastURL` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:637`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L637), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:641`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L641) |
+| `Block_PINRegister_ContentWrapper` | set | `UBTConnect.IsNavigateToHomeOnBack` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:626`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L626), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:647`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L647) |
+| `Block_PINRegister_ContentWrapper` | get | `UBTConnect.LastURL` | [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:637`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L637), [`UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js:641`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js#L641) |
 
 ### 9.2 React
 
@@ -242,7 +242,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINRegister.mvc.js:368`](../../migration/screens/PINRegister/analysis/sources/raw/UBTConnect.App_PIN.PINRegister.mvc.js#L368) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINRegister.mvc.js:368`](../../migration/sources/raw/UBTConnect.App_PIN.PINRegister.mvc.js#L368) |
 | React | access `member`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

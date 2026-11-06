@@ -1,7 +1,7 @@
 # UBTConnect.SubLayout.SubLayout_Browse_Section
 
 - Kind: shared; build screens using it: BrowseDirectory, CountryDetails
-- Compiled source: `migration/screens/BrowseDirectory/analysis/sources/pretty/UBTConnect.SubLayout.SubLayout_Browse_Section.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.SubLayout.SubLayout_Browse_Section.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

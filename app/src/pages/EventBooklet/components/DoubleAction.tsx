@@ -2,7 +2,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
-/* DoubleAction (DA = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.mvc.js, view
+/* DoubleAction (DA = migration/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.mvc.js, view
    :122-172). Its stylesheet Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.css comes with the route
    (StylesheetHost, routes.css.generated.ts). No capture: markup from the compiled view. */
 

@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice
 
 - Kind: shared; build screens using it: Menu, Profile
-- Compiled source: `migration/screens/Menu/analysis/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.mvc.js`
 - Child blocks: NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog, UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

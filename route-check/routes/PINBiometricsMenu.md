@@ -66,7 +66,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -92,7 +92,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `PINBiometricsMenu` | OnInitialize ([`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:382`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L382)) | `screenEvent_OnInitialize` | 1. JavaScript: IsViewRestoredFromCache ([`L248`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L248))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L255`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L255))<br>3. If isViewRestoredFromCache.isRestoredFromCache ([`L256`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L256))<br>4. Else ([`L258`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L258))<br>5. Execute Action: ListClear ([`L260`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L260))<br>6. Execute Action: ListAppend ([`L263`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L263))<br>7. Execute Action: AppManager_GetPIN_FingerprintReaderAvailable ([`L271`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L271))<br>8. If appManager_GetPIN_FingerprintReaderAvailable.available ([`L274`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L274))<br>9. Execute Action: ListAppend2 ([`L276`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L276))<br>10. Else ([`L287`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L287)) |
+| `PINBiometricsMenu` | OnInitialize ([`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:382`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L382)) | `screenEvent_OnInitialize` | 1. JavaScript: IsViewRestoredFromCache ([`L248`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L248))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L255`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L255))<br>3. If isViewRestoredFromCache.isRestoredFromCache ([`L256`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L256))<br>4. Else ([`L258`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L258))<br>5. Execute Action: ListClear ([`L260`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L260))<br>6. Execute Action: ListAppend ([`L263`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L263))<br>7. Execute Action: AppManager_GetPIN_FingerprintReaderAvailable ([`L271`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L271))<br>8. If appManager_GetPIN_FingerprintReaderAvailable.available ([`L274`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L274))<br>9. Execute Action: ListAppend2 ([`L276`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L276))<br>10. Else ([`L287`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L287)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -146,8 +146,8 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `PINBiometricsMenu` | get | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:283`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L283), [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:334`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L334) |
-| `PINBiometricsMenu` | set | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:334`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L334) |
+| `PINBiometricsMenu` | get | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:283`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L283), [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:334`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L334) |
+| `PINBiometricsMenu` | set | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:334`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L334) |
 
 ### 9.2 React
 
@@ -163,7 +163,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:407`](../../migration/screens/PINBiometricsMenu/analysis/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L407) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.App_Menu.PINBiometricsMenu.mvc.js:407`](../../migration/sources/raw/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js#L407) |
 | React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

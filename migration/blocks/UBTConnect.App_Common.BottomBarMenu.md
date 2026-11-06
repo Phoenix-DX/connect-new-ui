@@ -1,7 +1,7 @@
 # UBTConnect.App_Common.BottomBarMenu
 
 - Kind: shared; build screens using it: BookmarksByGroup, BrowseCountries, BrowseDirectory, CountryDetails, CountryList, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Menu, MessageDetail, MessageList, MyBookmarks, Notes, Notifications, OneSchoolGlobalDetails, Search, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_Common.BottomBarMenu.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common.BottomBarMenu.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Navigation.BottomBarItem, UBTConnect.App_Common.BottomBarContent, UBTConnect.App_Common_Blocks.App_IconBadge, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon (queue: OutSystemsUI_2_23.Navigation.BottomBarItem, UBTConnect.App_Common.BottomBarContent, UBTConnect.App_Common_Blocks.App_IconBadge)
 
 ## Inputs
@@ -288,4 +288,4 @@ define("UBTConnect.App_Common.BottomBarMenu.mvc$view", ["OutSystems/ClientRuntim
                                                         _in_TextOptionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._activeItemInDataFetchStatus),
                                                         In_Text: model.variables.localBottomBar_ItemsVar.getCurrent(callContext.iterationContext).labelAttr
 ```
-(… 34 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect.App_Common.BottomBarMenu.mvc.js`)
+(… 34 more lines in `migration/sources/pretty/UBTConnect.App_Common.BottomBarMenu.mvc.js`)

@@ -1,5 +1,5 @@
 /* Client actions of UBT_AppManager used by the shared blocks, ported 1:1 from UBT_AppManager.controller.js
-   (copy in migration/screens/SupperMeeting_Details/analysis/sources/raw/). The PIN storage actions (PIN_Get, PIN_Set,
+   (copy in migration/sources/raw/). The PIN storage actions (PIN_Get, PIN_Set,
    AppManager_SetPIN_*) are the shell's `src/shell/pin.ts`. */
 
 /** OutSystems TextToInteger: the leading integer of the text, 0 when there is none. */

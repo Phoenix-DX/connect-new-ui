@@ -1,6 +1,6 @@
 # Route spec: ContactByEmailOrbitHelpdesk
 
-Sources: `S` = analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js, `DOM` = analysis/dom/default.html.
+Sources: `S` = migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js, `DOM` = analysis/dom/default.html.
 
 ## Summary
 | Item | Value |

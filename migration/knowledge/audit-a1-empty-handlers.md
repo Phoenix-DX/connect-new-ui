@@ -18,7 +18,7 @@ original". HomeFeed.mvc.js:708-723 navigates to Search. This was fixed before th
    When the parent binds the event, the parent's handler replaces the default.
    So the declaration is NOT evidence that the click does nothing.
 
-Paths: `SB` = the route's `migration/screens/<S>/analysis/sources/pretty/<file>.mvc.js` (or `analysis/sources/` for
+Paths: `SB` = the route's `migration/sources/pretty/<file>.mvc.js` (or `migration/sources/` for
 ViewDocuments).
 
 ## Fixed (behaviour added)

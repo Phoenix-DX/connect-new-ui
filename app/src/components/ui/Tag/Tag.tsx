@@ -20,7 +20,7 @@ export interface TagProps {
   children?: ReactNode;
 }
 
-/** Tag Style of the compiled view (p:migration/screens/AssembleEvents/analysis/sources/pretty/OutSystemsUI_2_23.Content.
+/** Tag Style of the compiled view (p:migration/sources/pretty/OutSystemsUI_2_23.Content.
     Tag.mvc.js view :160-190). */
 export function tagClass(color: string, size: string, shape: string, isLight: boolean, extendedClass: string): string {
   return (

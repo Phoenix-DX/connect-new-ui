@@ -1,7 +1,7 @@
 # NavigationHandler.NavigationHandler.PreventBackNavigation
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/PINRegister/analysis/sources/pretty/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js`
+- Compiled source: `migration/sources/pretty/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.BackNavigationHandler (queue: NavigationHandler.NavigationHandler.BackNavigationHandler)
 
 ## Inputs

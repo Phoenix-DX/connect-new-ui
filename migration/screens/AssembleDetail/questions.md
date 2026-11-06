@@ -11,7 +11,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q2 [decision] contract (answered)
 - Question: The household bookmark (ContextMenu → Handler_OnClickBookmarkButton → Connect2_Assemble_MUI ToggleBookmarkItem) calls the server actions AddBookmark / DeleteBookmarkByBookmarkId of Connect2_Assemble_MUI, which are not in the API contract. What should the clone do until CR-AssembleDetail-2 is applied?
-- Evidence: AttendeeSubdivision.mvc.js:1901-2080; migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js:1493-1613; F9 note (orchestrator)
+- Evidence: AttendeeSubdivision.mvc.js:1901-2080; migration/sources/pretty/Connect2_Assemble_MUI.controller.js:1493-1613; F9 note (orchestrator)
 - OutSystems MCP: not asked (no MCP in this run)
 - Options: A: CR-AssembleDetail-2; keep MaybeDisplaySubscriptionPopup and the Bookmark_Note ConfirmAction as compiled, then show <NotCaptured> in the row instead of ToggleBookmarkItem (no call, IsBookmarked unchanged) | B: toggle only the shell's legacy local bookmark without a server call (recommended: A)
 - Answer (user, 2026-10-16T13:20:26): A (recommended), auto-accepted (user instruction 2026-10-16 night): CR-AssembleDetail-2 (Assemble AddBookmark / DeleteBookmarkByBookmarkId on the shell local bookmarks) by foundation F15

@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CacheControl.CacheControl_Policies
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/PINRegister/analysis/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js`
 - Child blocks: UBTConnect_Utils.CacheControl.CacheControl (queue: UBTConnect_Utils.CacheControl.CacheControl)
 
 ## Inputs

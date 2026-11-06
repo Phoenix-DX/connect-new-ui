@@ -31,7 +31,7 @@ interface ItemNotesSectionProps {
 const NO_ACTIONS: ActionBarOptions = { showUnbookmark: false, showAddNote: false, showShare: false };
 
 /** The notes of one item with an action bar (live TST UBTConnect_Utils.CW_Notes.ItemNotesSection.mvc.js, view
-    :245-497, controller :500-990; extracted to migration/screens/EventDetail/analysis/sources/pretty/). CustomContainer
+    :245-497, controller :500-990; extracted to migration/sources/pretty/). CustomContainer
     $b1 with, only when In_Notes.Total > 0, the note preview (NoteListActions $b2, preview only); CustomContainer $b3
     (border top small neutral-2, vertical padding small) with ItemCard_ActionBar $b4; then NotesSheet $b5 (open while
     IsAddNote). Add Note and the preview's "show all" set IsAddNote True; On_NoteSheet_Closed sets it False. The

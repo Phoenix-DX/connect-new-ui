@@ -26,10 +26,10 @@ Accepted items become ADRs and update the stack item `pwa` only after the user c
   an external app opened by package name (`migration/screens/HomeFeed/route-spec.md:120, 168`; 0 hits in `board.md`). To be
   confirmed with the user.
 
-Evidence keys: `AM` / `UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManager.controller.js` /
+Evidence keys: `AM` / `UC` = `migration/sources/raw/UBT_AppManager.controller.js` /
 `UBTConnect.controller.js`; `RS/` = `migration/runtime-sources/`; `OSJS:N` = `RS/OutSystems.js` physical line N
 (minified); `SV:<file>` = `capture/survey-UBTConnect.json` → `sources[<file>]`; `MD/` =
-`migration/screens/MilestoneDetail/analysis/sources/raw/`.
+`migration/sources/raw/`.
 
 ## 1. What the original does (facts)
 
@@ -39,7 +39,7 @@ Evidence keys: `AM` / `UC` = `migration/screens/HomeFeed/analysis/sources/raw/UB
 | PWA manifest | All 51 runtime captures link `/UBTConnect/moduleservices/pwa/manifest`. The manifest content was never fetched. `cordova.js` is loaded too | `migration/screens/*/capture/runtime-*.json` → `environment.manifestLink`; `migration/app-shell.spec.md:21` |
 | "Running as PWA" | `DeviceInfo_IsRunningAsPWA` = OSUI `IsRunningAsPWA.IsStandalone`. Only sent in the device/mobile context (telemetry); no UI branch found | AM:2825-2869, 832-833; clone `app/src/shell/deviceContext.ts:15-17, 37` |
 | Service worker | Unknown on 2026-10-16 (answered 2026-10-17: TST registers `/UBTConnect/pwaServiceWorker.js`, F2 in section 7). Captures run with `serviceWorkers: 'block'`, so `[]` proves nothing. The runtime's `supportsResourceCache` picks "Pre-caching resources with Service Worker" whenever `navigator.serviceWorker` exists (`getRegistrations() !== null`) and native is false | `tools/pipeline/batch_capture.cjs:147`; `migration/knowledge/shell-observed.md:3`; OSJS:16 |
-| Version / upgrade | The runtime VersionsManager checks for a new version in the background on navigation, upgrades resources and data model, and keeps `$OS_UBTConnect$UpgradeStatus` in sessionStorage. A 404 or API change raises `ViewHasChangedException`. Splash has `OnUpgradeProgress` | OSJS:15-16, 3; `runtime-HomeFeed.json` sessionStorageKeys; `migration/screens/Splash/analysis/sources/pretty/OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:169-217` |
+| Version / upgrade | The runtime VersionsManager checks for a new version in the background on navigation, upgrades resources and data model, and keeps `$OS_UBTConnect$UpgradeStatus` in sessionStorage. A 404 or API change raises `ViewHasChangedException`. Splash has `OnUpgradeProgress` | OSJS:15-16, 3; `runtime-HomeFeed.json` sessionStorageKeys; `migration/sources/pretty/OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:169-217` |
 | Unsupported version | `Get_IsUnsupportedSystem` = app or browser below the minimum. "Upgrade" opens the Play Store (`market://`). TST has no minimum versions | UC:4518-4589, 17773-17790, 15869-15903; `app-shell.spec.md` §12a U2, U16 |
 | Offline sync | `OfflineDataSync` is empty. Config: SyncOnOnline/Login/Resume True, Retry False, 30 s. OSUI `OfflineDataSyncCore` relays to `window.offlineDataSync` | UC:15118-15140, 15168-15180; `SV:OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js:823-848` |
 | Network status | OSUI `NetworkStatusChanged` listens to `online`/`offline` on `document` (Cordova style). NetworkDetection pings `status/network-ping.txt` every 30 s (visible tab only) and only sets `App_NetworkStatus_IsOnline_IsPersistent`, which picks the toast text "No internet connection…" vs "Service Interruption". No offline screen, no body class | `SV:OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js:629-630, 656-668`; `migration/knowledge/shell-facts.md` U10, U11 |

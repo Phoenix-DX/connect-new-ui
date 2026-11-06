@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Layout.Layout
 
 - Kind: shared; build screens using it: BookmarksByGroup, ConnectShare, LegacyShareObject, MessageDetail, MessageList, MyBookmarks
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Layout.Layout.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Layout.Layout.mvc.js`
 - Child blocks: Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI, NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top (queue: Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI)
 
 ## Inputs

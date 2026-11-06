@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag
 
 - Kind: shared; build screens using it: HouseholdCarousel, Locality_Details, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer (queue: -)
 
 ## Inputs

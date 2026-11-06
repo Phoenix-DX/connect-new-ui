@@ -5,7 +5,7 @@ import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
 import { LocalityMenu } from '@/lib/ubtConnect/actions';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in
-   migration/screens/BookmarksByGroup/analysis/sources/raw/). */
+   migration/sources/raw/). */
 
 const tag = (text: string, isSelected: boolean): Tag => ({
   Text: text,
@@ -48,7 +48,7 @@ export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_Loca
   return `${weekday}, ${time} (UTC${in_UTCOffsetSeconds < 0 ? ' - ' : ' + '}${offsetLabel})`;
 }
 
-/* ---- Tags (feedback F1). UC = migration/screens/Locality_Details/analysis/sources/raw/UBTConnect.controller.js,
+/* ---- Tags (feedback F1). UC = migration/sources/raw/UBTConnect.controller.js,
    ULC = …/raw/UBTConnectLibrary.controller.js. ---- */
 
 /** GetSkeleton_UI_SubdivisionCard (UC:12238-12270) with GetSkeleton_UI_SubdivisionCardContent: SubdivisionId keeps

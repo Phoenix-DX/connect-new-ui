@@ -9,7 +9,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
 - The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
 - The tool observed no call and has no screenshot.
-- Closure: 127 files, 7 without compiled code: `UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js`, `UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js`, `UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js`, `UBTConnectLibrary.ConnectPatterns.Popup.mvc.js`, `UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js`, `UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js`….
+- Closure: 127 files, 0 without compiled code.
 
 ## 1. Route
 
@@ -21,7 +21,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 76 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 83 shared blocks, 43 app shell files. React: 272 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
 
 ## 2. Result
 
@@ -30,12 +30,12 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Server calls of the route on TST | 12: React makes 9, **0 missing**, 3 not a gap of the web app |
 | Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (+ 4 declared on TST outside the call graph) (see [section 4](#4-questions)) |
-| React calls reached only through shared code | 3: see the last section |
+| React calls reached only through shared code | 1: see the last section |
 | User actions of the route (own code) | OutSystems: 4. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 10 of 10 |
-| Shared blocks and components on the route | OutSystems 76, React 9 with user actions: see the last section |
-| App shell on this route | 4 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 83, React 9 with user actions: see the last section |
+| App shell on this route | 6 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
@@ -67,12 +67,12 @@ React calls of the screen without a TST chain in the code of the route. TST make
 
 | Call | React action | How TST declares it | Evidence |
 |---|---|---|---|
-| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-check questions |
+| `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
 | `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../../app/src/lib/legacyShared/actions.ts#L298) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
 | `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:301`](../../app/src/api/message/repository.ts#L301) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
 | `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
 
-React reaches 3 more calls without a TST chain on this route only through shared containers, components or app code. The last section lists them, not this one.
+React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
 ## 5. Server calls
 
@@ -91,7 +91,7 @@ All columns come from the code, without interpretation:
 | 1 | `UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` | data action | `AssembleDetail` | AssembleDetail fetch at start → AssembleDetail.DataActionGetAssembleNotes | no capture | `fetchAssembleNotes()` [`api/event/repository.ts:101`](../../app/src/api/event/repository.ts#L101) (page) | `AssembleDetail → useAssembleNotes → fetchAssembleNotes`<br>[`pages/AssembleDetail/AssembleDetailPage.tsx`](../../app/src/pages/AssembleDetail/AssembleDetailPage.tsx) | implemented |
 | 2 | `Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` | data action | `AssembleEventDetail` | AssembleEventDetail.OnReady → AssembleEventDetail.onReady → AssembleEventDetail.DataActionGetAssembleEvent<br>AssembleEventDetail fetch at start → AssembleEventDetail.DataActionGetAssembleEvent | no capture | `fetchAssembleEvent()` [`api/event/repository.ts:107`](../../app/src/api/event/repository.ts#L107) (page) | `AssembleEventDetail → useAssembleEventDetail → fetchAssembleEvent`<br>[`pages/AssembleDetail/components/AssembleEventDetail.tsx`](../../app/src/pages/AssembleDetail/components/AssembleEventDetail.tsx) | implemented |
 | 3 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | NC_Result_Item__Image.onClick_Result_Item → event onClick_Item of NC_Result_Item__Image → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event bookmarkButtonClicked of ContextMenu → AssembleEventDetail_AttendeeSubdivision.handler_OnClickBookmarkButton → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>event onClick_Item of NC_Result_Item__Image → AssembleEventDetail_AttendeeSubdivision.handler_OnClickHousehold → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents<br>(+2 more chains) | no capture | – | – | not applicable (telemetry) |
-| 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | NotesSheet.handler_OnSubmitNote → server AddNote | no capture | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
+| 4 | `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote` | service action | `NotesSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → NotesSheet.handler_OnSubmitNote → server AddNote | no capture | `addNote()` [`api/note/repository.ts:54`](../../app/src/api/note/repository.ts#L54) (page) | `NotesSheet → addNote`<br>[`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | implemented |
 | 5 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) |
 | 6 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
 | 7 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | onKeyUp in Input → Input.onKeyup → event event_Submit of Input → ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no capture | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
@@ -190,7 +190,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in the `analysis/sources/raw/` folders of the captured routes (static check).
+The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
@@ -320,12 +320,19 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | Block | Module | React port | User actions |
 |---|---|---|---|
 | `NotesSheet` | `UBTConnect_Utils` | [`components/note/NotesSheet/NotesSheet.tsx`](../../app/src/components/note/NotesSheet/NotesSheet.tsx) | 1 |
+| `AddNote` | `UBTConnectLibrary` | [`components/note/AddNote/AddNote.tsx`](../../app/src/components/note/AddNote/AddNote.tsx) | 0 |
 | `CircleButton_IconPrimary` | `UBTConnectLibrary` | [`components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx`](../../app/src/components/ui/CircleButtonIconPrimary/CircleButtonIconPrimary.tsx) | 0 |
 | `CircleButton_WithLabel` | `UBTConnectLibrary` | [`components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx`](../../app/src/components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx) | 0 |
 | `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
 | `InputCounter` | `UBTConnectLibrary` | [`components/ui/InputCounter/InputCounter.tsx`](../../app/src/components/ui/InputCounter/InputCounter.tsx) | 0 |
+| `NoteListActions` | `UBTConnect_Utils` | [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | 2 |
+| `Note_Item_List` | `UBTConnectLibrary` | [`components/note/NoteList/NoteList.tsx`](../../app/src/components/note/NoteList/NoteList.tsx) | 0 |
+| `Popup` | `UBTConnectLibrary` | [`components/ui/Popup/Popup.tsx`](../../app/src/components/ui/Popup/Popup.tsx) | 0 |
+| `Note_Item` | `UBTConnectLibrary` | [`components/note/NoteItem/NoteItem.tsx`](../../app/src/components/note/NoteItem/NoteItem.tsx) | 0 |
 | `TextArea_WithCounter` | `UBTConnectLibrary` | [`components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx`](../../app/src/components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx) | 0 |
+| `KebabButton_BookmarkNotes` | `UBTConnectLibrary` | [`components/note/BookmarkNotesKebab/BookmarkNotesKebab.tsx`](../../app/src/components/note/BookmarkNotesKebab/BookmarkNotesKebab.tsx) | 0 |
 | `ContextMenu` | `UBTConnectLibrary` | [`components/ui/ContextMenu/ContextMenu.tsx`](../../app/src/components/ui/ContextMenu/ContextMenu.tsx) | 0 |
+| `ContextMenu_Item` | `UBTConnectLibrary` | [`components/ui/ContextMenuItem/ContextMenuItem.tsx`](../../app/src/components/ui/ContextMenuItem/ContextMenuItem.tsx) | 0 |
 | `PopupMenu` | `UBTConnectLibrary` | [`components/ui/PopupMenu/PopupMenu.tsx`](../../app/src/components/ui/PopupMenu/PopupMenu.tsx) | 0 |
 | `TextEllipsis` | `UBTConnectLibrary` | [`components/ui/TextEllipsis/TextEllipsis.tsx`](../../app/src/components/ui/TextEllipsis/TextEllipsis.tsx) | 0 |
 | `BottomSheet` | `UBTConnectLibrary` | [`components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx`](../../app/src/components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx) | 0 |
@@ -396,7 +403,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (23)</summary>
+<details><summary>User actions of the shared blocks (25)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -417,12 +424,14 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 15 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 | 16 | `ContactByMessage_Wrapper` | `event_SelectedMessageChannel of ByMessage` | `handler_SelectedMessageChannel` | – | opens an external link |
 | 17 | `ContactPopup_ByPhone` | `event_Clicked of ContactPopup` | `onClick_CallButton` | – | opens an external link |
-| 18 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
-| 19 | `SearchResult_Item` | `clicked of IconText` | `onClick_UpgradeSubscription` | – | opens an external link |
-| 20 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
-| 21 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
-| 22 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
-| 23 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
+| 18 | `NoteListActions` | `onDeleteRequested of List` | `handler_OnDeleteNoteRequested` | – | calls DeleteNoteByNoteId; shows a message |
+| 19 | `NoteListActions` | `onSaveEditedNote of List` | `handler_OnSaveEditedNote` | – | calls UpdateNote; shows a message |
+| 20 | `NotesSheet` | `onSubmitRequested of AddNote` | `handler_OnSubmitNote` | – | calls AddNote; shows a message |
+| 21 | `SearchResult_Item` | `clicked of IconText` | `onClick_UpgradeSubscription` | – | opens an external link |
+| 22 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickRecentMember` | – | calls CS_ShareObject; shows a message; asks for a confirmation |
+| 23 | `ShareSheet` | `onClick of WithLabel` | `handler_OnClickExternalOption` | – | calls CS_CreateShareProfileLink |
+| 24 | `ShareSheet` | `click of Icon` | `handler_SearchResultItemOnSelect` | – | shows a message |
+| 25 | `ShareSheet` | `buttonOnClick of Button` | `handler_OnClickSend` | – | calls CS_ShareObject; shows a message |
 
 </details>
 
@@ -486,6 +495,4 @@ Calls that React can make on this route, without a TST chain on this route. Ever
 
 | Call | React action | Reached through |
 |---|---|---|
-| `/api/UBTConnect_Utils/ServiceAPIDeleteNoteByNoteId` | `deleteNote()` [`api/note/repository.ts:73`](../../app/src/api/note/repository.ts#L73) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
-| `/api/UBTConnect_Utils/ServiceAPIUpdateNote` | `updateNote()` [`api/note/repository.ts:66`](../../app/src/api/note/repository.ts#L66) | `NoteListActionsContainer` [`containers/NoteListActions/NoteListActionsContainer.tsx`](../../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) |
 | `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../app/src/lib/ubtConnectUtils/actions.ts#L131) | `EntityLazyImage` [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) |

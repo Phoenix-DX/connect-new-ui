@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.SubLayout_HomePageSearch
 
 - Kind: shared; build screens using it: HomeFeed, Profile
-- Compiled source: `migration/screens/HomeFeed/analysis/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_HomePageSearch.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.SubLayout_HomePageSearch.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.StaticInput (queue: -)
 
 ## Inputs

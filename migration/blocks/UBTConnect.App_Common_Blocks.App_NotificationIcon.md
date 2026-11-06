@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks.App_NotificationIcon
 
 - Kind: shared; build screens using it: CountryList, HomeFeed, Notes, Updates_SingleList
-- Compiled source: `migration/screens/CountryList/analysis/sources/pretty/UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc.js`
 - Child blocks: UBTConnect.App_Common_Blocks.App_IconBadge, UBTConnect.App_Common_Blocks.App_NotificationRefresh (queue: UBTConnect.App_Common_Blocks.App_IconBadge, UBTConnect.App_Common_Blocks.App_NotificationRefresh)
 
 ## Inputs

@@ -152,7 +152,7 @@
   "kind": "decision",
   "topic": "ComingSoon inline icon",
   "question": "TST UBTConnectLibrary ComingSoon now gives its CustomText an InlineIcon (calendar, medium_20, neutral0): IconInline_Internal 24x18 with an Icon. The React components/ui/ComingSoon has no icon. Shared component, outside this route's files; other routes have older captures.",
-  "evidence": "migration/screens/OneSchoolGlobalDetails/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)",
+  "evidence": "migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js:192-203; analysis/dom/default.html id b3-b24-b2-b2-$b1 (connect-icon-calendar text-neutral-0 icon-medium padding-right-xs inline-block); parity default/offline of both routes (Icon missing in build)",
   "mcp": "",
   "options": [
    "a) port the icon in components/ui/ComingSoon and re-run parity of the routes that use it (re-capture those with older captures)",

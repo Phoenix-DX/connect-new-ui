@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.HorizontalTagList
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, Search, SupperMeeting_Carousel, Updates_SingleList
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectPatterns.TagToggle (queue: UBTConnectLibrary.ConnectPatterns.TagToggle)
 
 ## Inputs

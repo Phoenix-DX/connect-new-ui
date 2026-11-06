@@ -126,7 +126,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -134,8 +134,8 @@ Screen inputs: none. `setInputs` of `OrbitAdminLanding` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `OrbitAdminLanding` | `OrbitAdminMilestones` | `EventId` = `eventId` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:275`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L275) |
-| `OrbitAdminLanding` | `OrbitAdminEventDetail` | `In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventLocation` = `eventLocation`<br>`In_EventName` = `eventName`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventTypeFriendly` = `eventTypeFriendly` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:281`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L281) |
+| `OrbitAdminLanding` | `OrbitAdminMilestones` | `EventId` = `eventId` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:275`](../../migration/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L275) |
+| `OrbitAdminLanding` | `OrbitAdminEventDetail` | `In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventLocation` = `eventLocation`<br>`In_EventName` = `eventName`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventTypeFriendly` = `eventTypeFriendly` | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:281`](../../migration/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L281) |
 
 ### 7.2 React
 
@@ -190,7 +190,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:377`](../../migration/screens/OrbitAdminLanding/analysis/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L377) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:377`](../../migration/sources/raw/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js#L377) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

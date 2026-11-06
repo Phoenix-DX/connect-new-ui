@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2
 
 - Kind: osui; build screens using it: MyBookmarks
-- Compiled source: `migration/screens/MyBookmarks/analysis/sources/pretty/OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

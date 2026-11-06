@@ -1,6 +1,6 @@
 # Route spec: ContactByEmailMember
 
-Source abbreviations: `mvc.js` = `analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js`.
+Source abbreviations: `mvc.js` = `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js`.
 
 ## Summary
 | Item | Value |

@@ -1,7 +1,7 @@
 # UBTConnect.App_Common.Version
 
 - Kind: shared; build screens using it: Login, Menu
-- Compiled source: `migration/screens/Login/analysis/sources/pretty/UBTConnect.App_Common.Version.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common.Version.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomText (queue: -)
 
 ## Inputs

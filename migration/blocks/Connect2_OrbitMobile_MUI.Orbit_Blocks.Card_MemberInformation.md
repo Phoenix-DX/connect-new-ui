@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation
 
 - Kind: shared; build screens using it: GuestArrangements, HelpersDetail, MilestoneDetail
-- Compiled source: `migration/screens/MilestoneDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs
@@ -405,4 +405,4 @@ define("Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc$view", 
                 visible: model.variables.is_ShowPersonalInfoIn,
                 _idProps: {
 ```
-(… 97 more lines in `migration/screens/MilestoneDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`)
+(… 97 more lines in `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js`)

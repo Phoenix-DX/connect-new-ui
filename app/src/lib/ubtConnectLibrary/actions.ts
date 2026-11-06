@@ -1,6 +1,6 @@
 import { osImage } from '@/lib/os-assets';
 /* Client actions of UBTConnectLibrary used by the shared blocks, ported 1:1 from UBTConnectLibrary.controller.js
-   (copy in migration/screens/<Screen>/analysis/sources/raw/). One function per action, named after it in lowerCamelCase;
+   (copy in migration/sources/raw/). One function per action, named after it in lowerCamelCase;
    it returns the action's single output. Empty text means "no value" (OutSystems NullTextIdentifier). */
 import type {
   ActionsMenuEnableOptions,
@@ -294,7 +294,7 @@ let bottomBarSliderReady = false;
 
 /**
  * OnApplicationReady_BottomBarSlider (UBTConnectLibrary.controller.js:7800-7889, copy in
- * migration/screens/HomeFeed/analysis/sources/raw/; run by UBTConnect OnApplicationReady after AppManager_Mobile_OnAppReady,
+ * migration/sources/raw/; run by UBTConnect OnApplicationReady after AppManager_Mobile_OnAppReady,
  * UBTConnect.controller.js:15318-15326). The Initialize JS (:7831-7888) as is: one slider element, appended to
  * #transitionContainer while the target screen's bottom bar has an active item (`.list  > a.active`), with the item count,
  * the active index and the transition duration as CSS variables; then BottomBarSlider_ForceRefresh. Once per page (the
@@ -552,7 +552,7 @@ function formatRelativeTime(date: Date, now: Date): string {
 
 /** GetRelativeTimeTag(CreatedDateTimeUtc, EditedDateTimeUtc) (UBTConnectLibrary.controller.js, define
     "UBTConnectLibrary.controller$GetRelativeTimeTag", TST copy in
-    migration/screens/ContactByEmailMember/analysis/sources/raw/): IsEdited = EditedDateTimeUtc <> NullDate and
+    migration/sources/raw/): IsEdited = EditedDateTimeUtc <> NullDate and
     DiffSeconds(Created, Edited) > 1; the relative time of the edited date (else the created one) + " · Edited". Dates
     are read as the app's DateTimes (osDateTime); `now` is the browser clock. */
 export function getRelativeTimeTag(createdDateTimeUtc: string, editedDateTimeUtc: string, now = new Date()): string {
@@ -656,7 +656,7 @@ export function merge_StyleOptions(
 /* ---- Task Y: ScrollEvent (scroll shadow and sticky title of the layouts) ---- */
 /* The global `ScrollEvent` object of scripts/UBTConnectLibrary.ScrollAnimations.js (migration/runtime-sources, cited
    SA:<line>), as the layouts use it through four UBTConnectLibrary client actions whose JavaScript nodes only call it
-   (raw controller migration/screens/SupperMeeting_Details/analysis/sources/raw/UBTConnectLibrary.controller.js:
+   (raw controller migration/sources/raw/UBTConnectLibrary.controller.js:
    SetScrollShadow :8700-8708, SetMainFixedScroll :8481-8488, RemoveScrollEvents :8087-8091, ClearTimeout :690-694). */
 
 /** getVariables (SA:2-21): the entries the ported functions use. */
@@ -945,7 +945,7 @@ export function getLookupConcepts(in_IsLowercase: boolean): LookupConcepts {
 }
 
 /** FormatDateForAssembleMeetings(DateTime, IsAllDay) (UBTConnectLibrary.controller.js, TST publish of 2026-10-29, copy
-    in migration/screens/AssembleEvents/analysis/sources/raw/): "On " when all day, else "h:mm tt on ", then "Lord's
+    in migration/sources/raw/): "On " when all day, else "h:mm tt on ", then "Lord's
     Day" on a Sunday or the day name, then ", d MMMM yyyy". Out: DateTimeString. It replaces Connect2_Assemble_MUI
     GetAssembleEventSummaryDateTimeString (removed in that publish, same expression). */
 export function formatDateForAssembleMeetings(dateTime = '1900-01-01T00:00:00', isAllDay = false): string {

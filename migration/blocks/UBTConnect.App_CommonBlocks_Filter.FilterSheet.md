@@ -1,7 +1,7 @@
 # UBTConnect.App_CommonBlocks_Filter.FilterSheet
 
 - Kind: shared; build screens using it: CountryDetails, Notes, Search, Updates_SingleList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.BackNavigationHandler, UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper, UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item, UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item, UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnectLibrary.ConnectPatterns.Button, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SelectionOption_List, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CacheControl.CacheControl_AllCountries, UBTConnect_Utils.CacheControl.CacheControl_AllLocalities (queue: UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper, UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item, UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnectLibrary.ConnectPatterns.SelectionOption_List, UBTConnect_Utils.CacheControl.CacheControl_AllCountries, UBTConnect_Utils.CacheControl.CacheControl_AllLocalities)
 
 ## Inputs
@@ -310,4 +310,4 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", ["OutSystems/C
                                                                     },
                                                                     _idProps: {
 ```
-(… 721 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`)
+(… 721 more lines in `migration/sources/pretty/UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`)

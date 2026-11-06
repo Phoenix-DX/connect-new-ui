@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Locality.StatisticsList
 
 - Kind: shared; build screens using it: BrowseCountries, BrowseDirectory
-- Compiled source: `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnect.Directory_Locality.StatisticsList.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Locality.StatisticsList.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem, UBTConnectLibrary.ConnectPatterns.Input, UBTConnectLibrary.ConnectPatterns.SkeletonSection (queue: UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem, UBTConnectLibrary.ConnectPatterns.Input)
 
 ## Inputs
@@ -287,4 +287,4 @@ define("UBTConnect.Directory_Locality.StatisticsList.mvc$view", ["OutSystems/Cli
                                             inputs: {
                                                 In_TextOptions: model.getCachedValue(idService.getId("FKZvzSON6kO9krm5ZjM_5A.In_TextOptions"), function() {
 ```
-(… 130 more lines in `migration/screens/BrowseCountries/analysis/sources/pretty/UBTConnect.Directory_Locality.StatisticsList.mvc.js`)
+(… 130 more lines in `migration/sources/pretty/UBTConnect.Directory_Locality.StatisticsList.mvc.js`)

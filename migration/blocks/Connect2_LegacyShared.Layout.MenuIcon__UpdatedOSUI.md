@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI
 
 - Kind: shared; build screens using it: BookmarksByGroup, MessageList, MyBookmarks
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

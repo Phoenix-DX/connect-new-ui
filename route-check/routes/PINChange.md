@@ -129,7 +129,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -137,7 +137,7 @@ Screen inputs: none. `setInputs` of `PINChange` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Block_PINUnlock_ContentWrapper` | `Login` | `In_IsFromResetPIN` = `true` | [`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1035`](../../migration/screens/PINChange/analysis/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1035) |
+| `Block_PINUnlock_ContentWrapper` | `Login` | `In_IsFromResetPIN` = `true` | [`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1035`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1035) |
 
 ### 7.2 React
 
@@ -157,7 +157,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Block_PINUnlock_ContentWrapper` | OnInitialize ([`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1099`](../../migration/screens/PINChange/analysis/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1099)) | `screenEvent_OnInitialize` | 1. ShowFingerprintReader = App_PIN_BiometricEnabled and notisFromMenu ([`L1010`](../../migration/screens/PINChange/analysis/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1010)) |
+| `Block_PINUnlock_ContentWrapper` | OnInitialize ([`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1099`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1099)) | `screenEvent_OnInitialize` | 1. ShowFingerprintReader = App_PIN_BiometricEnabled and notisFromMenu ([`L1010`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1010)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
@@ -181,7 +181,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `Block_PINUnlock_ContentWrapper` | get | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1011`](../../migration/screens/PINChange/analysis/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1011) |
+| `Block_PINUnlock_ContentWrapper` | get | `UBTConnect.App_PIN_BiometricEnabled` | [`UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:1011`](../../migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js#L1011) |
 
 ### 9.2 React
 
@@ -193,7 +193,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINChange.mvc.js:429`](../../migration/screens/PINChange/analysis/sources/raw/UBTConnect.App_PIN.PINChange.mvc.js#L429) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINChange.mvc.js:429`](../../migration/sources/raw/UBTConnect.App_PIN.PINChange.mvc.js#L429) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

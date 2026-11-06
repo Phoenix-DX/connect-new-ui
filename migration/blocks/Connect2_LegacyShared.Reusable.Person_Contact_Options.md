@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.Person_Contact_Options
 
 - Kind: shared; build screens using it: AssembleDetail, LDM_EventDetail_V2, LDM_MyEvents_V2
-- Compiled source: `migration/screens/LDM_EventDetail_V2/analysis/sources/pretty/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

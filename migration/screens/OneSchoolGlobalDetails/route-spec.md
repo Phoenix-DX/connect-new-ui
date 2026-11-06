@@ -1,6 +1,6 @@
 # Screen spec: OneSchoolGlobalDetails
 
-Paths are relative to `migration/screens/OneSchoolGlobalDetails/`; `mvc.js` = `analysis/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`.
+Paths are relative to `migration/screens/OneSchoolGlobalDetails/`; `mvc.js` = `migration/sources/pretty/UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`.
 
 ## 0. Summary
 The detail screen of one OneSchool Global school (directory) has these parts:

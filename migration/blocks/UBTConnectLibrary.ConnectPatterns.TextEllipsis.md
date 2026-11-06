@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.TextEllipsis
 
 - Kind: shared; build screens using it: CommunityBusinessDetails_CoomingSoon, CountryList, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/CommunityBusinessDetails_CoomingSoon/analysis/sources/pretty/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

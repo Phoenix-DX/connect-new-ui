@@ -1,6 +1,6 @@
 # Screen spec: HouseholdDetails
 
-Sources: `analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails.mvc.js` (cited as `mvc.js:<line>`),
+Sources: `migration/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails.mvc.js` (cited as `mvc.js:<line>`),
 `analysis/dom/{default,loading,offline}.html`, `pack.md`, `analysis/calls.md`, shared block README
 `app/src/shared/UBTConnect/HouseholdDetails_Block/README.md`.
 

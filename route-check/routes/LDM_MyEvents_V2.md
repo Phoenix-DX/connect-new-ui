@@ -44,8 +44,8 @@ Missing TST calls that a rule of `route-check/config.json` (`notApplicable`, use
 
 **Unreachable on TST.** The handler is bound only in the Month, Day and Agenda calendar views, and OnReady calls GetEventCalendarData only when CurrentEventView is not MyTimeline. The variable keeps its default MyTimeline: no action assigns it. Evidence: Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:50 (CurrentEventView default), :521-692 (the $if of the calendar views), :2140-2185 (OnReady: Day or Month? / MyTimeline? / else GetEventCalendarData), no `currentEventViewVar =` in the file; app/src/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState.ts:16-18.
 
-- `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo.
 - `Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_MyEvents_V2/DataActionGetEventsForCalendar`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → ScreenBlock_MyEvents_V2.checkDateBoundaries → ScreenBlock_MyEvents_V2.getEventCalendarData → ScreenBlock_MyEvents_V2.DataActionGetEventsForCalendar.
+- `Connect2_OrbitMobile_MUI/ActionGetEventViewInfo`. Chain on TST: ScreenBlock_MyEvents_V2.onHandle_DateClicked → Connect2_OrbitMobile_MUI.addAuditCalendarEvent → Connect2_OrbitMobile_MUI.getEventViewInfo → server GetEventViewInfo.
 
 
 ## 4. Questions
@@ -161,7 +161,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -169,11 +169,11 @@ Screen inputs: none. `setInputs` of `LDM_MyEvents_V2` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `LDM_MyEvents_V2` | `ContactByEmailMember` | `In_AvatarURL` = `in_AvatarURL`<br>`In_ContactCountry` = `in_ContactCountry`<br>`In_IsHousehold` = `true`<br>`In_HouseholdHeaderName` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_ContactLocality` = `in_ContactLocality`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_EmailTo` = `in_EmailTo` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:291`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L291) |
-| `LDM_MyEvents_V2` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:368`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L368) |
-| `LDM_MyEvents_V2` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:411`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L411) |
-| `LDM_MyEvents_V2` | `HouseholdCarousel` | `In_StartingHouseholdId` = `in_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:470`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L470) |
-| `LDM_MyEvents_V2` | `HouseholdDetails` | `HouseholdId` = `in_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:476`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L476) |
+| `LDM_MyEvents_V2` | `ContactByEmailMember` | `In_AvatarURL` = `in_AvatarURL`<br>`In_ContactCountry` = `in_ContactCountry`<br>`In_IsHousehold` = `true`<br>`In_HouseholdHeaderName` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_ContactLocality` = `in_ContactLocality`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_EmailTo` = `in_EmailTo` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:291`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L291) |
+| `LDM_MyEvents_V2` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:368`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L368) |
+| `LDM_MyEvents_V2` | `MyEntertaining` | `MyCalendarEventSourceId` = `UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:411`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L411) |
+| `LDM_MyEvents_V2` | `HouseholdCarousel` | `In_StartingHouseholdId` = `in_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:470`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L470) |
+| `LDM_MyEvents_V2` | `HouseholdDetails` | `HouseholdId` = `in_HouseholdId` | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:476`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L476) |
 
 ### 7.2 React
 
@@ -255,7 +255,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:556`](../../migration/screens/LDM_MyEvents_V2/analysis/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L556) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js:556`](../../migration/sources/raw/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js#L556) |
 | React | access `member`, lock `enforce`, flag redirect C2NewLDM = false → LDM_MyEvents | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

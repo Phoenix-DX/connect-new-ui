@@ -2,7 +2,7 @@
 
 `UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator`: an empty block that raises the active element's
 header. Compiled source:
-`migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js`.
+`migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.mvc.js`.
 
 | Input                                       | Prop                            | Default |
 | ------------------------------------------- | ------------------------------- | ------- |

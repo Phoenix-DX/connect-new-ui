@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Locality.Statistics_TypedItem
 
 - Kind: shared; build screens using it: CountryDetails, CountryList
-- Compiled source: `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js`
 - Child blocks: UBTConnect.Directory_Locality.Statistics_Icons, UBTConnectLibrary.BasePatterns.Columns_Three, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: UBTConnect.Directory_Locality.Statistics_Icons)
 
 ## Inputs
@@ -290,4 +290,4 @@ define("UBTConnect.Directory_Locality.Statistics_TypedItem.mvc$view", ["OutSyste
                                                 }
                                             },
 ```
-(… 25 more lines in `migration/screens/CountryDetails/analysis/sources/pretty/UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js`)
+(… 25 more lines in `migration/sources/pretty/UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js`)

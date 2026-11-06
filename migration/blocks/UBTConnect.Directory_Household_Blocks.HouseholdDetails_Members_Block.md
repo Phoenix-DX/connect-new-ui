@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js`
 - Child blocks: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectCorePatterns.Member_ListItem, UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions, UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section, UBTConnectLibrary.ConnectCorePatterns.Member_ListItem, UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem)
 
 ## Inputs
@@ -287,4 +287,4 @@ define("UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc
                                                                                         return [React.createElement(UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_view, {
                                                                                             inputs: {
 ```
-(… 375 more lines in `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js`)
+(… 375 more lines in `migration/sources/pretty/UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js`)

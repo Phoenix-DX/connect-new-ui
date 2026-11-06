@@ -104,7 +104,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -152,7 +152,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `PINUnlock` | get | `UBTConnect.LastURL` | [`UBTConnect.App_PIN.PINUnlock.mvc.js:243`](../../migration/screens/PINUnlock/analysis/sources/raw/UBTConnect.App_PIN.PINUnlock.mvc.js#L243) |
+| `PINUnlock` | get | `UBTConnect.LastURL` | [`UBTConnect.App_PIN.PINUnlock.mvc.js:243`](../../migration/sources/raw/UBTConnect.App_PIN.PINUnlock.mvc.js#L243) |
 
 ### 9.2 React
 
@@ -166,7 +166,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINUnlock.mvc.js:285`](../../migration/screens/PINUnlock/analysis/sources/raw/UBTConnect.App_PIN.PINUnlock.mvc.js#L285) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_PIN.PINUnlock.mvc.js:285`](../../migration/sources/raw/UBTConnect.App_PIN.PINUnlock.mvc.js#L285) |
 | React | access `member`, lock `ignore`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

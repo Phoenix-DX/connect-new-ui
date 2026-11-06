@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.Tag
 
 - Kind: osui; build screens using it: AssembleEvents
-- Compiled source: `migration/screens/AssembleEvents/analysis/sources/pretty/OutSystemsUI_2_23.Content.Tag.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Content.Tag.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

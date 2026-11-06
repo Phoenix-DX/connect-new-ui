@@ -1,7 +1,7 @@
 # UBTConnectLibrary.Layouts.Layout_LoginFlow
 
 - Kind: shell; build screens using it: AcceptPendingPolicies, BookmarksByGroup, BrowseCountries, BrowseDirectory, CommunityBusinessDetails_CoomingSoon, ConnectShare, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, ContactUsMenu, CountryDetails, CountryList, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, LegacyShareObject, Locality_Details, Login, Menu, MessageDetail, MessageList, MyBookmarks, MyEntertaining, Notes, Notifications, OneSchoolGlobalDetails, PINBiometricsMenu, PINChange, PINRegister, PINUnlock, Photobook, Profile, Search, Services, Splash, SupperMeeting_Carousel, SupperMeeting_Details, TermsAndPoliciesMenu, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js`
 - Child blocks: NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top, UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper (queue: UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper)
 
 ## Inputs

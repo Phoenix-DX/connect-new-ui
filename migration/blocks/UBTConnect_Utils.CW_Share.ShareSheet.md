@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_Share.ShareSheet
 
 - Kind: shared; build screens using it: BookmarksByGroup, FeedItemDetail, HomeFeed, HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
 - Child blocks: NavigationHandler.NavigationHandler.PreventBackNavigation, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel, UBTConnectLibrary.ConnectPatterns.EmptyList, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.Input, UBTConnectLibrary.ConnectPatterns.SkeletonSection, UBTConnect_Utils.CW_Common.Button, UBTConnect_Utils.CW_Image.UBT_LazyImage, UBTConnect_Utils.CW_Search.SearchResult_Item, UBTConnect_Utils.CW_Share.ShareSheet_Section, UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle (queue: UBTConnectLibrary.ConnectPatterns.BottomSheet, UBTConnectLibrary.ConnectPatterns.Input, UBTConnect_Utils.CW_Search.SearchResult_Item, UBTConnect_Utils.CW_Share.ShareSheet_Section, UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle)
 
 ## Inputs
@@ -281,4 +281,4 @@ define("UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", ["OutSystems/ClientRunti
                                                             visible: true,
                                                             _idProps: {
 ```
-(… 1328 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`)
+(… 1328 more lines in `migration/sources/pretty/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`)

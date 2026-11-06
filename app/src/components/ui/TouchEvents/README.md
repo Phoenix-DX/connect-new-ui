@@ -1,7 +1,7 @@
 # TouchEvents (OutSystems UI)
 
 OutSystems: `OutSystemsUI_2_23.Utilities.TouchEvents` · pack `migration/blocks/OutSystemsUI_2_23.Utilities.TouchEvents.md` ·
-compiled source `migration/screens/Photobook/analysis/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
+compiled source `migration/sources/pretty/OutSystemsUI_2_23.Utilities.TouchEvents.mvc.js`
 
 | Input           | Type    | Prop              | Default |
 | --------------- | ------- | ----------------- | ------- |

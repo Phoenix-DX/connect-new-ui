@@ -1,7 +1,7 @@
 # UBTConnectLibrary.OutSystemsUIOverrides.Badge
 
 - Kind: shared; build screens using it: BookmarksByGroup, BrowseCountries, BrowseDirectory, CountryDetails, CountryList, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Menu, MessageDetail, MessageList, MyBookmarks, Notes, Notifications, OneSchoolGlobalDetails, Search, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

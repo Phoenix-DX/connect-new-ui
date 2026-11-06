@@ -2,7 +2,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
-/* EventBooklet_ListHeader (LH = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js,
+/* EventBooklet_ListHeader (LH = migration/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js,
    view :107-186). No inputs, no controller logic. No capture: markup from the compiled view. */
 
 export interface EventBooklet_ListHeaderProps {

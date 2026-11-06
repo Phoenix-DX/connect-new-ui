@@ -1,7 +1,7 @@
 # ContactByEmailForm
 
 OutSystems: `UBTConnect.ContactFlow.ContactByEmailForm` · pack `migration/blocks/UBTConnect.ContactFlow.ContactByEmailForm.md`
-· compiled source `migration/screens/ContactByEmailMember/analysis/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`
+· compiled source `migration/sources/pretty/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js`
 
 | Input                        | Type    | Prop                          | Default     |
 | ---------------------------- | ------- | ----------------------------- | ----------- |

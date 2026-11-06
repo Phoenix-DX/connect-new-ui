@@ -152,17 +152,17 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:83`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L83) |
-| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:87`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L87) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:91`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L91) |
-| `In_EventStartDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:95`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L95) |
-| `In_EventEndDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:99`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L99) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:83`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L83) |
+| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:87`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L87) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:91`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L91) |
+| `In_EventStartDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:95`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L95) |
+| `In_EventEndDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:99`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L99) |
 
 Navigations with parameters: none.
 
@@ -234,7 +234,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:307`](../../migration/screens/HostSurvey/analysis/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L307) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js:307`](../../migration/sources/raw/UBTConnect.Legacy_OrbitEventsFlow.HostSurvey.mvc.js#L307) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

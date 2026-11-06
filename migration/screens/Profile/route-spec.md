@@ -1,6 +1,6 @@
 # Screen spec: Profile
 
-Sources: `analysis/sources/pretty/UBTConnect.App_Profile.Profile.mvc.js` ("P"; model :1-140, view :141-2817, controller
+Sources: `migration/sources/pretty/UBTConnect.App_Profile.Profile.mvc.js` ("P"; model :1-140, view :141-2817, controller
 :2818-5063), `…App_Profile.Profile_HouseholdPreview.mvc.js` ("HP"), `analysis/dom/{default,loading,offline}.html`,
 `analysis/calls.md`, fixture `UBTConnect/DataActionGetCountryInfo/01-c52c670a.json`.
 

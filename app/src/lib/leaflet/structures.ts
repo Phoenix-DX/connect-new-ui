@@ -1,4 +1,4 @@
-/* Structures of the Leaflet module (Leaflet.model.js, copy in migration/screens/BrowseDirectory/analysis/sources/raw/).
+/* Structures of the Leaflet module (Leaflet.model.js, copy in migration/sources/raw/).
    Field names exactly as in OutSystems, all optional (an omitted field has the OutSystems default, see lib/json.ts,
    which also holds the JSON names the JS nodes read). Decimal and Long Integer → number. */
 

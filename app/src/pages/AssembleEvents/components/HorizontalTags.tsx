@@ -19,7 +19,7 @@ export interface HorizontalTagsProps {
   onClickTag: (tagId: string) => void;
 }
 
-/** Reusable.HorizontalScrollTiles (p:analysis/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalScrollTiles
+/** Reusable.HorizontalScrollTiles (p:migration/sources/pretty/Connect2_LegacyShared.Reusable.HorizontalScrollTiles
     .mvc.js view): Root `horizontal-scroll-tiles` > `horizontal-scroll-tiles-content` > Content placeholder `tile-list`. */
 function HorizontalScrollTiles({ id, children }: { id: string; children: React.ReactNode }) {
   const scope = id.replace('$', '');

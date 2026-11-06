@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks.App_NotificationRefresh
 
 - Kind: shared; build screens using it: CountryList, HomeFeed, Notes, Updates_SingleList
-- Compiled source: `migration/screens/CountryList/analysis/sources/pretty/UBTConnect.App_Common_Blocks.App_NotificationRefresh.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.App_Common_Blocks.App_NotificationRefresh.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

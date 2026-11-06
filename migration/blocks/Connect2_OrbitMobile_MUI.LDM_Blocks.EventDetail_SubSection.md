@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection
 
 - Kind: shared; build screens using it: LDM_EventDetail_V2, LDM_MyEvents_V2
-- Compiled source: `migration/screens/LDM_MyEvents/analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

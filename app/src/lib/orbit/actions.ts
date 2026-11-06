@@ -185,7 +185,7 @@ export function getFormattedTime_FromDateTime(inDateTime: string): string {
 
 /* ---- Wave 8, batch O-A2, part b (Card_MemberInformation, MilestoneHeader, HostSurvey_PillItem, EventDetail_SubSection) ---- */
 
-/** Card_MemberInformation.mvc.js = migration/screens/MilestoneDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.
+/** Card_MemberInformation.mvc.js = migration/sources/pretty/Connect2_OrbitMobile_MUI.
     Orbit_Blocks.Card_MemberInformation.mvc.js (`CMI:<n>`). */
 
 /** GetCacheableSignedImageURL (Connect2_LegacyShared.controller.js:3692-, called at CMI:578-): the signed photo URL of

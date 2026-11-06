@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI
 
 - Kind: shared; build screens using it: BookmarksByGroup, ConnectShare, LegacyShareObject, MessageDetail, MessageList, MyBookmarks
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Private.PullToRefresh (queue: -)
 
 ## Inputs
@@ -508,4 +508,4 @@ define("Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc$view", ["OutSyst
                         uuid: "15",
                         alias: "1"
 ```
-(… 73 more lines in `migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js`)
+(… 73 more lines in `migration/sources/pretty/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js`)

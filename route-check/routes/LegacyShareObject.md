@@ -117,15 +117,15 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_ShareObjectTypeId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:74`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L74) |
-| `In_ObjectId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:78`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L78) |
-| `In_CustomTitle` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:82`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L82) |
+| `In_ShareObjectTypeId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:74`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L74) |
+| `In_ObjectId` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:78`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L78) |
+| `In_CustomTitle` | Text | yes | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:82`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L82) |
 
 Navigations with parameters: none.
 
@@ -149,7 +149,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `LegacyShareObject` | OnInitialize ([`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:352`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L352)) | `onInitialize` | 1. Execute Action: GetUserInformation_Wrapper ([`L279`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L279))<br>2. User_AgeVisibility = GetUserInformation_Wrapper.UserInformation.Directory_UserCurrent_Visibility.DisplayAge ([`L285`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L285)) |
+| `LegacyShareObject` | OnInitialize ([`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:352`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L352)) | `onInitialize` | 1. Execute Action: GetUserInformation_Wrapper ([`L279`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L279))<br>2. User_AgeVisibility = GetUserInformation_Wrapper.UserInformation.Directory_UserCurrent_Visibility.DisplayAge ([`L285`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L285)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -207,7 +207,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:377`](../../migration/screens/LegacyShareObject/analysis/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L377) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_Share.LegacyShareObject.mvc.js:377`](../../migration/sources/raw/UBTConnect.Legacy_Share.LegacyShareObject.mvc.js#L377) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

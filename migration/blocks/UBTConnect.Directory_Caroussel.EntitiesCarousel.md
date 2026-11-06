@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Caroussel.EntitiesCarousel
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Caroussel.EntitiesCarousel.mvc.js`
 - Child blocks: OutSystemsUI_2_23.Interaction.Carousel, UBTConnect.Directory_Caroussel.EntitiesCarousel_Element, UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator (queue: OutSystemsUI_2_23.Interaction.Carousel, UBTConnect.Directory_Caroussel.EntitiesCarousel_Element, UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator)
 
 ## Inputs

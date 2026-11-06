@@ -1,7 +1,7 @@
 # UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomText, UBTConnect_Utils.CW_CTA_PopUps.AddressPopup (queue: UBTConnect_Utils.CW_CTA_PopUps.AddressPopup)
 
 ## Inputs

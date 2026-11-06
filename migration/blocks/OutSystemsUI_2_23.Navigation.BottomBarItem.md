@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Navigation.BottomBarItem
 
 - Kind: osui; build screens using it: BookmarksByGroup, BrowseCountries, BrowseDirectory, CountryDetails, CountryList, HomeFeed, HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Menu, MessageDetail, MessageList, MyBookmarks, Notes, Notifications, OneSchoolGlobalDetails, Search, Updates_SingleList
-- Compiled source: `migration/screens/BookmarksByGroup/analysis/sources/pretty/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
+- Compiled source: `migration/sources/pretty/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

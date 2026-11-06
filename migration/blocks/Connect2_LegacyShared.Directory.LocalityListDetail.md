@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Directory.LocalityListDetail
 
 - Kind: shared; build screens using it: AssembleEvents, Assemble_BrowseByCountry
-- Compiled source: `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs
@@ -731,4 +731,4 @@ define("Connect2_LegacyShared.Directory.LocalityListDetail.mvc$view", ["OutSyste
                                             classes: "OSInline"
                                         },
 ```
-(… 67 more lines in `migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`)
+(… 67 more lines in `migration/sources/pretty/Connect2_LegacyShared.Directory.LocalityListDetail.mvc.js`)

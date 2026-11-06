@@ -22,6 +22,27 @@ History: until 2026-11-05 the scripts lived in `.claude/skills/<skill>/scripts/`
 - the TST observation scripts `shell_observe.cjs`, `unlock_target.cjs`, `css_observe.cjs`, and `mcp/graph.py`;
 - the clarify probes `migration/clarify/tools/probe_*.cjs`, `capture_followup.cjs`, `drift_table.py`, `extract_sources.py`.
 
+## Compiled sources store (`common/sources_store.py`)
+
+The compiled TST files and the styles of a capture live once in `migration/sources/`: `raw/`, `pretty/`, `styles/`.
+`survey/` holds the copies of the live survey that the route check needs for a route without a capture.
+`migration/screens/<S>/analysis/manifest.json` names the files of a route: `{"raw": {name: path}, "pretty": {...},
+"styles": {"bundle.css": path, "assets.json": path}}`.
+
+Rules: a store file is never overwritten. The same sha1 is a no-op. Another content under a used name gets
+`<stem>@<sha8><ext>`; the first version keeps the plain name. The `styles/` files are always suffixed.
+
+Writer: `analyze_capture.py`. Readers through the manifests: `contract_gen.py`, `static_entities.py`, `css_sets.py`,
+`block_pack.py`, `context_pack.py` and the route check. A file no capture holds comes from the live survey
+(`survey/`; `check` and `gc` leave that folder alone). Before 2026-11-05 every route kept its own copies (913 MB);
+the store holds 125 MB.
+
+```
+python3 tools/common/sources_store.py check        # every manifest entry exists, every store file is referenced
+python3 tools/common/sources_store.py gc           # delete the store files no manifest references (after route.py reset --recapture)
+python3 tools/common/sources_store.py migrate [--keep-copies]   # one-off: build the store from per-route copies
+```
+
 ## Parity and demo (`parity/`)
 
 The scripts below were saved from the 2026-10-16/17 session for later sessions. They only chain the pipeline's commands.

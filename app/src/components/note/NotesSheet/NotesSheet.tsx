@@ -38,7 +38,7 @@ export interface NotesSheetProps {
 }
 
 /** The "Note" bottom sheet: the notes with edit / delete and the AddNote footer in a `notes-sheet-footer` container
-    (TST code of 2026-10-27: migration/screens/HouseholdDetails/analysis/sources/pretty/
+    (TST code of 2026-10-27: migration/sources/pretty/
     UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js; its stylesheet css/UBTConnect_Utils.CW_Notes.NotesSheet.css is linked
     per route, app/routes.css.generated.ts). Not ported: the AddNote inputs In_Note / IsSubmitting (NoteText,
     IsSubmittingNote), README. */

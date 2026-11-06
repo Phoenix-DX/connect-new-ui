@@ -145,7 +145,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -171,7 +171,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `TermsAndPoliciesMenu` | OnInitialize ([`UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js:503`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L503)) | `screenEvent_OnInitialize` | 1. JavaScript: IsViewRestoredFromCache ([`L324`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L324))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L331`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L331))<br>3. If isViewRestoredFromCache.isRestoredFromCache ([`L332`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L332))<br>4. Else ([`L334`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L334))<br>5. Execute Action: ListClear ([`L336`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L336))<br>6. Execute Action: ListAppend ([`L339`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L339))<br>7. Execute Action: ListAppend2 ([`L347`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L347)) |
+| `TermsAndPoliciesMenu` | OnInitialize ([`UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js:503`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L503)) | `screenEvent_OnInitialize` | 1. JavaScript: IsViewRestoredFromCache ([`L324`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L324))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L331`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L331))<br>3. If isViewRestoredFromCache.isRestoredFromCache ([`L332`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L332))<br>4. Else ([`L334`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L334))<br>5. Execute Action: ListClear ([`L336`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L336))<br>6. Execute Action: ListAppend ([`L339`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L339))<br>7. Execute Action: ListAppend2 ([`L347`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L347)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -230,7 +230,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js:528`](../../migration/screens/TermsAndPoliciesMenu/analysis/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L528) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js:528`](../../migration/sources/raw/UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js#L528) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.

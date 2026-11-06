@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Household_Blocks.Household_GalleryCard
 
 - Kind: shared; build screens using it: HouseholdCarousel, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js`
 - Child blocks: UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading, UBTConnectLibrary.ConnectPatterns.ImageCard__Content, UBTConnect_Utils.CW_Image.UBT_LazyImage (queue: UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading, UBTConnectLibrary.ConnectPatterns.ImageCard__Content)
 
 ## Inputs

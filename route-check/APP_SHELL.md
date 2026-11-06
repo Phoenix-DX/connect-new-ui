@@ -78,7 +78,7 @@ The tool `tools/route-check/check_route.py` merges it from the 68 checked routes
 
 | Check | Result |
 |---|---|
-| App shell server calls on TST | 30: React makes 28, **0 missing** |
+| App shell server calls on TST | 32: React makes 30, **0 missing** |
 | App shell event bindings | OutSystems: 10 diagrams. React: 8 diagrams |
 | React app shell calls that TST does not make on a route | 0 |
 
@@ -94,197 +94,209 @@ flowchart LR
       o3["Connect2_LegacyShared"]
       o4["FeedBlock_Updates"]
       o5["Menu"]
-      o6["Notes"]
-      o7["Notifications"]
-      o8["Photobook_Options_Left"]
-      o9["Policy_Custom_AcceptPendingPolicies"]
-      o10["ScreenBlock_Search"]
-      o11["ShareSheet"]
-      o12["UBTConnect"]
-      o13["UBTConnect_Utils"]
-      o14["UBT_AppManager"]
-      o15["Updates_SingleList"]
+      o6["NoteListActions"]
+      o7["Notes"]
+      o8["Notifications"]
+      o9["Photobook_Options_Left"]
+      o10["Policy_Custom_AcceptPendingPolicies"]
+      o11["ScreenBlock_Search"]
+      o12["ShareSheet"]
+      o13["UBTConnect"]
+      o14["UBTConnect_Utils"]
+      o15["UBT_AppManager"]
+      o16["Updates_SingleList"]
     end
   end
   subgraph EP["Server calls (TST)"]
-    e16["DataActionGetCacheInfo"]
-    e17["ActionAcceptPolicies"]
-    e18["ActionGetAllApplicationEvents"]
-    e19["ActionAppManager_SynchAppContext"]
-    e20["ActionCS_ShareObject"]
-    e21["ActionGetUserInformation"]
-    e22["ActionGetUserInformation"]
-    e23["ActionGetCountriesBySubscription"]
-    e24["ActionAppManager_AfterInitialize"]
-    e25["ActionSync_Info_GetMain"]
-    e26["ActionGetNumberUnreadMessages"]
-    e27["ServiceAPIFetchData_CacheableMapEntities"]
-    e28["ServiceAPIFetchData_CacheableHouseholds"]
-    e29["DataActionGetBookmarks"]
-    e30["ActionGet_BookmarkPills_ByBookmarkCategoryIds"]
-    e31["ActionGetSignedImagesInBulk"]
-    e32["ActionCS_CreateShareProfileLink"]
-    e33["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
-    e34["ActionAppManager_Logout"]
-    e35["ActionRequestPhotoUpdate"]
-    e36["ActionGetSignedImagesInBulk"]
-    e37["DataActionGetNotes"]
-    e38["ActionGet_NotePills_ByNoteCategoryIds"]
-    e39["DataActionFetchNotifications"]
-    e40["DataActionGetHouseholdCaption"]
-    e41["DataActionGet_FilteredRecentClickedResults"]
-    e42["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
-    e43["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
-    e44["ServiceAPIAction_UI_UpdateItem_MarkAllAsRead"]
-    e45["DataActionFetchUpdates"]
+    e17["DataActionGetCacheInfo"]
+    e18["ActionAcceptPolicies"]
+    e19["ActionGetAllApplicationEvents"]
+    e20["ActionAppManager_SynchAppContext"]
+    e21["ServiceAPIUpdateNote"]
+    e22["ServiceAPIDeleteNoteByNoteId"]
+    e23["ActionCS_ShareObject"]
+    e24["ActionGetUserInformation"]
+    e25["ActionGetUserInformation"]
+    e26["ActionGetCountriesBySubscription"]
+    e27["ActionAppManager_AfterInitialize"]
+    e28["ActionSync_Info_GetMain"]
+    e29["ActionGetNumberUnreadMessages"]
+    e30["ServiceAPIFetchData_CacheableMapEntities"]
+    e31["ServiceAPIFetchData_CacheableHouseholds"]
+    e32["DataActionGetBookmarks"]
+    e33["ActionGet_BookmarkPills_ByBookmarkCategoryIds"]
+    e34["ActionGetSignedImagesInBulk"]
+    e35["ActionCS_CreateShareProfileLink"]
+    e36["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
+    e37["ActionRequestPhotoUpdate"]
+    e38["ActionAppManager_Logout"]
+    e39["ActionGetSignedImagesInBulk"]
+    e40["DataActionGetNotes"]
+    e41["ActionGet_NotePills_ByNoteCategoryIds"]
+    e42["DataActionFetchNotifications"]
+    e43["DataActionGetHouseholdCaption"]
+    e44["DataActionGet_FilteredRecentClickedResults"]
+    e45["ServiceAPIAction_UI_UpdateItem_MarkAsRead"]
+    e46["ServiceAPIAction_UI_UpdateItem_MarkAllAsRead"]
+    e47["DataActionFetchUpdates"]
+    e48["ServiceAPIGet_UI_UpdateItems_UnreadCount_All"]
   end
   subgraph RE["React actions"]
     subgraph RE_shell["App shell"]
-      r46["afterInitialize()"]
-      r47["appManagerLogout()"]
-      r48["fetchAppContext()"]
-      r49["fetchCacheableHouseholds()"]
-      r50["fetchCacheableMapEntities()"]
-      r51["fetchNumberUnreadMessages()"]
-      r52["fetchPolicies()"]
-      r53["fetchSyncInfoMain()"]
-      r54["fetchUserInformation()"]
+      r49["afterInitialize()"]
+      r50["appManagerLogout()"]
+      r51["fetchAppContext()"]
+      r52["fetchCacheableHouseholds()"]
+      r53["fetchCacheableMapEntities()"]
+      r54["fetchNumberUnreadMessages()"]
+      r55["fetchPolicies()"]
+      r56["fetchSyncInfoMain()"]
+      r57["fetchUserInformation()"]
     end
     subgraph RE_page["Screen"]
-      r55["acceptPolicies()"]
-      r56["cache_SignedImageURL_GetCallback()"]
-      r57["csShareObject()"]
-      r58["fetchBookmarkCards()"]
-      r59["fetchBookmarkPills()"]
-      r60["fetchHouseholdCaption()"]
-      r61["fetchLegacySignedImagesInBulk()"]
-      r62["fetchNoteCards()"]
-      r63["fetchNotePills()"]
-      r64["fetchNotifications()"]
-      r65["fetchRegionSubscribedCountries()"]
-      r66["fetchUnreadUpdateItemsCount()"]
-      r67["fetchUpdatesList()"]
-      r68["getCacheableUserInfo()"]
-      r69["getFilteredRecentClickedResults()"]
-      r70["markAllUpdateItemsAsRead()"]
-      r71["markUpdateItemAsRead()"]
-      r72["requestPhotoUpdate()"]
+      r58["acceptPolicies()"]
+      r59["cache_SignedImageURL_GetCallback()"]
+      r60["csShareObject()"]
+      r61["deleteNote()"]
+      r62["fetchBookmarkCards()"]
+      r63["fetchBookmarkPills()"]
+      r64["fetchHouseholdCaption()"]
+      r65["fetchLegacySignedImagesInBulk()"]
+      r66["fetchNoteCards()"]
+      r67["fetchNotePills()"]
+      r68["fetchNotifications()"]
+      r69["fetchRegionSubscribedCountries()"]
+      r70["fetchUnreadUpdateItemsCount()"]
+      r71["fetchUpdatesList()"]
+      r72["getCacheableUserInfo()"]
+      r73["getFilteredRecentClickedResults()"]
+      r74["markAllUpdateItemsAsRead()"]
+      r75["markUpdateItemAsRead()"]
+      r76["requestPhotoUpdate()"]
+      r77["updateNote()"]
     end
   end
   subgraph RC["React components"]
-    c73["AcceptPendingPolicies"]
-    c74["AccommodationHost"]
-    c75["AppFrame"]
-    c76["AssembleFilterSheetBlock"]
-    c77["AssembleLocalityFilter"]
-    c78["Bookmarks"]
-    c79["BottomBar"]
-    c80["CommonUiLayout"]
-    c81["EntityLazyImage"]
-    c82["Menu"]
-    c83["MilestoneBlock"]
-    c84["Notes"]
-    c85["Notifications"]
-    c86["Photobook_Options_Left"]
-    c87["Search"]
-    c88["ShareSheetContainer"]
-    c89["Updates_SingleList"]
+    c78["AcceptPendingPolicies"]
+    c79["AccommodationHost"]
+    c80["AppFrame"]
+    c81["AssembleFilterSheetBlock"]
+    c82["AssembleLocalityFilter"]
+    c83["Bookmarks"]
+    c84["BottomBar"]
+    c85["CommonUiLayout"]
+    c86["EntityLazyImage"]
+    c87["Menu"]
+    c88["MilestoneBlock"]
+    c89["NoteListActionsContainer"]
+    c90["Notes"]
+    c91["Notifications"]
+    c92["Photobook_Options_Left"]
+    c93["Search"]
+    c94["ShareSheetContainer"]
+    c95["Updates_SingleList"]
   end
+  r55 --- c85
+  r57 --- c85
+  r49 --- c80
+  r50 --- c80
+  r51 --- c80
   r52 --- c80
+  r53 --- c80
   r54 --- c80
-  r46 --- c75
-  r47 --- c75
-  r48 --- c75
-  r49 --- c75
-  r50 --- c75
-  r51 --- c75
-  r52 --- c75
-  r53 --- c75
-  r55 --- c73
-  r48 --- c73
-  r57 --- c88
-  r54 --- c77
-  r68 --- c77
-  r65 --- c76
-  r68 --- c76
+  r55 --- c80
+  r56 --- c80
   r58 --- c78
-  r59 --- c78
-  r56 --- c81
-  r66 --- c89
-  r67 --- c89
-  r70 --- c89
-  r71 --- c89
-  r47 --- c82
+  r51 --- c78
+  r61 --- c89
+  r77 --- c89
+  r60 --- c94
+  r57 --- c82
   r72 --- c82
-  r61 --- c83
-  r61 --- c74
-  r62 --- c84
-  r63 --- c84
-  r64 --- c85
-  r60 --- c86
-  r69 --- c87
-  r66 --- c79
-  o2 --> e16
-  o9 --> e17
-  o3 --> e18
-  o3 --> e21
-  o3 --> e23
+  r69 --- c81
+  r72 --- c81
+  r62 --- c83
+  r63 --- c83
+  r59 --- c86
+  r70 --- c95
+  r71 --- c95
+  r74 --- c95
+  r75 --- c95
+  r50 --- c87
+  r76 --- c87
+  r65 --- c88
+  r65 --- c79
+  r66 --- c90
+  r67 --- c90
+  r68 --- c91
+  r64 --- c92
+  r73 --- c93
+  r70 --- c84
+  o2 --> e17
+  o10 --> e18
+  o3 --> e19
+  o3 --> e24
   o3 --> e26
-  o3 --> e36
-  o14 --> e19
-  o14 --> e24
+  o3 --> e29
+  o3 --> e39
+  o15 --> e20
+  o15 --> e27
+  o15 --> e38
+  o6 --> e21
+  o6 --> e22
+  o12 --> e23
+  o14 --> e25
   o14 --> e34
-  o11 --> e20
-  o13 --> e22
+  o14 --> e35
+  o13 --> e28
+  o13 --> e30
   o13 --> e31
-  o13 --> e32
-  o12 --> e25
-  o12 --> e27
-  o12 --> e28
-  o12 --> e42
-  o1 --> e29
-  o0 --> e30
-  o0 --> e38
-  o4 --> e33
-  o5 --> e35
-  o6 --> e37
-  o7 --> e39
-  o8 --> e40
-  o10 --> e41
-  o15 --> e43
-  o15 --> e44
-  o15 --> e45
-  e16 --- r52
+  o13 --> e48
+  o1 --> e32
+  o0 --> e33
+  o0 --> e41
+  o4 --> e36
+  o5 --> e37
+  o7 --> e40
+  o8 --> e42
+  o9 --> e43
+  o11 --> e44
+  o16 --> e45
+  o16 --> e46
+  o16 --> e47
   e17 --- r55
-  e19 --- r48
-  e20 --- r57
-  e21 --- r68
-  e22 --- r54
-  e23 --- r65
-  e24 --- r46
-  e25 --- r53
-  e26 --- r51
-  e27 --- r50
-  e28 --- r49
-  e29 --- r58
-  e30 --- r59
-  e31 --- r56
-  e33 --- r71
-  e34 --- r47
-  e35 --- r72
-  e36 --- r61
-  e37 --- r62
-  e38 --- r63
-  e39 --- r64
-  e40 --- r60
-  e41 --- r69
-  e42 --- r66
-  e43 --- r71
-  e44 --- r70
-  e45 --- r67
+  e18 --- r58
+  e20 --- r51
+  e21 --- r77
+  e22 --- r61
+  e23 --- r60
+  e24 --- r72
+  e25 --- r57
+  e26 --- r69
+  e27 --- r49
+  e28 --- r56
+  e29 --- r54
+  e30 --- r53
+  e31 --- r52
+  e32 --- r62
+  e33 --- r63
+  e34 --- r59
+  e36 --- r75
+  e37 --- r76
+  e38 --- r50
+  e39 --- r65
+  e40 --- r66
+  e41 --- r67
+  e42 --- r68
+  e43 --- r64
+  e44 --- r73
+  e45 --- r75
+  e46 --- r74
+  e47 --- r71
+  e48 --- r70
   classDef missing fill:#fde2e1,stroke:#c0392b,color:#7b241c
   classDef ok fill:#e3f4e8,stroke:#2e7d4f,color:#1d4d31
-  class e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45 ok
+  class e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45,e46,e47,e48 ok
 ```
 
 ## 3. User actions
@@ -577,27 +589,29 @@ All columns come from the code, without interpretation:
 | 7 | `Connect2_LegacyShared/ActionGetUserInformation` | server action | `Connect2_LegacyShared` | Connect2_LegacyShared.getUserInformation → server GetUserInformation | yes | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../app/src/lib/legacyShared/actions.ts#L298) (page) | `AssembleLocalityFilter → getCacheableUserInfo`<br>[`components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx`](../app/src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx)<br>`AssembleFilterSheetBlock → useAssembleFilterSheet → hasAccessToRegion → getCacheableUserInfo`<br>[`pages/AssembleEvents/AssembleEventsPage.tsx`](../app/src/pages/AssembleEvents/AssembleEventsPage.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md) |
 | 8 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in CustomContainer → event clicked of CustomContainer → event onClick of Update_ListItem → FeedBlock_Updates.event_ListItemOnClick → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented | [HomeFeed](routes/HomeFeed.md) |
 | 9 | `UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate` | server action | `Menu` | onClick in CustomContainer → event clicked of CustomContainer → event onClick_MenuOption of Menu_List → Menu.onClick_MenuOption → server RequestPhotoUpdate | no | `requestPhotoUpdate()` [`api/member/repository.ts:46`](../app/src/api/member/repository.ts#L46) (page) | `Menu → useMenu → requestPhotoUpdate`<br>[`pages/Menu/MenuPage.tsx`](../app/src/pages/Menu/MenuPage.tsx) | implemented | [Menu](routes/Menu.md) |
-| 10 | `UBTConnect/Notes/Notes/DataActionGetNotes` | data action | `Notes` | onClick in CustomContainer → event clicked of CustomContainer → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes<br>onClick in Icon → event click of Icon → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes | yes | `fetchNoteCards()` [`api/note/repository.ts:31`](../app/src/api/note/repository.ts#L31) (page) | `Notes → useNotes → fetchNoteCards`<br>[`pages/Notes/NotesPage.tsx`](../app/src/pages/Notes/NotesPage.tsx) | implemented | [Notes](routes/Notes.md) |
-| 11 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onClick in Icon → event click of Icon → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../app/src/pages/Notifications/NotificationsPage.tsx) | implemented | [Notifications](routes/Notifications.md) |
-| 12 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | onClick in CustomContainer → event clicked of CustomContainer → Photobook_Options_Left.handler_ClickedInfo → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:81`](../app/src/api/household/repository.ts#L81) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented | [Photobook](routes/Photobook.md) |
-| 13 | `UBTConnect/App_Policies/Policy_Custom_AcceptPendingPolicies/ActionAcceptPolicies` | server action | `Policy_Custom_AcceptPendingPolicies` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → Policy_Custom_AcceptPendingPolicies.continueOnClick → server AcceptPolicies | no capture | `acceptPolicies()` [`api/policy/repository.ts:29`](../app/src/api/policy/repository.ts#L29) (page) | `AcceptPendingPolicies → usePendingPoliciesForm → acceptPolicies`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md) |
-| 14 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | data action | `ScreenBlock_Search` | onClick in Icon → event click of Icon → … → ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults | yes | `getFilteredRecentClickedResults()` [`api/search/repository.ts:59`](../app/src/api/search/repository.ts#L59) (page) | `Search → useSearch → getFilteredRecentClickedResults`<br>[`pages/Search/SearchPage.tsx`](../app/src/pages/Search/SearchPage.tsx) | implemented | [Search](routes/Search.md) |
-| 15 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in Button → event event_OnClick of Button → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented | [AssembleDetail](routes/AssembleDetail.md), [FeedItemDetail](routes/FeedItemDetail.md) |
-| 16 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:44`](../app/src/api/app/repository.ts#L44) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
-| 17 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:56`](../app/src/api/app/repository.ts#L56) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
-| 18 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:50`](../app/src/api/app/repository.ts#L50) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
-| 19 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | onClick in CustomText → event clicked of CustomText → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in CustomContainer → event clicked of CustomContainer → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | yes | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`Updates_SingleList → useUpdatesSingleList → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
-| 20 | `UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds` | server action | `UBTConnect_Bookmarks_MCS` | no chain in the TST code; TST made the call in the capture | yes | `fetchBookmarkPills()` [`api/bookmark/bookmarkCards.ts:115`](../app/src/api/bookmark/bookmarkCards.ts#L115) (page) | `Bookmarks → useBookmarks → get_LocalDynamicBookmarkPills → fetchBookmarkPills`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented | [Bookmarks](routes/Bookmarks.md) |
-| 21 | `UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds` | server action | `UBTConnect_Notes_MCS` | no chain in the TST code; TST made the call in the capture | yes | `fetchNotePills()` [`api/note/repository.ts:38`](../app/src/api/note/repository.ts#L38) (page) | `Notes → useNotes → getNotes_Pills → fetchNotePills`<br>[`pages/Notes/NotesPage.tsx`](../app/src/pages/Notes/NotesPage.tsx) | implemented | [Notes](routes/Notes.md) |
-| 22 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) | [FeedItemDetail](routes/FeedItemDetail.md) |
-| 23 | `UBTConnect_Utils/ActionGetSignedImagesInBulk` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk | yes | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../app/src/lib/ubtConnectUtils/actions.ts#L131) (page) | `EntityLazyImage → cache_SignedImageURL_Get → cache_SignedImageURL_GetCallback`<br>[`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | implemented | [CountryDetails](routes/CountryDetails.md), [HouseholdCarousel](routes/HouseholdCarousel.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [SupperMeeting_Carousel](routes/SupperMeeting_Carousel.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md) |
-| 24 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../app/src/api/member/userInformation.ts#L6) (shell + page) | `AssembleLocalityFilter → hasAccessToRegion → … → fetchUserInformation`<br>[`components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx`](../app/src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx)<br>`CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
-| 25 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBT_AppManager` | UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize<br>UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:38`](../app/src/api/app/repository.ts#L38) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
-| 26 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | `appManagerLogout()` [`api/app/repository.ts:32`](../app/src/api/app/repository.ts#L32) (shell + page) | `Menu → useMenu → … → appManagerLogout`<br>[`pages/Menu/MenuPage.tsx`](../app/src/pages/Menu/MenuPage.tsx)<br>`AppFrame → AppStart → … → appManagerLogout`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [Menu](routes/Menu.md) |
-| 27 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>(+4 more chains) | yes | `fetchAppContext()` [`api/app/repository.ts:24`](../app/src/api/app/repository.ts#L24) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx)<br>`AcceptPendingPolicies → useAcceptPendingPolicies → … → fetchAppContext`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md), [AssembleDetail](routes/AssembleDetail.md), [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [EmailContact](routes/EmailContact.md), [EmailTarget](routes/EmailTarget.md), [EventBooklet](routes/EventBooklet.md), [EventDetail](routes/EventDetail.md), [FeedItemDetail](routes/FeedItemDetail.md), [GuestArrangements](routes/GuestArrangements.md), [HelpersDetail](routes/HelpersDetail.md), [HomeFeed](routes/HomeFeed.md), [HostSurvey](routes/HostSurvey.md), [HouseholdCarousel](routes/HouseholdCarousel.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_Email_V2](routes/LDM_Email_V2.md), [LDM_EventDetail_V2](routes/LDM_EventDetail_V2.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MilestoneDetail](routes/MilestoneDetail.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalCarousel](routes/OneSchoolGlobalCarousel.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminEventDetail](routes/OrbitAdminEventDetail.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitAdminMilestoneDetail](routes/OrbitAdminMilestoneDetail.md), [OrbitAdminMilestones](routes/OrbitAdminMilestones.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [PassportScan](routes/PassportScan.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [QRCodeGenerate](routes/QRCodeGenerate.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Carousel](routes/SupperMeeting_Carousel.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [TransportDetail](routes/TransportDetail.md), [Updates_SingleList](routes/Updates_SingleList.md), [ViewDocuments](routes/ViewDocuments.md) |
-| 28 | `UBTConnect/Directory_Updates/Updates_SingleList/DataActionFetchUpdates` | data action | `Updates_SingleList` | onClick in Icon → event click of Icon → … → Updates_SingleList.refreshUpdates → Updates_SingleList.DataActionFetchUpdates<br>onClick in CustomText → event clicked of CustomText → … → Updates_SingleList.refreshUpdates → Updates_SingleList.DataActionFetchUpdates | yes | `fetchUpdatesList()` [`api/update/repository.ts:32`](../app/src/api/update/repository.ts#L32) (page) | `Updates_SingleList → useUpdatesSingleList → fetchUpdatesList`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
-| 29 | `UBTConnect/Directory_Updates/Updates_SingleList/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead` | service action | `Updates_SingleList` | onClick in CustomText → event clicked of CustomText → event click_MarkAll of UpdateItem_Header → Updates_SingleList.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead | no | `markAllUpdateItemsAsRead()` [`api/update/repository.ts:58`](../app/src/api/update/repository.ts#L58) (page) | `Updates_SingleList → useUpdatesSingleList → markAllUpdateItemsAsRead`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
-| 30 | `UBTConnect/Directory_Updates/Updates_SingleList/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `Updates_SingleList` | onClick in CustomContainer → event clicked of CustomContainer → … → Updates_SingleList.handler_MarkAsRead → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../app/src/api/update/repository.ts#L47) (page) | `Updates_SingleList → useUpdatesSingleList → markUpdateItemAsRead`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
+| 10 | `UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIDeleteNoteByNoteId` | service action | `NoteListActions` | onClick in Button → event event_OnClick of Button → … → NoteListActions.handler_OnDeleteNoteRequested → server DeleteNoteByNoteId | no capture | `deleteNote()` [`api/note/repository.ts:73`](../app/src/api/note/repository.ts#L73) (page) | `NoteListActionsContainer → deleteNote`<br>[`containers/NoteListActions/NoteListActionsContainer.tsx`](../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | implemented | [AssembleDetail](routes/AssembleDetail.md) |
+| 11 | `UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIUpdateNote` | service action | `NoteListActions` | onClick in Button → event event_OnClick of Button → … → NoteListActions.handler_OnSaveEditedNote → server UpdateNote | no capture | `updateNote()` [`api/note/repository.ts:66`](../app/src/api/note/repository.ts#L66) (page) | `NoteListActionsContainer → updateNote`<br>[`containers/NoteListActions/NoteListActionsContainer.tsx`](../app/src/containers/NoteListActions/NoteListActionsContainer.tsx) | implemented | [AssembleDetail](routes/AssembleDetail.md) |
+| 12 | `UBTConnect/Notes/Notes/DataActionGetNotes` | data action | `Notes` | onClick in CustomContainer → event clicked of CustomContainer → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes<br>onClick in Icon → event click of Icon → … → Notes.refresh_GetNotes → Notes.DataActionGetNotes | yes | `fetchNoteCards()` [`api/note/repository.ts:31`](../app/src/api/note/repository.ts#L31) (page) | `Notes → useNotes → fetchNoteCards`<br>[`pages/Notes/NotesPage.tsx`](../app/src/pages/Notes/NotesPage.tsx) | implemented | [Notes](routes/Notes.md) |
+| 13 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onClick in Icon → event click of Icon → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../app/src/pages/Notifications/NotificationsPage.tsx) | implemented | [Notifications](routes/Notifications.md) |
+| 14 | `UBTConnect/Directory_Photobook/Photobook_Options_Left/DataActionGetHouseholdCaption` | data action | `Photobook_Options_Left` | onClick in CustomContainer → event clicked of CustomContainer → Photobook_Options_Left.handler_ClickedInfo → Photobook_Options_Left.DataActionGetHouseholdCaption | no | `fetchHouseholdCaption()` [`api/household/repository.ts:81`](../app/src/api/household/repository.ts#L81) (page) | `Photobook_Options_Left → useHouseholdCaption → fetchHouseholdCaption`<br>[`pages/Photobook/components/Photobook_Options_Left.tsx`](../app/src/pages/Photobook/components/Photobook_Options_Left.tsx) | implemented | [Photobook](routes/Photobook.md) |
+| 15 | `UBTConnect/App_Policies/Policy_Custom_AcceptPendingPolicies/ActionAcceptPolicies` | server action | `Policy_Custom_AcceptPendingPolicies` | onClick in Button → event event_OnClick of Button → event buttonOnClick of Button → Policy_Custom_AcceptPendingPolicies.continueOnClick → server AcceptPolicies | no capture | `acceptPolicies()` [`api/policy/repository.ts:29`](../app/src/api/policy/repository.ts#L29) (page) | `AcceptPendingPolicies → usePendingPoliciesForm → acceptPolicies`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md) |
+| 16 | `UBTConnect/Directory_Search/ScreenBlock_Search/DataActionGet_FilteredRecentClickedResults` | data action | `ScreenBlock_Search` | onClick in Icon → event click of Icon → … → ScreenBlock_Search.get_RecentClickedResultsOnAfterFetch → ScreenBlock_Search.DataActionGet_FilteredRecentClickedResults | yes | `getFilteredRecentClickedResults()` [`api/search/repository.ts:59`](../app/src/api/search/repository.ts#L59) (page) | `Search → useSearch → getFilteredRecentClickedResults`<br>[`pages/Search/SearchPage.tsx`](../app/src/pages/Search/SearchPage.tsx) | implemented | [Search](routes/Search.md) |
+| 17 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in Button → event event_OnClick of Button → … → ShareSheet.action_SubmitShare → server CS_ShareObject | no capture | `csShareObject()` [`api/share/shareSheet.ts:25`](../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented | [AssembleDetail](routes/AssembleDetail.md), [FeedItemDetail](routes/FeedItemDetail.md) |
+| 18 | `UBTConnect/ActionSync_Info_GetMain` | server action | `UBTConnect` | UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain<br>UBTConnect.onApplicationReady → UBTConnect.sync_Info_Main → server Sync_Info_GetMain | yes | `fetchSyncInfoMain()` [`api/app/repository.ts:44`](../app/src/api/app/repository.ts#L44) (shell) | `AppFrame → AppStart → … → fetchSyncInfoMain`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
+| 19 | `UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapHouseholds → server FetchData_CacheableHouseholds | yes | `fetchCacheableHouseholds()` [`api/app/repository.ts:56`](../app/src/api/app/repository.ts#L56) (shell) | `AppFrame → AppStart → … → fetchCacheableHouseholds`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
+| 20 | `UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | service action | `UBTConnect` | UBTConnect.get_Cacheable_MapEntities → server FetchData_CacheableMapEntities | yes | `fetchCacheableMapEntities()` [`api/app/repository.ts:50`](../app/src/api/app/repository.ts#L50) (shell) | `AppFrame → AppStart → … → fetchCacheableMapEntities`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
+| 21 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | onClick in CustomText → event clicked of CustomText → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in CustomContainer → event clicked of CustomContainer → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | yes | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`Updates_SingleList → useUpdatesSingleList → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
+| 22 | `UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds` | server action | `UBTConnect_Bookmarks_MCS` | no chain in the TST code; TST made the call in the capture | yes | `fetchBookmarkPills()` [`api/bookmark/bookmarkCards.ts:115`](../app/src/api/bookmark/bookmarkCards.ts#L115) (page) | `Bookmarks → useBookmarks → get_LocalDynamicBookmarkPills → fetchBookmarkPills`<br>[`pages/Bookmarks/BookmarksPage.tsx`](../app/src/pages/Bookmarks/BookmarksPage.tsx) | implemented | [Bookmarks](routes/Bookmarks.md) |
+| 23 | `UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds` | server action | `UBTConnect_Notes_MCS` | no chain in the TST code; TST made the call in the capture | yes | `fetchNotePills()` [`api/note/repository.ts:38`](../app/src/api/note/repository.ts#L38) (page) | `Notes → useNotes → getNotes_Pills → fetchNotePills`<br>[`pages/Notes/NotesPage.tsx`](../app/src/pages/Notes/NotesPage.tsx) | implemented | [Notes](routes/Notes.md) |
+| 24 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | onClick in Button → event event_OnClick of Button → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no capture | – | – | not applicable (nativeOnly) | [FeedItemDetail](routes/FeedItemDetail.md) |
+| 25 | `UBTConnect_Utils/ActionGetSignedImagesInBulk` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk | yes | `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../app/src/lib/ubtConnectUtils/actions.ts#L131) (page) | `EntityLazyImage → cache_SignedImageURL_Get → cache_SignedImageURL_GetCallback`<br>[`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | implemented | [CountryDetails](routes/CountryDetails.md), [HouseholdCarousel](routes/HouseholdCarousel.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [SupperMeeting_Carousel](routes/SupperMeeting_Carousel.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md) |
+| 26 | `UBTConnect_Utils/ActionGetUserInformation` | server action | `UBTConnect_Utils` | UBTConnect_Utils.cache_UserInfo_GetCallback → server GetUserInformation | yes | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../app/src/api/member/userInformation.ts#L6) (shell + page) | `AssembleLocalityFilter → hasAccessToRegion → … → fetchUserInformation`<br>[`components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx`](../app/src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.tsx)<br>`CommonUiLayout → DialogAccessRestrictedAction → … → fetchUserInformation`<br>[`components/layout/CommonUiLayout/CommonUiLayout.tsx`](../app/src/components/layout/CommonUiLayout/CommonUiLayout.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsMenu](routes/ContactUsMenu.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md) |
+| 27 | `UBT_AppManager/ActionAppManager_AfterInitialize` | server action | `UBT_AppManager` | UBT_AppManager.appManager_OnAppReady_Web → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize<br>UBTConnect.onApplicationReady → UBT_AppManager_Mobile.appManager_Mobile_OnAppReady → UBT_AppManager.appManager_InitializeWebComponents → UBT_AppManager.appManager_AfterInitialize → server AppManager_AfterInitialize | yes | `afterInitialize()` [`api/app/repository.ts:38`](../app/src/api/app/repository.ts#L38) (shell) | `AppFrame → AppStart → … → afterInitialize`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [HomeFeed](routes/HomeFeed.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [Updates_SingleList](routes/Updates_SingleList.md) |
+| 28 | `UBT_AppManager/ActionAppManager_Logout` | server action | `UBT_AppManager` | onClick in CustomContainer → event clicked of CustomContainer → … → UBT_AppManager.appManager_Logout → server AppManager_Logout | no | `appManagerLogout()` [`api/app/repository.ts:32`](../app/src/api/app/repository.ts#L32) (shell + page) | `Menu → useMenu → … → appManagerLogout`<br>[`pages/Menu/MenuPage.tsx`](../app/src/pages/Menu/MenuPage.tsx)<br>`AppFrame → AppStart → … → appManagerLogout`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx) | implemented | [Menu](routes/Menu.md) |
+| 29 | `UBT_AppManager/ActionAppManager_SynchAppContext` | server action | `UBT_AppManager` | HandleImageLoadError.applicationEvent_ImageError → Connect2_LegacyShared.zOnApplicationEvent_Wrapper → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>UBT_AppManager.inAppBrowser_BeforeLoadCallback → UBT_AppManager.appManager_HandleCallback → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext<br>(+4 more chains) | yes | `fetchAppContext()` [`api/app/repository.ts:24`](../app/src/api/app/repository.ts#L24) (shell + page) | `AppFrame → AppStart → … → fetchAppContext`<br>[`app/AppFrame.tsx`](../app/src/app/AppFrame.tsx)<br>`AcceptPendingPolicies → useAcceptPendingPolicies → … → fetchAppContext`<br>[`pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx`](../app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx) | implemented | [AcceptPendingPolicies](routes/AcceptPendingPolicies.md), [AssembleDetail](routes/AssembleDetail.md), [AssembleEvents](routes/AssembleEvents.md), [Assemble_BrowseByCountry](routes/Assemble_BrowseByCountry.md), [Bookmarks](routes/Bookmarks.md), [BrowseCountries](routes/BrowseCountries.md), [BrowseDirectory](routes/BrowseDirectory.md), [CommunityBusinessDetails_CoomingSoon](routes/CommunityBusinessDetails_CoomingSoon.md), [ConnectShare](routes/ConnectShare.md), [ContactByEmailMember](routes/ContactByEmailMember.md), [ContactByEmailOneSchoolGlobal](routes/ContactByEmailOneSchoolGlobal.md), [ContactUsDetails](routes/ContactUsDetails.md), [ContactUsMenu](routes/ContactUsMenu.md), [CountryDetails](routes/CountryDetails.md), [CountryList](routes/CountryList.md), [EmailContact](routes/EmailContact.md), [EmailTarget](routes/EmailTarget.md), [EventBooklet](routes/EventBooklet.md), [EventDetail](routes/EventDetail.md), [FeedItemDetail](routes/FeedItemDetail.md), [GuestArrangements](routes/GuestArrangements.md), [HelpersDetail](routes/HelpersDetail.md), [HomeFeed](routes/HomeFeed.md), [HostSurvey](routes/HostSurvey.md), [HouseholdCarousel](routes/HouseholdCarousel.md), [HouseholdDetails](routes/HouseholdDetails.md), [Household_Relations](routes/Household_Relations.md), [LDM_Email_V2](routes/LDM_Email_V2.md), [LDM_EventDetail_V2](routes/LDM_EventDetail_V2.md), [LDM_MyEvents_V2](routes/LDM_MyEvents_V2.md), [LegacyShareObject](routes/LegacyShareObject.md), [Locality_Details](routes/Locality_Details.md), [Login](routes/Login.md), [Menu](routes/Menu.md), [MessageDetail](routes/MessageDetail.md), [MessageList](routes/MessageList.md), [MilestoneDetail](routes/MilestoneDetail.md), [MyEntertaining](routes/MyEntertaining.md), [Notes](routes/Notes.md), [NotificationDetails](routes/NotificationDetails.md), [Notifications](routes/Notifications.md), [OneSchoolGlobalCarousel](routes/OneSchoolGlobalCarousel.md), [OneSchoolGlobalDetails](routes/OneSchoolGlobalDetails.md), [OrbitAdminEventDetail](routes/OrbitAdminEventDetail.md), [OrbitAdminLanding](routes/OrbitAdminLanding.md), [OrbitAdminMilestoneDetail](routes/OrbitAdminMilestoneDetail.md), [OrbitAdminMilestones](routes/OrbitAdminMilestones.md), [OrbitLanding](routes/OrbitLanding.md), [PINBiometricsMenu](routes/PINBiometricsMenu.md), [PINChange](routes/PINChange.md), [PINRegister](routes/PINRegister.md), [PINUnlock](routes/PINUnlock.md), [PassportScan](routes/PassportScan.md), [Photobook](routes/Photobook.md), [Profile](routes/Profile.md), [QRCodeGenerate](routes/QRCodeGenerate.md), [Search](routes/Search.md), [Services](routes/Services.md), [Splash](routes/Splash.md), [SupperMeeting_Carousel](routes/SupperMeeting_Carousel.md), [SupperMeeting_Details](routes/SupperMeeting_Details.md), [TermsAndPoliciesMenu](routes/TermsAndPoliciesMenu.md), [TransportDetail](routes/TransportDetail.md), [Updates_SingleList](routes/Updates_SingleList.md), [ViewDocuments](routes/ViewDocuments.md) |
+| 30 | `UBTConnect/Directory_Updates/Updates_SingleList/DataActionFetchUpdates` | data action | `Updates_SingleList` | onClick in Icon → event click of Icon → … → Updates_SingleList.refreshUpdates → Updates_SingleList.DataActionFetchUpdates<br>onClick in CustomText → event clicked of CustomText → … → Updates_SingleList.refreshUpdates → Updates_SingleList.DataActionFetchUpdates | yes | `fetchUpdatesList()` [`api/update/repository.ts:32`](../app/src/api/update/repository.ts#L32) (page) | `Updates_SingleList → useUpdatesSingleList → fetchUpdatesList`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
+| 31 | `UBTConnect/Directory_Updates/Updates_SingleList/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead` | service action | `Updates_SingleList` | onClick in CustomText → event clicked of CustomText → event click_MarkAll of UpdateItem_Header → Updates_SingleList.handler_MarkAllAsRead → server Action_UI_UpdateItem_MarkAllAsRead | no | `markAllUpdateItemsAsRead()` [`api/update/repository.ts:58`](../app/src/api/update/repository.ts#L58) (page) | `Updates_SingleList → useUpdatesSingleList → markAllUpdateItemsAsRead`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
+| 32 | `UBTConnect/Directory_Updates/Updates_SingleList/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `Updates_SingleList` | onClick in CustomContainer → event clicked of CustomContainer → … → Updates_SingleList.handler_MarkAsRead → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../app/src/api/update/repository.ts#L47) (page) | `Updates_SingleList → useUpdatesSingleList → markUpdateItemAsRead`<br>[`pages/Updates_SingleList/Updates_SingleListPage.tsx`](../app/src/pages/Updates_SingleList/Updates_SingleListPage.tsx) | implemented | [Updates_SingleList](routes/Updates_SingleList.md) |
 
 ## 5. Missing in React
 
@@ -614,7 +628,7 @@ React calls of the app shell without a TST chain on some routes. TST makes them:
 | Call | React action | How TST declares it | Evidence |
 |---|---|---|---|
 | `/api/UBTConnect_Utils/ActionGetUserInformation` | `fetchUserInformation()` [`api/member/userInformation.ts:6`](../app/src/api/member/userInformation.ts#L6) | app start | the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the  |
-| `/api/UBT_AppManager/ActionAppManager_Logout` | `appManagerLogout()` [`api/app/repository.ts:32`](../app/src/api/app/repository.ts#L32) | sign-out | TST Connect_Logout: Cache_InvalidateEverything, then AppManager_Logout (UBTConnect.controller.js:1054-1069); the client action calls the server action (UBT_AppManager.controller.js:3684-3694); Login OnInitialize and PINRegister OnClick_BackToLogin call it too (route-actions gap 6) |
+| `/api/UBT_AppManager/ActionAppManager_Logout` | `appManagerLogout()` [`api/app/repository.ts:32`](../app/src/api/app/repository.ts#L32) | sign-out | TST Connect_Logout: Cache_InvalidateEverything, then AppManager_Logout (UBTConnect.controller.js:1054-1069); the client action calls the server action (UBT_AppManager.controller.js:3684-3694); Login OnInitialize and PINRegister OnClick_BackToLogin call it too (route-check gap 6) |
 | `/api/UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | `fetchCacheableHouseholds()` [`api/app/repository.ts:56`](../app/src/api/app/repository.ts#L56) | app start | the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the  |
 | `/api/UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | `fetchCacheableMapEntities()` [`api/app/repository.ts:50`](../app/src/api/app/repository.ts#L50) | app start | the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the  |
 | `/api/Connect2_LegacyShared/ActionGetNumberUnreadMessages` | `fetchNumberUnreadMessages()` [`api/message/unreadMessages.ts:22`](../app/src/api/message/unreadMessages.ts#L22) | app start | the app-start calls observed on TST (migration/knowledge/shell-observed.md:26-27, U3: SynchAppContext, AfterInitialize, Sync_Info_GetMain, GetUserInformation, GetNumberUnreadMessages, CacheableMapEntities, CacheableHouseholds, GetCacheInfo of CacheControl_Policies); the call graph does not read the  |

@@ -84,10 +84,10 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
           "The input parameters of the screen, the parameters that the route reads, and the parameters that the route "
           "gives when it opens another screen. A navigation without parameters is only in section 2.",
           (f"The OutSystems files are in `{raw}/`." if not isinstance(raw, dict) else
-           ("The OutSystems files are in the `analysis/sources/raw/` folder of the route; the files that TST changed "
-            "after the capture are in `migration/runtime-sources/live/`." if r.get("live") else
-            "The OutSystems files are in `migration/runtime-sources/` and in the `analysis/sources/raw/` folders of "
-            "the captured routes (static check).")), "",
+           ("The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); "
+            "the files that TST changed after the capture are in `migration/runtime-sources/live/`." if r.get("live") else
+            "The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store "
+            "of the captured routes; static check).")), "",
           f"### {n}.1 OutSystems (TST)", ""]
     if ox["inputs"]:
         L += ["| Input | Type | Mandatory | Place |", "|---|---|---|---|"]

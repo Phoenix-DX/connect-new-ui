@@ -1,7 +1,7 @@
 # UBT_AppManager.PIN.Pincode_Register
 
 - Kind: shared; build screens using it: PINChange, PINRegister
-- Compiled source: `migration/screens/PINRegister/analysis/sources/pretty/UBT_AppManager.PIN.Pincode_Register.mvc.js`
+- Compiled source: `migration/sources/pretty/UBT_AppManager.PIN.Pincode_Register.mvc.js`
 - Child blocks: UBT_AppManager.PIN.PinCode (queue: UBT_AppManager.PIN.PinCode)
 
 ## Inputs

@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit
 
 - Kind: shared; build screens using it: EmailContact, EventBooklet, EventDetail, GuestArrangements, HelpersDetail, HostSurvey, MilestoneDetail, OrbitAdminEventDetail, OrbitAdminLanding, OrbitLanding, QRCodeGenerate, TransportDetail, ViewDocuments
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js`
 - Child blocks: Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI, NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top (queue: -)
 
 ## Inputs

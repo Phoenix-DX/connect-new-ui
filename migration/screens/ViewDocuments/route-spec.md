@@ -1,12 +1,12 @@
 # Route spec: ViewDocuments
 
-Sources (analysis/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`). The newer TST copy of the screen in migration/runtime-sources/ differs only in debugger ids.
+Sources (migration/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`). The newer TST copy of the screen in migration/runtime-sources/ differs only in debugger ids.
 - `S` = migration/screens/ViewDocuments/
-  analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js
+  migration/sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js
 - `SB` = migration/screens/ViewDocuments/analysis/
   sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_Documents.ScreenBlock_ViewDocuments.mvc.js
 - `LS` = migration/screens/
-  ViewDocuments/analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner.mvc.js
+  migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner.mvc.js (not captured; survey copy)
 - `C` = migration/
   runtime-sources/Connect2_OrbitMobile_MUI.controller.js.
 

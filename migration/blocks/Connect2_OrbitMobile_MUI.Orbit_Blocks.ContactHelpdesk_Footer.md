@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer
 
 - Kind: shared; build screens using it: EventDetail, GuestArrangements, HelpersDetail, MilestoneDetail, QRCodeGenerate, TransportDetail, ViewDocuments
-- Compiled source: `migration/screens/EventDetail/analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js`
+- Compiled source: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

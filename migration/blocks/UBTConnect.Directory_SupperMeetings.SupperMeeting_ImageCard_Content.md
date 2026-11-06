@@ -1,7 +1,7 @@
 # UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content
 
 - Kind: shared; build screens using it: HouseholdCarousel, Locality_Details, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content.mvc.js`
+- Compiled source: `migration/sources/pretty/UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content.mvc.js`
 - Child blocks: UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.ConnectPatterns.ImageCard__Content, UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper (queue: UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics, UBTConnectLibrary.ConnectPatterns.ImageCard__Content, UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper)
 
 ## Inputs

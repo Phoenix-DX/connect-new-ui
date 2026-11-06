@@ -17,7 +17,7 @@ export interface HouseholdGalleryCardProps {
   onEventOnClick?: () => void;
 }
 
-/** Gallery card of a household (p:migration/screens/SupperMeeting_Carousel/analysis/sources/pretty/
+/** Gallery card of a household (p:migration/sources/pretty/
     UBTConnect.Directory_Household_Blocks.Household_GalleryCard.mvc.js:162-262): ImageCard_LazyLoading (ItemsPerRow,
     extended class "gallery-card", Gallery card type; Event_Click raises Event_OnClick) with UBT_LazyImage of the
     household (width HalfWidth_50vw) and ImageCard__Content (title HouseholdName, subtitle ChildrenNames, shown). */
