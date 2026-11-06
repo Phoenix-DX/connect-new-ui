@@ -20,10 +20,11 @@
  * Secrets: environment variables named in profile.secrets, else --credentials <file>, else the first account of
  * .auth/accounts.json (the owner writes it; several test accounts, user 2026-11-06), else .auth/credentials.json
  * ({ "user": "...", "password": "...", "pin": "..." }, one account):
- *   { "password": "...", "pin": "...", "accounts": { "<role>": ["<user>", "<user>", …] | "<user>", … },
- *     "order": ["<role>", …] }
+ *   { "password": "..." | "passwords": ["...", …], "pin": "..." | "pins": ["...", …],
+ *     "accounts": { "<role>": ["<user>", "<user>", …] | "<user>", … }, "order": ["<role>", …] }
  *   loadAccounts() lists every account in that order (label "<role>" or "<role>#<n>"); autoLoginAny() tries them one
- *   after the other until a sign-in works. A tool that reaches a screen with one account and not with another tries
+ *   after the other until a sign-in works. With several passwords (or PINs) a sign-in tries them in order for the
+ *   same user: the identity provider rejects a wrong password, the PIN page stays locked on a wrong PIN. A tool that reaches a screen with one account and not with another tries
  *   the next one (batch_capture.cjs run, journey_capture.cjs). Logs name the label only, never the user.
  * Rules: test environment and test account only; the values are typed by this script and never printed, logged,
  * written to captures, or read by an agent. The files must not be tracked by git (checked).
@@ -78,9 +79,11 @@ function loadAccounts(o = {}) {
   for (const role of order) {
     const users = Array.isArray(all[role]) ? all[role] : all[role] ? [all[role]] : [];
     if (!users.length) { if (o.log) o.log(`accounts: no user for ${role} (left out)`); continue; }
+    const passwords = [].concat(a.passwords || [], a.password || []).filter(Boolean);   // "password" or "passwords", a string or a list
+    const pins = [].concat(a.pins || [], a.pin != null ? a.pin : []).filter(x => x != null && x !== '').map(String);
     users.forEach((user, i) => {
       const label = users.length > 1 ? `${role}#${i + 1}` : role;
-      out.push({ role: label, base: role, secrets: { user, password: a.password, pin: a.pin != null ? String(a.pin) : undefined, _source: `accounts:${label}` } });
+      out.push({ role: label, base: role, secrets: { user, password: passwords[0], passwords, pin: pins[0], pins, _source: `accounts:${label}` } });
     });
   }
   return out;
@@ -297,8 +300,30 @@ async function ensureSession(page, profile, secrets, log = () => {}, opts = {}) 
   return acted;
 }
 
-/* Fresh sign-in: open the login page, sign in, unlock, save the session for later runs. */
+/* Fresh sign-in: open the login page, sign in, unlock, save the session for later runs. With secrets.passwords (or
+   secrets.pins) of several values, a rejected password (or a PIN that does not unlock) moves on to the next value. */
 async function autoLogin(browser, ctxOpts, profile, secrets, storage, log = console.log) {
+  const passwords = secrets.passwords && secrets.passwords.length > 1 ? secrets.passwords : [secrets.password];
+  const pins = secrets.pins && secrets.pins.length > 1 ? secrets.pins : [secrets.pin];
+  let last = null;
+  for (let p = 0; p < passwords.length; p++) {
+    for (let q = 0; q < pins.length; q++) {
+      try {
+        return await autoLoginOnce(browser, ctxOpts, profile, { ...secrets, password: passwords[p], pin: pins[q] }, storage, log);
+      } catch (e) {
+        last = e;
+        const msg = String(e.message);
+        if (/has been closed/i.test(msg)) throw e;
+        if (/identity provider says|did not return to the app/i.test(msg) && p < passwords.length - 1) { log(`password ${p + 1} of ${passwords.length} rejected; trying the next one`); break; }
+        if (/still locked|PIN/i.test(msg) && q < pins.length - 1) { log(`PIN ${q + 1} of ${pins.length} did not unlock; trying the next one`); continue; }
+        throw e;
+      }
+    }
+  }
+  throw last;
+}
+
+async function autoLoginOnce(browser, ctxOpts, profile, secrets, storage, log = console.log) {
   const ctx = await browser.newContext({ ...ctxOpts, serviceWorkers: 'block' });
   try {
     const page = await ctx.newPage();

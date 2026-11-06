@@ -74,7 +74,8 @@ call that is not a read. Only the actions that the user confirmed in `migration/
 ## Sign-in and sessions of the tools that open TST
 
 - `site_auth.cjs` signs in by itself with the site profile and the secrets file. Only that module reads the secrets.
-  `.auth/accounts.json` holds several test accounts by role (each role a list of users; one password and PIN). The
+  `.auth/accounts.json` holds several test accounts by role (each role a list of users; one or more shared passwords
+  and PINs, tried in order). The
   tools take the accounts in the file's order (`--role a,b` limits the roles). When a sign-in fails, or a screen is
   out of reach for the signed-in account, they move to the next account. Logs name the account as `<role>#<n>`, never the user.
 - `batch_capture.cjs login --auto --account <label>` signs in with one account of the list and saves its session

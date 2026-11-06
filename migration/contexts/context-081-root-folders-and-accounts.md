@@ -7,7 +7,8 @@
     and `ROUTES.md` were regenerated from the MCP cache (relative links).
   - `capture/` → `migration/survey/`: `survey-UBTConnect.json` (live survey, still ignored) and
     `survey-UBTConnect-2026-10-13.json` (tracked). 14 tools and the documents name the new path.
-- `.auth/accounts.json` holds several test accounts: one password and PIN, `accounts` = role → list of users,
+- `.auth/accounts.json` holds several test accounts: one or more passwords and PINs (lists, tried in order since
+  2026-11-06 afternoon), `accounts` = role → list of users,
   `order` = the roles in order (the owner wrote it on 2026-11-06). `site_auth.cjs` reads it (`loadAccounts`,
   `autoLoginAny`); `loadSecrets` takes the first account, then `.auth/credentials.json`; the environment and
   `--credentials` still win. Labels in logs and run files: `<role>` or `<role>#<n>`, never the user.
