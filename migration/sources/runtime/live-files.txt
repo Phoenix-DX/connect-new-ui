@@ -100,6 +100,7 @@ Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_TransportDetail.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js
+Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestoneDetail.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestones.mvc.js
 Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_Documents.ScreenBlock_ViewDocuments.mvc.js
@@ -187,6 +188,8 @@ UBTConnect.ContactFlow.ContactByEmailMember.mvc.js
 UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js
 UBTConnect.ContactFlow.controller.js
 UBTConnect.Deprecated_Calendar_PersonalEvent.controller.js
+UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js
+UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js
 UBTConnect.Directory_Caroussel.controller.js
 UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js
 UBTConnect.Directory_CommonBlocks.controller.js
@@ -199,6 +202,8 @@ UBTConnect.Directory_Interchange.controller.js
 UBTConnect.Directory_Locality.CountryList.mvc.js
 UBTConnect.Directory_Locality.Locality_Details.mvc.js
 UBTConnect.Directory_Locality.controller.js
+UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js
+UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js
 UBTConnect.Directory_OneSchoolGlobal.controller.js
 UBTConnect.Directory_OneSchoolGlobal_Blocks.controller.js
 UBTConnect.Directory_Photobook.controller.js
@@ -233,6 +238,12 @@ UBTConnect.Legacy_OrbitEventsFlow.controller.js
 UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate.mvc.js
 UBTConnect.Legacy_OrbitQRCodeFlow.controller.js
 UBTConnect.Legacy_Share.controller.js
+UBTConnect.Map.CacheControl_CountriesMarkers.mvc.js
+UBTConnect.Map.CacheControl_GlobalEntities.mvc.js
+UBTConnect.Map.CacheControl_Household.mvc.js
+UBTConnect.Map.CacheControl_Localities.mvc.js
+UBTConnect.Map.Map.mvc.js
+UBTConnect.Map.Map_PoIPreview.mvc.js
 UBTConnect.Map.controller.js
 UBTConnect.Notes.NoteCard_List.mvc.js
 UBTConnect.Notes.Notes.mvc.js
@@ -270,6 +281,7 @@ UBTConnect_Notes_MCS.aggregates.IDB.js
 UBTConnect_Notes_MCS.controller.js
 UBTConnect_Notes_MCS.entities.js
 UBTConnect_Notes_MCS.model.js
+UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js
 UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js
 UBTConnect_Utils.CW_Share.ShareSheet.mvc.js
 UBTConnect_Utils.CW_Share.ShareSheet_Section.mvc.js
