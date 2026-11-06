@@ -4,12 +4,7 @@ The route `/UBTConnect/GuestArrangements`, read from the TST compiled code and f
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/GuestArrangements/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Static check.** This route has no TST capture (`migration/screens/GuestArrangements/no-capture.json`).
-
-- The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
-- The tool observed no call and has no screenshot.
-- Closure: 58 files, 0 without compiled code.
+**Live code.** TST changed 18 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `ScreenBlock_GuestArrangements`, `Connect2_OrbitMobile_MUI`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `GuestArrangements`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -20,8 +15,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | UI flow | `Legacy_OrbitEventsFlow` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 14 shared blocks, 43 app shell files. React: 155 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Screenshots | [`migration/screens/GuestArrangements/parity`](../../screens/GuestArrangements/parity) | `route.py parity` |
+| Code read | OutSystems: 1 files of the UI flow, 10 shared blocks, 21 app shell files. React: 155 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -34,8 +29,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | User actions of the route (own code) | OutSystems: 2. React: 3 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 3 of 3 |
-| Shared blocks and components on the route | OutSystems 14, React 2 with user actions: see the last section |
-| App shell on this route | 3 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 10, React 2 with user actions: see the last section |
+| App shell on this route | 2 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
@@ -69,8 +64,8 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess` | server action | `Connect2_OrbitMobile_MUI` | onClick in Card_MemberInformation → event clickedMember of Card_MemberInformation → ScreenBlock_GuestArrangements.onHandle_ClickedMember → Connect2_OrbitMobile_MUI.checkDirectoryAccess → server GetDirectoryAccess | no capture | `checkDirectoryAccess()` [`lib/orbit/actions.ts:264`](../../../app/src/lib/orbit/actions.ts#L264) (page) | `GuestArrangementsBlock → useGuestArrangements → checkDirectoryAccess`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action | `ScreenBlock_GuestArrangements` | ScreenBlock_GuestArrangements.OnReady → ScreenBlock_GuestArrangements.onReady → ScreenBlock_GuestArrangements.refreshData → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements<br>ScreenBlock_GuestArrangements fetch at start → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements | no capture | `fetchGuestArrangements()` [`api/event/repository.ts:207`](../../../app/src/api/event/repository.ts#L207) (page) | `GuestArrangementsBlock → useGuestArrangements → fetchGuestArrangements`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
+| 1 | `Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess` | server action | `Connect2_OrbitMobile_MUI` | ScreenBlock_GuestArrangements.onHandle_ClickedMember → Connect2_OrbitMobile_MUI.checkDirectoryAccess → server GetDirectoryAccess | no | `checkDirectoryAccess()` [`lib/orbit/actions.ts:264`](../../../app/src/lib/orbit/actions.ts#L264) (page) | `GuestArrangementsBlock → useGuestArrangements → checkDirectoryAccess`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` | data action | `ScreenBlock_GuestArrangements` | ScreenBlock_GuestArrangements.OnReady → ScreenBlock_GuestArrangements.onReady → ScreenBlock_GuestArrangements.refreshData → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements<br>ScreenBlock_GuestArrangements fetch at start → ScreenBlock_GuestArrangements.DataActionGetGuestArrangements | yes | `fetchGuestArrangements()` [`api/event/repository.ts:207`](../../../app/src/api/event/repository.ts#L207) (page) | `GuestArrangementsBlock → useGuestArrangements → fetchGuestArrangements`<br>[`pages/GuestArrangements/GuestArrangementsPage.tsx`](../../../app/src/pages/GuestArrangements/GuestArrangementsPage.tsx) | implemented |
 
 ## 6. User actions
 
@@ -153,7 +148,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -260,19 +255,15 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | Block | Module | React port | User actions |
 |---|---|---|---|
 | `ScreenBlock_GuestArrangements` | `Connect2_OrbitMobile_MUI` | [`pages/GuestArrangements/components/GuestArrangementsView.tsx`](../../../app/src/pages/GuestArrangements/components/GuestArrangementsView.tsx), [`pages/GuestArrangements/hooks/guestArrangementsActions.ts`](../../../app/src/pages/GuestArrangements/hooks/guestArrangementsActions.ts), [`pages/GuestArrangements/hooks/guestArrangementsState.ts`](../../../app/src/pages/GuestArrangements/hooks/guestArrangementsState.ts), [`pages/GuestArrangements/hooks/useGuestArrangements.ts`](../../../app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts) | 1 |
-| `Dialog_AccessRestrictedAction_Legacy` | `UBTConnect_Utils` | [`platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`](../../../app/src/platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx) | 0 |
-| `ContactHelpdesk_Footer` | `Connect2_OrbitMobile_MUI` | [`components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx`](../../../app/src/components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx) | 0 |
-| `Skeleton_Loading` | `Connect2_OrbitMobile_MUI` | [`components/orbit/OrbitSkeleton/OrbitSkeleton.tsx`](../../../app/src/components/orbit/OrbitSkeleton/OrbitSkeleton.tsx) | 0 |
-| `NoInformation_Orbit` | `Connect2_OrbitMobile_MUI` | [`components/orbit/OrbitNoInformation/OrbitNoInformation.tsx`](../../../app/src/components/orbit/OrbitNoInformation/OrbitNoInformation.tsx) | 0 |
-| `Card_MemberInformation` | `Connect2_OrbitMobile_MUI` | [`components/orbit/MemberInformationCard/MemberInformationCard.tsx`](../../../app/src/components/orbit/MemberInformationCard/MemberInformationCard.tsx) | 0 |
-| `DEPRECATED_AccordionItem` | `OutSystemsUI_2_23` | [`components/ui/legacy/SectionExpandable/SectionExpandable.tsx`](../../../app/src/components/ui/legacy/SectionExpandable/SectionExpandable.tsx) | 0 |
-| `Accordion_Orbit` | `Connect2_OrbitMobile_MUI` | [`components/orbit/OrbitAccordion/OrbitAccordion.tsx`](../../../app/src/components/orbit/OrbitAccordion/OrbitAccordion.tsx) | 0 |
-| `DEPRECATED_Accordion` | `OutSystemsUI_2_23` | [`components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx`](../../../app/src/components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx) | 0 |
-| `MilestoneHeader` | `Connect2_OrbitMobile_MUI` | [`components/orbit/MilestoneHeader/MilestoneHeader.tsx`](../../../app/src/components/orbit/MilestoneHeader/MilestoneHeader.tsx) | 0 |
-| `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
 | `Layout_Orbit` | `Connect2_LegacyShared` | [`components/layout/OrbitLayout/OrbitLayout.tsx`](../../../app/src/components/layout/OrbitLayout/OrbitLayout.tsx) | 0 |
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
-| `PullToRefresh` | `OutSystemsUI_2_23` | [`components/ui/PullToRefresh/PullToRefresh.tsx`](../../../app/src/components/ui/PullToRefresh/PullToRefresh.tsx) | 0 |
+| `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
+| `MilestoneHeader` | `Connect2_OrbitMobile_MUI` | [`components/orbit/MilestoneHeader/MilestoneHeader.tsx`](../../../app/src/components/orbit/MilestoneHeader/MilestoneHeader.tsx) | 0 |
+| `Accordion_Orbit` | `Connect2_OrbitMobile_MUI` | [`components/orbit/OrbitAccordion/OrbitAccordion.tsx`](../../../app/src/components/orbit/OrbitAccordion/OrbitAccordion.tsx) | 0 |
+| `DEPRECATED_Accordion` | `OutSystemsUI_2_23` | [`components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx`](../../../app/src/components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx) | 0 |
+| `DEPRECATED_AccordionItem` | `OutSystemsUI_2_23` | [`components/ui/legacy/SectionExpandable/SectionExpandable.tsx`](../../../app/src/components/ui/legacy/SectionExpandable/SectionExpandable.tsx) | 0 |
+| `ContactHelpdesk_Footer` | `Connect2_OrbitMobile_MUI` | [`components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx`](../../../app/src/components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx) | 0 |
+| `Dialog_AccessRestrictedAction_Legacy` | `UBTConnect_Utils` | [`platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`](../../../app/src/platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx) | 0 |
 
 <details><summary>User actions of the shared blocks (2)</summary>
 

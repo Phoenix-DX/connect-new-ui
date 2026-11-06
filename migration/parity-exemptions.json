@@ -1741,6 +1741,79 @@
    "pathRegex": "h1\\.header-title\\.text-align-center > div#[^ ]*Title > div#[^ ]*Title > span$",
    "reason": "Offline the fetch fails and the React title stays empty, so OutSystemsReactWidgets.css [data-expression]:empty:after adds the ::after. The capture navigated from the AssembleEvents list, whose SetPreloadObject gave the title before the fetch; the parity opens the route by URL without that preload object.",
    "evidence": "migration/screens/AssembleDetail/parity/offline.json (2026-11-06); analysis/states.json via; OutSystemsReactWidgets.css:219"
+  },
+  {
+   "id": "VIA-LEGACY-THEME-BODY-CONTACTBYEMAILLDMCOORDINATOR",
+   "routeRegex": "^/UBTConnect/ContactByEmailLDMCoordinator(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "^body$",
+   "detailRegex": "^missing \\.connect-theme",
+   "reason": "The states were captured via LDM_EventDetail_V2 (states.json via), a Legacy-layout screen whose OnInitialize puts connect-theme on the body and nothing removes it (app/src/legacy/os/bodyTheme.ts). Parity opens the route by URL with no Legacy screen before, so the body has no theme class. Capture artifact, the same as VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK.",
+   "evidence": "migration/screens/ContactByEmailLDMCoordinator/parity/default.json (2026-11-06); analysis/states.json via; analysis/dom/default.html:1"
+  },
+  {
+   "id": "CAPTURE-DROPPED-SUBJECT-VALUE-PIXELS-CONTACTBYEMAILLDMCOORDINATOR",
+   "routeRegex": "^/UBTConnect/ContactByEmailLDMCoordinator(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.[0-4]\\d% pixels differ .*parity/(default|offline)\\.diff\\.png$",
+   "reason": "Screenshot difference limited to the subject input (rows y 227-243): the capture drops input values (capture.js removes the value attribute), so the reference shows the placeholder in the disabled input; the build shows In_Subject from the query as the compiled form sets it (ContactByEmailForm.mvc.js:830, :451). Capture artifact, the same family as CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK.",
+   "evidence": "migration/screens/ContactByEmailLDMCoordinator/parity/default.diff.png and offline.diff.png (0.39%, hotspots y 200-243), 2026-11-06"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-GUESTARRANGEMENTS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "class",
+    "layout",
+    "position",
+    "style"
+   ],
+   "pathRegex": "(header#b1-b1-b2-Header\\.header\\.orbit-detail(\\b| > .*)|div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail(\\b| > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact). On GuestArrangements the missing back arrow also changes the header height (86 → 76 px), the title width and the content offset below it; all under the header and the content wrapper.",
+   "evidence": "migration/screens/HelpersDetail/analysis/states.json (via); parity/default.json, loading.json, offline.json (class missing .back); same rule as VIA-BACK-MENUICON-EVENTDETAIL / -MILESTONEDETAIL; GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-GUESTARRANGEMENTS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div\\.orbit-skeleton-item-height-(s|sm)\\.orbit-skeleton-loading-item(\\.orbit-skeleton-loading-item-margin-s)?$",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase (50.0037% vs 59.5201%); same markup, classes and other styles. Animation-phase capture artifact; auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/offline.json (style background-position on .orbit-skeleton-loading-item); GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-GUESTARRANGEMENTS-PIXELS",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-3]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-3]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-3]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from the artifacts above: the missing back arrow (via), the masked one-line title (16 px shift of the content), the skeleton shimmer phase and, in loading/offline, the empty sub-header type (CR-HelpersDetail-1). Auto-accepted in the user's auto mode 2026-10-15 except the CR part Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/default.diff.png (3.20%), loading.diff.png (0.47%), offline.diff.png (4.50%); GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids b1-b1-b2-*)"
+  },
+  {
+   "id": "CAPTURE-MASKED-TITLE-GUESTARRANGEMENTS-HEADER",
+   "routeRegex": "^/UBTConnect/GuestArrangements(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail( > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?$",
+   "detailRegex": "^390×758 → 390×742$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 16 px taller and the content wrapper 16 px shorter (758 → 742). Text-mask capture artifact (as CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER); auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
+   "evidence": "parity/default.expected.png vs default.build.png (one line of bullets vs two lines); parity/*.json layout 390×758 → 390×742; GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids)"
   }
  ],
  "ignoreClasses": [

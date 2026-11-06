@@ -1154,3 +1154,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-06,AcceptPendingPolicies,fix,150000,sub-policies,,"first real capture 2026-11-06 (pending policy account): heading, row structure, seed 1 policy; parity clean (offline spinner phase)"
 2026-11-06,EventDetail,fix,230000,sub-eventdetail,,"real capture 2026-11-06: TST id aliases, event 7301 booklet/meeting/meal milestone, Friday-23 rule; parity clean"
 2026-11-06,AssembleDetail,fix,165000,sub-assemble,,"first real capture 2026-11-06: id aliases, menu placeholder empty, ids as captured; shared ResultItemBadge px size and NoteList 44px"
+2026-11-06,ContactByEmailLDMCoordinator,fix,95000,sub-ldmcoord,,first real capture 2026-11-06 (via LDM_EventDetail_V2): markup already 1:1; two capture artefacts
+2026-11-06,GuestArrangements,fix,210000,sub-guestarr,,"first real capture 2026-11-06 (via MilestoneDetail): TST id alias, Herrera arrangements reshaped; shared SectionExpandable StrictMode fix"

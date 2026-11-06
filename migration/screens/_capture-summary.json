@@ -1,8 +1,15 @@
 {
- "AssembleDetail": [
-  "default 19389 KB, 59 blocks, masked 7",
-  "runtime 2 calls, 0 phase mark(s)",
-  "auto loading (2 call(s) held)",
+ "GuestArrangements": [
+  "default 19872 KB, 31 blocks, masked 3",
+  "runtime 1 calls, 0 phase mark(s)",
+  "auto loading (1 call(s) held)",
+  "auto offline",
+  "analyzed"
+ ],
+ "ContactByEmailLDMCoordinator": [
+  "default 12393 KB, 16 blocks, masked 2",
+  "runtime 0 calls, 0 phase mark(s)",
+  "auto loading (0 call(s) held)",
   "auto offline",
   "analyzed"
  ]

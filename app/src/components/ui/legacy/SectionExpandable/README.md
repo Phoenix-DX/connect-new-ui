@@ -37,7 +37,9 @@ Event `OnToggle(IsExpanded)` â†’ `onOnToggle`. Placeholders `Title`, `Content` â
   - IsWebApp = IsWebApp() or IsLayoutNative() (`../lib/deviceDetection.ts`, from OutSystemsUI_2_23.controller.js and
     OutSystemsUI.js).
 
-  OnParametersChanged reruns it: Expand / Collapse to the new IsExpanded.
+  OnParametersChanged reruns it: Expand / Collapse to the new IsExpanded. It runs only when an input really changed
+  (the last applied inputs are compared), so the double mount of StrictMode does not animate an item that is open from
+  the start (GuestArrangements, 2026-11-06).
 
 - OnClick (:415-506): see the component; OnToggle carries the new state.
 

@@ -733,6 +733,10 @@ const ORBIT_TST_ID_ALIASES: Readonly<Record<string, string>> = {
   /** Member 75835 of TST (In_MemberId of the EventDetail capture, a member of the hosting household): the signed-in
       mock user, a member of the hosting household of the world. */
   '75835': MOCK_USER_ID,
+  /** Member 52989 of TST (In_MemberId of the GuestArrangements capture of 2026-11-06, reached from the first guest
+      card of the first room of MilestoneDetail, states.json via): Martín Herrera, the first guest of the first room
+      of the world. */
+  '52989': '880101',
 };
 
 /** The id of the fictional world for an id of the capture plan (an id of the world stays as it is). */
@@ -1116,12 +1120,17 @@ export const ORBIT_EVENT_PASSES: readonly OrbitEventPass[] = [
 
 /* ---- Guest arrangements of the visiting families (GuestArrangements route, DataActionGetGuestArrangements of
    ScreenBlock_GuestArrangements) ----
-   GuestArrangements was not reachable on TST (no-capture.json, user 2026-10-16): built from the compiled code. The
-   families of ORBIT_HOSTED_ROOMS (Herrera from San Nicolás, Ramos from Necochea) as the event team arranged their
-   stay for event 7301: who needs special care, how and when they arrive, what they eat on each conference day and how
-   they leave. The Herrera family comes by the overnight coach and has three members with special needs; the Ramos
-   family drives down in their own car (no number plate recorded for the arrival) and has none. Dates are UTC wire
-   DateTimes built for `today`, like orbitEvents. */
+   The families of ORBIT_HOSTED_ROOMS (Herrera from San Nicolás, Ramos from Necochea) as the event team arranged
+   their stay for event 7301: who needs special care, how and when they arrive, what they eat on each conference day
+   and how they leave.
+   - The Herrera family follows the first real capture of the route (2026-11-06, Martín Herrera = TST member 52989,
+     GuestArrangements/analysis/dom/default.html): only "Meal Details" with one day, a date "Saturday, 24 Nov 2026"
+     (masked 9 2 3 4), "Midday Meal: " empty (analysis/calls.md MiddayMeal EMPTY) and an evening meal of the masked
+     word lengths 3 7 1 5 9; no special needs, no arrival, no departure.
+   - The Ramos family keeps the branches the compiled view has and the capture does not (fictional): three members
+     with special needs, a drive in their own car (no number plate recorded for the arrival: "Not available") and two
+     meal days.
+   Dates are UTC wire DateTimes built for `today`, like orbitEvents. */
 
 /** One special need of a member (Connect2_OrbitMobile_IS.SpecialNeedsRec). */
 export interface OrbitSpecialNeed {
@@ -1167,80 +1176,43 @@ export interface OrbitGuestArrangement {
 export function orbitGuestArrangements(today: Date = new Date()): OrbitGuestArrangement[] {
   const fri = meetingsFriday(today);
   const vehicle = ORBIT_TRANSPORT_MILESTONE_TYPES.vehicle;
-  const busTerminal = 'Bahia Blanca bus terminal, Av. Brown 1700';
   const [street = '', city = ''] = VITALE.address.split('\n');
   const vitaleHome = `${street}, ${city}`;
   return [
     {
       EventId: '7301',
       household: HERRERA,
+      specialNeeds: {},
+      arrivals: [],
+      meals: [
+        {
+          MilestoneDateTime: utcAt(fri, 1, 12, 30),
+          MiddayMeal: '',
+          EveningMeal: 'Not catered - hosts providing',
+        },
+      ],
+      departures: [],
+    },
+    {
+      EventId: '7301',
+      household: RAMOS,
       specialNeeds: {
-        '880102': [
+        '880201': [{ Category: 'Allergy', Type: 'Peanut allergy', Notes: '' }],
+        '880202': [
           {
             Category: 'Mobility',
             Type: 'Ground floor room',
-            Notes: 'Knee surgery in August; Laura cannot manage stairs yet.',
+            Notes: 'Knee surgery in August; Sonia cannot manage stairs yet.',
           },
         ],
-        '880105': [
+        '880203': [
           {
             Category: 'Dietary',
             Type: 'Gluten free',
             Notes: 'Coeliac: no wheat, barley or rye, breakfast included.',
           },
         ],
-        '880106': [{ Category: 'Allergy', Type: 'Peanut allergy', Notes: '' }],
       },
-      arrivals: [
-        {
-          milestoneType: vehicle,
-          Title: 'Overnight coach from San Nicolás',
-          Type: 'Vehicle',
-          TravelIdentifier: 'AF 207 TR',
-          Notes: 'Julián meets the family at platform 4 with the double-cab pick-up.',
-          SequenceNo: 1,
-          DepartureLocation: 'San Nicolás bus terminal',
-          ArrivalLocation: busTerminal,
-          MilestoneStartDateTime: utcAt(fri, -1, 21, 0),
-          MilestoneEndDateTime: utcAt(fri, 0, 9, 30),
-        },
-      ],
-      meals: [
-        {
-          MilestoneDateTime: utcAt(fri, 0, 12, 30),
-          MiddayMeal: 'Lunch at the Main Hall',
-          EveningMeal: 'Dinner with the hosting household',
-        },
-        {
-          MilestoneDateTime: utcAt(fri, 1, 12, 30),
-          MiddayMeal: 'Packed lunch from the hosts',
-          EveningMeal: 'Fellowship dinner at the Main Hall',
-        },
-        {
-          MilestoneDateTime: utcAt(fri, 2, 12, 30),
-          MiddayMeal: 'Lunch at the Main Hall',
-          EveningMeal: 'Light supper before the coach',
-        },
-      ],
-      departures: [
-        {
-          milestoneType: vehicle,
-          Title: 'Overnight coach to San Nicolás',
-          Type: 'Vehicle',
-          TravelIdentifier: 'AF 207 TR',
-          Notes: 'Julián drives the family to the terminal after the closing meeting.',
-          SequenceNo: 1,
-          DepartureLocation: busTerminal,
-          ArrivalLocation: 'San Nicolás bus terminal',
-          MilestoneStartDateTime: utcAt(fri, 2, 21, 0),
-          MilestoneEndDateTime: utcAt(fri, 3, 9, 30),
-        },
-      ],
-    },
-    {
-      EventId: '7301',
-      household: RAMOS,
-      specialNeeds: {},
       arrivals: [
         {
           milestoneType: vehicle,

@@ -25,6 +25,18 @@ Caveats:
 - Household_Relations: the household member list of HouseholdDetails and HouseholdCarousel stays hidden behind a
   skeleton overlay in the headless run; no member with relations was found.
 
+## Entry points found on 2026-11-06 (evening, account global#1)
+
+| Route | Path in the app | Result |
+|---|---|---|
+| GuestArrangements | MilestoneDetail (accommodation-host) → accordion of the first room → link "Guest Arrangements" | captured (`via` in the capture plan) |
+| ContactByEmailLDMCoordinator | LDM_EventDetail_V2 → button "Contact Coordinator" → popup → "Email" | captured (`via`) |
+| EventBooklet | EventDetail row "View Event Booklet" shows only when the flag `getHasOrbitEventBooklet` is true (`ScreenBlock_EventDetail.mvc.js:689`); false on TST | not reachable |
+| QRCodeGenerate | EventDetail header icon `qrcode`, visible when the event has `hasQRCode` and not `hasScanned` (`:418-460`) | the event of global#1 has no QR code |
+| ViewDocuments | EventDetail header icon, `OnClick_OpenDocuments` (`:484`), visible with the event's documents flag | the event of global#1 has no documents |
+| TransportDetail | EventDetail → a milestone whose type `isTransportMilestone` (`OnHandle_ClickedMilestone`) | the event of global#1 has no transport milestone |
+| Household_Relations | HouseholdDetails_Block `OnClickMember` runs only with `IsEnabled` (`HouseholdDetails_Block.mvc.js`); the member items of Profile and of a guest's household did not navigate in the headless run | not reached |
+
 How to reuse: `node tools/pipeline/batch_capture.cjs login --auto --account <label> --storage .auth/state-<label>.json`,
 then `batch_capture.cjs run … --storage .auth/state-<label>.json --only <Route>`. The sweep jobs and the driver are
 one-off scripts (scratchpad, not committed).

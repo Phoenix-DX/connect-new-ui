@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "dcee827576822c0565be",
+ "fingerprint": "501446f3f9e2e2f002d5",
  "options": {
   "text": true,
   "style": true,
@@ -27,13 +27,12 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:10:37.207Z",
- "counts": {
-  "class": 1,
-  "pixel": 1
- },
+ "at": "2026-11-06T14:28:57.464Z",
+ "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "VIA-LEGACY-THEME-BODY-CONTACTBYEMAILLDMCOORDINATOR": 1,
+  "CAPTURE-DROPPED-SUBJECT-VALUE-PIXELS-CONTACTBYEMAILLDMCOORDINATOR": 1
  },
  "pixel": {
   "ratio": 0.00391,
@@ -77,16 +76,5 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": [
-  {
-   "kind": "class",
-   "path": "body",
-   "detail": "missing .connect-theme (device classes: src/shell/device.ts)"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "0.39% pixels differ (max 0.20%), worst 40px tile 13.4% (max 3.0%), hotspots 40,200 (215px); 80,200 (201px); 240,200 (183px); 120,200 (178px); 160,200 (174px); see migration/screens/ContactByEmailLDMCoordinator/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

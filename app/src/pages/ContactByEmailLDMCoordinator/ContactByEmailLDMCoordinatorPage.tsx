@@ -9,8 +9,9 @@ import { useContactByEmailLDMCoordinatorSubmit } from './hooks/useContactByEmail
 import { readContactByEmailLDMCoordinatorInputs } from './inputs';
 
 /** @origin UBTConnect.ContactFlow.ContactByEmailLDMCoordinator
-    The route of the e-mail to an LDM event coordinator. Not captured (no-capture, user 2026-10-16): built from the
-    compiled code. Layout_DetailPage (title left, the title and colour of `config.ts`) with the shared ContactEmailForm
+    The route of the e-mail to an LDM event coordinator. Built from the compiled code (no-capture, user 2026-10-16),
+    then checked against the first capture (2026-11-06, via LDM_EventDetail_V2: Contact Coordinator popup, Email).
+    Layout_DetailPage (title left, the title and colour of `config.ts`) with the shared ContactEmailForm
     (the form inputs of `config.ts`, the props of the submit hook) whose Placeholder_ContactCard holds the coordinator
     header card: the avatar image (the If(False) false branch, always shown), the name and "LDM Event Coordinator".
     Placeholder_CommonUI_Inside_Layout is empty: no CommonUI, so `useNoCommonUi()` (shell guide). The flows are in

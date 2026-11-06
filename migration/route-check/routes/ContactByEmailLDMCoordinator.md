@@ -4,12 +4,7 @@ The route `/UBTConnect/ContactByEmailLDMCoordinator`, read from the TST compiled
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailLDMCoordinator/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Static check.** This route has no TST capture (`migration/screens/ContactByEmailLDMCoordinator/no-capture.json`).
-
-- The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
-- The tool observed no call and has no screenshot.
-- Closure: 25 files, 0 without compiled code.
+**Live code.** TST changed 11 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ContactByEmailLDMCoordinator`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -20,8 +15,8 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | UI flow | `ContactFlow` | MCP `getScreenNames` (DEV) |
 | React screen | [`pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx`](../../../app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
-| Screenshots | no parity run | `route.py parity` |
-| Code read | OutSystems: 2 files of the UI flow, 23 shared blocks, 0 app shell files. React: 89 files in the closure of the page | TST survey closure and compiled code (static), `react_calls.mjs` |
+| Screenshots | [`migration/screens/ContactByEmailLDMCoordinator/parity`](../../screens/ContactByEmailLDMCoordinator/parity) | `route.py parity` |
+| Code read | OutSystems: 2 files of the UI flow, 15 shared blocks, 0 app shell files. React: 89 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -34,7 +29,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | User actions of the route (own code) | OutSystems: 1. React: 1 |
 | Screen and blocks of the UI flow with a React port | 2 of 2 |
 | Navigation targets found in React | 0 of 0 |
-| Shared blocks and components on the route | OutSystems 23, React 1 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 15, React 1 with user actions: see the last section |
 | App shell on this route | 0 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
@@ -99,7 +94,7 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#621-contactemailform-oneventsubmitform) | [`pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx:32`](../../../app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx#L32) | `<ContactEmailForm>` | `onEventSubmitForm` | `submit.onEventSubmitForm` | – | calls ServiceAPISendContactLDMCoordinatorEmail; goes to previous screen; shows a message |
+| [1](#621-contactemailform-oneventsubmitform) | [`pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx:33`](../../../app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx#L33) | `<ContactEmailForm>` | `onEventSubmitForm` | `submit.onEventSubmitForm` | – | calls ServiceAPISendContactLDMCoordinatorEmail; goes to previous screen; shows a message |
 
 <details><summary>1 diagrams (handlers with two or more effects)</summary>
 
@@ -129,7 +124,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -150,7 +145,7 @@ Declared inputs of the route: `In_AvatarURL: Text`, `In_ContactName: Text`, `In_
 
 | Hook | Keys read | Place |
 |---|---|---|
-| `useSearchParams` | none | [`pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx:20`](../../../app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx#L20) |
+| `useSearchParams` | none | [`pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx:21`](../../../app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx#L21) |
 
 Navigations with parameters: none.
 
@@ -252,29 +247,21 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `CustomContainer` | `UBTConnectLibrary` | [`components/ui/CustomContainer/CustomContainer.tsx`](../../../app/src/components/ui/CustomContainer/CustomContainer.tsx) | 0 |
-| `Dialog_Navigation` | `UBTConnect` | [`components/ui/Dialog/NavigationDialog.tsx`](../../../app/src/components/ui/Dialog/NavigationDialog.tsx) | 0 |
-| `NavigationConfirmationDialog` | `NavigationHandler` | [`components/ui/Dialog/NavigationDialog.tsx`](../../../app/src/components/ui/Dialog/NavigationDialog.tsx) | 0 |
-| `NavigationHandler` | `NavigationHandler` | [`components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx`](../../../app/src/components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx), [`components/ui/Dialog/ConfirmDialog.tsx`](../../../app/src/components/ui/Dialog/ConfirmDialog.tsx), [`components/ui/Dialog/Dialog.tsx`](../../../app/src/components/ui/Dialog/Dialog.tsx) | 0 |
-| `PreventBackNavigation` | `NavigationHandler` | [`platform/navigation/PreventBackNavigation/PreventBackNavigation.tsx`](../../../app/src/platform/navigation/PreventBackNavigation/PreventBackNavigation.tsx) | 0 |
-| `BackNavigationHandler` | `NavigationHandler` | [`platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx`](../../../app/src/platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx) | 0 |
-| `Button` | `UBTConnect_Utils` | [`components/ui/ActionButton/ActionButton.tsx`](../../../app/src/components/ui/ActionButton/ActionButton.tsx) | 0 |
-| `Icon` | `UBTConnectLibrary` | [`components/ui/Icon/Icon.tsx`](../../../app/src/components/ui/Icon/Icon.tsx) | 0 |
-| `IconSVG` | `UBTConnectLibrary` | [`components/ui/IconSvg/IconSvg.tsx`](../../../app/src/components/ui/IconSvg/IconSvg.tsx) | 0 |
-| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
-| `CustomText` | `UBTConnectLibrary` | [`components/ui/CustomText/CustomText.tsx`](../../../app/src/components/ui/CustomText/CustomText.tsx) | 0 |
-| `IconInline_Internal` | `UBTConnectLibrary` | [`components/ui/IconInline/IconInline.tsx`](../../../app/src/components/ui/IconInline/IconInline.tsx) | 0 |
-| `HighlightSearch` | `UBTConnectLibrary` | [`components/ui/HighlightSearch/HighlightSearch.tsx`](../../../app/src/components/ui/HighlightSearch/HighlightSearch.tsx) | 0 |
-| `Columns_Two` | `UBTConnectLibrary` | [`components/ui/ColumnsTwo/ColumnsTwo.tsx`](../../../app/src/components/ui/ColumnsTwo/ColumnsTwo.tsx) | 0 |
-| `Columns2` | `OutSystemsUI_2_23` | [`components/ui/Columns2/Columns2.tsx`](../../../app/src/components/ui/Columns2/Columns2.tsx) | 0 |
-| `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../../app/src/components/ui/Button/Button.tsx) | 0 |
-| `ButtonLoading` | `OutSystemsUI_2_23` | [`components/ui/ButtonLoading/ButtonLoading.tsx`](../../../app/src/components/ui/ButtonLoading/ButtonLoading.tsx) | 0 |
-| `FixedFooter` | `UBTConnectLibrary` | [`components/ui/FixedFooter/FixedFooter.tsx`](../../../app/src/components/ui/FixedFooter/FixedFooter.tsx) | 0 |
-| `TextArea_WithCounter` | `UBTConnectLibrary` | [`components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx`](../../../app/src/components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx) | 0 |
-| `InputCounter` | `UBTConnectLibrary` | [`components/ui/InputCounter/InputCounter.tsx`](../../../app/src/components/ui/InputCounter/InputCounter.tsx) | 0 |
-| `DynamicTextArea` | `UBTConnectLibrary` | [`components/ui/DynamicTextArea/DynamicTextArea.tsx`](../../../app/src/components/ui/DynamicTextArea/DynamicTextArea.tsx) | 0 |
 | `Layout_DetailPage` | `UBTConnectLibrary` | [`components/layout/DetailLayout/DetailLayout.tsx`](../../../app/src/components/layout/DetailLayout/DetailLayout.tsx), [`containers/DetailLayout/DetailLayoutContainer.tsx`](../../../app/src/containers/DetailLayout/DetailLayoutContainer.tsx) | 1 |
 | `LayoutRuntime_Top` | `NavigationHandler` | [`components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx`](../../../app/src/components/layout/LayoutRuntimeTop/LayoutRuntimeTop.tsx) | 0 |
+| `Icon` | `UBTConnectLibrary` | [`components/ui/Icon/Icon.tsx`](../../../app/src/components/ui/Icon/Icon.tsx) | 0 |
+| `CustomContainer` | `UBTConnectLibrary` | [`components/ui/CustomContainer/CustomContainer.tsx`](../../../app/src/components/ui/CustomContainer/CustomContainer.tsx) | 0 |
+| `TextArea_WithCounter` | `UBTConnectLibrary` | [`components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx`](../../../app/src/components/ui/TextAreaWithCounter/TextAreaWithCounter.tsx) | 0 |
+| `InputCounter` | `UBTConnectLibrary` | [`components/ui/InputCounter/InputCounter.tsx`](../../../app/src/components/ui/InputCounter/InputCounter.tsx) | 0 |
+| `FixedFooter` | `UBTConnectLibrary` | [`components/ui/FixedFooter/FixedFooter.tsx`](../../../app/src/components/ui/FixedFooter/FixedFooter.tsx) | 0 |
+| `ButtonLoading` | `OutSystemsUI_2_23` | [`components/ui/ButtonLoading/ButtonLoading.tsx`](../../../app/src/components/ui/ButtonLoading/ButtonLoading.tsx) | 0 |
+| `Button` | `UBTConnect_Utils` | [`components/ui/ActionButton/ActionButton.tsx`](../../../app/src/components/ui/ActionButton/ActionButton.tsx) | 0 |
+| `Button` | `UBTConnectLibrary` | [`components/ui/Button/Button.tsx`](../../../app/src/components/ui/Button/Button.tsx) | 0 |
+| `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
+| `Columns_Two` | `UBTConnectLibrary` | [`components/ui/ColumnsTwo/ColumnsTwo.tsx`](../../../app/src/components/ui/ColumnsTwo/ColumnsTwo.tsx) | 0 |
+| `Columns2` | `OutSystemsUI_2_23` | [`components/ui/Columns2/Columns2.tsx`](../../../app/src/components/ui/Columns2/Columns2.tsx) | 0 |
+| `CustomText` | `UBTConnectLibrary` | [`components/ui/CustomText/CustomText.tsx`](../../../app/src/components/ui/CustomText/CustomText.tsx) | 0 |
+| `IconInline_Internal` | `UBTConnectLibrary` | [`components/ui/IconInline/IconInline.tsx`](../../../app/src/components/ui/IconInline/IconInline.tsx) | 0 |
 
 <details><summary>User actions of the shared blocks (1)</summary>
 
