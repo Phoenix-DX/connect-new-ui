@@ -237,7 +237,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 | `useWasRestoredFromCache()`, `useViewState(name, initial)`                              | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
 
 - **Screen transitions (F18, CR-F18-1).** `ScreenTransitionGroup` ports the TransitionGroup of the runtime Root
-  (`migration/runtime-sources/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
+  (`migration/sources/runtime/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
   - One `.screen-container` per history entry, keyed by `location.key`.
     - During a transition, the new container comes first and the container that leaves comes after it.
     - Both stay in the document until the container that leaves has left. Its DOM, state and own location are kept.

@@ -4,7 +4,7 @@ import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEnti
 
 /** Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_GuestArrangements calls, ported 1:1 (as in
     MilestoneDetail), without React. useGuestArrangements and the page call them. `C:<n>` = line of
-    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
+    migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
     null date.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements */
 

@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.DropdownSearch
 
 - Kind: osui; build screens using it: Profile
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

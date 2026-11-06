@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto` · pack
 `migration/blocks/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto.md` · source
-`migration/blocks/sources/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto.mvc.js` (p: below).
+`migration/sources/survey/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto.mvc.js` (p: below).
 
 | Input            | Type                     | Prop              | Default |
 | ---------------- | ------------------------ | ----------------- | ------- |

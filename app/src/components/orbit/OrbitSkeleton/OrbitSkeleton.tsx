@@ -58,7 +58,7 @@ function BookletRow({ className }: { className: string }) {
   );
 }
 
-/** Loading skeletons of the Orbit screens (source migration/blocks/sources/…Skeleton_Loading.mvc.js, view :141-951):
+/** Loading skeletons of the Orbit screens (source migration/sources/survey/…Skeleton_Loading.mvc.js, view :141-951):
     one layout per In_SkeletonLoadingId, in the compiled order. OnInitialize (:1001-1088) fills LoadingBlocks with
     NumberOfBlocks rows (`skeletonNumberOfBlocks`); OnParametersChanged (:974-999) clears and refills it, which the
     memo on the id reproduces. */

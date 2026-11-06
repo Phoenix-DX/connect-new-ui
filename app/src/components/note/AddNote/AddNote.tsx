@@ -15,7 +15,7 @@ export interface AddNoteProps {
   onOnSubmitRequested?: (note: string) => Promise<void> | void;
 }
 
-/** The "Add a Note" input with a counter and a send button (migration/blocks/sources/
+/** The "Add a Note" input with a counter and a send button (migration/sources/survey/
     UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js: view :100-295, Handler_OnSubmitNote :317-348). */
 export function AddNote({ id, onOnSubmitRequested }: AddNoteProps) {
   const inputId = `${useId()}Input_Note`;

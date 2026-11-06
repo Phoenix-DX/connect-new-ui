@@ -1,7 +1,7 @@
 # Connect2_LegacyShared.Reusable.RadioButtonListItem
 
 - Kind: shared; build screens using it: AssembleEvents, Assemble_BrowseByCountry
-- Compiled source: `migration/blocks/sources/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_LegacyShared.Reusable.RadioButtonListItem.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

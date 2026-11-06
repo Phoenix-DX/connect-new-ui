@@ -16,7 +16,7 @@ Events: `Clicked` → `onClicked` (CustomContainer Clicked). Placeholders: none.
 (`ubt-tag--content inline-block` + ExtendedClasses, padding x In_HorizontalPaddingSizeId / y
 In_VerticalPaddingSizeId, In_ShapeId radius, text DoubleExtraSmall SemiBold) with the Text expression. The three
 padding and shape inputs are in the live block of 2026-11-05
-(`migration/runtime-sources/live/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js:39-56, 244-284`); their
+(`migration/sources/runtime/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js:39-56, 244-284`); their
 defaults are the values the October block had fixed, so callers that do not set them render the same.
 
 ## Captured variants (1 in the pack + 3 whole; 4 tested)

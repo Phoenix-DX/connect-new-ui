@@ -17,7 +17,7 @@ controller :16008-16027; record key in model.js :27022-27026). Not cross-checked
 
 ## TST values (source of truth), 2026-10-15 (see the update of 2026-10-28 below)
 `migration/knowledge/static-entities-tst.json` has all static-entity values of TST by name (514 entity views, own and referenced).
-`tools/generate/static_entities.py` made it from `migration/runtime-sources/moduleinfo.json` and the compiled model.js names.
+`tools/generate/static_entities.py` made it from `migration/sources/runtime/moduleinfo.json` and the compiled model.js names.
 That file comes from a read-only GET of `/UBTConnect/moduleservices/moduleinfo` (user-approved). It gives these settled values:
 - `UBTConnectLibrary.UBT_Icons`: Gift = `connect-icon-gift`, FeedItem = `connect-icon-feed`, InfoFill = `connect-icon-info_fill`.
 - `UBTConnect.Photobook_Speed`: EightSeconds = 8000 (TST = DEV).
@@ -31,9 +31,9 @@ Producer model.js files without getters (Connect_Services_CS, Connect2_Sharing_C
 ## TST values after the source switch, 2026-10-28
 TST was published again on 2026-10-27. The switch of 2026-10-28 (user decision (c),
 `migration/clarify/review/survey-drift-2026-10-28.md`) put the live moduleinfo (manifest version 15682) in
-`migration/runtime-sources/moduleinfo.json`. The old file (version 15568) is in git at commit f9f68bfc.
+`migration/sources/runtime/moduleinfo.json`. The old file (version 15568) is in git at commit f9f68bfc.
 
-`static_entities.py` now reads the record names from the live `migration/runtime-sources/*.model.js` first, then from
+`static_entities.py` now reads the record names from the live `migration/sources/runtime/*.model.js` first, then from
 the captures of 2026-10-14. The file has 513 entity views. The values above are the same. Changes:
 - `bookmarkCategory` (UBTConnect, UBTConnect_Bookmarks_MCS): the record OneSchoolGlobal is replaced by
   OneSchoolGlobal2 = "OneSchool Global". The React constant `app/src/lib/ubtConnect/staticEntities.ts:157` still has

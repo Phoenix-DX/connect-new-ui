@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { ItemCard_WithNotes } from './ItemCard_WithNotes';
 
 /* Checks from the live TST block (UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js, extracted on
-   2026-10-29 to migration/screens/Bookmarks/sources/) and the Bookmarks capture (dom/default.html, card 0). */
+   2026-10-29 to migration/sources/runtime/) and the Bookmarks capture (dom/default.html, card 0). */
 const byId = (id: string) => document.getElementById(id);
 const totalNotes = () => byId('b1-$b10')?.querySelector('[data-block="BasePatterns.CustomText"] span');
 const totalNotesText = () => totalNotes()?.textContent ?? null;

@@ -1,6 +1,6 @@
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage, type PlatformMessageTypeName } from './feedbackStore';
 
-/* UBTJavaScriptUtils.FeedbackMessage_AutoClose (migration/shell/sources/UBTJavaScriptUtils.controller.js:81-295, "JSU";
+/* UBTJavaScriptUtils.FeedbackMessage_AutoClose (migration/sources/shell/UBTJavaScriptUtils.controller.js:81-295, "JSU";
    knowledge/shell-facts.md U9). It builds no markup: it wraps the platform message and adds `feedback-message-autoclose`,
    whose CSS slides the message down and up again in 5 s (HF bundle:4460-4462, 20374, 23078-23079). */
 

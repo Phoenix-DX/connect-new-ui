@@ -6,7 +6,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Question: What does the Directory_OneSchoolGlobal flow exception handler (OneSchoolGlobalDetails controller handleError → _flow_UBTConnect_Directory_OneSchoolGlobalController.handleError) do? UBTConnect.Directory_OneSchoolGlobal.controller.js is not in any local source. Built conservatively like Directory_Locality (→ App_Common.handleError = shell raiseToFlowHandler).
 - Evidence: OneSchoolGlobalDetails.mvc.js:1450-1452; migration/knowledge/runtime-sources.md (Directory_Locality.controller.js → App_Common.handleError); loading dom shows the App_Common high-traffic message after the fetch timeout (dom/loading.html:2-19)
 - OutSystems MCP: MCP not available to route agents
-- Answer (code, 2026-10-15T17:38:12): migration/runtime-sources/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
+- Answer (code, 2026-10-15T17:38:12): migration/sources/runtime/UBTConnect.Directory_OneSchoolGlobal.controller.js (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right
 
 ## Q2 [decision] mocks (answered)
 - Question: DataActionGetOneSchoolGlobalDetails has one recording, whose In_OneSchoolGlobalId was anonymised (4281) and differs from the captured route id (1430). Serve that recording for every In_OneSchoolGlobalId (recordedHandler matchInputs off, no console warning), or match inputs (warning on every call, same data)?
@@ -17,7 +17,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q3 [decision] platform widget (answered)
 - Question: The screen renders the platform ButtonGroup / ButtonGroupItem widgets (OSWidgets, not an OSUI pattern), used by no other built route. Port them in the route (app/src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx, from OutSystemsReactWidgets.js AbstractButtonGroup / ButtonGroupItem), or file a change request for a foundation component next to OSList?
-- Evidence: OneSchoolGlobalDetails.mvc.js:935-984; migration/runtime-sources/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src
+- Evidence: OneSchoolGlobalDetails.mvc.js:935-984; migration/sources/runtime/OutSystemsReactWidgets.js (AbstractButtonGroup, ButtonGroupItem); grep: no button-group in app/src
 - OutSystems MCP: n/a
 - Options: A: port in the route's components now | B: change request to foundation (NotCaptured until built) (recommended: A)
 - Answer (user, 2026-10-15T17:38:12): A (recommended), auto-accepted (user instruction 2026-10-15 16:59)

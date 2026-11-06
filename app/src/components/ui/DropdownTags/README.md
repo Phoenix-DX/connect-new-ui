@@ -2,7 +2,7 @@
 
 OutSystems UI: `OutSystemsUI_2_23.Interaction.DropdownTags` · pack
 `migration/blocks/OutSystemsUI_2_23.Interaction.DropdownTags.md` · compiled source
-`migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js`
+`migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownTags.mvc.js`
 
 | Input             | Type                        | Prop                | Default        |
 | ----------------- | --------------------------- | ------------------- | -------------- |

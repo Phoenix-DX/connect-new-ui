@@ -85,8 +85,8 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
           "gives when it opens another screen. A navigation without parameters is only in section 2.",
           (f"The OutSystems files are in `{raw}/`." if not isinstance(raw, dict) else
            ("The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); "
-            "the files that TST changed after the capture are in `migration/runtime-sources/live/`." if r.get("live") else
-            "The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store "
+            "the files that TST changed after the capture are read from `migration/sources/runtime/`." if r.get("live") else
+            "The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store "
             "of the captured routes; static check).")), "",
           f"### {n}.1 OutSystems (TST)", ""]
     if ox["inputs"]:
@@ -240,7 +240,7 @@ def sections(r, start, link, short, emit=lambda name, mmd: None, v2=False):
     if ox["flowHandler"]:
         L += ["", "An error without a handler goes to the `OnException` of the UI flow (`handleError`):", ""]
         for i, fh in enumerate(ox["flowHandler"], 1):
-            where = op(fh["file"], fh.get("line")) if fh.get("file") else "not in `migration/shell/sources/`"
+            where = op(fh["file"], fh.get("line")) if fh.get("file") else "not in `migration/sources/shell/`"
             hd = ", ".join(f"`{e}` ({op(fh['file'], ln)})" for ln, e in fh["handled"]) if fh["handled"] else \
                 ("none, it goes to the next flow" if i < len(ox["flowHandler"]) else "none")
             L += [f"{i}. UI flow `{fh['flow']}` {where}. Handled errors: {hd}."]

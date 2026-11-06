@@ -5,7 +5,7 @@
       "id": "CAPTURE-SVG-PRESERVEASPECTRATIO",
       "classRegex": "^ubt-header-svg$",
       "reason": "The header background SVG is drawn with preserveAspectRatio=\"none\" (compiled SVGCode); the capture drops that attribute, so the replayed reference scales the SVG uniformly (path offset 0,32 and 390x665 instead of 0,0 and 390x720). Its subtree and screen area are not comparable.",
-      "evidence": "migration/screens/Login/analysis/sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202; migration/screens/Login/parity/default.expected.png vs default.build.png; Login Q6"
+      "evidence": "migration/sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202; migration/screens/Login/parity/default.expected.png vs default.build.png; Login Q6"
     },
     {
       "id": "CAPTURE-LOGO-REPLAY",
@@ -764,7 +764,7 @@
       "pathRegex": "div#b4-b6-Photobook_Gallery_List\\.OSFillParent\\.list\\.list-group > div#b4-b6-l1-43_\\d+-\\$b3\\.OSBlockWidget\\[Directory_Photobook\\.Photobook_Gallery_Item\\]$",
       "detailRegex": "^offset in parent (195,0 → 179|235,0 → 219|275,0 → 259|315,0 → 299|355,0 → 339|395,0 → 379|435,0 → 419|475,0 → 459|515,0 → 499|555,0 → 539|595,0 → 579|635,0 → 619|675,0 → 659|715,0 → 699|755,0 → 739|795,0 → 779|835,0 → 819|875,0 → 859|915,0 → 899|955,0 → 939|995,0 → 979|1035,0 → 1019|1075,0 → 1059),0$",
       "reason": "The thumbnail list is scrolled by 16 px at runtime: the List's componentdidmount runs ScrollSelectedIntoPosition(IsInstantScroll True), scrollAmount = SelectedItemPosition (SelectedPosition + 1 = 1) × 40 (32 px item + 8 px margin-right) − (8/2 + 40/2) = 16, which centres the first thumbnail (list padding = half the width). The reference is rebuilt from the captured HTML, which cannot carry an element's scrollLeft, so it always shows scroll 0: every thumbnail sits exactly 16 px further right. Capture artifact; the build follows the compiled JS (same selector and formula).",
-      "evidence": "migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); tools/pipeline/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
+      "evidence": "migration/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); tools/pipeline/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
     },
     {
       "id": "CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT",
@@ -956,7 +956,7 @@
       "states": "^default$",
       "routeRegex": "/UBTConnect/Profile\\b",
       "pathRegex": "span > input#Switch[23]\\.switch$",
-      "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, runtime-sources/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
+      "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, sources/runtime/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
       "evidence": "migration/screens/Profile/analysis/dom/default.html:372-374, :390, :414-416, :436; parity Profile/default (?mock=spouse): ::before background rgb(233,236,239) → rgb(0,129,156), ::after transform 4px → 28px on Switch2 and Switch3 only"
     },
     {
@@ -1695,7 +1695,7 @@
       "pathRegex": "Placeholder_Header_Title",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CONTENT",
@@ -1712,7 +1712,7 @@
       "pathRegex": "Notification_Content|Notification_Date",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-IDS",
@@ -1725,7 +1725,7 @@
       "pathRegex": "\\$b1[0-4]\\b|Placeholder_Content",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then. The block aliases shift by two (date $b10→$b12, BottomBarMenu $b11→$b13, CommonUI $b12→$b14).",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-SHIFT",
@@ -1738,7 +1738,7 @@
       "pathRegex": "Notification_Date|Notification_Content|Placeholder_Content|footer|Bottom",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-PIXEL",
@@ -1750,7 +1750,7 @@
       "pathRegex": "^screenshot$|.",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live NotificationDetails renders the header from the sender or the user (no literal \"Notifications\") and a bordered content container under the summary (adaptive card or sanitized HTML). Re-capture needed; remove these rules then.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:247-260 (header Expression), :466-575 (content container); migration/knowledge/tst-drift-2026-11-05.md:25; migration/clarify/auto-decisions-2026-11-05.md row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-NOTIFICATIONDETAILS-CALLS",
@@ -1762,7 +1762,7 @@
       "pathRegex": "^calls:",
       "detailRegex": "DataActionFetchMessageInstance|DataActionGetMessageInstance|ActionGetSignedImagesInBulk",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live screen fetches GetMessageInstance at start (the old FetchMessageInstance is declared, never fetched) and the sender photo URL (Cache_SignedImageURL_Get). Re-capture needed.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js:711-714, :776-798, :1096-1120; decision row 22."
+      "evidence": "migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js:711-714, :776-798, :1096-1120; decision row 22."
     },
     {
       "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-BUTTON",
@@ -1777,7 +1777,7 @@
       "pathRegex": "b3-\\$b10\\.OSBlockWidget\\[CW_Common\\.Button\\]",
       "detailRegex": ".",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/screens/Household_Relations/analysis/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+      "evidence": "migration/sources/runtime/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
     },
     {
       "id": "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-PIXEL",
@@ -1789,7 +1789,7 @@
       "pathRegex": "^screenshot$",
       "detailRegex": "^0\\.[0-2]\\d% pixels differ .*worst 40px tile [0-5]\\.\\d%",
       "reason": "Baseline of 2026-10-29 predates the TST change of 2026-11-05: the live HouseholdRelations_Block enables the Bookmark button (secondary when not bookmarked, primary when bookmarked; it was a disabled primary placeholder). Re-capture needed; remove these rules then. The pixels that differ are the button's fill and text.",
-      "evidence": "migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/screens/Household_Relations/analysis/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
+      "evidence": "migration/sources/runtime/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js:553-590 (button), :2167-2195 (OnClick_Bookmark), :2237-2260 (the read); the October copy migration/sources/raw/…HouseholdRelations_Block.mvc.js:540-556; migration/knowledge/tst-drift-2026-11-05.md (second look)."
     }
   ],
   "ignoreClasses": [

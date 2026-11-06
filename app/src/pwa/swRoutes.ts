@@ -3,7 +3,7 @@
    are unit-tested without a service worker; sw.ts only wires them to Workbox strategies. A request that no rule
    handles goes to the network untouched (no respondWith), which is how the "never cached" rows are kept. */
 
-/** Manifest scope of the original (start_url `/UBTConnect/`, no `scope`: migration/runtime-sources/UBTConnect.pwa-manifest.json). */
+/** Manifest scope of the original (start_url `/UBTConnect/`, no `scope`: migration/sources/runtime/UBTConnect.pwa-manifest.json). */
 export const APP_SCOPE = '/UBTConnect/';
 /** URL of the built service worker (vite-plugin-pwa output, outDir root). */
 export const SW_URL = '/sw.js';

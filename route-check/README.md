@@ -100,17 +100,17 @@ blocks and components of the route are in the last section, by name.
 
 Static check (user, 2026-11-05): a route without a TST capture (`migration/screens/<R>/no-capture.json`) gets its
 OutSystems facts from the compiled code (`tools/os_static.py`). The files are the screen and its static closure
-(`migration/survey/screens.json`), read from `migration/runtime-sources/` and the raw folders of the captured routes.
+(`migration/survey/screens.json`), read from `migration/sources/runtime/` and from `migration/sources/raw/` (the captured routes).
 No observed call, no screenshot; `ROUTES.md` shows `done (static)`.
 
 Live code (user, 2026-11-05): when TST changed a captured file after the capture, the tool reads the live copy in
-`migration/runtime-sources/live/` (drift report: `migration/knowledge/tst-drift-2026-11-05.md`). The facts and the
+`migration/sources/runtime/` (drift report: `migration/knowledge/tst-drift-2026-11-05.md`). The facts and the
 call graph of that file come from the live code (`os_static.refresh`). The route file says so at the top. The capture
 keeps the observed calls. To refresh the drift: `node tools/pipeline/batch_capture.cjs
-survey`, then the drift script of context-074, then copy the changed files into `migration/runtime-sources/live/`.
+survey`, then the drift script of context-074, then copy the changed files into `migration/sources/runtime/` and add their names to `live-files.txt` there.
 
 Method of the facts: `os_extras.py` reads the TST compiled files (`sources/raw/*.mvc.js`) and the UI flow controllers
-of `migration/shell/sources/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
+of `migration/sources/shell/`; `react_calls.mjs` reads the React screen files through ts-morph. A step comes from a
 node comment of the compiled action (`// Execute Action: X`) or from its condition. A navigation parameter comes from
 `generateScreenURL(url, {…})` (TST) and from `navigate(path, {…})` (React).
 

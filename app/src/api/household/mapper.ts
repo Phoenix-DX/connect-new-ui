@@ -122,7 +122,7 @@ export const toHouseholdGalleryImages = (wire: HouseholdGalleryWire): HouseholdG
 
 /** The gallery as the timeline photo list reads it: only SignedURL = SignedUrl is mapped; Date, Label and IsCurrent
     keep the structure defaults.
-    @origin migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1288-1290 */
+    @origin migration/sources/runtime/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1288-1290 */
 export const toTimelineImages = (rows: readonly HouseholdGalleryImage[]): UI_HouseholdTimelineImages[] =>
   rows.map((row) => ({ SignedURL: row.SignedUrl }));
 

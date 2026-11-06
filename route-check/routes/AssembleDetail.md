@@ -1,13 +1,13 @@
 # AssembleDetail: OutSystems (TST) and React
 
-The route `/UBTConnect/AssembleDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/AssembleDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/AssembleDetail/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/AssembleDetail/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 127 files, 0 without compiled code.
 
@@ -68,9 +68,9 @@ React calls of the screen without a TST chain in the code of the route. TST make
 | Call | React action | How TST declares it | Evidence |
 |---|---|---|---|
 | `/api/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` | `getSignedPhotosInBulk()` [`lib/legacyShared/actions.ts:45`](../../app/src/lib/legacyShared/actions.ts#L45) | extra-actions | Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1; 2026-11-05 (route-actions questions |
-| `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../../app/src/lib/legacyShared/actions.ts#L298) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
-| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:301`](../../app/src/api/message/repository.ts#L301) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
-| `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
+| `/api/Connect2_LegacyShared/ActionGetUserInformation` | `getCacheableUserInfo()` [`lib/legacyShared/actions.ts:298`](../../app/src/lib/legacyShared/actions.ts#L298) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assembl |
+| `/api/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` | `fetchMemberContacts()` [`api/message/repository.ts:301`](../../app/src/api/message/repository.ts#L301) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMember |
+| `/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2` | `fetchBulkSubdivisions()` [`api/locality/repository.ts:181`](../../app/src/api/locality/repository.ts#L181) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the b |
 
 React reaches 1 more call without a TST chain on this route only through shared containers, components or app code. The last section lists it, not this one.
 
@@ -190,23 +190,23 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `EventId` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:112`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L112) |
-| `SeriesId` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:116`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L116) |
-| `Start` | DateTime | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:120`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L120) |
-| `AssembleEventTypeTile` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:124`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L124) |
+| `EventId` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:112`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L112) |
+| `SeriesId` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:116`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L116) |
+| `Start` | DateTime | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:120`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L120) |
+| `AssembleEventTypeTile` | Text | yes | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:124`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L124) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `AssembleDetail` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `longIntegerToText(objectId)` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:665`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L665) |
-| `AssembleDetail` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:778`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L778) |
-| `AssembleDetail` | `ContactByEmailMember` | `In_EntityId` = `event_MemberId`<br>`In_EntityType` = `UBTConnectModel.staticEntities.connect_Entity.member`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_ContactLocality` = `event_ContactLocality`<br>`In_AuditEventId` = `UBTConnectModel.staticEntities.applicationEvents_Directory.emailHousehold`<br>`In_ContactCountry` = `event_ContactCountry`<br>`In_EmailTo` = `event_EmailTo`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_AvatarURL` = `event_AvatarURL` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:912`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L912) |
-| `AssembleDetail` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:1058`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L1058) |
+| `AssembleDetail` | `LegacyShareObject` | `In_ShareObjectTypeId` = `shareObjectTypeId`<br>`In_ObjectId` = `longIntegerToText(objectId)` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:665`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L665) |
+| `AssembleDetail` | `HouseholdCarousel` | `In_StartingHouseholdId` = `selectedHouseholdId` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:778`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L778) |
+| `AssembleDetail` | `ContactByEmailMember` | `In_EntityId` = `event_MemberId`<br>`In_EntityType` = `UBTConnectModel.staticEntities.connect_Entity.member`<br>`In_ContactName` = `getNameAndSurname_ByFullName.out_Name`<br>`In_ContactLocality` = `event_ContactLocality`<br>`In_AuditEventId` = `UBTConnectModel.staticEntities.applicationEvents_Directory.emailHousehold`<br>`In_ContactCountry` = `event_ContactCountry`<br>`In_EmailTo` = `event_EmailTo`<br>`In_ContactSurname` = `getNameAndSurname_ByFullName.out_Surname`<br>`In_AvatarURL` = `event_AvatarURL` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:912`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L912) |
+| `AssembleDetail` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:1058`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L1058) |
 
 ### 7.2 React
 
@@ -237,7 +237,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `AssembleDetail` | `GetAssembleNotes` | at start (`0`) | `NoteListActions.Notes` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:315`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L315)), `view` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:316`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L316)), `text` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:451`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L451)), `NotesSheet.In_Notes` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:497`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L497)), `action handler_OnNoteDeleted` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:851`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L851)), `action handler_OnNotesChanged` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:997`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L997)) | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:575`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L575) |
+| `AssembleDetail` | `GetAssembleNotes` | at start (`0`) | `NoteListActions.Notes` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:315`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L315)), `view` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:316`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L316)), `text` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:451`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L451)), `NotesSheet.In_Notes` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:497`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L497)), `action handler_OnNoteDeleted` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:851`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L851)), `action handler_OnNotesChanged` ([`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:997`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L997)) | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:575`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L575) |
 
 ### 8.2 React
 
@@ -286,7 +286,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:1196`](../../migration/runtime-sources/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L1196) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js:1196`](../../migration/sources/runtime/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js#L1196) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -301,7 +301,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Legacy_AssembleFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Legacy_AssembleFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

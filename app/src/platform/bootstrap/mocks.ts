@@ -155,7 +155,7 @@ export const mockLocalBookmarksC2 = (): LocalBookmarkC2Wire[] =>
 type LocalBookmarkC2Wire = components['schemas']['UBTConnect_Bookmarks_MCS__LocalBookmark'];
 
 /** Fictional: the mock user's C2 bookmarks are mockLocalBookmarksC2 (above); the legacy LocalBookmark list is empty (the
-    live app start does not sync it, migration/runtime-sources/UBTConnect.controller.js:1129-1133); the notes are those of
+    live app start does not sync it, migration/sources/runtime/UBTConnect.controller.js:1129-1133); the notes are those of
     the notes mock collection (above); the Orbit static entities are those of orbitStaticEntities (above).
     UpdatesFeed_MonthsToShow: TST value not captured (type default). */
 const syncInfoGetMain = contractHandler('UBTConnect', 'ActionSync_Info_GetMain', () => ({

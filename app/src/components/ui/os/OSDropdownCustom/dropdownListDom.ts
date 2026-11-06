@@ -1,4 +1,4 @@
-/* The DOM helpers of DropdownCustom (migration/runtime-sources/OutSystemsReactWidgets.js). Like the runtime, they read
+/* The DOM helpers of DropdownCustom (migration/sources/runtime/OutSystemsReactWidgets.js). Like the runtime, they read
    the container's `childNodes[1]` as the list (W16595-17390, W19291-19700) and change classes and focus directly. */
 
 /** The class names of the widget (W20513-21220), with the runtime's spelling "drowpdown-empty-value-row". */

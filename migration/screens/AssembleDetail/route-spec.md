@@ -1,8 +1,8 @@
 # Route spec: AssembleDetail
 
-Sources are readable prettier copies in `migration/screens/AssembleDetail/sources/`. Each citation has the form `<file>:<line>`.
+Sources are readable prettier copies in `migration/sources/runtime/`. Each citation has the form `<file>:<line>`.
 
-The screen source is `UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` ("SCR", TST copy of F9, `migration/runtime-sources/`).
+The screen source is `UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` ("SCR", TST copy of F9, `migration/sources/runtime/`).
 The other sources come from `capture/survey-UBTConnect.json`: `Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail` ("SB"),
 `…AssembleEventDetail` ("ED"), `…_Section`, `…__Error`, `…_AttendeeSubdivisionList_Skelet`, `…_LocalitiesList` ("LL"),
 `…_LocalitySubdivisionList` ("LS"), `…_AttendeeSubdivision` ("AS"), `…_ContactList` ("CL"), `…_Contact` ("CT"),

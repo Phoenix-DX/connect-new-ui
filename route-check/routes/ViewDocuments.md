@@ -1,13 +1,13 @@
 # ViewDocuments: OutSystems (TST) and React
 
-The route `/UBTConnect/ViewDocuments`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/ViewDocuments`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ViewDocuments/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/ViewDocuments/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 53 files, 0 without compiled code.
 
@@ -123,22 +123,22 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:89`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L89) |
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:93`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L93) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:97`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L97) |
-| `In_EventStartDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:101`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L101) |
-| `In_EventEndDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:105`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L105) |
-| `In_EventLocation` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:109`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L109) |
+| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:89`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L89) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:93`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L93) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:97`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L97) |
+| `In_EventStartDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:101`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L101) |
+| `In_EventEndDate` | DateTime | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:105`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L105) |
+| `In_EventLocation` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:109`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L109) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `ViewDocuments` | `ContactByEmailOrbitHelpdesk` | `In_Subject` = `subject`<br>`In_EventId` = `in_EventId`<br>`In_EventName` = `eventName`<br>`In_MilestoneId` = `""` | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:296`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L296) |
+| `ViewDocuments` | `ContactByEmailOrbitHelpdesk` | `In_Subject` = `subject`<br>`In_EventId` = `in_EventId`<br>`In_EventName` = `eventName`<br>`In_MilestoneId` = `""` | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:296`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L296) |
 
 ### 7.2 React
 
@@ -197,7 +197,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:361`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L361) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js:361`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js#L361) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -212,7 +212,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Legacy_OrbitEventsFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Legacy_OrbitEventsFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

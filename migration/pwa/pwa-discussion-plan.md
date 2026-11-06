@@ -27,7 +27,7 @@ Accepted items become ADRs and update the stack item `pwa` only after the user c
   confirmed with the user.
 
 Evidence keys: `AM` / `UC` = `migration/sources/raw/UBT_AppManager.controller.js` /
-`UBTConnect.controller.js`; `RS/` = `migration/runtime-sources/`; `OSJS:N` = `RS/OutSystems.js` physical line N
+`UBTConnect.controller.js`; `RS/` = `migration/sources/runtime/`; `OSJS:N` = `RS/OutSystems.js` physical line N
 (minified); `SV:<file>` = `capture/survey-UBTConnect.json` → `sources[<file>]`; `MD/` =
 `migration/sources/raw/`.
 
@@ -132,7 +132,7 @@ registry was not checked offline.
 
 | Phase | Deliverables | Effort | Needs the user's decision before | Risks |
 |---|---|---|---|---|
-| 0. Facts | F1 static GET of `/UBTConnect/moduleservices/pwa/manifest` (name, icons, colours, start_url). F2 does TST register a service worker (user checks DevTools > Application, or one observe run without the SW block, reads only)? F3 fetch `FileTransferPlugin.wrapper.js` and `FirebaseCloudMessagingPlugin.controller.js` (TST manifest files, standing approval, logged in `runtime-sources.md`). F4 does TST web receive push at all? | 0.5–1 d | Approval for F1 (not in the survey manifest list) and F2 (changes the capture setting) | F2 may show an OutSystems SW that the cutover must replace (P15) |
+| 0. Facts | F1 static GET of `/UBTConnect/moduleservices/pwa/manifest` (name, icons, colours, start_url). F2 does TST register a service worker (user checks DevTools > Application, or one observe run without the SW block, reads only)? F3 fetch `FileTransferPlugin.wrapper.js` and `FirebaseCloudMessagingPlugin.controller.js` (TST manifest files, standing approval, logged in `migration/sources/runtime.md`). F4 does TST web receive push at all? | 0.5–1 d | Approval for F1 (not in the survey manifest list) and F2 (changes the capture setting) | F2 may show an OutSystems SW that the cutover must replace (P15) |
 | 1. Installable shell | ADR-9 "PWA service worker". `vite-plugin-pwa` (injectManifest), manifest + icons + `apple-touch-icon` + theme-color, precache of the shell and original CSS, navigation fallback, SW only in non-mock builds, silent update flow. `app/docs/guides/pwa.md` | 2–4 d | P2, P3, P4, P11, P16, version list | Stale cached CSS breaks parity (hash all assets); SW interfering with MSW |
 | 2. Offline parity | Offline reload shows the shell. NetworkDetection ping (`status/network-ping.txt`, `no-store`) and toasts as the original. `storage.persist()`, eviction recovery, clear on logout | 1–3 d | P1, P10 | IndexedDB personal-data exception; Safari eviction |
 | 3. Device features | Barcode scanner (vendored web scanner behind `barcodePlugin.ts` / `src/lib/device`), file open, deep links + resume link, external apps unchanged, keyboard/orientation as U18 | 3–5 d | P7, P8, P9, P13 | Camera permission UX on iOS standalone; scanner CSS parity |
@@ -181,7 +181,7 @@ done. Phase 4 waits for the backend/BFF. Phase 5 comes last.
 | Id | Answer | Who, date |
 |---|---|---|
 | P1 | **(a) online-first**: installable shell, offline shows the original toasts | user, 2026-10-16 |
-| F1 | approved, done: `migration/runtime-sources/UBTConnect.pwa-manifest.json` ("Connect 2.0", standalone, theme `#1992ab`, background `#ffffff`, 4 PNG icons 48–512, start_url `/UBTConnect/`, portrait, no `scope`) | user, 2026-10-16 |
+| F1 | approved, done: `migration/sources/runtime/UBTConnect.pwa-manifest.json` ("Connect 2.0", standalone, theme `#1992ab`, background `#ffffff`, 4 PNG icons 48–512, start_url `/UBTConnect/`, portrait, no `scope`) | user, 2026-10-16 |
 | F2 | the user checks TST in DevTools > Application > Service Workers and reports | user, 2026-10-16; **answered 2026-10-17**: TST registers `/UBTConnect/pwaServiceWorker.js` (scope `/UBTConnect/`); the origin also has `/ConnectMobile/pwaServiceWorker.js` (other app). `migration/knowledge/pwa-tst-service-worker.md` |
 | Trove | **external app**, kept as built (OpenInApp_OpenApp; no screen) | user, 2026-10-16 |
 | P4 | **copy the TST manifest values** (F1) + **browser default install prompt only** (no custom banner) | user, 2026-10-16 |

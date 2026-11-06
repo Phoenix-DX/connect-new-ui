@@ -1,10 +1,10 @@
 # CountryList: OutSystems (TST) and React
 
-The route `/UBTConnect/CountryList`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/CountryList`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/CountryList/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `CountryList`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `CountryList`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -145,7 +145,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -153,9 +153,9 @@ Screen inputs: none. `setInputs` of `CountryList` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `CountryList` | `CountryDetails` | `CountryCode` = `event_Id` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1371`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1371) |
-| `CountryList` | `CountryDetails` | `CountryCode` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.co…` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1518`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1518) |
-| `CountryList` | `Locality_Details` | `LocalityId` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.lo…`<br>`PreloadedLocalityLabel` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.lo…` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1543`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1543) |
+| `CountryList` | `CountryDetails` | `CountryCode` = `event_Id` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1371`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1371) |
+| `CountryList` | `CountryDetails` | `CountryCode` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.co…` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1518`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1518) |
+| `CountryList` | `Locality_Details` | `LocalityId` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.lo…`<br>`PreloadedLocalityLabel` = `localCacheControl_UserInformation.directory_UserCurrent.directory_UserCurrent_Geography.lo…` | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1543`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1543) |
 
 ### 7.2 React
 
@@ -179,7 +179,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `CountryList` | OnReady ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1780`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1780)) | `screenEvent_OnReady` | 1. JavaScript: IsViewRestoredFromCache ([`L1296`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1296))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L1303`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1303))<br>3. If (isViewRestoredFromCache.isRestoredFromCache && getCountriesStatistics.isDataFetched) ([`L1305`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1305))<br>4. Else ([`L1307`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1307))<br>5. JavaScript: JavaScript1 ([`L1309`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1309))<br>6. Execute Action: Action_RefreshData_CountryStatistics ([`L1314`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1314)) |
+| `CountryList` | OnReady ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1780`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1780)) | `screenEvent_OnReady` | 1. JavaScript: IsViewRestoredFromCache ([`L1296`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1296))<br>2. Check if IsViewRestoredFromCache IsRestoredFromCache ([`L1303`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1303))<br>3. If (isViewRestoredFromCache.isRestoredFromCache && getCountriesStatistics.isDataFetched) ([`L1305`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1305))<br>4. Else ([`L1307`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1307))<br>5. JavaScript: JavaScript1 ([`L1309`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1309))<br>6. Execute Action: Action_RefreshData_CountryStatistics ([`L1314`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1314)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -209,8 +209,8 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `CountryList` | `GetCommunityStatistics` | on demand (`-1`) | `CommunityNumbers.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:776`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L776)), `CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:777`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L777)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:778`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L778)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:798`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L798)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1174`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1174) |
-| `CountryList` | `GetCountriesStatistics` | on demand (`-1`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:932`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L932)), `SkeletonSection.source` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:956`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L956)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:964`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L964)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:993`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L993)), `Statistics_TypedItem.In_HasImage` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:996`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L996)), `action onAfterFetch_GetCountriesStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1254`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1254)), `action screenEvent_OnReady` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1305`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1305)), `action action_RefreshData_CountryStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1437`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1437)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1175`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1175) |
+| `CountryList` | `GetCommunityStatistics` | on demand (`-1`) | `CommunityNumbers.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:776`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L776)), `CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:777`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L777)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:778`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L778)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:798`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L798)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1174`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1174) |
+| `CountryList` | `GetCountriesStatistics` | on demand (`-1`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:932`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L932)), `SkeletonSection.source` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:956`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L956)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:964`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L964)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:993`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L993)), `Statistics_TypedItem.In_HasImage` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:996`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L996)), `action onAfterFetch_GetCountriesStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1254`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1254)), `action screenEvent_OnReady` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1305`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1305)), `action action_RefreshData_CountryStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1437`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1437)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1175`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1175) |
 
 ### 8.2 React
 
@@ -242,7 +242,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1804`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1804) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1804`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1804) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -255,13 +255,13 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `CountryList` | `action_RefreshData_CountryStatistics` | `CommunicationException` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1447`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1447)) | 1. Execute Action: ListClear2 ([`L1455`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1455))<br>2. Raise Error: BubbleCommunicationException ([`L1458`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1458)) |
-| `CountryList` | `action_RefreshData_CountryStatistics` | `NotRegistered` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1463`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1463)) | 1. Raise Error: NotRegistered ([`L1471`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1471)) |
-| `CountryList` | `action_RefreshData_CountryStatistics` | `AllExceptions` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1476`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1476)) | 1. Execute Action: ListClear ([`L1484`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1484))<br>2. Raise Error: BubbleGenericException ([`L1487`](../../migration/runtime-sources/live/UBTConnect.Directory_Locality.CountryList.mvc.js#L1487)) |
+| `CountryList` | `action_RefreshData_CountryStatistics` | `CommunicationException` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1447`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1447)) | 1. Execute Action: ListClear2 ([`L1455`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1455))<br>2. Raise Error: BubbleCommunicationException ([`L1458`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1458)) |
+| `CountryList` | `action_RefreshData_CountryStatistics` | `NotRegistered` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1463`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1463)) | 1. Raise Error: NotRegistered ([`L1471`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1471)) |
+| `CountryList` | `action_RefreshData_CountryStatistics` | `AllExceptions` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1476`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1476)) | 1. Execute Action: ListClear ([`L1484`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1484))<br>2. Raise Error: BubbleGenericException ([`L1487`](../../migration/sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1487)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Directory_Locality` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Directory_Locality` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

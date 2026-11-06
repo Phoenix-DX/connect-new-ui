@@ -70,12 +70,12 @@ const totalNotesLabel = (inTotalNotes: string): string => {
 
 /** Card with a source header (avatar, label, total notes), title, subtitle, notes and actions (live TST
     UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js, extracted 2026-10-29 to
-    migration/screens/Bookmarks/sources/; captured in Bookmarks dom/default.html, card 0). The header container, the
+    migration/sources/runtime/; captured in Bookmarks dom/default.html, card 0). The header container, the
     title and the subtitle raise OnClickItemCard; the total-notes IconText raises OnClickTotalNotesIcon. Label and
     title highlight In_SearchString. Ids follow the TST widget aliases: $b12-$b15 are the channel row (:692-870, shown
     only with In_ChannelName, In_ChannelLogo and an In_PublishedAt other than NullDate), so the title container is
     $b16. The channel name and the published date also raise OnClickItemCard; the channel name highlights
-    In_SearchString. The live TST code of 2026-11-05 (migration/runtime-sources/live/
+    In_SearchString. The live TST code of 2026-11-05 (migration/sources/runtime/
     UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js:12-60) has no event start and end inputs and no event
     time row (the publish of 2026-10-29 had one): the Notes container is $b19 and the Actions container $b20
     (:1024-1056). */

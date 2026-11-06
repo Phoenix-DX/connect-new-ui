@@ -53,7 +53,7 @@ export function getAssembleHostedAtComponents(
 /* ---- Wave 8 O-B3 (Assemble_FilterLocalityByCountry, Assemble_FilterSubdivisionByLocality) ---- */
 
 /** GetLocalBookmarkedLocalityInformation(In_LocalityId, In_LocalityInformation) (live
-    migration/runtime-sources/Connect2_Assemble_MUI.controller.js:668-912): on a copy of the locality (`.clone()`, :673),
+    migration/sources/runtime/Connect2_Assemble_MUI.controller.js:668-912): on a copy of the locality (`.clone()`, :673),
     IsBookmarked of the locality and of each interchange, household, supper meeting, school and store is set from the
     device's C2 bookmarks (UBTConnect_Bookmarks_MCS GetLocalBookmarksByObjectType, by category): Locality for the
     locality (In_LocalityId) and the interchanges (InterchangeLocalityId) (:705-737), Household for the households (Id)

@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] mock user subscription region (answered)
 - Question: The country list needs a non-empty SubscriptionRegionId on the mock user (GetCacheableRegionSubscribedCountries raises ObjectNotFound on ''); TST's Global account has one (calls.json #4). Apply CR-Assemble_BrowseByCountry-1 (shell mockUser.ts SubscriptionRegionId '1') before review, or keep '' (default state shows only the Spinner)?
-- Evidence: migration/runtime-sources/Connect2_LegacyShared.controller.js:3551-3679; analysis/calls.json #4 (SubscriptionRegionId sent); app/src/shell/mockUser.ts SubscriptionRegionId ''; migration/change-requests/CR-Assemble_BrowseByCountry-1.md
+- Evidence: migration/sources/runtime/Connect2_LegacyShared.controller.js:3551-3679; analysis/calls.json #4 (SubscriptionRegionId sent); app/src/shell/mockUser.ts SubscriptionRegionId ''; migration/change-requests/CR-Assemble_BrowseByCountry-1.md
 - OutSystems MCP: not asked (no MCP in this run); the capture proves a non-empty value
 - Options: A: apply CR-1 now (value '1'), then re-run parity of Assemble_BrowseByCountry and AssembleEvents | B: keep '' (both Assemble routes show only the Spinner) (recommended: A)
 - Answer (user, 2026-10-16T11:53:35): A (recommended), auto-accepted (user instruction 2026-10-16 night): CR-Assemble_BrowseByCountry-1 (mock user SubscriptionRegionId set) applied by foundation F13

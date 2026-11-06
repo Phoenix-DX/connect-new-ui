@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry
 
 - Kind: shared; build screens using it: AssembleEvents, Assemble_BrowseByCountry
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`
 - Child blocks: Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality, Connect2_LegacyShared.Reusable.Spinner, OutSystemsUI_2_23.Interaction.InputWithIcon (queue: Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality)
 
 ## Inputs
@@ -275,4 +275,4 @@ align: /*Default*/ 0,
 animate: false,
 extendedProperties: {
 ```
-(… 164 more lines in `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`)
+(… 164 more lines in `migration/sources/survey/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.mvc.js`)

@@ -57,7 +57,7 @@ export async function fetchHouseholdCoordinates(inputs: HouseholdCallInputs): Pr
 
 /** DataActionGetHouseHold_Gallery: the gallery images of the household, as the timeline photo list reads them (only
     SignedURL). On demand (HouseholdDetails_Block.mvc.js:1948), called at :1995 of the live code of 2026-11-05.
-    @origin migration/runtime-sources/live/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1995 */
+    @origin migration/sources/runtime/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:1995 */
 export async function fetchHouseholdGallery(inputs: HouseholdCallInputs): Promise<UI_HouseholdTimelineImages[]> {
   return toTimelineImages(
     toHouseholdGalleryImages(

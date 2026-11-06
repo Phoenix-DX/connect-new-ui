@@ -24,18 +24,25 @@ History: until 2026-11-05 the scripts lived in `.claude/skills/<skill>/scripts/`
 
 ## Compiled sources store (`common/sources_store.py`)
 
-The compiled TST files and the styles of a capture live once in `migration/sources/`: `raw/`, `pretty/`, `styles/`.
-`survey/` holds the copies of the live survey that the route check needs for a route without a capture.
-`migration/screens/<S>/analysis/manifest.json` names the files of a route: `{"raw": {name: path}, "pretty": {...},
-"styles": {"bundle.css": path, "assets.json": path}}`.
+Every compiled TST file of the project is in `migration/sources/` (since 2026-11-06 the only place):
+
+| Folder | Content | Index |
+|---|---|---|
+| `raw/`, `pretty/`, `styles/` | the compiled files and the styles of the route captures, one copy per content | `migration/screens/<S>/analysis/manifest.json`: `{"raw": {name: path}, "pretty": {...}, "styles": {"bundle.css": path, "assets.json": path}}` |
+| `survey/` | copies of the live survey: blocks no capture loaded (route check of routes without a capture, block packs) | none; a copy of another survey version gets `@<sha8>` |
+| `runtime/` | the OutSystems runtime, module, plugin and SDK files fetched read-only from TST (`moduleinfo.json`, `OutSystemsSettings.js`, …); `css/` the three live stylesheets | `migration/knowledge/runtime-sources.md`; `live-files.txt` lists the files TST changed after the captures (the route check reads those live) |
+| `contract/` | producer-module `*.model.js` fetched for the API contract | `migration/contract/README.md` |
+| `shell/` | module and UI flow controllers, client variables of the app shell | `migration/shell/README.md` |
+
+Before 2026-11-06 the last four were `migration/blocks/sources/`, `migration/runtime-sources/` (with a `live/` copy
+of 286 files), `migration/contract/sources/raw/` and `migration/shell/sources/`; `check` and `gc` leave them alone.
 
 Rules: a store file is never overwritten. The same sha1 is a no-op. Another content under a used name gets
 `<stem>@<sha8><ext>`; the first version keeps the plain name. The `styles/` files are always suffixed.
 
 Writer: `analyze_capture.py`. Readers through the manifests: `contract_gen.py`, `static_entities.py`, `css_sets.py`,
-`block_pack.py`, `context_pack.py` and the route check. A file no capture holds comes from the live survey
-(`survey/`; `check` and `gc` leave that folder alone). Before 2026-11-05 every route kept its own copies (913 MB);
-the store holds 125 MB.
+`block_pack.py`, `context_pack.py`, `flags.py` and the route check. A file no capture holds comes from the live survey
+(`survey/`). Before 2026-11-05 every route kept its own copies (913 MB); the store holds 125 MB.
 
 ```
 python3 tools/common/sources_store.py check        # every manifest entry exists, every store file is referenced

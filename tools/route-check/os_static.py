@@ -1,5 +1,5 @@
 """Static TST facts for a route without a capture (user, 2026-11-05): the compiled code of the screen and of its
-static closure (TST survey `migration/survey/screens.json`), read from `migration/runtime-sources/` and from the
+static closure (TST survey `migration/survey/screens.json`), read from `migration/sources/runtime/` and from the
 shared store of the captured routes (`migration/sources/raw/`). No capture, no observed calls, no screenshots.
 
 The facts have the shape of `facts.json` for the keys that `check_route.py` reads: `screenFile`, `renderedFiles`
@@ -15,11 +15,11 @@ import os_call_graph
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # the repository root
 SK = os.path.join(ROOT, "tools", "pipeline")
-RUNTIME = os.path.join(ROOT, "migration", "runtime-sources")
 STORE_RAW = os.path.join(ROOT, "migration", "sources", "raw")  # the shared store of the captures (tools/common/sources_store.py)
 import sys  # noqa: E402
 sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
 import sources_store  # noqa: E402
+RUNTIME = sources_store.RUNTIME  # migration/sources/runtime: the files fetched read-only from TST
 
 
 def _analyze():
@@ -30,7 +30,7 @@ def _analyze():
 
 
 def source_dirs():
-    """Where a compiled file can be: runtime-sources first, then the shared store of the captured routes."""
+    """Where a compiled file can be: the runtime folder of the store first, then the raw copies of the captured routes."""
     return [d for d in (RUNTIME, STORE_RAW) if os.path.isdir(d)]
 
 

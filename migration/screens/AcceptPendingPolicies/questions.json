@@ -14,7 +14,7 @@
   "blocking": false,
   "status": "answered",
   "askedAt": "2026-10-14T19:34:44",
-  "answer": "On the web the policy name opens the policy URL in a new tab (CanOpenApplicationPolicyDirectlyViaUrl = IsWeb → JSUtils_PageOpenInNewTab(URL) → DetailsOnClick; TST compiled ApplicationPolicies_CW / Policy_Custom_AcceptPendingPolicies in migration/shell/sources) (user, 2026-10-14)",
+  "answer": "On the web the policy name opens the policy URL in a new tab (CanOpenApplicationPolicyDirectlyViaUrl = IsWeb → JSUtils_PageOpenInNewTab(URL) → DetailsOnClick; TST compiled ApplicationPolicies_CW / Policy_Custom_AcceptPendingPolicies in migration/sources/shell) (user, 2026-10-14)",
   "answeredBy": "user",
   "answeredAt": "2026-10-14T19:46:49"
  },

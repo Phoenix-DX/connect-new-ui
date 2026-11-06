@@ -1,7 +1,7 @@
 # Route spec: LDM_Email_V2
 
-Evidence: `S` = `migration/runtime-sources/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2.mvc.js` (the screen),
-`B` = `migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js`
+Evidence: `S` = `migration/sources/runtime/UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2.mvc.js` (the screen),
+`B` = `migration/sources/runtime/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js`
 (model :1-193, view :194-895, controller :896-1628). Both are TST copies fetched read-only by F9
 (`migration/knowledge/runtime-sources.md`, row "More files (2026-10-16, foundation F9 …)").
 

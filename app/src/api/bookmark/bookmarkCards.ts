@@ -7,7 +7,7 @@ import type { Notes } from '@/lib/ubtConnectLibrary/structures';
    UBTConnect_Bookmarks_MCS (called by Get_LocalDynamicBookmarkPills, UBTConnect_Bookmarks_MCS.controller.js:1193).
    Own file, as notification/notificationDetail.ts. Both operations come from the contract (regenerated for I10-6).
    UI_Bookmark_CardItem (Connect_Bookmarks_CS, live model of 2026-11-05,
-   migration/runtime-sources/live/Connect_Bookmarks_CS.model.js): ItemId is Text, with ItemId2 (the household of a
+   migration/sources/runtime/Connect_Bookmarks_CS.model.js): ItemId is Text, with ItemId2 (the household of a
    member), HasDetailAccess and the channel fields ChannelName, ChannelLogo, PublishedAt; no event dates. */
 
 /** Out_Bookmarks of DataActionGetBookmarks (Connect_Bookmarks_CS UI_Bookmarks): Total (Long Integer, as text) and the

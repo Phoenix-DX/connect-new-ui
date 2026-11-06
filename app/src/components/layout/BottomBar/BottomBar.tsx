@@ -60,7 +60,7 @@ export function BottomBar({
 
   /* OnReady (once per instance, as OutSystems runs it; StrictMode re-runs effects): Directory_Updates_RefreshBottomBarCount
      (False), which calls the server only when the last check is CheckFrequency minutes old (UC:2458-2470), then
-     SetBottomBarActiveElement(-1): OSUI adds `active` to `.bottom-bar` children[ActiveItem] (runtime-sources/
+     SetBottomBarActiveElement(-1): OSUI adds `active` to `.bottom-bar` children[ActiveItem] (sources/runtime/
      OutSystemsUI_2_23.OutSystemsUI.js:17638-17650), and children[-1] is none. */
   const readyRan = useRef(false);
   useEffect(() => {

@@ -17,7 +17,7 @@ const { AssembleEvent, CompiledView, Locality, OrbitEvent, SubscriptionWarning }
 const lazyImageProps = () => vi.mocked(EntityLazyImage).mock.lastCall?.[0];
 
 /* No captured DOM exists for this block: the checks follow the compiled view and OnInitialize
-   (migration/blocks/sources/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:234-683, 745-778). */
+   (migration/sources/survey/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js:234-683, 745-778). */
 describe('SearchResult_Item', () => {
   it('member row: bordered connect-search-result, rounded square image, highlighted title, location', () => {
     const { container } = render(<CompiledView />);

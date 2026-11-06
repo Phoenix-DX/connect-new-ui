@@ -14,7 +14,7 @@ import {
 } from './entities';
 
 /* The Orbit local entities of Connect2_OrbitMobile_MUI that the app start fills (CR-EventDetail-1), ported 1:1 from
-   C = migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, E = …Connect2_OrbitMobile_MUI.entities.js.
+   C = migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, E = …Connect2_OrbitMobile_MUI.entities.js.
 
    Who uses them in the original:
    - writes: UBTConnect Sync_Info_Main (UBTConnect.controller.js:16579-16584): after Sync_Info_GetMain, when not from

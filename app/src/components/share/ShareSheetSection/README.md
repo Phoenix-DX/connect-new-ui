@@ -12,7 +12,7 @@ Events: none. Placeholders: `Placeholder_Title` → `placeholderTitle`, `Placeho
 ## Captured variants (0)
 
 No screen capture renders it (the share sheet is closed in every capture): built from the compiled view
-(`migration/blocks/sources/`), story `CompiledView`, checks in `ShareSheet_Section.test.tsx`.
+(`migration/sources/survey/`), story `CompiledView`, checks in `ShareSheet_Section.test.tsx`.
 
 ## Not settled
 

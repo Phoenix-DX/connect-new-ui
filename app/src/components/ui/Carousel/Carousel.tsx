@@ -99,7 +99,7 @@ export function Carousel({
   }, [key]);
 
   /* OnRender → CarouselUpdateOnRender (Carousel.mvc.js:832-847). OutSystems raises OnRender on every update of the
-     block, not on its first render (componentDidUpdate, runtime-sources/OutSystemsReactView.js:6:29576). */
+     block, not on its first render (componentDidUpdate, sources/runtime/OutSystemsReactView.js:6:29576). */
   useLayoutEffect(() => {
     if (!rendered.current) {
       rendered.current = true;

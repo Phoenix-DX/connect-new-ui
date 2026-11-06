@@ -2,10 +2,10 @@
 
 No-capture route (user decision I10-3 (a), 2026-10-29, `no-capture.json`: the test account has no admin events on TST).
 Built from the compiled TST code; no parity; the user reviews it by eye. Facts: `migration/clarify/review/item10-new-screens.md` §5, §10.
-Sources (all in `migration/screens/OrbitAdminMilestoneDetail/sources/`): SCR = `UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestoneDetail.mvc.js`,
+Sources (all in `migration/sources/runtime/`): SCR = `UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminMilestoneDetail.mvc.js`,
 SB = `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminMilestoneDetail.mvc.js`,
 PQM = `Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan_Milestone.mvc.js`. Records and static entities:
-`migration/runtime-sources/Connect2_OrbitMobile_BL.model.js`, `Connect2_OrbitMobile_IS.model.js`, `moduleinfo.json`.
+`migration/sources/runtime/Connect2_OrbitMobile_BL.model.js`, `Connect2_OrbitMobile_IS.model.js`, `moduleinfo.json`.
 Closest React route: OrbitAdminEventDetail (`app/src/pages/OrbitAdminEventDetail/`), same block family.
 
 ## Summary

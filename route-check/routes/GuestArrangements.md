@@ -1,13 +1,13 @@
 # GuestArrangements: OutSystems (TST) and React
 
-The route `/UBTConnect/GuestArrangements`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/GuestArrangements`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/GuestArrangements/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/GuestArrangements/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 58 files, 0 without compiled code.
 
@@ -53,7 +53,7 @@ React calls of the screen without a TST chain in the code of the route. TST make
 
 | Call | React action | How TST declares it | Evidence |
 |---|---|---|---|
-| `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` | `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) | extra-actions | Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow);  |
+| `/api/Connect2_LegacyShared/ActionGetSignedImagesInBulk` | `fetchLegacySignedImagesInBulk()` [`api/image/repository.ts:21`](../../app/src/api/image/repository.ts#L21) | extra-actions | Connect2_LegacyShared.controller.js (migration/sources/runtime/): ServerAction.GetSignedImagesInBulk, called by GetBulkSignedImageURL (:2816-2871), called through the CallbacksJS JavaScript node of GetCacheableSignedImageURL (:3692+, getClientActionProxies: a callback the call graph cannot follow);  |
 
 ## 5. Server calls
 
@@ -153,24 +153,24 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:95`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L95) |
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:99`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L99) |
-| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:103`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L103) |
-| `In_HostId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:107`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L107) |
-| `In_OrbitMilestoneTypeId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:111`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L111) |
-| `In_MilestoneTitle` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:115`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L115) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:119`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L119) |
+| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:95`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L95) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:99`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L99) |
+| `In_MemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:103`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L103) |
+| `In_HostId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:107`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L107) |
+| `In_OrbitMilestoneTypeId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:111`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L111) |
+| `In_MilestoneTitle` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:115`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L115) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:119`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L119) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `GuestArrangements` | `ContactByEmailOrbitHelpdesk` | `In_EventId` = `in_EventId`<br>`In_Subject` = `subject`<br>`In_EventName` = `eventName`<br>`In_MilestoneId` = `""` | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:321`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L321) |
-| `GuestArrangements` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:378`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L378) |
+| `GuestArrangements` | `ContactByEmailOrbitHelpdesk` | `In_EventId` = `in_EventId`<br>`In_Subject` = `subject`<br>`In_EventName` = `eventName`<br>`In_MilestoneId` = `""` | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:321`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L321) |
+| `GuestArrangements` | `HouseholdDetails` | `HouseholdId` = `householdId` | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:378`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L378) |
 
 ### 7.2 React
 
@@ -228,7 +228,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:428`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L428) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js:428`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js#L428) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -243,7 +243,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Legacy_OrbitEventsFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Legacy_OrbitEventsFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

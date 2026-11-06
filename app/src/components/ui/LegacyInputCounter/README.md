@@ -1,7 +1,7 @@
 # InputCounter
 
 OutSystems: `Connect2_LegacyShared.Reusable.InputCounter` · pack `migration/blocks/Connect2_LegacyShared.Reusable.InputCounter.md`
-(compiled source `migration/blocks/sources/Connect2_LegacyShared.Reusable.InputCounter.mvc.js`).
+(compiled source `migration/sources/survey/Connect2_LegacyShared.Reusable.InputCounter.mvc.js`).
 
 | Input               | Prop                | Notes                                                      |
 | ------------------- | ------------------- | ---------------------------------------------------------- |

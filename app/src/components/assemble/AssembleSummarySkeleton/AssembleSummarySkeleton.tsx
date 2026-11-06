@@ -21,7 +21,7 @@ export interface AssembleSummarySkeletonProps {
   placeholderLocation?: ReactNode;
 }
 
-/** Loading card (p:migration/blocks/sources/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js;
+/** Loading card (p:migration/sources/survey/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js;
     view :112-214): NC_Result_Item__Card (no inputs, no event) whose placeholders each hold one of this block's
     placeholders (Placeholder widget = a plain div): Card_Visual ← Image, 1 ← SubtitleTop, 2 ← Title,
     3 ← Subtitle_Bottom, 4-6 empty, Right ← Right, Location ← Location. No actions. */

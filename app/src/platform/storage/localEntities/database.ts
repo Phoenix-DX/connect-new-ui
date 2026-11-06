@@ -1,13 +1,13 @@
 /* The browser database behind the client entities (local storage entities of OutSystems), as the OutSystems runtime
    keeps them on the web: one IndexedDB database, one object store per entity table, rows keyed by the column names.
-   Runtime evidence (migration/runtime-sources/OutSystems.js, minified, line:column):
+   Runtime evidence (migration/sources/runtime/OutSystems.js, minified, line:column):
    - store per table: createObjectStore(tableName, { autoIncrement: !pkColumns, keyPath: pkColumns }) and one index per
      attribute, named and keyed by its column name (11: IndexedDBTransactionWithoutObjectStores.createTable); pkColumns
      is the array of primary-key column names (11: TableInfoUtils.getIdentifierColumnNames), so keys are arrays;
    - insert = store.add, upsert = store.put, update = get then put (error when the row is missing), delete =
      store.delete (11: IndexedDBTransaction insertRecord / upsertRecord / updateRecord / removeRecord);
    - a missing store is created by reopening the database with version + 1 (12: IndexedDBDatabase).
-   Which store, per the env params (runtime-sources/OutSystemsSettings.js: IndexedDBOffline = false, UseNewWebSQLImpl =
+   Which store, per the env params (sources/runtime/OutSystemsSettings.js: IndexedDBOffline = false, UseNewWebSQLImpl =
    false; the app is not a web app, UBTConnect.appDefinition.js isWeb: false):
    - with those values a browser would use WebSQL: initializeDatabase (16) opens SqlDbProvider.openDb when not native
      and not IndexedDBOffline, and UBTConnect_Notes_MCS.entities.js:161-163 binds LocalNote to webSQLStorageInstance.

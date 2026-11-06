@@ -179,7 +179,7 @@ export function openInApp_OpenExternalLink(url: string, inNewTab = false): void 
   }
 }
 
-/** CommonPlugin GetPlatform (runtime-sources/CommonPlugin.controller.js:236-280): ToLower(cordova.platformId) when
+/** CommonPlugin GetPlatform (sources/runtime/CommonPlugin.controller.js:236-280): ToLower(cordova.platformId) when
     IsCordovaDefined (:425-512, `typeof(cordova) === "undefined"` → False), else the output default "". */
 function getPlatform(): string {
   const cordova = (window as Window & { cordova?: { platformId?: string } }).cordova;
@@ -199,7 +199,7 @@ export function getOperatingSystem(): string {
  * OpenInApp_OpenApp(Package) (UBTConnect_Utils.controller.js:4360-4462, copy in
  * migration/sources/raw/), browser path:
  * - CheckAppLauncherPlugin (:4384): `!!window.cordova && !!window.plugins.launcher`
- *   (runtime-sources/Connect2_AppLauncherPlugin.controller.js:302) is False without Cordova, so CanLaunchWithData /
+ *   (sources/runtime/Connect2_AppLauncherPlugin.controller.js:302) is False without Cordova, so CanLaunchWithData /
  *   LaunchWithData (:4386-4412) never run.
  * - IsCordovaDefined (:4421-4426, market:// link when True) is False (CommonPlugin.controller.js:508-512).
  * - GetOperatingSystem (:4430-4441): Android or Windows → OpenInApp_OpenExternalLink("https://play.google.com/store/
@@ -250,7 +250,7 @@ export function cleanAddressForMaps(address: string): string {
   return address.replace(/(\n|\r)+/g, ' ').replace(/\s+/g, ' ');
 }
 
-/** Connect2_AppLauncherPlugin CheckAppLauncherPlugin (runtime-sources/Connect2_AppLauncherPlugin.controller.js:302):
+/** Connect2_AppLauncherPlugin CheckAppLauncherPlugin (sources/runtime/Connect2_AppLauncherPlugin.controller.js:302):
     `!!window.cordova && !!window.plugins.launcher`; False in the clone (no Cordova), so CanLaunchWithData /
     LaunchWithData never run. */
 export function checkAppLauncherPlugin(): boolean {
@@ -413,7 +413,7 @@ export function openInApp_TryOpenFileInApp(
 export const POLICY_NOT_FOUND = "This policy couldn't be found.";
 
 /** ApplicationPolicies_CW CanOpenApplicationPolicyDirectlyViaUrl: CanOpenDirectly = IsWeb, JS node
-    `$parameters.IsWeb = !window.cordova` (migration/shell/sources/ApplicationPolicies_CW.controller.js, IsWebJS). */
+    `$parameters.IsWeb = !window.cordova` (migration/sources/shell/ApplicationPolicies_CW.controller.js, IsWebJS). */
 const canOpenApplicationPolicyDirectlyViaUrl = (): boolean => !(window as { cordova?: unknown }).cordova;
 
 /** UBTConnect_Utils OpenPolicy(PolicyInformation, ErrorMessage) (UBTConnect_Utils.controller.js, `openPolicy$Action`):

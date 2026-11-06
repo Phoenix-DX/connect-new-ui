@@ -31,7 +31,7 @@ The React component renders LayoutRuntime_Top and BaseLayout_UpdatedOSUI:
 | ------- | -------------------- | ----------------------------------------------------------------- |
 | v1      | ConnectShare/default | wrapper; the test also checks the inner BaseLayout against its v1 |
 
-## Lifecycle (Connect2_LegacyShared.controller.js, migration/runtime-sources)
+## Lifecycle (Connect2_LegacyShared.controller.js, migration/sources/runtime)
 
 - OnInitialize runs `SetThemeClassToBody(ThemeClass.Connect)` (Layout.Layout.mvc.js:415). In the React app,
   `legacy/os/bodyTheme.ts` (CR-W3A-1, applied) removes the MediaHub, Connect and Orbit classes from the body and adds

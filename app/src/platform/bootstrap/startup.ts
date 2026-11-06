@@ -12,7 +12,7 @@ import { setSettings } from '@/platform/settings';
    SynchronizeNumberUnreadMessages. The calls of the first two are in the domain api/app, GetNumberUnreadMessages is in
    the domain api/message. The redirects that follow the app start are the route guard's (app/RouteGuard.tsx). */
 
-/** OutSystems CommunicationException of a server call (runtime-sources/OutSystems.js:3, raised by callAction): a failed
+/** OutSystems CommunicationException of a server call (sources/runtime/OutSystems.js:3, raised by callAction): a failed
     request, or an answer that is not ok and is neither a 404 (ViewHasChangedException) nor the server's own exception
     (the contract's error answer), e.g. "Request failed with status 500". The app start handles only this exception in
     AppManager_SynchAppContextInternal and SynchronizeNumberUnreadMessages, so an all-calls-failed start (the offline
@@ -57,7 +57,7 @@ export async function synchAppContext(): Promise<ClientConfig | null> {
 
 /** The local-entity outputs of Sync_Info_Main that the app start uses: Bookmarks_C2, Notes (UC:16636-16689). The
     legacy Bookmarks output is not kept: the live app start syncs the C2 bookmarks only (live
-    migration/runtime-sources/UBTConnect.controller.js:1129-1133). */
+    migration/sources/runtime/UBTConnect.controller.js:1129-1133). */
 export interface SyncLocalEntities {
   bookmarks_C2: readonly LocalBookmark[];
   notes: readonly LocalNote[];

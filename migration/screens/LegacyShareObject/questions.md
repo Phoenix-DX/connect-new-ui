@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] mock: share type label (answered)
 - Question: ScreenDataSetGetShareObjectTypeById (title 'Share ' + Type_ShareObject.Label) was recorded only for In_ShareObjectTypeId=Household (Label 'Household'). What should the mock answer for the other share types (Feed, Locality, Supper Meeting, OneSchool Global, Campus&Co, My Household, Update…)?
-- Evidence: app/src/mocks/fixtures/Connect2_LegacyShared/ScreenDataSetGetShareObjectTypeById/01-585887a6.json; ScreenBlock_ShareObject.mvc.js view title expression; migration/runtime-sources moduleinfo.json holds only the identifiers
+- Evidence: app/src/mocks/fixtures/Connect2_LegacyShared/ScreenDataSetGetShareObjectTypeById/01-585887a6.json; ScreenBlock_ShareObject.mvc.js view title expression; migration/sources/runtime moduleinfo.json holds only the identifiers
 - OutSystems MCP: MCP not available to the route agent
 - Options: A: recorded record for Household; any other type answers one record whose Label = the type identifier (fictional, e.g. 'Share Feed') | B: the recorded Household record for every type | C: record the other types on TST first (recommended: A)
 - Answer (user, 2026-10-15T19:58:53): A (recommended), auto-accepted (user instruction 2026-10-15 16:59): the mock answers Label = the share type identifier for types other than Household

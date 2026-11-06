@@ -3,8 +3,8 @@ import { indexedDbDatabase, memoryDatabase, type LocalDatabase } from './databas
 import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSchema, type EntityInfo } from './entities';
 
 /* The device's local copy of the user's C2 bookmarks (client entity UBTConnect_Bookmarks_MCS.LocalBookmark) and its
-   client actions, ported 1:1. BC = migration/runtime-sources/UBTConnect_Bookmarks_MCS.controller.js, BA =
-   …aggregates.IDB.js, BE = …entities.js; UC = migration/runtime-sources/UBTConnect.controller.js.
+   client actions, ported 1:1. BC = migration/sources/runtime/UBTConnect_Bookmarks_MCS.controller.js, BA =
+   …aggregates.IDB.js, BE = …entities.js; UC = migration/sources/runtime/UBTConnect.controller.js.
 
    The actions follow the live module of 2026-11-05: every read, create and delete keys on the item (or bookmark) AND
    the bookmark category, so one ItemId may have a row per category.

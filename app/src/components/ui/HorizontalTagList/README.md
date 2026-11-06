@@ -16,7 +16,7 @@ Events: `Changed(In_TagToggleList)` → `onChanged(list)`. Child: `TagToggle` pe
 Tag.Enabled). TagToggleToggle (:322-430) is ported 1:1, including two quirks: with single selection, a click on the row
 equal to CurrentListIndex (0 at start) does nothing; `In_TagToggleList.Current` in the handler is the clicked row (the
 event runs in the iteration context of the List). OnParametersChanged is in the live block of 2026-11-05 only
-(`migration/runtime-sources/live/UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js:445-490`): when any input
+(`migration/sources/runtime/UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js:445-490`): when any input
 changes and IsSingleSelection is True, CurrentListIndex = `ListIndexOf(In_TagToggleList, IsSelected).Position` (-1 when
 no tag is selected). Nothing in the view reads CurrentListIndex; only TagToggleToggle does (no scroll).
 

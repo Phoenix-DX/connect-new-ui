@@ -1,7 +1,7 @@
 # Runtime scripts fetched from TST (evidence only)
 
 Fetched read-only (static GET, no session) on 2026-10-14 after the user agreed ("Tải về, chỉ đọc" (English: "Download, read only")); stored in
-`migration/runtime-sources/`. Evidence to port behaviour. Do not ship these files in the app or copy them verbatim.
+`migration/sources/runtime/`. Evidence to port behaviour. Do not ship these files in the app or copy them verbatim.
 
 | File | Size | What it answers |
 |---|---|---|
@@ -64,10 +64,10 @@ Grep with line ranges; the files are large.
 | More files (2026-10-16, foundation F9: contract for the 23 Orbit / LDM / Assemble screens) | Size | What it answers |
 |---|---|---|
 | 45 `.mvc.js` of the 12 not yet captured Orbit / LDM / Assemble screens and their blocks (`UBTConnect.Legacy_OrbitEventsFlow.{EventBooklet,GuestArrangements,TransportDetail,ViewDocuments,EmailContact}`, `UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail`, `UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate`, `UBTConnect.Legacy_LDMEventsFlow.EmailTarget`, `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2`, `UBTConnect.ContactFlow.ContactByEmail{OrbitHost,LDMCoordinator}`, `UBTConnect.Legacy_AssembleFlow.AssembleDetail`, 30 `Connect2_OrbitMobile_MUI.*` blocks incl. `Popup_QRCodeScan`, `ScreenBlock_AdminEventDetail`, `ScreenBlock_Accommodation*/Meal*`, `ScreenBlock_ContactForm`, `ScreenBlock_Event_Email_V2`, `Agenda_V2`; `Connect2_LegacyShared.Calendars.{DayCalendar,EventCalendarWeekMonth}`, `UBTConnect_Utils.CW_Share.ShareableObject_Generic`) | 2.2 MB | Current TST code of those screens: TST changed after the survey of 2026-10-13 (e.g. `ScannedUserRec` moved to Connect2_OrbitMobile_BL, new call `GetMilestoneScanFF` in OrbitAdminLanding's closure). Only files whose content differs from the survey / earlier copies beyond BOM and line endings were kept (URL tokens from a fresh `moduleservices/moduleinfo`, not stored). `contract_gen.py` reads this folder (newest copy wins) |
-| `APIDomain_Directory_IS.model.js` | 1.1 MB | Directory structures, newer than `migration/contract/sources/raw` (2026-10-14): `Directory_MemberById` used by `ScannedUserRec` |
+| `APIDomain_Directory_IS.model.js` | 1.1 MB | Directory structures, newer than `migration/sources/contract/raw` (2026-10-14): `Directory_MemberById` used by `ScannedUserRec` |
 
 Fetched in F9 but **not kept**: `Connect_Search_CS.model.js` (TST added `SearchResult.DisplayAddress` / `DisplayHouseholdName`, Boolean). If kept, it changes the
-contract of the finished Search and ShareSheet mocks. The foundation owner decides this (F9 report). The 2026-10-14 copy in `migration/contract/sources/raw` stays in use.
+contract of the finished Search and ShareSheet mocks. The foundation owner decides this (F9 report). The 2026-10-14 copy in `migration/sources/contract/raw` stays in use.
 | `BarcodePlugin.controller.js`, `BarcodePlugin.OSBarcodePlugin.js` | 55 kB, 405 kB | 2026-10-16: CheckBarcodePlugin errors (0011 Cordova, 0012 plugin), PWA web scanner (OrbitAdminEventDetail Q2) |
 | `Connect2_OrbitMobile_MUI.clientVariables.js` | small | 2026-10-17: booklet page-size client variable defaults (EventBooklet CR-EventBooklet-1) |
 | `UBTConnect.pwa-manifest.json` (GET `/UBTConnect/moduleservices/pwa/manifest`) | 789 B | 2026-10-16, PWA phase 0 F1 (user approved): name/short_name "Connect 2.0", display standalone, background `#ffffff`, theme `#1992ab`, icons `/UBTConnect/img/UBTConnect.AppLogo.{48,96,192,512}.png`, start_url `/UBTConnect/`, orientation portrait, no `scope` (defaults to `/UBTConnect/`) |
@@ -102,20 +102,20 @@ contract of the finished Search and ShareSheet mocks. The foundation owner decid
 |---|---|---|
 | `moduleinfo-2026-10-28.json` (GET `/UBTConnect/moduleservices/moduleinfo`) | 290 kB | Live manifest version 15682 (15568 on 2026-10-15): URL versions, URL mappings and static-entity values. It is `moduleinfo.json` since the source switch |
 | `capture/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`). It is `capture/survey-UBTConnect.json` since the source switch; not committed |
-| `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/runtime-sources/`, and `shell/` with the 16 shell sources) | 21 MB | Live copies of the runtime sources: 19 changed, 1 shell source changed; not committed (in `.gitignore`) |
+| `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/sources/runtime/`, and `shell/` with the 16 shell sources) | 21 MB | Live copies of the runtime sources: 19 changed, 1 shell source changed; not committed (in `.gitignore`) |
 
 Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 is the source of truth.
 - `capture/survey-UBTConnect.json` is the live survey (not committed, in `.gitignore`). The survey of 2026-10-13 is
   `capture/survey-UBTConnect-2026-10-13.json` (committed).
-- The 19 changed runtime sources and `migration/shell/sources/UBTConnect.App_Common.controller.js` are the live copies.
+- The 19 changed runtime sources and `migration/sources/shell/UBTConnect.App_Common.controller.js` are the live copies.
   The old copies are in git at commit f9f68bfc.
-- `migration/runtime-sources/moduleinfo.json` is the live moduleinfo (version 15682); the old one is in git at f9f68bfc.
+- `migration/sources/runtime/moduleinfo.json` is the live moduleinfo (version 15682); the old one is in git at f9f68bfc.
 - `Connect2_MyBookmarks_MUI.controller.js` and `UBTConnect.Legacy_MyBookmarks.controller.js` stay as evidence for the
   React routes MyBookmarks and BookmarksByGroup. TST removed these modules.
 - The clarify checklist rows that rest on changed code are marked `stale` (`migration/clarify/tools/mark_stale.py`).
 - Line numbers: 147 citations with line numbers in `app/src` comments (83), specs of `migration/screens` (59) and docs
   (5) point to the 20 replaced files. They refer to the copies at f9f68bfc: read them with
-  `git show f9f68bfc:migration/runtime-sources/<file>`. The citations were not changed.
+  `git show f9f68bfc:migration/sources/runtime/<file>`. The citations were not changed.
 
 | Files fetched 2026-10-28 (clarify-screens item 8, standing rule) | Size | What it answers |
 |---|---|---|
@@ -157,7 +157,7 @@ Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 i
 Fetched read-only (static GET, no session) from the manifest versions of `moduleinfo.json`, for `route-actions`
 (`check_route.py` static mode: the 17 build routes without a TST capture). 71 files; `Connect2_LegacyShared.Utility.ShowMoreShowLessContainer.mvc.js` is not in the manifest.
 
-| More files (2026-11-05, static GET of the live manifest, read-only; stored in `migration/runtime-sources/live/`) | Size | What it answers |
+| More files (2026-11-05, static GET of the live manifest, read-only; stored in `migration/sources/runtime/`) | Size | What it answers |
 |---|---|---|
 | `moduleinfo.json` | 287 kB | URL versions of 2026-11-05 and the static-entity values (`connect_SearchCategories` Events/Schools, `connect_EventTypes` Assemble/Orbit/LDM) |
 | `Connect_Bookmarks_CS.model.js` | 13 kB | `UI_Bookmark_CardItem` live: ItemId Text, ItemId2, HasDetailAccess, PublishedAt, ChannelLogo, ChannelName |
@@ -170,15 +170,18 @@ Fetched read-only (static GET, no session) from the manifest versions of `module
 | From the survey file (no new GET): `HouseholdDetails_TimelinePhoto_List`, `SearchResult_Section`, `FilterSheet_Icon_Label`, `Unavailable_Image`, `ScreenBlock_MessageDetail`, `Legacy_MyNotificationsFlow.MessageDetail` `.mvc.js` | — | The live blocks of the drift decisions of 2026-11-05 |
 
 CSS and fonts (2026-11-05, static GET): `UBTConnectLibrary.UBTConnectBase.css`, `UBTConnectLibrary.UBTConnectLibrary.css`,
-`UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css` (live copies in `migration/runtime-sources/live/css/`), and the
+`UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css` (live copies in `migration/sources/runtime/css/`), and the
 font `connect-icon.ttf` / `connect-icon.woff`. Rule diff against `app/public/UBTConnect/css/`: UBTConnectBase.css adds the
 icons `connect-icon-transport_car`, `_plane`, `_train`, the `line-clamp-1..3` utilities and a new font version; the other
 two files are equal. The app copies were replaced by the live ones (the icon font with them).
 
-Module files replaced (2026-11-05, after the drift decisions): every file of `migration/runtime-sources/live/` with a copy
-at the top level replaced that copy. That is 18 files, among them `UBTConnect.controller.js`,
-`UBTConnect_Utils.controller.js`, `Connect2_Assemble_MUI.controller.js`, `UBTConnect_Bookmarks_MCS.*` and the three
-`*.model.js` of UBTConnect, UBTConnectLibrary and Connect2_LegacyShared. 46 live files without a copy were added (the
-fetched models, the drifted blocks). The
-top level is what `contract_gen.py` reads; the `live/` folder keeps the same copies for the route check. The October
-versions stay in git history (commit before 2026-11-05 wave 2).
+Module files replaced (2026-11-05, after the drift decisions): every live file with a copy at the top level of the
+folder replaced that copy. That is 18 files, among them `UBTConnect.controller.js`, `UBTConnect_Utils.controller.js`,
+`Connect2_Assemble_MUI.controller.js`, `UBTConnect_Bookmarks_MCS.*` and the three `*.model.js` of UBTConnect,
+UBTConnectLibrary and Connect2_LegacyShared. 46 live files without a copy were added (the fetched models, the drifted
+blocks). The October versions stay in git history (commit before 2026-11-05 wave 2).
+
+Moved (2026-11-06): the folder `migration/runtime-sources/` became `migration/sources/runtime/`. Its `live/` copy
+(286 files, byte-identical to the top level) was deleted; `migration/sources/runtime/live-files.txt` lists those
+names, and the route check reads them from `runtime/`. The live `moduleinfo.json` of 2026-11-05 replaced the copy of
+2026-10-28 (3 modules with other static entity values; `static_entities.py` now finds 488 entities, before 486).

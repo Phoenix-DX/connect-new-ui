@@ -20,7 +20,7 @@ interface OrbitPopupProps {
     ScreenBlock_AdminMilestoneDetail, UnknownErrorPopup of OrbitErrorMessage), portalled to the end of <body> as the
     runtime does: `.portal-class` > portal root > `.popup-backdrop` > `.popup-dialog` > `.popup-content`. A closed
     popup renders nothing but keeps the widget's page effects (usePopupWidget). The classes are the ones
-    CopyClassesAcrossPortal leaves (runtime-sources/Connect2_LegacyShared.controller.js :1534-1553, run by the Root
+    CopyClassesAcrossPortal leaves (sources/runtime/Connect2_LegacyShared.controller.js :1534-1553, run by the Root
     container's componentDidUpdate): the portal root gets the Root classes, the portal parent "portal-class" plus the
     class of Root's grandparent. Same markup as AdminPopup of OrbitAdminEventDetail, which moves here later. */
 export function OrbitPopup({

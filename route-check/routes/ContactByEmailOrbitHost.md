@@ -1,13 +1,13 @@
 # ContactByEmailOrbitHost: OutSystems (TST) and React
 
-The route `/UBTConnect/ContactByEmailOrbitHost`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/ContactByEmailOrbitHost`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailOrbitHost/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/ContactByEmailOrbitHost/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 31 files, 0 without compiled code.
 
@@ -132,24 +132,24 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:131`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L131) |
-| `In_MilestoneTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:135`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L135) |
-| `In_EventName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:139`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L139) |
-| `In_HostName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:143`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L143) |
-| `In_HostEmail` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:147`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L147) |
-| `In_FormattedDateTime` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:151`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L151) |
-| `In_ContactLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:155`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L155) |
-| `In_ContactCountry` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:159`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L159) |
-| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:163`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L163) |
-| `In_EntityType` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:167`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L167) |
-| `In_EntityId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:171`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L171) |
-| `In_Surname` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:175`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L175) |
+| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:131`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L131) |
+| `In_MilestoneTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:135`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L135) |
+| `In_EventName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:139`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L139) |
+| `In_HostName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:143`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L143) |
+| `In_HostEmail` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:147`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L147) |
+| `In_FormattedDateTime` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:151`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L151) |
+| `In_ContactLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:155`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L155) |
+| `In_ContactCountry` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:159`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L159) |
+| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:163`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L163) |
+| `In_EntityType` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:167`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L167) |
+| `In_EntityId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:171`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L171) |
+| `In_Surname` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:175`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L175) |
 
 Navigations with parameters: none.
 
@@ -173,7 +173,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactByEmailOrbitHost` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:737`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L737)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.EmailTo = In_HostEmail ([`L704`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L704)) |
+| `ContactByEmailOrbitHost` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:737`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L737)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.EmailTo = In_HostEmail ([`L704`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L704)) |
 | `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
@@ -225,7 +225,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:762`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L762) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js:762`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js#L762) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -240,7 +240,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `ContactFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `ContactFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

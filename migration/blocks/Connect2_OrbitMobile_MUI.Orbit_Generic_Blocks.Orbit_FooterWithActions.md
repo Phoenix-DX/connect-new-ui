@@ -1,7 +1,7 @@
 # Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions
 
 - Kind: shared; build screens using it: EventBooklet, HostSurvey
-- Compiled source: `migration/blocks/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

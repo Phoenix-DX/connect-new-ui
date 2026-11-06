@@ -1,5 +1,5 @@
 /* The web branches of the OutSystems BarcodePlugin actions, ported 1:1 (ADR-11) from
-   migration/runtime-sources/BarcodePlugin.controller.js (C below):
+   migration/sources/runtime/BarcodePlugin.controller.js (C below):
    - CheckBarcodePlugin (C :1-200): IsCordovaDefined → (Cordova) IsPluginAvailableJS, else GetWebAPIJS ("Is PWA?") →
      AddCSSJS + requireScript(OSBarcodePlugin.js) → IsAvailable, IsPWA / OS-PLUG-BARC-0011; AllExceptions → "-1".
    - ScanBarcode (C :224-723): CheckBarcodePlugin → LimitScanInstructions (162) / LimitScanButtonText (16) → null

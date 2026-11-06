@@ -1,5 +1,5 @@
 /* Static entities this route reads that are not in the shared Orbit lib. Values: the live TST moduleinfo
-   (migration/runtime-sources/moduleinfo.json, module 8d01aae0… = Connect2_OrbitMobile_MUI). */
+   (migration/sources/runtime/moduleinfo.json, module 8d01aae0… = Connect2_OrbitMobile_MUI). */
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction the block passes to MenuIcon__UpdatedOSUI (SB view :299). */
 export const MenuAction_Auto = 'Auto';

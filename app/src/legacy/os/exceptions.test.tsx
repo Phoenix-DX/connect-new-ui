@@ -24,7 +24,7 @@ import {
 import { IgnorableSystemException, ViewHasChangedException } from './os-exceptions';
 
 /* The App_Common flow handler (raiseToFlowHandler), App_Common OnException in
-   migration/shell/sources/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
+   migration/sources/shell/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
    the branches around it. */
 
 vi.mock('@/platform/feedback/pageRedirect', () => ({ pageRedirect: vi.fn() }));

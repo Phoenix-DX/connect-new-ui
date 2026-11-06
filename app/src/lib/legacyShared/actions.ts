@@ -1,4 +1,4 @@
-/* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
+/* Client actions of Connect2_LegacyShared, ported 1:1 from migration/sources/runtime/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
 import {
   cacheKeyPart,
@@ -140,7 +140,7 @@ export function iOSPreventSwipe(): void {
 
 /* ---- Wave 8, batch O-A2 ---- */
 
-/** InputCounter.OnInitialize (migration/blocks/sources/Connect2_LegacyShared.Reusable.InputCounter.mvc.js:291-319):
+/** InputCounter.OnInitialize (migration/sources/survey/Connect2_LegacyShared.Reusable.InputCounter.mvc.js:291-319):
     only when NoteInitialLength is not 0 does it run SetCurrLength (:207-233, `CurrLength = Length`); CurrLength starts
     at 0 (model :15-17). Returns the CurrLength after the action. */
 export function inputCounterOnInitialize(noteInitialLength: number): number {
@@ -166,7 +166,7 @@ export function inputCounterMaxLength(input: Element): number {
 
 /* ---- Wave 8 O-B1 (Assemble virtual meeting and address links) ---- */
 
-/** CommonPlugin IsCordovaDefined (runtime-sources/CommonPlugin.controller.js:508-512): `typeof(cordova) !==
+/** CommonPlugin IsCordovaDefined (sources/runtime/CommonPlugin.controller.js:508-512): `typeof(cordova) !==
     "undefined"`; False in the clone (no Cordova). */
 function isCordovaDefined(): boolean {
   return typeof (window as Window & { cordova?: unknown }).cordova !== 'undefined';
@@ -231,7 +231,7 @@ export function openExternalURL(url: string, isSelf = false): void {
 }
 
 /** NavigateToMaps (controller.js:6109-6246, JS GetPlatformIOS :6247-6264): offline (OutSystemsUI GetNetworkStatus,
-    runtime-sources/OutSystemsUI_2_23.controller.js:13005-13090) → Info message "Please check your network connection
+    sources/runtime/OutSystemsUI_2_23.controller.js:13005-13090) → Info message "Please check your network connection
     and try again" and the null id 0; Android (CommonPlugin GetOperatingSystem) → AndroidNative when the app launcher
     plugin is there, else AndroidBrowser; iPhone / iPad / iPod (`navigator.platform`) → IPhoneBrowser; anything else
     logs "User accessed Map with: <platform> <appCodeName>" (module Directory_MUI) and gives AndroidBrowser. */

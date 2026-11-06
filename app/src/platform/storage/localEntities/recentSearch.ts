@@ -6,7 +6,7 @@ import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSche
    recent search terms and recently clicked results of Directory_Search.ScreenBlock_Search, with the local aggregates
    and entity actions that block runs, ported 1:1.
    S = migration/sources/pretty/UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (flows);
-   E = migration/runtime-sources/UBTConnect.entities.js (entity metadata); A = …/UBTConnect.aggregates.IDB.js (the
+   E = migration/sources/runtime/UBTConnect.entities.js (entity metadata); A = …/UBTConnect.aggregates.IDB.js (the
    IndexedDB aggregates TST runs: index USERID, getAll(only(UserId)), then the filter in JS, sort, max records).
    Records: UBTConnect.model.js ConnectSearch_RecentSearchTermRec / ConnectSearch_RecentClickedResultsRec.
    Storage: IndexedDB as TST and the notes cache (database.ts, localNotes.ts): one object store per entity table in the

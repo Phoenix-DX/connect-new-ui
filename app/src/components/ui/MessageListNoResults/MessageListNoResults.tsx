@@ -15,7 +15,7 @@ export interface MessageListNoResultsProps {
   placeholder3?: ReactNode;
 }
 
-/** "No results" message of the legacy lists (p:migration/blocks/sources/Connect2_LegacyShared.Reusable.
+/** "No results" message of the legacy lists (p:migration/sources/survey/Connect2_LegacyShared.Reusable.
     MessageList_NoResults.mvc.js view): a centred red search-minus icon (Icon size Twotimes = `fa-2x`) with "No results
     are found.", then "Suggestions:" and three placeholder rows. No input, no action. Not captured. */
 export function MessageListNoResults({ id, placeholder1, placeholder2, placeholder3 }: MessageListNoResultsProps) {

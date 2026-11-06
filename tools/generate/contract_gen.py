@@ -31,8 +31,8 @@ Which actions (scope)
 
 Evidence (types are never guessed)
   * Compiled code, one copy per file name, live TST first (user decision I10-6 (a), 2026-10-29): 1. the live survey
-    capture/survey-UBTConnect.json, 2. files fetched read-only into migration/runtime-sources (knowledge/
-    runtime-sources.md), 3. producer-module *.model.js in migration/contract/sources/raw and route captures
+    capture/survey-UBTConnect.json, 2. files fetched read-only into migration/sources/runtime (knowledge/
+    migration/sources/runtime.md), 3. producer-module *.model.js in migration/sources/contract and route captures
     (the shared store migration/sources/raw, named by the route manifests), newest file first. If the live survey is missing (it is not committed)
     a warning is printed and the old order applies: fetched copies newest first, then the survey of 2026-10-13
     (capture/survey-UBTConnect-2026-10-13.json). A route capture copy can be older than TST (Notifications.mvc.js
@@ -110,10 +110,10 @@ SK = os.path.join(ROOT, "tools", "pipeline")
 SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
 OLD_SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect-2026-10-13.json")
 SCREENS_DIR = os.path.join(ROOT, "migration", "screens")
-RUNTIME_SOURCES = os.path.join(ROOT, "migration", "runtime-sources")  # files fetched read-only from TST (knowledge/runtime-sources.md)
-CONTRACT_SOURCES = os.path.join(ROOT, "migration", "contract", "sources", "raw")  # producer *.model.js fetched from TST
 sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
 import sources_store  # noqa: E402
+RUNTIME_SOURCES = sources_store.RUNTIME  # migration/sources/runtime: files fetched read-only from TST (knowledge/runtime-sources.md)
+CONTRACT_SOURCES = sources_store.CONTRACT  # migration/sources/contract: producer *.model.js fetched from TST
 FIXTURES_DIR = os.path.join(ROOT, "app", "src", "mocks", "fixtures")
 
 # read-only guard rule of the skill (readonly_guard.cjs / record_har.cjs)
@@ -253,14 +253,14 @@ class Sources:
         self.text: dict[str, str] = {}
         self.origin: dict[str, str] = {}
         # Newest TST compiled code wins (TST is the source of truth): of the copies fetched from TST (route captures,
-        # migration/runtime-sources, producer models in migration/contract/sources/raw) the most recently written file
+        # migration/sources/runtime, producer models in migration/sources/contract/raw) the most recently written file
         # is used; the static survey (2026-10-13) only for files no later fetch has. TST changed after the survey (e.g.
         # the Orbit / Assemble modules: ScreenBlock_OrbitLanding gained Handle_ViewPassportDetails, ScannedUserRec moved
         # from Connect2_OrbitMobile_MUI to Connect2_OrbitMobile_BL), and mixing a survey .mvc.js with a newer *.model.js
         # leaves its structures unresolved.
         # Order (user decision I10-6 (a), 2026-10-29; live TST code is the source of truth, context-062): 1. the live
-        # survey (capture/survey-UBTConnect.json), 2. migration/runtime-sources, 3. producer models in
-        # migration/contract/sources/raw and route captures (migration/sources/raw), newest file
+        # survey (capture/survey-UBTConnect.json), 2. migration/sources/runtime, 3. producer models in
+        # migration/sources/contract/raw and route captures (migration/sources/raw), newest file
         # first, 4. nothing else. If the live survey is missing (it is not committed) the old order applies: fetched
         # copies by modification time, the older survey (capture/survey-UBTConnect-2026-10-13.json) as the last resort.
         norm = lambda t: t.replace("\ufeff", "").replace("\r\n", "\n").strip()  # BOM, line endings
@@ -711,7 +711,7 @@ class Gen:
             seg = x["path"].split("/")
             sites = sites_by_path.get(x["path"], [])
             if not sites:
-                self.notes.append(f"extra action {x['path']}: no compiled call site found (add its source to migration/contract/sources/raw)")
+                self.notes.append(f"extra action {x['path']}: no compiled call site found (add its source to migration/sources/contract)")
                 continue
             o = op(seg[1], seg[-1], x["path"])
             for s in x.get("screens", []):
@@ -1488,7 +1488,7 @@ class Gen:
                 "components": {"schemas": schemas}}
 
 
-# Exceptions a server or service action can raise, by their client runtime class names (runtime-sources/OutSystems.js:2,
+# Exceptions a server or service action can raise, by their client runtime class names (sources/runtime/OutSystems.js:2,
 # OutSystems/ClientRuntime/Exceptions; the server answer's `exception` is rebuilt by getException, OutSystems.js:3).
 # Not listed: CommunicationException (raised by the client when a request fails or times out) and the client-only system
 # exceptions (ViewHasChanged, OutOfOrder, ControllerDisposed, ...). The class is DataBaseException (capital B).

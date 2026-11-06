@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Interaction.Animate
 
 - Kind: osui; build screens using it: MessageList, MyBookmarks
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Interaction.Animate.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Interaction.Animate.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

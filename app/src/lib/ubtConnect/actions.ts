@@ -72,7 +72,7 @@ export function scrollTop(scrollContainer: string, behaviour: ScrollBehavior): v
   container.scroll({ top: 0, behavior: behaviour });
 }
 
-/** JSON Serialize(Updates_CarouselSwipeCallbackParameters) with its defaults (runtime-sources/OutSystems.js JSONUtils
+/** JSON Serialize(Updates_CarouselSwipeCallbackParameters) with its defaults (sources/runtime/OutSystems.js JSONUtils
     serializeToJSON(record, false, false) → JSONConverter.to: an attribute equal to its default is left out, then
     JSON.stringify). UpdateItemId is a Long Integer: written as a JSON number. */
 function serializeSwipeCallbackParameters(p: Updates_CarouselSwipeCallbackParameters | undefined): string {
@@ -204,7 +204,7 @@ export const longIntegerText = (v: string): string => {
   return /^[-+]?\d+$/.test(trimmed) ? BigInt(trimmed).toString() : '0';
 };
 
-/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (live migration/runtime-sources/UBTConnect.controller.js:9315-9381):
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (live migration/sources/runtime/UBTConnect.controller.js:9315-9381):
     GetLocalBookmarkByObjectId_C2(LongIntegerToText(ObjectId), ObjectType) (:9334), then IsBookmarked =
     GetLocalBookmarkByObjectId_C2.LocalBookmark.Id <> NullIdentifier (:9339; the C2 UBTConnect_Bookmarks_MCS
     LocalBookmark). ObjectType is the bookmark category; ObjectId is the Long Integer as text. */

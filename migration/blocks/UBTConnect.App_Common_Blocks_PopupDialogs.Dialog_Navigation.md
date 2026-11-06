@@ -1,7 +1,7 @@
 # UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation
 
 - Kind: shared; build screens using it: ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactUsDetails, Profile
-- Compiled source: `migration/blocks/sources/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.mvc.js`
 - Child blocks: NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog, UBTConnectLibrary.BasePatterns.CustomContainer (queue: NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog)
 
 ## Inputs

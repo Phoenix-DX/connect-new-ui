@@ -4,19 +4,19 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] mock data (answered)
 - Question: No TST call was recorded (no-capture). Mock GetCoordinatorDetails from the shared LDM world (src/mocks/fictional/ldm.ts): the meal is found by In_EventId, else by EventHostId; it answers the locality's coordinator (name, email, phone, locality, time zone), EventName = the meal's name ('Lord\'s Day Meal at Bahia Blanca') and the meal's date; an unknown meal answers Out_HasContent False ('No Event Organiser information.'). EventContact (a write) is mocked with a P-MUTATION collection of sent coordinator e-mails and an empty answer, never the real server. OK?
-- Evidence: migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:925-953 (DataActionGetCoordinatorDetails, screen variables), :913-924 (EventContact), :1184-1211 (OnAfterFetch: Subject = EventName + ' - ' + date); contract-report.md rows 53/78 (fictional, not captured)
+- Evidence: migration/sources/runtime/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:925-953 (DataActionGetCoordinatorDetails, screen variables), :913-924 (EventContact), :1184-1211 (OnAfterFetch: Subject = EventName + ' - ' + date); contract-report.md rows 53/78 (fictional, not captured)
 - Options: A: shared LDM world as described | B: other fictional data (recommended: A)
 - Answer (user, 2026-10-16T11:17:27): A (recommended), auto-accepted (user instruction 2026-10-16 night)
 
 ## Q2 [decision] header icon (answered)
 - Question: MenuIcon__UpdatedOSUI gets the Orbit MenuAction Auto (not Back), whose class is 'app-menu-icon' until OSUI SetMenuIcon(Auto) runs. Render it as the back icon, as LDM_MyEvents_V2 does from its capture (the same block input, captured 'app-menu-icon back')?
-- Evidence: migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:270-276 (MenuAction auto); MenuIcon__UpdatedOSUI.mvc.js:149 (class back only for Back); migration/screens/LDM_MyEvents_V2/route-spec.md:116
+- Evidence: migration/sources/runtime/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:270-276 (MenuAction auto); MenuIcon__UpdatedOSUI.mvc.js:149 (class back only for Back); migration/screens/LDM_MyEvents_V2/route-spec.md:116
 - Options: A: back icon (as LDM_MyEvents_V2) | B: plain app-menu-icon (recommended: A)
 - Answer (user, 2026-10-16T11:17:27): A (recommended), auto-accepted (user instruction 2026-10-16 night)
 
 ## Q3 [decision] compiled inline styles (answered)
 - Question: The compiled view puts Styles Editor inline styles on the form containers (Cont_From margin-top: 0px; Cont_To, Cont_Subject, Cont_Message margin-top: 10px). consistency_check NO-INLINE-COLOR accepts a margin only when a capture shows it, and this route has no capture. Render them as compiled (1:1) and raise CR-LDM_Email_V2-1 so the check accepts compiled-view styles of no-capture routes (consistency reports these lines until then), or leave them out until the CR is done?
-- Evidence: migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:303-307, :336-340, :369-373, :402-406 (extendedProperties.style); consistency_check.py:58-95 (captured_inline_styles reads analysis/dom only)
+- Evidence: migration/sources/runtime/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:303-307, :336-340, :369-373, :402-406 (extendedProperties.style); consistency_check.py:58-95 (captured_inline_styles reads analysis/dom only)
 - Options: A: render as compiled + CR (consistency flags 4 lines until the CR) | B: leave out + CR (fields 10px closer until the CR) (recommended: A)
 - Answer (user, 2026-10-16T11:17:27): A (recommended), auto-accepted (user instruction 2026-10-16 night)
 

@@ -9,7 +9,7 @@ const { CompiledView, Preview, Editing, Empty } = composeStories(stories);
 const items = (container: HTMLElement) => container.querySelectorAll('[data-block="ConnectPatterns.Note_Item"]');
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js:181-848). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc@86fe890b.js:181-848). */
 describe('Note_Item_List', () => {
   it('all notes in a list inside a soft, padded neutral-0 container (min height 88px)', () => {
     const { container } = render(<CompiledView />);

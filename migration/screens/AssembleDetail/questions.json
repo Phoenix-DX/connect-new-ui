@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "contract",
   "question": "AssembleEventDetail_AttendeeSubdivision OnReady calls GetCacheableSubdivision_V2 → server action Connect2_LegacyShared ActionGetBulkSubdivisions_V2, which is not in the API contract (callAction cannot compile). How should the expanded hall list behave until CR-AssembleDetail-1 is applied?",
-  "evidence": "sources/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js:1742-1830; migration/runtime-sources/Connect2_LegacyShared.controller.js:3088, :7691-7702; app/src/api/openapi.yaml has no ActionGetBulkSubdivisions_V2",
+  "evidence": "sources/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js:1742-1830; migration/sources/runtime/Connect2_LegacyShared.controller.js:3088, :7691-7702; app/src/api/openapi.yaml has no ActionGetBulkSubdivisions_V2",
   "mcp": "not asked (no MCP in this run)",
   "options": [
    "A: CR-AssembleDetail-1; run OnReady up to BuildSkeletonList (the event's households plus HouseholdCount skeleton rows) and render <NotCaptured> for the fetch, no further call",

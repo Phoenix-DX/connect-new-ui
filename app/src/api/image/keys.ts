@@ -11,7 +11,7 @@ export const imageCache = {
       (Cache_SignedImageURL_GetCacheKey, UC:711-745), TTL 300 s, timeout 10, bulk of 15 (UC:576-585). */
   signedImage: (imageType: string, cacheKey: string) =>
     bulkCacheEntry(IMAGE + imageType, cacheKey, 300, { bulkWindowMs: 10, maxBulkSize: 15 }),
-  /** GetCacheableSignedImageURL (Connect2_LegacyShared, runtime-sources/Connect2_LegacyShared.controller.js, LS:3692-3837):
+  /** GetCacheableSignedImageURL (Connect2_LegacyShared, sources/runtime/Connect2_LegacyShared.controller.js, LS:3692-3837):
       type DirectoryCacheType.ImagesHousehold for a household, else ImagesMember (GetCacheableSignedImageURLCacheKey,
       LS:3862-3936), TTL 300 s (LS:3796-3800), timeout 10 (LS:3804-3808), bulk of 15 (LS:3726). */
   legacySignedImage: (imageType: string, cacheKey: string) =>

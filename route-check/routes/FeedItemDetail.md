@@ -1,13 +1,13 @@
 # FeedItemDetail: OutSystems (TST) and React
 
-The route `/UBTConnect/FeedItemDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/FeedItemDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/FeedItemDetail/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/FeedItemDetail/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 67 files, 0 without compiled code.
 
@@ -131,13 +131,13 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `FeedItemId` | Text | yes | [`UBTConnect.Home.FeedItemDetail.mvc.js:71`](../../migration/runtime-sources/UBTConnect.Home.FeedItemDetail.mvc.js#L71) |
+| `FeedItemId` | Text | yes | [`UBTConnect.Home.FeedItemDetail.mvc.js:71`](../../migration/sources/runtime/UBTConnect.Home.FeedItemDetail.mvc.js#L71) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
@@ -197,7 +197,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Home.FeedItemDetail.mvc.js:452`](../../migration/runtime-sources/UBTConnect.Home.FeedItemDetail.mvc.js#L452) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Home.FeedItemDetail.mvc.js:452`](../../migration/sources/runtime/UBTConnect.Home.FeedItemDetail.mvc.js#L452) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -212,8 +212,8 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Home` [`UBTConnect.Home.controller.js:12`](../../migration/shell/sources/UBTConnect.Home.controller.js#L12). Handled errors: none, it goes to the next flow.
-2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L91)).
+1. UI flow `Home` [`UBTConnect.Home.controller.js:12`](../../migration/sources/shell/UBTConnect.Home.controller.js#L12). Handled errors: none, it goes to the next flow.
+2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L91)).
 
 ### 11.2 React
 

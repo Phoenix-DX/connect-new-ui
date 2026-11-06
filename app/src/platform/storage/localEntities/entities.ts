@@ -1,7 +1,7 @@
 import type { KeyPart, LocalDatabase, LocalTransaction, Row, TableSchema } from './database';
 
 /* Client entity metadata, row (de)serialisation and the entity service of the OutSystems runtime on IndexedDB.
-   RS = migration/runtime-sources/; OutSystems.js is minified (line numbers only). */
+   RS = migration/sources/runtime/; OutSystems.js is minified (line numbers only). */
 
 /** Decimal: the clone's records carry it as decimal text; stored as the runtime's Serializer.serializeDecimal does
     (OutSystems.js:13 Common/Serializer: `decimals ? value.toFixed(decimals) : value.toString()`). */

@@ -1,7 +1,7 @@
 import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 
-/* Client actions, JavaScript nodes and static-entity records the block uses (B = runtime-sources/Connect2_OrbitMobile_MUI
+/* Client actions, JavaScript nodes and static-entity records the block uses (B = sources/runtime/Connect2_OrbitMobile_MUI
    .LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js). Local copies (no import across routes; CR-LDM_EventDetail_V2-1
    moves the LDM helpers to src/lib/orbit). Values are the TST values
    (migration/knowledge/static-entities-tst.json). */

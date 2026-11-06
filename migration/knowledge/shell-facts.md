@@ -7,7 +7,7 @@ Summary (2026-10-14, TST compiled code only; no runtime observation here):
 - U10: every fetched flow delegates to App_Common, which handles BubbleCommunication, Communication, Security and All exceptions. `ScreenController_RaiseError` passes the error to that handler.
 - U11: NetworkDetection pings `status/network-ping.txt` every 30 s (300 000 ms abort) and watches XHR events. In UBTConnect it only sets `App_NetworkStatus_IsOnline_IsPersistent`; no toast, no class.
 
-Keys: `AM`/`UC` = `migration/sources/raw/UBT_AppManager.controller.js` / `UBTConnect.controller.js`; `SPL` = `migration/sources/pretty/UBTConnect.App_Common.Splash.mvc.js`, `ALE` = same folder `OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js`; `JSU`, `ND`, `ACF` = `migration/shell/sources/UBTJavaScriptUtils.controller.js`, `NetworkDetection.controller.js`, `UBTConnect.App_Common.controller.js`; `OSUI` = HomeFeed `raw/OutSystemsUI_2_23.controller.js`; `survey:<file>:N` = `capture/survey-UBTConnect.json` → `sources[file]`, line N.
+Keys: `AM`/`UC` = `migration/sources/raw/UBT_AppManager.controller.js` / `UBTConnect.controller.js`; `SPL` = `migration/sources/pretty/UBTConnect.App_Common.Splash.mvc.js`, `ALE` = same folder `OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js`; `JSU`, `ND`, `ACF` = `migration/sources/shell/UBTJavaScriptUtils.controller.js`, `NetworkDetection.controller.js`, `UBTConnect.App_Common.controller.js`; `OSUI` = HomeFeed `raw/OutSystemsUI_2_23.controller.js`; `survey:<file>:N` = `capture/survey-UBTConnect.json` → `sources[file]`, line N.
 
 ## U1 (code side): `/UBTConnect/` and signed-out visitors
 - Route table and default screen are not in local code. `UBTConnect.index.js`, `UBTConnect.appDefinition.js` and the runtime `OutSystems.js` appear in the survey `manifest`, but no source exists in the survey or in any screen capture. DefaultScreen = HomeFeed comes only from MCP/DEV (knowledge/navigation.md:7).
@@ -18,7 +18,7 @@ Keys: `AM`/`UC` = `migration/sources/raw/UBT_AppManager.controller.js` / `UBTCon
   - Login with that flag skips `AppManager_SetAppCallback("")`, so the protected path stays as the sign-in callback (`migration/sources/pretty/UBTConnect.App_Common.Login.mvc.js:950-953`).
   - Screen handlers re-raise `NotRegisteredException` so that it reaches the flow (survey:UBTConnect.Directory_Locality.CountryList.mvc.js:1394-1404).
 - InvalidPermissions: no code navigates to it. Content: title "Invalid Permissions". A warning BlankSlate with "You don't have permissions to view the required screen.". A button to `/UBTConnect/Login` (survey:UBTConnect.App_Common.InvalidPermissions.mvc.js:163-165, 201-213).
-- `InvalidLoginException` and `NotRegisteredException` extend `SecurityException` (`migration/runtime-sources/OutSystems.js` line 2). They take the SecurityException branch (G1, 2026-10-23).
+- `InvalidLoginException` and `NotRegisteredException` extend `SecurityException` (`migration/sources/runtime/OutSystems.js` line 2). They take the SecurityException branch (G1, 2026-10-23).
 - Open:
   - Does `/UBTConnect/` render Splash first? See U3.
   - A private-window run on TST, or the runtime/index scripts, can settle both.
@@ -121,7 +121,7 @@ Keys: `AM`/`UC` = `migration/sources/raw/UBT_AppManager.controller.js` / `UBTCon
 
 ## Unverified points kept as built (user, 2026-10-14)
 - Cross-origin `navigateTo` (ScreenController_NavigateToPage with a URL of another origin): **settled 2026-10-14** from
-  `migration/runtime-sources/OutSystems.js`.
+  `migration/sources/runtime/OutSystems.js`.
   - The screen API `navigateTo(URL, transition, isReplace)` (:16:26318) calls Navigation.navigateTo (:8:698).
   - `getUrlInfo` (:8:7127) marks the URL internal when it belongs to this application.
   - An internal URL goes to the router: `goTo(urlInfo, transition, replace)`.

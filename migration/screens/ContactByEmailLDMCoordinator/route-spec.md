@@ -1,6 +1,6 @@
 # Route spec: ContactByEmailLDMCoordinator
 
-Evidence: `S` = `migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js` (model :1-126,
+Evidence: `S` = `migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js` (model :1-126,
 view :127-454, controller :455-674), a TST copy fetched read-only by F9 (`migration/knowledge/runtime-sources.md`, row
 "More files (2026-10-16, foundation F9 …)").
 

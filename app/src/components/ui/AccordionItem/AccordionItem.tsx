@@ -37,7 +37,7 @@ export interface AccordionItemProps {
   content?: ReactNode;
 }
 
-/** Enum.CssClass of AccordionItem (runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js :4683-4702). */
+/** Enum.CssClass of AccordionItem (sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js :4683-4702). */
 const C = {
   Animating: 'osui-accordion-item__content--is-animating',
   Closed: 'osui-accordion-item--is-closed',

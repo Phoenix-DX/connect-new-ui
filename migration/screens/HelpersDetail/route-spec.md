@@ -2,7 +2,7 @@
 
 Sources: `S` = migration/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail.mvc.js, `HB` =
 migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails.mvc.js, `C` =
-migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `DOM` = analysis/dom/default.html.
+migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, `DOM` = analysis/dom/default.html.
 
 ## Summary
 | Item | Value |

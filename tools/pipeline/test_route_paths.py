@@ -216,7 +216,7 @@ class ScopeGuardAllowList(TempCase):
                    "migration/change-requests/CR-Demo-1.md", "migration/board.md", "migration/metrics/ledger.csv",
                    "migration/clarify/builds/x.md", "app/src/pages/Building/BuildingPage.tsx",
                    "migration/screens/Reviewing/route-spec.md", "migration/knowledge/runtime-sources.md",
-                   "migration/runtime-sources/X.controller.js", "migration/survey/screens.json",
+                   "migration/sources/runtime/X.controller.js", "migration/survey/screens.json",
                    "migration/screens/_capture-summary.json"]
         flagged = ["app/src/pages/Finished/FinishedPage.tsx", "app/src/pages/Fresh/FreshPage.tsx",
                    "migration/screens/Finished/notes.md", "app/src/platform/flags/useFlag.ts", "app/src/legacy/os/x.ts",

@@ -4,8 +4,8 @@ import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEnti
 
 /* Client actions of Connect2_OrbitMobile_MUI that the TransportDetail blocks call, ported 1:1. The flows of the page
    (hooks/) and its components (components/) both call them, so they sit at the page root. `C:<n>` = line of
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = line of
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js (global TimeFormat). DateTimes are OutSystems
+   migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = line of
+   migration/sources/runtime/Connect2_OrbitMobile_MUI.TimeFormat.js (global TimeFormat). DateTimes are OutSystems
    values as text, "" = NullDate(). */
 
 /** A wire DateTime as the JS Date a JS node receives (an instant; a value without a zone is the UTC wire value). */

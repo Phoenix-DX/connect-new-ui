@@ -13,11 +13,11 @@ import {
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /* OutSystems UI 2.23 RangeSlider in Single mode, with its provider noUiSlider 15.8.1. Sources:
-   - the block view (migration/blocks/sources/OutSystemsUI_2_23.Interaction.RangeSlider.mvc.js): Container
+   - the block view (migration/sources/survey/OutSystemsUI_2_23.Interaction.RangeSlider.mvc.js): Container
      `osui-range-slider` (extended property name = the unique id) > Container `osui-range-slider__provider`;
-   - the provider (migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js, AbstractNoUiSlider,
+   - the provider (migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js, AbstractNoUiSlider,
      OSUINoUiSliderSingle, NoUiSliderSingleConfig, AbstractNoUiSliderConfig.getPipsConfig);
-   - noUiSlider (migration/runtime-sources/OutSystemsUI_2_23.NoUISlider.js): the target classes, base, connects,
+   - noUiSlider (migration/sources/runtime/OutSystemsUI_2_23.NoUISlider.js): the target classes, base, connects,
      origin, handle and pips markup, the tap, drag and keyboard handlers, and the aria attributes.
    Only what the app uses is built: horizontal, left to right, one handle, no floating label, no extensibility
    configs. The value comes from the provider, not from the block inputs, as in OSUI (StartingValue sets the start). */

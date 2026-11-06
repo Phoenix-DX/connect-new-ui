@@ -2,7 +2,7 @@ import { Children, createContext, isValidElement, useContext, useEffect, useRef,
 
 /* Platform widgets OSWidgets.RadioGroup / OSWidgets.RadioButton (not OutSystems blocks: no OSBlockWidget root), ported
    from OutSystemsReactWidgets.js (`W:<n>` = line of migration/sources/pretty/
-   OutSystemsReactWidgets.js) and the widget base of migration/runtime-sources/OutSystemsReactView.js (`RV`). */
+   OutSystemsReactWidgets.js) and the widget base of migration/sources/runtime/OutSystemsReactView.js (`RV`). */
 
 type RadioValue = string | number;
 

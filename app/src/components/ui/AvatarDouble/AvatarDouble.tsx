@@ -18,7 +18,7 @@ export interface AvatarDoubleProps {
 const MAIN_CONTAINER_CLASS = 'ubt-avatar-double';
 
 /** Two avatars side by side. View from
-    migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js:171-278 (no events). */
+    migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js:171-278 (no events). */
 export function AvatarDouble({
   id,
   inFirstAvatarImage = {},

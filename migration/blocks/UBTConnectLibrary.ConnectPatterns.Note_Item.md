@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.Note_Item
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc@154f53eb.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Button, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes, UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter, UBTConnectLibrary.ConnectPatterns.TextEllipsis (queue: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes, UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter)
 
 ## Inputs
@@ -275,4 +275,4 @@ alias: "6"
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 ```
-(… 363 more lines in `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js`)
+(… 363 more lines in `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc@154f53eb.js`)

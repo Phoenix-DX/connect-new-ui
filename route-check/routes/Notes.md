@@ -1,10 +1,10 @@
 # Notes: OutSystems (TST) and React
 
-The route `/UBTConnect/Notes`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/Notes`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Notes/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 19 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `NoteCard_List`, `Notes`, `UBTConnect`, `js`, `js`, `Horizontal_Filter_TagList`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 19 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `NoteCard_List`, `Notes`, `UBTConnect`, `js`, `js`, `Horizontal_Filter_TagList`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -232,7 +232,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -240,13 +240,13 @@ Screen inputs: none. `setInputs` of `Notes` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Notes` | `HouseholdCarousel` | `In_StartingHouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1866`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1866) |
-| `Notes` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1873`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1873) |
-| `Notes` | `AssembleDetail` | `EventId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1880`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1880) |
-| `Notes` | `Locality_Details` | `TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…`<br>`LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.localityId)` | [`UBTConnect.Notes.Notes.mvc.js:1891`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1891) |
-| `Notes` | `Household_Relations` | `MemberId` = `textToLongInteger(objectId)`<br>`HouseholdId` = `textToLongInteger(objectId2)` | [`UBTConnect.Notes.Notes.mvc.js:1910`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1910) |
-| `Notes` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1933`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1933) |
-| `Notes` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1946`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1946) |
+| `Notes` | `HouseholdCarousel` | `In_StartingHouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1866`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1866) |
+| `Notes` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1873`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1873) |
+| `Notes` | `AssembleDetail` | `EventId` = `objectId` | [`UBTConnect.Notes.Notes.mvc.js:1880`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1880) |
+| `Notes` | `Locality_Details` | `TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…`<br>`LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.localityId)` | [`UBTConnect.Notes.Notes.mvc.js:1891`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1891) |
+| `Notes` | `Household_Relations` | `MemberId` = `textToLongInteger(objectId)`<br>`HouseholdId` = `textToLongInteger(objectId2)` | [`UBTConnect.Notes.Notes.mvc.js:1910`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1910) |
+| `Notes` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1933`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1933) |
+| `Notes` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Notes.Notes.mvc.js:1946`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1946) |
 
 ### 7.2 React
 
@@ -274,10 +274,10 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Notes` | OnInitialize ([`UBTConnect.Notes.Notes.mvc.js:2235`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L2235)) | `screenEvent_OnInitialize` | 1. JavaScript: CheckRestored ([`L1662`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1662))<br>2. If (checkRestored.fromCache \|\| checkRestored.fromHistory) ([`L1671`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1671))<br>3. PageNumber = 1 ([`L1673`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1673))<br>4. Else ([`L1676`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1676))<br>5. Notes_Loading = True ([`L1678`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1678))<br>6. If note_Pills.isEmpty ([`L1680`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1680))<br>7. Execute Action: SkeletonLoader_Pills ([`L1682`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1682))<br>8. If notes_List.isEmpty ([`L1686`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1686))<br>9. Execute Action: SkeletonLoader_Notes ([`L1688`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1688))<br>10. Execute Action: GetNotes_FilterYear ([`L1693`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1693))<br>11. Execute Action: ListClearYears ([`L1697`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1697))<br>12. Years = GetNotes_FilterYear.Years ([`L1700`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1700)) |
-| `Notes` | OnReady ([`UBTConnect.Notes.Notes.mvc.js:2253`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L2253)) | `screenEvent_Ready` | 1. Execute Action: ResetPillsVallues ([`L1744`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1744))<br>2. Execute Action: Refresh_GetNotes ([`L1747`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1747)) |
-| `NoteCard_List` | OnInitialize ([`UBTConnect.Notes.NoteCard_List.mvc.js:740`](../../migration/runtime-sources/live/UBTConnect.Notes.NoteCard_List.mvc.js#L740)) | `onInitialize` | none |
-| `NoteCard_List` | OnReady ([`UBTConnect.Notes.NoteCard_List.mvc.js:758`](../../migration/runtime-sources/live/UBTConnect.Notes.NoteCard_List.mvc.js#L758)) | `onReady` | none |
+| `Notes` | OnInitialize ([`UBTConnect.Notes.Notes.mvc.js:2235`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L2235)) | `screenEvent_OnInitialize` | 1. JavaScript: CheckRestored ([`L1662`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1662))<br>2. If (checkRestored.fromCache \|\| checkRestored.fromHistory) ([`L1671`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1671))<br>3. PageNumber = 1 ([`L1673`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1673))<br>4. Else ([`L1676`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1676))<br>5. Notes_Loading = True ([`L1678`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1678))<br>6. If note_Pills.isEmpty ([`L1680`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1680))<br>7. Execute Action: SkeletonLoader_Pills ([`L1682`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1682))<br>8. If notes_List.isEmpty ([`L1686`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1686))<br>9. Execute Action: SkeletonLoader_Notes ([`L1688`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1688))<br>10. Execute Action: GetNotes_FilterYear ([`L1693`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1693))<br>11. Execute Action: ListClearYears ([`L1697`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1697))<br>12. Years = GetNotes_FilterYear.Years ([`L1700`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1700)) |
+| `Notes` | OnReady ([`UBTConnect.Notes.Notes.mvc.js:2253`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L2253)) | `screenEvent_Ready` | 1. Execute Action: ResetPillsVallues ([`L1744`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1744))<br>2. Execute Action: Refresh_GetNotes ([`L1747`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1747)) |
+| `NoteCard_List` | OnInitialize ([`UBTConnect.Notes.NoteCard_List.mvc.js:740`](../../migration/sources/runtime/UBTConnect.Notes.NoteCard_List.mvc.js#L740)) | `onInitialize` | none |
+| `NoteCard_List` | OnReady ([`UBTConnect.Notes.NoteCard_List.mvc.js:758`](../../migration/sources/runtime/UBTConnect.Notes.NoteCard_List.mvc.js#L758)) | `onReady` | none |
 | `Notes_FilterSheet` | OnInitialize ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:585`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L429`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L429)) |
 | `Notes_FilterSheet` | OnParametersChanged ([`UBTConnect.Notes.Notes_FilterSheet.mvc.js:606`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/sources/raw/UBTConnect.Notes.Notes_FilterSheet.mvc.js#L286)) |
 
@@ -328,7 +328,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `Notes` | `GetNotes` | on demand (`-1`) | `action getNotesOnAfterFetch` ([`UBTConnect.Notes.Notes.mvc.js:1086`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1086)), `action notes_CardListOnLoadMore` ([`UBTConnect.Notes.Notes.mvc.js:1452`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L1452)) | [`UBTConnect.Notes.Notes.mvc.js:847`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L847) |
+| `Notes` | `GetNotes` | on demand (`-1`) | `action getNotesOnAfterFetch` ([`UBTConnect.Notes.Notes.mvc.js:1086`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1086)), `action notes_CardListOnLoadMore` ([`UBTConnect.Notes.Notes.mvc.js:1452`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L1452)) | [`UBTConnect.Notes.Notes.mvc.js:847`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L847) |
 
 ### 8.2 React
 
@@ -379,7 +379,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Notes.Notes.mvc.js:2277`](../../migration/runtime-sources/live/UBTConnect.Notes.Notes.mvc.js#L2277) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Notes.Notes.mvc.js:2277`](../../migration/sources/runtime/UBTConnect.Notes.Notes.mvc.js#L2277) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -394,7 +394,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Notes` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Notes` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

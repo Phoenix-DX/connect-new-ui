@@ -21,8 +21,8 @@ import {
 } from './validationService';
 
 /* React bindings of the platform validation (validationService.ts): the screen's service, the Form widget, the
-   per-widget record and the validation message markup. `RV` = migration/runtime-sources/OutSystemsReactView.js,
-   `W` = migration/runtime-sources/OutSystemsReactWidgets.js (character offsets in the minified files).
+   per-widget record and the validation message markup. `RV` = migration/sources/runtime/OutSystemsReactView.js,
+   `W` = migration/sources/runtime/OutSystemsReactWidgets.js (character offsets in the minified files).
    A widget outside a ValidationServiceProvider registers nowhere and always shows as valid (as before this port). */
 
 const ServiceContext = createContext<ValidationService | null>(null);

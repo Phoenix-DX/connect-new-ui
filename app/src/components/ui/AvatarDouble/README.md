@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.AvatarDouble` · pack
 `migration/blocks/UBTConnectLibrary.ConnectPatterns.AvatarDouble.md` · compiled source
-`migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js`
+`migration/sources/survey/UBTConnectLibrary.ConnectPatterns.AvatarDouble.mvc.js`
 
 | Input                | Type              | Prop                  | Default |
 | -------------------- | ----------------- | --------------------- | ------- |

@@ -62,7 +62,7 @@ function showNotesTotal(notes: Notes): ShortList {
   return { showNotesTotal: show, shortList: show ? list.slice(0, 2) : [] };
 }
 
-/** The notes of an item, with a delete confirmation (migration/blocks/sources/
+/** The notes of an item, with a delete confirmation (migration/sources/survey/
     UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js: view :181-848, controller :850-1206). */
 export function NoteList({
   id,

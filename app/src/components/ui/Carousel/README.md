@@ -16,7 +16,7 @@ The block raises two events: `Initialized(CarouselId)` → `onInitialized` and `
 `onOnSlideMoved`. The placeholder `CarouselItems` → `children`. It holds a List widget. The items of the List are the slides.
 
 The React app ports this behavior from the OSUI Splide provider (`provider.ts`;
-`migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` OSUISplide :18143-18428, SplideConfig :18441-18517):
+`migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` OSUISplide :18143-18428, SplideConfig :18441-18517):
 
 - Markup (:18174-18223, :18296-18308):
   - With a List directly in the placeholder, the track is the root of Splide (`splide`). The placeholder is its track.

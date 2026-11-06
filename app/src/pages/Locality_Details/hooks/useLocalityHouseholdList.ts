@@ -71,7 +71,7 @@ export function useLocalityHouseholdList(
     for (const household of list) {
       /* Off: TST calls GetLocal_Bookmark(Contact, HouseholdId) (Locality_Households_HouseholdList.mvc.js:508, copy in
          migration/sources/pretty/), which reads the legacy Connect2_LegacyShared
-         LocalBookmark table (live migration/runtime-sources/UBTConnect.controller.js:9237-9256). Nothing on live writes
+         LocalBookmark table (live migration/sources/runtime/UBTConnect.controller.js:9237-9256). Nothing on live writes
          that table (the app start runs SynchBookmarksC2 only, UBTConnect.controller.js:1129-1133), so the read is
          always false: the clone gives false without a read (user decision (b), 2026-11-05). */
       const isBookmarked = flags.hasNewBookmarks

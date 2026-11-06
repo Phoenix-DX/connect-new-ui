@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "QR scanner on the web",
   "question": "The Scan QR Code button runs BarcodePlugin CheckBarcodePlugin → ScanBarcode (Cordova camera plugin), then GetMemberByMemberId, GetScanEventQRCode and the result popup. ADR-1 (web/PWA only) leaves the barcode web equivalent ('camera + JS library') undecided and no scanner package is allowed. How does the clone scan in the mock phase?",
-  "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js ctrl :1192-1296 (OnClick_ScanQrCode), :927-1173 (OnHandle_ScanCode); migration/architecture.md ADR-1; AGENTS.md rule 14",
+  "evidence": "migration/sources/runtime/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js ctrl :1192-1296 (OnClick_ScanQrCode), :927-1173 (OnHandle_ScanCode); migration/architecture.md ADR-1; AGENTS.md rule 14",
   "mcp": "",
   "options": [
    "A: a scanner adapter in the route (components/barcodePlugin.ts): unavailable by default; the mocks register a fictional scanner that returns the QR codes of the event's attendees (scenarios for wrong event, unreadable code, cancel), so the compiled flow and popups can be reviewed; the real camera scanner comes with a later ADR",
@@ -23,7 +23,7 @@
   "kind": "fact",
   "topic": "BarcodePlugin texts",
   "question": "What do CheckBarcodePlugin / ScanBarcode return on the web (IsAvailable, Error.ErrorCode / ErrorMessage shown by the 'Unavailable' feedback messages)? BarcodePlugin.controller.js (TST moduleinfo /UBTConnect/scripts/BarcodePlugin.controller.js) is not in the local sources.",
-  "evidence": "ScreenBlock_AdminEventDetail.mvc.js :1259-1275 (OS-PLUG-BARC-0006 = user closed; else showFeedbackMessage(Error.ErrorMessage, Info)); migration/runtime-sources/moduleinfo.json lists BarcodePlugin.controller.js / OSBarcodePlugin.js; not in runtime-sources or the survey",
+  "evidence": "ScreenBlock_AdminEventDetail.mvc.js :1259-1275 (OS-PLUG-BARC-0006 = user closed; else showFeedbackMessage(Error.ErrorMessage, Info)); migration/sources/runtime/moduleinfo.json lists BarcodePlugin.controller.js / OSBarcodePlugin.js; not in migration/sources/runtime or the survey",
   "mcp": "no MCP in this agent",
   "options": [],
   "recommend": "",

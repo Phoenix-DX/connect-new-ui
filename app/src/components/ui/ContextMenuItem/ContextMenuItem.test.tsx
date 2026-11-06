@@ -7,7 +7,7 @@ import * as stories from './ContextMenuItem.stories';
 const { CompiledView } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js:171-260). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc@04578ac2.js:171-260). */
 describe('ContextMenu_Item', () => {
   it('renders a padded ubt-context-menu-option container with an IconText (Small gutter) and its Icon', () => {
     const { container } = render(<CompiledView />);

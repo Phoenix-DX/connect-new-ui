@@ -43,7 +43,7 @@ Production is mock-free (`build/mockFree.ts`, checked by `build/mockFreeBuild.te
 
 ## Manifest and head
 
-- The TST manifest (`src/pwa/manifest.json`, copy of `migration/runtime-sources/UBTConnect.pwa-manifest.json`) is at
+- The TST manifest (`src/pwa/manifest.json`, copy of `migration/sources/runtime/UBTConnect.pwa-manifest.json`) is at
   the original path `/UBTConnect/moduleservices/pwa/manifest` in every mode (`build/pwa.ts` serves it).
   `index.html` links it as every capture does (`environment.manifestLink`).
 - The manifest has no `scope`. The scope defaults to `/UBTConnect/`.
@@ -286,7 +286,7 @@ The PWA e2e has the case "first load of a path that no screen has" on the produc
 Decisions: P1 online-first, P10 / ADR-10 IndexedDB kept (`migration/pwa/pwa-discussion-plan.md` section 7).
 
 **Network detection (1:1, `src/platform/feedback/networkDetection.ts`).** Port of NetworkDetection's JavaScript node
-(`migration/shell/sources/NetworkDetection.controller.js`, shell-facts U11), started once by `useNetworkStatusEvents`
+(`migration/sources/shell/NetworkDetection.controller.js`, shell-facts U11), started once by `useNetworkStatusEvents`
 (`networkStatus.ts`, mounted in AppFrame):
 
 - The ping is `GET /UBTConnect/status/network-ping.txt?d=<now>` with `cache: "no-store"`, a 300 s abort timeout and one

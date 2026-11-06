@@ -1,10 +1,10 @@
 # Bookmarks: OutSystems (TST) and React
 
-The route `/UBTConnect/Bookmarks`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/Bookmarks`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Bookmarks/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 23 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `ItemCardActions`, `Bookmarks`, `Bookmarks_Card_Item`, `Bookmarks_Card_List`, `UBTConnect`, `js`, `js`, `AvatarImage`, `Horizontal_Filter_TagList`, `ItemCard_WithNotes`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 23 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `FilterSheet`, `FilterSheet_Icon_Label`, `ItemCardActions`, `Bookmarks`, `Bookmarks_Card_Item`, `Bookmarks_Card_List`, `UBTConnect`, `js`, `js`, `AvatarImage`, `Horizontal_Filter_TagList`, `ItemCard_WithNotes`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -152,7 +152,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -160,11 +160,11 @@ Screen inputs: none. `setInputs` of `Bookmarks` reads no input.
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `Bookmarks` | `Locality_Details` | `LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.interchangeLocalityId)`<br>`TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1105`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1105) |
-| `Bookmarks` | `Household_Relations` | `HouseholdId` = `textToLongInteger(objectId2)`<br>`MemberId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1124`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1124) |
-| `Bookmarks` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1147`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1147) |
-| `Bookmarks` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1160`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1160) |
-| `Bookmarks` | `HouseholdCarousel` | `In_StartingHouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1185`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1185) |
+| `Bookmarks` | `Locality_Details` | `LocalityId` = `textToLongInteger(notes_InterchangeId_ExtractId.interchangeLocalityId)`<br>`TagsList_SelectedTag` = `UBTConnectController.default.getLocalityMenu$Action(callContext).localityMenuOptions.inter…` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1105`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1105) |
+| `Bookmarks` | `Household_Relations` | `HouseholdId` = `textToLongInteger(objectId2)`<br>`MemberId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1124`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1124) |
+| `Bookmarks` | `OneSchoolGlobalCarousel` | `In_StartingObjectId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1147`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1147) |
+| `Bookmarks` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1160`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1160) |
+| `Bookmarks` | `HouseholdCarousel` | `In_StartingHouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:1185`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1185) |
 
 ### 7.2 React
 
@@ -190,10 +190,10 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Bookmarks` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:2021`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2021)) | `screenEvent_OnInitialize` | 1. JavaScript: CheckRestored ([`L1558`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1558))<br>2. If (checkRestored.fromCache2 \|\| checkRestored.fromHistory2) ([`L1571`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1571))<br>3. PageNumber = 1 ([`L1573`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1573))<br>4. Else ([`L1576`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1576))<br>5. Bookmarks_Loading = True ([`L1578`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1578))<br>6. If bookmarkPills.isEmpty ([`L1580`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1580))<br>7. Execute Action: SkeletonLoader_Pills ([`L1582`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1582))<br>8. If bookmarks_List.isEmpty ([`L1586`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1586))<br>9. Execute Action: SkeletonLoader_Bookmarks ([`L1588`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1588))<br>10. Execute Action: GetBookmarks_FilterYear ([`L1593`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1593))<br>11. Execute Action: ListClear ([`L1597`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1597))<br>12. Years = GetBookmarks_FilterYear.Out_Years ([`L1600`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1600)) |
-| `Bookmarks` | OnReady ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:2039`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2039)) | `screenEvent_OnReady` | 1. Execute Action: Reset_PillsValues ([`L1758`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1758))<br>2. Execute Action: Refresh_GetBookmarksData ([`L1761`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1761)) |
-| `Bookmarks_Card_List` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:661`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L661)) | `onInitialize` | none |
-| `Bookmarks_Card_List` | OnReady ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:679`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L679)) | `onReady` | none |
+| `Bookmarks` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:2021`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2021)) | `screenEvent_OnInitialize` | 1. JavaScript: CheckRestored ([`L1558`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1558))<br>2. If (checkRestored.fromCache2 \|\| checkRestored.fromHistory2) ([`L1571`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1571))<br>3. PageNumber = 1 ([`L1573`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1573))<br>4. Else ([`L1576`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1576))<br>5. Bookmarks_Loading = True ([`L1578`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1578))<br>6. If bookmarkPills.isEmpty ([`L1580`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1580))<br>7. Execute Action: SkeletonLoader_Pills ([`L1582`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1582))<br>8. If bookmarks_List.isEmpty ([`L1586`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1586))<br>9. Execute Action: SkeletonLoader_Bookmarks ([`L1588`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1588))<br>10. Execute Action: GetBookmarks_FilterYear ([`L1593`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1593))<br>11. Execute Action: ListClear ([`L1597`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1597))<br>12. Years = GetBookmarks_FilterYear.Out_Years ([`L1600`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1600)) |
+| `Bookmarks` | OnReady ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:2039`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2039)) | `screenEvent_OnReady` | 1. Execute Action: Reset_PillsValues ([`L1758`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1758))<br>2. Execute Action: Refresh_GetBookmarksData ([`L1761`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1761)) |
+| `Bookmarks_Card_List` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:661`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L661)) | `onInitialize` | none |
+| `Bookmarks_Card_List` | OnReady ([`UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js:679`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js#L679)) | `onReady` | none |
 | `Bookmarks_FilterSheet` | OnInitialize ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:585`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L585)) | `onInitialize` | 1. Execute Action: Initialize_FilterYearOptions ([`L310`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L310)) |
 | `Bookmarks_FilterSheet` | OnParametersChanged ([`UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js:606`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L606)) | `onParametersChanged` | 1. Execute Action: Initialize_FilterYearOptions ([`L286`](../../migration/sources/raw/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js#L286)) |
 
@@ -244,7 +244,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `Bookmarks` | `GetBookmarks` | on demand (`-1`) | `action getBookmarksOnAfterFetch` ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:746`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L746)), `action bookmarks_Card_ListOnLoadMore` ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:1660`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1660)) | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:688`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L688) |
+| `Bookmarks` | `GetBookmarks` | on demand (`-1`) | `action getBookmarksOnAfterFetch` ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:746`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L746)), `action bookmarks_Card_ListOnLoadMore` ([`UBTConnect.Bookmarks.Bookmarks.mvc.js:1660`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L1660)) | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:688`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L688) |
 
 ### 8.2 React
 
@@ -274,7 +274,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:2063`](../../migration/runtime-sources/live/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2063) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Bookmarks.Bookmarks.mvc.js:2063`](../../migration/sources/runtime/UBTConnect.Bookmarks.Bookmarks.mvc.js#L2063) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -289,7 +289,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Bookmarks` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Bookmarks` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

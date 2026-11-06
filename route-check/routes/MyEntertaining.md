@@ -1,10 +1,10 @@
 # MyEntertaining: OutSystems (TST) and React
 
-The route `/UBTConnect/MyEntertaining`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/MyEntertaining`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MyEntertaining/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `MyEntertaining_Embedded`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_EmbedMyEntertaining`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 16 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `MyEntertaining_Embedded`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_EmbedMyEntertaining`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -92,7 +92,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -122,7 +122,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `MyEntertaining_Embedded` | OnInitialize ([`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:478`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L478)) | `onInitialize` | 1. If (in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbi… ([`L292`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L292))<br>2. PreloadedSource = "orbit" ([`L294`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L294))<br>3. Else ([`L297`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L297))<br>4. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM ([`L298`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L298))<br>5. PreloadedSource = "ldm" ([`L300`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L300))<br>6. Else ([`L303`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L303))<br>7. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.assem… ([`L304`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L304))<br>8. PreloadedSource = "assemble" ([`L306`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L306))<br>9. Else ([`L309`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L309))<br>10. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.userC… ([`L310`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L310))<br>11. PreloadedSource = "personal" ([`L312`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L312))<br>12. Else ([`L315`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L315)) |
+| `MyEntertaining_Embedded` | OnInitialize ([`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:478`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L478)) | `onInitialize` | 1. If (in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.orbi… ([`L292`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L292))<br>2. PreloadedSource = "orbit" ([`L294`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L294))<br>3. Else ([`L297`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L297))<br>4. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.lDM ([`L298`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L298))<br>5. PreloadedSource = "ldm" ([`L300`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L300))<br>6. Else ([`L303`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L303))<br>7. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.assem… ([`L304`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L304))<br>8. PreloadedSource = "assemble" ([`L306`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L306))<br>9. Else ([`L309`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L309))<br>10. If in_InitialEventSouceId === UBTConnectModel.staticEntities.type_MyCalendarEventSource.userC… ([`L310`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L310))<br>11. PreloadedSource = "personal" ([`L312`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L312))<br>12. Else ([`L315`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L315)) |
 
 Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0` is a fetch when the block opens, `-1` is a fetch only on demand (a `Refresh Query` step). `Read by` lists the child block inputs, conditions, text widgets and actions that read the result.
 
@@ -152,7 +152,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `MyEntertaining_Embedded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:169`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L169), [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:254`](../../migration/runtime-sources/live/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L254) |
+| `MyEntertaining_Embedded` | get | `UBTConnect.Embedd_B2CTenant` | [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:169`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L169), [`UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js:254`](../../migration/sources/runtime/UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js#L254) |
 
 ### 9.2 React
 
@@ -181,7 +181,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Calendar` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Calendar` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

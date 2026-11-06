@@ -15,7 +15,7 @@ export interface VirtualMeetingDetailsProps {
   virtualMeetingPassword?: string;
 }
 
-/** Meeting link, id and passcode (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.mvc.js;
+/** Meeting link, id and passcode (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.mvc.js;
     view :155-289): NewConnectContent with three animated containers, each shown when its value is not "": the link
     (`break-word`; Entry "Meeting Link", IsURL), the id (Entry "Meeting Id") and the passcode (Entry "Passcode"). No
     actions. */

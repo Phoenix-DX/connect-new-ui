@@ -178,7 +178,7 @@ def render(r, h):
     st = r.get("static")
     static_note = (["**Static check.** This route has no TST capture (`migration/screens/" + route + "/no-capture.json`).", "",
                     "- The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).",
-                    "- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.",
+                    "- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).",
                     "- The tool observed no call and has no screenshot.",
                     f"- Closure: {st['closure']} files, {len(st['missing'])} without compiled code" +
                     (": " + ", ".join(f"`{m}`" for m in st["missing"][:6]) + ("…" if len(st["missing"]) > 6 else "") if st["missing"] else "") + ".", ""]
@@ -187,7 +187,7 @@ def render(r, h):
     live = r.get("live") or []
     live_note = ([f"**Live code.** TST changed {len(live)} compiled file{'s' if len(live) > 1 else ''} of this route after the capture "
                   "(`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in "
-                  "`migration/runtime-sources/live/` for: " + ", ".join(f"`{h.short(f)}`" for f in live) +
+                  "`migration/sources/runtime/` for: " + ", ".join(f"`{h.short(f)}`" for f in live) +
                   ". The observed calls come from the capture.", ""] if live else [])
     L = [f"# {route}: OutSystems (TST) and React", "",
          f"The route `/UBTConnect/{route}`, read from the TST compiled code and from the React code by "

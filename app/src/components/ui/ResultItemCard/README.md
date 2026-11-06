@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card` · pack
 `migration/blocks/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.md` · compiled source
-`migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.mvc.js`
+`migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.mvc.js`
 
 | Input        | Type | Prop           | Default |
 | ------------ | ---- | -------------- | ------- |

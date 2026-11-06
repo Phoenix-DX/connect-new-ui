@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.mvc.js`
 - Child blocks: Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card (queue: Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card)
 
 ## Inputs

@@ -20,7 +20,7 @@ export interface OrbitLandingPopupProps {
     dom/popup-filters.raw.html, dom/popup-sort.raw.html): `.portal-class` > portal root > `.popup-backdrop` >
     `.popup-dialog` > `.popup-content`. A closed popup renders nothing but keeps the widget's page effects
     (usePopupWidget).
-    The classes are the ones CopyClassesAcrossPortal leaves (runtime-sources/Connect2_LegacyShared.controller.js
+    The classes are the ones CopyClassesAcrossPortal leaves (sources/runtime/Connect2_LegacyShared.controller.js
     :1534-1553, run by the Root_* container's componentDidUpdate, SB :1236-1260, :2021-2045): the portal root gets the
     Root_* classes; the portal parent "portal-class" plus the class of Root_*'s grandparent (b1-b1-Content: none), and
     its inline `display: inline` is removed (captured `style=""`). */

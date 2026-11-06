@@ -1,6 +1,6 @@
 """OutSystems (TST) side of the route extras: screen inputs, navigation parameters, lifecycle, client state, access
 and errors. It reads the compiled code of the route (`sources/raw/*.mvc.js`) and the UI flow controllers of the app
-shell capture (`migration/shell/sources/`). Each fact has its file and line.
+shell capture (`migration/sources/shell/`). Each fact has its file and line.
 
 The compiled code writes one comment per node of an action flow (`// Execute Action: X`, `// Handle Error: X`,
 `// Refresh Query: X`, `// Destination: X`, `// Var = Value`). The tool lists these comments and the `if(...)`

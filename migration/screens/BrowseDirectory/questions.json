@@ -11,7 +11,7 @@
   "blocking": false,
   "status": "answered",
   "askedAt": "2026-10-15T17:06:57",
-  "answer": "migration/runtime-sources/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right",
+  "answer": "migration/sources/runtime/UBTConnect.Directory_Locality.controller.js:12-16 (fetched read-only): handleError delegates to App_Common.handleError, so raiseToFlowHandler is right",
   "answeredBy": "code",
   "answeredAt": "2026-10-15T17:19:24"
  },

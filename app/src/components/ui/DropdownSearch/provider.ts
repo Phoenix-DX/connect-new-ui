@@ -10,7 +10,7 @@ import {
 } from './providerConfig';
 
 /* OutSystems UI Dropdown Search provider glue for Virtual Select, ported from
-   migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js ("U"): Providers.OSUI.Dropdown.VirtualSelect
+   migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js ("U"): Providers.OSUI.Dropdown.VirtualSelect
    AbstractVirtualSelect (U:19923-20179) and Search.OSUIVirtualSelectSearch (U:20485-20511). The configs:
    providerConfig.ts. */
 

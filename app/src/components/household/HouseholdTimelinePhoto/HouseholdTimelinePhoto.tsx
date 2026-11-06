@@ -32,7 +32,7 @@ export interface HouseholdTimelinePhotoProps {
   onSelected?: (date: string) => void;
 }
 
-/** One photo of the household timeline (p:migration/blocks/sources/UBTConnect.Directory_Household_Blocks.
+/** One photo of the household timeline (p:migration/sources/survey/UBTConnect.Directory_Household_Blocks.
     HouseholdDetails_TimelinePhoto.mvc.js:198-330): CustomContainer "Block_Image" with a small border (Primary when
     IsSelected, else Neutral3) and soft radius, flex / flex-start / center, ExtendedClasses = FormatClasses(
     MainContainerClass + "__background-image", GetClasses_BackgroundImageSize(In_CardTypeId, 0)); its click raises

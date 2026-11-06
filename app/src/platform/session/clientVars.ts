@@ -45,11 +45,11 @@ export const CLIENT_VAR_DEFAULTS = {
   'UBT_AppManager.DeviceInfo_IsNative': false,
   // JSON of AppManager_CachedUserInfoRec, written by AppManager_SetCachedUserInfo (AM:4355-4375)
   'UBT_AppManager.AppManager_UserExtended': '',
-  // Connect2_LegacyShared.clientVariables.js (migration/runtime-sources/, :8-24): Long Integer, type default 0
+  // Connect2_LegacyShared.clientVariables.js (migration/sources/runtime/, :8-24): Long Integer, type default 0
   'Connect2_LegacyShared.UnreadNotificationsNumber': 0,
   'Connect2_LegacyShared.UnreadPublicMessagesNumber': 0,
   'Connect2_LegacyShared.UnreadWhatsNewsNumber': 0, // CR-MessageDetail-1
-  // Connect2_OrbitMobile_MUI.clientVariables.js (migration/runtime-sources/, fetched 2026-10-17, :8-19): Integer, no
+  // Connect2_OrbitMobile_MUI.clientVariables.js (migration/sources/runtime/, fetched 2026-10-17, :8-19): Integer, no
   // compiled default (getVariable without a 4th argument) → type default 0; SetBookletMaxRows fills them from the
   // server (CR-EventBooklet-1).
   'Connect2_OrbitMobile_MUI.BookletGuestsMaxRows': 0,

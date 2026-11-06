@@ -30,7 +30,7 @@
 | O-A1: repeated keydown listener of the original | **one handler** (recommended by the agent) — deviation from 1:1, B6 in known-original-bugs, CONFIRMED (user, 2026-10-17) | |
 | O-A1: ErrorScreen `margin-top:-27em !important` | not rendered (capture has no style there) | |
 | O-A1: stories beside a stand-in native layout; new `osui/lib/deviceDetection.ts` | recommended | |
-| Static files fetched (standing rule) | `Connect2_OrbitMobile_MUI.TimeFormat.js`, `OutSystemsUI_2_23.controller.js` | runtime-sources.md |
+| Static files fetched (standing rule) | `Connect2_OrbitMobile_MUI.TimeFormat.js`, `OutSystemsUI_2_23.controller.js` | migration/sources/runtime.md |
 | O-A2: Admin* milestone types (GUIDs missing in TST moduleinfo) | kept undefined, admin branch ported but never renders (recommended) | |
 | O-A2: LocalOrbitMilestoneType | in-memory store filled by `syncOrbitMilestoneTypes` (recommended); screens must call it | |
 | O-A2: bugs B7 (Card_Template click propagation), B8 (hotel check by MilestoneId), B9 (Sync fills Name with Type) | **kept 1:1** (user rule 2026-10-14) | in known-original-bugs.md, for review |

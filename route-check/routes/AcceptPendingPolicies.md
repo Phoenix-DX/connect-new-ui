@@ -1,13 +1,13 @@
 # AcceptPendingPolicies: OutSystems (TST) and React
 
-The route `/UBTConnect/AcceptPendingPolicies`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/AcceptPendingPolicies`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/AcceptPendingPolicies/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/AcceptPendingPolicies/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 47 files, 0 without compiled code.
 
@@ -85,7 +85,7 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
@@ -111,8 +111,8 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `AcceptPendingPolicies` | OnInitialize ([`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:774`](../../migration/runtime-sources/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L774)) | `onInitialize` | 1. Execute Action: AppManager_GetCachedUserInfo ([`L621`](../../migration/runtime-sources/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L621))<br>2. UserCountry = AppManager_GetCachedUserInfo.UserInformation.CountryCode ([`L625`](../../migration/runtime-sources/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L625)) |
-| `Policy_Custom_AcceptPendingPolicies` | OnParametersChanged ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1419`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1419)) | `onParametersChanged` | 1. Refresh Query: GetPendingPolicies ([`L897`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L897)) |
+| `AcceptPendingPolicies` | OnInitialize ([`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:774`](../../migration/sources/runtime/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L774)) | `onInitialize` | 1. Execute Action: AppManager_GetCachedUserInfo ([`L621`](../../migration/sources/runtime/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L621))<br>2. UserCountry = AppManager_GetCachedUserInfo.UserInformation.CountryCode ([`L625`](../../migration/sources/runtime/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L625)) |
+| `Policy_Custom_AcceptPendingPolicies` | OnParametersChanged ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1419`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1419)) | `onParametersChanged` | 1. Refresh Query: GetPendingPolicies ([`L897`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L897)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -136,7 +136,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `Policy_Custom_AcceptPendingPolicies` | `GetPendingPolicies` | at start (`0`) | `shown if` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:194`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L194)), `Columns_Two.source` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:230`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L230)), `view` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:238`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L238)), `text` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:251`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L251)), `shown if (Columns_Two)` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:252`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L252)), `CustomText.In_Text` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:375`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L375)), `CustomText.value` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:432`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L432)), `shown if (CustomText)` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:446`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L446)), `action toggleCheckBox` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:928`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L928)), `action continueOnClick` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:962`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L962)), `action getPendingPoliciesOnAfterFetch` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1148`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1148)), `action selectCheckboxOnChange` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1192`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1192)), `action onClickPolicy` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1231`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1231)), `action detailsOnClick` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1281`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1281)), `action selectAllCheckboxOnChange` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1328`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1328)) | [`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:804`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L804) |
+| `Policy_Custom_AcceptPendingPolicies` | `GetPendingPolicies` | at start (`0`) | `shown if` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:194`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L194)), `Columns_Two.source` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:230`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L230)), `view` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:238`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L238)), `text` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:251`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L251)), `shown if (Columns_Two)` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:252`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L252)), `CustomText.In_Text` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:375`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L375)), `CustomText.value` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:432`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L432)), `shown if (CustomText)` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:446`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L446)), `action toggleCheckBox` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:928`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L928)), `action continueOnClick` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:962`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L962)), `action getPendingPoliciesOnAfterFetch` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1148`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1148)), `action selectCheckboxOnChange` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1192`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1192)), `action onClickPolicy` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1231`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1231)), `action detailsOnClick` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1281`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1281)), `action selectAllCheckboxOnChange` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1328`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1328)) | [`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:804`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L804) |
 
 ### 8.2 React
 
@@ -163,7 +163,7 @@ Client variables and browser storage that the route reads or writes. Other scree
 
 | Block | Operation | Variable | Places |
 |---|---|---|---|
-| `AcceptPendingPolicies` | set | `UBTConnect.App_Policies_HasPolicyToAccept` | [`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:671`](../../migration/runtime-sources/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L671) |
+| `AcceptPendingPolicies` | set | `UBTConnect.App_Policies_HasPolicyToAccept` | [`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:671`](../../migration/sources/runtime/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L671) |
 
 ### 9.2 React
 
@@ -178,7 +178,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:799`](../../migration/runtime-sources/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L799) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:799`](../../migration/sources/runtime/UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js#L799) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -191,12 +191,12 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `Policy_Custom_AcceptPendingPolicies` | `continueOnClick` | `CommunicationException` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1016`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1016)) | 1. Trigger Event: NetworkError ([`L1024`](../../migration/runtime-sources/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1024)) |
+| `Policy_Custom_AcceptPendingPolicies` | `continueOnClick` | `CommunicationException` ([`UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1016`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1016)) | 1. Trigger Event: NetworkError ([`L1024`](../../migration/sources/runtime/UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js#L1024)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `App_Policies` [`UBTConnect.App_Policies.controller.js:12`](../../migration/shell/sources/UBTConnect.App_Policies.controller.js#L12). Handled errors: none, it goes to the next flow.
-2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/shell/sources/UBTConnect.App_Common.controller.js#L91)).
+1. UI flow `App_Policies` [`UBTConnect.App_Policies.controller.js:12`](../../migration/sources/shell/UBTConnect.App_Policies.controller.js#L12). Handled errors: none, it goes to the next flow.
+2. UI flow `App_Common` [`UBTConnect.App_Common.controller.js:12`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L12). Handled errors: `BubbleCommunicationException` ([`UBTConnect.App_Common.controller.js:31`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L31)), `CommunicationException` ([`UBTConnect.App_Common.controller.js:46`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L46)), `SecurityException` ([`UBTConnect.App_Common.controller.js:61`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L61)), `AllExceptions` ([`UBTConnect.App_Common.controller.js:91`](../../migration/sources/shell/UBTConnect.App_Common.controller.js#L91)).
 
 ### 11.2 React
 

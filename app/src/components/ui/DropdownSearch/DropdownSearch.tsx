@@ -95,7 +95,7 @@ const PROPERTY_ORDER: DropdownSearchProperty[] = [
   'ExtendedClass',
 ];
 
-/** OutSystems UI Dropdown Search (p:migration/blocks/sources/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js):
+/** OutSystems UI Dropdown Search (p:migration/sources/survey/OutSystemsUI_2_23.Interaction.DropdownSearch.mvc.js):
     a `osui-dropdown-search` container named after the generated UniqueId (view :205-217) that the Virtual Select
     provider fills (stack: same provider, v1.3.0 vendored from TST). OnInitialize builds InternalConfigs, OnReady
     creates and initializes the provider (DropdownCreate / DropdownInitialize → `provider.ts`), OnParametersChanged

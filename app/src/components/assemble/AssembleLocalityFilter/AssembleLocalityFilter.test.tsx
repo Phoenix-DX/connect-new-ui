@@ -8,7 +8,7 @@ import { freshPage } from '@/test/testSupport';
 import { server } from '@/test/setup';
 import { AssembleLocalityFilter } from './AssembleLocalityFilter';
 
-/* Compiled view and controller: migration/blocks/sources/Connect2_Assemble_MUI.Assemble
+/* Compiled view and controller: migration/sources/survey/Connect2_Assemble_MUI.Assemble
    .Assemble_FilterLocalityByCountry.mvc.js (view :170-535, controller :539-950); data from the fictional
    Connect2_LegacyShared mocks (lib/mocks.ts). Not captured. */
 const localityItems = (container: HTMLElement) => [...container.querySelectorAll('.list-item.assemble-list-filter')];

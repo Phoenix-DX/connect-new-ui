@@ -1,7 +1,7 @@
 # Route spec: FeedItemDetail
 
 Source: `capture/survey-UBTConnect.json` → `UBTConnect.Home.FeedItemDetail.mvc.js`, readable copy (prettier) in
-`migration/screens/FeedItemDetail/sources/UBTConnect.Home.FeedItemDetail.mvc.js` ("SCR", cited `:line`). No capture,
+`migration/sources/runtime/UBTConnect.Home.FeedItemDetail.mvc.js` ("SCR", cited `:line`). No capture,
 no `analysis/` folder and no pack exist (`context_pack.py` needs `analysis/facts.json`). The no-capture decision was made in the user's
 window (`no-capture.json`, AcceptPendingPolicies precedent).
 Reason: the screen needs a Feed CMS item id of the external CMS.

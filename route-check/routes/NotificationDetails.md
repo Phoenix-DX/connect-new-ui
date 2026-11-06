@@ -1,10 +1,10 @@
 # NotificationDetails: OutSystems (TST) and React
 
-The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/NotificationDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 15 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `NotificationDetails`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 15 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `NotificationDetails`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -105,15 +105,15 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:142`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L142) |
-| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:146`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L146) |
-| `HardwareId` | Text | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:150`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L150) |
+| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:142`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L142) |
+| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:146`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L146) |
+| `HardwareId` | Text | yes | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:150`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L150) |
 
 Navigations with parameters: none.
 
@@ -141,9 +141,9 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `NotificationDetails` | `GetMessageTemplateParametersByMessageTemplateId` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:712`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L712) |
-| `NotificationDetails` | `FetchMessageInstance` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:713`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L713) |
-| `NotificationDetails` | `GetMessageInstance` | at start (`0`) | `view` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:249`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L249)), `IconText.Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:308`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L308)), `text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:386`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L386)), `CustomText.In_Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:441`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L441)), `shown if (CustomText)` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:479`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L479)), `AdaptiveCardViewer.In_AdaptiveCardJson` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:499`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L499)), `SanitizedHtml.Value` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:553`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L553)), `action getMessageInstanceByIdOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:999`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L999)), `action getMessageTemplateParametersOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1351`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1351)) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:714`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L714) |
+| `NotificationDetails` | `GetMessageTemplateParametersByMessageTemplateId` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:712`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L712) |
+| `NotificationDetails` | `FetchMessageInstance` | on demand (`-1`) | **no widget or action reads it** | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:713`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L713) |
+| `NotificationDetails` | `GetMessageInstance` | at start (`0`) | `view` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:249`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L249)), `IconText.Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:308`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L308)), `text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:386`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L386)), `CustomText.In_Text` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:441`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L441)), `shown if (CustomText)` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:479`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L479)), `AdaptiveCardViewer.In_AdaptiveCardJson` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:499`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L499)), `SanitizedHtml.Value` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:553`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L553)), `action getMessageInstanceByIdOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:999`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L999)), `action getMessageTemplateParametersOnAfterFetch` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1351`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1351)) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:714`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L714) |
 
 ### 8.2 React
 
@@ -173,7 +173,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:2016`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L2016) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Notifications.NotificationDetails.mvc.js:2016`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L2016) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -186,11 +186,11 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `NotificationDetails` | `adaptiveCardViewerOnExecuteAction` | `CommunicationException` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1686`](../../migration/runtime-sources/live/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1686)) | none |
+| `NotificationDetails` | `adaptiveCardViewerOnExecuteAction` | `CommunicationException` ([`UBTConnect.App_Notifications.NotificationDetails.mvc.js:1686`](../../migration/sources/runtime/UBTConnect.App_Notifications.NotificationDetails.mvc.js#L1686)) | none |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `App_Notifications` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `App_Notifications` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

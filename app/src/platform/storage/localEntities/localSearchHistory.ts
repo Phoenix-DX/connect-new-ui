@@ -5,8 +5,8 @@ import { DATABASE_NAME, METADATA_TABLE, NULL_DATE_TIME, entityService, tableSche
 /* Connect2_LegacyShared client entity LocalSearchHistory (CR-MessageList-3): the local search history of
    UtilityFlow.MessageSearchHistory, with the client aggregate that block runs and the client action
    LocalSearchHistory_Update, ported 1:1.
-   E = migration/runtime-sources/Connect2_LegacyShared.entities.js (entity metadata);
-   A = migration/runtime-sources/Connect2_LegacyShared.aggregates.IDB.js (the IndexedDB aggregates TST runs: index
+   E = migration/sources/runtime/Connect2_LegacyShared.entities.js (entity metadata);
+   A = migration/sources/runtime/Connect2_LegacyShared.aggregates.IDB.js (the IndexedDB aggregates TST runs: index
    USERID or ID, getAll(only(value)), then the filter in JS, sort, max records);
    B = migration/sources/pretty/Connect2_LegacyShared.UtilityFlow.MessageSearchHistory.mvc.js;
    C = migration/sources/raw/Connect2_LegacyShared.controller.js.

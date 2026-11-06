@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.AssembleSummaryCard
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`
 - Child blocks: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL, Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header, Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row, Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual, Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card, Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image (queue: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL, Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header, Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row, Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual, Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card, Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image)
 
 ## Inputs
@@ -275,4 +275,4 @@ _dependencies: [asPrimitiveValue(model.variables._assembleEventSummaryInDataFetc
 placeholder_4: new PlaceholderContent(function () {
 return [React.createElement(Connect2_Assemble_MUI_Assemble_AssembleSummary_Card_Row_mvc_view, {
 ```
-(… 274 more lines in `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`)
+(… 274 more lines in `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js`)

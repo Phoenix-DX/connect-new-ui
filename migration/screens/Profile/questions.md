@@ -18,7 +18,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q3 [fact] built-in form validation (answered)
 - Question: OnClick_Save runs ScreenController_ValidateWidgets (validationService.validate()) and reads DetailsForm.Valid. Which built-in checks and messages apply to the captured widgets (Email input type Email, Phone inputs, none mandatory)? The OutSystems runtime messages are not in the local sources.
-- Evidence: Profile.mvc.js:3527-3531; UBTJavaScriptUtils.controller.js:4093-4096; runtime-sources/OutSystems.js has emailAddressValidate but no message texts
+- Evidence: Profile.mvc.js:3527-3531; UBTJavaScriptUtils.controller.js:4093-4096; sources/runtime/OutSystems.js has emailAddressValidate but no message texts
 - OutSystems MCP: not available
 - Answer (code, 2026-10-15T20:32:32): Built-in validation exists in the runtime: InputWithVariableWidget.validate (OutSystemsReactView.js ~211900): empty+mandatory → 'Required Value!'; non-empty with HTML5 validity invalid (type=email) or not acceptable for the data type → getInvalidValueMessage(type), default 'Invalid Value!' (OutSystems.js ~541500). The conservative build (no client check) is not 1:1 → CR-Profile-2 (foundation: shared widget validation), then Profile uses it.
 

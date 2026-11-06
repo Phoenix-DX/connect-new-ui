@@ -5,8 +5,17 @@ Layout (repository root relative):
   migration/sources/raw/<name>          compiled file as TST serves it (one copy per distinct content)
   migration/sources/pretty/<name>       the pretty-printed copy (jsbeautifier) of the same file
   migration/sources/styles/<stem>@<sha8><ext>   bundle.css and assets.json of a capture (always suffixed)
-  migration/sources/survey/<name>       copies of the live survey for files no capture holds (routes without a capture)
+  migration/sources/survey/<name>       copies of the live survey for files no capture holds (routes without a capture,
+                                        the block packs); a copy of another survey version gets <stem>@<sha8><ext>
+  migration/sources/runtime/<name>      the OutSystems runtime, module and plugin files fetched read-only from TST
+                                        (index: migration/knowledge/runtime-sources.md); live-files.txt lists the
+                                        files TST changed after the captures (the route check reads those live)
+  migration/sources/contract/<name>     producer-module *.model.js fetched for the API contract (contract_gen.py)
+  migration/sources/shell/<name>        module and UI flow controllers, client variables of the app shell
   migration/screens/<S>/analysis/manifest.json  {"raw": {name: path}, "pretty": {...}, "styles": {...}}
+
+Only raw, pretty and styles are per route (manifest). The other four kinds are plain folders: `check` and `gc` leave
+them alone.
 
 Rules:
   * a store file is never overwritten: same content (sha1) = no-op; another content under a used name gets
@@ -37,6 +46,11 @@ SCREENS = os.path.join(ROOT, "migration", "screens")
 KINDS = ("raw", "pretty", "styles")
 ALWAYS_SUFFIX = {"styles"}
 SURVEY_KIND = "survey"  # copies of the live survey for the routes without a capture; no manifest names them
+EXTRA_KINDS = ("survey", "runtime", "contract", "shell")  # plain folders, no manifest; check and gc leave them alone
+RUNTIME = os.path.join(STORE, "runtime")
+CONTRACT = os.path.join(STORE, "contract")
+SHELL = os.path.join(STORE, "shell")
+LIVE_LIST = os.path.join(RUNTIME, "live-files.txt")
 SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
 _SURVEY_SOURCES: dict | None = None
 
@@ -92,7 +106,7 @@ def _dump(p: str, m: dict) -> None:
 
 def put(kind: str, name: str, text, mtime: float | None = None) -> str:
     """Store `text` under `name`; return the store path (repository root relative)."""
-    assert kind in KINDS or kind == SURVEY_KIND, kind
+    assert kind in KINDS or kind in EXTRA_KINDS, kind
     data = _bytes(text)
     sha = _sha(data)
     stem, ext = os.path.splitext(name)
@@ -186,6 +200,21 @@ def survey_path(name: str) -> str | None:
     return put(SURVEY_KIND, name, text)
 
 
+def live_files() -> set[str]:
+    """The names of the compiled files TST changed after the captures (migration/sources/runtime/live-files.txt).
+    The route check reads those from runtime/ in place of the captured copy (TST wins)."""
+    try:
+        return {ln.strip() for ln in open(LIVE_LIST, encoding="utf-8") if ln.strip() and not ln.startswith("#")}
+    except OSError:
+        return set()
+
+
+def runtime_path(name: str) -> str | None:
+    """Store path (repository root relative) of a runtime file, or None."""
+    p = os.path.join(RUNTIME, name)
+    return rel(p) if os.path.isfile(p) else None
+
+
 # ------------------------------------------------------------------------------------------------- commands
 def _route_dirs():
     for d in sorted(glob.glob(os.path.join(SCREENS, "*", "analysis"))):
@@ -254,7 +283,7 @@ def cmd_check() -> int:
                     if _sha(open(full, "rb").read())[:8] != sha8:
                         print(f"sha mismatch: {p}"); bad += 1
     orphans = [p for p in glob.glob(os.path.join(STORE, "*", "*")) if os.path.isfile(p) and os.path.normpath(p) not in referenced
-               and os.path.basename(os.path.dirname(p)) != SURVEY_KIND]
+               and os.path.basename(os.path.dirname(p)) not in EXTRA_KINDS]
     for p in sorted(orphans):
         print(f"unreferenced: {rel(p)}")
     print(f"check: {len(referenced)} store files referenced, {len(orphans)} unreferenced, {bad} problems")
@@ -268,7 +297,7 @@ def cmd_gc() -> int:
             referenced.update(os.path.normpath(os.path.join(ROOT, p)) for p in m.get(kind, {}).values())
     n = 0
     for p in glob.glob(os.path.join(STORE, "*", "*")):
-        if os.path.isfile(p) and os.path.normpath(p) not in referenced and os.path.basename(os.path.dirname(p)) != SURVEY_KIND:
+        if os.path.isfile(p) and os.path.normpath(p) not in referenced and os.path.basename(os.path.dirname(p)) not in EXTRA_KINDS:
             os.remove(p); n += 1
     print(f"gc: {n} unreferenced store files deleted")
     return 0

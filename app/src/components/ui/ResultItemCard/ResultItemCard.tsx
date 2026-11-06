@@ -27,7 +27,7 @@ export interface ResultItemCardProps {
   onOnClickItem?: () => void;
 }
 
-/** Result card (p:migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.mvc.js view
+/** Result card (p:migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.mvc.js view
     :170-330, controller OnClick_Result_Item :319-352): `nc-result-item-card <CustomClass>` with `data-item`, the visual
     (`margin-bottom-s`), then `padding-x-base` with a flex row of Placeholder_1…6 (`flex1`) and Placeholder_Right, and
     Placeholder_Location below. A click on the card raises OnClick_Item. */

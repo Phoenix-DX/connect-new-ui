@@ -7,7 +7,7 @@ import * as stories from './Popup.stories';
 const { CompiledView, Closed } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js:185-330). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Popup.mvc@f483688e.js:185-330). */
 describe('Popup', () => {
   it('open: popup markup in <body>, top header, title, content in a margin container, footer', () => {
     const { container } = render(<CompiledView />);

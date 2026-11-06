@@ -3,7 +3,7 @@
 The app shell is the part of the app that the routes share. The route files leave it out.
 - OutSystems: `CommonUI_InsideLayout` with its blocks (TST survey), and the chains that start in a module action.
 - React: the code that `app/src/main.tsx` loads (router, `AppFrame`, app start, hosts).
-The tool `tools/route-check/check_route.py` merges it from the 68 checked routes on 2026-11-05:
+The tool `tools/route-check/check_route.py` merges it from the 68 checked routes on 2026-11-06:
 
 - [AcceptPendingPolicies](routes/AcceptPendingPolicies.md)
 - [AssembleDetail](routes/AssembleDetail.md)

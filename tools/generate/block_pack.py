@@ -129,23 +129,14 @@ _SURVEY = None
 
 
 def find_source(name):
-    """Pretty source from a screen capture; else the survey's copy (blocks no captured screen loaded), saved under
-    migration/blocks/sources/ so agents can grep it."""
-    global _SURVEY
+    """Pretty source from a screen capture; else the survey's copy (blocks no captured screen loaded), kept in
+    migration/sources/survey/ so agents can grep it."""
     for p in sources_store.find(f"{name}.mvc.js", "pretty"):  # the shared store of the captures
         return p, sources_store.read(p)
-    if _SURVEY is None:
-        try:
-            _SURVEY = json.load(open("capture/survey-UBTConnect.json", encoding="utf-8")).get("sources", {})
-        except (OSError, ValueError):
-            _SURVEY = {}
-    src = _SURVEY.get(f"{name}.mvc.js")
-    if not isinstance(src, str) or not src:
+    path = sources_store.survey_path(f"{name}.mvc.js")
+    if not path:
         return None, None
-    path = f"migration/blocks/sources/{name}.mvc.js"
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-    open(path, "w", encoding="utf-8").write(src)
-    return path, src
+    return path, sources_store.read(path)
 
 
 def define_block(src, suffix):

@@ -1,6 +1,6 @@
-/* Client actions of ReactiveHtmlSanitizer, ported 1:1 from migration/runtime-sources/ReactiveHtmlSanitizer.controller.js
+/* Client actions of ReactiveHtmlSanitizer, ported 1:1 from migration/sources/runtime/ReactiveHtmlSanitizer.controller.js
    (cited controller.js:<line>), over DOMPurify 3 (ADR-3) configured as the global `HtmlSanitizer` object of
-   migration/runtime-sources/ReactiveHtmlSanitizer.HtmlSanitizer.js (a customised jitbit HtmlSanitizer, cited HS:<line>).
+   migration/sources/runtime/ReactiveHtmlSanitizer.HtmlSanitizer.js (a customised jitbit HtmlSanitizer, cited HS:<line>).
    The original keeps three allow lists (tags, attributes, CSS properties), filled by setDefaults when the script loads
    (HS:32); each action adds entries to a list or deletes entries from it, and the lists persist for every later call
    until setDefaults. Names are matched exactly as the original does: tags against `tagName` (upper case for HTML),

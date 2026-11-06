@@ -18,7 +18,7 @@ export interface BookmarkNotesKebabProps {
 
 const MAIN_CONTAINER_CLASS = 'ubt-kebab-menu';
 
-/** The "more" menu of a note: Edit note / Delete note (migration/blocks/sources/
+/** The "more" menu of a note: Edit note / Delete note (migration/sources/survey/
     UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js: view :130-270, handlers :280-370). */
 export function BookmarkNotesKebab({ id, isEnable = true, onEdit, onDelete }: BookmarkNotesKebabProps) {
   return (

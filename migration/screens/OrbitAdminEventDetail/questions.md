@@ -4,13 +4,13 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] QR scanner on the web (answered)
 - Question: The Scan QR Code button runs BarcodePlugin CheckBarcodePlugin → ScanBarcode (Cordova camera plugin), then GetMemberByMemberId, GetScanEventQRCode and the result popup. ADR-1 (web/PWA only) leaves the barcode web equivalent ('camera + JS library') undecided and no scanner package is allowed. How does the clone scan in the mock phase?
-- Evidence: migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js ctrl :1192-1296 (OnClick_ScanQrCode), :927-1173 (OnHandle_ScanCode); migration/architecture.md ADR-1; AGENTS.md rule 14
+- Evidence: migration/sources/runtime/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js ctrl :1192-1296 (OnClick_ScanQrCode), :927-1173 (OnHandle_ScanCode); migration/architecture.md ADR-1; AGENTS.md rule 14
 - Options: A: a scanner adapter in the route (components/barcodePlugin.ts): unavailable by default; the mocks register a fictional scanner that returns the QR codes of the event's attendees (scenarios for wrong event, unreadable code, cancel), so the compiled flow and popups can be reviewed; the real camera scanner comes with a later ADR | B: native-only: the web shows the plugin's 'not available' feedback message and the result popup never opens (recommended: A)
 - Answer (user, 2026-10-16T14:11:11): A (recommended), auto-accepted (user instruction 2026-10-16 night)
 
 ## Q2 [fact] BarcodePlugin texts (answered)
 - Question: What do CheckBarcodePlugin / ScanBarcode return on the web (IsAvailable, Error.ErrorCode / ErrorMessage shown by the 'Unavailable' feedback messages)? BarcodePlugin.controller.js (TST moduleinfo /UBTConnect/scripts/BarcodePlugin.controller.js) is not in the local sources.
-- Evidence: ScreenBlock_AdminEventDetail.mvc.js :1259-1275 (OS-PLUG-BARC-0006 = user closed; else showFeedbackMessage(Error.ErrorMessage, Info)); migration/runtime-sources/moduleinfo.json lists BarcodePlugin.controller.js / OSBarcodePlugin.js; not in runtime-sources or the survey
+- Evidence: ScreenBlock_AdminEventDetail.mvc.js :1259-1275 (OS-PLUG-BARC-0006 = user closed; else showFeedbackMessage(Error.ErrorMessage, Info)); migration/sources/runtime/moduleinfo.json lists BarcodePlugin.controller.js / OSBarcodePlugin.js; not in migration/sources/runtime or the survey
 - OutSystems MCP: no MCP in this agent
 - Answer (code, 2026-10-16T14:11:12): BarcodePlugin.controller.js (fetched read-only 2026-10-16) CheckBarcodePlugin: IsCordovaDefined → with Cordova: IsPluginAvailableJS, else OS-PLUG-BARC-0012 'Barcode Plugin is not available.'; without Cordova: Is PWA? True → AddOSBarcodePlugin (web scanner, IsAvailable True) / False → IsAvailable False, OS-PLUG-BARC-0011 'Cordova is not available.'. The adapter now answers 0011 in the browser; the PWA web scanner goes to the PWA discussion.
 

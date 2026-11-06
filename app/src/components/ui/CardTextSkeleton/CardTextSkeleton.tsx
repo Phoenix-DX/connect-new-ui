@@ -9,7 +9,7 @@ export interface CardTextSkeletonProps {
   extendedClass?: string;
 }
 
-/** Text skeleton line of a card (p:migration/blocks/sources/Connect2_LegacyShared.NewConnect_Skeleton.
+/** Text skeleton line of a card (p:migration/sources/survey/Connect2_LegacyShared.NewConnect_Skeleton.
     NC_Card_Item_Text__Skeleton.mvc.js view :160-172): one container `"skeleton-item--text " + ExtendedClass`. */
 export function CardTextSkeleton({ id, extendedClass = '' }: CardTextSkeletonProps) {
   return (

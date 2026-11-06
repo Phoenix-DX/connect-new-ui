@@ -1,4 +1,4 @@
-/* setFloatingPosition of the OSUI FloatingUI provider (migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js
+/* setFloatingPosition of the OSUI FloatingUI provider (migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js
    W1276300-1281200, `W<n>` = character offset): Floating UI computePosition with the middlewares offset, arrow and
    flip, in that order, and the default absolute strategy. Numbers in, no DOM: Tooltip.tsx reads the rects, then
    applies the result. Decision O1 (a): a re-implementation of the Floating UI 1.x defaults (flip: mainAxis, crossAxis,

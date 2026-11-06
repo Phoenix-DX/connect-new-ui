@@ -2,7 +2,7 @@ import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { ApplicationEvents_Orbit_EmailHost } from './staticEntities';
 
-/** zOnApplicationEvent_Wrapper (Connect2_LegacyShared.controller.js, migration/runtime-sources, :7567-7601):
+/** zOnApplicationEvent_Wrapper (Connect2_LegacyShared.controller.js, migration/sources/runtime, :7567-7601):
     GetAppEventName(EventId), then AzureInsights_CreateCustomEvent(name, AttachmentJSON). Telemetry is not wired in the
     mock phase (decision U17), so the event goes to the log; the attachment (e-mail and sender name) is left out of it. */
 export function zOnApplicationEvent_Wrapper(eventId: string, attachmentJSON: string): void {

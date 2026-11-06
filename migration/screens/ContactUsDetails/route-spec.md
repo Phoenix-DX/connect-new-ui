@@ -5,8 +5,8 @@ Evidence keys:
 - `DI` = `migration/sources/pretty/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information.mvc.js`
 - `UC` = `migration/sources/raw/UBTConnect.controller.js`
 - `UL` = `migration/sources/raw/UBTConnectLibrary.controller.js`
-- `JSU` = `migration/shell/sources/UBTJavaScriptUtils.controller.js`
-- `RT` = `migration/runtime-sources/OutSystems.js`
+- `JSU` = `migration/sources/shell/UBTJavaScriptUtils.controller.js`
+- `RT` = `migration/sources/runtime/OutSystems.js`
 
 ## Summary
 | Item | Value |

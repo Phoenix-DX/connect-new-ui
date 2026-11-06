@@ -39,7 +39,7 @@ export interface CardItemVisualProps {
 const USER_IMAGE = 'img/Connect2_LegacyShared.User_rectangle.png';
 const DIVISION_IMAGE = 'img/Connect2_LegacyShared.no_division_rectangle.png';
 
-/** Card visual (p:migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual.mvc.js view
+/** Card visual (p:migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual.mvc.js view
     :300-395): `position-relative` container with the floating pill and overlay text placeholders
     (`position-absolute absolute-<position>`), then the Image placeholder, else the signed photo (`img-cover full-width`,
     height and object-position inline), else the division default image (`img-cover--top-center`). Error image: division

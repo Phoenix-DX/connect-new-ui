@@ -1,13 +1,13 @@
 # ContactByEmailLDMCoordinator: OutSystems (TST) and React
 
-The route `/UBTConnect/ContactByEmailLDMCoordinator`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/ContactByEmailLDMCoordinator`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailLDMCoordinator/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/ContactByEmailLDMCoordinator/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 25 files, 0 without compiled code.
 
@@ -129,18 +129,18 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:98`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L98) |
-| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:102`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L102) |
-| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:106`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L106) |
-| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:110`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L110) |
-| `In_EventDate` | Date | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:114`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L114) |
-| `In_EventLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:118`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L118) |
+| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:98`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L98) |
+| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:102`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L102) |
+| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:106`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L106) |
+| `In_Subject` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:110`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L110) |
+| `In_EventDate` | Date | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:114`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L114) |
+| `In_EventLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:118`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L118) |
 
 Navigations with parameters: none.
 
@@ -164,7 +164,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactByEmailLDMCoordinator` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:632`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L632)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = In_ContactName ([`L496`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L496))<br>2. ContactByEmailForm.ContactMember = In_ContactName ([`L499`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L499))<br>3. ContactByEmailForm.EmailTo = In_EmailTo ([`L502`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L502))<br>4. ContactByEmailForm.Subject = In_Subject ([`L505`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L505)) |
+| `ContactByEmailLDMCoordinator` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:632`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L632)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = In_ContactName ([`L496`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L496))<br>2. ContactByEmailForm.ContactMember = In_ContactName ([`L499`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L499))<br>3. ContactByEmailForm.EmailTo = In_EmailTo ([`L502`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L502))<br>4. ContactByEmailForm.Subject = In_Subject ([`L505`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L505)) |
 | `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
@@ -219,7 +219,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:657`](../../migration/runtime-sources/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L657) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:657`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js#L657) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -234,7 +234,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `ContactFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `ContactFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

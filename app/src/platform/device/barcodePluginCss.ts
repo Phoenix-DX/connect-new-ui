@@ -1,4 +1,4 @@
-/* AddCSSJS of CheckBarcodePlugin (migration/runtime-sources/BarcodePlugin.controller.js :211-222): the web scanner's
+/* AddCSSJS of CheckBarcodePlugin (migration/sources/runtime/BarcodePlugin.controller.js :211-222): the web scanner's
    stylesheet, injected once as <style title="barcode-plugin-css"> before the script loads. The text is the original's,
    unchanged (one line, as compiled), inside the `legacy` cascade layer with the other original CSS (styles/layers.css):
    there it meets the original files with specificity and document order, as in the original. */

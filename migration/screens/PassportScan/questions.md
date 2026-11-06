@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] embed loader (answered)
 - Question: How does React hold the Orbit Passport embed loader (scripts/OrbitPassportScanC2.PassportScan.js, the portal team's 'host embed loader' v1.0.0, ES5 IIFE that sets window.OrbitPassport)?
-- Evidence: ScreenBlock_PassportScan.mvc.js:148 (JS dependency), :699-782 (configure/open/destroy/back/isConfigured); runtime-sources/OrbitPassportScanC2.PassportScan.js:1-40, 213-245, 600-700; vendored precedent src/vendor/barcodeplugin (ADR-11)
+- Evidence: ScreenBlock_PassportScan.mvc.js:148 (JS dependency), :699-782 (configure/open/destroy/back/isConfigured); sources/runtime/OrbitPassportScanC2.PassportScan.js:1-40, 213-245, 600-700; vendored precedent src/vendor/barcodeplugin (ADR-11)
 - OutSystems MCP: Not an MCP fact (design choice).
 - Options: a: vendor the loader byte-identical in app/src/vendor/orbitpassport/ (SOURCE.md, typed loader index.ts that adds one classic <script> on first use, as barcodeplugin); the protocol, origin checks and camera image parsing stay the portal team's code; an upgrade is a file swap; needs an ADR row like ADR-11 and a scope exception for src/vendor | b: TypeScript port of the postMessage protocol in pages/PassportScan (about 300 lines to keep in step with the portal team by hand; lint and types apply) (recommended: a)
 - Answer (user, 2026-10-29T10:38:14): (a) (user, 2026-10-29): keep the TST loader byte-identical in app/src/vendor/orbitpassport/ behind the typed adapter; add an ADR row as ADR-11.

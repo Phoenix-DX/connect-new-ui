@@ -19,7 +19,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { computeBalloonPosition, type ArrowPosition, type BalloonSide } from './balloonPosition';
 
 /* OutSystems UI Tooltip: the view of OutSystemsUI_2_23.Content.Tooltip.mvc.js (internalRender :168-247) and the OnClick
-   path of the OSUI provider (migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js, `W<n>` = character offset):
+   path of the OSUI provider (migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js, `W<n>` = character offset):
    the Tooltip pattern (W646155-668600), the Balloon feature (W104243-120900) and the FloatingUI provider
    (W1276300-1281400). The facts are T1-T5 of migration/clarify/review/item5-tooltip-loader.md; the behaviours B1-B15
    are section 2.4 of item5-solution.md. The position math is in balloonPosition.ts. Not ported (section 2.4): the

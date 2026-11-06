@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.Popup
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Popup.mvc@f483688e.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText (queue: -)
 
 ## Inputs

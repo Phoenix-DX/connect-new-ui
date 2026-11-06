@@ -1,7 +1,7 @@
 # OutSystemsUI_2_23.Content.Tooltip
 
 - Kind: osui; build screens using it: HostSurvey
-- Compiled source: `migration/blocks/sources/OutSystemsUI_2_23.Content.Tooltip.mvc.js`
+- Compiled source: `migration/sources/survey/OutSystemsUI_2_23.Content.Tooltip.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

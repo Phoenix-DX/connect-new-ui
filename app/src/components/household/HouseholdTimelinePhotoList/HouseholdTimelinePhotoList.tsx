@@ -21,7 +21,7 @@ export interface HouseholdTimelinePhotoListProps {
   onEventDateSelected?: (date: string) => void;
 }
 
-/** The timeline photos (live TST of 2026-11-05, migration/runtime-sources/live/UBTConnect.Directory_Household_Blocks.
+/** The timeline photos (live TST of 2026-11-05, migration/sources/runtime/UBTConnect.Directory_Household_Blocks.
     HouseholdDetails_TimelinePhoto_List.mvc.js:140-251). With images (:140-158): the List "Household_GalleryCard-list
     list list-group list-horizontal--gap-xs" (animated, virtualization disabled, the data fetch status of the source)
     of HouseholdDetails_TimelinePhoto with Label, Gallery card type, SignedURL, IsCurrent and Date; Selected raises

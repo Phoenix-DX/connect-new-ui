@@ -6,7 +6,7 @@ import * as stories from './ShareSheetSection.stories';
 const { CompiledView } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareSheet_Section.mvc.js:134-150). */
+   (migration/sources/survey/UBTConnect_Utils.CW_Share.ShareSheet_Section.mvc.js:134-150). */
 describe('ShareSheet_Section', () => {
   it('renders the title placeholder, then the content placeholder', () => {
     const { container } = render(<CompiledView />);

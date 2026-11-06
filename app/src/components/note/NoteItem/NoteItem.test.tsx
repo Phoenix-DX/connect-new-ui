@@ -7,7 +7,7 @@ import * as stories from './NoteItem.stories';
 const { CompiledView, Search, Dimmed, Editing } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js:211-790). */
+   (migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc@154f53eb.js:211-790). */
 describe('Note_Item', () => {
   beforeEach(() => {
     vi.useFakeTimers({ toFake: ['Date'] });

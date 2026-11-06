@@ -1,7 +1,7 @@
 # UBTConnectLibrary.ConnectPatterns.Note_Item_List
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Household_Relations, Locality_Details, Notes, OneSchoolGlobalDetails, Profile, SupperMeeting_Carousel, SupperMeeting_Details
-- Compiled source: `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc@86fe890b.js`
 - Child blocks: UBTConnectLibrary.BasePatterns.Columns_Two, UBTConnectLibrary.BasePatterns.CustomContainer, UBTConnectLibrary.BasePatterns.CustomText, UBTConnectLibrary.ConnectPatterns.Button, UBTConnectLibrary.ConnectPatterns.CircleButton, UBTConnectLibrary.ConnectPatterns.Icon, UBTConnectLibrary.ConnectPatterns.Note_Item, UBTConnectLibrary.ConnectPatterns.Popup (queue: UBTConnectLibrary.ConnectPatterns.Note_Item, UBTConnectLibrary.ConnectPatterns.Popup)
 
 ## Inputs
@@ -275,4 +275,4 @@ controller.onShowAllNotes$Action(controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 ```
-(… 427 more lines in `migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js`)
+(… 427 more lines in `migration/sources/survey/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc@86fe890b.js`)

@@ -492,6 +492,7 @@
   "gFT": "14",
   "hR100": "18",
   "lordsDayMeal": "6",
+  "myEntertaining": "22",
   "oSG": "10",
   "orbit": "2",
   "orbitHostSurvey": "20",
@@ -950,6 +951,9 @@
   "storefront": "connect-icon-storefront",
   "tooltip": "connect-icon-tooltip",
   "tooltipFill": "connect-icon-tooltip_fill",
+  "transportCar": "connect-icon-transport_car",
+  "transportPlane": "connect-icon-transport_plane",
+  "transportTrain": "connect-icon-transport_train",
   "trove": "connect-icon-trove",
   "tune": "connect-icon-tune",
   "turnRight": "connect-icon-turn_right",
@@ -2537,6 +2541,11 @@
   "oneSchoolGlobal": "OneSchool Global",
   "supperMeetings_aka_Subdivisions": "Supper Meetings"
  },
+ "UBTConnect.connect_EventTypes": {
+  "assemble": "Assemble",
+  "lDM": "LDM",
+  "orbit": "Orbit"
+ },
  "UBTConnect.connect_HouseholdMemberRole": {
   "child": "Child",
   "householder": "Householder",
@@ -2566,9 +2575,11 @@
  },
  "UBTConnect.connect_SearchCategories": {
   "all": "All",
+  "events": "Events",
   "households": "Households",
   "people": "People",
-  "places": "Places"
+  "places": "Places",
+  "schools": "Schools"
  },
  "UBTConnect.connect_Services": {
   "assemble": "Assemble",
@@ -2785,6 +2796,7 @@
   "gFT": "14",
   "hR100": "18",
   "lordsDayMeal": "6",
+  "myEntertaining": "22",
   "oSG": "10",
   "orbit": "2",
   "orbitHostSurvey": "20",
@@ -3417,6 +3429,9 @@
   "storefront": "connect-icon-storefront",
   "tooltip": "connect-icon-tooltip",
   "tooltipFill": "connect-icon-tooltip_fill",
+  "transportCar": "connect-icon-transport_car",
+  "transportPlane": "connect-icon-transport_plane",
+  "transportTrain": "connect-icon-transport_train",
   "trove": "connect-icon-trove",
   "tune": "connect-icon-tune",
   "turnRight": "connect-icon-turn_right",
@@ -4106,6 +4121,9 @@
   "storefront": "connect-icon-storefront",
   "tooltip": "connect-icon-tooltip",
   "tooltipFill": "connect-icon-tooltip_fill",
+  "transportCar": "connect-icon-transport_car",
+  "transportPlane": "connect-icon-transport_plane",
+  "transportTrain": "connect-icon-transport_train",
   "trove": "connect-icon-trove",
   "tune": "connect-icon-tune",
   "turnRight": "connect-icon-turn_right",
@@ -5044,6 +5062,11 @@
   "oneSchoolGlobal": "OneSchool Global",
   "supperMeetings_aka_Subdivisions": "Supper Meetings"
  },
+ "UBTConnect_Utils.connect_EventTypes": {
+  "assemble": "Assemble",
+  "lDM": "LDM",
+  "orbit": "Orbit"
+ },
  "UBTConnect_Utils.connect_Menu_Items": {
   "contactUs": "Contact Us",
   "logOut": "Log out",
@@ -5056,9 +5079,11 @@
  },
  "UBTConnect_Utils.connect_SearchCategories": {
   "all": "All",
+  "events": "Events",
   "households": "Households",
   "people": "People",
-  "places": "Places"
+  "places": "Places",
+  "schools": "Schools"
  },
  "UBTConnect_Utils.connect_Subscription_Plan": {
   "advancePlus": "AdvancePlus",
@@ -5598,6 +5623,9 @@
   "storefront": "connect-icon-storefront",
   "tooltip": "connect-icon-tooltip",
   "tooltipFill": "connect-icon-tooltip_fill",
+  "transportCar": "connect-icon-transport_car",
+  "transportPlane": "connect-icon-transport_plane",
+  "transportTrain": "connect-icon-transport_train",
   "trove": "connect-icon-trove",
   "tune": "connect-icon-tune",
   "turnRight": "connect-icon-turn_right",

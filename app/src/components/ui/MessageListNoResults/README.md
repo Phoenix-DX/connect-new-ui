@@ -2,7 +2,7 @@
 
 OutSystems: `Connect2_LegacyShared.Reusable.MessageList_NoResults` · pack
 `migration/blocks/Connect2_LegacyShared.Reusable.MessageList_NoResults.md` (compiled source
-`migration/blocks/sources/Connect2_LegacyShared.Reusable.MessageList_NoResults.mvc.js`)
+`migration/sources/survey/Connect2_LegacyShared.Reusable.MessageList_NoResults.mvc.js`)
 
 Inputs: none. Events: none. Placeholders: `Placeholder1`, `Placeholder2`, `Placeholder3` → `placeholder1`,
 `placeholder2`, `placeholder3`. Child: OutSystems UI AlignCenter (`osui/AlignCenter`) around the red `search-minus`

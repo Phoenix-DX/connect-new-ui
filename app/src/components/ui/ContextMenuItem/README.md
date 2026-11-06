@@ -2,7 +2,7 @@
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.ContextMenu_Item` · pack
 `migration/blocks/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.md` · compiled source
-`migration/blocks/sources/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js`
+`migration/sources/survey/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc@04578ac2.js`
 
 | Input              | Type         | Prop               | Default |
 | ------------------ | ------------ | ------------------ | ------- |

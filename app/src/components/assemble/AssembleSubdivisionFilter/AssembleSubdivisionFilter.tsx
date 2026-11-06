@@ -22,7 +22,7 @@ export interface AssembleSubdivisionFilterProps {
   onSelectedSubdivision?: (subdivisionId: string) => void;
 }
 
-/** Supper meetings of a locality with a search (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble
+/** Supper meetings of a locality with a search (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble
     .Assemble_FilterSubdivisionByLocality.mvc.js; model :1-94, view :162-392, controller :396-650). IsFetchingSubdivisions
     (default True) shows the Spinner; then DIV_SuperMeetings: InputWithIcon (icon search, Input_SearchTearn "Search Supper
     Meetings", max 50, style border-width 0 0 1px 0), Separator Space none, and the list (animated) of

@@ -15,7 +15,7 @@ export interface ResultItemBadgeProps {
   children?: ReactNode;
 }
 
-/** Round badge of a result card (p:migration/blocks/sources/Connect2_LegacyShared.NewConnect_Utilities.
+/** Round badge of a result card (p:migration/sources/survey/Connect2_LegacyShared.NewConnect_Utilities.
     NC_Result_Item_Badge.mvc.js view :172-185): the Icon placeholder, `border-radius-circle center display-flex`, inline
     style `background-color:<BackgroundColor>; height:<Size>; width:<Size>`. */
 export function ResultItemBadge({

@@ -29,7 +29,7 @@ export function bottomSheetClose(widgetId: string): void {
 }
 
 /* ---- Wave 4E: Carousel provider API (CarouselDisableOnRender, SetSplideConfigs, SetSplideEvent, UnsetSplideEvent;
-   OutSystemsUI_2_23.controller.js and the CarouselAPI of runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js). ---- */
+   OutSystemsUI_2_23.controller.js and the CarouselAPI of sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js). ---- */
 
 /** Splide event handler (`moved` passes newIndex, previousIndex, destinationIndex). */
 export type SplideEventHandler = (...args: number[]) => void;
@@ -232,7 +232,7 @@ export function scrollToElement(
 }
 
 /* ---- Dropdown API (CR-EventBooklet-2): OutSystems.OSUI.Patterns.DropdownAPI of
-   migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js (OSUI:13765-13966) and the client actions of
+   migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js (OSUI:13765-13966) and the client actions of
    OutSystemsUI_2_23.controller.js (CT) that call it. The Dropdown Search / Tags blocks register their Virtual Select
    provider (`osui/DropdownSearch/provider.ts`) under their generated unique id (the `name` of the `osui-dropdown-*`
    element) and their widget id (the block root id), like DropdownAPI.Create / Dispose. ---- */

@@ -319,7 +319,7 @@ PINRegister, Splash, HomeFeed, MyEntertaining, Services, Search, Notifications, 
 - CR-MessageList-2 (serve `/UBT_CW/img/`): closed, served by the dev server.
 - CR-MessageList-3 (search history adapter): applied 2026-10-15 (`src/shell/localEntities/localSearchHistory.ts`,
   tests in `localSearchHistory.test.ts`; GetFilteredUserSearchHistory and LocalSearchHistory_Update from
-  `runtime-sources/Connect2_LegacyShared.entities.js:102-150`, `aggregates.IDB.js:245-312, 609-712`); NotCaptured removed.
+  `sources/runtime/Connect2_LegacyShared.entities.js:102-150`, `aggregates.IDB.js:245-312, 609-712`); NotCaptured removed.
 
 ## 17. Patterns used
 - P-PARAMS: navigation to MessageDetail / Login. P-STATES: loading/offline/empty, NotCaptured gaps.

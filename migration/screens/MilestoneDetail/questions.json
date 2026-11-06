@@ -4,7 +4,7 @@
   "kind": "decision",
   "topic": "member click / directory access",
   "question": "Clicking a guest (photo or name) runs CheckDirectoryAccess → server GetDirectoryAccess (Connect2_OrbitMobile_MUI), which is not in the API contract (CR-MilestoneDetail-1). Until the CR lands, what does the click do? A) navigate to HouseholdDetails(HouseholdId) as if access were granted (the capture account has full permission), then OnApplicationEvent_ViewHousehold to the log; the RecordDisabled → App_Subscription_ShowUpgradePopUp branch waits for the CR. B) the click does nothing until the CR.",
-  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2451-2535 (OnHandle_ClickedMember); runtime-sources/Connect2_OrbitMobile_MUI.controller.js:1085-1150 (CheckDirectoryAccess: HasAccess = not RecordDisabled); app/src/api/openapi.yaml has no GetDirectoryAccess",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2451-2535 (OnHandle_ClickedMember); sources/runtime/Connect2_OrbitMobile_MUI.controller.js:1085-1150 (CheckDirectoryAccess: HasAccess = not RecordDisabled); app/src/api/openapi.yaml has no GetDirectoryAccess",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",
@@ -23,7 +23,7 @@
   "kind": "decision",
   "topic": "phone popup",
   "question": "The phone icon of a guest runs BuildMemberCallData: Connect2_LegacyShared GetCacheableMemberContactList and GetCacheableTimezoneInfo (memory-cache callbacks around server actions that are neither ported nor in the API contract, CR-MilestoneDetail-2). Until the CR lands: A) open ContactPopup_ByPhone with the guest's name, photo and MemberInformation.Phone (the compiled empty-contact-list branch, without timezone/locality), Call → OnApplicationEvent_CallMember to the log and close; B) the phone icon does nothing until the CR.",
-  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2121-2260 (BuildMemberCallData), :2301-2355 (OnHandle_CallClicked), :2617-2700 (OnHandle_ClickedMemberPhone); runtime-sources/Connect2_LegacyShared.controller.js:3416 (GetCacheableMemberContactList), :4253 (GetCacheableTimezoneInfo)",
+  "evidence": "migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost.mvc.js:2121-2260 (BuildMemberCallData), :2301-2355 (OnHandle_CallClicked), :2617-2700 (OnHandle_ClickedMemberPhone); sources/runtime/Connect2_LegacyShared.controller.js:3416 (GetCacheableMemberContactList), :4253 (GetCacheableTimezoneInfo)",
   "mcp": "not available to route agents (DEV only, no MCP in this run)",
   "options": [
    "A",

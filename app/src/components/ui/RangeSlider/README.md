@@ -16,9 +16,9 @@ The block renders two containers: `osui-range-slider` (with the attribute `name`
 `osui-range-slider__provider`. The OutSystems UI provider then builds a noUiSlider 15.8.1 on the provider element.
 This port renders the same DOM. Sources:
 
-- `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js`: AbstractNoUiSlider, OSUINoUiSliderSingle,
+- `migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js`: AbstractNoUiSlider, OSUINoUiSliderSingle,
   NoUiSliderSingleConfig and getPipsConfig.
-- `migration/runtime-sources/OutSystemsUI_2_23.NoUISlider.js`: the noUiSlider markup and handlers (fetched from TST
+- `migration/sources/runtime/OutSystemsUI_2_23.NoUISlider.js`: the noUiSlider markup and handlers (fetched from TST
   on 2026-10-27).
 
 Markup and behaviour:

@@ -13,7 +13,7 @@ export interface LegacyInputCounterProps {
   noteInitialLength?: number;
 }
 
-/** "CurrLength/MaxLength" under an input (migration/blocks/sources/Connect2_LegacyShared.Reusable.InputCounter.mvc.js:
+/** "CurrLength/MaxLength" under an input (migration/sources/survey/Connect2_LegacyShared.Reusable.InputCounter.mvc.js:
     view :95-150, OnInitialize :291, OnReady :244, LimitMaxLenth JS :398). Original classes only. */
 export function LegacyInputCounter({ id, inputId = '', noteInitialLength = 0 }: LegacyInputCounterProps) {
   const [currLength, setCurrLength] = useState(() => inputCounterOnInitialize(noteInitialLength));

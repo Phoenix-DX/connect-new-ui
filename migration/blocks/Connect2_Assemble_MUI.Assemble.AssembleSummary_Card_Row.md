@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js`
 - Child blocks: - (queue: -)
 
 ## Inputs

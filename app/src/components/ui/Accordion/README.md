@@ -11,7 +11,7 @@ compiled source `migration/sources/pretty/OutSystemsUI_2_23.Content.Accordion.mv
 Event `Initialized(AccordionId)` → `onInitialized`. Placeholder `Content` → `children` (AccordionItem blocks).
 
 Stack decision (`osui:Accordion`): hand-written, no library. Provider ported from
-`migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (Accordion :4066-4245): role `list` on the first `.list`
+`migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` (Accordion :4066-4245): role `list` on the first `.list`
 inside (else on the accordion), items register through `AccordionContext` (`accordionContext.ts`: Add / Click /
 Removed notifications, CollapseAllItems), single open item unless MultipleItems, MultipleItems → False collapses all.
 

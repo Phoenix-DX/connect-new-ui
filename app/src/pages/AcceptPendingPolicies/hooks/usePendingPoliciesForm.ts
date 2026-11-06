@@ -125,7 +125,7 @@ export function usePendingPoliciesForm(
   };
 
   // OnClickPolicy: CanOpenApplicationPolicyDirectlyViaUrl = IsWeb (ApplicationPolicies_CW, TST copy in
-  // migration/shell/sources) → JSUtils_PageOpenInNewTab(Current.Url) on the web (Q1). DetailsOnClick is the native
+  // migration/sources/shell) → JSUtils_PageOpenInNewTab(Current.Url) on the web (Q1). DetailsOnClick is the native
   // branch (AGENTS rule 14: not built).
   const onClickPolicy = (policy: PendingPolicy) => {
     jSUtils_PageOpenInNewTab(policy.url);

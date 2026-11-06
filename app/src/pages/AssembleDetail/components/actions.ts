@@ -1,5 +1,5 @@
 /* Client actions used only by AssembleDetail. C = migration/sources/pretty/
-   Connect2_Assemble_MUI.controller.js; FSA = migration/screens/AssembleDetail/sources/NavigationHandler.ScrollAnchors
+   Connect2_Assemble_MUI.controller.js; FSA = migration/sources/runtime/NavigationHandler.ScrollAnchors
    .FocusScrollAnchorOnBack.mvc.js. DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings. */
 import { hasAccessToRegion } from '@/lib/assemble/actions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
@@ -30,7 +30,7 @@ export async function maybeDisplaySubscriptionPopup(countryCode: string, localit
   return true;
 }
 
-/** Connect2_LegacyShared ShowUnknownErrorMessage(Message, Title) (migration/runtime-sources/Connect2_LegacyShared
+/** Connect2_LegacyShared ShowUnknownErrorMessage(Message, Title) (migration/sources/runtime/Connect2_LegacyShared
     .controller.js, define "…$ShowUnknownErrorMessage"): in TST it ignores its inputs and calls
     ShowCustomFeedbackMessageAndTitle("Service Interruption", <the high-traffic text>, Info, False,
     "feedback-with-title", True, ""), shown through the shell's auto-closing feedback message. */

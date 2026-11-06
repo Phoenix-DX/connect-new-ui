@@ -66,7 +66,7 @@ export type SyncLocalNote = SyncLocalEntitiesWire['LocalNotes']['List'][number];
 /** LocalEntities_App of Sync_Info_GetMain (UBTConnect Sync_LocalEntities), with the lists unwrapped: the local copies
     that Connect_SetLoggedContext replaces. The records stay as they are: the local copies store them. The legacy
     LocalBookmark list stays on the wire but is not mapped: the live app start does not sync it (live
-    migration/runtime-sources/UBTConnect.controller.js:1129-1133). */
+    migration/sources/runtime/UBTConnect.controller.js:1129-1133). */
 export interface SyncLocalEntityLists {
   /** LocalBookmarksC2. */
   bookmarks_C2: SyncLocalBookmark[];

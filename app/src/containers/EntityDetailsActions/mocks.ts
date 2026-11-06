@@ -16,7 +16,7 @@ import { sampleHouseholds } from '@/containers/HouseholdDetails/mockData';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
 import { BookmarkCategory, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
-/* The C2 bookmark writes of UBTConnect_Utils ToggleBookmarkItem_C2 (migration/runtime-sources/UBTConnect_Utils
+/* The C2 bookmark writes of UBTConnect_Utils ToggleBookmarkItem_C2 (migration/sources/runtime/UBTConnect_Utils
    .controller.js:5661-5770; live module of 2026-11-05), called by this block's Handle_Bookmark: AddBookmark2
    (:5819-5835) and DeleteBookmarkByBookmarkId2 (:5892-5906). Never recorded (x-mock-source fictional): they change
    the in-memory bookmarks collection of the mock user (P-MUTATION), never the real server. A row is a

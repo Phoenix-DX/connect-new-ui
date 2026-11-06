@@ -16,5 +16,5 @@ None (no screen in scope loaded it). Stories: SupperMeetings, Interchanges; test
 
 ## Not captured / not settled
 
-- No capture: the compiled view (migration/blocks/sources/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js:154-225) is the reference; tests check it.
+- No capture: the compiled view (migration/sources/survey/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js:154-225) is the reference; tests check it.
 - The title shows the Connect_Entity Id, so UBTConnect Connect_Entity holds TST values. GetEntityType_Icon (UBTConnect_Utils) compares with UBTConnect_Utils.Connect_Entity. The SupperMeetings / OneSchoolGlobal / FeedItem values of that entity are opaque constants. Those entities get the fallback icon until CR-W4B-1 is applied.

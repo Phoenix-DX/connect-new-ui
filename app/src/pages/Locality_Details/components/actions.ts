@@ -33,7 +33,7 @@ export function setTagSelected(in_TagToggleList: Tag[], inSelectedTagIdentifier:
 }
 
 /** GetLocalityCurrentTimeLabel(In_UTCOffsetSeconds, In_LocalDateTime) (UC GetLocalityCurrentTimeLabel): the device
-    time moved to UTC (JSUtils_DateTime_GetUTCOffset = new Date().getTimezoneOffset(), migration/shell/sources/
+    time moved to UTC (JSUtils_DateTime_GetUTCOffset = new Date().getTimezoneOffset(), migration/sources/shell/
     UBTJavaScriptUtils.controller.js:1082) plus the locality offset; "<weekday long label>, <hh:mm tt> (UTC ± h[:mm])". */
 export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_LocalDateTime: Date): string {
   const utcOffsetMinutes = new Date().getTimezoneOffset();

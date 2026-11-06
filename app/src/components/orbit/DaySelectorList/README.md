@@ -19,7 +19,7 @@ names from the caller EventDateSelection.mvc.js:204). Record type `DayFilter` (`
   the weekday letter (`event-date-selector-weekday`).
 - Digit: ShowInWeekday ? GetFormattedDate_Weekday(DateGroup, True, ReplaceSunday) : GetFormattedDate_Single(DateGroup,
   TimeFormat.Day). Ported in `../lib/actions.ts` from Connect2_OrbitMobile_MUI.controller.js and the module script
-  `TimeFormat` (`migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js`, fetched 2026-10-16).
+  `TimeFormat` (`migration/sources/runtime/Connect2_OrbitMobile_MUI.TimeFormat.js`, fetched 2026-10-16).
 - Click: ClickedDate(MilestoneTimeType.DAY, DateGroup, current row number).
 
 ## Captured variants (1 tested)

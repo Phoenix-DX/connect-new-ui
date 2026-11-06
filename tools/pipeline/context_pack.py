@@ -294,7 +294,7 @@ def main():
     for f in facts.get("renderedFiles", []):
         key = ".".join(f.replace(".mvc.js", "").split(".")[1:])
         if cls.kind(key)[0] in ("own", "shared-missing") or f == facts.get("screenFile"):
-            lookup.append(f"- `{pretty.get(f, an + '/sources/pretty/' + f)}`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole")
+            lookup.append(f"- `{pretty.get(f, 'migration/sources/pretty/' + f)}`: grep the expression you need (e.g. `grep -n 'getCachedValue' …`), do not read whole")
     lookup.append(f"- `{an}/css-relevant.md` only when a visual diff cannot be explained by markup")
 
     try:

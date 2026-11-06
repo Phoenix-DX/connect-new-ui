@@ -1,10 +1,10 @@
 # MessageDetail: OutSystems (TST) and React
 
-The route `/UBTConnect/MessageDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/MessageDetail`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/MessageDetail/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 17 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `ScreenBlock_MessageDetail`, `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ReactiveHtmlSanitizer`, `MessageDetail`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 17 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `ScreenBlock_MessageDetail`, `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ReactiveHtmlSanitizer`, `MessageDetail`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -298,31 +298,31 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:80`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L80) |
-| `isOriginPushNotification` | Boolean | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:84`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L84) |
-| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:88`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L88) |
-| `HardwareId` | Text | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:92`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L92) |
+| `MessageInstanceId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:80`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L80) |
+| `isOriginPushNotification` | Boolean | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:84`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L84) |
+| `MessageTemplateId` | LongInteger | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:88`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L88) |
+| `HardwareId` | Text | yes | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:92`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L92) |
 
 | Block | Target | Parameters | Place |
 |---|---|---|---|
-| `MessageDetail` | `LDM_Email_V2` | `In_EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:504`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L504) |
-| `MessageDetail` | `LDM_Email` | `In_EventId` = `in_EventId`<br>`In_IsMessageGuest` = `true`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:513`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L513) |
-| `MessageDetail` | `AssembleDetail` | `EventId` = `eventInstanceId`<br>`SeriesId` = `eventParentId`<br>`AssembleEventTypeTile` = `assembleEventTypeTile` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:592`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L592) |
-| `MessageDetail` | `EventDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MemberId` = `memberId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:649`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L649) |
-| `MessageDetail` | `MilestoneDetail` | `In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventId` = `eventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:780`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L780) |
-| `MessageDetail` | `HostSurvey` | `In_MemberId` = `memberId`<br>`In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:840`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L840) |
-| `MessageDetail` | `HouseholdDetails` | `HouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:916`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L916) |
-| `MessageDetail` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:923`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L923) |
-| `MessageDetail` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:930`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L930) |
-| `MessageDetail` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:937`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L937) |
-| `MessageDetail` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1006`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1006) |
-| `MessageDetail` | `LDM_EventDetail` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1013`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1013) |
+| `MessageDetail` | `LDM_Email_V2` | `In_EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:504`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L504) |
+| `MessageDetail` | `LDM_Email` | `In_EventId` = `in_EventId`<br>`In_IsMessageGuest` = `true`<br>`EventHostId` = `in_EventHostId`<br>`In_IsContactOrganiser` = `false` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:513`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L513) |
+| `MessageDetail` | `AssembleDetail` | `EventId` = `eventInstanceId`<br>`SeriesId` = `eventParentId`<br>`AssembleEventTypeTile` = `assembleEventTypeTile` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:592`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L592) |
+| `MessageDetail` | `EventDetail` | `In_EventId` = `eventId`<br>`In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MemberId` = `memberId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:649`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L649) |
+| `MessageDetail` | `MilestoneDetail` | `In_EventName` = `eventName`<br>`In_FromNotification` = `true`<br>`In_MilestoneId` = `milestoneId`<br>`In_EventId` = `eventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:780`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L780) |
+| `MessageDetail` | `HostSurvey` | `In_MemberId` = `memberId`<br>`In_EventId` = `eventId`<br>`In_EventStartDate` = `eventStartDate`<br>`In_EventEndDate` = `eventEndDate`<br>`In_EventName` = `eventName` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:840`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L840) |
+| `MessageDetail` | `HouseholdDetails` | `HouseholdId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:916`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L916) |
+| `MessageDetail` | `OneSchoolGlobalDetails` | `In_OneSchoolGlobalId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:923`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L923) |
+| `MessageDetail` | `SupperMeeting_Details` | `In_SubdivsionId` = `textToLongInteger(objectId)` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:930`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L930) |
+| `MessageDetail` | `FeedItemDetail` | `FeedItemId` = `objectId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:937`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L937) |
+| `MessageDetail` | `LDM_EventDetail_V2` | `EventId` = `in_EventId`<br>`EventHostId` = `in_EventHostId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1006`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1006) |
+| `MessageDetail` | `LDM_EventDetail` | `EventHostId` = `in_EventHostId`<br>`EventId` = `in_EventId` | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1013`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1013) |
 
 ### 7.2 React
 
@@ -391,7 +391,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1222`](../../migration/runtime-sources/live/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1222) |
+| OutSystems (TST) | anonymous (no check) | [`UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js:1222`](../../migration/sources/runtime/UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js#L1222) |
 | React | access `anonymous`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -406,7 +406,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Legacy_MyNotificationsFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Legacy_MyNotificationsFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

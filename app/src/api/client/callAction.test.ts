@@ -6,7 +6,7 @@ import { SERVER_REQUEST_TIMEOUT, callAction, type ActionPath, type ContractModul
 import { CONNECTION_TIMED_OUT, CommunicationException } from '@/legacy/os/os-exceptions';
 
 /* The OutSystems request timeout in callAction: getEffectiveTimeoutForServerCall + the request's onTimeout
-   (migration/runtime-sources/OutSystems.js:17 offset 523471, :3 offsets 71295 and 74168). */
+   (migration/sources/runtime/OutSystems.js:17 offset 523471, :3 offsets 71295 and 74168). */
 
 /** One endpoint of each module of the contract (src/api/openapi.yaml). */
 const endpointOf: Record<ContractModule, ActionPath> = {

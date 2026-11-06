@@ -1,7 +1,7 @@
 # UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List
 
 - Kind: shared; build screens using it: HouseholdCarousel, HouseholdDetails, Locality_Details, Profile, SupperMeeting_Carousel
-- Compiled source: `migration/blocks/sources/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc.js`
+- Compiled source: `migration/sources/survey/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc.js`
 - Child blocks: UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto (queue: UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto)
 
 ## Inputs

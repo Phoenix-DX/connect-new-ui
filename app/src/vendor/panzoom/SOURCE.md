@@ -2,8 +2,8 @@
 
 - File: `PanZoom.anvaka_panzoom_js.js`, byte-identical copy (BOM included) of the TST script
   `https://ubtm-tst.ubtconnectglobal.com/UBTConnect/scripts/PanZoom.anvaka_panzoom_js.js?DkjKuM8SUDMWxmXWUXZevg`
-  (URL version from `migration/runtime-sources/moduleinfo.json`), fetched read-only (static GET, no session) on
-  2026-10-15 into `migration/runtime-sources/`. Size 45 564 bytes, sha256
+  (URL version from `migration/sources/runtime/moduleinfo.json`), fetched read-only (static GET, no session) on
+  2026-10-15 into `migration/sources/runtime/`. Size 45 564 bytes, sha256
   `27f9a817c3de595947ca12b90c3e5d67907373ede118ab43a9516d29383984f5`.
 - Loaded by the OutSystems block `PanZoom.PanZoom` (`View.getJsDependencies`, PanZoom.PanZoom.PanZoom.mvc.js:113-115).
 - Version: the browserify bundle of anvaka/panzoom (https://github.com/anvaka/panzoom) with its dependencies (wheel,

@@ -11,7 +11,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q2 [fact] Orbit audit actions (answered)
 - Question: What do Connect2_OrbitMobile_MUI client actions OnApplicationEvent_EmailHost (branch In_AuditEventId = OrbitApplicationEvent.EmailHost) and AddAuditEventDetailEvent (branch LDM event date/locality set) do: server write, telemetry only, navigation? Their controller (Connect2_OrbitMobile_MUI.controller.js) is not in the local sources. Built conservatively: both only write a log entry (no network); the EmailHost branch ends after it as compiled (no feedback, no navigateBack, IsLoading stays True).
-- Evidence: mvc.js:684-704 (EmailHost branch, ends at :704), :708-720 (AddAuditEventDetailEvent); manifest /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js, not in migration/runtime-sources, contract/sources/raw or migration/sources/raw
+- Evidence: mvc.js:684-704 (EmailHost branch, ends at :704), :708-720 (AddAuditEventDetailEvent); manifest /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js, not in migration/sources/runtime, contract/sources/raw or migration/sources/raw
 - OutSystems MCP: MCP not available to route agents
 - Answer (code, 2026-10-15T20:30:00): Connect2_OrbitMobile_MUI.controller.js (fetched read-only 2026-10-15): OnApplicationEvent_EmailHost serializes AuditPayload_EmailHost and calls zOnApplicationEvent_Wrapper; AddAuditEventDetailEvent sets EventInfo (dateLocalIso, logLevel 3, EventType LDM, guest household, event date/locality), serializes it and calls zOnApplicationEvent_Wrapper. Neither calls a server action itself; zOnApplicationEvent_Wrapper is the app-event wrapper the clone logs (U17). The build (log entries, EmailHost branch ends as compiled) matches.
 

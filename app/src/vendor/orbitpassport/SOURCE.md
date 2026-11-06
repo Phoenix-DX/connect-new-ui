@@ -3,7 +3,7 @@
 - File: `OrbitPassportScanC2.PassportScan.js`, byte-identical copy (BOM included) of the TST script
   `https://ubtm-tst.ubtconnectglobal.com/UBTConnect/scripts/OrbitPassportScanC2.PassportScan.js?1Zv9simO5LNQBm3aExkNWQ`
   (in the TST manifest; fetched read-only, static GET, no session, item 10, 2026-10-29, into
-  `migration/runtime-sources/`, logged in `migration/knowledge/runtime-sources.md`). Size 27 095 bytes, sha256
+  `migration/sources/runtime/`, logged in `migration/knowledge/runtime-sources.md`). Size 27 095 bytes, sha256
   `35adc43ae885178b9665fb7d83c5b4938caa7c6f5b837c4bc1bc3e3d1d706125`.
 - Content: the "Orbit Passport Portal — host embed loader", version 1.0.0 (`NS.version`), an ES5 IIFE that sets
   `window.OrbitPassport.embed` (configure, open, close, destroy, back, isConfigured, isReady, setIdToken,

@@ -3,7 +3,7 @@
 OutSystems: `OutSystemsUI_2_23.Content.Tooltip` · pack `migration/blocks/OutSystemsUI_2_23.Content.Tooltip.md`
 
 The block view is `OutSystemsUI_2_23.Content.Tooltip.mvc.js` (internalRender :168-247). The behaviour comes from the
-OutSystems UI (OSUI) provider in `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (`W<n>` = character
+OutSystems UI (OSUI) provider in `migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js` (`W<n>` = character
 offset): the Tooltip pattern (W646155-668600), the Balloon feature (W104243-120900) and the FloatingUI provider
 (W1276300-1281400). Facts: T1-T5 of `migration/clarify/review/item5-tooltip-loader.md`. Design and decisions:
 `migration/clarify/review/item5-solution.md` (B1-B15, O1-O8).

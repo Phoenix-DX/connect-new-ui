@@ -15,7 +15,7 @@ export interface Popup_QRCodeScanProps {
   onDone: () => void;
 }
 
-/** The scan result inside Popup_QRCode (PQ = migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_Blocks
+/** The scan result inside Popup_QRCode (PQ = migration/sources/runtime/Connect2_OrbitMobile_MUI.Orbit_Blocks
     .Popup_QRCodeScan.mvc.js, view :163-538), in the frame QRCodeScanResult (name :184-190, photo :207-232, result
     :416-503, Done :504-538). The bold details (:233-415): the event name and today's date on success, Locality,
     Country, Role, Row(s), GMP Tag when not empty; Role and GMP Tag with `white-space-nowrap`. */

@@ -1,13 +1,13 @@
 # EmailContact: OutSystems (TST) and React
 
-The route `/UBTConnect/EmailContact`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/EmailContact`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/EmailContact/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
 **Static check.** This route has no TST capture (`migration/screens/EmailContact/no-capture.json`).
 
 - The OutSystems facts come from the compiled code of the screen and of its static closure (TST survey).
-- The code is in `migration/runtime-sources/` and in the raw folders of the captured routes.
+- The code is in `migration/sources/runtime/` and in `migration/sources/raw/` (the captured routes).
 - The tool observed no call and has no screenshot.
 - Closure: 59 files, 0 without compiled code.
 
@@ -132,22 +132,22 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/runtime-sources/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
+The OutSystems files are in `migration/sources/runtime/` and in `migration/sources/raw/` (the shared store of the captured routes; static check).
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_IsContactHelpdesk` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:113`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L113) |
-| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:117`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L117) |
-| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:121`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L121) |
-| `In_TargetMemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:125`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L125) |
-| `In_Subject` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:129`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L129) |
-| `In_MilestoneTitle` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:133`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L133) |
-| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:137`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L137) |
-| `In_HostName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:141`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L141) |
-| `In_HostEmail` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:145`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L145) |
-| `In_FormattedDateTime` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:149`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L149) |
+| `In_IsContactHelpdesk` | Boolean | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:113`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L113) |
+| `In_EventId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:117`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L117) |
+| `In_MilestoneId` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:121`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L121) |
+| `In_TargetMemberId` | LongInteger | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:125`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L125) |
+| `In_Subject` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:129`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L129) |
+| `In_MilestoneTitle` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:133`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L133) |
+| `In_EventName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:137`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L137) |
+| `In_HostName` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:141`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L141) |
+| `In_HostEmail` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:145`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L145) |
+| `In_FormattedDateTime` | Text | yes | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:149`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L149) |
 
 Navigations with parameters: none.
 
@@ -207,7 +207,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:399`](../../migration/runtime-sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L399) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:399`](../../migration/sources/runtime/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js#L399) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -222,7 +222,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `Legacy_OrbitEventsFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `Legacy_OrbitEventsFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

@@ -16,7 +16,7 @@ export interface VirtualMeetingDetailsEntryProps {
   isURL?: boolean;
 }
 
-/** One meeting detail (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry.mvc.js;
+/** One meeting detail (p:migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry.mvc.js;
     view :155-276): container `margin-bottom-base` > LabelWithCopyIcon (AttributeValue = Value) with the Label
     expression, the copy icon (`icon connect-icon-copy font-size-h5 text-neutral-6`, flag, size 2x) and, when IsURL, a
     link with the Value (`font-regular`, target _blank) else the Value (`text-neutral-7`). LinkVirtualAddressOnClick

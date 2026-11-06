@@ -18,7 +18,7 @@ export interface LegacyButtonLoadingProps {
 /** Translated text of the aria-label while loading (view :180, message 56KsdoiGHUSxdwyRc1Cq8Q#Value.2001303836.1). */
 const LOADING_LABEL = 'Loading';
 
-/** DisableKeypressOnLoadingJS (p:migration/blocks/sources/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js
+/** DisableKeypressOnLoadingJS (p:migration/sources/survey/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.mvc.js
     :455-475): on the first `button` in the wrapper, a keydown listener that cancels Enter (13) / Space (32) while
     IsLoading was true when it was added (keyCode 13 / 32 in the original, read here as `key`), and removes itself on any other key or once IsLoading was false. */
 export function disableKeypressOnLoading(wrapper: Element, isLoading: boolean): void {

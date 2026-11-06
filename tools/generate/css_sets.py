@@ -39,7 +39,7 @@ SCREENS = os.path.join(ROOT, "migration", "screens")
 sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
 import sources_store  # noqa: E402
 EXTRA_SOURCES = [os.path.join(ROOT, "migration", "sources", "raw", "*.mvc.js"),  # the shared store of the captures
-                 os.path.join(ROOT, "migration", "shell", "sources", "*.mvc.js")]
+                 os.path.join(ROOT, "migration", "sources", "shell", "*.mvc.js")]
 BASIC = "_Basic.css"
 DEFAULT_SCREEN = "HomeFeed"
 

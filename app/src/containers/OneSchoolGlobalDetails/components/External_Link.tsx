@@ -26,7 +26,7 @@ interface External_LinkProps {
 /** FontSize local variable (model :13-15): UBT_FontSize Small. */
 const FONT_SIZE = UBT_FontSize.Small;
 
-/** UBTJavaScriptUtils CheckIOsPlatform (migration/shell/sources/UBTJavaScriptUtils.controller.js:1-60, JS node
+/** UBTJavaScriptUtils CheckIOsPlatform (migration/sources/shell/UBTJavaScriptUtils.controller.js:1-60, JS node
     GetPlatformIOS_PreventSwipe :61-80): navigator.platform holds "iphone", "ipad" or "ipod" (lower case). */
 function checkIOsPlatform(): boolean {
   // eslint-disable-next-line @typescript-eslint/no-deprecated -- the original reads navigator.platform (JS :63-68)

@@ -22,7 +22,7 @@ import argparse, collections, difflib, glob, json, os, re, subprocess
 
 C = "migration/clarify"
 SURVEYS = ["capture/survey-UBTConnect-2026-10-13.json", "capture/survey-UBTConnect.json"]
-RUNTIME = ["migration/runtime-sources", "migration/shell/sources"]
+RUNTIME = ["migration/sources/runtime", "migration/sources/shell"]
 FIELDS = ["element", "os", "tst", "evidence", "react", "note", "finding"]
 CITE = re.compile(r"\b([A-Za-z]\w*(?:\.\w+)*\.js)\b(?::(\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*))?")
 DEBUG_ID = re.compile(r'"[A-Za-z0-9+/_=.:-]{16,}"')

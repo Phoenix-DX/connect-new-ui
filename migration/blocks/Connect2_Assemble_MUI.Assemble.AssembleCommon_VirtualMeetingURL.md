@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`
 - Child blocks: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails, Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row, NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog (queue: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails, Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row)
 
 ## Inputs
@@ -275,4 +275,4 @@ _dependencies: [asPrimitiveValue(model.variables.virtualMeetingPasswordIn), asPr
         };
         return View;
 ```
-(… 3 more lines in `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`)
+(… 3 more lines in `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`)

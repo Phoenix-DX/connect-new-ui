@@ -7,7 +7,7 @@ import * as stories from './ShareableObject.stories';
 const { CompiledView, TitleOnly } = composeStories(stories);
 
 /* No captured DOM exists for this block: the checks follow the compiled view
-   (migration/blocks/sources/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js:133-398). */
+   (migration/sources/survey/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js:133-398). */
 describe('ShareableObject_Generic', () => {
   it('image (medium radius, auto size), title, subtitle and location', () => {
     const { container } = render(<CompiledView />);

@@ -1,6 +1,6 @@
 /* OutSystems UI DeviceDetection checks read by the client actions IsWebApp and IsLayoutNative.
-   `OSUI:<n>` = line of migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js; `C:<n>` = line of
-   migration/runtime-sources/OutSystemsUI_2_23.controller.js. Dom.ClassSelector / TagSelector = querySelector
+   `OSUI:<n>` = line of migration/sources/runtime/OutSystemsUI_2_23.OutSystemsUI.js; `C:<n>` = line of
+   migration/sources/runtime/OutSystemsUI_2_23.controller.js. Dom.ClassSelector / TagSelector = querySelector
    (OSUI:2992-3075). */
 
 /** IsLayoutNative (C:14249-14253 → DeviceDetection.CheckIsLayoutNative, OSUI:16586-16594): the first `.layout` in the

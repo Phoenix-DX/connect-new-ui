@@ -181,18 +181,17 @@ def tst_route(screen):
     sources = {f: sources_store.read(p) for f, p in store.items()}
     dirs = {f: os.path.dirname(p) for f, p in store.items()}
     # TST wins and the live code is the newest truth (user 2026-11-05): a captured file that TST changed since the
-    # capture is read from migration/runtime-sources/live/ (the drift report migration/knowledge/tst-drift-2026-11-05.md),
-    # and its facts (js, call graph) are computed again from the live code. The capture keeps the observed calls.
-    live_dir = os.path.join(ROOT, "migration", "runtime-sources", "live")
+    # capture (migration/sources/runtime/live-files.txt; the drift report migration/knowledge/tst-drift-2026-11-05.md)
+    # is read from migration/sources/runtime/, and its facts (js, call graph) are computed again from the live code.
+    # The capture keeps the observed calls.
     live = {}
-    if os.path.isdir(live_dir):
-        for f in list(sources):
-            lp = os.path.join(live_dir, f)
-            if os.path.exists(lp):
-                live[f] = open(lp, encoding="utf-8", errors="replace").read()
+    for f in sorted(set(sources) & sources_store.live_files()):
+        lp = sources_store.runtime_path(f)
+        if lp:
+            live[f] = sources_store.read(lp)
     if live:
         sources.update(live)
-        dirs.update({f: os.path.relpath(live_dir, ROOT) for f in live})
+        dirs.update({f: os.path.relpath(sources_store.RUNTIME, ROOT) for f in live})
         facts = os_static.refresh(facts, sources, set(live))
     return {"facts": facts, "calls": calls, "sources": sources, "live": sorted(live), "dirs": dirs}
 
@@ -623,7 +622,7 @@ def check(route):
             nav_from[n["to"].rsplit("/", 1)[-1]].add(group_of_file[f])
     # --- inputs, lifecycle, client state, access, errors (sections 7 to 11) ----------------------------------------
     own_files = [f for f in rendered if group_of_file[f] == "screen"]
-    shell_dir = os.path.join(ROOT, "migration", "shell", "sources")
+    shell_dir = sources_store.SHELL  # migration/sources/shell
     os_x = os_extras.extras(tst.get("sources", {}), own_files, facts.get("screenFile"), os.path.relpath(shell_dir, ROOT))
     # a navigation (with parameters) inside a client action that nothing calls: declared, never run (see os_nav)
     kept = []
@@ -643,7 +642,7 @@ def check(route):
     react_inputs = re.findall(r'"([^"]+)"', gm.group(1)) if gm else []
     result = {"route": route, "screenFile": sfile, "screenFileRaw": facts.get("screenFile"), "osExtras": os_x,
               "reactExtras": react_x, "reactExtrasAll": react_x_all, "reactInputsDeclared": react_inputs,
-              "osRaw": tst["dirs"],  # {file: folder}: the shared store, or runtime-sources/live for a drifted file
+              "osRaw": tst["dirs"],  # {file: folder}: the shared store, or sources/runtime for a drifted file
               "live": tst.get("live", []),
               "static": {"missing": tst["missing"], "closure": facts["static"]["closure"]} if tst.get("static") else None,
               "userActions": uacts, "reactActions": react_acts, "flow": flow, "survey": sv, "meta": meta, "endpoints": eps,

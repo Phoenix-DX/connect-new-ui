@@ -1,10 +1,10 @@
 # Profile: OutSystems (TST) and React
 
-The route `/UBTConnect/Profile`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/Profile`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Profile/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 20 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `Profile`, `Directory_EntityDetailsActions`, `HouseholdDetails_Block`, `UBTConnect`, `js`, `js`, `HorizontalTagList`, `UBTConnectLibrary`, `js`, `ShareSheet`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
+**Live code.** TST changed 20 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `Connect2_LegacyShared`, `js`, `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `Profile`, `Directory_EntityDetailsActions`, `HouseholdDetails_Block`, `UBTConnect`, `js`, `js`, `HorizontalTagList`, `UBTConnectLibrary`, `js`, `ShareSheet`, `CacheControl_UserInfo`, `UBTConnect_Utils`, `js`, `UBT_AppManager`, `UBT_AppManager_Mobile`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -169,7 +169,7 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
@@ -195,7 +195,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `Profile` | OnReady ([`UBTConnect.App_Profile.Profile.mvc.js:4163`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L4163)) | `screenEvent_OnReady` | 1. Execute Action: ScreenController_Get ([`L4031`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L4031))<br>2. ScreenController = ScreenController_Get.Object ([`L4037`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L4037))<br>3. Execute Action: DropdownSearch_ForceResizeOnOpen ([`L4040`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L4040)) |
+| `Profile` | OnReady ([`UBTConnect.App_Profile.Profile.mvc.js:4163`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L4163)) | `screenEvent_OnReady` | 1. Execute Action: ScreenController_Get ([`L4031`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L4031))<br>2. ScreenController = ScreenController_Get.Object ([`L4037`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L4037))<br>3. Execute Action: DropdownSearch_ForceResizeOnOpen ([`L4040`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L4040)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
 
@@ -220,7 +220,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `Profile` | `GetCountryInfo` | on demand (`-1`) | `action action_FormatAddress` ([`UBTConnect.App_Profile.Profile.mvc.js:3845`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3845)) | [`UBTConnect.App_Profile.Profile.mvc.js:2903`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L2903) |
+| `Profile` | `GetCountryInfo` | on demand (`-1`) | `action action_FormatAddress` ([`UBTConnect.App_Profile.Profile.mvc.js:3845`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3845)) | [`UBTConnect.App_Profile.Profile.mvc.js:2903`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L2903) |
 
 ### 8.2 React
 
@@ -259,7 +259,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Profile.Profile.mvc.js:4187`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L4187) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.App_Profile.Profile.mvc.js:4187`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L4187) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -272,13 +272,13 @@ What the route does when an action or a call fails.
 
 | Block | Action | Error | Steps of the handler |
 |---|---|---|---|
-| `Profile` | `onClick_Save` | `NotRegistered` ([`UBTConnect.App_Profile.Profile.mvc.js:3736`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3736)) | 1. Raise Error: NotRegistered ([`L3744`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3744)) |
-| `Profile` | `onClick_Save` | `CommunicationException` ([`UBTConnect.App_Profile.Profile.mvc.js:3749`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3749)) | 1. isLoading_Submit = False ([`L3757`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3757))<br>2. Raise Error: BubbleCommunicationException ([`L3760`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3760)) |
-| `Profile` | `onClick_Save` | `AllExceptions` ([`UBTConnect.App_Profile.Profile.mvc.js:3765`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3765)) | 1. isLoading_Submit = False ([`L3773`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3773))<br>2. Raise Error: BubbleGenericException ([`L3776`](../../migration/runtime-sources/live/UBTConnect.App_Profile.Profile.mvc.js#L3776)) |
+| `Profile` | `onClick_Save` | `NotRegistered` ([`UBTConnect.App_Profile.Profile.mvc.js:3736`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3736)) | 1. Raise Error: NotRegistered ([`L3744`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3744)) |
+| `Profile` | `onClick_Save` | `CommunicationException` ([`UBTConnect.App_Profile.Profile.mvc.js:3749`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3749)) | 1. isLoading_Submit = False ([`L3757`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3757))<br>2. Raise Error: BubbleCommunicationException ([`L3760`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3760)) |
+| `Profile` | `onClick_Save` | `AllExceptions` ([`UBTConnect.App_Profile.Profile.mvc.js:3765`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3765)) | 1. isLoading_Submit = False ([`L3773`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3773))<br>2. Raise Error: BubbleGenericException ([`L3776`](../../migration/sources/runtime/UBTConnect.App_Profile.Profile.mvc.js#L3776)) |
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `App_Profile` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `App_Profile` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

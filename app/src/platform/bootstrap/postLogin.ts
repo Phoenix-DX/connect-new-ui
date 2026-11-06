@@ -15,7 +15,7 @@ const nowWire = () => new Date().toISOString().slice(0, 19);
     start passes Sync_Info_Main's outputs (UC:15367), the login empty lists (Login.mvc.js:845); from the login,
     Sync_Info_Main replaces them (UC:1121-1128). SynchBookmarksC2 and SyncNotes each replace a whole local copy
     (platform/storage/localEntities). The live module runs SynchBookmarksC2 only (live
-    migration/runtime-sources/UBTConnect.controller.js:1129-1133): there is no legacy SynchBookmarks. */
+    migration/sources/runtime/UBTConnect.controller.js:1129-1133): there is no legacy SynchBookmarks. */
 export async function connectSetLoggedContext(
   isFromLogin: boolean,
   notes: readonly LocalNote[] = [],

@@ -1,13 +1,13 @@
 # Screen spec: EventBooklet
 
 - Sources: migration/sources/, extracted unchanged (CRLF → LF) from capture/survey-UBTConnect.json `sources`.
-- The TST copies in migration/runtime-sources/ of the screen, ListHeader, MembersItem and the filters dialog differ
+- The TST copies in migration/sources/runtime/ of the screen, ListHeader, MembersItem and the filters dialog differ
   only in debugger ids and a BOM.
 - Short names: `S` = UBTConnect.Legacy_OrbitEventsFlow.EventBooklet.mvc.js,
   `SB` = Connect2_OrbitMobile_MUI.
 Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js, `PF` = Connect2_OrbitMobile_MUI.Orbit_Blocks.
 PopUp_OrbitBookletFilters.mvc.js, `LH` = …EventBooklet_ListHeader.mvc.js, `MI` = …EventBooklet_MembersItem.mvc.js,
-`DA` = Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.mvc.js, `C` = migration/runtime-sources/
+`DA` = Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.mvc.js, `C` = migration/sources/runtime/
 Connect2_OrbitMobile_MUI.controller.js.
 - No capture (no-capture.json, user 2026-10-16): built from the compiled code.
 
@@ -287,7 +287,7 @@ sequenceDiagram
 - Page size → Q3 (answered A): CR-EventBooklet-1 applied (F17, 2026-10-16).
   - GetBookletGuestsMaxRows / GetBookletHelpersMaxRows are in the contract.
   - BookletGuestsMaxRows / BookletHelpersMaxRows are client variables (default 0;
-    `runtime-sources/Connect2_OrbitMobile_MUI.clientVariables.js:8-19` gives no default).
+    `sources/runtime/Connect2_OrbitMobile_MUI.clientVariables.js:8-19` gives no default).
   - The React app ports SetBookletMaxRows and no longer has the stand-in.
   - Mock rows per page: 10 guests, 5 helpers.
 - OSUI dropdown client API → Q4 (answered A): CR-EventBooklet-2 applied (F17). Real DropdownClear / ClearValidation /

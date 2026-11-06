@@ -22,7 +22,7 @@ Allowed (page template layout, app/docs/guides/page-template.md; user, 2026-10-2
   migration/board.md                 status updates (made with board.py / route.py)
   migration/metrics/**               ledger
   migration/clarify/**               clarify work that shares the branch
-  migration/knowledge/**, migration/runtime-sources/**, migration/survey/**, migration/sources/**,
+  migration/knowledge/**, migration/survey/**, migration/sources/**,
   migration/screens/_capture-summary.json
                                      pipeline outputs (captures, probes, survey refresh; user, 2026-10-29)
   app/src/pages/<X>/**, migration/screens/<X>/**   every other route whose board status is in progress (not built,
@@ -74,7 +74,7 @@ def allowed_patterns(screen, app, mig, active=(), extra=()):
             f"{app}/src/app/routes*.ts",
             f"{mig}/change-requests/**", f"{mig}/board.md", f"{mig}/metrics/**", f"{mig}/clarify/**",
             # pipeline outputs that the capture, the probes and the survey refresh write (user, 2026-10-29, I10-10 a)
-            f"{mig}/knowledge/**", f"{mig}/runtime-sources/**", f"{mig}/survey/**", f"{mig}/sources/**",
+            f"{mig}/knowledge/**", f"{mig}/survey/**", f"{mig}/sources/**",
             f"{mig}/screens/_capture-summary.json"]
     for x in active:
         if x != screen:

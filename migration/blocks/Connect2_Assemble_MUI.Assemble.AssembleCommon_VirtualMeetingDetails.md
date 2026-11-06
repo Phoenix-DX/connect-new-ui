@@ -1,7 +1,7 @@
 # Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails
 
 - Kind: shared; build screens using it: AssembleDetail, AssembleEvents
-- Compiled source: `migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.mvc.js`
+- Compiled source: `migration/sources/survey/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.mvc.js`
 - Child blocks: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry, Connect2_LegacyShared.Reusable.NewConnectContent (queue: Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry, Connect2_LegacyShared.Reusable.NewConnectContent)
 
 ## Inputs

@@ -2,13 +2,13 @@ import { log } from '@/platform/log/log';
 import { APP_ID } from '@/platform/navigation/paths';
 
 /* NetworkDetection (knowledge/shell-facts.md U11), ported 1:1 from its JavaScript node
-   NetworkDetection_OnApplicationReady.NetworkDetection3JS ("ND" = migration/shell/sources/NetworkDetection.controller.js):
+   NetworkDetection_OnApplicationReady.NetworkDetection3JS ("ND" = migration/sources/shell/NetworkDetection.controller.js):
    - one detector per page: a second start returns at once, the first caller wins (ND:646-648);
    - state `isOnline` starts null (ND:657) and the callbacks run only on a transition (definitelyOnline /
      definitelyOffline, ND:726-749); OnNetworkOnline / OnNetworkOffline call the user callback (ND:1037-1075, 995-1033);
    - the ping: native fetch GET of `status/network-ping.txt` + `d=<now>`, `cache: "no-store"`, an AbortController
      timeout of PingTimeout ms (10 000 when 0), ok = response.ok; one shared promise, so pings never run in parallel
-     (rawPing / checkOnline, ND:665-722). The file is the TST one (`pong`, migration/runtime-sources/
+     (rawPing / checkOnline, ND:665-722). The file is the TST one (`pong`, migration/sources/runtime/
      UBTConnect.status.network-ping.txt), served at the TST path in every build (app/public/UBTConnect/status/);
    - networkState(message): ping, then online / offline, then the pending-ping resolve (ND:751-778);
    - the browser's `online` / `offline` events on window decide at once, without a ping (ND:783-786);

@@ -10,7 +10,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q2 [decision] GetMilestoneScanFF (answered)
 - Question: OnHandle_NavigateToEventDetail calls the server action GetMilestoneScanFF (not captured: it runs on a card click, TST had no card). IsScanPerMilestone True navigates to /UBTConnect/OrbitAdminMilestones(EventId), a screen that is neither in the TST moduleinfo nor in the app; False navigates to OrbitAdminEventDetail. Which value does the mock return?
-- Evidence: UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js ctrl :221-235, :245-300 (navigateTo OrbitAdminMilestones :278, OrbitAdminEventDetail :284); migration/runtime-sources/moduleinfo.json has no OrbitAdminMilestones; app/src/app/routes.generated.ts has no OrbitAdminMilestones
+- Evidence: UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js ctrl :221-235, :245-300 (navigateTo OrbitAdminMilestones :278, OrbitAdminEventDetail :284); migration/sources/runtime/moduleinfo.json has no OrbitAdminMilestones; app/src/app/routes.generated.ts has no OrbitAdminMilestones
 - Options: A: False by default (cards open OrbitAdminEventDetail); the True branch is built as the original navigation and reachable with ?mock=scanpermilestone (the app has no such route) | B: True (cards open the missing OrbitAdminMilestones) (recommended: A)
 - Answer (user, 2026-10-16T14:11:12): A (recommended), auto-accepted (user instruction 2026-10-16 night)
 

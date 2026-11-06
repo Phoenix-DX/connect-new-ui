@@ -4,7 +4,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q1 [decision] contract (answered)
 - Question: AssembleEventDetail_AttendeeSubdivision OnReady calls GetCacheableSubdivision_V2 → server action Connect2_LegacyShared ActionGetBulkSubdivisions_V2, which is not in the API contract (callAction cannot compile). How should the expanded hall list behave until CR-AssembleDetail-1 is applied?
-- Evidence: sources/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js:1742-1830; migration/runtime-sources/Connect2_LegacyShared.controller.js:3088, :7691-7702; app/src/api/openapi.yaml has no ActionGetBulkSubdivisions_V2
+- Evidence: sources/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js:1742-1830; migration/sources/runtime/Connect2_LegacyShared.controller.js:3088, :7691-7702; app/src/api/openapi.yaml has no ActionGetBulkSubdivisions_V2
 - OutSystems MCP: not asked (no MCP in this run)
 - Options: A: CR-AssembleDetail-1; run OnReady up to BuildSkeletonList (the event's households plus HouseholdCount skeleton rows) and render <NotCaptured> for the fetch, no further call | B: show only the event's SubdivisionHouseholdList without skeleton rows (recommended: A)
 - Answer (user, 2026-10-16T13:20:26): A (recommended), auto-accepted (user instruction 2026-10-16 night): CR-AssembleDetail-1 (GetBulkSubdivisions_V2) by foundation F15; NotCaptured until then

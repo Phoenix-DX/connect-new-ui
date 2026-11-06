@@ -41,7 +41,7 @@ from the project root. Reply to the user in Vietnamese; the files stay in Englis
    check (compiled code of the TST survey closure); the file says so at the top.
    - Live code: some captured routes have compiled files that TST changed after the capture
      (`migration/knowledge/tst-drift-2026-11-05.md`). The tool checks those routes against the live copies in
-     `migration/runtime-sources/live/`. The file says "Live code" at the top, with TST links to the live copies.
+     `migration/sources/runtime/`. The file says "Live code" at the top, with TST links to the live copies.
 2. Run `python3 tools/docs/ste_lint.py route-check/routes/<Route>.md route-check/APP_SHELL.md`; 0 errors.
 3. Hand-check, against the code at the given `file:line`:
    - each line of section 3 "Differences found" (open the React code and the TST code it cites);

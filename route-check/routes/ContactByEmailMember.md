@@ -1,10 +1,10 @@
 # ContactByEmailMember: OutSystems (TST) and React
 
-The route `/UBTConnect/ContactByEmailMember`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-05. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/ContactByEmailMember`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/ContactByEmailMember/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
-**Live code.** TST changed 11 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/runtime-sources/live/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ContactByEmailMember`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
+**Live code.** TST changed 11 compiled files of this route after the capture (`migration/knowledge/tst-drift-2026-11-05.md`). The tool read the live copies in `migration/sources/runtime/` for: `NavigationHandler`, `OutSystemsUI_2_23`, `js`, `ContactByEmailMember`, `UBTConnect`, `js`, `js`, `UBTConnectLibrary`, `js`, `UBTConnect_Utils`, `js`. The observed calls come from the capture.
 
 ## 1. Route
 
@@ -126,28 +126,28 @@ sequenceDiagram
 ## 7. Screen inputs and navigation parameters
 
 The input parameters of the screen, the parameters that the route reads, and the parameters that the route gives when it opens another screen. A navigation without parameters is only in section 2.
-The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are in `migration/runtime-sources/live/`.
+The OutSystems files are in `migration/sources/raw/` (the route's `analysis/manifest.json` names them); the files that TST changed after the capture are read from `migration/sources/runtime/`.
 
 ### 7.1 OutSystems (TST)
 
 | Input | Type | Mandatory | Place |
 |---|---|---|---|
-| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:158`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L158) |
-| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:162`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L162) |
-| `In_ContactSurname` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:166`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L166) |
-| `In_ContactLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:170`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L170) |
-| `In_ContactCountry` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:174`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L174) |
-| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:178`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L178) |
-| `In_EntityType` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:182`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L182) |
-| `In_EntityId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:186`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L186) |
-| `In_LDMEventDate` | Date | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:190`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L190) |
-| `In_LDMEventLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:194`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L194) |
-| `In_AuditEventId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:198`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L198) |
-| `In_OrbitEventTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:202`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L202) |
-| `In_OrbitEventId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:206`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L206) |
-| `In_OrbitMilestoneId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:210`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L210) |
-| `In_IsHousehold` | Boolean | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:214`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L214) |
-| `In_HouseholdHeaderName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:218`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L218) |
+| `In_AvatarURL` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:158`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L158) |
+| `In_ContactName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:162`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L162) |
+| `In_ContactSurname` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:166`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L166) |
+| `In_ContactLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:170`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L170) |
+| `In_ContactCountry` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:174`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L174) |
+| `In_EmailTo` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:178`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L178) |
+| `In_EntityType` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:182`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L182) |
+| `In_EntityId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:186`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L186) |
+| `In_LDMEventDate` | Date | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:190`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L190) |
+| `In_LDMEventLocality` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:194`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L194) |
+| `In_AuditEventId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:198`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L198) |
+| `In_OrbitEventTitle` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:202`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L202) |
+| `In_OrbitEventId` | LongInteger | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:206`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L206) |
+| `In_OrbitMilestoneId` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:210`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L210) |
+| `In_IsHousehold` | Boolean | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:214`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L214) |
+| `In_HouseholdHeaderName` | Text | yes | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:218`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L218) |
 
 Navigations with parameters: none.
 
@@ -171,7 +171,7 @@ Event handlers. The steps are the node comments and the conditions of the compil
 
 | Block | Event | Action | Steps |
 |---|---|---|---|
-| `ContactByEmailMember` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:824`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L824)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = In_ContactName ([`L785`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L785))<br>2. ContactByEmailForm.ContactMember = In_ContactName ([`L788`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L788))<br>3. ContactByEmailForm.EmailTo = In_EmailTo ([`L791`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L791)) |
+| `ContactByEmailMember` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:824`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L824)) | `screenEvent_OnInitialize` | 1. ContactByEmailForm.FirstName = In_ContactName ([`L785`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L785))<br>2. ContactByEmailForm.ContactMember = In_ContactName ([`L788`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L788))<br>3. ContactByEmailForm.EmailTo = In_EmailTo ([`L791`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L791)) |
 | `ContactByEmailForm` | OnInitialize ([`UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:902`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L902)) | `onInitialize` | 1. Subject = In_Subject ([`L825`](../../migration/sources/raw/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js#L825)) |
 
 <details><summary>Sequence diagrams of the screen event handlers (1)</summary>
@@ -225,7 +225,7 @@ Who can open the route, and the role checks in the screen and block code.
 
 | Side | Rule | Place |
 |---|---|---|
-| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:849`](../../migration/runtime-sources/live/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L849) |
+| OutSystems (TST) | registered users (`checkRegistered()`) | [`UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:849`](../../migration/sources/runtime/UBTConnect.ContactFlow.ContactByEmailMember.mvc.js#L849) |
 | React | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 
 Role checks in the TST screen and block actions (`RolesInfo`, `$roles`, `Check<Role>Role`): none.
@@ -240,7 +240,7 @@ The actions of the screen and its blocks have no `Handle Error` node.
 
 An error without a handler goes to the `OnException` of the UI flow (`handleError`):
 
-1. UI flow `ContactFlow` not in `migration/shell/sources/`. Handled errors: none.
+1. UI flow `ContactFlow` not in `migration/sources/shell/`. Handled errors: none.
 
 ### 11.2 React
 

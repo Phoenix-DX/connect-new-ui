@@ -29,6 +29,8 @@ Detected signals (each flag lists where it was seen; "candidate" = name-based gu
 Screens in the same variant group (New_/Legacy_/V2) are noted: a flag often selects between them.
 """
 import argparse, datetime, glob, json, os, re, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "common"))  # tools/common
+import sources_store  # noqa: E402
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -91,8 +93,8 @@ def cmd_scan(a):
     sources = {}
     if a.survey and os.path.exists(a.survey):
         sources.update(json.load(open(a.survey, encoding="utf-8")).get("sources", {}))
-    for p in glob.glob(os.path.join(a.screens_dir, "*", "analysis", "sources", "raw", "*")):
-        sources.setdefault(os.path.basename(p), open(p, encoding="utf-8", errors="ignore").read())
+    for p in sources_store.all_files("raw"):  # the shared store of the captured routes (one copy per content)
+        sources.setdefault(sources_store.base_name(p), sources_store.read(p, errors="ignore"))
     for f, src in sources.items():
         if f.endswith(".js"):
             scan_source(f, src, found)
@@ -104,9 +106,10 @@ def cmd_scan(a):
                 file_users.setdefault(b, set()).add(i["screen"])
             if i.get("variantGroup"):
                 variants.setdefault(i["variantGroup"], []).append(i["screen"])
-    for s in (os.path.basename(x) for x in glob.glob(os.path.join(a.screens_dir, "*"))):
-        for p in glob.glob(os.path.join(a.screens_dir, s, "analysis", "sources", "raw", "*.mvc.js")):
-            file_users.setdefault(os.path.basename(p), set()).add(s)
+    for s, m in sources_store.all_manifests().items():
+        for name in m.get("raw", {}):
+            if name.endswith(".mvc.js"):
+                file_users.setdefault(name, set()).add(s)
     old = d["flags"]
     new = {}
     for name, f in sorted(found.items()):

@@ -28,7 +28,7 @@ across instances until a ResetWhitelist.
 ## Sanitizer configuration
 
 `../lib/actions.ts` configures DOMPurify 3 (ADR-3) as the original global `HtmlSanitizer`
-(`migration/runtime-sources/ReactiveHtmlSanitizer.HtmlSanitizer.js`, a customised jitbit HtmlSanitizer):
+(`migration/sources/runtime/ReactiveHtmlSanitizer.HtmlSanitizer.js`, a customised jitbit HtmlSanitizer):
 
 - Allow lists of setDefaults (:16-30): 38 tags (upper case, matched against `tagName`, so `disallowedTags="b"` changes
   nothing), 11 attributes, 10 CSS properties. Rules:

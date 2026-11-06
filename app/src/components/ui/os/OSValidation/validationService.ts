@@ -1,5 +1,5 @@
 /* Built-in validation of the OutSystems platform widgets, ported 1:1 from the client runtime (TST copies in
-   migration/runtime-sources/, offsets are character offsets in the minified files):
+   migration/sources/runtime/, offsets are character offsets in the minified files):
    - `OS` = OutSystems.js: define("OutSystems/ClientRuntime/Validation") ≈511752-515200 (ValidationService,
      ValidationResult); BaseMessagesProvider ≈539900-542400; ValidationWidgetRecord defaults ≈545565;
      DataTypes ≈178676; JSConversions.isConvertibleTo ≈265432-265900 / 268533.

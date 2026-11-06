@@ -654,7 +654,7 @@ export function merge_StyleOptions(
 }
 
 /* ---- Task Y: ScrollEvent (scroll shadow and sticky title of the layouts) ---- */
-/* The global `ScrollEvent` object of scripts/UBTConnectLibrary.ScrollAnimations.js (migration/runtime-sources, cited
+/* The global `ScrollEvent` object of scripts/UBTConnectLibrary.ScrollAnimations.js (migration/sources/runtime, cited
    SA:<line>), as the layouts use it through four UBTConnectLibrary client actions whose JavaScript nodes only call it
    (raw controller migration/sources/raw/UBTConnectLibrary.controller.js:
    SetScrollShadow :8700-8708, SetMainFixedScroll :8481-8488, RemoveScrollEvents :8087-8091, ClearTimeout :690-694). */

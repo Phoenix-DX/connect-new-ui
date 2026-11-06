@@ -32,7 +32,7 @@ Columns_Two (compared as nested blocks); the unit test checks the h2 / header-ri
 - Extended class, accessibility class, PullToRefresh: compiled view only, tested.
 - **SetScrollEvents (OnReady, controller :626-693) / OnDestroy (:694)**: SetMainFixedScroll / SetScrollShadow /
   RemoveScrollEvents / ClearTimeout (`../lib/actions.ts`), ports of the global `ScrollEvent` of
-  `migration/runtime-sources/UBTConnectLibrary.ScrollAnimations.js` (mainFixedScroll :272-337, shadowScroll :151-205).
+  `migration/sources/runtime/UBTConnectLibrary.ScrollAnimations.js` (mainFixedScroll :272-337, shadowScroll :151-205).
   - Sticky title: above `.header-top-search`'s `--header-size` + the body's `--status-bar-height`,
     `header .header-top-content` gets a top padding of status bar × scroll progress.
   - A scroll across that line raises OnHeaderScrolled (true / false, once each time the scroll crosses the line)

@@ -17,7 +17,7 @@ This supersedes the 2026-10-14 scope decision D9 (`skip:external`, context-003).
   OrbitAdminLanding, LDM_MyEvents_V2, AssembleEvents; MessageDetail Orbit/Assemble handlers): they work once built.
 - No TST data for a screen (read-only capture impossible): build from the compiled code with meaningful fictional
   mocks, `route.py no-capture --by user` (user, 2026-10-16).
-- Compiled code: `migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js` (fetched 2026-10-15) and the
+- Compiled code: `migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js` (fetched 2026-10-15) and the
   per-screen `.mvc.js` in the survey.
 
 ## Trove (user, 2026-10-16 night: "Orbit, Assemble, Trove và LDM (Lord's meal)" (English: "Orbit, Assemble, Trove and LDM (Lord's meal)"))
