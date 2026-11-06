@@ -1,7 +1,7 @@
 """Sitemap of UBTConnect as Mermaid diagrams, from the TST survey (compiled code).
 
 Usage (project root): python3 tools/generate/sitemap.py [--out migration/sitemap.md]
-Inputs: capture/survey-UBTConnect.json, migration/survey/screens.json, migration/scope-review.md (scope colours).
+Inputs: migration/survey/survey-UBTConnect.json, migration/survey/screens.json, migration/scope-review.md (scope colours).
 Edges carried by blocks embedded in 30+ screens (shell: PIN lock overlay, policy checker, logo, bottom bar) are drawn
 once in the "shell" diagram instead of on every screen.
 """
@@ -237,7 +237,7 @@ mermaid.initialize({{startOnLoad:true,securityLevel:"loose",flowchart:{{useMaxWi
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--survey", default="capture/survey-UBTConnect.json")
+    ap.add_argument("--survey", default="migration/survey/survey-UBTConnect.json")
     ap.add_argument("--screens", default="migration/survey/screens.json")
     ap.add_argument("--scope", default="migration/scope-review.md")
     ap.add_argument("--out", default="migration/sitemap.md")

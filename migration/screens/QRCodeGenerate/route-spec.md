@@ -1,6 +1,6 @@
 # Route spec: QRCodeGenerate
 
-Sources (migration/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`; the newer TST
+Sources (migration/sources/, extracted unchanged, CRLF → LF, from migration/survey/survey-UBTConnect.json `sources`; the newer TST
 copy of the screen in migration/sources/runtime/ differs only in debugger ids): `S` = migration/screens/QRCodeGenerate/
 migration/sources/UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate.mvc.js, `SB` = migration/screens/QRCodeGenerate/
 migration/sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode.mvc.js, `C` = migration/

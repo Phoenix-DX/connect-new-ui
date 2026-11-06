@@ -31,7 +31,7 @@ import sys
 from itertools import combinations
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
+SURVEY = os.path.join(ROOT, "migration", "survey", "survey-UBTConnect.json")
 ROUTES_TS = os.path.join(ROOT, "app", "src", "app", "routes.generated.ts")
 OUT = os.path.join(ROOT, "app", "src", "app", "routes.css.generated.ts")
 STORYBOOK_HEAD = os.path.join(ROOT, "app", ".storybook", "preview-head.html")

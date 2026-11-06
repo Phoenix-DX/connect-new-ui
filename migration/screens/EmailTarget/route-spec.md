@@ -1,7 +1,7 @@
 # Route spec: EmailTarget
 
 Evidence: `S` = `migration/sources/runtime/UBTConnect.Legacy_LDMEventsFlow.EmailTarget.mvc.js` (TST copy fetched
-read-only by F9, `migration/knowledge/runtime-sources.md`); `H` = `capture/survey-UBTConnect.json` →
+read-only by F9, `migration/knowledge/runtime-sources.md`); `H` = `migration/survey/survey-UBTConnect.json` →
 `sources["Connect2_LegacyShared.Email.ScreenBlock_Household_Email.mvc.js"]` (line numbers of that text: model :1-150,
 view :151-681, controller :682-1220; F9 kept no newer copy, so the survey's is current).
 

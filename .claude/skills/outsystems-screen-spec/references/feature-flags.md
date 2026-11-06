@@ -12,7 +12,7 @@ Flags decide which variant of a screen, block or behaviour the user sees. A rout
 ## 1. Detect
 
 ```bash
-python3 tools/pipeline/flags.py scan --survey capture/survey-<App>.json --screens migration/survey/screens.json
+python3 tools/pipeline/flags.py scan --survey migration/survey/survey-<App>.json --screens migration/survey/screens.json
 python3 tools/pipeline/flags.py warn
 ```
 `scan` reads the compiled code of the survey and of every captured route and records, per flag, its kind, the files that read it and the routes whose code includes those files. Signals: static entity records with flag-like names, client variables with flag-like names, calls of flag-check actions (names such as GetHas…Enabled, Is…Enabled, …Flag…, remote-flag wrappers) and the string keys passed to them. Name-based hits are marked *candidate*. Routes in a variant group (New_/Legacy_/V2) are noted, since a flag usually chooses between them. Re-run `scan` after each capture campaign; answers already recorded are kept.

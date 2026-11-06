@@ -1,8 +1,8 @@
 // React side of the route check: what code runs for a route, and which endpoints and functions it reaches.
 //
 // Usage (from the project root):
-//   node tools/route-check/react_calls.mjs shell            → route-check/.cache/data/react-shell.json
-//   node tools/route-check/react_calls.mjs page <Route>     → route-check/.cache/data/react-<Route>.json
+//   node tools/route-check/react_calls.mjs shell            → migration/route-check/.cache/data/react-shell.json
+//   node tools/route-check/react_calls.mjs page <Route>     → migration/route-check/.cache/data/react-<Route>.json
 //
 // Method (static, TypeScript AST and type checker through ts-morph from app/node_modules):
 // 1. File closure: static imports (not `import type`), re-exports and dynamic `import('…')` from the entry.
@@ -17,7 +17,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..'); // the repository root
-const HERE = path.join(ROOT, 'route-check'); // config and reports
+const HERE = path.join(ROOT, 'migration', 'route-check'); // config and reports
 const CFG = JSON.parse(fs.readFileSync(path.join(HERE, 'config.json'), 'utf8')); // input paths, relative to ROOT
 const APP = path.join(ROOT, CFG.react.app);
 const SRC = path.join(APP, 'src');

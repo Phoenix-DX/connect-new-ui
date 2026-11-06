@@ -163,7 +163,7 @@
   "kind": "fact",
   "topic": "logic",
   "question": "What does the UBTConnect client action Notes_InterchangeId_ExtractId(ItemId) do (how does it get LocalityId from the ItemId of an Interchange note card)? Handler_OnClickNoteCardItem opens Locality_Details with it.",
-  "evidence": "live Notes.mvc.js:1556-1717 (Interchange branch); the action is not in migration/sources/runtime/UBTConnect.controller.js (2026-10-28) nor in capture/survey-UBTConnect.json. The React branch opens nothing until this is known (notesState.ts noteCardTarget).",
+  "evidence": "live Notes.mvc.js:1556-1717 (Interchange branch); the action is not in migration/sources/runtime/UBTConnect.controller.js (2026-10-28) nor in migration/survey/survey-UBTConnect.json. The React branch opens nothing until this is known (notesState.ts noteCardTarget).",
   "mcp": "getClientAction UBTConnect Notes_InterchangeId_ExtractId",
   "options": [],
   "recommend": "",

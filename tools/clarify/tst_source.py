@@ -4,14 +4,14 @@ Usage (from the project root):
   python3 tools/clarify/tst_source.py list [Pattern]          # file names that contain Pattern
   python3 tools/clarify/tst_source.py show <FileName|Name|Pattern> # exact file, else `.<Name>.mvc.js`, else first substring match
   python3 tools/clarify/tst_source.py grep <Regex> [Pattern]  # lines that match, in files that contain Pattern
-Sources: capture/survey-UBTConnect.json (641 compiled screen and block files, `.mvc.js`; the live survey since the source
-switch of 2026-10-28; the survey of 2026-10-13 is capture/survey-UBTConnect-2026-10-13.json), migration/sources/runtime-sources/ and
+Sources: migration/survey/survey-UBTConnect.json (641 compiled screen and block files, `.mvc.js`; the live survey since the source
+switch of 2026-10-28; the survey of 2026-10-13 is migration/survey/survey-UBTConnect-2026-10-13.json), migration/sources/runtime/ and
 migration/sources/shell/ (module and flow controllers, client variables, plugins, libraries). Module client actions live in `<Module>.controller.js` files.
 TST is the source of truth: use it when the DEV model (packs) and the React app differ, or when a DEV fact needs a check.
 """
 import json, re, sys
 
-SURVEY = "capture/survey-UBTConnect.json"
+SURVEY = "migration/survey/survey-UBTConnect.json"
 RUNTIME = ["migration/sources/runtime", "migration/sources/shell"]
 
 

@@ -60,7 +60,7 @@
   "kind": "decision",
   "topic": "shared-block-input",
   "question": "The live TST Input block adds the class search-placeholder-ellipsis to the search input; the React Input (components/ui/Input) does not. It is the only difference left in Bookmarks default and offline (class 1 each, pixel 0). Update the shared Input?",
-  "evidence": "capture/survey-UBTConnect.json: ConnectPatterns.Input Input_Search.Style = 'search-placeholder-ellipsis form-control ' + In_ExtendedClasses + ...; ConnectPatterns.StaticInput style 'search-placeholder-ellipsis ubt-static-input '. Captures with the class: Bookmarks, Notes (2026-10-29). Captures without it (older): AssembleEvents, Assemble_BrowseByCountry, BrowseCountries, BrowseDirectory, CountryDetails, LegacyShareObject, MessageList, Notifications, Search, Updates_SingleList.",
+  "evidence": "migration/survey/survey-UBTConnect.json: ConnectPatterns.Input Input_Search.Style = 'search-placeholder-ellipsis form-control ' + In_ExtendedClasses + ...; ConnectPatterns.StaticInput style 'search-placeholder-ellipsis ubt-static-input '. Captures with the class: Bookmarks, Notes (2026-10-29). Captures without it (older): AssembleEvents, Assemble_BrowseByCountry, BrowseCountries, BrowseDirectory, CountryDetails, LegacyShareObject, MessageList, Notifications, Search, Updates_SingleList.",
   "mcp": "",
   "options": [
    "a) update Input and StaticInput to the live TST now, then re-capture (read-only) and re-check the 10 routes with older captures; b) update Input and exempt the class on the 10 older captures until they are re-captured; c) keep the old Input and exempt the class on Bookmarks and Notes"

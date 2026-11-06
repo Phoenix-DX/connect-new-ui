@@ -1,7 +1,7 @@
 # Route spec: ContactByEmailOrbitHost
 
 Sources: `S` = migration/sources/UBTConnect.ContactFlow.ContactByEmailOrbitHost.mvc.js (extracted unchanged, CRLF → LF, from
-capture/survey-UBTConnect.json `sources`). No capture (no-capture.json, user 2026-10-16): built from the compiled code.
+migration/survey/survey-UBTConnect.json `sources`). No capture (no-capture.json, user 2026-10-16): built from the compiled code.
 
 ## Summary
 | Item | Value |

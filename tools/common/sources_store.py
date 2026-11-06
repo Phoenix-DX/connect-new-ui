@@ -51,7 +51,7 @@ RUNTIME = os.path.join(STORE, "runtime")
 CONTRACT = os.path.join(STORE, "contract")
 SHELL = os.path.join(STORE, "shell")
 LIVE_LIST = os.path.join(RUNTIME, "live-files.txt")
-SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
+SURVEY = os.path.join(ROOT, "migration", "survey", "survey-UBTConnect.json")
 _SURVEY_SOURCES: dict | None = None
 
 
@@ -183,7 +183,7 @@ def read(store_path: str, errors: str = "replace") -> str:
 
 def survey_path(name: str) -> str | None:
     """The store copy (`survey/<name>`) of a compiled file that only the live survey has (a block no captured route
-    loaded, or a route without a capture). Made from capture/survey-UBTConnect.json on first use; None when the
+    loaded, or a route without a capture). Made from migration/survey/survey-UBTConnect.json on first use; None when the
     survey is missing and no copy exists. `check` and `gc` leave the `survey/` kind alone."""
     global _SURVEY_SOURCES
     existing = os.path.join(STORE, SURVEY_KIND, name)

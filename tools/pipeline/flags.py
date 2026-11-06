@@ -3,7 +3,7 @@
 flags.py: find every feature flag the app's routes depend on, warn per route, and track what the OutSystems MCP
 says about each flag and what the user decided. Output is the reference for flags: migration/flags.md.
 
-  scan  [--survey capture/survey-<App>.json] [--screens migration/survey/screens.json] [--screens-dir migration/screens]
+  scan  [--survey migration/survey/survey-<App>.json] [--screens migration/survey/screens.json] [--screens-dir migration/screens]
         detect flags in compiled code (survey sources and each route's migration/sources/). Keeps earlier answers.
   questions [--route S]       flags still missing an MCP answer or a user decision, with the MCP questions to ask
   mcp    <flag> --answer "..." [--values "dev=on, test=off, prod=?"] [--source "Module/Element"]

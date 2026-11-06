@@ -7,7 +7,7 @@ Evidence:
 - `analysis/dom/default.html` (empty user).
 - `loading.html` / `offline.html` (skeleton cards).
 - The compiled code `migration/sources/pretty/UBTConnect.Notes.Notes.mvc.js` (view :91-660, controller :660-1735).
-- The survey sources of NoteCard_Item, ItemCard_WithNotes, ItemCard_ActionBar, ItemCardActions (`capture/survey-UBTConnect.json` → sources).
+- The survey sources of NoteCard_Item, ItemCard_WithNotes, ItemCard_ActionBar, ItemCardActions (`migration/survey/survey-UBTConnect.json` → sources).
 
 - Inputs: none. Layout `Layout_MainPages_FixedTitle` (gray background), title "My Notes" (Notes.mvc.js:227).
 - Header right: the search icon and App_NotificationIcon. The search icon shows only while the header is scrolled (scrollTop ".active-screen").

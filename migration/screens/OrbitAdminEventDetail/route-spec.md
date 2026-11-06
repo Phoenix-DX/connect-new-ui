@@ -5,7 +5,7 @@ Built from the compiled code; no parity; the user reviews it by hand.
 Sources: SCR = `migration/sources/runtime/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail.mvc.js`, SB =
 `migration/sources/runtime/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js`,
 PQ = `migration/sources/runtime/Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan.mvc.js` (current TST copy),
-OEM = `capture/survey-UBTConnect.json` sources `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage.mvc.js`.
+OEM = `migration/survey/survey-UBTConnect.json` sources `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage.mvc.js`.
 
 ## Summary
 | Item | Value |

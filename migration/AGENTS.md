@@ -39,7 +39,7 @@ Layout of a route: `app/docs/guides/page-template.md`. `python3 tools/pipeline/s
 Never use screenshots or memory of "how apps usually look" to decide markup, classes, sizes, colors or text.
 
 ### Where the compiled code is (check all before calling a source "missing")
-- Screen and block views (`*.mvc.js`): `capture/survey-UBTConnect.json` → `sources` (every screen and block, even ones
+- Screen and block views (`*.mvc.js`): `migration/survey/survey-UBTConnect.json` → `sources` (every screen and block, even ones
   no capture loaded); readable copies of block sources in `migration/sources/survey/`.
 - Module controllers and models (`<Module>.controller.js`, `<Module>.model.js`): the shared store `migration/sources/raw/`
   (one copy per content; `migration/screens/<S>/analysis/manifest.json` names the files of a route),

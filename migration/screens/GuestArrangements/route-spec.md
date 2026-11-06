@@ -1,6 +1,6 @@
 # Route spec: GuestArrangements
 
-Sources (migration/sources/, extracted unchanged from capture/survey-UBTConnect.json `sources`): `S` =
+Sources (migration/sources/, extracted unchanged from migration/survey/survey-UBTConnect.json `sources`): `S` =
 UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js, `SB` = Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.
 ScreenBlock_GuestArrangements.mvc.js, `C` = migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js.
 No capture (no-capture.json, user 2026-10-16): built from the compiled code.

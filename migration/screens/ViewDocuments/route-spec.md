@@ -1,6 +1,6 @@
 # Route spec: ViewDocuments
 
-Sources (migration/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`). The newer TST copy of the screen in migration/sources/runtime/ differs only in debugger ids.
+Sources (migration/sources/, extracted unchanged, CRLF → LF, from migration/survey/survey-UBTConnect.json `sources`). The newer TST copy of the screen in migration/sources/runtime/ differs only in debugger ids.
 - `S` = migration/screens/ViewDocuments/
   migration/sources/UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js
 - `SB` = migration/screens/ViewDocuments/analysis/

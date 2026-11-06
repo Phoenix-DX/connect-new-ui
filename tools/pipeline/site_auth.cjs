@@ -17,16 +17,23 @@
  *              "register": { "match": "<regex on the first-sign-in PIN register page>", "times": <entries, e.g. 2 = enter + confirm> } },
  *     "secrets": { "user": "UBT_USER", "password": "UBT_PASSWORD", "pin": "UBT_PIN" } }   (env variable names)
  *
- * Secrets: environment variables named in profile.secrets, else --credentials <file>, else .auth/credentials.json:
- *   { "user": "...", "password": "...", "pin": "..." }
+ * Secrets: environment variables named in profile.secrets, else --credentials <file>, else the first account of
+ * .auth/accounts.json (the owner writes it; several test accounts, user 2026-11-06), else .auth/credentials.json
+ * ({ "user": "...", "password": "...", "pin": "..." }, one account):
+ *   { "password": "...", "pin": "...", "accounts": { "<role>": ["<user>", "<user>", …] | "<user>", … },
+ *     "order": ["<role>", …] }
+ *   loadAccounts() lists every account in that order (label "<role>" or "<role>#<n>"); autoLoginAny() tries them one
+ *   after the other until a sign-in works. A tool that reaches a screen with one account and not with another tries
+ *   the next one (batch_capture.cjs run, journey_capture.cjs). Logs name the label only, never the user.
  * Rules: test environment and test account only; the values are typed by this script and never printed, logged,
- * written to captures, or read by an agent. The file must not be tracked by git (checked).
+ * written to captures, or read by an agent. The files must not be tracked by git (checked).
  */
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
-const SKILL = path.resolve(__dirname, '..');
+const SKILL = __dirname;   // tools/pipeline: assets/site-profiles/ is next to this module
+const ACCOUNTS = '.auth/accounts.json';
 
 function resolveProfile(o = {}) {
   const cands = [o.profile, 'migration/site.json', path.join(SKILL, 'assets', 'site-profiles', 'default.json')].filter(Boolean);
@@ -42,12 +49,41 @@ function loadSecrets(profile, o = {}) {
   const names = (profile && profile.secrets) || {};
   const env = { user: process.env[names.user || 'OS_USER'], password: process.env[names.password || 'OS_PASSWORD'], pin: process.env[names.pin || 'OS_PIN'] };
   if (env.user || env.pin) return { ...env, _source: 'environment' };
+  if (!o.credentials) {
+    const accounts = loadAccounts(o);   // several test accounts: the first one is the default
+    if (accounts.length) return accounts[0].secrets;
+  }
   const file = o.credentials || '.auth/credentials.json';
   if (!fs.existsSync(file)) return null;
-  const tracked = spawnSync('git', ['ls-files', '--error-unmatch', file], { encoding: 'utf8' });
-  if (tracked.status === 0) throw new Error(`${file} is tracked by git: remove it from the repository (git rm --cached) before using it`);
+  notTracked(file);
   const s = JSON.parse(fs.readFileSync(file, 'utf8'));
   return { user: s.user, password: s.password, pin: s.pin != null ? String(s.pin) : undefined, _source: file };
+}
+
+function notTracked(file) {
+  const tracked = spawnSync('git', ['ls-files', '--error-unmatch', file], { encoding: 'utf8' });
+  if (tracked.status === 0) throw new Error(`${file} is tracked by git: remove it from the repository (git rm --cached) before using it`);
+}
+
+/* Every account of .auth/accounts.json in order: [{ role: "<role>" | "<role>#<n>", base: "<role>", secrets }].
+   o.roles (array of role names) keeps only those roles, in that order. [] when the file does not exist. */
+function loadAccounts(o = {}) {
+  const file = o.accounts || ACCOUNTS;
+  if (!fs.existsSync(file)) return [];
+  notTracked(file);
+  const a = JSON.parse(fs.readFileSync(file, 'utf8'));
+  const all = a.accounts || {};
+  const order = (o.roles && o.roles.length ? o.roles : a.order) || Object.keys(all);
+  const out = [];
+  for (const role of order) {
+    const users = Array.isArray(all[role]) ? all[role] : all[role] ? [all[role]] : [];
+    if (!users.length) { if (o.log) o.log(`accounts: no user for ${role} (left out)`); continue; }
+    users.forEach((user, i) => {
+      const label = users.length > 1 ? `${role}#${i + 1}` : role;
+      out.push({ role: label, base: role, secrets: { user, password: a.password, pin: a.pin != null ? String(a.pin) : undefined, _source: `accounts:${label}` } });
+    });
+  }
+  return out;
 }
 
 const re = x => (x ? new RegExp(x, 'i') : null);
@@ -281,4 +317,22 @@ async function autoLogin(browser, ctxOpts, profile, secrets, storage, log = cons
   } finally { await ctx.close(); }
 }
 
-module.exports = { resolveProfile, loadSecrets, ensureSession, autoLogin, where, whereNow };
+/* Sign in with the first account that works (accounts from loadAccounts); returns that account. A failed sign-in
+   (identity provider error, locked account, PIN not accepted) moves on to the next account; the log names the label only. */
+async function autoLoginAny(browser, ctxOpts, profile, accounts, storage, log = console.log) {
+  let last = null;
+  for (const acc of accounts) {
+    try {
+      await autoLogin(browser, ctxOpts, profile, acc.secrets, storage, log);
+      log(`signed in with account ${acc.role}`);
+      return acc;
+    } catch (e) {
+      if (/has been closed/i.test(e.message)) throw e;
+      last = e;
+      log(`account ${acc.role}: sign-in failed: ${e.message.split('\n')[0]}; trying the next account`);
+    }
+  }
+  throw new Error(`no account could sign in (${accounts.length} tried)${last ? ': ' + last.message.split('\n')[0] : ''}`);
+}
+
+module.exports = { resolveProfile, loadSecrets, loadAccounts, autoLoginAny, ensureSession, autoLogin, where, whereNow, ACCOUNTS };

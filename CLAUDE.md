@@ -9,13 +9,13 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
 ## Paths
 
 - `SK=tools/pipeline`: every command below is `python3 $SK/<x>.py` or `node $SK/<x>.cjs`,
-  always run from the project root (scripts default to `migration/`, `app/`, `.auth/`, `capture/` relative to it).
-- `capture/survey-UBTConnect.json`: static survey (compiled code only).
+  always run from the project root (scripts default to `migration/`, `app/`, `.auth/` relative to it).
+- `migration/survey/survey-UBTConnect.json`: static survey of the compiled code (live, not in git; the copy of 2026-10-13 is tracked).
 - `migration/`: board, survey, catalog, stack, patterns, flags, per-route captures/specs/questions/parity.
 - `app/`: the React app. Folders of `app/src/`: `app`, `pages`, `containers`, `components`, `api`, `platform`, `lib`,
   `legacy/os`, `mocks`, `styles`, `vendor`, `pwa`, `sw`, `test`. Read `app/README.md` and
   `app/docs/architecture/overview.md` first.
-- `route-check/`: the check of the routes, OutSystems against React (facts only). Start with `route-check/README.md`.
+- `migration/route-check/`: the check of the routes, OutSystems against React (facts only). Start with `migration/route-check/README.md`.
 - `.auth/`: credentials and session. **SECRET.**
 
 ## Hard rules

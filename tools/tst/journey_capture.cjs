@@ -16,10 +16,12 @@
  * through AcceptPendingPolicies. A stopped attempt saves a debug snapshot in runs/<J>.debug/. run.json records the
  * account role that verified the journey and every attempt; when none verifies it, runs/<J> is the furthest attempt. A
  * journey with `requires` that no account verifies is not-run (it keeps the furthest attempt); later runs try only the
- * accounts not tried yet (user, 2026-10-22). Only this process reads the file; the values go to
- * site_auth.cjs and are never printed or written. Format (the owner writes it):
- *   { "password": "…", "pin": "…", "accounts": { "global": "<user>", "regional": "<user>", "local": "<user>",
- *     "householder": "<user>" }, "order": ["global", "regional", "local"] }
+ * accounts not tried yet (user, 2026-10-22). Only site_auth.cjs reads the file; the values are never printed or
+ * written. Format (the owner writes it; a role holds one user or a list, user 2026-11-06):
+ *   { "password": "…", "pin": "…", "accounts": { "global": ["<user>", …], "regional": [...], "local": [...],
+ *     "householder": [...] }, "order": ["global", "regional", "local", "householder"] }
+ * Each user of a role is one account "<role>#<n>" (run.json, debug files and --accounts use that label; --accounts
+ * names roles). A journey runs with the accounts in order until one verifies it.
  *
  * Run from the project root. It uses the skill's own modules:
  *   site_auth.cjs       sign-in and PIN with the site profile (migration/site.json); only that module reads the secrets
@@ -361,17 +363,12 @@ async function runJourney(browser, session, renderCtx, j, byId, o) {
   return result;
 }
 
-/* the accounts of .auth/accounts.json, in memory only; null when the file does not exist */
+/* the accounts of .auth/accounts.json (site_auth.loadAccounts), in memory only; null when the file does not exist.
+   pick: role names (--accounts); every user of those roles, in the file's order */
 function loadAccounts(pick) {
   if (!fs.existsSync(ACCOUNTS)) return null;
-  const tracked = require('child_process').spawnSync('git', ['ls-files', '--error-unmatch', ACCOUNTS], { encoding: 'utf8' });
-  if (tracked.status === 0) throw new Error(`${ACCOUNTS} is tracked by git: remove it from the repository first`);
-  const a = JSON.parse(fs.readFileSync(ACCOUNTS, 'utf8'));
-  const order = pick || a.order || ['global', 'regional', 'local'];
-  const roles = order.filter(r => a.accounts && a.accounts[r]);
-  const missing = order.filter(r => !(a.accounts && a.accounts[r]));
-  if (missing.length) log(`accounts: no user for ${missing.join(', ')} (left out)`);
-  return roles.map(role => ({ role, secrets: { user: a.accounts[role], password: a.password, pin: a.pin != null ? String(a.pin) : undefined, _source: `accounts:${role}` } }));
+  const list = auth.loadAccounts({ roles: pick, log });
+  return list.length ? list : null;
 }
 
 async function main() {

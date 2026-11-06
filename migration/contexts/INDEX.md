@@ -5,7 +5,7 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 2026-11-05/06 repository tidy: TST drift handled ([context-075](context-075-tst-drift-waves.md)), folders reorganised ([076](context-076-folder-reorg.md)), `migration/` cleaned ([077](context-077-migration-cleanup.md), [079](context-079-tools-and-migration-cleanup.md)), one store `migration/sources/` for every compiled TST file ([078](context-078-sources-store.md), [080](context-080-one-sources-store.md)); one-off tools deleted.
+- 2026-11-05/06 repository tidy: TST drift handled ([context-075](context-075-tst-drift-waves.md)); folders reorganised ([076](context-076-folder-reorg.md)); `migration/` cleaned ([077](context-077-migration-cleanup.md), [079](context-079-tools-and-migration-cleanup.md)). One store `migration/sources/` for every compiled TST file ([078](context-078-sources-store.md), [080](context-080-one-sources-store.md)). Root = `app/`, `tools/`, `migration/`, `.claude/`; several test accounts ([081](context-081-root-folders-and-accounts.md)).
 - Route check `route-check/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
 - Waits for the user: row 23 (JSON key names of the contract: generator / BFF / defer). Re-captures: NotificationDetails, Search pills and layout, the 17 routes without a capture.
 - TST has 84 routes: 68 build, 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
@@ -94,3 +94,4 @@ section "Context notes".
 | [078](context-078-sources-store.md) | 2026-11-05 | Shared store `migration/sources/` (raw, pretty, styles) + `analysis/manifest.json` per route; 9 tools read/write through `sources_store.py`; 650+ citations rewritten; 68 route files regenerated | current |
 | [079](context-079-tools-and-migration-cleanup.md) | 2026-11-06 | One-off tools deleted (refactor step tools, skill scaffolding, English docs program); `migration/` cleaned: `style/`, `tools/clarify/`, handoffs, flow packs, dashboard site, old plans. | current |
 | [080](context-080-one-sources-store.md) | 2026-11-06 | One store for every compiled TST file: `runtime/`, `contract/`, `shell/`, `survey/` added to `migration/sources/`; `live/` → `live-files.txt`; 15 tools through the store; 372 files of citations rewritten. | current |
+| [081](context-081-root-folders-and-accounts.md) | 2026-11-06 | `route-check/` → `migration/route-check/`, `capture/` → `migration/survey/`; `.auth/accounts.json` with a list of users per role, tools try the next account; site profile path fixed. | current |

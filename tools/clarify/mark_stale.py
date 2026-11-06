@@ -21,7 +21,7 @@ field. Writes <drift>/impact.txt: the count per reason and per flow (strong/weak
 import argparse, collections, difflib, glob, json, os, re, subprocess
 
 C = "migration/clarify"
-SURVEYS = ["capture/survey-UBTConnect-2026-10-13.json", "capture/survey-UBTConnect.json"]
+SURVEYS = ["migration/survey/survey-UBTConnect-2026-10-13.json", "migration/survey/survey-UBTConnect.json"]
 RUNTIME = ["migration/sources/runtime", "migration/sources/shell"]
 FIELDS = ["element", "os", "tst", "evidence", "react", "note", "finding"]
 CITE = re.compile(r"\b([A-Za-z]\w*(?:\.\w+)*\.js)\b(?::(\d+(?:-\d+)?(?:\s*,\s*\d+(?:-\d+)?)*))?")

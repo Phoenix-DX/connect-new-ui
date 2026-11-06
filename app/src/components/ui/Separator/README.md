@@ -1,7 +1,7 @@
 # Separator (OutSystems UI)
 
 OutSystems: `OutSystemsUI_2_23.Utilities.Separator` · pack `migration/blocks/OutSystemsUI_2_23.Utilities.Separator.md`
-(survey only: compiled source in `capture/survey-UBTConnect.json`)
+(survey only: compiled source in `migration/survey/survey-UBTConnect.json`)
 
 | Input         | Type    | Prop            | Default          |
 | ------------- | ------- | --------------- | ---------------- |

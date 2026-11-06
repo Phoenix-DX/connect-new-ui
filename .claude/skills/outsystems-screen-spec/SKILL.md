@@ -20,7 +20,7 @@ Unless the user names another app, every run works on **UBTConnect TST**: `https
 1. `/UBTConnect/Login` → button **"Login with UBT One"** → identity provider `https://ubtb2cuat.b2clogin.com/…` → test account user + password → back to the app.
 2. `/UBTConnect/PINUnlock` → the PIN (input boxes or keypad, both handled).
 
-Secrets are never in the skill: they come from `.auth/credentials.json` (`{"user", "password", "pin"}`) or the environment variables `UBT_USER`, `UBT_PASSWORD`, `UBT_PIN`. Before the first run, check that the secrets file exists and that `.auth/` is in the project's `.gitignore`; if the file is missing, ask the user to create it (never write the values into chat, code, notes or the board). Then:
+Secrets are never in the skill: they come from `.auth/accounts.json` (several test accounts by role, each role a list of users, one password and PIN; see the header of `site_auth.cjs`), else `.auth/credentials.json` (`{"user", "password", "pin"}`), else the environment variables `UBT_USER`, `UBT_PASSWORD`, `UBT_PIN`. With the account list, `login --auto --role <role>` signs in with the first account of that role that works, and `run` tries the next accounts for a screen the signed-in account cannot reach. Before the first run, check that the secrets file exists and that `.auth/` is in the project's `.gitignore`; if the file is missing, ask the user to create it (never write the values into chat, code, notes or the board). Then:
 ```bash
 node tools/pipeline/batch_capture.cjs login --auto --storage .auth/state.json     # sign in + PIN, save the session
 ```
@@ -44,9 +44,9 @@ Measure all along with `ledger.py` (tokens per screen and phase, and the waste o
 
 ## Phase 0: Survey
 
-Run `node tools/pipeline/batch_capture.cjs survey` (signs in by itself with the site profile, injects `tools/pipeline/survey.js`, saves `capture/survey-<App>.json`: static compiled code only, no user data). Without automation: inject `tools/pipeline/survey.js` on any screen (logged in), run `await __osSurvey.run()`, save `survey-<App>.json`. Then:
+Run `node tools/pipeline/batch_capture.cjs survey` (signs in by itself with the site profile, injects `tools/pipeline/survey.js`, saves `migration/survey/survey-<App>.json`: static compiled code only, no user data). Without automation: inject `tools/pipeline/survey.js` on any screen (logged in), run `await __osSurvey.run()`, save `survey-<App>.json`. Then:
 ```bash
-python3 tools/pipeline/survey_app.py --survey capture/survey-<App>.json --out migration/survey --agents-out migration/AGENTS.md
+python3 tools/pipeline/survey_app.py --survey migration/survey/survey-<App>.json --out migration/survey --agents-out migration/AGENTS.md
 ```
 The survey is a map, never a spec.
 
@@ -54,7 +54,7 @@ The survey is a map, never a spec.
 
 ```bash
 python3 tools/pipeline/board.py init --screens migration/survey/screens.json [--import-routes migration/survey/routes.md]
-python3 tools/pipeline/board.py triage --survey capture/survey-<App>.json
+python3 tools/pipeline/board.py triage --survey migration/survey/survey-<App>.json
 python3 tools/pipeline/board.py show --decision "ask,?build,?skip"
 ```
 `triage` suggests `?build` / `?skip` / `ask` with evidence (reachability from the shell, entry points that are all skipped, no reference anywhere in compiled code, variants of a screen already chosen, test screens, screens with the same inputs as a built one, content in `Deprecated`/`Legacy` modules). It never decides. Take the list to the person who owns the product scope, in **one** session, and record each answer:
@@ -89,7 +89,7 @@ python3 tools/pipeline/har_to_fixtures.py review --out app/src/mocks/fixtures --
 ```bash
 python3 tools/pipeline/catalog.py --screens migration/survey/screens.json --board-dir migration --app app --out migration/catalog
 python3 tools/pipeline/board.py tier --tiers migration/catalog/tiers.json
-python3 tools/pipeline/flags.py scan --survey capture/survey-<App>.json --screens migration/survey/screens.json
+python3 tools/pipeline/flags.py scan --survey migration/survey/survey-<App>.json --screens migration/survey/screens.json
 ```
 `catalog.py` counts every block across live screens, finds which ones are built (a component carrying `@os-block Module.Flow.Block`), and writes:
 - `foundation-queue.md`: shared blocks remaining screens need that are not built. These are built in phase 5, never inside a screen task.

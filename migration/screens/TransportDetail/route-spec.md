@@ -1,6 +1,6 @@
 # Route spec: TransportDetail
 
-Sources (migration/sources/, extracted unchanged, CRLF → LF, from capture/survey-UBTConnect.json `sources`). The newer TST
+Sources (migration/sources/, extracted unchanged, CRLF → LF, from migration/survey/survey-UBTConnect.json `sources`). The newer TST
 copies in migration/sources/runtime/ of the screen, TransportDetail and TransportDetail_TravelInfo differ only in
 debugger ids. Keys:
 - `S` = UBTConnect.Legacy_OrbitEventsFlow.TransportDetail.mvc.js

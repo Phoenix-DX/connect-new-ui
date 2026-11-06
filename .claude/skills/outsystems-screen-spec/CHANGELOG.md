@@ -7,7 +7,7 @@
 - `batch_capture.cjs`: `login --auto`; `run` signs in when no session exists and recovers by itself when a page lands on the login, identity provider or PIN page (also before the loading/offline states, for per-tab PIN locks); `--base` defaults to the profile; `--no-auto`.
 - `record_har.cjs`: same automatic sign-in; sign-in calls pass the read-only guard and their time windows go to `<har>.auth.json`. `har_to_fixtures.py convert` skips calls inside those windows (no PIN validation in fixtures).
 - SKILL.md: "Default site and automatic sign-in", privacy rules; AGENTS rule 15.
-- `batch_capture.cjs survey`: phase 0 without DevTools (saved session, automatic sign-in, survey.js injected, `capture/survey-<App>.json`).
+- `batch_capture.cjs survey`: phase 0 without DevTools (saved session, automatic sign-in, survey.js injected, `migration/survey/survey-<App>.json`).
 
 ## v3.7: parity you can trust for 1:1 (style, viewports, flags, behaviour, mocks)
 

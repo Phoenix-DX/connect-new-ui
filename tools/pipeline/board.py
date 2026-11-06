@@ -9,7 +9,7 @@ per-screen notes files for everything long. Replaces editing survey/routes.md by
 
 Commands
   init    --screens survey/screens.json | --routes survey/routes.md   [--import-routes old routes.md]
-  triage  [--survey capture/survey-<App>.json]   suggest decisions with evidence (never final)
+  triage  [--survey migration/survey/survey-<App>.json]   suggest decisions with evidence (never final)
   set     <Screen> key=value ...                  e.g. status=building owner=agent-2 decision=skip reason="..."
   note    <Screen> "text"                         append a dated line to the screen's notes.md
   show    [--status s,..] [--decision d,..] [--tier t,..] [--cols c,..]

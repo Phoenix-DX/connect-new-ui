@@ -55,7 +55,7 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 
 ## Q9 [fact] logic (answered)
 - Question: What does the UBTConnect client action Notes_InterchangeId_ExtractId(ItemId) do (how does it get LocalityId from the ItemId of an Interchange note card)? Handler_OnClickNoteCardItem opens Locality_Details with it.
-- Evidence: live Notes.mvc.js:1556-1717 (Interchange branch); the action is not in migration/sources/runtime/UBTConnect.controller.js (2026-10-28) nor in capture/survey-UBTConnect.json. The React branch opens nothing until this is known (notesState.ts noteCardTarget).
+- Evidence: live Notes.mvc.js:1556-1717 (Interchange branch); the action is not in migration/sources/runtime/UBTConnect.controller.js (2026-10-28) nor in migration/survey/survey-UBTConnect.json. The React branch opens nothing until this is known (notesState.ts noteCardTarget).
 - OutSystems MCP: getClientAction UBTConnect Notes_InterchangeId_ExtractId
 - Answer (mcp, 2026-10-29T12:13:33): Not found: Notes_InterchangeId_ExtractId is not a client action of UBTConnect on DEV (MCP getClientAction: not found) and is not in the TST runtime sources or the live survey. The Interchange card opens nothing, as React does now.
 

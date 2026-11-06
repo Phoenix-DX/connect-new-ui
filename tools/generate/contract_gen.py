@@ -31,11 +31,11 @@ Which actions (scope)
 
 Evidence (types are never guessed)
   * Compiled code, one copy per file name, live TST first (user decision I10-6 (a), 2026-10-29): 1. the live survey
-    capture/survey-UBTConnect.json, 2. files fetched read-only into migration/sources/runtime (knowledge/
+    migration/survey/survey-UBTConnect.json, 2. files fetched read-only into migration/sources/runtime (knowledge/
     migration/sources/runtime.md), 3. producer-module *.model.js in migration/sources/contract and route captures
     (the shared store migration/sources/raw, named by the route manifests), newest file first. If the live survey is missing (it is not committed)
     a warning is printed and the old order applies: fetched copies newest first, then the survey of 2026-10-13
-    (capture/survey-UBTConnect-2026-10-13.json). A route capture copy can be older than TST (Notifications.mvc.js
+    (migration/survey/survey-UBTConnect-2026-10-13.json). A route capture copy can be older than TST (Notifications.mvc.js
     of 2026-10-14 lacks ActionMarkAsRead), so it must not win over the live code.
     Parsed constructs:
       - records:     define("<M>.model$<Name>") ... this.attr("Name", "nameAttr", "JsonName", mandatory, isId,
@@ -107,8 +107,8 @@ from collections import defaultdict
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 SK = os.path.join(ROOT, "tools", "pipeline")
-SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")
-OLD_SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect-2026-10-13.json")
+SURVEY = os.path.join(ROOT, "migration", "survey", "survey-UBTConnect.json")
+OLD_SURVEY = os.path.join(ROOT, "migration", "survey", "survey-UBTConnect-2026-10-13.json")
 SCREENS_DIR = os.path.join(ROOT, "migration", "screens")
 sys.path.insert(0, os.path.join(ROOT, "tools", "common"))
 import sources_store  # noqa: E402
@@ -259,10 +259,10 @@ class Sources:
         # from Connect2_OrbitMobile_MUI to Connect2_OrbitMobile_BL), and mixing a survey .mvc.js with a newer *.model.js
         # leaves its structures unresolved.
         # Order (user decision I10-6 (a), 2026-10-29; live TST code is the source of truth, context-062): 1. the live
-        # survey (capture/survey-UBTConnect.json), 2. migration/sources/runtime, 3. producer models in
+        # survey (migration/survey/survey-UBTConnect.json), 2. migration/sources/runtime, 3. producer models in
         # migration/sources/contract/raw and route captures (migration/sources/raw), newest file
         # first, 4. nothing else. If the live survey is missing (it is not committed) the old order applies: fetched
-        # copies by modification time, the older survey (capture/survey-UBTConnect-2026-10-13.json) as the last resort.
+        # copies by modification time, the older survey (migration/survey/survey-UBTConnect-2026-10-13.json) as the last resort.
         norm = lambda t: t.replace("\ufeff", "").replace("\r\n", "\n").strip()  # BOM, line endings
         live = os.path.isfile(SURVEY)
         if live:
@@ -275,7 +275,7 @@ class Sources:
         if live:
             for name, txt in survey["sources"].items():
                 self.text[name] = txt
-                self.origin[name] = "capture/survey-UBTConnect.json#" + name
+                self.origin[name] = "migration/survey/survey-UBTConnect.json#" + name
         by_age = lambda ps: sorted(ps, key=lambda p: (-os.path.getmtime(p), p))
         # the route captures' compiled files live once in the shared store (tools/common/sources_store.py)
         tiers = [glob.glob(os.path.join(RUNTIME_SOURCES, "*.js")),

@@ -1,7 +1,7 @@
 # Screen spec: LDM_EventDetail_V2
 
 Sources: `migration/sources/pretty/` (= `p/`; SB = `p/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js`),
-`analysis/dom/{default,loading,offline}.html`, `analysis/calls.md`, `pack.md`, `capture/survey-UBTConnect.json`
+`analysis/dom/{default,loading,offline}.html`, `analysis/calls.md`, `pack.md`, `migration/survey/survey-UBTConnect.json`
 (EventDetail_SpecialNeeds_ListItem), `migration/sources/runtime/Connect2_OrbitMobile_MUI.controller.js` (= C).
 LDM = Lord's Day Meal; the UI lives in the Orbit module `Connect2_OrbitMobile_MUI` (only V2 is built, user 2026-10-16).
 

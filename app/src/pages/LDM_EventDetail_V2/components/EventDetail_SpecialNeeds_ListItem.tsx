@@ -14,7 +14,7 @@ export interface EventDetail_SpecialNeeds_ListItemProps {
   info: ReactNode;
 }
 
-/** One special need of a guest (capture/survey-UBTConnect.json sources
+/** One special need of a guest (migration/survey/survey-UBTConnect.json sources
     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js", view): the square photo of
     MaxPhotoPx (or the blank `fa-users` box), then Title_Placeholder and Info_Placeholder in
     `event-detail-list-sp-item-info` (+ ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic.

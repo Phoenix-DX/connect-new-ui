@@ -19,7 +19,7 @@ const NEWEST = 'False';
 const OLDEST = 'True';
 
 /** Sort popup of the Orbit landing (Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Sort.mvc.js from
-    capture/survey-UBTConnect.json `sources`; captured dom/popup-sort.raw.html): close icon (ClosePopup), RadioGroup_SortBy
+    migration/survey/survey-UBTConnect.json `sources`; captured dom/popup-sort.raw.html): close icon (ClosePopup), RadioGroup_SortBy
     on its own copy of In_IsSortASC (Newest False, Oldest True; the selected label "color-orbit-primary-7 bold"), Apply
     → ApplySort(In_IsSortASC). No lifecycle events. */
 export function Popup_OrbitLanding_Sort({ id, inIsSortASC, onApplySort, onClosePopup }: Popup_OrbitLanding_SortProps) {

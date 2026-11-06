@@ -13,20 +13,20 @@ Sources (README.md has the details):
      shared store migration/sources/raw (tools/common/sources_store.py),
      migration/survey/screens.json, app/src/api/openapi.yaml.
   2. MCP (DEV, read only): the UI flow of each screen (module UBTConnect).
-  3. React: route-check/.cache/data/react-shell.json and react-<Route>.json (react_calls.mjs).
-The input paths are in route-check/config.json.
+  3. React: migration/route-check/.cache/data/react-shell.json and react-<Route>.json (react_calls.mjs).
+The input paths are in migration/route-check/config.json.
 """
 import argparse, collections, glob, json, os, re, subprocess, sys
 from datetime import date
 
 TOOLS = os.path.dirname(os.path.abspath(__file__))                    # tools/route-check/
 ROOT = os.path.dirname(os.path.dirname(TOOLS))                        # the repository root
-HERE = os.path.join(ROOT, "route-check")                              # route-check/: config, reports, cache
+HERE = os.path.join(ROOT, "migration", "route-check")                              # migration/route-check/: config, reports, cache
 CFG = json.load(open(os.path.join(HERE, "config.json"), encoding="utf-8"))
 
 
 def cfg(*keys):
-    """An input path of route-check/config.json, absolute."""
+    """An input path of migration/route-check/config.json, absolute."""
     v = CFG
     for k in keys:
         v = v[k]
@@ -41,7 +41,7 @@ import os_static  # noqa: E402
 import os_call_graph  # noqa: E402
 
 OUT = os.path.join(HERE, "routes")          # the route files
-DATA = os.path.join(cfg("cache"), "data")   # git ignores route-check/.cache/
+DATA = os.path.join(cfg("cache"), "data")   # git ignores migration/route-check/.cache/
 
 
 PATTERN_MODULES = ("UBTConnectLibrary", "OutSystemsUI_2_23")
@@ -114,7 +114,7 @@ def read_status():
 
 def status():
     """The state of the check: routes done, the next route (order of ROUTES.md), the routes without a TST capture,
-    the files of route-check/ that git has not committed."""
+    the files of migration/route-check/ that git has not committed."""
     st = read_status()
     txt = open(routes_md_path(), encoding="utf-8").read().split("## Out of scope")[0]
     order = re.findall(r"^\| \[?`(\w+)`", txt, re.M)
@@ -127,8 +127,8 @@ def status():
     print(f"todo with a TST capture: {sum(1 for r in todo if has(r))}")
     nocap = [r for r in todo if not has(r)]
     print(f"todo without a TST capture (the tool stops): {len(nocap)}: {', '.join(nocap) or '-'}")
-    git = subprocess.run(["git", "status", "--short", "--", "route-check"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    print("uncommitted in route-check/: " + (git.replace("\n", "; ") if git else "none"))
+    git = subprocess.run(["git", "status", "--short", "--", "migration/route-check"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    print("uncommitted in migration/route-check/: " + (git.replace("\n", "; ") if git else "none"))
 
 
 def write_routes(done=None):
@@ -664,7 +664,7 @@ def md_escape(s):
     return str(s).replace("|", "\\|")
 
 
-LINK_BASE = [None]  # the folder of the file that render writes (routes/ or route-check/)
+LINK_BASE = [None]  # the folder of the file that render writes (routes/ or migration/route-check/)
 
 
 def link(path, line=None):

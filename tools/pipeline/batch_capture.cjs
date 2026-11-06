@@ -15,7 +15,7 @@
  *   With a site profile and secrets available, "run" also signs in again and unlocks the PIN by itself whenever the
  *   app sends a page to the login, identity provider or PIN page (the capture of that page is then redone).
  *
- *   node batch_capture.cjs survey [--page /<App>/<Home>] [--include "<regex>"] [--out capture/survey-<App>.json]
+ *   node batch_capture.cjs survey [--page /<App>/<Home>] [--include "<regex>"] [--out migration/survey/survey-<App>.json]
  *        Phase 0 without DevTools: opens the app with the saved session (signing in / unlocking by itself with a
  *        site profile), injects survey.js, runs it and saves the static survey (compiled code only, no user data).
  *
@@ -77,7 +77,7 @@ try { pw = require('playwright'); } catch { console.error('playwright not found:
 const { chromium, devices } = pw;
 const auth = require('./site_auth.cjs');
 const guard = require('./readonly_guard.cjs');
-let PROFILE = null, SECRETS = null;
+let PROFILE = null, SECRETS = null, ACCOUNTS = [], ACCOUNT_AT = 0;   // ACCOUNTS: every test account (site_auth.loadAccounts); ACCOUNT_AT: the one signed in
 let GUARD = true, ALLOW = new Set();
 const authLog = m => console.log(`  [auth] ${m}`);
 /* sign in / unlock if the app sent the page elsewhere, then come back to url; true if it had to act */
@@ -333,17 +333,29 @@ async function main() {
   PROFILE = auth.resolveProfile(o);
   if (PROFILE && o['no-auto'] !== undefined) PROFILE = null;
   if (PROFILE) {
-    SECRETS = auth.loadSecrets(PROFILE, o);
+    ACCOUNTS = auth.loadAccounts({ roles: o.role ? String(o.role).split(',').map(s => s.trim()) : null, log: authLog });   // --role a,b: those roles only
+    SECRETS = auth.loadSecrets(PROFILE, o);   // environment or --credentials, else the first account, else .auth/credentials.json
+    if (ACCOUNTS.length && SECRETS && !/^accounts:/.test(SECRETS._source)) ACCOUNTS = [];   // explicit secrets (environment, --credentials) win
     o.base = o.base || PROFILE.base;
-    console.log(`site profile: ${PROFILE.name} (${PROFILE._file}); secrets: ${SECRETS ? 'found (' + SECRETS._source + ')' : 'NOT found: automatic sign-in off'}`);
+    console.log(`site profile: ${PROFILE.name} (${PROFILE._file}); secrets: ${SECRETS ? 'found (' + SECRETS._source + ')' : 'NOT found: automatic sign-in off'}` +
+                (ACCOUNTS.length > 1 ? `; ${ACCOUNTS.length} accounts: ${ACCOUNTS.map(a => a.role).join(' → ')}` : ''));
     if (!SECRETS) PROFILE = null;
   }
+  /* sign in: with the account list, the first account that works (then SECRETS is that account's); else SECRETS */
+  const loginAny = async (browser, ctxOpts, storage, from = 0) => {
+    if (!ACCOUNTS.length) { await auth.autoLogin(browser, ctxOpts, PROFILE, SECRETS, storage, authLog); return true; }
+    const rest = ACCOUNTS.slice(from);
+    if (!rest.length) return false;
+    const acc = await auth.autoLoginAny(browser, ctxOpts, PROFILE, rest, storage, authLog);
+    ACCOUNT_AT = ACCOUNTS.indexOf(acc); SECRETS = acc.secrets;
+    return true;
+  };
   if (cmd === 'login' && o.auto) {
-    if (!PROFILE) throw new Error('login --auto needs a site profile and secrets (.auth/credentials.json or environment)');
+    if (!PROFILE) throw new Error('login --auto needs a site profile and secrets (.auth/accounts.json, .auth/credentials.json or environment)');
     const storage = o.storage || '.auth/state.json';
     const browser = await chromium.launch({ headless: !o.headed });
     const vp = String(o.viewport || '390x844').split('x').map(Number);
-    try { await auth.autoLogin(browser, o.device ? { ...devices[o.device] } : { viewport: { width: vp[0], height: vp[1] } }, PROFILE, SECRETS, storage, authLog); }
+    try { await loginAny(browser, o.device ? { ...devices[o.device] } : { viewport: { width: vp[0], height: vp[1] } }, storage); }
     finally { await browser.close(); }
     return;
   }
@@ -367,7 +379,7 @@ async function main() {
     try {
       if (PROFILE && (!o.storage || !fs.existsSync(o.storage))) {
         o.storage = o.storage || '.auth/state.json';
-        await auth.autoLogin(browser, { viewport: { width: 390, height: 844 } }, PROFILE, SECRETS, o.storage, authLog);
+        await loginAny(browser, { viewport: { width: 390, height: 844 } }, o.storage);
       }
       const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: 'block',
                                              storageState: o.storage && fs.existsSync(o.storage) ? o.storage : undefined });
@@ -421,13 +433,30 @@ async function main() {
     const browser = await chromium.launch({ headless: !o.headed });
     if (PROFILE && (!o.storage || !fs.existsSync(o.storage))) {   // no saved session yet: sign in once, reuse it for every screen
       o.storage = o.storage || '.auth/state.json';
-      await auth.autoLogin(browser, { viewport: { width: 390, height: 844 } }, PROFILE, SECRETS, o.storage, authLog);
+      await loginAny(browser, { viewport: { width: 390, height: 844 } }, o.storage);
     }
     const summary = {};
+    // a screen the signed-in account cannot reach (redirected, no access, session expired) is tried again with the
+    // next accounts of .auth/accounts.json (user, 2026-11-06); the session file is replaced by the new account's
+    const unreachable = e => /session expired or no access|redirected to/.test(e.message);
     for (const sc of todo) {
       process.stdout.write(`${sc.screen} … `);
-      try { summary[sc.screen] = await captureScreen(browser, o, plan.defaults || {}, sc, plan); console.log(summary[sc.screen].join('; ')); }
-      catch (e) { summary[sc.screen] = [`FAILED: ${e.message.split('\n')[0]}`]; console.log(summary[sc.screen][0]); if (/session expired/.test(e.message)) break; }
+      let from = ACCOUNT_AT + 1;
+      for (;;) {
+        try { summary[sc.screen] = await captureScreen(browser, o, plan.defaults || {}, sc, plan); console.log(summary[sc.screen].join('; ')); break; }
+        catch (e) {
+          summary[sc.screen] = [`FAILED: ${e.message.split('\n')[0]}`];
+          if (unreachable(e) && ACCOUNTS.length && from < ACCOUNTS.length && o.storage) {
+            console.log(`${summary[sc.screen][0]}; trying the next account`);
+            try { if (await loginAny(browser, { viewport: { width: 390, height: 844 } }, o.storage, from)) { from = ACCOUNT_AT + 1; process.stdout.write(`${sc.screen} [${ACCOUNTS[ACCOUNT_AT].role}] … `); continue; } }
+            catch (e2) { console.log(`  [auth] ${e2.message.split('\n')[0]}`); }
+          }
+          console.log(summary[sc.screen][0]);
+          if (/session expired/.test(e.message) && !ACCOUNTS.length) { summary[sc.screen].push('run stopped'); }
+          break;
+        }
+      }
+      if (summary[sc.screen].includes('run stopped')) break;
     }
     await browser.close();
     writeJson(path.join(o.out, '_capture-summary.json'), JSON.stringify(summary, null, 1));

@@ -101,12 +101,12 @@ contract of the finished Search and ShareSheet mocks. The foundation owner decid
 | Survey drift check (2026-10-28) | Size | What it answers |
 |---|---|---|
 | `moduleinfo-2026-10-28.json` (GET `/UBTConnect/moduleservices/moduleinfo`) | 290 kB | Live manifest version 15682 (15568 on 2026-10-15): URL versions, URL mappings and static-entity values. It is `moduleinfo.json` since the source switch |
-| `capture/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`). It is `capture/survey-UBTConnect.json` since the source switch; not committed |
+| `migration/survey/survey-UBTConnect-2026-10-28.json` (641 `.mvc.js` files, the `survey.js` filter) | 25 MB | The live compiled screens and blocks; compared with the survey of 2026-10-13 (`migration/clarify/review/survey-drift-2026-10-28.md`). It is `migration/survey/survey-UBTConnect.json` since the source switch; not committed |
 | `capture/runtime-sources-live-2026-10-28/` (155 files of `migration/sources/runtime/`, and `shell/` with the 16 shell sources) | 21 MB | Live copies of the runtime sources: 19 changed, 1 shell source changed; not committed (in `.gitignore`) |
 
 Source switch (user decision (c), 2026-10-28): the live TST code of 2026-10-27 is the source of truth.
-- `capture/survey-UBTConnect.json` is the live survey (not committed, in `.gitignore`). The survey of 2026-10-13 is
-  `capture/survey-UBTConnect-2026-10-13.json` (committed).
+- `migration/survey/survey-UBTConnect.json` is the live survey (not committed, in `.gitignore`). The survey of 2026-10-13 is
+  `migration/survey/survey-UBTConnect-2026-10-13.json` (committed).
 - The 19 changed runtime sources and `migration/sources/shell/UBTConnect.App_Common.controller.js` are the live copies.
   The old copies are in git at commit f9f68bfc.
 - `migration/sources/runtime/moduleinfo.json` is the live moduleinfo (version 15682); the old one is in git at f9f68bfc.

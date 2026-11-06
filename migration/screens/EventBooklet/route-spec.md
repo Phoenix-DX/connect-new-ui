@@ -1,6 +1,6 @@
 # Screen spec: EventBooklet
 
-- Sources: migration/sources/, extracted unchanged (CRLF → LF) from capture/survey-UBTConnect.json `sources`.
+- Sources: migration/sources/, extracted unchanged (CRLF → LF) from migration/survey/survey-UBTConnect.json `sources`.
 - The TST copies in migration/sources/runtime/ of the screen, ListHeader, MembersItem and the filters dialog differ
   only in debugger ids and a BOM.
 - Short names: `S` = UBTConnect.Legacy_OrbitEventsFlow.EventBooklet.mvc.js,

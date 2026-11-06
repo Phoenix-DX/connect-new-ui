@@ -53,7 +53,7 @@ const toRecord = (item: SearchResult): SearchResultRecord => ({
   Event_OrbitEventType: item.eventOrbitEventType,
 });
 
-/** UBTConnect Directory_Search.SearchResult_Section (capture/survey-UBTConnect.json sources
+/** UBTConnect Directory_Search.SearchResult_Section (migration/survey/survey-UBTConnect.json sources
     UBTConnect.Directory_Search.SearchResult_Section.mvc.js, view internalRender, prettier line numbers :334-650):
     SectionSeparator unless HideSeparator; CustomContainer (horizontal Base, top Base unless HideSeparator, bottom Base)
     with Columns_Two (ReduceLast, Center: Type | "<n> Results") and the list of SearchResult_Item. */

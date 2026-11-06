@@ -793,7 +793,7 @@ def tst_files():
     global TST_FILES
     if TST_FILES is None:
         try:
-            TST_FILES = sorted(json.load(open("capture/survey-UBTConnect.json"))["sources"].keys())
+            TST_FILES = sorted(json.load(open("migration/survey/survey-UBTConnect.json"))["sources"].keys())
         except (OSError, KeyError, ValueError):
             TST_FILES = []
     return TST_FILES
