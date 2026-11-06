@@ -6,14 +6,15 @@ Load order of stylesheets (keep this order in the build):
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
 3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
 4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
-6. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-7. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
-8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+5. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css`
+6. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
+7. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
+8. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -567,6 +568,10 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .padding-top-base { padding-top:var(--space-base); }
 ```
+### .padding-top-xs  (1 rule)
+```css
+.padding-top-xs { padding-top:var(--space-xs); }
+```
 ### .padding-y-s  (1 rule)
 ```css
 .padding-y-s { padding-bottom:var(--space-s); padding-top:var(--space-s); }
@@ -780,10 +785,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .padding-top-s  (1 rule)
 ```css
 .padding-top-s { padding-top:var(--space-s); }
-```
-### .padding-top-xs  (1 rule)
-```css
-.padding-top-xs { padding-top:var(--space-xs); }
 ```
 ### .padding-x-base  (1 rule)
 ```css
@@ -1243,7 +1244,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { pointer-events: auto; }
 .ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { opacity: 0; }
 ```
-### .osui-bottom-sheet__content  (13 rules)
+### .osui-bottom-sheet__content  (12 rules)
 ```css
 .osui-bottom-sheet .osui-bottom-sheet__content:empty, .osui-bottom-sheet .osui-bottom-sheet__header__top-bar:empty {  }
 .osui-bottom-sheet__content { max-height:var(--bottom-sheet-max-height); overflow-y:scroll; padding:var(--space-base); padding-bottom:calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom)); }
@@ -1255,8 +1256,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content { padding-right: calc(var(--space-s) + var(--os-safe-area-right)); padding-left: calc(var(--space-s) + var(--os-safe-area-left)); padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom)); }
 .connect-share-sheet .osui-bottom-sheet__content { padding: 0; display: flex; flex-direction: column; flex: 1; gap: var(--share-sheet-gap, var(--space-s)); }
 .connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content { margin: 0; flex: 1; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) { display: flex; flex-direction: column; min-height: 0; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list), .connect-share-sheet__content__search-list { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
 ### .osui-bottom-sheet__header  (10 rules)

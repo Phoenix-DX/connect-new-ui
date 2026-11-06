@@ -270,7 +270,7 @@ Calendar.MyEntertaining_Embedded
 | In_InitialEventSouceId | input | Text | `""` |
 - Lifecycle handlers: Initialize
 - Client actions / event handlers: `onInitialize`, `handle_OpenMap`, `handle_Error`, `handle_NavBack`, `onNavBack`
-- Static entities / flags: `type_MyCalendarEventSource.orbit`, `type_MyCalendarEventSource.lDM`, `type_MyCalendarEventSource.assemble`, `type_MyCalendarEventSource.userCreated`, `uBT_MessageType.info`
+- Static entities / flags: `type_MyCalendarEventSource.orbit`, `type_MyCalendarEventSource.lDM`, `type_MyCalendarEventSource.assemble`, `type_MyCalendarEventSource.userCreated`, `uBT_MessageType.error`
 - Client variables: getEmbedd_B2CTenant
 
 ## `UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
@@ -331,14 +331,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2890 ms
-- 2. `DataActionGetEntertainingConfig` (200) at 3994 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6125 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6562 ms
-- 5. `ActionGetUserInformation` (200) at 6931 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7197 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9763 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11647 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2810 ms
+- 2. `DataActionGetEntertainingConfig` (200) at 3546 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 5454 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5886 ms
+- 5. `ActionGetUserInformation` (200) at 6177 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 6399 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8103 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10416 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

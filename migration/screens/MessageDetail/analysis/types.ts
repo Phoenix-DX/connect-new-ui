@@ -50,135 +50,17 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
-export interface MessagePriority {
-  Id: number /* 0 in capture */;
-  Label: string /* "" in capture */;
-  Order: number /* 0 in capture */;
-  Is_Active: boolean;
-}
-
-export interface MessageContent {
-  Id: string /* Long Integer as string */;
-  MessageContent: string;
-}
-
-export interface MessageTemplate {
-  Id: string /* Long Integer as string */;
-  IsAdaptiveCard: boolean;
-  Title: string;
-  Summary: string /* "" in capture */;
-  MessageContentId: string /* Long Integer as string */;
-  CreatedByUser: number /* 0 in capture */;
-  CreatedDate: string /* "1900-01-01..." = no value */;
-  LastUpdated: string /* "1900-01-01..." = no value */;
-  UpdatedBy: number /* 0 in capture */;
-  MessageTemplateStatusId: number /* 0 in capture */;
-  MessageTemplateTypeId: number;
-  MessageTemplatePriorityId: number;
-  MessageInfoTypeId: number;
-  AdaptiveCardJSONId: string /* Long Integer as string */;
-  SentAs: number /* 0 in capture */;
-  SavedTemplateId: string /* Long Integer as string */;
-  MessageSendToTypeId: number /* 0 in capture */;
-  MessageApplicationTargetId: number /* 0 in capture */;
-  RecalledBy: number /* 0 in capture */;
-  IsPushNotificationOnly: boolean;
-  HideTitleOnPushNotification: boolean;
-  HideBodyOnPushNotification: boolean;
-}
-
-export interface MessageSenderTarget {
-  Id: number /* 0 in capture */;
-  Name: string /* "" in capture */;
-  ProfileIconURL: string /* "" in capture */;
-  Order: number /* 0 in capture */;
-  Is_Active: boolean;
-  NotificationIcon: string /* "" in capture */;
-  NotificationHeading: string /* "" in capture */;
-}
-
-export interface MessageInstance {
-  Id: string /* Long Integer as string */;
-  MessageTemplateId: string /* Long Integer as string */;
-  UserId: number;
-  DeviceHardwareId: string /* "" in capture */;
-  IsSent: boolean;
-  IsReceived: boolean;
-  IsRead: boolean;
-  IsReplied: boolean;
-  IsClear: boolean;
-  DateTimeCreated: string /* ISO DateTime */;
-  NotificationUUID: string /* "" in capture */;
-  SendAttemptCount: number /* 0 in capture */;
-  LastSendAttemptDateTime: string /* "1900-01-01..." = no value */;
-  NextSendAttemptDateTime: string /* "1900-01-01..." = no value */;
-  CheckForReceiptCount: number /* 0 in capture */;
-  LastCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
-  NextCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
-  SentToWebDevice: boolean;
-  MessageError: string /* "" in capture */;
-}
-
-export interface AdaptiveCardJSON {
-  Id: string /* Long Integer as string */;
-  AdaptiveCardContent: string /* "" in capture */;
-}
-
-export interface User {
-  Id: number /* 0 in capture */;
-  Name: string;
-  Username: string /* "" in capture */;
-  Password: string /* "" in capture */;
-  Email: string /* "" in capture */;
-  MobilePhone: string /* "" in capture */;
-  External_Id: string /* "" in capture */;
-  Creation_Date: string /* "1900-01-01..." = no value */;
-  Last_Login: string /* "1900-01-01..." = no value */;
-  Is_Active: boolean;
-}
-
-export interface Message {
-  MessagePriority: MessagePriority;
-  MessageContent: MessageContent;
-  MessageTemplate: MessageTemplate;
-  MessageSenderTarget: MessageSenderTarget;
-  MessageInstance: MessageInstance;
-  AdaptiveCardJSON: AdaptiveCardJSON;
-  User: User;
-  CreatedByMemberId: string /* Long Integer as string */;
-}
-
-export interface Delimiters {
-  Delimiter_Function: string /* "" in capture */;
-  Delimiter_Parameter: string /* "" in capture */;
-  Delimiter_Placeholder: string /* "" in capture */;
-}
-
-export interface PlaceholderDelimiters {
-  Delimiters: Delimiters;
-}
-
-export interface GetMessageInstanceResponse {
-  Message: Message;
-  IsRetracted: boolean;
-  IsCleared: boolean;
-  PlaceholderDelimiters: PlaceholderDelimiters;
-}
-
-export interface ResultsItem {
-  Id: string /* Long Integer as string */;
-  Type: string;
-  Size: string;
-  SignedURL: string;
-  Error: string /* "" in capture */;
-}
-
-export interface GetSignedImagesInBulkResponse {
-  Results: ResultsItem[] /* wire: { List: [...] } */;
-}
-
 export interface AppManager_AfterInitializeResponse {
   isNotRegistered: boolean;
+}
+
+export interface DateRangesListItem {
+  Id: string;
+  Order: number;
+}
+
+export interface GetDateRangesResponse {
+  DateRangesList: DateRangesListItem[] /* wire: { List: [...] } */;
 }
 
 export interface OrbitEventTypesItem {
@@ -312,24 +194,18 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
-}
-
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  NoteId: string /* Long Integer as string */;
-  NoteCategoryId: string /* "" in capture */;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string /* "" in capture */;
   ItemId: string /* "" in capture */;
-  DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  DateEditedUtc: string /* "1900-01-01..." = no value */;
-  NotesTotalCount: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
+}
+
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -339,7 +215,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -423,20 +299,22 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string /* "" in capture */;
+  Email: string;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
+  HomeNumber: string;
+  MobileNumber: string;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -456,6 +334,33 @@ export interface GetUserInformationResponse {
 export interface GetNumberUnreadMessagesResponse {
   NumberPublicUnreadMessages: string /* Long Integer as string */;
   NumberPrivateUnreadMessages: string /* Long Integer as string */;
+}
+
+export interface UI_NotificationItemListItem {
+  Id: string /* Long Integer as string */;
+  MessageTemplateTypeId: number;
+  Title: string;
+  Summary: string /* "" in capture */;
+  DateTimeCreated: string /* ISO DateTime */;
+  MessageTemplatePriorityId: number;
+  ProfileIconURL: string /* "" in capture */;
+  IsClear: boolean;
+  IsRead: boolean;
+  CreatedByUserId: number;
+  MessageInfoTypeId: number;
+  MessageSenderTargetName: string;
+  CreatedByMemberId: string /* Long Integer as string */;
+  MessageTemplateId: string /* Long Integer as string */;
+  SentAs: number /* 0 in capture */;
+}
+
+export interface FetchNotificationsResponse {
+  UI_NotificationItemList: UI_NotificationItemListItem[] /* wire: { List: [...] } */;
+  UnreadNotificationsCount: string /* Long Integer as string */;
+}
+
+export interface ServiceAPIGet_UI_UpdateItems_UnreadCount_AllResponse {
+  UnreadCount: number;
 }
 
 export interface Latlng {
@@ -527,6 +432,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -563,6 +469,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -606,6 +513,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -619,6 +527,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {
@@ -634,6 +543,18 @@ export interface ServiceAPIFetchData_CacheableMapEntitiesResponse {
   GlobalLocations_Markers: GlobalLocations_MarkersItem[] /* wire: { List: [...] } */;
 }
 
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
+}
+
 export interface Household_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   MapExploreItem: MapExploreItem;
@@ -641,4 +562,119 @@ export interface Household_MarkersItem {
 
 export interface ServiceAPIFetchData_CacheableHouseholdsResponse {
   Household_Markers: Household_MarkersItem[] /* wire: { List: [...] } */;
+}
+
+export interface MessagePriority {
+  Id: number /* 0 in capture */;
+  Label: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
+}
+
+export interface MessageContent {
+  Id: string /* Long Integer as string */;
+  MessageContent: string;
+}
+
+export interface MessageTemplate {
+  Id: string /* Long Integer as string */;
+  IsAdaptiveCard: boolean;
+  Title: string;
+  Summary: string /* "" in capture */;
+  MessageContentId: string /* Long Integer as string */;
+  CreatedByUser: number /* 0 in capture */;
+  CreatedDate: string /* "1900-01-01..." = no value */;
+  LastUpdated: string /* "1900-01-01..." = no value */;
+  UpdatedBy: number /* 0 in capture */;
+  MessageTemplateStatusId: number /* 0 in capture */;
+  MessageTemplateTypeId: number;
+  MessageTemplatePriorityId: number;
+  MessageInfoTypeId: number;
+  AdaptiveCardJSONId: string /* Long Integer as string */;
+  SentAs: number /* 0 in capture */;
+  SavedTemplateId: string /* Long Integer as string */;
+  MessageSendToTypeId: number /* 0 in capture */;
+  MessageApplicationTargetId: number /* 0 in capture */;
+  RecalledBy: number /* 0 in capture */;
+  IsPushNotificationOnly: boolean;
+  HideTitleOnPushNotification: boolean;
+  HideBodyOnPushNotification: boolean;
+}
+
+export interface MessageSenderTarget {
+  Id: number /* 0 in capture */;
+  Name: string /* "" in capture */;
+  ProfileIconURL: string /* "" in capture */;
+  Order: number /* 0 in capture */;
+  Is_Active: boolean;
+  NotificationIcon: string /* "" in capture */;
+  NotificationHeading: string /* "" in capture */;
+}
+
+export interface MessageInstance {
+  Id: string /* Long Integer as string */;
+  MessageTemplateId: string /* Long Integer as string */;
+  UserId: number;
+  DeviceHardwareId: string /* "" in capture */;
+  IsSent: boolean;
+  IsReceived: boolean;
+  IsRead: boolean;
+  IsReplied: boolean;
+  IsClear: boolean;
+  DateTimeCreated: string /* ISO DateTime */;
+  NotificationUUID: string /* "" in capture */;
+  SendAttemptCount: number /* 0 in capture */;
+  LastSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  NextSendAttemptDateTime: string /* "1900-01-01..." = no value */;
+  CheckForReceiptCount: number /* 0 in capture */;
+  LastCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  NextCheckForReceiptDateTime: string /* "1900-01-01..." = no value */;
+  SentToWebDevice: boolean;
+  MessageError: string /* "" in capture */;
+}
+
+export interface AdaptiveCardJSON {
+  Id: string /* Long Integer as string */;
+  AdaptiveCardContent: string /* "" in capture */;
+}
+
+export interface User {
+  Id: number /* 0 in capture */;
+  Name: string;
+  Username: string /* "" in capture */;
+  Password: string /* "" in capture */;
+  Email: string /* "" in capture */;
+  MobilePhone: string /* "" in capture */;
+  External_Id: string /* "" in capture */;
+  Creation_Date: string /* "1900-01-01..." = no value */;
+  Last_Login: string /* "1900-01-01..." = no value */;
+  Is_Active: boolean;
+}
+
+export interface Message {
+  MessagePriority: MessagePriority;
+  MessageContent: MessageContent;
+  MessageTemplate: MessageTemplate;
+  MessageSenderTarget: MessageSenderTarget;
+  MessageInstance: MessageInstance;
+  AdaptiveCardJSON: AdaptiveCardJSON;
+  User: User;
+  CreatedByMemberId: string /* Long Integer as string */;
+}
+
+export interface Delimiters {
+  Delimiter_Function: string /* "" in capture */;
+  Delimiter_Parameter: string /* "" in capture */;
+  Delimiter_Placeholder: string /* "" in capture */;
+}
+
+export interface PlaceholderDelimiters {
+  Delimiters: Delimiters;
+}
+
+export interface GetMessageInstanceResponse {
+  Message: Message;
+  IsRetracted: boolean;
+  IsCleared: boolean;
+  PlaceholderDelimiters: PlaceholderDelimiters;
 }

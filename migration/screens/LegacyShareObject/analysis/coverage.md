@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 11 call(s)
-- Masked text nodes: 103, user images removed: 1
+- Masked text nodes: 6, user images removed: 1
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -58,10 +58,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ShareObject` (Connect2_LegacyShared.Share_UI.ProfileList.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
@@ -80,7 +76,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `GetTimezoneInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserLocalitiesForCountryCodeWithGPS` (Connect2_LegacyShared.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

@@ -60,32 +60,32 @@ export interface ContactPopupData {
   EntityId: string /* Long Integer as string */;
   IsAvatarImage: boolean;
   ActionName: string /* "" in capture */;
-  Name: string;
-  Locality: string;
-  TimezoneName: string;
-  TimezoneOffset: number;
+  Name: string /* "" in capture */;
+  Locality: string /* "" in capture */;
+  TimezoneName: string /* "" in capture */;
+  TimezoneOffset: number /* 0 in capture */;
   ShowPopup: boolean;
-  DisplayContactNumber: string /* Long Integer as string */;
+  DisplayContactNumber: string /* "" in capture */;
   IsFetchingTimezone: boolean;
   IsLoading: boolean;
   ShowTimezone: boolean;
   ShowImage: boolean;
-  CountryName: string;
+  CountryName: string /* "" in capture */;
   TitleTerminator: string;
 }
 
 export interface FetchContactDetailsResponse {
   ContactPopupData: ContactPopupData;
-  Phone: string /* Long Integer as string */;
+  Phone: string /* "" in capture */;
   MobilePhone: string /* "" in capture */;
   HomePhone: string /* "" in capture */;
   WorkPhone: string /* "" in capture */;
-  Email: string;
-  CountryName: string;
+  Email: string /* "" in capture */;
+  CountryName: string /* "" in capture */;
   LocalityId: string /* Long Integer as string */;
-  LocalityName: string;
+  LocalityName: string /* "" in capture */;
   EntitySubtitle: string /* "" in capture */;
-  EntityName: string;
+  EntityName: string /* "" in capture */;
 }
 
 export interface EmptyListItem {
@@ -99,7 +99,7 @@ export interface OneSchoolGlobal_LocalitiesList {
 }
 
 export interface UI_OneSchool_Card_Content {
-  Name: string;
+  Name: string /* "" in capture */;
   LocalityName: string /* "" in capture */;
   LocalityId: string /* Long Integer as string */;
   CountryName: string /* "" in capture */;
@@ -108,21 +108,20 @@ export interface UI_OneSchool_Card_Content {
   Email: string /* "" in capture */;
 }
 
-export interface BusinesLinksItem {
-  Text: string;
-  Link: string;
-  ID: string /* Long Integer as string */;
+export interface BusinesLinks {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface OneSchoolGlobal__DetailCard_Content {
-  Address: string;
-  AreasServed: string;
-  BusinesLinks: BusinesLinksItem[] /* wire: { List: [...] } */;
+  Address: string /* "" in capture */;
+  AreasServed: string /* "" in capture */;
+  BusinesLinks: BusinesLinks;
 }
 
 export interface OneSchoolGlobal_DetailCard {
   CommunityBusinessId: string /* Long Integer as string */;
-  SignedURL: string;
+  SignedURL: string /* "" in capture */;
   UI_OneSchool_Card_Content: UI_OneSchool_Card_Content;
   OneSchoolGlobal__DetailCard_Content: OneSchoolGlobal__DetailCard_Content;
 }
@@ -148,6 +147,20 @@ export interface GetOneSchoolGlobalDetailsResponse {
   Out_OneSchoolGlobal: Out_OneSchoolGlobal;
   HouseholdCoordinates: HouseholdCoordinates;
   UI_Timezone: UI_Timezone;
+}
+
+export interface Note_Item_List {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface Notes {
+  Total: number /* 0 in capture */;
+  Note_Item_List: Note_Item_List;
+}
+
+export interface FetchNotesResponse {
+  Notes: Notes;
 }
 
 export interface OrbitEventTypesItem {
@@ -281,13 +294,9 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -297,7 +306,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -312,20 +321,6 @@ export interface Sync_Info_GetMainResponse {
   MyEntertainingBaseURL: string;
   FeedBaseURL: string;
   B2CTenant: string;
-}
-
-export interface Note_Item_List {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
-}
-
-export interface Notes {
-  Total: number /* 0 in capture */;
-  Note_Item_List: Note_Item_List;
-}
-
-export interface FetchNotesResponse {
-  Notes: Notes;
 }
 
 export interface Directory_UserCurrent_Visibility {
@@ -395,20 +390,22 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string /* "" in capture */;
+  Email: string;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
+  HomeNumber: string;
+  MobileNumber: string;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -499,6 +496,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -535,6 +533,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -578,6 +577,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -591,6 +591,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {

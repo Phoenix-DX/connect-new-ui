@@ -23,104 +23,6 @@ Share_UI.ScreenBlock_ShareObject
         Interaction.InputWithIcon
         Utility.Result_Item_Image
           Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
-        Utility.Result_Item_Image
-          Directory.HighlightSearch
         Utility.FreeSubscriptionActionDialog
           ConfirmationDialogs.ActionConfirmationDialog
       App_Common.CommonUI_InsideLayout
@@ -560,17 +462,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2852 ms
-- 2. `ActionGetUserInformation` (200) at 2894 ms
-- 3. `ScreenDataSetGetShareObjectTypeById` (200) at 4463 ms
-- 4. `ActionGetSignedImagesInBulk` (200) at 4518 ms
-- 5. `ServiceAPIGetHouseholdDetails` (200) at 4525 ms
-- 6. `DataActionGetAvailableUsers` (200) at 4538 ms
-- 7. `ActionAppManager_AfterInitialize` (200) at 5800 ms
-- 8. `ActionSync_Info_GetMain` (200) at 6249 ms
-- 9. `ActionGetNumberUnreadMessages` (200) at 6542 ms
-- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8778 ms
-- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11283 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2776 ms
+- 2. `ActionGetUserInformation` (200) at 2812 ms
+- 3. `ScreenDataSetGetShareObjectTypeById` (200) at 4500 ms
+- 4. `ServiceAPIGetHouseholdDetails` (200) at 4564 ms
+- 5. `DataActionGetAvailableUsers` (200) at 4570 ms
+- 6. `ActionGetSignedImagesInBulk` (200) at 4581 ms
+- 7. `ActionAppManager_AfterInitialize` (200) at 6081 ms
+- 8. `ActionSync_Info_GetMain` (200) at 6490 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 6727 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8654 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11230 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

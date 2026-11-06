@@ -11,9 +11,9 @@
   "Connect2_LegacyShared.Reusable.NavigationLanding.mvc.js": "migration/sources/raw/Connect2_LegacyShared.Reusable.NavigationLanding.mvc.js",
   "Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail.mvc.js": "migration/sources/raw/Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail.mvc.js",
   "Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js": "migration/sources/raw/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
-  "Connect2_LegacyShared.controller.js": "migration/sources/raw/Connect2_LegacyShared.controller.js",
+  "Connect2_LegacyShared.controller.js": "migration/sources/raw/Connect2_LegacyShared.controller@31dffc28.js",
   "Connect2_LegacyShared.languageResources.js": "migration/sources/raw/Connect2_LegacyShared.languageResources.js",
-  "Connect2_LegacyShared.model.js": "migration/sources/raw/Connect2_LegacyShared.model.js",
+  "Connect2_LegacyShared.model.js": "migration/sources/raw/Connect2_LegacyShared.model@c6efacfb.js",
   "EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js": "migration/sources/raw/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js",
   "EventfulDeeplinksPlugin.controller.js": "migration/sources/raw/EventfulDeeplinksPlugin.controller.js",
   "EventfulDeeplinksPlugin.languageResources.js": "migration/sources/raw/EventfulDeeplinksPlugin.languageResources.js",
@@ -36,20 +36,20 @@
   "UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js": "migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
   "UBTConnect.Legacy_Share.ConnectShare.mvc.js": "migration/sources/raw/UBTConnect.Legacy_Share.ConnectShare.mvc.js",
   "UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js": "migration/sources/raw/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js",
-  "UBTConnect.controller.js": "migration/sources/raw/UBTConnect.controller.js",
+  "UBTConnect.controller.js": "migration/sources/raw/UBTConnect.controller@029189b7.js",
   "UBTConnect.languageResources.js": "migration/sources/raw/UBTConnect.languageResources.js",
-  "UBTConnect.model.js": "migration/sources/raw/UBTConnect.model.js",
+  "UBTConnect.model.js": "migration/sources/raw/UBTConnect.model@e6a632fb.js",
   "UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js": "migration/sources/raw/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js",
   "UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js": "migration/sources/raw/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js",
   "UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js": "migration/sources/raw/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js",
   "UBTConnectLibrary.controller.js": "migration/sources/raw/UBTConnectLibrary.controller.js",
   "UBTConnectLibrary.languageResources.js": "migration/sources/raw/UBTConnectLibrary.languageResources.js",
-  "UBTConnectLibrary.model.js": "migration/sources/raw/UBTConnectLibrary.model.js",
+  "UBTConnectLibrary.model.js": "migration/sources/raw/UBTConnectLibrary.model@4261239d.js",
   "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js": "migration/sources/raw/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js",
   "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js": "migration/sources/raw/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js",
-  "UBTConnect_Utils.controller.js": "migration/sources/raw/UBTConnect_Utils.controller.js",
+  "UBTConnect_Utils.controller.js": "migration/sources/raw/UBTConnect_Utils.controller@3f072106.js",
   "UBTConnect_Utils.languageResources.js": "migration/sources/raw/UBTConnect_Utils.languageResources.js",
-  "UBTConnect_Utils.model.js": "migration/sources/raw/UBTConnect_Utils.model.js",
+  "UBTConnect_Utils.model.js": "migration/sources/raw/UBTConnect_Utils.model@824a4266.js",
   "UBT_AppManager.PIN.InactivityTimer.mvc.js": "migration/sources/raw/UBT_AppManager.PIN.InactivityTimer.mvc.js",
   "UBT_AppManager.PIN.Pincode_Unlock.mvc.js": "migration/sources/raw/UBT_AppManager.PIN.Pincode_Unlock.mvc.js",
   "UBT_AppManager.controller.js": "migration/sources/raw/UBT_AppManager.controller.js",
@@ -112,7 +112,7 @@
   "UBT_AppManager_Mobile.model.js": "migration/sources/pretty/UBT_AppManager_Mobile.model.js"
  },
  "styles": {
-  "assets.json": "migration/sources/styles/assets@f8917382.json",
-  "bundle.css": "migration/sources/styles/bundle@88b6c1a8.css"
+  "assets.json": "migration/sources/styles/assets@c1b25bcc.json",
+  "bundle.css": "migration/sources/styles/bundle@8aa84187.css"
  }
 }

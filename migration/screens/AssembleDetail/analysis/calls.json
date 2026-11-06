@@ -6,7 +6,7 @@
    "action": "DataActionGetAssembleNotes",
    "path": "/UBTConnect/screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes",
    "phase": "load",
-   "ts": 1770,
+   "ts": 2411,
    "status": 200,
    "kind": "data",
    "inputNames": null,
@@ -17,10 +17,36 @@
    "action": "DataActionGetAssembleEvent",
    "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent",
    "phase": "load",
-   "ts": 2453,
+   "ts": 3204,
    "status": 200,
    "kind": "data",
    "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetMemberContactByCacheKey",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey",
+   "phase": "load",
+   "ts": 4005,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "CacheKey"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetSignedPhotosInBulk",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk",
+   "phase": "load",
+   "ts": 4490,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "Parameters"
+   ],
    "scope": "this screen"
   }
  ],

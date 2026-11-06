@@ -316,6 +316,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-home:before { content: "\f052"; }
 ```
+### .connect-icon-image_gallery  (1 rule)
+```css
+.connect-icon-image_gallery:before { content: "\f06b"; }
+```
 ### .connect-icon-list_alt  (1 rule)
 ```css
 .connect-icon-list_alt:before { content: "\f041"; }

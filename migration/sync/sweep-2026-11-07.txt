@@ -1,0 +1,70 @@
+AcceptPendingPolicies: OK
+AssembleDetail: DIFF default: structure 4, class 0, attr 0, text 2, style 0, pseudo 0, layout 3, position 1, pixel 1, call 1 | offline: structure 0, class 0, attr 0, text 1, style 0, pseudo 0, layout 1, position 1, pixel 1, call 0
+AssembleEvents: DIFF default: structure 0, class 0, attr 0, text 3, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+Assemble_BrowseByCountry: DIFF default: structure 0, class 0, attr 0, text 3, style 0, pseudo 0, layout 0, position 0, pixel 1, call 0
+Bookmarks: DIFF default: structure 2, class 0, attr 0, text 8, style 0, pseudo 0, layout 29, position 1, pixel 1, call 0 | offline: structure 0, class 0, attr 0, text 2, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+BrowseCountries: DIFF default: structure 0, class 0, attr 0, text 5, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+BrowseDirectory: OK
+CommunityBusinessDetails_CoomingSoon: OK
+ConnectShare: DIFF offline: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 1, call 0
+ContactByEmailLDMCoordinator: OK
+ContactByEmailMember: DIFF default: structure 0, class 2, attr 0, text 0, style 10, pseudo 2, layout 0, position 1, pixel 1, call 0 | offline: structure 0, class 2, attr 0, text 0, style 10, pseudo 2, layout 0, position 1, pixel 1, call 0
+ContactByEmailOneSchoolGlobal: OK
+ContactByEmailOrbitHelpdesk: OK
+ContactByEmailOrbitHost: OK
+ContactUsDetails: OK
+ContactUsMenu: OK
+CountryDetails: DIFF default: structure 0, class 0, attr 0, text 2, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0 | offline: structure 0, class 0, attr 0, text 2, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+CountryList: DIFF default: structure 2, class 1, attr 0, text 5, style 1, pseudo 0, layout 0, position 4, pixel 1, call 1 | offline: structure 2, class 1, attr 0, text 0, style 1, pseudo 0, layout 0, position 1, pixel 1, call 0
+EmailContact: OK
+EmailTarget: OK
+EventBooklet: OK
+EventDetail: OK
+FeedItemDetail: OK
+GuestArrangements: OK
+HelpersDetail: OK
+HomeFeed: DIFF default: structure 5, class 1, attr 0, text 0, style 1, pseudo 0, layout 1, position 2, pixel 1, call 1 | offline: structure 5, class 1, attr 0, text 0, style 1, pseudo 0, layout 1, position 2, pixel 1, call 0
+HostSurvey: OK
+HouseholdCarousel: DIFF default: structure 3, class 6, attr 0, text 0, style 6, pseudo 0, layout 70, position 3, pixel 0, call 0 | offline: structure 52, class 12, attr 0, text 8, style 4, pseudo 0, layout 164, position 36, pixel 1, call 0
+HouseholdDetails: OK
+Household_Relations: DIFF default: structure 0, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 0, call 2 | offline: structure 6, class 2, attr 0, text 1, style 0, pseudo 0, layout 8, position 1, pixel 0, call 0
+LDM_Email_V2: OK
+LDM_EventDetail_V2: DIFF default: structure 3, class 1, attr 0, text 0, style 2, pseudo 0, layout 1, position 0, pixel 1, call 0
+LDM_MyEvents_V2: DIFF default: structure 7, class 0, attr 0, text 3, style 3, pseudo 0, layout 12, position 7, pixel 1, call 1
+LegacyShareObject: DIFF default: structure 49, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 1, call 0
+Locality_Details: DIFF default: structure 2, class 0, attr 0, text 0, style 25, pseudo 0, layout 240, position 0, pixel 0, call 0 | offline: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 3, position 0, pixel 1, call 0 | tag-interchange: structure 0, class 0, attr 0, text 1, style 0, pseudo 1, layout 1, position 0, pixel 1, call 0 | tag-oneschoolglobal: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 1, call 0
+Login: OK
+Menu: DIFF default: structure 1, class 2, attr 0, text 2, style 0, pseudo 2, layout 6, position 0, pixel 0, call 0
+MessageDetail: DIFF default: structure 4, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 1, call 3
+MessageList: DIFF default: structure 0, class 6, attr 0, text 0, style 6, pseudo 0, layout 0, position 0, pixel 0, call 0 | search: structure 0, class 6, attr 0, text 0, style 6, pseudo 0, layout 0, position 0, pixel 0, call 0
+MilestoneDetail: OK
+MyEntertaining: OK
+Notes: DIFF default: structure 0, class 1, attr 0, text 2, style 1, pseudo 0, layout 0, position 1, pixel 1, call 0 | offline: structure 0, class 1, attr 0, text 2, style 1, pseudo 0, layout 6, position 1, pixel 1, call 0
+NotificationDetails: DIFF default: structure 8, class 1, attr 0, text 0, style 3, pseudo 0, layout 0, position 1, pixel 1, call 0 | offline: structure 8, class 1, attr 0, text 0, style 3, pseudo 1, layout 2, position 2, pixel 1, call 0
+Notifications: DIFF default: structure 31, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 8, pixel 1, call 1 | offline: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 8, pixel 1, call 0
+OneSchoolGlobalCarousel: OK
+OneSchoolGlobalDetails: DIFF default: structure 6, class 3, attr 0, text 5, style 2, pseudo 5, layout 24, position 5, pixel 1, call 0 | offline: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+OrbitAdminEventDetail: OK
+OrbitAdminLanding: DIFF default: structure 3, class 0, attr 0, text 0, style 0, pseudo 0, layout 2, position 0, pixel 1, call 0 | offline: structure 3, class 0, attr 0, text 0, style 0, pseudo 0, layout 1, position 0, pixel 1, call 0
+OrbitAdminMilestoneDetail: OK
+OrbitAdminMilestones: OK
+OrbitLanding: DIFF default: structure 5, class 0, attr 0, text 0, style 1, pseudo 0, layout 10, position 5, pixel 1, call 0 | popup-filters: structure 5, class 0, attr 0, text 0, style 1, pseudo 0, layout 10, position 5, pixel 0, call 0 | popup-filters-closed: structure 5, class 0, attr 0, text 0, style 1, pseudo 0, layout 10, position 5, pixel 1, call 0 | popup-sort: structure 5, class 0, attr 0, text 0, style 1, pseudo 0, layout 10, position 5, pixel 0, call 0
+PINBiometricsMenu: OK
+PINChange: OK
+PINRegister: OK
+PINUnlock: DIFF default: structure 1, class 0, attr 0, text 0, style 0, pseudo 0, layout 1, position 0, pixel 0, call 0
+PassportScan: OK
+Photobook: OK
+Profile: DIFF default: structure 9, class 0, attr 0, text 0, style 1, pseudo 0, layout 42, position 16, pixel 0, call 0 | offline: structure 2, class 0, attr 0, text 0, style 0, pseudo 0, layout 12, position 7, pixel 0, call 0
+QRCodeGenerate: OK
+Search: DIFF default: structure 0, class 0, attr 0, text 2, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0 | offline: structure 0, class 0, attr 0, text 2, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0
+Services: OK
+Splash: OK
+SupperMeeting_Carousel: DIFF default: structure 1, class 8, attr 0, text 10, style 143, pseudo 16, layout 275, position 2, pixel 1, call 0
+SupperMeeting_Details: OK
+TermsAndPoliciesMenu: OK
+TransportDetail: OK
+Updates_SingleList: DIFF default: structure 6, class 83, attr 0, text 50, style 162, pseudo 0, layout 305, position 51, pixel 1, call 0 | offline: structure 3, class 1, attr 0, text 2, style 2, pseudo 0, layout 13, position 0, pixel 1, call 0
+ViewDocuments: OK
+ROUTES 68 WITH DIFFS 30 ['AssembleDetail', 'AssembleEvents', 'Assemble_BrowseByCountry', 'Bookmarks', 'BrowseCountries', 'ConnectShare', 'ContactByEmailMember', 'CountryDetails', 'CountryList', 'HomeFeed', 'HouseholdCarousel', 'Household_Relations', 'LDM_EventDetail_V2', 'LDM_MyEvents_V2', 'LegacyShareObject', 'Locality_Details', 'Menu', 'MessageDetail', 'MessageList', 'Notes', 'NotificationDetails', 'Notifications', 'OneSchoolGlobalDetails', 'OrbitAdminLanding', 'OrbitLanding', 'PINUnlock', 'Profile', 'Search', 'SupperMeeting_Carousel', 'Updates_SingleList']
+SWEEP EXIT 0

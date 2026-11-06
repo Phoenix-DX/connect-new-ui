@@ -8,15 +8,15 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - (5 chain(s) starting in blocks of other screens omitted)
 
-### `UBTConnect_Utils/CacheControl/CacheControl_AllCountries/DataActionGetCacheInfo`
-- `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_AllCountries.cacheControlOnNonCacheHit` → `CacheControl_AllCountries.DataActionGetCacheInfo`
-- `CacheControl_AllCountries fetch at start` → `CacheControl_AllCountries.DataActionGetCacheInfo`
-
 ### `UBTConnect/Directory_Locality/CountryDetails/DataActionGetLocalityStatistics`
 - `CountryDetails.OnReady` → `CountryDetails.screenEvent_OnReady` → `CountryDetails.action_RefreshData` → `CountryDetails.DataActionGetLocalityStatistics`
 - `onClick in Button` → `event event_OnClick of Button` → `FilterSheet.onClick_ClearFilters` → `FilterSheet.onClick_Apply` → `event applyFilters of FilterSheet` → `CountryDetails.handler_FilterSheetApplyFilters` → `CountryDetails.DataActionGetLocalityStatistics`
 - `onClick in Button` → `event event_OnClick of Button` → `FilterSheet.onClick_Apply` → `event applyFilters of FilterSheet` → `CountryDetails.handler_FilterSheetApplyFilters` → `CountryDetails.DataActionGetLocalityStatistics`
 - `CountryDetails fetch at start` → `CountryDetails.DataActionGetLocalityStatistics`
+
+### `UBTConnect_Utils/CacheControl/CacheControl_AllCountries/DataActionGetCacheInfo`
+- `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_AllCountries.cacheControlOnNonCacheHit` → `CacheControl_AllCountries.DataActionGetCacheInfo`
+- `CacheControl_AllCountries fetch at start` → `CacheControl_AllCountries.DataActionGetCacheInfo`
 
 ### `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo`
 - `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_UserInfo.cacheControlOnNonCacheHit` → `CacheControl_UserInfo.DataActionGetCacheInfo`

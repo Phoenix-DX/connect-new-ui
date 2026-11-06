@@ -286,21 +286,24 @@ Layouts.Layout_DetailPage
 | FormerSpouses | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList())` |
 | ParentHouseholdId | output | Text | `""` |
 | IsMemberDeceased | output | Boolean | `false` |
+| NoDisplaySiblings | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList())` |
+| AwayParents | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec())` |
 | UserAge_Visibility | local | Boolean | `false` |
 | isLoading | local | Boolean | `true` |
 | ShowNotesSheet | local | Boolean | `false` |
+| IsBookmarked | local | Boolean | `false` |
 | HouseholdId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | MemberId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
-| Get_ParentHouseholdDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_ParentHouseholdDetailsDataActRec())` |
+| Get_SibllingsRelations | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_SibllingsRelationsDataActRec())` |
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 | Get_MemberDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_MemberDetailsDataActRec())` |
-- Data actions: `DataActionGet_ParentHouseholdDetails` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes`, `DataActionGet_MemberDetails` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails`
+- Data actions: `DataActionGet_SibllingsRelations` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_SibllingsRelations`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionFetchNotes`, `DataActionGet_MemberDetails` → `screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails`
 - Lifecycle handlers: Initialize, Ready
 - Client actions / event handlers: `onAfterFetch_Get_MemberDetails`, `actions_DefineLoading`, `onClick_Bookmark`, `screenEvent_OnInitialize`, `handler_OnNotesChanged`, `handler_AddNotes`, `handler_OnNotesSheetClosed`, `onClick_Member`, `action_Refresh_Get_MemberDetails`, `screenEvent_OnReady`, `handler_OnNoteDeleted`, `relationsDetails_Fetched`
 - Navigation: `/UBTConnect/HouseholdDetails`(HouseholdId)
 - JavaScript nodes: `UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS`
-- Static entities / flags: `uBT_Size.small`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.center`, `connect_Entity.member`, `uBT_ImageSize.extraLarge_100`, `uBT_ImageSize.square`, `uBT_AlignItems.baseline`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Size.base`, `uBT_VerticalAlign.center`, `uBT_ButtonSize.small`, `uBT_ButtonType.scondary`, `uBT_Icons2.tooltip`, `uBT_ButtonType.primary`, `uBT_Icons2.bookmark`, `uBT_ImageSize.base_52`, `uBT_Icons2.chevronRight`, `uBT_Color.neutral4`, `noteCategory2.member`
-- Candidate static strings: `No relation or household information avaialble.`
+- Static entities / flags: `uBT_Size.small`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.center`, `connect_Entity.member`, `uBT_ImageSize.extraLarge_100`, `uBT_ImageSize.square`, `uBT_AlignItems.baseline`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Size.base`, `uBT_VerticalAlign.center`, `uBT_ButtonSize.small`, `uBT_ButtonType.scondary`, `uBT_Icons2.tooltip`, `uBT_ButtonType.primary`, `uBT_Icons2.bookmark`, `uBT_Color.neutral4`, `uBT_Icons2.chevronRight`, `uBT_ImageSize.base_52`, `noteCategory2.member`, `bookmarkCategory.member`
+- Candidate static strings: `No relation or household information available.`
 
 ## `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js`
 | variable | kind | type | default |
@@ -780,18 +783,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3264 ms
-- 2. `ActionGetUserInformation` (200) at 5098 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 5201 ms
-- 4. `DataActionGet_MemberDetails` (200) at 5372 ms
-- 5. `ActionGetSignedImagesInBulk` (200) at 5669 ms
-- 6. `DataActionGet_ParentHouseholdDetails` (200) at 5701 ms
-- 7. `ActionGetSignedImagesInBulk` (200) at 6002 ms
-- 8. `ActionAppManager_AfterInitialize` (200) at 6645 ms
-- 9. `ActionSync_Info_GetMain` (200) at 7081 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 7355 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9309 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11412 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3848 ms
+- 2. `ActionGetUserInformation` (200) at 5637 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 5638 ms
+- 4. `DataActionGet_MemberDetails` (200) at 5936 ms
+- 5. `DataActionGet_SibllingsRelations` (200) at 6268 ms
+- 6. `ActionGetSignedImagesInBulk` (200) at 6269 ms
+- 7. `ActionGetSignedImagesInBulk` (200) at 6583 ms
+- 8. `ActionAppManager_AfterInitialize` (200) at 7297 ms
+- 9. `ActionSync_Info_GetMain` (200) at 7734 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 8018 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9252 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13857 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

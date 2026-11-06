@@ -1,4 +1,4 @@
-# Diagram drafts: MessageDetail
+# Diagram drafts: Notifications
 
 Generated from the capture. They are starting points for spec section 2a (architecture) and section 10 (sequences): verify every node and arrow against the code, complete TODOs, keep 'unverified' notes where the capture cannot prove an order or a trigger. Dashed = declared but not observed, or not visible from the browser.
 
@@ -8,58 +8,61 @@ Generated from the capture. They are starting points for spec section 2a (archit
 flowchart TB
   subgraph Browser["Browser"]
     direction TB
-    Shell["MessageDetail screen<br/>UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js"]
+    Shell["Notifications screen<br/>UBTConnect.App_Notifications.Notifications.mvc.js"]
     subgraph Content["Rendered blocks"]
       direction LR
-      B0["MyNotifications.ScreenBlock_MessageDetail<br/>Connect2_LegacyShared<br/>fetch, lifecycle"]
-      B1["Layout.Layout<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B2["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
-      B3["Layout.BaseLayout_UpdatedOSUI<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B4["Layout.MenuIcon_Back<br/>Connect2_LegacyShared<br/>markup"]
-      B5["Widgets.NotificationDetailBlock<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B6["HtmlSanitizer.SanitizedHtml<br/>ReactiveHtmlSanitizer<br/>lifecycle"]
-      B7["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
-      B8["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
-      B9["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
-      B10["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B11["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
-      B12["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B13["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B14["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
-      B15["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
-      B16["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
-      B17["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
-      B18["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B19["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
-      B20["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
-      B21["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B22["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B23["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B24["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B25["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B26["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B27["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
+      B0["Layouts.Layout_MainPages_Upgrade<br/>UBTConnectLibrary<br/>lifecycle"]
+      B1["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
+      B2["ConnectPatterns.Input<br/>UBTConnectLibrary<br/>lifecycle"]
+      B3["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
+      B4["App_Notifications.NotificationsListBreakpoints<br/>UBTConnect<br/>lifecycle"]
+      B5["App_Notifications.Notifications_Header<br/>UBTConnect<br/>lifecycle"]
+      B6["App_Notifications.NotificationsList<br/>UBTConnect<br/>lifecycle"]
+      B7["ConnectCorePatterns.Notification_ListItem<br/>UBTConnectLibrary<br/>lifecycle"]
+      B8["MyNotifications.MessageImage<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B9["HtmlSanitizer.SanitizedHtml<br/>ReactiveHtmlSanitizer<br/>lifecycle"]
+      B10["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
+      B11["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
+      B12["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
+      B13["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
+      B14["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B15["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B16["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
+      B17["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
+      B18["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
+      B19["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
+      B20["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B21["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
+      B22["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
+      B23["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
+      B24["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
+      B25["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
+      B26["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B27["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B28["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
     end
-    Cache["View cache / preload<br/>IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
+    Infra["App infrastructure blocks (19)<br/>render nothing visible"]
+    Cache["View cache / preload<br/>IsRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Directory_Updates_UnreadCount, IsNavigateToHomeOnBack, PIN_IsLocked …"]
     Shell --> Content
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionGetMessageInstance<br/>data action / aggregate, observed"]
-    S1["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br/>data action / aggregate, declared, not observed"]
+    S0["DataActionGetDateRanges<br/>data action / aggregate, observed"]
+    S1["DataActionFetchNotifications<br/>data action / aggregate, observed"]
     S2["ActionAppManager_SynchAppContext<br/>observed"]
-    S3["ActionGetSignedImagesInBulk<br/>observed"]
-    S4["ActionAppManager_AfterInitialize<br/>observed"]
-    S5["ActionSync_Info_GetMain<br/>observed"]
-    S6["ActionGetUserInformation<br/>observed"]
-    S7["ActionGetNumberUnreadMessages<br/>observed"]
+    S3["ActionAppManager_AfterInitialize<br/>observed"]
+    S4["ActionSync_Info_GetMain<br/>observed"]
+    S5["ActionGetUserInformation<br/>observed"]
+    S6["ActionGetNumberUnreadMessages<br/>observed"]
+    S7["ServiceAPIGet_UI_UpdateItems_UnreadCount_All<br/>observed"]
     S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S9["ActionGetSignedImagesInBulk<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
-  B0 --> S0
-  B0 -.-> S1
+  Content --> S0
+  Content --> S1
   Content -.-> S2
   Content -.-> S3
   Content -.-> S4
@@ -68,9 +71,10 @@ flowchart TB
   Content -.-> S7
   Content -.-> S8
   Content -.-> S9
+  Content -.-> S10
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S1,Backend unknown;
+  class Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -79,18 +83,22 @@ flowchart TB
 sequenceDiagram
   autonumber
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
-  U->>S: open /UBTConnect/MessageDetail
-  S->>S: OnInitialize
+  U->>S: open /UBTConnect/Notifications
   alt fresh entry
     S->>S: TODO initial state (e.g. clear lists, spinner)
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
-  S->>API: DataActionGetMessageInstance
-  API-->>S: Message, IsRetracted, IsCleared, PlaceholderDelimiters
-  S->>API: ScreenDataSetGetMessageTemplateParametersByMessageTemplateId
+  S->>API: DataActionGetDateRanges
+  API-->>S: DateRangesList
+  S->>S: onAfterFetch_GetDateRanges
+  S->>API: DataActionFetchNotifications
+  API-->>S: UI_NotificationItemList, UnreadNotificationsCount
+  S->>S: onAfterFetch_FetchNotifications
+  S->>API: ServiceAPIGet_UI_UpdateItems_UnreadCount_All
+  Note over S,API: called from BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All (call-sites.md)
   API-->>S: TODO outputs
   S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)
@@ -101,7 +109,7 @@ sequenceDiagram
   S->>S: OnReady
   alt success
     S-->>U: TODO render states (spec section 8)
-  else CommunicationException / NotRegisteredException / SecurityException
+  else NotRegisteredException / SecurityException
     S-->>U: TODO error UI and messages (spec section 11)
   end
 ```
@@ -111,7 +119,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
@@ -125,31 +133,12 @@ sequenceDiagram
   end
 ```
 
-### Action: ActionGetSignedImagesInBulk
-```mermaid
-%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
-sequenceDiagram
-  actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
-  participant API as screenservices
-  U->>S: TODO user event
-  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
-  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
-  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
-  API-->>S: TODO outputs
-  alt TODO branch
-    S-->>U: TODO
-  else TODO branch
-    S-->>U: TODO
-  end
-```
-
 ### Action: ActionAppManager_AfterInitialize
 ```mermaid
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBT_AppManager.appManager_OnAppReady_Web (see call-sites.md)
@@ -169,7 +158,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect.onApplicationReady (see call-sites.md)
@@ -189,7 +178,7 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect_Utils.cache_UserInfo_GetCallback (see call-sites.md)
@@ -208,13 +197,32 @@ sequenceDiagram
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
 sequenceDiagram
   actor U as User
-  participant S as MyNotifications.ScreenBlock_MessageDetail
+  participant S as Layouts.Layout_MainPages_Upgrade
   participant API as screenservices
   U->>S: TODO user event
   Note over S: chain stops at UBTConnect.onApplicationReady (see call-sites.md)
   Note over S: via UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages
   Note over S: 1 other caller chain(s) in call-sites.md
   S->>API: ActionGetNumberUnreadMessages(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Layouts.Layout_MainPages_Upgrade
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

@@ -20,41 +20,42 @@ flowchart TB
       B6["BasePatterns.CustomContainer<br/>UBTConnectLibrary<br/>lifecycle"]
       B7["CW_Image.UBT_LazyImage<br/>UBTConnect_Utils<br/>lifecycle"]
       B8["ConnectPatterns.LazyImage<br/>UBTConnectLibrary<br/>lifecycle"]
-      B9["CW_CTA_PopUps.AddressPopup_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B10["CW_CTA_PopUps.AddressPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B11["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B12["ConnectPatterns.SeeMoreSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B13["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
-      B14["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
-      B15["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
-      B16["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B17["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
-      B18["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
-      B19["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B20["Directory_Household_Blocks.HouseholdDetails_Members_Block<br/>UBTConnect<br/>lifecycle"]
-      B21["SubLayout.SubLayout_DirectoryDetailScreen_Section<br/>UBTConnect<br/>markup"]
-      B22["Layouts.SubLayout_Section<br/>UBTConnectLibrary<br/>markup"]
-      B23["BasePatterns.Columns_Three<br/>UBTConnectLibrary<br/>lifecycle"]
-      B24["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
-      B25["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
-      B26["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
-      B27["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
-      B28["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B29["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B30["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
-      B31["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
-      B32["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
-      B33["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
-      B34["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B35["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
-      B36["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
-      B37["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B38["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B39["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B40["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B41["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B42["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
-      B43["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
+      B9["ConnectPatterns.HorizontalTagList<br/>UBTConnectLibrary<br/>lifecycle"]
+      B10["CW_CTA_PopUps.AddressPopup_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B11["CW_CTA_PopUps.AddressPopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B12["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B13["ConnectPatterns.SeeMoreSection<br/>UBTConnectLibrary<br/>lifecycle"]
+      B14["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B15["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
+      B16["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
+      B17["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B18["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
+      B19["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
+      B20["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B21["Directory_Household_Blocks.HouseholdDetails_Members_Block<br/>UBTConnect<br/>lifecycle"]
+      B22["SubLayout.SubLayout_DirectoryDetailScreen_Section<br/>UBTConnect<br/>markup"]
+      B23["Layouts.SubLayout_Section<br/>UBTConnectLibrary<br/>markup"]
+      B24["BasePatterns.Columns_Three<br/>UBTConnectLibrary<br/>lifecycle"]
+      B25["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
+      B26["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
+      B27["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
+      B28["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
+      B29["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B30["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B31["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
+      B32["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
+      B33["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
+      B34["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
+      B35["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B36["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
+      B37["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
+      B38["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
+      B39["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
+      B40["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
+      B41["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B42["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B43["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B44["NavigationHandler.BackNavigationHandler<br/>NavigationHandler<br/>lifecycle"]
     end
     Infra["App infrastructure blocks (2)<br/>render nothing visible"]
     Cache["View cache / preload<br/>CheckRestoredJS, IsRestoredFromCacheJS, IsViewRestoredFromCacheJS"]
@@ -64,26 +65,27 @@ flowchart TB
   subgraph Server["OutSystems server · screenservices"]
     direction LR
     S0["DataActionGetHousehold_Coordinates<br/>data action / aggregate, observed"]
-    S1["DataActionGetHousehold<br/>data action / aggregate, observed"]
-    S2["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
-    S3["DataActionFetchNotes<br/>data action / aggregate, observed"]
-    S4["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
-    S5["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
-    S6["ActionAppManager_SynchAppContext<br/>observed"]
-    S7["ActionGetUserInformation<br/>observed"]
-    S8["ActionGetSignedImagesInBulk<br/>observed"]
-    S9["ActionAppManager_AfterInitialize<br/>observed"]
-    S10["ActionSync_Info_GetMain<br/>observed"]
-    S11["ActionGetNumberUnreadMessages<br/>observed"]
-    S12["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S13["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S1["DataActionGetHouseHold_Gallery<br/>data action / aggregate, observed"]
+    S2["DataActionGetHousehold<br/>data action / aggregate, observed"]
+    S3["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
+    S4["DataActionFetchNotes<br/>data action / aggregate, observed"]
+    S5["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
+    S6["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
+    S7["ActionAppManager_SynchAppContext<br/>observed"]
+    S8["ActionGetUserInformation<br/>observed"]
+    S9["ActionGetSignedImagesInBulk<br/>observed"]
+    S10["ActionAppManager_AfterInitialize<br/>observed"]
+    S11["ActionSync_Info_GetMain<br/>observed"]
+    S12["ActionGetNumberUnreadMessages<br/>observed"]
+    S13["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S14["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B2 --> S0
   B2 --> S1
-  B14 --> S2
-  B14 --> S3
-  Content -.-> S4
+  B2 --> S2
+  B15 --> S3
+  B15 --> S4
   Content -.-> S5
   Content -.-> S6
   Content -.-> S7
@@ -93,9 +95,10 @@ flowchart TB
   Content -.-> S11
   Content -.-> S12
   Content -.-> S13
+  Content -.-> S14
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S4,S5,Backend unknown;
+  class S5,S6,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -115,9 +118,11 @@ sequenceDiagram
   end
   S->>API: DataActionGetHousehold_Coordinates
   API-->>S: HouseholdCoordinates
+  S->>API: DataActionGetHouseHold_Gallery
+  API-->>S: Out_ImageDetails
   S->>API: DataActionGetHousehold
   API-->>S: Household, Out_HouseholdMembers, Out_NonHouseholdMembers, isVisible
-  S->>S: onAfterFetch_GetHouseholdDetail
+  S->>S: onAfterFetch_GetHousehold
   S->>API: DataActionFetchContactDetails
   API-->>S: ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone
   S->>S: onAfterFetch_FetchContactDetails

@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "0c64dbd08f06eaf10351",
+ "fingerprint": "600b20165b7099d4fb30",
  "options": {
   "text": true,
   "style": true,
@@ -19,16 +19,24 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 2549,
-  "texts": 137,
+  "elements": 2604,
+  "texts": 145,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:30:15.009Z",
- "counts": {},
+ "at": "2026-11-06T20:01:49.554Z",
+ "counts": {
+  "class": 1,
+  "style": 1,
+  "structure": 2,
+  "text": 5,
+  "position": 4,
+  "pixel": 1,
+  "call": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
   "ignoreSubtrees": 2,
@@ -36,11 +44,11 @@
   "SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00023,
-  "maxCell": 0.0219,
+  "ratio": 0.42443,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 60,
-  "comparedPixels": 260310,
+  "diffPixels": 110891,
+  "comparedPixels": 261268,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -51,10 +59,13 @@
    390,
    844
   ],
-  "masks": 75,
+  "masks": 74,
   "hotspots": [
-   "200,800 (35px)",
-   "200,760 (25px)"
+   "120,320 (1600px)",
+   "160,320 (1600px)",
+   "200,320 (1600px)",
+   "240,320 (1600px)",
+   "280,320 (1600px)"
   ],
   "diffPng": "migration/screens/CountryList/parity/default.diff.png"
  },
@@ -62,8 +73,84 @@
   "phases": [
    "load"
   ],
-  "expected": 10,
+  "expected": 9,
   "actual": 10
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container",
+   "detail": "missing .margin-top-base extra .padding-top-base"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container",
+   "detail": "margin-top 16px → 0px; padding-top 0px → 16px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container > div#$b18.OSBlockWidget[Directory_CommonBlocks.Directory_CommunityNumbers]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container > div#$b18.OSBlockWidget[Home.FeedBlock_CommunityPopulation]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_11-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_11-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_11-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_11-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_11-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_11-b24-b2-b1-Column2.columns-item > div#l1-66_11-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_11-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_11-b24-b5-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_11-b24-b5-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_11-b24-b5-b1-b1-Column1.columns-item > div#l1-66_11-b24-b5-b1-Left.ubt-columns--column.ubt-columns--left > div#l1-66_11-b24-b5-Members.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_11-b24-b5-b2-DIV_IconText > div#l1-66_11-b24-b5-b2-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_11-b24-b5-b2-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_11-b24-b5-b2-b1-b1-Column2.columns-item > div#l1-66_11-b24-b5-b2-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_11-b24-b5-b2-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_11-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_11-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_11-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_11-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_11-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_11-b24-b2-b1-Column2.columns-item > div#l1-66_11-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_11-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_11-b24-b5-$b9.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_11-b24-b5-b9-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_11-b24-b5-b9-b1-Column2.columns-item > div#l1-66_11-b24-b5-b9-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_11-b24-b5-Sisters.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_11-b24-b5-b12-DIV_IconText > div#l1-66_11-b24-b5-b12-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_11-b24-b5-b12-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_11-b24-b5-b12-b1-b1-Column2.columns-item > div#l1-66_11-b24-b5-b12-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_11-b24-b5-b12-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"36\" → \"37\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_14-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_14-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_14-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_14-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_14-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_14-b24-b2-b1-Column2.columns-item > div#l1-66_14-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_14-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_14-b24-b5-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_14-b24-b5-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_14-b24-b5-b1-b1-Column1.columns-item > div#l1-66_14-b24-b5-b1-Left.ubt-columns--column.ubt-columns--left > div#l1-66_14-b24-b5-Members.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_14-b24-b5-b2-DIV_IconText > div#l1-66_14-b24-b5-b2-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_14-b24-b5-b2-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_14-b24-b5-b2-b1-b1-Column2.columns-item > div#l1-66_14-b24-b5-b2-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_14-b24-b5-b2-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_14-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_14-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_14-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_14-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_14-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_14-b24-b2-b1-Column2.columns-item > div#l1-66_14-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_14-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_14-b24-b5-$b9.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_14-b24-b5-b9-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_14-b24-b5-b9-b1-Column2.columns-item > div#l1-66_14-b24-b5-b9-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_14-b24-b5-Sisters.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_14-b24-b5-b12-DIV_IconText > div#l1-66_14-b24-b5-b12-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_14-b24-b5-b12-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_14-b24-b5-b12-b1-b1-Column2.columns-item > div#l1-66_14-b24-b5-b12-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_14-b24-b5-b12-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"37\" → \"38\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b23.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b23-Placeholder_LoadingSection > div.OSFillParent.list.list-group > div > div#l1-66_16-$b24.OSBlockWidget[Directory_Locality.Statistics_TypedItem] > div#l1-66_16-b24-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#l1-66_16-b24-b1-Content.background-neutral-0.border-color-neutral-4.border-radius-medium > div#l1-66_16-b24-$b2.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_16-b24-b2-$b1.OSBlockWidget[Adaptive.Columns3] > div.align-items-center.columns.columns3 > div#l1-66_16-b24-b2-b1-Column2.columns-item > div#l1-66_16-b24-b2-Middle.ubt-columns--column.ubt-columns--middle > div#l1-66_16-b24-$b5.OSBlockWidget[Directory_Locality.Statistics_Icons] > div#l1-66_16-b24-b5-$b1.OSBlockWidget[BasePatterns.Columns_Three] > div#l1-66_16-b24-b5-b1-$b1.OSBlockWidget[Adaptive.Columns3] > div.columns.columns3.phone-break-none > div#l1-66_16-b24-b5-b1-b1-Column3.columns-item > div#l1-66_16-b24-b5-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_16-b24-b5-Localities.OSBlockWidget[ConnectPatterns.IconText] > div#l1-66_16-b24-b5-b6-DIV_IconText > div#l1-66_16-b24-b5-b6-$b1.OSBlockWidget[BasePatterns.Columns_Two] > div#l1-66_16-b24-b5-b6-b1-$b1.OSBlockWidget[Adaptive.Columns2] > div.align-items-center.columns.columns2 > div#l1-66_16-b24-b5-b6-b1-b1-Column2.columns-item > div#l1-66_16-b24-b5-b6-b1-Right.ubt-columns--column.ubt-columns--right > div#l1-66_16-b24-b5-b6-$b2.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-7 > span",
+   "detail": "\"28\" → \"29\""
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b28.OSBlockWidget[Directory_Locality.Directory_LegendBottomSheet] > div#b28-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b28-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-top.wcag-hide-text",
+   "detail": "offset in parent -1,-2293 → -1,-2013"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b28.OSBlockWidget[Directory_Locality.Directory_LegendBottomSheet] > div#b28-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b28-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b28-b1-b1-BottomSheet.background-neutral-0.custom-padding.directory-legend-explanation",
+   "detail": "offset in parent 0,-1448 → 0,-1168"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b28.OSBlockWidget[Directory_Locality.Directory_LegendBottomSheet] > div#b28-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b28-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div.osui-bottom-sheet-overlay",
+   "detail": "offset in parent 0,-2292 → 0,-2012"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b28.OSBlockWidget[Directory_Locality.Directory_LegendBottomSheet] > div#b28-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b28-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-bottom.wcag-hide-text",
+   "detail": "offset in parent -1,-1448 → -1,-1168"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "42.44% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 120,320 (1600px); 160,320 (1600px); 200,320 (1600px); 240,320 (1600px); 280,320 (1600px); see migration/screens/CountryList/parity/default.diff.png"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "extra call UBTConnect/DataActionFetchCount"
+  }
+ ]
 }

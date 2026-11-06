@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "042da1e46b41035c729e",
+ "fingerprint": "a75189e673fe5cf7be37",
  "options": {
   "text": true,
   "style": true,
@@ -27,20 +27,21 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:31:49.995Z",
- "counts": {},
+ "at": "2026-11-06T20:03:17.054Z",
+ "counts": {
+  "call": 2
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-BUTTON": 21,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1,
   "CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT": 1
  },
  "pixel": {
-  "ratio": 0.02078,
-  "maxCell": 0.1919,
+  "ratio": 0.01993,
+  "maxCell": 0.1519,
   "maxCellRatio": 0.03,
-  "diffPixels": 5526,
+  "diffPixels": 5299,
   "comparedPixels": 265891,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -54,11 +55,11 @@
   ],
   "masks": 28,
   "hotspots": [
-   "280,200 (307px)",
-   "240,200 (283px)",
    "80,200 (243px)",
-   "320,200 (224px)",
-   "120,200 (208px)"
+   "280,200 (235px)",
+   "120,200 (208px)",
+   "240,200 (206px)",
+   "40,480 (198px)"
   ],
   "diffPng": "migration/screens/Household_Relations/parity/default.diff.png"
  },
@@ -69,5 +70,16 @@
   "expected": 12,
   "actual": 11
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "data action DataActionGet_SibllingsRelations not called"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "extra call UBTConnect/DataActionGet_ParentHouseholdDetails"
+  }
+ ]
 }

@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "d12bc90adda70fe7e911",
+ "fingerprint": "6b80696e19309ed281b0",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,13 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:27:41.719Z",
- "counts": {},
+ "at": "2026-11-06T19:59:28.964Z",
+ "counts": {
+  "position": 1,
+  "text": 1,
+  "layout": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 1,
   "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE": 1,
@@ -36,11 +41,11 @@
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00006,
-  "maxCell": 0.0069,
+  "ratio": 0.00129,
+  "maxCell": 0.135,
   "maxCellRatio": 0.03,
-  "diffPixels": 20,
-  "comparedPixels": 328142,
+  "diffPixels": 426,
+  "comparedPixels": 328978,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -51,13 +56,37 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 2,
   "hotspots": [
+   "160,0 (216px)",
+   "200,0 (173px)",
+   "200,40 (17px)",
    "200,800 (11px)",
    "200,760 (9px)"
   ],
   "diffPng": "migration/screens/AssembleDetail/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > header#b2-b1-b2-Header.header > div.header-top > div.display-flex.header-content > div.align-items-center.display-flex.full-width > h1.header-title.text-align-center > div#b2-b1-b2-Title > div#b2-b1-Title > span",
+   "detail": "offset in parent 110,2 → 142,2"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > header#b2-b1-b2-Header.header > div.header-top > div.display-flex.header-content > div.align-items-center.display-flex.full-width > h1.header-title.text-align-center > div#b2-b1-b2-Title > div#b2-b1-Title > span",
+   "detail": "\"Reading\" → \"\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_AssembleDetail] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > header#b2-b1-b2-Header.header > div.header-top > div.display-flex.header-content > div.align-items-center.display-flex.full-width > h1.header-title.text-align-center > div#b2-b1-b2-Title > div#b2-b1-Title > span",
+   "detail": "65×21 → 0×21"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "0.13% pixels differ (max 0.20%), worst 40px tile 13.5% (max 3.0%), hotspots 160,0 (216px); 200,0 (173px); 200,40 (17px); 200,800 (11px); 200,760 (9px); see migration/screens/AssembleDetail/parity/offline.diff.png"
+  }
+ ]
 }

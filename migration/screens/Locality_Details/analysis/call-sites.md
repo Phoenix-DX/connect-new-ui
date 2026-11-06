@@ -8,21 +8,21 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - (5 chain(s) starting in blocks of other screens omitted)
 
-### `UBTConnect_Utils/ActionGetUserInformation`
-- `UBTConnect_Utils.cache_UserInfo_GetCallback` → `server GetUserInformation`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
-### `UBTConnect/Directory_Locality/Locality_Details/DataActionGet_LocalityDetails`
-- `Locality_Details.OnReady` → `Locality_Details.screenEvent_OnReady` → `Locality_Details.DataActionGet_LocalityDetails`
-- `Locality_Details fetch at start` → `Locality_Details.DataActionGet_LocalityDetails`
-
 ### `UBTConnect/Directory_Locality/Locality_Households_HouseholdList/DataActionGetLocalityHouseholds`
 - `Locality_Households_HouseholdList.OnReady` → `Locality_Households_HouseholdList.screenEvent_OnReady` → `Locality_Households_HouseholdList.DataActionGetLocalityHouseholds`
 - `Locality_Households_HouseholdList fetch at start` → `Locality_Households_HouseholdList.DataActionGetLocalityHouseholds`
+
+### `UBTConnect_Utils/ActionGetUserInformation`
+- `UBTConnect_Utils.cache_UserInfo_GetCallback` → `server GetUserInformation`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect/Directory_Household_Blocks/Household_Card/DataActionGetMembers`
 - `Household_Card.OnParametersChanged` → `Household_Card.onParametersChanged` → `Household_Card.onReady` → `Household_Card.DataActionGetMembers`
 - `Household_Card.OnReady` → `Household_Card.onReady` → `Household_Card.DataActionGetMembers`
 - `Household_Card fetch at start` → `Household_Card.DataActionGetMembers`
+
+### `UBTConnect/Directory_Locality/Locality_Details/DataActionGet_LocalityDetails`
+- `Locality_Details.OnReady` → `Locality_Details.screenEvent_OnReady` → `Locality_Details.DataActionGet_LocalityDetails`
+- `Locality_Details fetch at start` → `Locality_Details.DataActionGet_LocalityDetails`
 
 ### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
 - `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

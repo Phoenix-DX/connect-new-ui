@@ -4,8 +4,7 @@ Orbit_ScreenBlocks.ScreenBlock_OrbitLanding
     Layout.BaseLayout_UpdatedOSUI
       Layout.MenuIcon__UpdatedOSUI
       Orbit_Blocks.Household_Members_Selection
-      Orbit_Blocks.Card_Event
-        Orbit_Blocks.Card_Template
+      Orbit_Generic_Blocks.NoInformation_Orbit
       App_Common.BottomBarMenu
         App_Common.BottomBarContent
           Navigation.BottomBarItem

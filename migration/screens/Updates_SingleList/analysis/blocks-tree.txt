@@ -15,19 +15,27 @@ Layouts.Layout_MainPages_FixedTitle
         Interaction.InputWithIcon
           ConnectPatterns.Icon
           Interaction.InputWithIcon
-      App_CommonBlocks_Filter.FilterSheet_Icon
-        ConnectPatterns.SkeletonSection
-          ConnectPatterns.Icon
   BasePatterns.CustomContainer
-    ConnectPatterns.HorizontalTagList
-      ConnectPatterns.TagToggle
+    BasePatterns.CustomContainer
+      ConnectPatterns.Horizontal_Filter_TagList
         BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+            App_CommonBlocks_Filter.FilterSheet_Icon_Label
+              ConnectPatterns.SkeletonSection
+                BasePatterns.CustomContainer
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+                  ConnectPatterns.Icon
+          ConnectPatterns.SkeletonSection
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
   Directory_Updates.UpdateItem_Header
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
@@ -36,84 +44,11 @@ Layouts.Layout_MainPages_FixedTitle
             ConnectPatterns.IconText
               BasePatterns.Columns_Two
                 Adaptive.Columns2
-                  OutSystemsUIOverrides.Badge
                   BasePatterns.CustomText
                     ConnectPatterns.IconInline_Internal
           BasePatterns.CustomText
             ConnectPatterns.IconInline_Internal
   ConnectPatterns.SkeletonSection
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
     ConnectCorePatterns.Update_ListItem
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
@@ -794,9 +729,80 @@ Layouts.Layout_MainPages_FixedTitle
                 ConnectPatterns.IconText
                   BasePatterns.Columns_Two
                     Adaptive.Columns2
-                      OutSystemsUIOverrides.Badge
                       BasePatterns.CustomText
                         ConnectPatterns.IconInline_Internal
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
     ConnectCorePatterns.Update_ListItem
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two

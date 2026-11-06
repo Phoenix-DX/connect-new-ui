@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "681f57b24dc36ec783c4",
+ "fingerprint": "41ab116a3c00083f4f53",
  "options": {
   "text": true,
   "style": true,
@@ -27,16 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:27:56.095Z",
- "counts": {},
+ "at": "2026-11-06T19:59:43.584Z",
+ "counts": {
+  "text": 3,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.00022,
+  "maxCell": 0.0419,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
+  "diffPixels": 67,
   "comparedPixels": 302060,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -49,7 +52,9 @@
    844
   ],
   "masks": 50,
-  "hotspots": [],
+  "hotspots": [
+   "160,720 (67px)"
+  ],
   "diffPng": "migration/screens/Assemble_BrowseByCountry/parity/default.diff.png"
  },
  "calls": {
@@ -59,5 +64,26 @@
   "expected": 9,
   "actual": 9
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_Assemble_Filter] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b4.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b2-b4-l1-70_11-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width37-5 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_Assemble_Filter] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b4.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b2-b4-l1-70_14-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width37-5 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b2.OSBlockWidget[Assemble.ScreenBlock_Assemble_Filter] > div#b2-Layout.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b2-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b2-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b2-b1-b2-ContentWrapper.content > div#b2-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b2-b1-b2-Content.content-middle > div#b2-b1-Content > div#b2-$b4.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b2-b4-l1-70_16-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width25 > span",
+   "detail": "\"28\" → \"29\""
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "0.02% pixels differ (max 0.20%), worst 40px tile 4.2% (max 3.0%), hotspots 160,720 (67px); see migration/screens/Assemble_BrowseByCountry/parity/default.diff.png"
+  }
+ ]
 }

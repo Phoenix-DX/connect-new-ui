@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "1fea48badb00fc0e53c3",
+ "fingerprint": "cddd9da7522c5470e83b",
  "options": {
   "text": true,
   "style": true,
@@ -19,27 +19,32 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 3192,
-  "texts": 169,
+  "elements": 1372,
+  "texts": 77,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:34:54.351Z",
- "counts": {},
+ "at": "2026-11-06T20:06:24.416Z",
+ "counts": {
+  "structure": 31,
+  "position": 8,
+  "pixel": 1,
+  "call": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.04946,
+  "maxCell": 0.5981,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
-  "comparedPixels": 299610,
+  "diffPixels": 16263,
+  "comparedPixels": 328784,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,16 +55,228 @@
    390,
    844
   ],
-  "masks": 55,
-  "hotspots": [],
+  "masks": 3,
+  "hotspots": [
+   "40,680 (957px)",
+   "40,600 (853px)",
+   "0,680 (784px)",
+   "0,600 (781px)",
+   "40,760 (752px)"
+  ],
   "diffPng": "migration/screens/Notifications/parity/default.diff.png"
  },
  "calls": {
   "phases": [
    "load"
   ],
-  "expected": 10,
+  "expected": 11,
   "actual": 10
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-Notifications_ListHeader.OSBlockWidget[App_Notifications.Notifications_Header] > div#b15-l1-183_2-b1-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-Notifications_ListHeader.OSBlockWidget[App_Notifications.Notifications_Header] > div#b15-l1-117_3-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_2-b2-l1-194_0-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_2-b2-l1-194_1-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_2-b2-l1-194_2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-117_3-b2-l1-131_0-ListItemContainer.ListItemContainer",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-117_3-b2-l1-131_1-ListItemContainer.ListItemContainer",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_2-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_2-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-117_3-b2-l1-131_2-ListItemContainer.ListItemContainer",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-Notifications_ListHeader.OSBlockWidget[App_Notifications.Notifications_Header] > div#b15-l1-183_3-b1-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-Notifications_ListHeader.OSBlockWidget[App_Notifications.Notifications_Header] > div#b15-l1-117_4-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_0-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_1-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_2-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_4-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_5-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_6-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_7-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_8-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_9-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_10-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_11-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_12-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_13-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_14-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_15-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_16-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_17-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-183_3-b2-l1-196_18-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div > div#b15-l1-183_3-$b2.OSBlockWidget[App_Notifications.NotificationsList] > div#b15-l1-183_3-b2-List_Notifications.OSFillParent.background-neutral-0.list > div#b15-l1-117_4-b2-l1-131_0-ListItemContainer.ListItemContainer",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-top.wcag-hide-text",
+   "detail": "offset in parent -1,-2171 → -1,-6313"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b18-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet",
+   "detail": "offset in parent 0,-1326 → 0,-5468"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div.osui-bottom-sheet-overlay",
+   "detail": "offset in parent 0,-2170 → 0,-6312"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-bottom.wcag-hide-text",
+   "detail": "offset in parent -1,-1326 → -1,-5468"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-top.wcag-hide-text",
+   "detail": "offset in parent -1,-2171 → -1,-6313"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b19-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet",
+   "detail": "offset in parent 0,-1326 → 0,-5468"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div.osui-bottom-sheet-overlay",
+   "detail": "offset in parent 0,-2170 → 0,-6312"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-bottom.wcag-hide-text",
+   "detail": "offset in parent -1,-1326 → -1,-5468"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "4.95% pixels differ (max 0.20%), worst 40px tile 59.8% (max 3.0%), hotspots 40,680 (957px); 40,600 (853px); 0,680 (784px); 0,600 (781px); 40,760 (752px); see migration/screens/Notifications/parity/default.diff.png"
+  },
+  {
+   "kind": "call",
+   "path": "calls:load",
+   "detail": "ActionGetSignedImagesInBulk called 0× in build, 1× in capture (order-free call)"
+  }
+ ]
 }

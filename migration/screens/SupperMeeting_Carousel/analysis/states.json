@@ -60,7 +60,7 @@
   "steps": [],
   "scenario": "error",
   "auto": "offline",
-  "htmlClass": "popup-disable-scroll",
+  "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
   "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
   "dpr": 1

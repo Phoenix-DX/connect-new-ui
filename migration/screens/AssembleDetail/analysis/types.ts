@@ -46,10 +46,10 @@ export interface AssembleEventSummary {
   BrothersCount: string /* Long Integer as string */;
   SistersCount: string /* Long Integer as string */;
   IsVirtual: boolean;
-  Notes: string /* "" in capture */;
+  Notes: string;
   LocalityName: string;
   CountryName: string;
-  VirtualMeetingTypeLabel: string;
+  VirtualMeetingTypeLabel: string /* "" in capture */;
   VirtualMeetingLink: string /* "" in capture */;
   VirtualMeetingId: string /* "" in capture */;
   VirtualMeetingPassword: string /* "" in capture */;
@@ -63,9 +63,10 @@ export interface AssembleAttendeeSubdivisionListItem {
   AssembleAttendeeSubdivisionList: AssembleAttendeeSubdivisionListItem[] /* wire: { List: [...] } */;
 }
 
-export interface AssembleSpecialAttendeeSubdivisionList {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface AssembleSpecialAttendeeSubdivisionListItem {
+  LocalityId: string /* Long Integer as string */;
+  LocalityName: string;
+  AssembleAttendeeSubdivisionList: AssembleAttendeeSubdivisionListItem[] /* wire: { List: [...] } */;
 }
 
 export interface AssembleAttendeeSpecialGuestList {
@@ -74,14 +75,14 @@ export interface AssembleAttendeeSpecialGuestList {
 }
 
 export interface GSMContactList {
-  List: unknown[] /* empty in capture */;
+  List: number[];
   EmptyListItem: number /* 0 in capture */;
 }
 
 export interface AssembleEvent {
   AssembleEventSummary: AssembleEventSummary;
   AssembleAttendeeSubdivisionList: AssembleAttendeeSubdivisionListItem[] /* wire: { List: [...] } */;
-  AssembleSpecialAttendeeSubdivisionList: AssembleSpecialAttendeeSubdivisionList;
+  AssembleSpecialAttendeeSubdivisionList: AssembleSpecialAttendeeSubdivisionListItem[] /* wire: { List: [...] } */;
   AssembleAttendeeSpecialGuestList: AssembleAttendeeSpecialGuestList;
   GSMContactList: GSMContactList;
 }
@@ -89,4 +90,59 @@ export interface AssembleEvent {
 export interface GetAssembleEventResponse {
   AssembleEvent: AssembleEvent;
   IsNotFound: boolean;
+}
+
+export interface Timezone {
+  TimezoneLabel: string;
+  OffsetSeconds: string /* Long Integer as string */;
+}
+
+export interface AvatarURL {
+  Bucket: string;
+  Path: string;
+  Type: string;
+  CropX: string /* Long Integer as string */;
+  CropY: string /* Long Integer as string */;
+  CropW: string /* Long Integer as string */;
+  CropH: string /* Long Integer as string */;
+  SignedURL: string /* "" in capture */;
+}
+
+export interface ContactDetails {
+  Id: string /* Long Integer as string */;
+  Name: string;
+  Location: string;
+  IsDisabled: boolean;
+  IsBookmarked: boolean;
+  AvatarURL: AvatarURL;
+}
+
+export interface MemberContactListItem {
+  MobilePhoneNumber: string;
+  HomePhoneNumber: string;
+  WorkPhoneNumber: string /* "" in capture */;
+  Email: string;
+  CountryCode: string;
+  LocalityId: string /* Long Integer as string */;
+  HouseholdId: string /* Long Integer as string */;
+  Timezone: Timezone;
+  ContactDetails: ContactDetails;
+  LocalityName: string;
+  CountryName: string;
+}
+
+export interface GetMemberContactByCacheKeyResponse {
+  MemberContactList: MemberContactListItem[] /* wire: { List: [...] } */;
+}
+
+export interface ResultsItem {
+  Bucket: string;
+  Path: string;
+  Type: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedPhotosInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
 }

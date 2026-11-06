@@ -255,10 +255,9 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .skip-nav[data-showskipcontent=true] { display:block; }
 .has-accessible-features .skip-nav:focus, .has-accessible-features .skip-nav:active { opacity:1; pointer-events:auto; }
 ```
-### .text-align-left  (2 rules)
+### .text-align-center  (1 rule)
 ```css
-.text-align-left { text-align:left; }
-.is-rtl [align=left], .is-rtl .text-align-left { text-align:right; }
+.text-align-center { text-align:center; }
 ```
 ### .ubt-layout-detail  (13 rules)
 ```css
@@ -275,6 +274,11 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .ubt-layout-home footer:before, .ubt-layout-main footer:before, .ubt-layout-detail footer:before { background: linear-gradient(180deg, rgba(217, 217, 217, 0.05) 0%, rgba(206, 212, 218, 0.85) 80%); top: calc(-1 * 9px); visibility: var(--footer-shadow-scroll); }
 tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-layout-main.layout-native .header-right, .ubt-layout-detail.layout-native .header-right, .phone .ubt-layout-detail.layout-native .header-right { margin: 0; column-gap: var(--space-base); position: relative; }
 .screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) { overflow: hidden; touch-action: none; }
+```
+### .ubt-layout-detail--primary  (2 rules)
+```css
+.ubt-layout-detail.ubt-layout-detail--primary { --header-color: var(--color-primary-gradient-radial); }
+.ubt-layout-detail.ubt-layout-detail--primary .header { color: var(--color-neutral-0); background: var(--header-color); }
 ```
 ### .ubt-layout-detail__left  (4 rules)
 ```css

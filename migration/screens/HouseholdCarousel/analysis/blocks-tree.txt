@@ -908,6 +908,23 @@ Layouts.Layout_DetailPage
                                       ConnectPatterns.LazyImage
                                         ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
+                                          BasePatterns.CustomContainer
+                                            ConnectPatterns.Icon
+                                  BasePatterns.CustomText
+                                    ConnectPatterns.IconInline_Internal
+                                  BasePatterns.CustomText
+                                    ConnectPatterns.IconInline_Internal
+                                  BasePatterns.CustomContainer
+                            ConnectCorePatterns.Member_ListItem
+                              BasePatterns.Columns_Three
+                                Adaptive.Columns3
+                                  CW_Image.UBT_LazyImage
+                                    ConnectPatterns.SkeletonSection
+                                      ConnectPatterns.LazyImage
+                                        ConnectPatterns.SkeletonSection
+                                          BasePatterns.CustomContainer
+                                          BasePatterns.CustomContainer
+                                            ConnectPatterns.Icon
                                   BasePatterns.CustomText
                                     ConnectPatterns.IconInline_Internal
                                   BasePatterns.CustomText
@@ -934,19 +951,8 @@ Layouts.Layout_DetailPage
                                       ConnectPatterns.LazyImage
                                         ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
-                                  BasePatterns.CustomText
-                                    ConnectPatterns.IconInline_Internal
-                                  BasePatterns.CustomText
-                                    ConnectPatterns.IconInline_Internal
-                                  BasePatterns.CustomContainer
-                            ConnectCorePatterns.Member_ListItem
-                              BasePatterns.Columns_Three
-                                Adaptive.Columns3
-                                  CW_Image.UBT_LazyImage
-                                    ConnectPatterns.SkeletonSection
-                                      ConnectPatterns.LazyImage
-                                        ConnectPatterns.SkeletonSection
                                           BasePatterns.CustomContainer
+                                            ConnectPatterns.Icon
                                   BasePatterns.CustomText
                                     ConnectPatterns.IconInline_Internal
                                   BasePatterns.CustomText

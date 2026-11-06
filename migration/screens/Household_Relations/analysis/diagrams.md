@@ -51,7 +51,7 @@ flowchart TB
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionGet_ParentHouseholdDetails<br/>data action / aggregate, observed"]
+    S0["DataActionGet_SibllingsRelations<br/>data action / aggregate, observed"]
     S1["DataActionFetchNotes<br/>data action / aggregate, declared, not observed"]
     S2["DataActionGet_MemberDetails<br/>data action / aggregate, observed"]
     S3["ActionAppManager_SynchAppContext<br/>observed"]
@@ -95,7 +95,7 @@ sequenceDiagram
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
-  S->>API: DataActionGet_ParentHouseholdDetails
+  S->>API: DataActionGet_SibllingsRelations
   API-->>S: Out_siblingRelations
   S->>API: DataActionFetchNotes
   API-->>S: TODO outputs

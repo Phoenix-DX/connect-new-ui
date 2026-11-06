@@ -27,8 +27,6 @@ App_PIN.Block_PINUnlock
                 Adaptive.Columns2
                   BasePatterns.CustomText
                     ConnectPatterns.IconInline_Internal
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
             CacheControl.CacheControl_Policies
               CacheControl.CacheControl
             NavigationHandler.PreventBackNavigation
@@ -362,14 +360,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 5481 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 8092 ms
-- 3. `ActionSync_Info_GetMain` (200) at 10065 ms
-- 4. `ActionGetUserInformation` (200) at 10405 ms
-- 5. `ActionGetNumberUnreadMessages` (200) at 10668 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 13427 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 15769 ms
-- 8. `DataActionGetCacheInfo` (200) at 17283 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 4152 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 7844 ms
+- 3. `ActionSync_Info_GetMain` (200) at 8280 ms
+- 4. `ActionGetUserInformation` (200) at 8601 ms
+- 5. `ActionGetNumberUnreadMessages` (200) at 8858 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 13457 ms
+- 7. `DataActionGetCacheInfo` (200) at 15261 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 15940 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

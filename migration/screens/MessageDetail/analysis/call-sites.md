@@ -1,4 +1,4 @@
-# Call sites: MessageDetail
+# Call sites: Notifications
 
 For every service call: the chains of code that lead to it, from a root (user event, lifecycle handler, fetch at start, block event) down to the call. Built from compiled code only; conditions along a chain are not shown, read them in the files named.
 
@@ -8,17 +8,13 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `UBT_AppManager.azureInsights_CreateCustomEvent` → `UBT_AppManager.appManager_CheckAppContext` → `UBT_AppManager.appManager_GetConfiguration` → `UBT_AppManager.appManager_SynchAppContext` → `UBT_AppManager.appManager_SynchAppContextInternal` → `server AppManager_SynchAppContext`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - (5 chain(s) starting in blocks of other screens omitted)
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/DataActionGetMessageInstance`
-- `NotificationDetailBlock.adaptiveCardViewerOnExecuteAction` → `event adaptiveCardEventExecuted of NotificationDetailBlock` → `ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction` → `ScreenBlock_MessageDetail.DataActionGetMessageInstance`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `ScreenBlock_MessageDetail.OnReady` → `ScreenBlock_MessageDetail.onReady` → `ScreenBlock_MessageDetail.DataActionGetMessageInstance`
-- `ScreenBlock_MessageDetail fetch at start` → `ScreenBlock_MessageDetail.DataActionGetMessageInstance`
-
-### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
-- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
 - `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.onApplicationReady` → `UBT_AppManager_Mobile.appManager_Mobile_OnAppReady` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges`
+- `Notifications.OnReady` → `Notifications.screenEvent_OnReady` → `Notifications.DataActionGetDateRanges`
+- `Notifications fetch at start` → `Notifications.DataActionGetDateRanges`
 
 ### `UBTConnect/ActionSync_Info_GetMain`
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `UBTConnect.sync_Info_Main` → `server Sync_Info_GetMain`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
@@ -31,32 +27,47 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.fCM_NotificationCallback` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
+### `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications`
+- `onChange in Notifications_Action` → `Notifications_Action.switch_IsOnlyShowUnReadOnChange` → `event onlyShowUnread of Notifications_Action` → `Notifications.handler_OnlyShowUnread` → `Notifications.DataActionFetchNotifications`
+- `event event_OnClick of Button` → `MoreActionSheet.onClick_Clear` → `MoreActionSheet.onClick_Apply` → `event applySort of MoreActionSheet` → `Notifications_MoreActionSheet.filterSheetApplyFilters` → `event applyFilters of Notifications_MoreActionSheet` → `Notifications.handler_ApplyFilters` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications`
+- `event event_OnClick of Button` → `SortSheet.onClick_Clear` → `SortSheet.onClick_Apply` → `event applySort of SortSheet` → `Notifications_SortSheet.filterSheetApplyFilters` → `event applyFilters of Notifications_SortSheet` → `Notifications.handler_ApplyFilters` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications`
+- `onClick in Button` → `event event_OnClick of Button` → `SortSheet.onClick_Apply` → `event applySort of SortSheet` → `Notifications_SortSheet.filterSheetApplyFilters` → `event applyFilters of Notifications_SortSheet` → `Notifications.handler_ApplyFilters` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications`
+- `onClick in Icon` → `event click of Icon` → `Input.onClick_ClearString` → `event event_ClearString of Input` → `Notifications.handler_FilterSearchText` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications`
+- `onKeyUp in Input` → `Input.onKeyup` → `event event_Submit of Input` → `Notifications.handler_FilterSearchText` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications`
+
+### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
+- `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `onClick in IconText` → `event clicked of IconText` → `MoreActionSheet.markAllAsReadClicked` → `event markAllAsRead of MoreActionSheet` → `Notifications_MoreActionSheet.handler_MarkAllAsRead` → `event markAllAsRead of Notifications_MoreActionSheet` → `Notifications.handler_MoreActionSheetMarkAllAsRead` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `onChange in Notifications_Action` → `Notifications_Action.switch_IsOnlyShowUnReadOnChange` → `event onlyShowUnread of Notifications_Action` → `Notifications.handler_OnlyShowUnread` → `Notifications.DataActionFetchNotifications` → `Notifications.onAfterFetch_FetchNotifications` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `event applySort of MoreActionSheet` → `Notifications_MoreActionSheet.filterSheetApplyFilters` → `event applyFilters of Notifications_MoreActionSheet` → `Notifications.handler_ApplyFilters` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications` → `Notifications.onAfterFetch_FetchNotifications` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `event applySort of SortSheet` → `Notifications_SortSheet.filterSheetApplyFilters` → `event applyFilters of Notifications_SortSheet` → `Notifications.handler_ApplyFilters` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications` → `Notifications.onAfterFetch_FetchNotifications` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+- `event click of Icon` → `Input.onClick_ClearString` → `event event_ClearString of Input` → `Notifications.handler_FilterSearchText` → `Notifications.refreshNotifications` → `Notifications.DataActionFetchNotifications` → `Notifications.onAfterFetch_FetchNotifications` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+
 ### `UBTConnect/ServiceAPIFetchData_CacheableMapEntities`
 - `UBTConnect.get_Cacheable_MapEntities` → `server FetchData_CacheableMapEntities`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect/ServiceAPIFetchData_CacheableHouseholds`
 - `UBTConnect.get_Cacheable_MapHouseholds` → `server FetchData_CacheableHouseholds`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ## Declared and reachable from the rendered blocks, not observed
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionWrapper_NotificationOpened`
-- `NotificationDetailBlock.adaptiveCardViewerOnExecuteAction` → `event adaptiveCardEventExecuted of NotificationDetailBlock` → `ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction` → `server StoreAdaptiveCardResponses` → `ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch` → `server Wrapper_NotificationOpened`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+### `UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications`
+- `onClick in IconText` → `event clicked of IconText` → `MoreActionSheet.markAllAsReadClicked` → `event markAllAsRead of MoreActionSheet` → `Notifications_MoreActionSheet.handler_MarkAllAsRead` → `event markAllAsRead of Notifications_MoreActionSheet` → `Notifications.handler_MoreActionSheetMarkAllAsRead` → `server MarkAllAsReadNotifications`
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitHostSurveyNotificationParameters`
-- `onClick in ScreenBlock_MessageDetail` → `ScreenBlock_MessageDetail.onClick_ViewOrbitEvent` → `server Get_OrbitHostSurveyNotificationParameters`
+### `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications`
+- `MoreActionSheet.deleteAllNotificationClicked` → `event deleteAllNotification of MoreActionSheet` → `Notifications_MoreActionSheet.handler_DeleteAllNotification` → `event deleteAll of Notifications_MoreActionSheet` → `Notifications.handler_MoreActionSheetDeleteAll` → `server Delete_Notifications`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionGet_OrbitNotificationParameters`
-- `onClick in ScreenBlock_MessageDetail` → `ScreenBlock_MessageDetail.onClick_ViewOrbitEvent` → `server Get_OrbitNotificationParameters`
+### `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead`
+- `onClick in NotificationsList` → `NotificationsList.onClick_NotificationDetail` → `event notificationDetail of NotificationsList` → `event notificationDetail of NotificationsListBreakpoints` → `Notifications.handler_NotificationDetail` → `server MarkAsRead`
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ActionStoreAdaptiveCardResponses`
-- `NotificationDetailBlock.adaptiveCardViewerOnExecuteAction` → `event adaptiveCardEventExecuted of NotificationDetailBlock` → `ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction` → `server StoreAdaptiveCardResponses`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+### `UBTConnect/App_Notifications/NotificationsList/ActionToggleRead`
+- `onClick in NotificationsList` → `NotificationsList.handler_ToggleRead` → `server ToggleRead`
 
-### `Connect2_LegacyShared/MyNotifications/ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
-- `NotificationDetailBlock.adaptiveCardViewerOnExecuteAction` → `event adaptiveCardEventExecuted of NotificationDetailBlock` → `ScreenBlock_MessageDetail.adaptiveCardViewerOnExecuteAction` → `server StoreAdaptiveCardResponses` → `ScreenBlock_MessageDetail.getMessageInstanceByIdOnAfterFetch` → `ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `ScreenBlock_MessageDetail fetch at start` → `ScreenBlock_MessageDetail.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
-
-### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
-- `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+### `UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications`
+- `NotificationsList.handler_DeleteNotification` → `server Delete_Notifications`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

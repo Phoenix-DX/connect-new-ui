@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "881eec45ced0517dbbd6",
+ "fingerprint": "f1853723145f58cdbcd9",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,33 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 412,
-  "texts": 27,
+  "elements": 310,
+  "texts": 22,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:31:56.046Z",
- "counts": {},
+ "at": "2026-11-06T20:03:23.104Z",
+ "counts": {
+  "layout": 8,
+  "structure": 6,
+  "class": 2,
+  "text": 1,
+  "position": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 44,
-  "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-BUTTON": 1,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 10,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1,
-  "TST-DRIFT-2026-11-05-HOUSEHOLDRELATIONS-BOOKMARK-PIXEL": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.00146,
-  "maxCell": 0.0437,
+  "ratio": 0.00018,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 480,
+  "diffPixels": 60,
   "comparedPixels": 328888,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -55,14 +59,102 @@
   ],
   "masks": 2,
   "hotspots": [
-   "200,200 (70px)",
-   "360,200 (48px)",
-   "200,240 (42px)",
-   "240,200 (40px)",
-   "280,200 (40px)"
+   "200,800 (35px)",
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/Household_Relations/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block]",
+   "detail": "390×376 → 390×556"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection]",
+   "detail": "390×172 → 390×352"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section",
+   "detail": "390×172 → 390×352"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section]",
+   "detail": "390×172 → 390×180"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "390×172 → 390×180"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s",
+   "detail": "missing .padding-bottom-s extra .padding-bottom-base"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s",
+   "detail": "390×172 → 390×180"
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Title.margin-bottom-s > div#b3-b30-$b3.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold > span",
+   "detail": "\"Household\" → \"Relations\""
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Title.margin-bottom-s > div#b3-b30-$b3.OSBlockWidget[BasePatterns.CustomText] > div.font-semi-bold > span",
+   "detail": "82×18 → 70×18"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSBlockWidget[ConnectCorePatterns.MemberRelation_ListItem]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.margin-top-s",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s",
+   "detail": "offset in parent 0,8 → 0,68"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s",
+   "detail": "missing .OSFillParent .list .list--gap-s .list-group .list-loading extra .margin-top-s"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s",
+   "detail": "358×120 → 358×52"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s > div#b3-l2-58_0-$b32.OSBlockWidget[ConnectCorePatterns.NonMember_ListItem]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s > div#b3-l2-58_1-$b32.OSBlockWidget[ConnectCorePatterns.NonMember_ListItem]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Household.HouseholdRelations_Block] > div#b3-$b11.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-b11-Placeholder_LoadingSection.ubt-skeleton-section > div#b3-Household.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen_Section] > div#b3-b30-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b1-Content.background-neutral-0.padding-bottom-s.padding-top-s > div#b3-b30-$b2.OSBlockWidget[Layouts.SubLayout_Section] > div#b3-b30-b2-SubLayout_Section.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b30-b2-b1-Content.margin-top-xs.ubt-custom-container.ubt-sub-layout-section > div#b3-b30-b2-Content > div#b3-b30-Placeholder_SectionContent > div#b3-$b31.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-b31-Content.padding-top-s.ubt-custom-container > div.OSFillParent.list.list--gap-s > div.OSBlockWidget[ConnectCorePatterns.MemberRelation_ListItem]",
+   "detail": "extra in build"
+  }
+ ]
 }

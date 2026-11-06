@@ -7,14 +7,15 @@ Load order of stylesheets (keep this order in the build):
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
 5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
-6. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
-7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+6. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css`
+7. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
+8. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+9. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+12. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+13. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+14. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -436,6 +437,22 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 .directory-locality.ubt-icon { --ubt-icon-size: 18px; }
 ```
+## ConnectPatterns.SkeletonSection
+
+### .ubt-skeleton-section  (11 rules)
+```css
+.ubt-skeleton-section * { text-decoration: none; }
+.ubt-skeleton-section *:has(>span:only-child) { /* padding: 0;*/ min-height: 1lh; display: flex; align-items: center; background: unset; }
+.ubt-skeleton-section span { color: transparent; }
+.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
+.ubt-skeleton-section span, .ubt-skeleton-section .osui-dropdown-search { height: 1.2em; align-items: center; border-radius: var(--border-radius-medium); }
+.ubt-skeleton-section .ubt-skeleton-section__element span { height: unset; }
+.ubt-skeleton-section span:empty { --skeleton-span-length: 12ch; width: var(--_skeleton-span-legth,var(--skeleton-span-length)) }
+.ubt-skeleton-section .ubt-skeleton-section__multi-line { display: block; height: 1lh; }
+.ubt-skeleton-section .ubt-skeleton-section__multi-line span { width: 100%; display: block; }
+an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
+```
 ## Interaction.Carousel
 
 ### .OSFillParent  (12 rules)
@@ -615,7 +632,7 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ```
 ### .ubt-entities-carousel  (5 rules)
 ```css
-.ubt-entities-carousel { --carousel-container-height: var(--bottom-bar-size); }
+ubt-household-image-card__background-image ubt-background-image--xs  .ubt-entities-carousel { --carousel-container-height: var(--bottom-bar-size); }
 .layout:has(.footer:empty) .ubt-entities-carousel { --carousel-container-height: 0px; }
 .ubt-entities-carousel .splide__slide { --carousel-slide-custom-height: calc(100vh - var(--carousel-container-height) - var(--header-size)); overflow-y: scroll; }
 .layout:has(.ubt-entities-carousel) footer::before, .layout:has(.ubt-entities-carousel) header::after { display: none !important; }
@@ -1175,29 +1192,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .layout-native .bottom-bar-wrapper .icon-badge .icon { font-size:inherit; }
 .icon-badge { display: inherit; }
 ```
-## OutSystemsUIOverrides.Badge
-
-### .background-red  (1 rule)
-```css
-.background-red { background-color:var(--background-color-red, var(--color-red)); }
-```
-### .badge  (9 rules)
-```css
-.badge { -webkit-box-align:center; -ms-flex-align:center; align-items:center; color:var(--text-color-neutral-0, var(--color-neutral-0)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-weight:var(--font-semi-bold); height:32px; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; line-height:1; min-width:32px; }
-.badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
-.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.badge.background-transparent { color:var(--text-color-primary, var(--color-primary)); }
-.badge span { width:auto; }
-.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
-.icon-badge .badge [data-expression] { white-space:nowrap; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-.bottom-bar-wrapper .badge { top: 20%; }
-```
-### .ubt-badge  (2 rules)
-```css
-.ubt-badge.badge-xs { font-size: var(--font-size-xxs); height: 16px; min-width: 16px; width: 16px; }
-.OSBlockWidget:has(> .ubt-badge) { display: flex; }
-```
 ## (page)
 
 ### .active-screen  (7 rules)
@@ -1271,6 +1265,29 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .screen-container.slide-from-right-enter-active ~ .dx-bottom-bar-slider, .screen-container.slide-from-left-enter-active ~ .dx-bottom-bar-slider { z-index: 1000; }
 .screen-container .layout.ubt-layout-home.ubt-profile-screen { --header-size: 50px; }
 .screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) { overflow: hidden; touch-action: none; }
+```
+## OutSystemsUIOverrides.Badge
+
+### .background-red  (1 rule)
+```css
+.background-red { background-color:var(--background-color-red, var(--color-red)); }
+```
+### .badge  (9 rules)
+```css
+.badge { -webkit-box-align:center; -ms-flex-align:center; align-items:center; color:var(--text-color-neutral-0, var(--color-neutral-0)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-weight:var(--font-semi-bold); height:32px; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; line-height:1; min-width:32px; }
+.badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
+.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+.badge.background-transparent { color:var(--text-color-primary, var(--color-primary)); }
+.badge span { width:auto; }
+.icon-badge .badge { left:45%; position:absolute; top:0; border-radius:var(--border-radius-rounded); font-size:var(--font-size-xs); height:18px; min-width:18px; padding:var(--space-none) var(--space-xs); -webkit-transform:translateY(-40%); -ms-transform:translateY(-40%); transform:translateY(-40%); white-space:nowrap; }
+.icon-badge .badge [data-expression] { white-space:nowrap; }
+an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+.bottom-bar-wrapper .badge { top: 20%; }
+```
+### .ubt-badge  (2 rules)
+```css
+.ubt-badge.badge-xs { font-size: var(--font-size-xxs); height: 16px; min-width: 16px; width: 16px; }
+.OSBlockWidget:has(> .ubt-badge) { display: flex; }
 ```
 ## Layouts.Layout_LoginFlow
 
@@ -1406,7 +1423,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--border-size-m`: `2px` (in `@charset "UTF-8";    :root`)
 - `--border-size-s`: `1px` (in `@charset "UTF-8";    :root`)
 - `--bottom-bar-size`: `56px` (in `@charset "UTF-8";    :root`)
-- `--carousel-container-height`: `var(--bottom-bar-size)` (in `.ubt-entities-carousel`); `0px` (in `.layout:has(.footer:empty) .ubt-entities-carousel`)
+- `--carousel-container-height`: `var(--bottom-bar-size)` (in `ld-image-card__background-image ubt-background-image--xs  .ubt-entities-carousel`); `0px` (in `.layout:has(.footer:empty) .ubt-entities-carousel`)
 - `--color-background-body`: `#f3f6f8` (in `@charset "UTF-8";    :root`); `var(--color-neutral-0)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-dark`: `#1667ad` (in `@charset "UTF-8";    :root`); `#112CBA` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-lightest`: `#e8f2fa` (in `@charset "UTF-8";    :root`); `#E1E5FF` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1491,6 +1508,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--shadow-xl`: `0 8px 10px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0px 8px 10px 0px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--shadow-xs`: `0 1px 2px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0 1px 2px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--side-menu-size`: `300px` (in `@charset "UTF-8";    :root`); `264px` (in `e, .tablet .layout-native.aside-visible, .tablet .layout-native.aside-expandable`)
+- `--skeleton-span-length`: `12ch` (in `.ubt-skeleton-section span:empty`)
 - `--space-base`: `16px` (in `@charset "UTF-8";    :root`); `16px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-l`: `32px` (in `@charset "UTF-8";    :root`); `32px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-m`: `24px` (in `@charset "UTF-8";    :root`); `24px` (in `:root, .connect-legacy-compatibily-containter--spacing`)

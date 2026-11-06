@@ -4,16 +4,17 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
-4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
-6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css`
+4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
+5. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
+6. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 

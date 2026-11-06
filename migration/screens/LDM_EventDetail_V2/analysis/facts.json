@@ -2,7 +2,7 @@
  "screen": "LDM_EventDetail_V2",
  "env": {
   "path": "/UBTConnect/LDM_EventDetail_V2",
-  "collectedAt": "2026-11-06T05:03:39.647Z",
+  "collectedAt": "2026-11-06T19:36:27.449Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -469,8 +469,8 @@
   }
  },
  "report": {
-  "maskedTexts": 4,
-  "keptTexts": 10,
+  "maskedTexts": 14,
+  "keptTexts": 11,
   "removedUserImages": 1,
   "failed": []
  },
@@ -494,6 +494,8 @@
   "BasePatterns.CustomText",
   "ConnectPatterns.IconInline_Internal",
   "CW_Notes.NotesSheet",
+  "LDM_Blocks.EventDetail_Section",
+  "LDM_Blocks.EventDetail_ListItem",
   "CW_CTA_PopUps.ContactPopup_ByPhone",
   "CW_CTA_PopUps.ContactPopup",
   "CW_CTA_PopUps.ContactByMessage_Wrapper",
@@ -2144,6 +2146,124 @@
    "candidateStrings": [
     "Action_SetBottomSheetOpen"
    ]
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js": {
+   "file": "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
+   "displayName": [
+    "LDM_Blocks.EventDetail_Section"
+   ],
+   "variables": [
+    {
+     "name": "In_IsHost",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_Title",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_HasBottomBorder",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js": {
+   "file": "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
+   "displayName": [
+    "LDM_Blocks.EventDetail_ListItem"
+   ],
+   "variables": [
+    {
+     "name": "In_MaxPhotoWidth",
+     "kind": "input",
+     "type": "Integer",
+     "default": "100"
+    },
+    {
+     "name": "In_MaxPhotoHeight",
+     "kind": "input",
+     "type": "Integer",
+     "default": "55"
+    },
+    {
+     "name": "In_HasBottomBorder",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "true"
+    },
+    {
+     "name": "IsHosting",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "Guest",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_ISModel.DetailGuestItemRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onHandle_CallClicked",
+    "onClick_Item",
+    "onHandle_EmailClicked",
+    "onClick_PhoneCall",
+    "clicked",
+    "onClick_Message"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "Connect2_LegacyShared.Reusable.Person_Contact_Options"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [
+    "img/Connect2_LegacyShared.User_rectangle.png"
+   ],
+   "feedbackMessages": [
+    "\"Please check your network connection and try again\", /*Info*/ 0)"
+   ],
+   "exceptions": [],
+   "jsNodes": [
+    "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$controller.OnHandle_CallClicked.GetLocalityNameJS",
+    "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$controller.OnHandle_EmailClicked.GetLocalityNameJS"
+   ],
+   "staticEntities": [
+    "connect_Entity2.household"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
   },
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js": {
    "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
@@ -5894,6 +6014,8 @@
   "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
   "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
   "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
@@ -5941,8 +6063,6 @@
   "ConnectPatterns.IconSVG",
   "ConnectPatterns.LazyImage",
   "Fingerprint.FingerprintScanner",
-  "LDM_Blocks.EventDetail_ListItem",
-  "LDM_Blocks.EventDetail_Section",
   "LDM_Blocks.EventDetail_SpecialNeeds_ListItem",
   "LDM_Blocks.EventDetail_SubSection",
   "NavigationHandler.PreventBackNavigation",
@@ -6073,7 +6193,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 2950,
+   "t": 3123,
    "action": "DataActionFetchEventNotes",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionFetchEventNotes",
    "status": 200,
@@ -6081,7 +6201,7 @@
   },
   {
    "order": 2,
-   "t": 2992,
+   "t": 3174,
    "action": "DataActionGetCoordinatorDetails",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails",
    "status": 200,
@@ -6089,7 +6209,7 @@
   },
   {
    "order": 3,
-   "t": 3055,
+   "t": 3480,
    "action": "DataActionGetEventByEventId",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_EventDetail_V2/DataActionGetEventByEventId",
    "status": 200,
@@ -6110,18 +6230,6 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js",
    "count": 1
   },
@@ -6130,7 +6238,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
    "count": 1
   },
   {
@@ -6138,7 +6258,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
    "count": 1
   },
   {
@@ -6146,7 +6266,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
    "count": 1
   },
   {
@@ -6154,15 +6274,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/SocialSharingPlugin.model.js",
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
    "count": 1
   },
   {
@@ -6178,7 +6294,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
+   "request": "script /UBTConnect/scripts/SocialSharingPlugin.model.js",
    "count": 1
   },
   {
@@ -6190,7 +6306,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
    "count": 1
   },
   {
@@ -6198,15 +6314,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
    "count": 1
   },
   {
@@ -6234,15 +6354,11 @@
    "count": 1
   },
   {
-   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
-   "count": 8
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
+   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css",
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.css",
+   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css",
    "count": 1
   },
   {
@@ -6258,11 +6374,19 @@
    "count": 1
   },
   {
-   "request": "img https://d23bplak01dwmt.cloudfront.net/3/US/326/hall_765.jpg",
-   "count": 2
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 9
   },
   {
    "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
+   "count": 1
+  },
+  {
+   "request": "img https://d23bplak01dwmt.cloudfront.net/3/US/313/408.jpg",
+   "count": 2
+  },
+  {
+   "request": "css https://d23bplak01dwmt.cloudfront.net/3/US/313/2282/50444/129600_340.jpg",
    "count": 1
   },
   {
@@ -6354,6 +6478,14 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
+   "count": 1
+  },
+  {
    "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
    "count": 1
   },
@@ -6442,12 +6574,12 @@
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js",
-   "count": 1
-  },
-  {
    "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 2
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js",
+   "count": 1
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
@@ -7565,6 +7697,8 @@
   "Connect2_LegacyShared.model.js",
   "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner.mvc.js",
   "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js",
+  "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js",
   "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js",
   "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js",
   "Connect2_OrbitMobile_MUI.controller.js",

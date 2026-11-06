@@ -1161,16 +1161,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3014 ms
-- 2. `DataActionGetLocalityHouseholdIds` (200) at 3026 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 4307 ms
-- 4. `ActionGetSignedImagesInBulk` (200) at 4439 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6494 ms
-- 6. `ActionSync_Info_GetMain` (200) at 6911 ms
-- 7. `ActionGetUserInformation` (200) at 7256 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7534 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9712 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12323 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2236 ms
+- 2. `DataActionGetLocalityHouseholdIds` (200) at 2252 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 3204 ms
+- 4. `ActionGetSignedImagesInBulk` (200) at 3247 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 4604 ms
+- 6. `ActionSync_Info_GetMain` (200) at 5011 ms
+- 7. `ActionGetUserInformation` (200) at 5306 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 5564 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7719 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10372 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

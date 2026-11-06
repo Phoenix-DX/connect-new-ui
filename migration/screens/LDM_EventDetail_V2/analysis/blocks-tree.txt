@@ -19,6 +19,15 @@ LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2
                           BasePatterns.CustomText
                             ConnectPatterns.IconInline_Internal
               CW_Notes.NotesSheet
+        LDM_Blocks.EventDetail_Section
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
       CW_CTA_PopUps.ContactPopup_ByPhone
         CW_CTA_PopUps.ContactPopup
       CW_CTA_PopUps.ContactByMessage_Wrapper

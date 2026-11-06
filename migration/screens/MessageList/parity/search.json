@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 3,
- "fingerprint": "271ce36a82c9ca7e4dcb",
+ "fingerprint": "a3d72a8ec17faf9dd38c",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,11 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:34:02.952Z",
- "counts": {},
+ "at": "2026-11-06T20:05:32.652Z",
+ "counts": {
+  "class": 6,
+  "style": 6
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 2,
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,
@@ -71,5 +74,66 @@
   "expected": 9,
   "actual": 9
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_0-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_0-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_14-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_14-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_15-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_15-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_16-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_16-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_17-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_17-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_18-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "missing .background-blue-lightest"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[MyNotifications.ScreenBlock_MessageList] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div.message-list > div#b1-FilterDataBlock > div#b1-$b7.OSBlockWidget[MyNotifications.MessageListBlock] > div > div#b1-b7-Messages_List.OSFillParent.list.list-group > div > div#b1-b7-l1-36_18-Messages_List_Item > div.list-item-container.list-item-float-left > div.background-blue-lightest.list-item",
+   "detail": "background-color rgb(232, 242, 250) → rgb(255, 255, 255)"
+  }
+ ]
 }

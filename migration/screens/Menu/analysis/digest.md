@@ -81,6 +81,15 @@ Layouts.Layout_DetailPage
                   ConnectPatterns.IconInline_Internal
                 ConnectPatterns.SkeletonSection
                   ConnectPatterns.Icon
+        ConnectPatterns.SkeletonSection
+          BasePatterns.CustomContainer
+            BasePatterns.Columns_Three
+              Adaptive.Columns3
+                ConnectPatterns.Icon
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+                ConnectPatterns.SkeletonSection
+                  ConnectPatterns.Icon
     BasePatterns.CustomContainer
       App_Common.Version
         BasePatterns.CustomText
@@ -151,7 +160,7 @@ App_Common_Blocks_PopupDialogs.Dialog_CustomChoice
 - Lifecycle handlers: Initialize
 - Client actions / event handlers: `action_Logout`, `cacheControl_UserInfo_WrapperResult`, `screenEvent_OnInitialize`, `onClick_EditYourAccount`, `onClick_MenuOption`
 - Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/Profile`(); `/UBTConnect/ContactUsMenu`(); `/UBTConnect/TermsAndPoliciesMenu`(); `/UBTConnect/PINBiometricsMenu`()
-- Feedback messages: `"Your update photo request has been submitted.", /*Success*/ 1)` | `("Go to " + vars.value.idInLocal), /*Info*/ 0)`
+- Feedback messages: `"Thank you. Your photo update request has been submitted and is awaiting review.", /*Success*/ 1)` | `("Go to " + vars.value.idInLocal), /*Info*/ 0)`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_FontSize.heading5`, `uBT_FontWeight.semiBold`, `uBT_Display.flex`, `uBT_JustifyContent.spaceBetween`, `uBT_FlexDirection.column`, `uBT_Size.small`, `uBT_Size.base`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ImageSize.small_40`, `uBT_ImageSize.square`, `connect_Entity.member`, `uBT_Color.neutral9`, `uBT_FontSize.base`, `uBT_Color.primary`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_JustifyContent.center`, `connect_BottomBar_Items.menu`, `connect_Menu_Items.subscriptionAndPayments`, `uBT_Icons2.openNew`, `connect_Menu_Items.requestPhotoUpdate`, `connect_Menu_Items.logOut`, `connect_Menu_Items.contactUs`, `connect_Menu_Items.termsAndPolicies`, `connect_Menu_Items.pINAndBiometrics`
 
 ## `UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js`
@@ -635,14 +644,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2764 ms
-- 2. `ActionGet_RuntimeVersion` (200) at 3875 ms
-- 3. `DataActionGetCacheInfo` (200) at 3932 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 5460 ms
-- 5. `ActionSync_Info_GetMain` (200) at 5897 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 6194 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8240 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10902 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2778 ms
+- 2. `ActionGet_RuntimeVersion` (200) at 4121 ms
+- 3. `DataActionGetCacheInfo` (200) at 4198 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 5817 ms
+- 5. `ActionSync_Info_GetMain` (200) at 6298 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 6582 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8436 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11312 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

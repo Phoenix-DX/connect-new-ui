@@ -14,6 +14,10 @@ Layouts.Layout_DetailPage
                   ConnectPatterns.LazyImage
                     ConnectPatterns.SkeletonSection
                       BasePatterns.CustomContainer
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                        BasePatterns.CustomText
+                          ConnectPatterns.IconInline_Internal
             BasePatterns.CustomContainer
               ConnectPatterns.ImageCard__Content
                 BasePatterns.CustomText
@@ -24,37 +28,13 @@ Layouts.Layout_DetailPage
                   CW_CTA_PopUps.AddressPopup_Wrapper
                     BasePatterns.CustomText
                       ConnectPatterns.IconInline_Internal
-                        ConnectPatterns.Icon
                     CW_CTA_PopUps.AddressPopup
                       CW_CTA_PopUps.ContactPopup
-                  App_Common_Blocks.External_Link
-                    ConnectPatterns.IconText
-                      BasePatterns.Columns_Two
-                        Adaptive.Columns2
-                          ConnectPatterns.Icon
-                          BasePatterns.CustomText
-                            ConnectPatterns.IconInline_Internal
       BasePatterns.CustomContainer
         Directory_CommonBlocks.Directory_EntityDetailsActions
           ConnectPatterns.SkeletonSection
             ConnectCorePatterns.ActionsMenu
               BasePatterns.CustomContainer
-                ConnectPatterns.CircleButton_IconPrimary
-                  ConnectPatterns.CircleButton_WithLabel
-                    ConnectPatterns.CircleButton
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.Icon
-                    BasePatterns.CustomContainer
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                ConnectPatterns.CircleButton_IconPrimary
-                  ConnectPatterns.CircleButton_WithLabel
-                    ConnectPatterns.CircleButton
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.Icon
-                    BasePatterns.CustomContainer
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
                 ConnectPatterns.CircleButton_IconPrimary
                   ConnectPatterns.CircleButton_WithLabel
                     ConnectPatterns.CircleButton

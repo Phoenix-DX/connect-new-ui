@@ -16,8 +16,8 @@ flowchart TB
       B2["App_Common_Blocks.App_NotificationIcon<br/>UBTConnect<br/>navigation, lifecycle"]
       B3["App_Common_Blocks.App_NotificationRefresh<br/>UBTConnect<br/>lifecycle"]
       B4["ConnectPatterns.Input<br/>UBTConnectLibrary<br/>lifecycle"]
-      B5["Bookmarks.Bookmarks_Card_List<br/>UBTConnect<br/>lifecycle"]
-      B6["CW_Notes.NotesSheet<br/>UBTConnect_Utils<br/>lifecycle"]
+      B5["ConnectPatterns.Horizontal_Filter_TagList<br/>UBTConnectLibrary<br/>lifecycle"]
+      B6["Bookmarks.Bookmarks_Card_List<br/>UBTConnect<br/>lifecycle"]
       B7["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
       B8["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
       B9["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
@@ -93,7 +93,7 @@ sequenceDiagram
   S->>S: OnReady
   alt success
     S-->>U: TODO render states (spec section 8)
-  else CommunicationException / NotRegisteredException / SecurityException / UserException
+  else NotRegisteredException / SecurityException
     S-->>U: TODO error UI and messages (spec section 11)
   end
 ```

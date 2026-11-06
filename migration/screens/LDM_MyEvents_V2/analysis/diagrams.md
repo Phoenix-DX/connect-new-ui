@@ -40,12 +40,13 @@ flowchart TB
     S1["DataActionGetEventsForCalendar<br/>data action / aggregate, declared, not observed"]
     S2["DataActionGetEventLocalitiesForFilter<br/>data action / aggregate, observed"]
     S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionAppManager_AfterInitialize<br/>observed"]
-    S5["ActionSync_Info_GetMain<br/>observed"]
-    S6["ActionGetUserInformation<br/>observed"]
-    S7["ActionGetNumberUnreadMessages<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S4["ActionGetAllApplicationEvents<br/>observed"]
+    S5["ActionAppManager_AfterInitialize<br/>observed"]
+    S6["ActionSync_Info_GetMain<br/>observed"]
+    S7["ActionGetUserInformation<br/>observed"]
+    S8["ActionGetNumberUnreadMessages<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B0 --> S0
@@ -58,6 +59,7 @@ flowchart TB
   Content -.-> S7
   Content -.-> S8
   Content -.-> S9
+  Content -.-> S10
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class S1,Backend unknown;
@@ -111,6 +113,25 @@ sequenceDiagram
   Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
   Note over S: via HandleImageLoadError.applicationEvent_ImageError → … → UBT_AppManager.appManager_SynchAppContextInternal → server AppManager_SynchAppContext
   S->>API: ActionAppManager_SynchAppContext(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetAllApplicationEvents
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at HandleImageLoadError.applicationEvent_ImageError (see call-sites.md)
+  Note over S: via HandleImageLoadError.applicationEvent_ImageError → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents
+  S->>API: ActionGetAllApplicationEvents(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

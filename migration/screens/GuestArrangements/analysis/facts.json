@@ -2,7 +2,7 @@
  "screen": "GuestArrangements",
  "env": {
   "path": "/UBTConnect/GuestArrangements",
-  "collectedAt": "2026-11-06T14:02:20.331Z",
+  "collectedAt": "2026-11-06T19:43:49.285Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -4413,7 +4413,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 911,
+   "t": 980,
    "action": "DataActionGetGuestArrangements",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements",
    "status": 200,
@@ -4454,6 +4454,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 2
+  },
+  {
    "request": "fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements.mvc.js",
    "count": 1
   },
@@ -4464,10 +4468,6 @@
   {
    "request": "fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 2
   },
   {
    "request": "fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js",

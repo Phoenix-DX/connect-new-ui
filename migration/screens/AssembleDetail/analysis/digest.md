@@ -42,9 +42,7 @@ Assemble.ScreenBlock_AssembleDetail
               Assemble.AssembleSummary_Card_Row
               Assemble.AssembleSummary_Card_Row
               Assemble.AssembleSummary_Card_Row
-              Assemble.AssembleCommon_VirtualMeetingURL
-                Assemble.AssembleSummary_Card_Row
-                ConfirmationDialogs.ActionConfirmationDialog
+              Assemble.AssembleSummary_Card_Row
           CW_Notes.NoteListActions
             ConnectPatterns.Note_Item_List
               BasePatterns.CustomContainer
@@ -65,7 +63,23 @@ Assemble.ScreenBlock_AssembleDetail
               Assemble.AssembleEventDetail_LocalitySubdivisionList
                 NewConnect_Utilities.NC_Result_Item__Image
                   NewConnect_Utilities.NC_Result_Item_Badge
+            Assemble.AssembleEventDetail_LocalitiesList
+              Assemble.AssembleEventDetail_LocalitySubdivisionList
+                NewConnect_Utilities.NC_Result_Item__Image
+                  NewConnect_Utilities.NC_Result_Item_Badge
           Assemble.AssembleEventDetail_Section
+            Assemble.AssembleEventDetail_ContactList
+              Assemble.AssembleEventDetail_Contact
+                NewConnect_Utilities.NC_Result_Item__Image
+                  Reusable.Person_Contact_Options
+                CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
+                  CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
+                    ConfirmationDialogs.ActionConfirmationDialog
+                CW_CTA_PopUps.ContactPopup_ByPhone
+                  CW_CTA_PopUps.ContactPopup
+                CW_CTA_PopUps.ContactByMessage_Wrapper
+                  CW_CTA_PopUps.ContactPopup_ByMessage
+                    CW_CTA_PopUps.ContactPopup
         ScrollAnchors.FocusScrollAnchorOnBack
           NavigationHandler.BackNavigationHandler
       App_Common.BottomBarMenu
@@ -437,15 +451,6 @@ CW_Notes.NotesSheet
 |---|---|---|---|
 | HeaderLabel | input | Text | `""` |
 
-## `Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| VirtualMeetingPlatform | input | Text | `""` |
-| VirtualMeetingURL | input | Text | `""` |
-| VirtualMeetingId | input | Text | `""` |
-| VirtualMeetingPassword | input | Text | `""` |
-- Client actions / event handlers: `meetingInfo_Toggle`, `linkVirtualAddressOnClick`
-
 ## `UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -624,6 +629,81 @@ CW_Notes.NotesSheet
 | BackgroundColor | input | Text | `"var(--color-neutral-2)"` |
 | Size | input | Text | `"40"` |
 
+## `Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| AssembleEventContactList | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_Assemble_MUIModel.AssembleEventContactList())` |
+| IsDataFetched | local | Boolean | `false` |
+| AssembleEventContactIdList | input | RecordList | `OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.LongIntegerList())` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`, `emailContact`, `navigateTo_Household`
+- JavaScript nodes: `Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS`
+
+## `Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| UnavailableContactValue | local | Text | `"Unavailable"` |
+| CallPopup | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByPhonePopupDataRec())` |
+| ContactPopupData | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| IsDataFetched | input | Boolean | `false` |
+| AssembleEventContact | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_Assemble_CSModel.AssembleEventContactRec())` |
+- Client actions / event handlers: `handler_ContactByMessage`, `handler_ContactByEmail`, `handler_ContactByMessage_Cancel`, `handler_OnClickHostContact`, `contactByPhonePopupEvent_Cancel`, `handler_OptionsCall`, `navigateTo_EmailContact`, `navigateTo_Household`
+- Feedback messages: `"Unfortunately, Email is not available", /*Info*/ 0)` | `"Unfortunately, Phone Number is not available", /*Info*/ 0)`
+
+## `Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| Phone | input | PhoneNumber | `""` |
+| MobilePhone | input | PhoneNumber | `""` |
+| WorkPhone | input | PhoneNumber | `""` |
+| EmailAddress | input | Email | `""` |
+- Client actions / event handlers: `callClicked`, `emailClicked`
+
+## `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| ContactPopupButtons | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonTextRecordList())` |
+| In_CallPopupData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByPhonePopupDataRec())` |
+| In_ImageSizeId | input | Text | `UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100` |
+- Lifecycle handlers: Initialize, ParametersChanged
+- Client actions / event handlers: `onInitialize`, `action_SetContactPopupButtons`, `onClick_CallButton`, `onParametersChanged`, `event_Call`, `event_Cancel`
+- Static entities / flags: `uBT_ImageSize.extraLarge_100`, `uBT_Icons.callFill`, `uBT_Icons.homeFill`, `uBT_Icons.enterprise`
+
+## `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| SkeletonButtonList | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonList())` |
+| TargetTimeLabel | local | Text | `""` |
+| In_ContactPopupData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())` |
+| In_ContactPopupButtons | input | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonList())` |
+| In_ImageSizeId | input | Text | `UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100` |
+- Lifecycle handlers: Initialize, ParametersChanged
+- Client actions / event handlers: `action_UpdateTargetTimeLabel`, `screenEvent_OnParametersChanged`, `screenEvent_OnInitialize`, `event_Clicked`, `event_Cancel`
+- Static entities / flags: `uBT_ImageSize.extraLarge_100`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral10`, `uBT_FontSize.heading6`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_ImageSize.square`, `uBT_Shape.circle`, `uBT_Icons.imageGallery`, `uBT_Shape.none`, `uBT_Size.medium`, `uBT_ButtonSize.medium`, `uBT_ButtonType.primary`, `uBT_ButtonType.scondary`, `uBT_FlexBehavior.grow`, `uBT_IconSize.medium_20`, `uBT_ButtonType.tertiary`, `uBT_Icons.callFill`
+
+## `UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsWhatsAppAvailable | local | Boolean | `false` |
+| IsSignalAvailable | local | Boolean | `false` |
+| SignalBaseURI | local | Text | `"sgnl://signal.me/#p/"` |
+| WhatsAppBaseURI | local | Text | `"whatsapp://send?phone="` |
+| ExternalAppPackageName | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ExternalAppPackageNameRec())` |
+| In_ContactPopupData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.UI_ContactByMessage_WrapperDataRec())` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `screenEvent_OnReady`, `handler_SelectedMessageChannel`, `action_OpenMessagingApp`, `handler_Cancel`, `event_Email`, `event_MessageChannel`, `event_Call`, `event_Cancel`
+- Static entities / flags: `type_MessageChannel.email`, `type_MessageChannel.whatsApp`, `type_MessageChannel.signal`, `type_MessageChannel.call`
+
+## `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| ContactPopupButtons | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonTextRecordList())` |
+| In_ContactByMessageData | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByMessagePopupDataRec())` |
+| In_ImageSizeId | input | Text | `UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100` |
+- Lifecycle handlers: Initialize, ParametersChanged
+- Client actions / event handlers: `action_SetContactPopupButtons`, `onParametersChanged`, `onInitialize`, `onClick_MessageButton`, `event_Cancel`, `event_SelectedMessageChannel`
+- Static entities / flags: `uBT_ImageSize.extraLarge_100`, `type_MessageChannel.email`, `uBT_Icons.mailFill`, `type_MessageChannel.whatsApp`, `uBT_Icons.whatsapp`, `type_MessageChannel.signal`, `uBT_Icons.signal`, `type_MessageChannel.call`, `uBT_Icons.callFill`
+
 ## `NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -766,16 +846,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetAssembleNotes` (200) at 1994 ms
-- 2. `DataActionGetAssembleEvent` (200) at 3133 ms
+- 1. `DataActionGetAssembleNotes` (200) at 2731 ms
+- 2. `DataActionGetAssembleEvent` (200) at 4005 ms
+- 3. `ActionGetMemberContactByCacheKey` (200) at 4490 ms
+- 4. `ActionGetSignedPhotosInBulk` (200) at 4809 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_Policies.Policy_Checker`
-- `Assemble.AssembleCommon_VirtualMeetingDetails`
+- `Assemble.AssembleCommon_VirtualMeetingURL`
 - `Assemble.AssembleEventDetail_AttendeeSubdivision`
 - `Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet`
-- `Assemble.AssembleEventDetail_ContactList`
 - `Assemble.AssembleEventDetail__Error`
 - `AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton`
 - `CW_Common.Button`
@@ -793,6 +874,7 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.HighlightSearch`
 - `ConnectPatterns.IconSVG`
 - `ConnectPatterns.Input`
+- `ConnectPatterns.LazyImage`
 - `ConnectPatterns.Note_Item`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`

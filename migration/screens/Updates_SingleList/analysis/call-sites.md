@@ -12,13 +12,13 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `Updates_SingleList.OnReady` → `Updates_SingleList.screenEvent_OnReady` → `Updates_SingleList.DataActionGetDateRanges`
 - `Updates_SingleList fetch at start` → `Updates_SingleList.DataActionGetDateRanges`
 
-### `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo`
-- `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_UserInfo.cacheControlOnNonCacheHit` → `CacheControl_UserInfo.DataActionGetCacheInfo`
-- `CacheControl_UserInfo fetch at start` → `CacheControl_UserInfo.DataActionGetCacheInfo`
-
 ### `UBTConnect_Utils/CacheControl/CacheControl_AllCountries/DataActionGetCacheInfo`
 - `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_AllCountries.cacheControlOnNonCacheHit` → `CacheControl_AllCountries.DataActionGetCacheInfo`
 - `CacheControl_AllCountries fetch at start` → `CacheControl_AllCountries.DataActionGetCacheInfo`
+
+### `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo`
+- `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_UserInfo.cacheControlOnNonCacheHit` → `CacheControl_UserInfo.DataActionGetCacheInfo`
+- `CacheControl_UserInfo fetch at start` → `CacheControl_UserInfo.DataActionGetCacheInfo`
 
 ### `UBTConnect_Utils/CacheControl/CacheControl_AllLocalities/DataActionGetCacheInfo`
 - `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_AllLocalities.cacheControlOnNonCacheHit` → `CacheControl_AllLocalities.DataActionGetCacheInfo`

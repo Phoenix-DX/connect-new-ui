@@ -292,9 +292,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 5006 ms
-- 2. `ActionSync_Info_GetMain` (200) at 5836 ms
-- 3. `ActionGet_RuntimeVersion` (200) at 13707 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 4107 ms
+- 2. `ActionSync_Info_GetMain` (200) at 4798 ms
+- 3. `ActionGet_RuntimeVersion` (200) at 12202 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

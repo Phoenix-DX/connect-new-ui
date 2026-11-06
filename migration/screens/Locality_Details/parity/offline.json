@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "7d336c7ce0eb813846ea",
+ "fingerprint": "81d1aacff6142c6a9dc1",
  "options": {
   "text": true,
   "style": true,
@@ -19,16 +19,20 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 234,
-  "texts": 29,
+  "elements": 538,
+  "texts": 37,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:32:37.290Z",
- "counts": {},
+ "at": "2026-11-06T20:04:06.226Z",
+ "counts": {
+  "layout": 3,
+  "structure": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "ignoreSubtrees": 2,
@@ -37,11 +41,11 @@
   "SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00024,
-  "maxCell": 0.0219,
+  "ratio": 0.0159,
+  "maxCell": 0.215,
   "maxCellRatio": 0.03,
-  "diffPixels": 77,
-  "comparedPixels": 324196,
+  "diffPixels": 5156,
+  "comparedPixels": 324376,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,13 +58,40 @@
   ],
   "masks": 4,
   "hotspots": [
-   "200,800 (35px)",
-   "200,760 (25px)",
-   "160,120 (9px)",
-   "160,80 (8px)"
+   "40,200 (344px)",
+   "120,200 (343px)",
+   "160,200 (341px)",
+   "200,760 (305px)",
+   "80,200 (280px)"
   ],
   "diffPng": "migration/screens/Locality_Details/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content",
+   "detail": "390×1112 → 390×578"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content",
+   "detail": "390×1112 → 390×578"
+  },
+  {
+   "kind": "layout",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle",
+   "detail": "390×1112 → 390×578"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b17.OSBlockWidget[Directory_Locality.Locality_Households]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "1.59% pixels differ (max 0.20%), worst 40px tile 21.5% (max 3.0%), hotspots 40,200 (344px); 120,200 (343px); 160,200 (341px); 200,760 (305px); 80,200 (280px); see migration/screens/Locality_Details/parity/offline.diff.png"
+  }
+ ]
 }

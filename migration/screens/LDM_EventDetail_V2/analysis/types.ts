@@ -113,9 +113,18 @@ export interface Mobility {
   EmptyListItem: EmptyListItem;
 }
 
-export interface Diet {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface DietItem {
+  Type: string /* Long Integer as string */;
+  Memberid: string /* Long Integer as string */;
+  Name: string;
+  Notes: string;
+  Category: string /* "" in capture */;
+  Eventid: string /* Long Integer as string */;
+  Eventguestid: string /* Long Integer as string */;
+  FullName: string;
+  CdnBucket: string /* "" in capture */;
+  CdnPath: string /* "" in capture */;
+  SignedUrl: string;
 }
 
 export interface Other {
@@ -125,7 +134,7 @@ export interface Other {
 
 export interface SpecialNeeds {
   Mobility: Mobility;
-  Diet: Diet;
+  Diet: DietItem[] /* wire: { List: [...] } */;
   Other: Other;
 }
 

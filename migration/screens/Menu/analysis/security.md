@@ -19,6 +19,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `permissions-policy`: **missing**
 
 ## Third-party hosts contacted
+- `australiaeast-0.in.applicationinsights.azure.com`
 - `cbcdn.ubtconnect.com`
 - `js.monitor.azure.com`
 - `www.googleapis.com`

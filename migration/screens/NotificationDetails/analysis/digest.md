@@ -11,6 +11,8 @@
 Layouts.Layout_MainPages_Upgrade
   LayoutRuntime_NavigationHandler.LayoutRuntime_Top
   ConnectPatterns.Icon
+  BasePatterns.CustomText
+    ConnectPatterns.IconInline_Internal
   BasePatterns.CustomContainer
     ConnectPatterns.IconText
       BasePatterns.Columns_Two
@@ -20,11 +22,9 @@ Layouts.Layout_MainPages_Upgrade
               ConnectPatterns.Icon
           BasePatterns.CustomText
             ConnectPatterns.IconInline_Internal
-  App_Common_Blocks.SectionSeparator
-    BasePatterns.CustomContainer
+          BasePatterns.CustomText
+            ConnectPatterns.IconInline_Internal
   BasePatterns.CustomContainer
-    BasePatterns.CustomText
-      ConnectPatterns.IconInline_Internal
     Widgets.AdaptiveCardViewer
   BasePatterns.CustomContainer
     BasePatterns.CustomText
@@ -82,7 +82,6 @@ Layouts.Layout_MainPages_Upgrade
 ## `UBTConnect.App_Notifications.NotificationDetails.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| UI_NotificationDetail | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_Notification_CSModel.MessageListItemRec())` |
 | Message | output | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessagePriorityMessageContentMessageTemplateMessageSenderTargetMe` |
 | IsRetracted | output | Boolean | `false` |
 | IsCleared | output | Boolean | `false` |
@@ -94,17 +93,16 @@ Layouts.Layout_MainPages_Upgrade
 | MessageTemplateId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | HardwareId | input | Text | `""` |
 | GetMessageTemplateParametersByMessageTemplateId | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageTemplateParametersByMessageTemplateIdAggrRec())` |
-| FetchMessageInstance | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchMessageInstanceDataActRec())` |
 | GetMessageInstance | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetMessageInstanceDataActRec())` |
-- Data actions: `DataActionFetchMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance`, `DataActionGetMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance`
+- Data actions: `DataActionGetMessageInstance` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance`
 - Aggregates: `ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`
-- Server actions: `Wrapper_NotificationOpened` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`
-- Client actions / event handlers: `handler_BackNavigationHandlerBackNavigation`, `handler_NavigateTo_OrbitHostSurvey`, `getMessageInstanceByIdOnAfterFetch`, `handler_NavigateTo_MessageList`, `handler_NavigateTo_OrbitMilestone`, `getMessageTemplateParametersOnAfterFetch`, `messageRetractedFlow`, `handler_NavigateTo_OrbitEventDetails`, `handler_NavigateTo_AssembleDetail`, `handler_SetFeedItemId`, `handler_NavigateTo_Login`, `handler_NavigateTo_ShareObjectDetail`, `adaptiveCardViewerOnExecuteAction`, `handler_SubscriptionDenied`, `handler_AddAuditAndNavigateTo_EventEmail`, `handler_AddAuditAndNavigateTo_EventDetail`
+- Server actions: `Wrapper_NotificationOpened` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened`, `Get_OrbitHostSurveyNotificationParameters` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionGet_OrbitHostSurveyNotificationParameters`, `Get_OrbitNotificationParameters` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionGet_OrbitNotificationParameters`, `StoreAdaptiveCardResponses` → `screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionStoreAdaptiveCardResponses`
+- Client actions / event handlers: `handler_BackNavigationHandlerBackNavigation`, `handler_NavigateTo_OrbitHostSurvey`, `getMessageInstanceByIdOnAfterFetch`, `handler_NavigateTo_MessageList`, `handler_NavigateTo_OrbitMilestone`, `getMessageTemplateParametersOnAfterFetch`, `messageRetractedFlow`, `handler_ViewOrbitEvent`, `handler_NavigateTo_OrbitEventDetails`, `handler_NavigateTo_AssembleDetail`, `handler_SetFeedItemId`, `handler_NavigateTo_Login`, `handler_NavigateTo_ShareObjectDetail`, `adaptiveCardViewerOnExecuteAction`, `handler_SubscriptionDenied`, `handler_AddAuditAndNavigateTo_EventEmail`, `handler_AddAuditAndNavigateTo_EventDetail`
 - Navigation: `/UBTConnect/HomeFeed`(); `/UBTConnect/HostSurvey`(In_EventId, In_EventStartDate, In_EventName, In_MemberId, In_EventEndDate); `/UBTConnect/Notifications`(); `/UBTConnect/MilestoneDetail`(In_EventName, In_EventId, In_MilestoneId, In_FromNotification); `/UBTConnect/EventDetail`(In_FromNotification, In_EventId, In_MemberId, In_EventName); `/UBTConnect/AssembleDetail`(AssembleEventTypeTile, SeriesId, EventId); `/UBTConnect/Login`(); `/UBTConnect/HouseholdDetails`(HouseholdId); `/UBTConnect/OneSchoolGlobalDetails`(In_OneSchoolGlobalId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/FeedItemDetail`(FeedItemId); `/UBTConnect/LDM_Email_V2`(EventHostId, In_IsContactOrganiser, In_IsMessageGuest, In_EventId); `/UBTConnect/LDM_Email`(In_IsContactOrganiser, EventHostId, In_EventId, In_IsMessageGuest); `/UBTConnect/LDM_EventDetail_V2`(EventHostId, EventId); `/UBTConnect/LDM_EventDetail`(EventHostId, EventId)
-- JavaScript nodes: `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.Handler_BackNavigationHandlerBackNavigation.CheckIfInvalidLocationJS`, `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.GetMessageInstanceByIdOnAfterFetch.WasCurrentViewRestoredFromCacheJS`
-- Feedback messages: `"Please check your internet connection!", /*Info*/ 0)`
+- JavaScript nodes: `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.Handler_BackNavigationHandlerBackNavigation.CheckIfInvalidLocationJS`, `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.GetMessageInstanceByIdOnAfterFetch.WasCurrentViewRestoredFromCacheJS`, `UBTConnect.App_Notifications.NotificationDetails.mvc$controller.AdaptiveCardViewerOnExecuteAction.SubstringJS`
+- Feedback messages: `"You don\'t have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you have any questions.", /*Error*/ 3)` | `"You don\'t have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.", /*Error*/ 3)` | `"You don\'t have access to Assemble.", /*Error*/ 3)` | `"Event is not accessible", /*Info*/ 0)` | `"Thanks for filling out our form!", /*Info*/ 0)` | `"Please check your internet connection!", /*Info*/ 0)`
 - Exceptions handled: CommunicationException
-- Static entities / flags: `messageSenderTarget.lordsDayMeal`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral6`, `uBT_Icons2.calendarBusy`, `uBT_Color.primary`, `uBT_Color.neutral10`, `messageInfoType.sharing`, `adaptiveCardsConfig.events`, `uBT_Color.neutral5`, `uBT_FontSize.small`, `uBT_MessageType.error`, `messageType2.private`, `messageInfoType.whatsNew`, `connect_Entity.member`, `imageSize.small`, `messageSenderTarget.orbit`, `messageSenderTarget.orbitHostSurvey`, `messageSenderTarget.assemble`, `parameterName.assembleEventParentId`, `parameterName.assembleEventInstanceId`, `type_ShareObject.household`, `type_ShareObject.update`, `type_ShareObject.myHousehold`, `type_ShareObject.oneSchoolGlobal`, `type_ShareObject.supperMeeting`, `type_ShareObject.feed`, `applicationEvents_LDM.notificationContactOrganiser`, `applicationEvents_LDM.notificationViewEvent`
+- Static entities / flags: `uBT_FontWeight.semiBold`, `messageSenderTarget.orbit`, `messageSenderTarget.rRT`, `messageSenderTarget.assemble`, `messageSenderTarget.communityHub`, `messageSenderTarget.lordsDayMeal`, `uBT_Color.neutral0`, `uBT_Size.small`, `uBT_FontWeight.light`, `uBT_Color.neutral6`, `uBT_Icons2.orbitText`, `uBT_Color.primary`, `uBT_Icons2.assemble`, `uBT_Icons2.calendarBusy`, `messageInfoType.sharing`, `adaptiveCardsConfig.events`, `uBT_Color.neutral5`, `uBT_FontSize.small`, `uBT_MessageType.error`, `messageType2.private`, `messageInfoType.whatsNew`, `connect_Entity.member`, `imageSize.small`, `messageSenderTarget.orbitHostSurvey`, `parameterName.assembleEventParentId`, `parameterName.assembleEventInstanceId`, `parameterName.assembleEventType`, `type_ShareObject.household`, `type_ShareObject.update`, `type_ShareObject.myHousehold`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc.js`
 | variable | kind | type | default |
@@ -144,6 +142,26 @@ Layouts.Layout_MainPages_Upgrade
 | In_ExtendedClasses | input | Text | `""` |
 - Client actions / event handlers: `click`
 - Static entities / flags: `uBT_Color.neutral9`
+
+## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Text | input | Text | `""` |
+| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
+| In_HighlightWords | input | Text | `""` |
+| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+| FitContent | input | Boolean | `false` |
+| InJustifyText | input | Boolean | `false` |
+| NoWrap | input | Boolean | `false` |
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+- Client actions / event handlers: `clicked`
+
+## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
 ## `UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js`
 | variable | kind | type | default |
@@ -198,26 +216,6 @@ Layouts.Layout_MainPages_Upgrade
 | PaddingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
 - Client actions / event handlers: `action_OnClick`, `onClick`
 - Static entities / flags: `uBT_Size.small`, `uBT_Shape.circle`, `uBT_Color.cyanDarker`
-
-## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| In_Text | input | Text | `""` |
-| In_TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_PaddingOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())` |
-| In_HighlightWords | input | Text | `""` |
-| In_HighlightOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| ExtendedClasses | input | Text | `""` |
-| FitContent | input | Boolean | `false` |
-| InJustifyText | input | Boolean | `false` |
-| NoWrap | input | Boolean | `false` |
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
-- Client actions / event handlers: `clicked`
-
-## `UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
 ## `Connect2_LegacyShared.Widgets.AdaptiveCardViewer.mvc.js`
 | variable | kind | type | default |
@@ -499,17 +497,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetMessageInstance` (200) at 2727 ms
-- 2. `ActionAppManager_SynchAppContext` (200) at 2737 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 5553 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6109 ms
-- 5. `ActionGetUserInformation` (200) at 6622 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 6877 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8635 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9209 ms
+- 1. `DataActionGetMessageInstance` (200) at 2210 ms
+- 2. `ActionAppManager_SynchAppContext` (200) at 2216 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 4624 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5043 ms
+- 5. `ActionGetUserInformation` (200) at 5357 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 5584 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8261 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9938 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
+- `App_Notifications.ActionButtonGroup`
 - `App_Policies.Policy_Checker`
 - `CacheControl.CacheControl_Policies`
 - `ConnectPatterns.HighlightSearch`

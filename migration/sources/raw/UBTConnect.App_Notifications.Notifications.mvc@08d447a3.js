@@ -1,0 +1,3437 @@
+define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnect.controller", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Notifications.Notifications_Action.mvc$model", "UBTConnect.App_Notifications.Notifications_Header.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$model", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$model", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function (OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectController, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Notifications_Notifications_Action_mvcModel, UBTConnect_App_Notifications_Notifications_Header_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel) {
+var OS = OutSystems.Internal;
+
+var GetDateRangesDataActRec = (function (_super) {
+__extends(GetDateRangesDataActRec, _super);
+function GetDateRangesDataActRec(defaults) {
+_super.apply(this, arguments);
+}
+GetDateRangesDataActRec.attributesToDeclare = function () {
+return [
+this.attr("DateRangesList", "dateRangesListOut", "DateRangesList", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Updates_DateRangesList());
+}, true, UBTConnectModel.Updates_DateRangesList)
+].concat(_super.attributesToDeclare.call(this));
+};
+GetDateRangesDataActRec.fromStructure = function (str) {
+return new GetDateRangesDataActRec(new GetDateRangesDataActRec.RecordClass({
+dateRangesListOut: OS.DataTypes.ImmutableBase.getData(str)
+}));
+};
+GetDateRangesDataActRec.init();
+return GetDateRangesDataActRec;
+})(OS.Model.DataSourceRecord);
+var FetchNotificationsDataActRec = (function (_super) {
+__extends(FetchNotificationsDataActRec, _super);
+function FetchNotificationsDataActRec(defaults) {
+_super.apply(this, arguments);
+}
+FetchNotificationsDataActRec.attributesToDeclare = function () {
+return [
+this.attr("UI_NotificationItemList", "uI_NotificationItemListOut", "UI_NotificationItemList", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList());
+}, true, UBTConnectModel.MessageListItemList), 
+this.attr("UnreadNotificationsCount", "unreadNotificationsCountOut", "UnreadNotificationsCount", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, true)
+].concat(_super.attributesToDeclare.call(this));
+};
+FetchNotificationsDataActRec.init();
+return FetchNotificationsDataActRec;
+})(OS.Model.DataSourceRecord);
+
+var VariablesRecord = (function (_super) {
+__extends(VariablesRecord, _super);
+function VariablesRecord(defaults) {
+_super.apply(this, arguments);
+}
+VariablesRecord.attributesToDeclare = function () {
+return [
+this.attr("Filter_BottomSheetId", "filter_BottomSheetIdVar", "Filter_BottomSheetId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("Filter_Updates", "filter_UpdatesVar", "Filter_Updates", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_Updates_CSModel.Filter_UpdatesRec());
+}, false, Connect_Updates_CSModel.Filter_UpdatesRec), 
+this.attr("HasFiltersApplied", "hasFiltersAppliedVar", "HasFiltersApplied", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("ShowMarkAll", "showMarkAllVar", "ShowMarkAll", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("DateRanges", "dateRangesVar", "DateRanges", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_Updates_DateRangeList());
+}, false, UBTConnectModel.UI_Updates_DateRangeList), 
+this.attr("isLoading", "isLoadingVar", "isLoading", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("BottomSheetId_IsLoaded", "bottomSheetId_IsLoadedVar", "BottomSheetId_IsLoaded", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("BottomSheetId_ShowSubscription", "bottomSheetId_ShowSubscriptionVar", "BottomSheetId_ShowSubscription", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("Breakpoints", "breakpointsVar", "Breakpoints", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_UpdateItem_BreakpointList());
+}, false, UBTConnectModel.UI_UpdateItem_BreakpointList), 
+this.attr("CurrentBreakpoint", "currentBreakpointVar", "CurrentBreakpoint", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_UpdateItem_BreakpointRec());
+}, false, UBTConnectModel.UI_UpdateItem_BreakpointRec), 
+this.attr("EventListener", "eventListenerVar", "EventListener", true, false, OS.DataTypes.DataTypes.Object, function () {
+return null;
+}, false), 
+this.attr("EventListenerTarget", "eventListenerTargetVar", "EventListenerTarget", true, false, OS.DataTypes.DataTypes.Object, function () {
+return null;
+}, false), 
+this.attr("IsHeaderScrolled", "isHeaderScrolledVar", "IsHeaderScrolled", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("IsToggleSearch", "isToggleSearchVar", "IsToggleSearch", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("CurrentSearchString", "currentSearchStringVar", "CurrentSearchString", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("SelectedHistorySearch", "selectedHistorySearchVar", "SelectedHistorySearch", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("DeviceHardwareId", "deviceHardwareIdVar", "DeviceHardwareId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("Filter_MessageTypePrivate", "filter_MessageTypePrivateVar", "Filter_MessageTypePrivate", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
+}, false), 
+this.attr("Filter_MessageTypePublic", "filter_MessageTypePublicVar", "Filter_MessageTypePublic", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
+}, false), 
+this.attr("OrderByIsAscending", "orderByIsAscendingVar", "OrderByIsAscending", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("MaxRecords", "maxRecordsVar", "MaxRecords", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return 2000;
+}, false), 
+this.attr("ShowWarning", "showWarningVar", "ShowWarning", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("SelectedFilter_OrderASC", "selectedFilter_OrderASCVar", "SelectedFilter_OrderASC", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("Filter_OrderASC", "filter_OrderASCVar", "Filter_OrderASC", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("Filter_OrderDESC", "filter_OrderDESCVar", "Filter_OrderDESC", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("SelectedFilter_MessageTypePrivate", "selectedFilter_MessageTypePrivateVar", "SelectedFilter_MessageTypePrivate", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
+}, false), 
+this.attr("SelectedFilter_MessageTypePublic", "selectedFilter_MessageTypePublicVar", "SelectedFilter_MessageTypePublic", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return true;
+}, false), 
+this.attr("MoreAction_BottomSheetId", "moreAction_BottomSheetIdVar", "MoreAction_BottomSheetId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return "";
+}, false), 
+this.attr("Local_OnlyShowUnread", "local_OnlyShowUnreadVar", "Local_OnlyShowUnread", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("ReadCount", "readCountVar", "ReadCount", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}, false), 
+this.attr("Screen_NotificationItemList", "screen_NotificationItemListVar", "Screen_NotificationItemList", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList());
+}, false, UBTConnectModel.MessageListItemList), 
+this.attr("StartIndex", "startIndexVar", "StartIndex", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return 0;
+}, false), 
+this.attr("PageNumber", "pageNumberVar", "PageNumber", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return 1;
+}, false), 
+this.attr("GetDateRanges", "getDateRangesDataAct", "getDateRangesDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new GetDateRangesDataActRec());
+}, true, GetDateRangesDataActRec), 
+this.attr("FetchNotifications", "fetchNotificationsDataAct", "fetchNotificationsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new FetchNotificationsDataActRec());
+}, true, FetchNotificationsDataActRec)
+].concat(_super.attributesToDeclare.call(this));
+};
+VariablesRecord.init();
+return VariablesRecord;
+})(OS.DataTypes.GenericRecord);
+var WidgetsRecord = (function (_super) {
+__extends(WidgetsRecord, _super);
+function WidgetsRecord() {
+_super.apply(this, arguments);
+}
+WidgetsRecord.getWidgetsType = function () {
+return {};
+};
+
+return WidgetsRecord;
+})(OS.Model.BaseWidgetRecordMap);
+var Model = (function (_super) {
+__extends(Model, _super);
+function Model() {
+_super.apply(this, arguments);
+}
+Model.getVariablesRecordConstructor = function () {
+return VariablesRecord;
+};
+Model.getWidgetsRecordConstructor = function () {
+return WidgetsRecord;
+};
+Model._hasValidationWidgetsValue = undefined;
+Object.defineProperty(Model, "hasValidationWidgets", {
+enumerable: true,
+configurable: true,
+get: function () {
+if((Model._hasValidationWidgetsValue === undefined)) {
+Model._hasValidationWidgetsValue = (((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Action_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Header_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel.hasValidationWidgets);
+}
+
+return Model._hasValidationWidgetsValue;
+}
+});
+
+Model.prototype.setInputs = function (inputs) {
+};
+return Model;
+})(OS.Model.BaseViewModel);
+return new OS.Model.ModelFactory(Model, "App_Notifications.Notifications");
+});
+define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications.mvc$model", "UBTConnect.App_Notifications.Notifications.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Notifications.Notifications_Action.mvc$view", "UBTConnect.App_Notifications.Notifications_Header.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$view", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_App_Notifications_Notifications_mvc_model, UBTConnect_App_Notifications_Notifications_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view) {
+    var OS = OutSystems.Internal;
+var PlaceholderContent = OSView.Widget.PlaceholderContent;
+var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
+
+
+    var View = (function (_super) {
+        __extends(View,_super);
+        function View() {
+            var thisIsInstanceOfSuper = this instanceof _super;
+            if (thisIsInstanceOfSuper == false) {
+                return;
+            }
+
+            try {
+                this.initialize.apply(this, arguments);
+            } catch (error) {
+                View.handleError(error);
+                throw error;
+            }
+        }
+        View.prototype.initialize = function() {
+            _super.apply(this, arguments);
+        };
+        View.displayName = "App_Notifications.Notifications";
+        View.getCssDependencies = function() {
+            return ["css/OutSystemsReactWidgets.css", "css/OutSystemsUI_2_23.OutSystemsUI.css", "css/UBTConnectLibrary.UBTConnectBase.css", "css/UBTConnectLibrary.UBTConnectLibrary.css", "css/Connect2_LegacyShared.UBTConnect.css", "css/UBTConnect.App_Notifications.Notifications.css", "css/OutSystemsUI_2_23.OutSystemsUI.extra.css"];
+        };
+        View.getJsDependencies = function() {
+            return ["scripts/UBTConnectLibrary.ScrollAnimations.js"];
+        };
+        View.getBlocks = function() {
+            return [UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view];
+        };
+        Object.defineProperty(View.prototype, "modelFactory", {
+            get: function () {
+                return UBTConnect_App_Notifications_Notifications_mvc_model;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(View.prototype, "controllerFactory", {
+            get: function () {
+                return UBTConnect_App_Notifications_Notifications_mvc_controller;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(View.prototype, "title", {
+            get: function () {
+                return "Notifications";
+            },
+            enumerable: true,
+            configurable: true
+        });
+        View.prototype.internalRender = function() {
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            var validationService = controller.validationService;
+            var widgetsRecordProvider = this.widgetsRecordProvider;
+            var callContext = controller.callContext();
+            var $if = View.ifWidget;
+            var $text = View.textWidget;
+            var asPrimitiveValue = View.asPrimitiveValue;
+            var getTranslation = View.getTranslation;
+            var _this = this;
+
+            return React.createElement("div", this.getRootNodeProperties(), React.createElement(UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, {
+inputs: {
+isGrayBackground: true
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onHeaderScrolled$Action: function (event_IsHeaderScrolledIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Layouts/Layout_MainPages_Upgrade OnHeaderScrolled");
+controller.handler_OnHeaderScrolled$Action(event_IsHeaderScrolledIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "0",
+alias: "1"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+placeholder_Header_Title: new PlaceholderContent(function () {
+return [$if(model.variables.isToggleSearchVar, false, this, function () {
+return [$if(model.variables.isHeaderScrolledVar, false, this, function () {
+return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+inputs: {
+ExtendedClasses: "full-width",
+Options: model.getCachedValue(idService.getId("jJ2WvyOvtka1sBC4oQS36A.Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.displayOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.DisplayOptionsRec();
+rec.displayAttr = UBTConnectModel.staticEntities.uBT_Display.flex;
+rec.alignItemsAttr = UBTConnectModel.staticEntities.uBT_AlignItems.center;
+rec.flexDirectionAttr = UBTConnectModel.staticEntities.uBT_FlexDirection.row;
+return rec;
+}();
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "1",
+alias: "2"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: new PlaceholderContent(function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
+inputs: {
+In_Options: model.getCachedValue(idService.getId("Search_PostScroll.In_Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.SearchInputRec();
+rec.initalStringAttr = model.variables.currentSearchStringVar;
+rec.searchPromptAttr = "Search notifications";
+rec.debounce_DelayMSAttr = 300;
+rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
+rec.enableAutocompleteHTMLAttr = false;
+rec.isSyncValueWithInputAttr = true;
+return rec;
+}();
+}, function () {
+return model.variables.currentSearchStringVar;
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+event_ClearString$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_ClearString");
+return controller.handler_FilterSearchText$Action("", controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+event_Submit$Action: function (event_SubmittedStringIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_Submit");
+return controller.handler_FilterSearchText$Action(event_SubmittedStringIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+event_OnChange$Action: function (event_CurrentStringIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_OnChange");
+controller.handler_OnChangeSearchInput$Action(event_CurrentStringIn, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Search_PostScroll",
+alias: "3"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.currentSearchStringVar)]
+})];
+}, function () {
+return ["Notifications", React.createElement(UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, {
+inputs: {
+Color: UBTConnectModel.staticEntities.uBT_Color.redDark,
+Number: model.variables.readCountVar,
+MaxNumber: 9,
+Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "3",
+alias: "4"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}, function () {
+return ["Notifications", React.createElement(UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, {
+inputs: {
+Number: model.variables.readCountVar,
+Size: UBTConnectModel.staticEntities.uBT_Size.extraSmall,
+MaxNumber: 9,
+Color: UBTConnectModel.staticEntities.uBT_Color.redDark
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "4",
+alias: "5"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}),
+placeholder_Header_Right: new PlaceholderContent(function () {
+return [$if(model.variables.isHeaderScrolledVar, false, this, function () {
+return [$if(model.variables.isToggleSearchVar, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+inputs: {
+In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.search
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+click$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+controller.handler_ToggleSearch$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Icon_Search",
+alias: "6"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}), React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+inputs: {
+In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.moreVertical
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+click$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+controller.onClick_KebabButton$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Icon_Kebab",
+alias: "7"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}, function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+inputs: {
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.moreVertical,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral0,
+In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.base_24
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+click$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+controller.onClick_KebabButton$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Icon_Kebab2",
+alias: "8"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}),
+placeholder_Header_Input: new PlaceholderContent(function () {
+return [$if(model.variables.isHeaderScrolledVar, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Input_mvc_view, {
+inputs: {
+In_Options: model.getCachedValue(idService.getId("Search_PreScroll.In_Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.SearchInputRec();
+rec.initalStringAttr = model.variables.currentSearchStringVar;
+rec.searchPromptAttr = "Search notifications";
+rec.debounce_DelayMSAttr = 300;
+rec.borderRadiusAttr = UBTConnectModel.staticEntities.shape.rounded;
+rec.enableAutocompleteHTMLAttr = false;
+rec.isSyncValueWithInputAttr = true;
+return rec;
+}();
+}, function () {
+return model.variables.currentSearchStringVar;
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+event_OnChange$Action: function (event_CurrentStringIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_OnChange");
+controller.handler_OnChangeSearchInput$Action(event_CurrentStringIn, true, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+event_Submit$Action: function (event_SubmittedStringIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_Submit");
+return controller.handler_FilterSearchText$Action(event_SubmittedStringIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+event_ClearString$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Input Event_ClearString");
+return controller.handler_FilterSearchText$Action("", controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Search_PreScroll",
+alias: "9"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}),
+headerContent: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_App_Notifications_Notifications_Action_mvc_view, {
+inputs: {
+HaveFiltersApplied: model.variables.hasFiltersAppliedVar,
+BottomSheetId: model.variables.filter_BottomSheetIdVar,
+isLoaded: true,
+ShowSubscriptionOnClick: model.variables.bottomSheetId_ShowSubscriptionVar
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onlyShowUnread$Action: function (onlyShowUnreadIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_Action OnlyShowUnread");
+return controller.handler_OnlyShowUnread$Action(onlyShowUnreadIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Notifications_Action",
+alias: "10"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}), React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+visible: false,
+_idProps: {
+service: idService,
+uuid: "10"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnect_App_Notifications_Notifications_Header_mvc_view, {
+inputs: {
+Title: model.variables.currentBreakpointVar.sectionNameAttr,
+isLoading: model.variables.isLoadingVar,
+BadgeNumber: model.variables.currentBreakpointVar.badgeCountAttr
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+name: "Notifications_ListHeader",
+alias: "11"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+}))];
+}),
+content: new PlaceholderContent(function () {
+return [$if(((!(model.variables.isLoadingVar) && model.variables.fetchNotificationsDataAct.isDataFetchedAttr) && model.variables.screen_NotificationItemListVar.isEmpty), false, this, function () {
+return [$if(((model.variables.selectedHistorySearchVar) !== ("")), false, this, function () {
+return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+inputs: {
+Options: model.getCachedValue(idService.getId("JQpUtTr8M0Gi9wj11NR3Bw.Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.backgroundAttr = function () {
+var rec = new UBTConnectLibraryModel.BackgroundOptionsRec();
+rec.backgroundColorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral0;
+return rec;
+}();
+rec.paddingSizeAttr = function () {
+var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
+rec.generalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.small;
+return rec;
+}();
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "12",
+alias: "12"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: new PlaceholderContent(function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, {
+inputs: {
+IconId: UBTConnectModel.staticEntities.uBT_Icons2.search
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "13",
+alias: "13"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+titlePlaceholder: new PlaceholderContent(function () {
+return [React.createElement(OSWidgets.Expression, {
+value: (("No results found for \'" + model.variables.selectedHistorySearchVar) + "\'"),
+_idProps: {
+service: idService,
+uuid: "14"
+},
+_widgetRecordProvider: widgetsRecordProvider
+})];
+}),
+textPlaceholder: new PlaceholderContent(function () {
+return [React.createElement(OSWidgets.Expression, {
+value: "Sorry, we couldn\'t find any results for your search. Please check your spelling or try different keywords.",
+_idProps: {
+service: idService,
+uuid: "15"
+},
+_widgetRecordProvider: widgetsRecordProvider
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.selectedHistorySearchVar)]
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.selectedHistorySearchVar)]
+})];
+}, function () {
+return [React.createElement(UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, {
+inputs: {},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "16",
+alias: "14"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}, function () {
+return [React.createElement(UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, {
+inputs: {
+CurrentBreakpoint: model.variables.currentBreakpointVar,
+TopElementId: idService.getId("Notifications_ListHeader"),
+Breakpoints: model.variables.breakpointsVar,
+UI_NotificationItemList: model.variables.screen_NotificationItemListVar,
+IsLoading: model.variables.isLoadingVar
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+updateReadCount$Action: function (addToCountIn, isDeleteIn, isReadIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints UpdateReadCount");
+controller.handler_UpdateReadCount$Action(addToCountIn, isDeleteIn, isReadIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+notificationDetail$Action: function (messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints NotificationDetail");
+return controller.handler_NotificationDetail$Action(messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+onLoadMore$Action: function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints OnLoadMore");
+controller.notificationsListBreakpoints_OnLoadMore$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "17",
+alias: "15"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})];
+}),
+bottom: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_App_Common_BottomBarMenu_mvc_view, {
+inputs: {
+ActiveItem: model.getCachedValue(idService.getId("_WfZMhArpk+gGwF+GbpRFg.ActiveItem"), function () {
+return OS.BuiltinFunctions.nullTextIdentifier();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "18",
+alias: "16"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}),
+placeholder_CommonUI_Inside_Layout: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, {
+inputs: {},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "19",
+alias: "17"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.breakpointsVar), asPrimitiveValue(model.variables.selectedHistorySearchVar), asPrimitiveValue(model.variables.screen_NotificationItemListVar), asPrimitiveValue(model.variables.fetchNotificationsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.currentBreakpointVar), asPrimitiveValue(model.variables.bottomSheetId_ShowSubscriptionVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.readCountVar), asPrimitiveValue(model.variables.currentSearchStringVar), asPrimitiveValue(model.variables.isHeaderScrolledVar), asPrimitiveValue(model.variables.isToggleSearchVar)]
+}), $if(false, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, {
+inputs: {},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+loaded$Action: function (showSubscriptionOnClickIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_SortSheet Loaded");
+controller.handler_FilterSheetLoaded$Action(showSubscriptionOnClickIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+sheetInitialized$Action: function (sheetIdIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_SortSheet SheetInitialized");
+controller.handler_FilterSheetSheetInitialized$Action(sheetIdIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+applyFilters$Action: function (isNewestToOldestIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_SortSheet ApplyFilters");
+return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, isNewestToOldestIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "20",
+alias: "18"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}), $if(false, false, this, function () {
+return [];
+}, function () {
+return [React.createElement(UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view, {
+inputs: {},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+deleteAll$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet DeleteAll");
+return controller.handler_MoreActionSheetDeleteAll$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+markAllAsRead$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet MarkAllAsRead");
+return controller.handler_MoreActionSheetMarkAllAsRead$Action(controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+loaded$Action: function (showSubscriptionOnClickIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet Loaded");
+controller.handler_MoreActionSheetLoaded$Action(showSubscriptionOnClickIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+},
+applyFilters$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet ApplyFilters");
+return controller.handler_ApplyFilters$Action(model.variables.hasFiltersAppliedVar, true, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+},
+sheetInitialized$Action: function (sheetIdIn) {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/Notifications_MoreActionSheet SheetInitialized");
+controller.handler_MoreActionSheetSheetInitialized$Action(sheetIdIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "21",
+alias: "19"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}));
+        };
+        return View;
+    })(OSView.BaseView.BaseWebScreen);
+	
+    return View;
+});
+define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications.mvc$debugger", "UBTConnect.App_Notifications.controller", "UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_mvc_Debugger, _flow_UBTConnect_App_NotificationsController, UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS) {
+var OS = OutSystems.Internal;
+var Controller = (function (_super) {
+__extends(Controller, _super);
+function Controller() {
+_super.apply(this, arguments);
+var controller = this.controller;
+this.clientActionProxies = {};
+this.dataFetchDependenciesOriginal = {
+getDateRanges$DataActRefresh: -1,
+fetchNotifications$DataActRefresh: -1
+};
+this.dataFetchDependentsGraph = {
+getDateRanges$DataActRefresh: [],
+fetchNotifications$DataActRefresh: []
+};
+this.shouldSendClientVarsToDataSources = false;
+}
+// Server Actions
+Controller.prototype.markAllAsReadNotifications$ServerAction = function (isPublicIn, isPrivateIn, deviceHardwareIdIn, searchTermIn, callContext) {
+var controller = this.controller;
+var inputs = {
+IsPublic: OS.DataConversion.ServerDataConverter.to(isPublicIn, OS.DataTypes.DataTypes.Boolean),
+IsPrivate: OS.DataConversion.ServerDataConverter.to(isPrivateIn, OS.DataTypes.DataTypes.Boolean),
+DeviceHardwareId: OS.DataConversion.ServerDataConverter.to(deviceHardwareIdIn, OS.DataTypes.DataTypes.Text),
+SearchTerm: OS.DataConversion.ServerDataConverter.to(searchTermIn, OS.DataTypes.DataTypes.Text)
+};
+return controller.callServerAction("MarkAllAsReadNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications", "R9h4fsIgtsM2TTIdhZ04xA", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, false).then(function (outputs) {
+var executeServerActionResult = new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications$rssespacecomms_cs_ActionMarkAllAsReadNotifications"))();
+executeServerActionResult.totalChangeOut = OS.DataConversion.ServerDataConverter.from(outputs.TotalChange, OS.DataTypes.DataTypes.Integer);
+return executeServerActionResult;
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications$rssespacecomms_cs_ActionMarkAllAsReadNotifications", [{
+name: "TotalChange",
+attrName: "totalChangeOut",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Integer,
+defaultValue: function () {
+return 0;
+}
+}]);
+Controller.prototype.delete_Notifications$ServerAction = function (messagesIn, callContext) {
+var controller = this.controller;
+var inputs = {
+Messages: OS.DataConversion.ServerDataConverter.to(messagesIn, OS.DataTypes.DataTypes.RecordList)
+};
+return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications", "5HZYkx9oz+KHD3sFPF0FrQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, false).then(function (outputs) {
+});
+};
+Controller.prototype.markAsRead$ServerAction = function (messageInstanceIdIn, callContext) {
+var controller = this.controller;
+var inputs = {
+MessageInstanceId: OS.DataConversion.ServerDataConverter.to(messageInstanceIdIn, OS.DataTypes.DataTypes.LongInteger)
+};
+return controller.callServerAction("MarkAsRead", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead", "fUdp7U1pQf_a844IH3Nwug", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, false).then(function (outputs) {
+});
+};
+
+// Aggregates and Data Actions
+Controller.prototype.getDateRanges$DataActRefresh = function (callContext) {
+var model = this.model;
+var controller = this.controller;
+var callContext = controller.callContext(callContext);
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UPatnTxUzUSyph6SkRu4vw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.UPatnTxUzUSyph6SkRu4vw:UeackZYSPFipVXZ+iYJV_A", "UBTConnect", "GetDateRanges", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/GetDateRanges");
+return controller.callDataAction("DataActionGetDateRanges", "screenservices/UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges", "VHJtI4240mipQzNI94RA2g", function (b) {
+model.variables.getDateRangesDataAct.dataFetchStatusAttr = b;
+}, function (json) {
+model.variables.getDateRangesDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getDateRangesDataAct.constructor));
+}, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, callContext, undefined, false).then(function () {
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/GetDateRanges On After Fetch");
+return controller._onAfterFetch_GetDateRanges$Action(controller.callContext(callContext));
+
+});
+
+}, function () {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:UPatnTxUzUSyph6SkRu4vw", callContext.id);
+controller.popDebuggerContext(callContext);
+
+});
+};
+Controller.prototype.fetchNotifications$DataActRefresh = function (callContext) {
+var model = this.model;
+var controller = this.controller;
+var callContext = controller.callContext(callContext);
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.MIT7zgZzJ0urDbwBA22R5w:9kg81CSdqMdryT_BtcaGPQ", "UBTConnect", "FetchNotifications", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/FetchNotifications");
+return controller.callDataAction("DataActionFetchNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications", "i_PCWjncUDzvBuSXmFtF8g", function (b) {
+model.variables.fetchNotificationsDataAct.dataFetchStatusAttr = b;
+}, function (json) {
+model.variables.fetchNotificationsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchNotificationsDataAct.constructor));
+}, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+}, callContext, undefined, false).then(function () {
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/FetchNotifications On After Fetch");
+return controller._onAfterFetch_FetchNotifications$Action(controller.callContext(callContext));
+
+});
+
+}, function () {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w", callContext.id);
+controller.popDebuggerContext(callContext);
+
+});
+};
+
+Controller.prototype.dataFetchActionNames = ["getDateRanges$DataActRefresh", "fetchNotifications$DataActRefresh"];
+// Client Actions
+Controller.prototype._handler_FilterSearchText$Action = function (textIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_FilterSearchText");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSearchText$vars"))());
+vars.value.textInLocal = textIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.M_+VDP1teUWZD7RK8Zgwpg:M2vWI2c7SHKuvihJZmhCgQ", "UBTConnect", "Handler_FilterSearchText", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KamIlQ2JrUSmPK7_xzsDlw", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_d01obfHqketUAqs2VtDSQ", callContext.id);
+// CurrentSearchString = Text
+model.variables.currentSearchStringVar = vars.value.textInLocal;
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:esdERWkvykyiw2BsuNRIrQ", callContext.id) && (vars.value.textInLocal === model.variables.filter_UpdatesVar.filter_SearchTextAttr))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YAEcNMdmzEqAUybpRBMfaA", callContext.id);
+} else {
+// Set Text Filter
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fCMhfAQN5U6BsQIS0OqhDA", callContext.id);
+// Filter_Updates.Filter_SearchText = Text
+model.variables.filter_UpdatesVar.filter_SearchTextAttr = vars.value.textInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fCMhfAQN5U6BsQIS0OqhDA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// SelectedHistorySearch = Text
+model.variables.selectedHistorySearchVar = vars.value.textInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:D6I9+poeVkCV8gYu1twH6A", callContext.id);
+// ShowMarkAll = False
+model.variables.showMarkAllVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6UAQB+ep_kWhy6DJM6Qzmg", callContext.id);
+// Execute Action: ScrollTop
+UBTConnectController.default.scrollTop$Action(".active-screen", "instant", callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZqWyBWYD1E2KU5B6BdlZOQ", callContext.id);
+// Execute Action: ResetNotifications
+controller._resetNotifications$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dTZP+U0Gm0eBBEVtaHJmfw", callContext.id);
+// Execute Action: RefreshNotifications
+return controller._refreshNotifications$Action(callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XxMRvNlmME2T+UuQpHiIMw", callContext.id);
+});
+}
+
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSearchText$vars", [{
+name: "Text",
+attrName: "textInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+Controller.prototype._destroyEventListener$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("DestroyEventListener");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:s7enDSvB4UyAcwwTKTaGJQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.s7enDSvB4UyAcwwTKTaGJQ:mhiq9cesCsMdYKo9nn_WfA", "UBTConnect", "DestroyEventListener", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WLo06LhsIUuZnvc8rHxRQQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sBWfYxNEqEaoMRyaNI4IxQ", callContext.id);
+controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, "DestroyEventListener", "DestroyEventListener", {
+In_EventListener: OS.DataConversion.JSNodeParamConverter.to(model.variables.eventListenerVar, OS.DataTypes.DataTypes.Object),
+In_EventListenerTarget: OS.DataConversion.JSNodeParamConverter.to(model.variables.eventListenerTargetVar, OS.DataTypes.DataTypes.Object)
+}, function ($parameters) {
+}, {}, {});
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7DM1+XsSHkOKsG5L7ymMbw", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:s7enDSvB4UyAcwwTKTaGJQ", callContext.id);
+}
+
+};
+Controller.prototype._handler_ToggleSearch$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_ToggleSearch");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:E2zJEZDgq0Wai20XNDlvIw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.E2zJEZDgq0Wai20XNDlvIw:JbujKCuuZ4_vGJhNHX0+xQ", "UBTConnect", "Handler_ToggleSearch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SOIMdDwljEqLZF2rWBUuKA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7OVZFD3zbkSt+u2hZepXgA", callContext.id);
+// IsToggleSearch = notIsToggleSearch
+model.variables.isToggleSearchVar = !(model.variables.isToggleSearchVar);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xwuGXyyXKEycnUProzZYTg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:E2zJEZDgq0Wai20XNDlvIw", callContext.id);
+}
+
+};
+Controller.prototype._handler_OnChangeSearchInput$Action = function (event_CurrentStringIn, in_IsToggleSearchIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnChangeSearchInput");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnChangeSearchInput$vars"))());
+vars.value.event_CurrentStringInLocal = event_CurrentStringIn;
+vars.value.in_IsToggleSearchInLocal = in_IsToggleSearchIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:+lK4EzTQKkWgOjrutDZeXQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.+lK4EzTQKkWgOjrutDZeXQ:o8MytFt_srC3N89XZQKxfA", "UBTConnect", "Handler_OnChangeSearchInput", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FmkwSz32rkSAeqtnEbxT_A", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zMkLQ_dO4UWSWt3eGEWcgw", callContext.id);
+// CurrentSearchString = Event_CurrentString
+model.variables.currentSearchStringVar = vars.value.event_CurrentStringInLocal;
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:c4X_1jN6kESgOKAkiBWCag", callContext.id) && vars.value.in_IsToggleSearchInLocal)) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iyl68Y_As0C1vg9wAPkXAw", callContext.id);
+// IsToggleSearch = True
+model.variables.isToggleSearchVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:d4pieSD7TEqKVu9m+RfdaQ", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:d4pieSD7TEqKVu9m+RfdaQ", callContext.id);
+}
+
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:+lK4EzTQKkWgOjrutDZeXQ", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnChangeSearchInput$vars", [{
+name: "Event_CurrentString",
+attrName: "event_CurrentStringInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "In_IsToggleSearch",
+attrName: "in_IsToggleSearchInLocal",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._handler_OnlyShowUnread$Action = function (onlyShowUnreadIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnlyShowUnread");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnlyShowUnread$vars"))());
+vars.value.onlyShowUnreadInLocal = onlyShowUnreadIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.aF2yJucyQkGf8u+5OwmH3w:oY75HptcMB45+iNSgZ3RkQ", "UBTConnect", "Handler_OnlyShowUnread", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:T_q8wqylbk+UdQyflaxwDA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7A4Y+3m2+06zrhU1PByXXw", callContext.id);
+// Local_OnlyShowUnread = OnlyShowUnread
+model.variables.local_OnlyShowUnreadVar = vars.value.onlyShowUnreadInLocal;
+// isLoading
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9EpaFzi6XEOdq2+wbo96yQ", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:o6VdTsBv2E6iEtfVtdAsYw", callContext.id);
+// Execute Action: ResetNotifications
+controller._resetNotifications$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:y+sa+G1VfESqSxu54ddSbw", callContext.id);
+// Refresh Query: FetchNotifications
+var result = controller.fetchNotifications$DataActRefresh(callContext);
+model.flush();
+return result.then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KFIDVx4dQk6IhJZDl7CLxA", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnlyShowUnread$vars", [{
+name: "OnlyShowUnread",
+attrName: "onlyShowUnreadInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._screenEvent_OnInitialize$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("ScreenEvent_OnInitialize");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.ScreenEvent_OnInitialize$vars"))());
+var getPreloadObjectVar = new OS.DataTypes.VariableHolder();
+var listIndexOfVar = new OS.DataTypes.VariableHolder();
+var assignFromObjectVar = new OS.DataTypes.VariableHolder();
+var isViewRestoredFromCacheJSResult = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.getPreloadObjectVar = getPreloadObjectVar;
+varBag.listIndexOfVar = listIndexOfVar;
+varBag.assignFromObjectVar = assignFromObjectVar;
+varBag.isViewRestoredFromCacheJSResult = isViewRestoredFromCacheJSResult;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.MUEAKd2DjE2aiuGILTE2AA:5HQ4CT4gRk3NOMVnt5Zisg", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MOApiuQyhUeQ35kRuoK3hA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MePR+ixuVEabQtsaVfKHxw", callContext.id);
+// Execute Action: ResetNotifications
+controller._resetNotifications$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:G2D90PzT4ke3OuMiHJrU1w", callContext.id);
+isViewRestoredFromCacheJSResult.value = controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, "IsViewRestoredFromCache", "ScreenEvent_OnInitialize", {
+IsRestoredFromCache: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
+}, function ($parameters) {
+var jsNodeResult = new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.ScreenEvent_OnInitialize$isViewRestoredFromCacheJSResult"))();
+jsNodeResult.isRestoredFromCacheOut = OS.DataConversion.JSNodeParamConverter.from($parameters.IsRestoredFromCache, OS.DataTypes.DataTypes.Boolean);
+return jsNodeResult;
+}, {}, {});
+// Check if IsViewRestoredFromCache IsRestoredFromCache
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fRGJJn3Hb0ekkV4G0uNmfw", callContext.id) && isViewRestoredFromCacheJSResult.value.isRestoredFromCacheOut)) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zNmNyw6cjkapHKLT9geNPg", callContext.id);
+controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, "FocusCursor", "ScreenEvent_OnInitialize", {
+InputWidgetID: OS.DataConversion.JSNodeParamConverter.to(idService.getId("Search_PreScroll"), OS.DataTypes.DataTypes.Text)
+}, function ($parameters) {
+}, {}, {});
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DS2TN086kEmJK0Y84S2ElA", callContext.id);
+// Execute Action: GetPreloadObject
+getPreloadObjectVar.value = NavigationHandlerController.default.getPreloadObject$Action(callContext);
+
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:nsEy9STzYUmfTDZTmiBPpw", callContext.id) && ((getPreloadObjectVar.value.preloadOut) !== (OS.BuiltinFunctions.nullObject())))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6GVjkg7SckGc2XXZvur3TA", callContext.id);
+// Execute Action: AssignFromObject
+assignFromObjectVar.value = NavigationHandlerController.default.assignFromObject$Action(OS.BuiltinFunctions.toObject(vars.value.entitiesCarousel_SwippedItemsVar), getPreloadObjectVar.value.preloadOut, callContext);
+
+// Foreach EntitiesCarousel_SwippedItems
+callContext.iterationContext.registerIterationStart(vars.value.entitiesCarousel_SwippedItemsVar);
+try {var entitiesCarousel_SwippedItemsIterator = callContext.iterationContext.getIterator(vars.value.entitiesCarousel_SwippedItemsVar);
+var entitiesCarousel_SwippedItemsIndex = 0;
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SfxMC9XPa06DOZPkJ3H82A", callContext.id) && (entitiesCarousel_SwippedItemsIndex < vars.value.entitiesCarousel_SwippedItemsVar.length))) {
+entitiesCarousel_SwippedItemsIterator.currentRowNumber = entitiesCarousel_SwippedItemsIndex;
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7P0Z5s7KCEyXqNVelMwy3Q", callContext.id) && ((vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).listPositionAttr < model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.length) && (vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).entityItemIdAttr === OS.BuiltinFunctions.longIntegerToText(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getItem(vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).listPositionAttr).idAttr))))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qWDOH6QlnkyZ8yTh37QKww", callContext.id);
+// FetchNotifications.UnreadNotificationsCount = FetchNotifications.UnreadNotificationsCount - 1
+model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut.sub(OS.BuiltinFunctions.integerToLongInteger(1));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qWDOH6QlnkyZ8yTh37QKww", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// FetchNotifications.UI_NotificationItemList[EntitiesCarousel_SwippedItems.Current.ListPosition].IsRead = True
+model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getItem(vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).listPositionAttr).isReadAttr = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:farzPUKCh0GTrXdojl_BUg", callContext.id);
+// Execute Action: ListIndexOf
+listIndexOfVar.value = OS.SystemActions.listIndexOf(model.variables.breakpointsVar, function (p) {
+return (OS.BuiltinFunctions.dateTimeToDate(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getItem(vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).listPositionAttr).dateTimeCreatedAttr).gte(p.dateRangeAttr.fromAttr) && OS.BuiltinFunctions.dateTimeToDate(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getItem(vars.value.entitiesCarousel_SwippedItemsVar.getItem(entitiesCarousel_SwippedItemsIndex.valueOf()).listPositionAttr).dateTimeCreatedAttr).lte(p.dateRangeAttr.toAttr));
+}, callContext);
+
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TqzcDS0TakOhUp4dzzSw5g", callContext.id) && ((listIndexOfVar.value.positionOut) !== (-1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LhHqfGTB9U+rLzzn0Vf5qg", callContext.id);
+// Breakpoints[ListIndexOf.Position].BadgeCount = Breakpoints[ListIndexOf.Position].BadgeCount - 1
+model.variables.breakpointsVar.getItem(listIndexOfVar.value.positionOut).badgeCountAttr = (model.variables.breakpointsVar.getItem(listIndexOfVar.value.positionOut).badgeCountAttr - 1);
+}
+
+// <<
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HQ2XzbALvE6b8O1TYs026A", callContext.id);
+}
+
+entitiesCarousel_SwippedItemsIndex++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(vars.value.entitiesCarousel_SwippedItemsVar);
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DyqdrmSczESgY1_kY+W8oA", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FkxxlbkqBEe9UIgeYIPgAQ", callContext.id);
+}
+
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tsJXbVVAxE6GCv0cOFFl1g", callContext.id);
+// SelectedFilter_MessageTypePrivate = True
+model.variables.selectedFilter_MessageTypePrivateVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tsJXbVVAxE6GCv0cOFFl1g", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// SelectedFilter_MessageTypePublic = True
+model.variables.selectedFilter_MessageTypePublicVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tsJXbVVAxE6GCv0cOFFl1g", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+// SelectedFilter_OrderASC = False
+model.variables.selectedFilter_OrderASCVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LLWLqg0k+k2+3Y_g5Wyqeg", callContext.id);
+// Execute Action: InitializeSetting
+controller._initializeSetting$Action(callContext);
+// Set Initial Breakpoint
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LMDqk4VTtkucbBXl7w9iyA", callContext.id);
+// CurrentBreakpoint.Position = 0
+model.variables.currentBreakpointVar.positionAttr = 0;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LMDqk4VTtkucbBXl7w9iyA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// CurrentBreakpoint.SectionName = Today
+model.variables.currentBreakpointVar.sectionNameAttr = UBTConnectModel.staticEntities.updates_DateRanges.today;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LMDqk4VTtkucbBXl7w9iyA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+// CurrentBreakpoint.BadgeCount = 0
+model.variables.currentBreakpointVar.badgeCountAttr = 0;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:U1W2vVFTCkOvjXWBEtdsKA", callContext.id);
+}
+
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.ScreenEvent_OnInitialize$vars", [{
+name: "EntitiesCarousel_SwippedItems",
+attrName: "entitiesCarousel_SwippedItemsVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.RecordList,
+defaultValue: function () {
+return new UBTConnectModel.EntitiesCarousel_SwippedItemList();
+},
+complexType: UBTConnectModel.EntitiesCarousel_SwippedItemList
+}]);
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.ScreenEvent_OnInitialize$isViewRestoredFromCacheJSResult", [{
+name: "IsRestoredFromCache",
+attrName: "isRestoredFromCacheOut",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._handler_MoreActionSheetSheetInitialized$Action = function (sheetIdIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_MoreActionSheetSheetInitialized");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MoreActionSheetSheetInitialized$vars"))());
+vars.value.sheetIdInLocal = sheetIdIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SRvbL8_eMEC2gWHZ3jauCg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.SRvbL8_eMEC2gWHZ3jauCg:CaNp3ASy+n3rdflj3M1fCA", "UBTConnect", "Handler_MoreActionSheetSheetInitialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:09Kc9atbA06iKaPBWNBtHQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n_S4alY2b0a+fS2TS3LLXw", callContext.id);
+// MoreAction_BottomSheetId = SheetId
+model.variables.moreAction_BottomSheetIdVar = vars.value.sheetIdInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WZFeTXCxcE+e6hsIc7t6eg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:SRvbL8_eMEC2gWHZ3jauCg", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MoreActionSheetSheetInitialized$vars", [{
+name: "SheetId",
+attrName: "sheetIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+Controller.prototype._onClick_KebabButton$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnClick_KebabButton");
+callContext = controller.callContext(callContext);
+var bottomSheetOpenVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.bottomSheetOpenVar = bottomSheetOpenVar;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:XqYoRlSBtUq7cvfqqrr0Tw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.XqYoRlSBtUq7cvfqqrr0Tw:SOccI+J8T5Bj8pBlidwwvw", "UBTConnect", "OnClick_KebabButton", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:134lyQRS6kGwzA5wFJLDhg", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TNba3L5RJkO2++4PZD4BJg", callContext.id);
+// Execute Action: BottomSheetOpen
+bottomSheetOpenVar.value = OutSystemsUI_2_23Controller.default.bottomSheetOpen$Action(model.variables.moreAction_BottomSheetIdVar, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HS1ig94VYEmRXNGENkHBhA", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:XqYoRlSBtUq7cvfqqrr0Tw", callContext.id);
+}
+
+};
+Controller.prototype._resetNotifications$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("ResetNotifications");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:n9Q9TfQhXUOYvcVpZ_s+ig:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.n9Q9TfQhXUOYvcVpZ_s+ig:JMrRuuY_ddo0Ow5zR4R_GQ", "UBTConnect", "ResetNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yN9d3sY27066nqfW5qTPUQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vdh8qtA1K0y587n0XlKxlg", callContext.id);
+// StartIndex = 0
+model.variables.startIndexVar = 0;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vdh8qtA1K0y587n0XlKxlg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// PageNumber = 1
+model.variables.pageNumberVar = 1;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Dy98jplWHUyu+MNPpX7pRw", callContext.id);
+// Execute Action: ListClear
+OS.SystemActions.listClear(model.variables.screen_NotificationItemListVar, callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1FDMu2Oak0G_NrpdNx3lpQ", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:n9Q9TfQhXUOYvcVpZ_s+ig", callContext.id);
+}
+
+};
+Controller.prototype._notificationsListBreakpoints_OnLoadMore$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("NotificationsListBreakpoints_OnLoadMore");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BP4ZVJ33tEy6FRts+OhMLQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.BP4ZVJ33tEy6FRts+OhMLQ:dNT9PQbrLddqLxWQf9TVQA", "UBTConnect", "NotificationsListBreakpoints_OnLoadMore", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gp8r9Wj+qkSNlD6l3dLjuA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FWzsNq9dJEiXbBuWWxJHUw", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:BP4ZVJ33tEy6FRts+OhMLQ", callContext.id);
+}
+
+};
+Controller.prototype._setDefaultFilters$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("SetDefaultFilters");
+callContext = controller.callContext(callContext);
+var listFilter_TodayVar = new OS.DataTypes.VariableHolder();
+var listFilter_OlderVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.listFilter_TodayVar = listFilter_TodayVar;
+varBag.listFilter_OlderVar = listFilter_OlderVar;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:CQb1Vc7km0OPMLngGSScqw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.CQb1Vc7km0OPMLngGSScqw:MnCmoxX8md57Xplu91Jsnw", "UBTConnect", "SetDefaultFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:UBT7EAQoW0a7GB_2TtJ6Tg", callContext.id);
+// Needs Dates?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5UfXClgLJEO+Fuv+0Gjgiw", callContext.id) && (model.variables.filter_UpdatesVar.filter_DateAttr.date_FromAttr.equals(OS.BuiltinFunctions.nullDate()) || model.variables.filter_UpdatesVar.filter_DateAttr.date_ToAttr.equals(OS.BuiltinFunctions.nullDate())))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+OTb54yUdEW5XYdRxzNOJQ", callContext.id);
+// Execute Action: ListFilter_Older
+listFilter_OlderVar.value = OS.SystemActions.listFilter(model.variables.dateRangesVar, function (p) {
+return (p.rangeAttr === UBTConnectModel.staticEntities.updates_DateRanges.older);
+}, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ynh+UYi6qECIcuWXDDVrVg", callContext.id);
+// Execute Action: ListFilter_Today
+listFilter_TodayVar.value = OS.SystemActions.listFilter(model.variables.dateRangesVar, function (p) {
+return (p.rangeAttr === UBTConnectModel.staticEntities.updates_DateRanges.today);
+}, callContext);
+
+// Set Dates
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dysXQGM5bEGUTVJrxOevaA", callContext.id);
+// Filter_Updates.Filter_Date.Date_From = ListFilter_Older.FilteredList.Current.From
+model.variables.filter_UpdatesVar.filter_DateAttr.date_FromAttr = listFilter_OlderVar.value.filteredListOut.getCurrent(callContext.iterationContext).fromAttr;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dysXQGM5bEGUTVJrxOevaA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Filter_Updates.Filter_Date.Date_To = ListFilter_Today.FilteredList.Current.To
+model.variables.filter_UpdatesVar.filter_DateAttr.date_ToAttr = listFilter_TodayVar.value.filteredListOut.getCurrent(callContext.iterationContext).toAttr;
+}
+
+// Needs Status?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FHcWm5OI7EuqGSR0Be2vxg", callContext.id) && (model.variables.filter_UpdatesVar.filter_ReadOnlyAttr === OS.BuiltinFunctions.nullTextIdentifier()))) {
+// Set Status
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sG947cLwBESMgB1h_auXdg", callContext.id);
+// Filter_Updates.Filter_ReadOnly = None
+model.variables.filter_UpdatesVar.filter_ReadOnlyAttr = UBTConnectModel.staticEntities.choice.none;
+}
+
+// Needs Sort?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rBOn+o3Zc0OYYoMJUJhvNw", callContext.id) && (model.variables.filter_UpdatesVar.sort_ByNewestAttr === OS.BuiltinFunctions.nullTextIdentifier()))) {
+// Set Sort
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zrVhwItZika62g2kPWDGmg", callContext.id);
+// Filter_Updates.Sort_ByNewest = Yes
+model.variables.filter_UpdatesVar.sort_ByNewestAttr = UBTConnectModel.staticEntities.choice.yes;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VnUP5ShHIUOfrTQF7_p07A", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VnUP5ShHIUOfrTQF7_p07A", callContext.id);
+}
+
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:CQb1Vc7km0OPMLngGSScqw", callContext.id);
+}
+
+};
+Controller.prototype._setBadgeCountsToZero$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("SetBadgeCountsToZero");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:DSl4Vsw_QUGxvxCaSZ7z7g:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.DSl4Vsw_QUGxvxCaSZ7z7g:TjfF_zyNcUgwLUSGAshT7g", "UBTConnect", "SetBadgeCountsToZero", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hjcArp6Ok0KfWsOdVLg7bw", callContext.id);
+// Foreach Breakpoints
+callContext.iterationContext.registerIterationStart(model.variables.breakpointsVar);
+try {var breakpointsIterator = callContext.iterationContext.getIterator(model.variables.breakpointsVar);
+var breakpointsIndex = 0;
+while ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6+ItkBeaNUSw8JZJZ1Q9Zw", callContext.id) && (breakpointsIndex < model.variables.breakpointsVar.length))) {
+breakpointsIterator.currentRowNumber = breakpointsIndex;
+// Set BadgeCount to 0
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3NZVCX3GWkqF0xnKp6ffdA", callContext.id);
+// Breakpoints.Current.BadgeCount = 0
+model.variables.breakpointsVar.getItem(breakpointsIndex.valueOf()).badgeCountAttr = 0;
+breakpointsIndex++;
+}
+
+} finally {
+callContext.iterationContext.registerIterationEnd(model.variables.breakpointsVar);
+}
+
+// Set Current Breakpoint
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Uj2Usv_YvEKKCSbtsbPEYg", callContext.id);
+// CurrentBreakpoint.BadgeCount = 0
+model.variables.currentBreakpointVar.badgeCountAttr = 0;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GTCgAqFKZEqlCKp648vyMg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:DSl4Vsw_QUGxvxCaSZ7z7g", callContext.id);
+}
+
+};
+Controller.prototype._screenEvent_OnReady$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("ScreenEvent_OnReady");
+callContext = controller.callContext(callContext);
+var getSkeletonList_UI_NotificationVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.getSkeletonList_UI_NotificationVar = getSkeletonList_UI_NotificationVar;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:g6HPX5F04UqVz6IcAOBJTg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.g6HPX5F04UqVz6IcAOBJTg:esN221x5rp86Cct7DlQzrg", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hklKEQKvK0O64auESqaQgQ", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+// isLoading
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSXYUyFBgUKA1PhZ+XYXxQ", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:fO23MaliVUaKsvz3m8nbwQ", callContext.id);
+// Execute Action: GetSkeletonList_UI_Notification
+getSkeletonList_UI_NotificationVar.value = UBTConnectController.default.getSkeletonList_UI_Notification$Action(10, callContext);
+
+// Setup Skeleton Data
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1r+U9iMixka7D9+DDEvhBQ", callContext.id);
+// Screen_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationItems
+model.variables.screen_NotificationItemListVar = getSkeletonList_UI_NotificationVar.value.uI_NotificationItemsOut;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1r+U9iMixka7D9+DDEvhBQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Breakpoints = GetSkeletonList_UI_Notification.Breakpoints
+model.variables.breakpointsVar = getSkeletonList_UI_NotificationVar.value.breakpointsOut;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hCp0qv1u+064wUt10WiREg", callContext.id);
+// Refresh Query: GetDateRanges
+var result = controller.getDateRanges$DataActRefresh(callContext);
+model.flush();
+return result.then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hBMFAn7H00+w9OpC01+W9Q", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:g6HPX5F04UqVz6IcAOBJTg", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:g6HPX5F04UqVz6IcAOBJTg", callContext.id);
+throw ex;
+
+});
+};
+Controller.prototype._handler_FilterSheetSheetInitialized$Action = function (sheetIdIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_FilterSheetSheetInitialized");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSheetSheetInitialized$vars"))());
+vars.value.sheetIdInLocal = sheetIdIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:50joeBcMUkilsupq90tduQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.50joeBcMUkilsupq90tduQ:G2KcQmS8ABiv4qJ_lrIOmQ", "UBTConnect", "Handler_FilterSheetSheetInitialized", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4t7WFoBYwkaLfN_O9Tx2LA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:aL2ddYLIqkuFE2yXx9vbXQ", callContext.id);
+// Filter_BottomSheetId = SheetId
+model.variables.filter_BottomSheetIdVar = vars.value.sheetIdInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uf7a01lu6UGCFwIbASgFmQ", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:50joeBcMUkilsupq90tduQ", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSheetSheetInitialized$vars", [{
+name: "SheetId",
+attrName: "sheetIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
+Controller.prototype._initializeSetting$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("InitializeSetting");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:CBzrePNFQkGiGCWnFIGfAQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.CBzrePNFQkGiGCWnFIGfAQ:khsOhFKJypFn3X+oAZadNg", "UBTConnect", "InitializeSetting", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FhyKU0tABUal3+bSEkGq6g", callContext.id);
+// Is User Logged?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8mLr+o8bWEGsMiCoy6XrYQ", callContext.id) && ((OS.BuiltinFunctions.getUserId()) !== (OS.BuiltinFunctions.nullIdentifier())))) {
+// Set True
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gUiuqiTVrEmTgaSiTawiEA", callContext.id);
+// ShowWarning = True
+model.variables.showWarningVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gUiuqiTVrEmTgaSiTawiEA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Filter_MessageTypePrivate = SelectedFilter_MessageTypePrivate
+model.variables.filter_MessageTypePrivateVar = model.variables.selectedFilter_MessageTypePrivateVar;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gUiuqiTVrEmTgaSiTawiEA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+// Filter_MessageTypePublic = SelectedFilter_MessageTypePublic
+model.variables.filter_MessageTypePublicVar = model.variables.selectedFilter_MessageTypePublicVar;
+} else {
+// Set False
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iY9UxsEvVEaICaN6JxMzOA", callContext.id);
+// ShowWarning = False
+model.variables.showWarningVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iY9UxsEvVEaICaN6JxMzOA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Filter_MessageTypePrivate = False
+model.variables.filter_MessageTypePrivateVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iY9UxsEvVEaICaN6JxMzOA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+// Filter_MessageTypePublic = True
+model.variables.filter_MessageTypePublicVar = true;
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VC9Y8hhL60aHNH+NGLFZ5g", callContext.id);
+// Filter_OrderASC = SelectedFilter_OrderASC
+model.variables.filter_OrderASCVar = model.variables.selectedFilter_OrderASCVar;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:VC9Y8hhL60aHNH+NGLFZ5g", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// Filter_OrderDESC = notSelectedFilter_OrderASC
+model.variables.filter_OrderDESCVar = !(model.variables.selectedFilter_OrderASCVar);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IT32FWLyYE+a1GMCFWRDjg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:CBzrePNFQkGiGCWnFIGfAQ", callContext.id);
+}
+
+};
+Controller.prototype._onAfterFetch_GetDateRanges$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnAfterFetch_GetDateRanges");
+callContext = controller.callContext(callContext);
+var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
+var app_Notifications_AugmentDateRangesVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.allExceptionsVar = allExceptionsVar;
+varBag.app_Notifications_AugmentDateRangesVar = app_Notifications_AugmentDateRangesVar;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:R7Bwevf9Ak2tjzopGLdPtQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.R7Bwevf9Ak2tjzopGLdPtQ:39Z32o52R0pPl_VvhrO6Ag", "UBTConnect", "OnAfterFetch_GetDateRanges", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ObeP3IkBD0qc8Ohq4apCXA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:e8EqzbNEbkyTVtexMU89Jw", callContext.id);
+// Execute Action: App_Notifications_AugmentDateRanges
+app_Notifications_AugmentDateRangesVar.value = UBTConnectController.default.app_Notifications_AugmentDateRanges$Action(model.variables.getDateRangesDataAct.dateRangesListOut, callContext);
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:CIys7A54BEeHpW9r9zilIQ", callContext.id);
+// DateRanges = App_Notifications_AugmentDateRanges.DateRanges
+model.variables.dateRangesVar = app_Notifications_AugmentDateRangesVar.value.dateRangesOut;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NAu82Ffqm0m3sblUB7zHMQ", callContext.id);
+// Execute Action: SetDefaultFilters
+controller._setDefaultFilters$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iBlfE2kf60u3MEuCJYRS6Q", callContext.id);
+// Execute Action: RefreshNotifications
+return controller._refreshNotifications$Action(callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8NAIyVpZW0WaHnNSiHe+5g", callContext.id);
+});
+}).catch(function (ex) {
+OS.Logger.trace("Notifications.OnAfterFetch_GetDateRanges", OS.Exceptions.getMessage(ex), ex.name);
+// Handle Error: AllExceptions
+if(!(OS.Exceptions.isSystem(ex))) {
+OS.Logger.error(null, ex);
+allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4D8NZtvUpE+E_05HdZ1BjA", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ce4xFrP_8kO+VcFagNoBlA", callContext.id);
+// isLoading = False
+model.variables.isLoadingVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+eqCFHsQd0irOpX5oA5dvA", callContext.id);
+// Raise Error: BubbleGenericException
+throw new OS.Exceptions.Exceptions.UserException("UBTConnect.BubbleGenericException", allExceptionsVar.value.exceptionMessageAttr);
+});
+}
+
+throw ex;
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:R7Bwevf9Ak2tjzopGLdPtQ", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:R7Bwevf9Ak2tjzopGLdPtQ", callContext.id);
+throw ex;
+
+});
+};
+Controller.prototype._refreshNotifications$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("RefreshNotifications");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3I79fA3DHki3qOF9UG6sCQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.3I79fA3DHki3qOF9UG6sCQ:oduTlq8FKJJlnaNMbDQT3w", "UBTConnect", "RefreshNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XXayzIg+9Eqsi82Vh+IFZw", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LSWgVjlqKE6+7J3AzUjAtw", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_GwvU7st0Eil5wFj31tW_Q", callContext.id);
+// Refresh Query: FetchNotifications
+var result = controller.fetchNotifications$DataActRefresh(callContext);
+model.flush();
+return result.then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AMcA03QlfEm+XaUA+auV9Q", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:3I79fA3DHki3qOF9UG6sCQ", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:3I79fA3DHki3qOF9UG6sCQ", callContext.id);
+throw ex;
+
+});
+};
+Controller.prototype._handler_FilterSheetLoaded$Action = function (showSubscriptionOnClickIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_FilterSheetLoaded");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSheetLoaded$vars"))());
+vars.value.showSubscriptionOnClickInLocal = showSubscriptionOnClickIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:x1ukiqAKs0OmoTobWCGsZw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.x1ukiqAKs0OmoTobWCGsZw:TEhsXPiLVUVMC1_+_fbtYA", "UBTConnect", "Handler_FilterSheetLoaded", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qlUmxVbUaECaUxA81ysgxg", callContext.id);
+// Setup Bottom Sheet Info
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V1ygfH4uIUa8Bv73BvHpDA", callContext.id);
+// BottomSheetId_IsLoaded = True
+model.variables.bottomSheetId_IsLoadedVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:V1ygfH4uIUa8Bv73BvHpDA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// BottomSheetId_ShowSubscription = ShowSubscriptionOnClick
+model.variables.bottomSheetId_ShowSubscriptionVar = vars.value.showSubscriptionOnClickInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4ma99A6OA06dXRmTs1cPJg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:x1ukiqAKs0OmoTobWCGsZw", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_FilterSheetLoaded$vars", [{
+name: "ShowSubscriptionOnClick",
+attrName: "showSubscriptionOnClickInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._onAfterFetch_FetchNotifications$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnAfterFetch_FetchNotifications");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.OnAfterFetch_FetchNotifications$vars"))());
+var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
+var app_Notifications_GetBreakpointsVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.allExceptionsVar = allExceptionsVar;
+varBag.app_Notifications_GetBreakpointsVar = app_Notifications_GetBreakpointsVar;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions._nDMuYywM0SeuHnioSuYpw:dcPI3_DvVNgh36DpLcBDCg", "UBTConnect", "OnAfterFetch_FetchNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IS0X6ycyY0O9besICMNhmw", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+// Is have breakpoint yet?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cwE_bXssOkSyGFKiWOprZg", callContext.id) && (model.variables.breakpointsVar.getItem(0).positionAttr === -1))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jR8B_wO+gUKAsms7F5q9gg", callContext.id);
+// Execute Action: App_Notifications_GetBreakpoints
+app_Notifications_GetBreakpointsVar.value = UBTConnectController.default.app_Notifications_GetBreakpoints$Action(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, model.variables.dateRangesVar, callContext);
+
+// Set Breakpoints
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+nmLsbacSUm0_Xw10sViUQ", callContext.id);
+// Breakpoints = App_Notifications_GetBreakpoints.Breakpoints
+model.variables.breakpointsVar = app_Notifications_GetBreakpointsVar.value.breakpointsOut;
+// Has Breakpoints?
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:d0AaupqB2UmmXjOAF8oj3Q", callContext.id) && !(app_Notifications_GetBreakpointsVar.value.breakpointsOut.isEmpty))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:r28WuIBu40C804zhoG_aIg", callContext.id);
+// CurrentBreakpoint = Breakpoints[0]
+model.variables.currentBreakpointVar = model.variables.breakpointsVar.getItem(0);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:otDF8Ffx+0umigSxMMY4Bg", callContext.id);
+// CurrentBreakpoint = EmptyBreakpoint
+model.variables.currentBreakpointVar = vars.value.emptyBreakpointVar;
+}
+
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HVnXfk6lnU6GVQEHtjPWTA", callContext.id);
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XOr0IHDegku1HnicxXVR6w", callContext.id);
+// ShowMarkAll = FetchNotifications.UnreadNotificationsCount > 0
+model.variables.showMarkAllVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut.gt(OS.BuiltinFunctions.integerToLongInteger(0));
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GudImiR4lU6xndwsK3Vatw", callContext.id) && (model.variables.pageNumberVar === 1))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SaXrwImbXkyomzYASz8kXQ", callContext.id);
+// MaxRecords = FetchNotifications.UI_NotificationItemList.Length
+model.variables.maxRecordsVar = model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.length;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:w07koaDEyEu65x5Pz0prRw", callContext.id);
+// Screen_NotificationItemList = FetchNotifications.UI_NotificationItemList
+model.variables.screen_NotificationItemListVar = model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut;
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ga3bRo7ISUSCgabo0vfTPA", callContext.id);
+// Execute Action: ListAppendAll
+OS.SystemActions.listAppendAll(model.variables.screen_NotificationItemListVar, model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, callContext);
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qg3wjJId+kqdu2MX85IW6Q", callContext.id);
+// ReadCount = FetchNotifications.UnreadNotificationsCount
+model.variables.readCountVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut;
+// isLoading
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KMPBj8iHXEeWSjn3MqlzsQ", callContext.id);
+// isLoading = False
+model.variables.isLoadingVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pjJXH+HE60WV4qL2uz7rsg", callContext.id);
+// Execute Action: DestroyEventListener
+controller._destroyEventListener$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n4KY2uYty02hTDy1LKqmHw", callContext.id);
+// Execute Action: Directory_Updates_RefreshBottomBarCount
+model.flush();
+return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:CONrEsWEuk2xydI_BWeFyA", callContext.id);
+});
+}).catch(function (ex) {
+OS.Logger.trace("Notifications.OnAfterFetch_FetchNotifications", OS.Exceptions.getMessage(ex), ex.name);
+// Handle Error: AllExceptions
+if(!(OS.Exceptions.isSystem(ex))) {
+OS.Logger.error(null, ex);
+allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
+OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PJUrwunUl0a0GJnzjJQTbQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:f33Sof01b0GH4iHAoc49KA", callContext.id);
+// isLoading = False
+model.variables.isLoadingVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:B+AbQ676oE+1iZ2dqZkwrg", callContext.id);
+// Raise Error: BubbleGenericException
+throw new OS.Exceptions.Exceptions.UserException("UBTConnect.BubbleGenericException", allExceptionsVar.value.exceptionMessageAttr);
+});
+}
+
+throw ex;
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.OnAfterFetch_FetchNotifications$vars", [{
+name: "EmptyBreakpoint",
+attrName: "emptyBreakpointVar",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectModel.UI_UpdateItem_BreakpointRec();
+},
+complexType: UBTConnectModel.UI_UpdateItem_BreakpointRec
+}]);
+Controller.prototype._handler_MoreActionSheetMarkAllAsRead$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_MoreActionSheetMarkAllAsRead");
+callContext = controller.callContext(callContext);
+var markAllAsReadNotificationsVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.markAllAsReadNotificationsVar = markAllAsReadNotificationsVar;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.vXvEuyTtbEifDyH+8CCTcA:6bhltWBaBW3gtzLR1SzKBQ", "UBTConnect", "Handler_MoreActionSheetMarkAllAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WVYjmohiiU+RqPsqSQa9_A", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:noby1C2HVEiZcSG5C9Vceg", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KkqA6qW44UeKxPf9na2V+g", callContext.id);
+// Execute Action: MarkAllAsReadNotifications
+model.flush();
+return controller.markAllAsReadNotifications$ServerAction(model.variables.filter_MessageTypePublicVar, model.variables.filter_MessageTypePrivateVar, model.variables.deviceHardwareIdVar, model.variables.currentSearchStringVar, callContext).then(function (value) {
+markAllAsReadNotificationsVar.value = value;
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AA5MDEOyPUaL8O5t3+r08A", callContext.id);
+// Execute Action: SetBadgeCountsToZero
+controller._setBadgeCountsToZero$Action(callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uMGoAEEp1kqgRYzEfwPOoA", callContext.id);
+// isLoading = False
+model.variables.isLoadingVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7KQNJW9l0UmM7ZHrMmQnQQ", callContext.id);
+// Execute Action: Directory_Updates_RefreshBottomBarCount
+model.flush();
+return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext);
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H1GG9CLHs0ObBzp6vmhuHQ", callContext.id);
+// Execute Action: RefreshNotifications
+return controller._refreshNotifications$Action(callContext);
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Vq46Ra8O3EWzWq3t63iYJw", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:vXvEuyTtbEifDyH+8CCTcA", callContext.id);
+throw ex;
+
+});
+};
+Controller.prototype._handler_MoreActionSheetLoaded$Action = function (showSubscriptionOnClickIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_MoreActionSheetLoaded");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MoreActionSheetLoaded$vars"))());
+vars.value.showSubscriptionOnClickInLocal = showSubscriptionOnClickIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:OG3lwyboTUu04kjKheCuFg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.OG3lwyboTUu04kjKheCuFg:8x+JTtr2aakQ1d7wecD9zg", "UBTConnect", "Handler_MoreActionSheetLoaded", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ym6EvTbPQkmgSAEWfAh2sw", callContext.id);
+// Setup Bottom Sheet Info
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wc3PH7dPCkeMimiBfbgFgQ", callContext.id);
+// BottomSheetId_IsLoaded = True
+model.variables.bottomSheetId_IsLoadedVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wc3PH7dPCkeMimiBfbgFgQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+// BottomSheetId_ShowSubscription = ShowSubscriptionOnClick
+model.variables.bottomSheetId_ShowSubscriptionVar = vars.value.showSubscriptionOnClickInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:NqManh3Lj0CDBd25aWjY0Q", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:OG3lwyboTUu04kjKheCuFg", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MoreActionSheetLoaded$vars", [{
+name: "ShowSubscriptionOnClick",
+attrName: "showSubscriptionOnClickInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._handler_MoreActionSheetDeleteAll$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_MoreActionSheetDeleteAll");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.sP3By9h8mUmu6lZybtj7wA:NaOB57+k_6HYhjmV7v74NQ", "UBTConnect", "Handler_MoreActionSheetDeleteAll", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:L9TRKSes8Ue6LVWWefaeUA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vHsmc_mh5kiWzNJjJ9kIYQ", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0HYDaBKGpEqC5LQB8c34zw", callContext.id);
+// Execute Action: Delete_Notifications
+model.flush();
+return controller.delete_Notifications$ServerAction(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qgCJIpSD10eBH8Rmq7oq_A", callContext.id);
+// isLoading = False
+model.variables.isLoadingVar = false;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:o6nASpOljU60jlJSNd8aZQ", callContext.id);
+// Execute Action: RefreshNotifications
+return controller._refreshNotifications$Action(callContext);
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PESCeTW38kK23HT4CVVz4A", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:sP3By9h8mUmu6lZybtj7wA", callContext.id);
+throw ex;
+
+});
+};
+Controller.prototype._handler_OnHeaderScrolled$Action = function (event_IsHeaderScrolledIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnHeaderScrolled");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnHeaderScrolled$vars"))());
+vars.value.event_IsHeaderScrolledInLocal = event_IsHeaderScrolledIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:mDWX2RFS8kquU3_741kzXQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.mDWX2RFS8kquU3_741kzXQ:da_u2NvpxqoA+nrBZwJksA", "UBTConnect", "Handler_OnHeaderScrolled", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:J_eV3p1oK0eNgnlfJBd4dQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dNCITAh3SUq_VchhaI4q7Q", callContext.id);
+// IsHeaderScrolled = Event_IsHeaderScrolled
+model.variables.isHeaderScrolledVar = vars.value.event_IsHeaderScrolledInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GU6dHyx0aEm7Ttmsw_pfYQ", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:mDWX2RFS8kquU3_741kzXQ", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_OnHeaderScrolled$vars", [{
+name: "Event_IsHeaderScrolled",
+attrName: "event_IsHeaderScrolledInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._handler_ApplyFilters$Action = function (event_HasFiltersAppliedIn, isNewestToOldestIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_ApplyFilters");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ApplyFilters$vars"))());
+vars.value.event_HasFiltersAppliedInLocal = event_HasFiltersAppliedIn;
+vars.value.isNewestToOldestInLocal = isNewestToOldestIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YAJz4bPV1UOZ5xXzUvvfOg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.YAJz4bPV1UOZ5xXzUvvfOg:Uzp4dBqp75J4ljtSDhiuMg", "UBTConnect", "Handler_ApplyFilters", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HK_72iyG4E61AnCbgMQlGg", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+// Setup Variables
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:60niFLmFX0illvCu5xngyg", callContext.id);
+// HasFiltersApplied = Event_HasFiltersApplied
+model.variables.hasFiltersAppliedVar = vars.value.event_HasFiltersAppliedInLocal;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:t9lic+Ls8kWnDxNH_vR4+w", callContext.id);
+// ShowMarkAll = False
+model.variables.showMarkAllVar = false;
+// isLoading
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_Mm22_0J806UhWZgd+11ew", callContext.id);
+// isLoading = True
+model.variables.isLoadingVar = true;
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5K2yxdxbJUewF5iEToiIIg", callContext.id);
+// OrderByIsAscending = notIsNewestToOldest
+model.variables.orderByIsAscendingVar = !(vars.value.isNewestToOldestInLocal);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jc+xCEpqIE23AKu4+icR+A", callContext.id);
+// Execute Action: RefreshUpdates
+return controller._refreshNotifications$Action(callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:S5V_IbM6IEGJ0hH_lMv1sg", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YAJz4bPV1UOZ5xXzUvvfOg", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YAJz4bPV1UOZ5xXzUvvfOg", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ApplyFilters$vars", [{
+name: "Event_HasFiltersApplied",
+attrName: "event_HasFiltersAppliedInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "IsNewestToOldest",
+attrName: "isNewestToOldestInLocal",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return true;
+}
+}]);
+Controller.prototype._handler_UpdateReadCount$Action = function (addToCountIn, isDeleteIn, isReadIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_UpdateReadCount");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_UpdateReadCount$vars"))());
+vars.value.addToCountInLocal = addToCountIn;
+vars.value.isDeleteInLocal = isDeleteIn;
+vars.value.isReadInLocal = isReadIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4WYo5rxiwkOFrsnHgT_V2Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.4WYo5rxiwkOFrsnHgT_V2Q:Z3u_vIXdFojfCu2YSpATtw", "UBTConnect", "Handler_UpdateReadCount", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:5zYixAd730K7mUXfds4K5w", callContext.id);
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yiiRl6Fask+fnRDcfStbqw", callContext.id) && vars.value.addToCountInLocal)) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C8iAhQ2N90eYf9AUhrHqxg", callContext.id);
+// ReadCount = ReadCount + 1
+model.variables.readCountVar = model.variables.readCountVar.add(OS.BuiltinFunctions.integerToLongInteger(1));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lGk3Ss2bbUuh1O4wv2Bi5g", callContext.id);
+} else {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:iT6_UG45fEOmFmzS+wxISw", callContext.id) && vars.value.isReadInLocal)) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:t7rD2oBGP0aYZ8paH9FxTw", callContext.id);
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qzwvV0a5o0eFt0sPIlXUlg", callContext.id);
+// ReadCount = ReadCount - 1
+model.variables.readCountVar = model.variables.readCountVar.sub(OS.BuiltinFunctions.integerToLongInteger(1));
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lGk3Ss2bbUuh1O4wv2Bi5g", callContext.id);
+}
+
+}
+
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:4WYo5rxiwkOFrsnHgT_V2Q", callContext.id);
+}
+
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_UpdateReadCount$vars", [{
+name: "AddToCount",
+attrName: "addToCountInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "IsDelete",
+attrName: "isDeleteInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "IsRead",
+attrName: "isReadInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}]);
+Controller.prototype._handler_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_NotificationDetail");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_NotificationDetail$vars"))());
+vars.value.messageInstanceIdInLocal = messageInstanceIdIn;
+vars.value.isReadInLocal = isReadIn;
+vars.value.messageTemplateIdInLocal = messageTemplateIdIn;
+vars.value.hardwareIdInLocal = hardwareIdIn;
+vars.value.sentAsInLocal = sentAsIn;
+varBag.callContext = callContext;
+varBag.vars = vars;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.cYVy7NaI0kKIu1LiWOl93Q:wGLYBAwSP04kYvgfBhl+3g", "UBTConnect", "Handler_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7HhYs2s6uk6lvQQ8Etj0ZA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:S0h_LcYv_kGhcdYz+AWLaA", callContext.id) && !(vars.value.isReadInLocal))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hOy2842IEkWLTREqghQk6A", callContext.id);
+// Execute Action: MarkAsRead
+model.flush();
+return controller.markAsRead$ServerAction(vars.value.messageInstanceIdInLocal, callContext);
+}
+
+}).then(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:olPbfJ53QECRrftz6kdYFw", callContext.id) && (vars.value.sentAsInLocal === UBTConnectModel.staticEntities.messageSenderTarget.myEntertaining))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hs4QQkEq4kmzuviNO6JxXA", callContext.id);
+// Destination: /UBTConnect/MyEntertaining
+return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/MyEntertaining", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+} else {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gIRvHz3e9UKztZAnxH+fQQ", callContext.id);
+// Destination: /UBTConnect/NotificationDetails
+return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/NotificationDetails", {
+HardwareId: OS.DataConversion.ServerDataConverter.asString(vars.value.hardwareIdInLocal, OS.DataTypes.DataTypes.Text),
+MessageInstanceId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageInstanceIdInLocal, OS.DataTypes.DataTypes.LongInteger),
+MessageTemplateId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageTemplateIdInLocal, OS.DataTypes.DataTypes.LongInteger)
+}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+}
+
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_NotificationDetail$vars", [{
+name: "MessageInstanceId",
+attrName: "messageInstanceIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.LongInteger,
+defaultValue: function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}
+}, {
+name: "IsRead",
+attrName: "isReadInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Boolean,
+defaultValue: function () {
+return false;
+}
+}, {
+name: "MessageTemplateId",
+attrName: "messageTemplateIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.LongInteger,
+defaultValue: function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}
+}, {
+name: "HardwareId",
+attrName: "hardwareIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "SentAs",
+attrName: "sentAsInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Integer,
+defaultValue: function () {
+return 0;
+}
+}]);
+
+Controller.prototype.handler_FilterSearchText$Action = function (textIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_FilterSearchText$Action, callContext, textIn);
+
+};
+Controller.prototype.destroyEventListener$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._destroyEventListener$Action, callContext);
+
+};
+Controller.prototype.handler_ToggleSearch$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_ToggleSearch$Action, callContext);
+
+};
+Controller.prototype.handler_OnChangeSearchInput$Action = function (event_CurrentStringIn, in_IsToggleSearchIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnChangeSearchInput$Action, callContext, event_CurrentStringIn, in_IsToggleSearchIn);
+
+};
+Controller.prototype.handler_OnlyShowUnread$Action = function (onlyShowUnreadIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnlyShowUnread$Action, callContext, onlyShowUnreadIn);
+
+};
+Controller.prototype.screenEvent_OnInitialize$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._screenEvent_OnInitialize$Action, callContext);
+
+};
+Controller.prototype.handler_MoreActionSheetSheetInitialized$Action = function (sheetIdIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_MoreActionSheetSheetInitialized$Action, callContext, sheetIdIn);
+
+};
+Controller.prototype.onClick_KebabButton$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onClick_KebabButton$Action, callContext);
+
+};
+Controller.prototype.resetNotifications$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._resetNotifications$Action, callContext);
+
+};
+Controller.prototype.notificationsListBreakpoints_OnLoadMore$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._notificationsListBreakpoints_OnLoadMore$Action, callContext);
+
+};
+Controller.prototype.setDefaultFilters$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._setDefaultFilters$Action, callContext);
+
+};
+Controller.prototype.setBadgeCountsToZero$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._setBadgeCountsToZero$Action, callContext);
+
+};
+Controller.prototype.screenEvent_OnReady$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._screenEvent_OnReady$Action, callContext);
+
+};
+Controller.prototype.handler_FilterSheetSheetInitialized$Action = function (sheetIdIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_FilterSheetSheetInitialized$Action, callContext, sheetIdIn);
+
+};
+Controller.prototype.initializeSetting$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._initializeSetting$Action, callContext);
+
+};
+Controller.prototype.onAfterFetch_GetDateRanges$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onAfterFetch_GetDateRanges$Action, callContext);
+
+};
+Controller.prototype.refreshNotifications$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._refreshNotifications$Action, callContext);
+
+};
+Controller.prototype.handler_FilterSheetLoaded$Action = function (showSubscriptionOnClickIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_FilterSheetLoaded$Action, callContext, showSubscriptionOnClickIn);
+
+};
+Controller.prototype.onAfterFetch_FetchNotifications$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onAfterFetch_FetchNotifications$Action, callContext);
+
+};
+Controller.prototype.handler_MoreActionSheetMarkAllAsRead$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_MoreActionSheetMarkAllAsRead$Action, callContext);
+
+};
+Controller.prototype.handler_MoreActionSheetLoaded$Action = function (showSubscriptionOnClickIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_MoreActionSheetLoaded$Action, callContext, showSubscriptionOnClickIn);
+
+};
+Controller.prototype.handler_MoreActionSheetDeleteAll$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_MoreActionSheetDeleteAll$Action, callContext);
+
+};
+Controller.prototype.handler_OnHeaderScrolled$Action = function (event_IsHeaderScrolledIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnHeaderScrolled$Action, callContext, event_IsHeaderScrolledIn);
+
+};
+Controller.prototype.handler_ApplyFilters$Action = function (event_HasFiltersAppliedIn, isNewestToOldestIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_ApplyFilters$Action, callContext, event_HasFiltersAppliedIn, isNewestToOldestIn);
+
+};
+Controller.prototype.handler_UpdateReadCount$Action = function (addToCountIn, isDeleteIn, isReadIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_UpdateReadCount$Action, callContext, addToCountIn, isDeleteIn, isReadIn);
+
+};
+Controller.prototype.handler_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn);
+
+};
+
+// Event Handler Actions
+Controller.prototype.pushDebuggerContext = function (callContext) {
+var varBag = {};
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:_vq0gFXuOpZKZ4Em4vyllw", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ:H4E9sUMs4HLV09bb1AuY2g", "UBTConnect", "Notifications", "NRNodes.WebScreen", callContext.id, varBag);
+};
+Controller.prototype.popDebuggerContext = function (callContext) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ", callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg", callContext.id);
+};
+Controller.prototype.onInitializeEventHandler = function (callContext) {
+var controller = this.controller;
+var model = this.model;
+var idService = this.idService;
+
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications On Initialize");
+return controller.screenEvent_OnInitialize$Action(callContext);
+
+}, function () {
+controller.popDebuggerContext(callContext);
+
+});
+
+};
+Controller.prototype.onReadyEventHandler = function (callContext) {
+var controller = this.controller;
+var model = this.model;
+var idService = this.idService;
+
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications On Ready");
+return controller.screenEvent_OnReady$Action(callContext);
+
+}, function () {
+controller.popDebuggerContext(callContext);
+
+});
+
+};
+Controller.prototype.onRenderEventHandler = null;
+Controller.prototype.onDestroyEventHandler = function (callContext) {
+var controller = this.controller;
+var model = this.model;
+var idService = this.idService;
+
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications On Destroy");
+return controller.destroyEventListener$Action(callContext);
+
+}, function () {
+controller.popDebuggerContext(callContext);
+
+});
+
+};
+Controller.prototype.onParametersChangedEventHandler = null;
+Controller.prototype.handleError = function (ex) {
+return _flow_UBTConnect_App_NotificationsController.default.handleError(ex, this.callContext());
+};
+Controller.checkPermissions = function () {
+OS.RolesInfo.checkRegistered();
+};
+Controller.prototype.getDefaultTimeout = function () {
+return UBTConnectController.default.defaultTimeout;
+};
+return Controller;
+})(OS.Controller.BaseViewController);
+return new OS.Controller.ControllerFactory(Controller, UBTConnectLanguageResources);
+});
+define("UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+if($parameters.In_EventListener && $parameters.In_EventListenerTarget){
+    $parameters.In_EventListenerTarget.removeEventListener('scroll',$parameters.In_EventListener);
+}
+};
+});
+define("UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+setTimeout(function() {
+    var input = document.getElementById($parameters.InputWidgetID);
+    if(input){
+        input.focus();
+    }
+}, 200)
+};
+});
+define("UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", [], function () {
+return function ($parameters, $actions, $roles, $public) {
+$parameters.IsRestoredFromCache = $public.View.wasCurrentViewRestoredFromCache()
+};
+});
+
+define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function (exports, Debugger, OutSystems) {
+var OS = OutSystems.Internal;
+var metaInfo = {
+"TZcvnqT2E0yqcL7m_MNdTA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.textInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"sBWfYxNEqEaoMRyaNI4IxQ": {
+getter: function (varBag, idService) {
+return varBag.destroyEventListenerJSResult.value;
+}
+},
+"lYK1oqCsyEOQcXGTc9U5rw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.event_CurrentStringInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"UiMUWbTFpUqGccsc4nLCkQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_IsToggleSearchInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"IEuTKVYzcEOLLzsg0UZJ8g": {
+getter: function (varBag, idService) {
+return varBag.vars.value.onlyShowUnreadInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"HHC0uDKDYUS_X6l6PWrA7A": {
+getter: function (varBag, idService) {
+return varBag.vars.value.entitiesCarousel_SwippedItemsVar;
+}
+},
+"DS2TN086kEmJK0Y84S2ElA": {
+getter: function (varBag, idService) {
+return varBag.getPreloadObjectVar.value;
+}
+},
+"farzPUKCh0GTrXdojl_BUg": {
+getter: function (varBag, idService) {
+return varBag.listIndexOfVar.value;
+}
+},
+"6GVjkg7SckGc2XXZvur3TA": {
+getter: function (varBag, idService) {
+return varBag.assignFromObjectVar.value;
+}
+},
+"zNmNyw6cjkapHKLT9geNPg": {
+getter: function (varBag, idService) {
+return varBag.focusCursorJSResult.value;
+}
+},
+"G2D90PzT4ke3OuMiHJrU1w": {
+getter: function (varBag, idService) {
+return varBag.isViewRestoredFromCacheJSResult.value;
+}
+},
+"bSZ9fLRMwUyfEEwksLrzyw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.sheetIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"TNba3L5RJkO2++4PZD4BJg": {
+getter: function (varBag, idService) {
+return varBag.bottomSheetOpenVar.value;
+}
+},
+"Ynh+UYi6qECIcuWXDDVrVg": {
+getter: function (varBag, idService) {
+return varBag.listFilter_TodayVar.value;
+}
+},
+"+OTb54yUdEW5XYdRxzNOJQ": {
+getter: function (varBag, idService) {
+return varBag.listFilter_OlderVar.value;
+}
+},
+"fO23MaliVUaKsvz3m8nbwQ": {
+getter: function (varBag, idService) {
+return varBag.getSkeletonList_UI_NotificationVar.value;
+}
+},
+"mn1SJhgbcEuxzHfWtyJbwg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.sheetIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"4D8NZtvUpE+E_05HdZ1BjA": {
+getter: function (varBag, idService) {
+return varBag.allExceptionsVar.value;
+}
+},
+"e8EqzbNEbkyTVtexMU89Jw": {
+getter: function (varBag, idService) {
+return varBag.app_Notifications_AugmentDateRangesVar.value;
+}
+},
+"Pw8V6O4t4k6emBf3ibkQNA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.showSubscriptionOnClickInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"_m1W4TLjt0qQrpLsKjYpXA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.emptyBreakpointVar;
+}
+},
+"PJUrwunUl0a0GJnzjJQTbQ": {
+getter: function (varBag, idService) {
+return varBag.allExceptionsVar.value;
+}
+},
+"jR8B_wO+gUKAsms7F5q9gg": {
+getter: function (varBag, idService) {
+return varBag.app_Notifications_GetBreakpointsVar.value;
+}
+},
+"KkqA6qW44UeKxPf9na2V+g": {
+getter: function (varBag, idService) {
+return varBag.markAllAsReadNotificationsVar.value;
+}
+},
+"UHJXCySKCEqXj7Rkvh2nPQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.showSubscriptionOnClickInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"8Kl3bMrMo0yJqGKeiaMm6Q": {
+getter: function (varBag, idService) {
+return varBag.vars.value.event_IsHeaderScrolledInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"b7BmHq1a5kqtO5ouQYoEpQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.event_HasFiltersAppliedInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"YGaTNLJ9o0+GzhB8OAehgg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isNewestToOldestInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"b2JygPRNaECvS3DOfI+DJg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.addToCountInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"xQThi1A_m027VxjYEIQMSA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isDeleteInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"hM4jNdkUa0ahZyOvcnsv6w": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isReadInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"h+8PjqXiIEa53zXRV5GiAg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.messageInstanceIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"gauj+xotSUqtTDftZZDC_Q": {
+getter: function (varBag, idService) {
+return varBag.vars.value.isReadInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"+qMM6KyFrUOK99gD36eJNQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.messageTemplateIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"BmPyF6pK_USNKuM4FQwfYA": {
+getter: function (varBag, idService) {
+return varBag.vars.value.hardwareIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"YeyFwsv7nUOQcVh+EMLJ4w": {
+getter: function (varBag, idService) {
+return varBag.vars.value.sentAsInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"WPYH6WUF602eNTsWIob5jQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_BottomSheetIdVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"Ip1+HiuwYUOnDdx855PcPA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_UpdatesVar;
+}
+},
+"LzF4rJ0xg0uidvYw25_2yw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.hasFiltersAppliedVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"42ikxvzULkKyxSJO_hGHlA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.showMarkAllVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"Af0Txy2X0UOblyba9nCQiA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.dateRangesVar;
+}
+},
+"nMg4RCCcNUyLt0NW2Lwqsw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isLoadingVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"emISxdO_GkO_uWrJhB0Qrg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.bottomSheetId_IsLoadedVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"rxnhjumDFUO3R0pod5+4yQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.bottomSheetId_ShowSubscriptionVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"ePLh2Y9xBUqVdrtjqnlNPg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.breakpointsVar;
+}
+},
+"PSBJQ2JbS0SpeNNKLTyw+A": {
+getter: function (varBag, idService) {
+return varBag.model.variables.currentBreakpointVar;
+}
+},
+"eEWQvtTyVESqjlnti28QXg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.eventListenerVar;
+},
+dataType: OS.DataTypes.DataTypes.Object
+},
+"B2ze3eW+ukGxoxzdqhI2Hw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.eventListenerTargetVar;
+},
+dataType: OS.DataTypes.DataTypes.Object
+},
+"lLip1A8oW0qI2mO9t58hmA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isHeaderScrolledVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"qiPfPXXLyEW+cRVrgh18oQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isToggleSearchVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"1Djzcx6bx0yyP7le84eNfg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.currentSearchStringVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"EblTTh2TnkObWettGbVJVQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.selectedHistorySearchVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"gh8cPl0CpE6Ycg8ns9MhBw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.deviceHardwareIdVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"Cgc+MSyIH0KMYzbqApv7Fw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_MessageTypePrivateVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"0mmwiNRIyUOLVdF2ZymEnA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_MessageTypePublicVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"VLrJDiV1_kCB6HqmxBIsXQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.orderByIsAscendingVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"VFE4Mym9fkmrX7sSe1eH_A": {
+getter: function (varBag, idService) {
+return varBag.model.variables.maxRecordsVar;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"J_6kukk81kaC2rrOI7mHgg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.showWarningVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"HRGCbwNKl0SYfK4+Mf8SaA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.selectedFilter_OrderASCVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"VF2DAz0s_k+zw0qk16IvUA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_OrderASCVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"Vne70qwn0E6wl4YE5FoUBA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.filter_OrderDESCVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"Upx+EueTAE6on+2Zu2Eelg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.selectedFilter_MessageTypePrivateVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"BwWT2uNYIkW8OdPOPZQIFQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.selectedFilter_MessageTypePublicVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"ORF_tv_2dkWjNCzH3sG5WA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.moreAction_BottomSheetIdVar;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"bWVt23_QZka9IW1gBMz7Xw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.local_OnlyShowUnreadVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
+"r8PUVHu15UWQDsptuWEMEw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.readCountVar;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"5E+zz8x68kaRU2iipmLCog": {
+getter: function (varBag, idService) {
+return varBag.model.variables.screen_NotificationItemListVar;
+}
+},
+"Mq4Qo29Dck+z+EhybiW0Qg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.startIndexVar;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"mM4YpSfoAEiZES10z9GJFg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.pageNumberVar;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
+"UPatnTxUzUSyph6SkRu4vw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.getDateRangesDataAct;
+}
+},
+"MIT7zgZzJ0urDbwBA22R5w": {
+getter: function (varBag, idService) {
+return varBag.model.variables.fetchNotificationsDataAct;
+}
+},
+"IikFeCJWq0ms6zLHRCL9nA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_Header_Title"));
+})(varBag.model, idService);
+}
+},
+"a29bKSrW+E2+c0kO3O0e6g": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("If_IsSearchToggled_Input"));
+})(varBag.model, idService);
+}
+},
+"yY2lkCoSxEmpGQiYv5bIFw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("If_IsHeaderScrolled_Search"));
+})(varBag.model, idService);
+}
+},
+"hkMi3Gv4Hki_XpbDLBwqug": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"UsWb9aZx+ECX_ThlCz8k0g": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Search_PostScroll"));
+})(varBag.model, idService);
+}
+},
+"3XbaN3och0KK2APRiDCsfA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_Header_Right"));
+})(varBag.model, idService);
+}
+},
+"+9EKS9MfIUqvj1UtGDM3Rg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("If_IsHeaderScrolled_Icons"));
+})(varBag.model, idService);
+}
+},
+"5dDb3JAhy02mVfq1v3qkHA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("If_IsSearchToggled_Icon"));
+})(varBag.model, idService);
+}
+},
+"_uqdRGWbkkKZQukGWo1qBw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Icon_Search"));
+})(varBag.model, idService);
+}
+},
+"ppuHgYOwv0usl25ApVIdcQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Icon_Kebab"));
+})(varBag.model, idService);
+}
+},
+"5PMuu_I7skec1mKm0wBDoA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Icon_Kebab2"));
+})(varBag.model, idService);
+}
+},
+"MU+4lnLzRUODedTLT_AYiw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_Header_Input"));
+})(varBag.model, idService);
+}
+},
+"g6B6m7dTHE2M83Fe8kmNWA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Search_PreScroll"));
+})(varBag.model, idService);
+}
+},
+"jzO9JPqwO0S6cduID6nuDA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HeaderContent"));
+})(varBag.model, idService);
+}
+},
+"ypaMbYR4G0GYA0GqFfkrJQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Notifications_Action"));
+})(varBag.model, idService);
+}
+},
+"mLvZGVF5wU2yzlyLG6TN3w": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Notifications_ListHeader"));
+})(varBag.model, idService);
+}
+},
+"QnnSfnkg2E+f2z2kRkttFg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"daDlgQw_S024+eTBSjnETQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("If_HasNoNotifications"));
+})(varBag.model, idService);
+}
+},
+"grmLELEN_0+MvSBt5+xJlw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"CzbW6mudSE6sFkW4bdJNSQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("TitlePlaceholder"));
+})(varBag.model, idService);
+}
+},
+"yVwpl+QnfkyA4pv5Hgtkyw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("TextPlaceholder"));
+})(varBag.model, idService);
+}
+},
+"eKOGLOyUQ0mwvLaJw6xGQA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Bottom"));
+})(varBag.model, idService);
+}
+},
+"GCl4oOVXWEGAeGml3QIALw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_CommonUI_Inside_Layout"));
+})(varBag.model, idService);
+}
+},
+"u0VCbDCAP0OSX+gkdj+lJw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HideInServiceStudio_BottomSheet"));
+})(varBag.model, idService);
+}
+},
+"FRXinsq4NU6ZeteUyNVmEA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HideInServiceStudio_BottomSheet2"));
+})(varBag.model, idService);
+}
+}
+};
+OutSystemsDebugger.registerMetaInfo(metaInfo);
+});

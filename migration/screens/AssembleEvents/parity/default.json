@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "0a88172f27af72d74408",
+ "fingerprint": "304a8146f7c19737075e",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:27:45.860Z",
- "counts": {},
+ "at": "2026-11-06T19:59:33.126Z",
+ "counts": {
+  "text": 3
+ },
  "exemptionsUsed": {
   "ignoreSubtrees": 1,
   "CAPTURE-LINK-HREF-CURSOR-ASSEMBLEEVENTS": 2,
@@ -66,5 +68,21 @@
   "expected": 11,
   "actual": 11
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#BottomSheet_AssembleFilter.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b4-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b4-b1-BottomSheet.osui-bottom-sheet.osui-bottom-sheet--has-handler.ubt-bottom-sheet > div#b4-b1-Content.osui-bottom-sheet__content > div#b4-Content.ubt-bottom-sheet--content > div#Assemble_FilterSheet_Instance.OSBlockWidget[Assemble.Assemble_FilterSheet] > div#b5-DIV_Root.padding-x-base.padding-y-base > div#b5-$b2.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b5-b2-l1-95_11-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width37-5 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#BottomSheet_AssembleFilter.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b4-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b4-b1-BottomSheet.osui-bottom-sheet.osui-bottom-sheet--has-handler.ubt-bottom-sheet > div#b4-b1-Content.osui-bottom-sheet__content > div#b4-Content.ubt-bottom-sheet--content > div#Assemble_FilterSheet_Instance.OSBlockWidget[Assemble.Assemble_FilterSheet] > div#b5-DIV_Root.padding-x-base.padding-y-base > div#b5-$b2.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b5-b2-l1-95_14-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width37-5 > span",
+   "detail": "\"73\" → \"74\""
+  },
+  {
+   "kind": "text",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#BottomSheet_AssembleFilter.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b4-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b4-b1-BottomSheet.osui-bottom-sheet.osui-bottom-sheet--has-handler.ubt-bottom-sheet > div#b4-b1-Content.osui-bottom-sheet__content > div#b4-Content.ubt-bottom-sheet--content > div#Assemble_FilterSheet_Instance.OSBlockWidget[Assemble.Assemble_FilterSheet] > div#b5-DIV_Root.padding-x-base.padding-y-base > div#b5-$b2.OSBlockWidget[Directory.LocalityListDetail] > div > div.OSFillParent.list.list-group > div#b5-b2-l1-95_16-ListItem1.list-item > div.OSInline.landing-country-list-item > div.locality-details-container.width55 > div.OSInline.locality-info-container.width25 > span",
+   "detail": "\"28\" → \"29\""
+  }
+ ]
 }

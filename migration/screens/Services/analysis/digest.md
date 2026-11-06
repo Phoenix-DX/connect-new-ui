@@ -388,11 +388,11 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `DataActionGetServices` (200) at 11867 ms
-- 4. `ActionSync_Info_GetMain` (200) at 19631 ms
-- 5. `ActionGetUserInformation` (200) at 20011 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 20571 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 24695 ms
+- 2. `DataActionGetServices` (200) at 2076 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5064 ms
+- 5. `ActionGetUserInformation` (200) at 5418 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7125 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10614 ms
 - plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline, popup-filters-closed, popup-filters, popup-sort
 - Runtime captures: 1 file(s), 9 call(s)
-- Masked text nodes: 9, user images removed: 0
+- Masked text nodes: 4, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -17,10 +17,10 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `NavigationHandler.PreventBackNavigation`
+- [ ] `Orbit_Blocks.Card_Event`
 - [ ] `Orbit_Blocks.Card_Milestone`
 - [ ] `Orbit_Blocks.Popup_OrbitLanding_Filters`
 - [ ] `Orbit_Blocks.Popup_OrbitLanding_Sort`
-- [ ] `Orbit_Generic_Blocks.NoInformation_Orbit`
 - [ ] `Orbit_Generic_Blocks.Skeleton_Loading`
 - [ ] `PIN.PinCode`
 - [ ] `Private.PullToRefresh`
@@ -55,10 +55,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGet_HouseholdMembers` (Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
@@ -89,7 +85,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `AppManager_Login` (UBT_AppManager.controller.js)
 - [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
 - [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

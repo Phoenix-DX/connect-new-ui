@@ -1,7 +1,7 @@
 # Coverage for Locality_Details
 
 - UI states captured: default, loading, offline, tag-interchange, tag-oneschoolglobal, tag-suppermeetings
-- Runtime captures: 1 file(s), 48 call(s)
+- Runtime captures: 1 file(s), 46 call(s)
 - Masked text nodes: 64, user images removed: 67
 - Fetch failures during snapshot: 0
 
@@ -57,17 +57,15 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGetMembers` (UBTConnect.Directory_Household_Blocks.Household_Card.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

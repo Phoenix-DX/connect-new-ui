@@ -591,6 +591,7 @@ CW_Share.ShareSheet
 | NoteCategoryId | local | Text | `""` |
 | EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | FetchNoteId | local | Text | `""` |
+| PendingOpen | local | Boolean | `false` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
@@ -602,14 +603,14 @@ CW_Share.ShareSheet
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handler_OpenNotesSheetDeferred`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `action_UpdateBookmarksAndNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
-- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
+- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handler_OnNotesSheetClosed.JavaScript1JS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
 - Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
-- Candidate static strings: `Action_AsyncRefresh_ContactDetails`
+- Candidate static strings: `Handler_OpenNotesSheetDeferred` | `Action_AsyncRefresh_ContactDetails`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 | variable | kind | type | default |
@@ -1019,21 +1020,21 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3410 ms
-- 2. `DataActionGetSubdivisionHouseholds` (200) at 4815 ms
-- 3. `DataActionGetSubdivision` (200) at 4878 ms
-- 4. `DataActionFetchContactDetails` (200) at 4899 ms
-- 5. `DataActionFetchNotes` (200) at 5070 ms
-- 6. `ActionGetSignedImagesInBulk` (200) at 5122 ms
-- 7. `DataActionFetchContactDetails` (200) at 5148 ms
-- 8. `ActionGetSignedImagesInBulk` (200) at 5168 ms
-- 9. `DataActionFetchContactDetails` (200) at 5255 ms
-- 10. `ActionAppManager_AfterInitialize` (200) at 6062 ms
-- 11. `ActionSync_Info_GetMain` (200) at 6563 ms
-- 12. `ActionGetUserInformation` (200) at 7105 ms
-- 13. `ActionGetNumberUnreadMessages` (200) at 7372 ms
-- 14. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9330 ms
-- 15. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11852 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2057 ms
+- 2. `DataActionGetSubdivisionHouseholds` (200) at 3192 ms
+- 3. `DataActionGetSubdivision` (200) at 3282 ms
+- 4. `DataActionFetchContactDetails` (200) at 3308 ms
+- 5. `DataActionFetchNotes` (200) at 3388 ms
+- 6. `DataActionFetchContactDetails` (200) at 3388 ms
+- 7. `ActionGetSignedImagesInBulk` (200) at 3446 ms
+- 8. `ActionGetSignedImagesInBulk` (200) at 3533 ms
+- 9. `DataActionFetchContactDetails` (200) at 3627 ms
+- 10. `ActionAppManager_AfterInitialize` (200) at 4490 ms
+- 11. `ActionSync_Info_GetMain` (200) at 4882 ms
+- 12. `ActionGetUserInformation` (200) at 5164 ms
+- 13. `ActionGetNumberUnreadMessages` (200) at 5379 ms
+- 14. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7491 ms
+- 15. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9972 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

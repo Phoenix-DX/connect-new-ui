@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Notes`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Notes.Notes.mvc.js`
 
@@ -198,13 +198,14 @@ Notes.Notes_FilterSheet
 | ResetPillsValue | local | Boolean | `true` |
 | PillsLoaded | local | Boolean | `false` |
 | Notes_Loading | local | Boolean | `false` |
+| IsSearching | local | Boolean | `false` |
 | GetNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetNotesDataActRec())` |
 - Data actions: `DataActionGetNotes` → `screenservices/UBTConnect/Notes/Notes/DataActionGetNotes`
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `handler_OnHeaderScrolled`, `handler_SearchOnSubmit`, `skeletonLoader_Pills`, `getNotesOnAfterFetch`, `handler_OnClickPill`, `skeletonLoader_Notes`, `handler_FilterSheetLoaded`, `refresh_GetNotes`, `handler_OnClickUnauthorizedObject`, `notes_CardListOnLoadMore`, `handler_FilterSheetSheetInilialized`, `iconClick_SearchIcon`, `handler_SearchOnClear`, `handler_SearchOnChange`, `resetPillsVallues`, `screenEvent_OnInitialize`, `screenEvent_Ready`, `handler_ApplyFilters`, `handler_OnClickNoteCardItem`
-- Navigation: `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/FeedItemDetail`(FeedItemId); `/UBTConnect/AssembleDetail`(EventId); `/UBTConnect/Locality_Details`(LocalityId); `/UBTConnect/Household_Relations`(MemberId, HouseholdId); `/UBTConnect/OneSchoolGlobalCarousel`(In_StartingObjectId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId)
-- JavaScript nodes: `UBTConnect.Notes.Notes.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS`
-- Static entities / flags: `uBT_Color.neutral0`, `uBT_Icons2.search`, `shape.rounded`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_MessageType.info`, `noteCategory2.household`, `noteCategory2.feedItem`, `noteCategory2.assembleEvent`, `noteCategory2.interchange`, `noteCategory2.lDMEvent`, `noteCategory2.locality`, `noteCategory2.localityContact`, `noteCategory2.member`, `noteCategory2.oneSchoolGlobal`, `noteCategory2.orbitEvent`, `noteCategory2.personalEvent`, `noteCategory2.supperMeeting`, `noteCategory2.update`
+- Client actions / event handlers: `handler_OnHeaderScrolled`, `handler_SearchOnSubmit`, `skeletonLoader_Pills`, `handler_OnNotesChanged`, `getNotesOnAfterFetch`, `handler_OnClickPill`, `skeletonLoader_Notes`, `handler_FilterSheetLoaded`, `refresh_GetNotes`, `handler_OnClickUnauthorizedObject`, `handler_OnClickSearchIcon`, `notes_CardListOnLoadMore`, `handler_FilterSheetSheetInilialized`, `handler_ToggleSearch`, `handler_SearchOnClear`, `handler_SearchOnChange`, `resetPillsVallues`, `screenEvent_OnInitialize`, `screenEvent_Ready`, `handler_ApplyFilters`, `handler_OnClickNoteCardItem`, `handler_OnNoteCardRemoved`
+- Navigation: `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/FeedItemDetail`(FeedItemId); `/UBTConnect/AssembleDetail`(EventId); `/UBTConnect/Household_Relations`(MemberId, HouseholdId); `/UBTConnect/OneSchoolGlobalCarousel`(In_StartingObjectId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId)
+- JavaScript nodes: `UBTConnect.Notes.Notes.mvc$controller.Handler_OnClickSearchIcon.JavaScript1JS`, `UBTConnect.Notes.Notes.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS`
+- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `uBT_Color.neutral0`, `uBT_Icons2.arrowLeftAlt`, `uBT_IconsSize.base_24`, `shape.rounded`, `uBT_Icons2.search`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_MessageType.info`, `noteCategory2.household`, `noteCategory2.feedItem`, `noteCategory2.assembleEvent`, `noteCategory2.interchange`, `noteCategory2.lDMEvent`, `noteCategory2.locality`, `noteCategory2.localityContact`, `noteCategory2.member`, `noteCategory2.oneSchoolGlobal`, `noteCategory2.orbitEvent`, `noteCategory2.personalEvent`, `noteCategory2.supperMeeting`, `noteCategory2.update`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`
 | variable | kind | type | default |
@@ -362,7 +363,9 @@ Notes.Notes_FilterSheet
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
 | In_TagsLoading | input | Boolean | `false` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `scrollToSelectedPill`, `onParametersChanged`, `tagToggleToggle`, `onReady`, `changed`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS`
 - Static entities / flags: `uBT_Size.extraSmall`
 
 ## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`
@@ -373,7 +376,7 @@ Notes.Notes_FilterSheet
 | isLoaded | input | Boolean | `false` |
 | ShowSubscriptionOnClick | input | Boolean | `false` |
 - Client actions / event handlers: `iconClick`
-- Static entities / flags: `uBT_Color.red`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.errorFill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
+- Static entities / flags: `uBT_Color.teal`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.circle_Fill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
 
 ## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
 | variable | kind | type | default |
@@ -412,7 +415,7 @@ Notes.Notes_FilterSheet
 | In_IsLoading | input | Boolean | `false` |
 | In_SearchString | input | Text | `""` |
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `handler_UpdateNoteCardsList`, `onReady`, `noteCardList_OnScrollEnding`, `onInitialize`, `onClick_NoteCardItem`, `onLoadMore`
+- Client actions / event handlers: `handler_UpdateNoteCardsList`, `handler_OnNotesChanged`, `onReady`, `noteCardList_OnScrollEnding`, `onInitialize`, `onClick_NoteCardItem`, `on_NoteCardRemoved`, `on_NotesChanged`, `onLoadMore`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Icons2.borderColor`, `uBT_Color.neutral9`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral10`, `uBT_FontSize.small`
 
 ## `UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js`
@@ -786,14 +789,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3231 ms
-- 3. `DataActionGetNotes` (200) at 5473 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6175 ms
-- 6. `ActionSync_Info_GetMain` (200) at 6634 ms
-- 7. `ActionGetUserInformation` (200) at 7029 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7292 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9578 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12257 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2291 ms
+- 3. `DataActionGetNotes` (200) at 4246 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 4697 ms
+- 6. `ActionSync_Info_GetMain` (200) at 5117 ms
+- 7. `ActionGetUserInformation` (200) at 5403 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 5628 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7450 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9611 ms
 - plus 2 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

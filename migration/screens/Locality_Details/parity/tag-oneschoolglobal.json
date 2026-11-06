@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 3,
- "fingerprint": "d1c37785643048f3835a",
+ "fingerprint": "275d761eaef8bd4fb1e5",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,32 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 545,
-  "texts": 40,
+  "elements": 388,
+  "texts": 33,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:33:04.471Z",
- "counts": {},
+ "at": "2026-11-06T20:04:33.553Z",
+ "counts": {
+  "structure": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "ignoreSubtrees": 3,
-  "TAGS-MASKED-IMAGE-LOCALITYDETAILS": 22,
+  "TAGS-MASKED-IMAGE-LOCALITYDETAILS": 11,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "TAGS-SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00014,
-  "maxCell": 0.0056,
+  "ratio": 0.27103,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 17,
-  "comparedPixels": 118887,
+  "diffPixels": 56034,
+  "comparedPixels": 206743,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,10 +55,13 @@
    390,
    844
   ],
-  "masks": 11,
+  "masks": 8,
   "hotspots": [
-   "160,120 (9px)",
-   "160,80 (8px)"
+   "40,640 (1600px)",
+   "80,640 (1600px)",
+   "120,640 (1600px)",
+   "160,640 (1600px)",
+   "200,640 (1600px)"
   ],
   "diffPng": "migration/screens/Locality_Details/parity/tag-oneschoolglobal.diff.png"
  },
@@ -67,7 +73,18 @@
    "tag-oneschoolglobal"
   ],
   "expected": 40,
-  "actual": 75
+  "actual": 74
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Block_OneSchoolGlobal_List.OSBlockWidget[Directory_Locality.Locality_OneSchoolGlobal] > div#b21-Block_OneSchoolGlobalListWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b21-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b21-$b3.OSBlockWidget[Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List] > div#b21-b3-$b1.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b21-b3-b1-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b21-b3-l1-3709_4-$b2.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "27.10% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 40,640 (1600px); 80,640 (1600px); 120,640 (1600px); 160,640 (1600px); 200,640 (1600px); see migration/screens/Locality_Details/parity/tag-oneschoolglobal.diff.png"
+  }
+ ]
 }

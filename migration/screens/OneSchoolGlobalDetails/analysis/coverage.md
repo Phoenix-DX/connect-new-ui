@@ -2,13 +2,14 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 12 call(s)
-- Masked text nodes: 5, user images removed: 1
+- Masked text nodes: 1, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
 Each one is a UI state (loading, empty, error, popup...) that still needs a capture, or a branch that never runs for this user.
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
+- [ ] `App_Common_Blocks.External_Link`
 - [ ] `App_Policies.Policy_Checker`
 - [ ] `CW_Common.Button`
 - [ ] `CW_Notes.NoteListActions`
@@ -65,17 +66,15 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `CS_ShareObject` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

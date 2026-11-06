@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "c86eccabb93eb3079204",
+ "fingerprint": "4c6b7f1a393ce5faaa64",
  "options": {
   "text": true,
   "style": true,
@@ -19,16 +19,22 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 400,
-  "texts": 35,
+  "elements": 455,
+  "texts": 43,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:30:22.669Z",
- "counts": {},
+ "at": "2026-11-06T20:01:55.975Z",
+ "counts": {
+  "position": 1,
+  "class": 1,
+  "style": 1,
+  "structure": 2,
+  "pixel": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
   "CAPTURE-SKELETON-SHIMMER-PHASE": 10,
@@ -37,11 +43,11 @@
   "SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00018,
-  "maxCell": 0.0219,
+  "ratio": 0.08424,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 60,
-  "comparedPixels": 328048,
+  "diffPixels": 27693,
+  "comparedPixels": 328728,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,13 +58,47 @@
    390,
    844
   ],
-  "masks": 4,
+  "masks": 3,
   "hotspots": [
-   "200,800 (35px)",
-   "200,760 (25px)"
+   "80,320 (1600px)",
+   "120,320 (1600px)",
+   "160,320 (1600px)",
+   "200,320 (1600px)",
+   "240,320 (1600px)"
   ],
   "diffPng": "migration/screens/CountryList/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "position",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer]",
+   "detail": "offset in parent 16,179 → 16,163"
+  },
+  {
+   "kind": "class",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container",
+   "detail": "missing .margin-top-base extra .padding-top-base"
+  },
+  {
+   "kind": "style",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container",
+   "detail": "margin-top 16px → 0px; padding-top 0px → 16px"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container > div#$b18.OSBlockWidget[Directory_CommonBlocks.Directory_CommunityNumbers]",
+   "detail": "missing in build"
+  },
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b4-Content.padding-base.ubt-custom-container > div#$b17.OSBlockWidget[BasePatterns.CustomContainer] > div#b17-Content.margin-top-base.ubt-custom-container > div#$b18.OSBlockWidget[Home.FeedBlock_CommunityPopulation]",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "8.42% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 80,320 (1600px); 120,320 (1600px); 160,320 (1600px); 200,320 (1600px); 240,320 (1600px); see migration/screens/CountryList/parity/offline.diff.png"
+  }
+ ]
 }

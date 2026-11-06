@@ -60,140 +60,17 @@ Layouts.Layout_MainPages_FixedTitle
   Bookmarks.Bookmarks_Card_List
     BasePatterns.CustomContainer
       ConnectPatterns.SkeletonSection
-        Bookmarks.Bookmarks_Card_Item
-          ConnectPatterns.ItemCard_WithNotes
-            BasePatterns.CustomContainer
+        ConnectPatterns.EmptyListBorderless
+          BasePatterns.CustomContainer
+            ConnectPatterns.CircleButton
               BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomContainer
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.AvatarImage
-                        BasePatterns.CustomContainer
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.IconText
-                        BasePatterns.Columns_Two
-                          Adaptive.Columns2
-                            ConnectPatterns.Icon
-                            BasePatterns.CustomText
-                              ConnectPatterns.IconInline_Internal
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-              BasePatterns.CustomContainer
-              BasePatterns.CustomContainer
-                App_Common_Blocks.ItemCardActions
-                  BasePatterns.CustomContainer
-                    ConnectCorePatterns.ItemCard_ActionBar
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-          CW_Notes.NotesSheet
-        Bookmarks.Bookmarks_Card_Item
-          ConnectPatterns.ItemCard_WithNotes
-            BasePatterns.CustomContainer
-              BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomContainer
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.AvatarImage
-                        BasePatterns.CustomContainer
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.IconText
-                        BasePatterns.Columns_Two
-                          Adaptive.Columns2
-                            ConnectPatterns.Icon
-                            BasePatterns.CustomText
-                              ConnectPatterns.IconInline_Internal
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-              BasePatterns.CustomContainer
-              BasePatterns.CustomContainer
-                App_Common_Blocks.ItemCardActions
-                  BasePatterns.CustomContainer
-                    ConnectCorePatterns.ItemCard_ActionBar
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-          CW_Notes.NotesSheet
-        Bookmarks.Bookmarks_Card_Item
-          ConnectPatterns.ItemCard_WithNotes
-            BasePatterns.CustomContainer
-              BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomContainer
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.AvatarImage
-                        BasePatterns.CustomContainer
-                          ConnectPatterns.Icon
-                            ConnectPatterns.IconSVG
-                      BasePatterns.CustomText
-                        ConnectPatterns.IconInline_Internal
-                    BasePatterns.CustomContainer
-                      ConnectPatterns.IconText
-                        BasePatterns.Columns_Two
-                          Adaptive.Columns2
-                            ConnectPatterns.Icon
-                            BasePatterns.CustomText
-                              ConnectPatterns.IconInline_Internal
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-              BasePatterns.CustomContainer
-              BasePatterns.CustomContainer
-                App_Common_Blocks.ItemCardActions
-                  BasePatterns.CustomContainer
-                    ConnectCorePatterns.ItemCard_ActionBar
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                        ConnectPatterns.IconText
-                          BasePatterns.Columns_Two
-                            Adaptive.Columns2
-                              ConnectPatterns.Icon
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-          CW_Notes.NotesSheet
+                ConnectPatterns.Icon
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
   App_Common.BottomBarMenu
     App_Common.BottomBarContent
       Navigation.BottomBarItem
@@ -313,7 +190,6 @@ Bookmarks.Bookmarks_FilterSheet
 | Filter_BottomSheetId | local | Text | `""` |
 | BottomSheetId_Filter_IsLoaded | local | Boolean | `false` |
 | BottomSheetId_Filter_ShowSubscription | local | Boolean | `false` |
-| Filter_BookmarksDefaultState | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.Bookmark_FilterRec())` |
 | Years | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.TextList())` |
 | PageSize | local | Integer | `20` |
 | PageNumber | local | Integer | `1` |
@@ -322,13 +198,15 @@ Bookmarks.Bookmarks_FilterSheet
 | ResetPillsValue | local | Boolean | `true` |
 | PillsLoaded | local | Boolean | `false` |
 | Bookmarks_Loading | local | Boolean | `false` |
+| IsSearching | local | Boolean | `false` |
 | GetBookmarks | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetBookmarksDataActRec())` |
 - Data actions: `DataActionGetBookmarks` → `screenservices/UBTConnect/Bookmarks/Bookmarks/DataActionGetBookmarks`
+- Server actions: `GetAllVisibleBookmarksByType` → `screenservices/UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType`
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `getBookmarksOnAfterFetch`, `skeletonLoader_Pills`, `handler_SearchOnClear`, `handler_SearchOnChange`, `handler_OnHeaderScrolled`, `handler_ApplyFilters`, `handler_OnClickBookmarkCardItem`, `handler_SearchOnSubmit`, `handler_FilterSheetSheetInilialized`, `iconClick_SearchIcon`, `handler_ItemUnbookmarked`, `reset_PillsValues`, `handler_FilterSheetLoaded`, `screenEvent_OnInitialize`, `bookmarks_Card_ListOnLoadMore`, `handler_OnClickPill`, `screenEvent_OnReady`, `skeletonLoader_Bookmarks`, `refresh_GetBookmarksData`
-- Navigation: `/UBTConnect/OneSchoolGlobalCarousel`(In_StartingObjectId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId)
-- JavaScript nodes: `UBTConnect.Bookmarks.Bookmarks.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS`
-- Static entities / flags: `uBT_Icons2.search`, `uBT_Color.neutral0`, `shape.rounded`, `uBT_Size.extraSmall`, `uBT_Size.base`, `connect_BottomBar_Items.bookmarks`, `bookmarkCategory.feedItem`, `bookmarkCategory.assembleEvent`, `bookmarkCategory.interchange`, `bookmarkCategory.lDMEvent`, `bookmarkCategory.locality`, `bookmarkCategory.localityContact`, `bookmarkCategory.member`, `bookmarkCategory.oneSchoolGlobal2`, `bookmarkCategory.orbitEvent`, `bookmarkCategory.personalEvent`, `bookmarkCategory.supperMeeting`, `bookmarkCategory.update`, `bookmarkCategory.household`
+- Client actions / event handlers: `getBookmarksOnAfterFetch`, `handler_OnClickUnauthorizedObject`, `skeletonLoader_Pills`, `handler_SearchOnClear`, `handler_SearchOnChange`, `handler_OnHeaderScrolled`, `handler_ToggleSearch`, `handler_ApplyFilters`, `handler_OnClickBookmarkCardItem`, `handler_SearchOnSubmit`, `handler_FilterSheetSheetInilialized`, `handler_OnClickSearchIcon`, `handler_OnNotesChanged`, `handler_ItemUnbookmarked`, `reset_PillsValues`, `handler_FilterSheetLoaded`, `screenEvent_OnInitialize`, `bookmarks_Card_ListOnLoadMore`, `handler_OnClickPill`, `screenEvent_OnReady`, `skeletonLoader_Bookmarks`, `refresh_GetBookmarksData`
+- Navigation: `/UBTConnect/Household_Relations`(HouseholdId, MemberId); `/UBTConnect/OneSchoolGlobalCarousel`(In_StartingObjectId); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId)
+- JavaScript nodes: `UBTConnect.Bookmarks.Bookmarks.mvc$controller.Handler_OnClickSearchIcon.JavaScript2JS`, `UBTConnect.Bookmarks.Bookmarks.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS`
+- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `uBT_Icons2.arrowLeftAlt`, `uBT_IconsSize.base_24`, `uBT_Color.neutral0`, `shape.rounded`, `uBT_Icons2.search`, `uBT_Size.extraSmall`, `uBT_Size.base`, `connect_BottomBar_Items.bookmarks`, `uBT_MessageType.info`, `bookmarkCategory.feedItem`, `bookmarkCategory.assembleEvent`, `bookmarkCategory.interchange`, `bookmarkCategory.lDMEvent`, `bookmarkCategory.locality`, `bookmarkCategory.localityContact`, `bookmarkCategory.member`, `bookmarkCategory.oneSchoolGlobal2`, `bookmarkCategory.orbitEvent`, `bookmarkCategory.personalEvent`, `bookmarkCategory.supperMeeting`, `bookmarkCategory.update`, `bookmarkCategory.household`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`
 | variable | kind | type | default |
@@ -486,7 +364,9 @@ Bookmarks.Bookmarks_FilterSheet
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
 | In_TagsLoading | input | Boolean | `false` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `scrollToSelectedPill`, `onParametersChanged`, `tagToggleToggle`, `onReady`, `changed`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS`
 - Static entities / flags: `uBT_Size.extraSmall`
 
 ## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`
@@ -497,7 +377,7 @@ Bookmarks.Bookmarks_FilterSheet
 | isLoaded | input | Boolean | `false` |
 | ShowSubscriptionOnClick | input | Boolean | `false` |
 - Client actions / event handlers: `iconClick`
-- Static entities / flags: `uBT_Color.red`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.errorFill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
+- Static entities / flags: `uBT_Color.teal`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.circle_Fill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
 
 ## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
 | variable | kind | type | default |
@@ -536,101 +416,27 @@ Bookmarks.Bookmarks_FilterSheet
 | In_IsLoading | input | Boolean | `false` |
 | In_SearchString | input | Text | `""` |
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `bookmarksCardList_OnScrollEnding`, `onReady`, `onInitialize`, `item_Unbookmarked`, `onClick_BookmarkCardItem`, `onLoadMore`
+- Client actions / event handlers: `bookmarksCardList_OnScrollEnding`, `onReady`, `handler_OnCardNotesChanged`, `onInitialize`, `item_Unbookmarked`, `onClick_BookmarkCardItem`, `on_NotesChanged`, `onLoadMore`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Icons2.bookmark`, `uBT_Color.neutral9`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral10`, `uBT_FontSize.small`
 
-## `UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js`
+## `UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| IsAddNote | local | Boolean | `false` |
-| Bookmark_CardItem | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.UI_Bookmark_CardItemRec())` |
-| In_SearchString | input | Text | `""` |
-- Client actions / event handlers: `handler_NoteSheet_Closed`, `handler_OnNoteDeleted`, `handler_OnNotesChanged`, `openNoteSheet`, `onClickCardItem`, `item_Unbookmarked`
+| IconId | input | Text | `""` |
+- Static entities / flags: `uBT_Size.small`, `uBT_Shape.large`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.center`, `uBT_AvatarSize.small_40`, `uBT_Color.cyanLightest`, `uBT_Color.primary`, `uBT_IconSize.base_24`
 
-## `UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js`
+## `UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| In_Title | input | Text | `""` |
-| In_Subtitle | input | Text | `""` |
-| In_TotalNotes | input | Text | `""` |
-| In_Label | input | Text | `""` |
-| AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
-| In_SearchString | input | Text | `""` |
-| In_ChannelName | input | Text | `""` |
-| In_ChannelLogo | input | Text | `""` |
-| In_PublishedAt | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
-| In_EventStartDateTime | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
-| In_EventEndDateTime | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
-- Client actions / event handlers: `onClickTotalNotesIcon`, `onClickItemCard`
-- Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Color.neutral3`, `uBT_Shape.medium`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_AlignItems.center`, `uBT_JustifyContent.spaceBetween`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Display.inlineFlex`, `uBT_AvatarSize.doubleExtraSmall_20`, `uBT_Shape.circle`, `uBT_Color.cyanDark`, `uBT_Color.neutral10`, `uBT_Color.neutral5`, `uBT_Color.primary`, `uBT_FontWeight.semiBold`, `uBT_FontSize.extraSmall`, `uBT_Size.extraSmall`, `uBT_AlignItems.flexEnd`, `uBT_FlexDirection.row`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_IconSize.nonStandard_16`, `uBT_Icons.listAltFill`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_VerticalAlign.center`, `uBT_ImageSize.base_52`, `uBT_ImageSize.fullHeight_100_Percent`
-
-## `UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-avatar-image"` |
-| In_AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
-| In_SizeId | input | Text | `""` |
-| In_BorderRadius | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.circle` |
-- Static entities / flags: `uBT_Shape.circle`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_FontWeight.semiBold`
-
-## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| IsIconOnRight | input | Boolean | `false` |
-| Text | input | Text | `""` |
-| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| MainContainerClass | local | Text | `"ubt-icon-button"` |
 | ExtendedClasses | input | Text | `""` |
-| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_Subtext | input | Text | `""` |
-| In_JustifyText | input | Boolean | `false` |
-- Client actions / event handlers: `clicked`
-- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
-
-## `UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
-| ObjectId | input | Text | `""` |
-| BookmarkType | input | Text | `""` |
-- Client actions / event handlers: `handler_OnClickShare`, `handler_OnClickUnmark`, `handler_OnClickAddNote`, `event_AddNote`, `event_ItemUnbookmarked`
-- Static entities / flags: `uBT_Size.small`, `uBT_Color.neutral2`
-
-## `UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-action-bar"` |
-| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
-- Client actions / event handlers: `onClickAddNote`, `onClickUnbookmark`, `onClickShare`
-- Static entities / flags: `uBT_Display.flex`, `uBT_JustifyContent.flexStart`, `uBT_Size.extraSmall`, `uBT_Color.primary`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_Icons.check`, `uBT_IconSize.nonStandard_18`, `uBT_Color.neutral7`, `uBT_Icons.borderColor`, `uBT_Icons.share`
-
-## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| BottomSheetId | local | Text | `""` |
-| IsEditing | local | Boolean | `false` |
-| IsSheetOpen | local | Boolean | `false` |
-| NoteText | local | Text | `""` |
-| IsSubmittingNote | local | Boolean | `false` |
-| In_IsOpen | input | Boolean | `false` |
-| ExtendedClasses | input | Text | `""` |
-| In_ItemId | input | Text | `""` |
-| In_NoteCategoryId | input | Text | `""` |
-| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
-- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
-- Lifecycle handlers: ParametersChanged
-- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
-- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
-- Exceptions handled: CommunicationException, UserException
-- Static entities / flags: `noteActionType.add`
-- Candidate static strings: `Action_SetBottomSheetOpen`
-
-## `UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| In_IconId | input | Text | `""` |
-- Static entities / flags: `uBT_Icons.sVG_OneSchoolGlobal`, `uBT_Icons.sVG_PinLock`, `uBT_Icons.sVG_PinHouse`, `uBT_Icons.sVG_PinMember`, `uBT_Icons.sVG_PinOneSchool`, `uBT_Icons.sVG_HR100`, `uBT_Icons.sVG_ElGusto`, `uBT_Icons.sVG_CommunityTradelink`, `uBT_Icons.sVG_PinLocality`, `uBT_Icons.sVG_PinCountry`, `uBT_Icons.sVG_CommunityHouseholds`, `uBT_Icons.sVG_CommunityLocalities`, `uBT_Icons.sVG_CommunityCountries`, `uBT_Icons.sVG_CommunityMembers`
-- Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`, `img/UBTConnectLibrary.Pin_Lock.svg`, `img/UBTConnectLibrary.Pin_House.svg`, `img/UBTConnectLibrary.Pin_Member.svg`, `img/UBTConnectLibrary.Pin_OneSchool.svg`, `img/UBTConnectLibrary.HR100.svg`, `img/UBTConnectLibrary.ElGusto.svg`, `img/UBTConnectLibrary.CommunityTradelink.svg`, `img/UBTConnectLibrary.Pin_Locality.svg`, `img/UBTConnectLibrary.Pin_Country.svg`, `img/UBTConnectLibrary.CommunityHouseholds.svg`, `img/UBTConnectLibrary.CommunityLocalities.svg`, `img/UBTConnectLibrary.CommunityCountries.svg`, `img/UBTConnectLibrary.CommunityMembers.svg`
+| BackgroundColorId | input | Text | `""` |
+| BorderColorId | input | Text | `""` |
+| SizeId | input | Text | `""` |
+| IsProcessing | input | Boolean | `false` |
+| PaddingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
+- Client actions / event handlers: `action_OnClick`, `onClick`
+- Static entities / flags: `uBT_Size.small`, `uBT_Shape.circle`, `uBT_Color.cyanDarker`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -984,14 +790,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3041 ms
-- 3. `DataActionGetBookmarks` (200) at 5285 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6457 ms
-- 6. `ActionSync_Info_GetMain` (200) at 6935 ms
-- 7. `ActionGetUserInformation` (200) at 7259 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7540 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9314 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11855 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3530 ms
+- 3. `DataActionGetBookmarks` (200) at 5707 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 6560 ms
+- 6. `ActionSync_Info_GetMain` (200) at 7157 ms
+- 7. `ActionGetUserInformation` (200) at 7505 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 7796 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9834 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12780 ms
 - plus 2 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
@@ -999,13 +805,13 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_CommonBlocks_Filter.FilterSheet_OptionList_Item`
 - `App_Policies.Policy_Checker`
-- `CW_Notes.NoteListActions`
+- `Bookmarks.Bookmarks_Card_Item`
 - `CacheControl.CacheControl_AllCountries`
 - `CacheControl.CacheControl_AllLocalities`
 - `CacheControl.CacheControl_Policies`
-- `ConnectPatterns.AddNote`
-- `ConnectPatterns.EmptyList`
 - `ConnectPatterns.HighlightSearch`
+- `ConnectPatterns.IconSVG`
+- `ConnectPatterns.IconText`
 - `ConnectPatterns.LazyImage`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`

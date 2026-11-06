@@ -15,28 +15,31 @@ flowchart TB
       B1["LayoutRuntime_NavigationHandler.LayoutRuntime_Top<br/>NavigationHandler<br/>lifecycle"]
       B2["ConnectPatterns.Input<br/>UBTConnectLibrary<br/>lifecycle"]
       B3["ConnectPatterns.SkeletonSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B4["App_Notifications.Notifications_Header<br/>UBTConnect<br/>markup"]
-      B5["App_Notifications.NotificationsList<br/>UBTConnect<br/>lifecycle"]
-      B6["HtmlSanitizer.SanitizedHtml<br/>ReactiveHtmlSanitizer<br/>lifecycle"]
-      B7["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
-      B8["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
-      B9["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
-      B10["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
-      B11["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B12["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B13["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
-      B14["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
-      B15["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
-      B16["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
-      B17["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
-      B18["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
-      B19["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
-      B20["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B21["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B22["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B23["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B24["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B25["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B4["App_Notifications.NotificationsListBreakpoints<br/>UBTConnect<br/>lifecycle"]
+      B5["App_Notifications.Notifications_Header<br/>UBTConnect<br/>lifecycle"]
+      B6["App_Notifications.NotificationsList<br/>UBTConnect<br/>lifecycle"]
+      B7["ConnectCorePatterns.Notification_ListItem<br/>UBTConnectLibrary<br/>lifecycle"]
+      B8["MyNotifications.MessageImage<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B9["HtmlSanitizer.SanitizedHtml<br/>ReactiveHtmlSanitizer<br/>lifecycle"]
+      B10["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
+      B11["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
+      B12["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
+      B13["App_Common.CommonUI_InsideLayout<br/>UBTConnect<br/>navigation, lifecycle"]
+      B14["Private.OfflineDataSyncCore<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B15["Private.NetworkStatusChanged<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B16["App_PIN.Block_PINUnlock<br/>UBTConnect<br/>navigation, lifecycle"]
+      B17["Layouts.Layout_LoginFlow<br/>UBTConnectLibrary<br/>lifecycle"]
+      B18["Layouts.SVG_Background_LoginWrapper<br/>UBTConnectLibrary<br/>markup"]
+      B19["Layouts.SVG_Background_Custom<br/>UBTConnectLibrary<br/>lifecycle"]
+      B20["Utilities.InlineSVG<br/>OutSystemsUI_2_23<br/>lifecycle"]
+      B21["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
+      B22["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
+      B23["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
+      B24["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
+      B25["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
+      B26["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B27["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B28["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
     end
     Infra["App infrastructure blocks (19)<br/>render nothing visible"]
     Cache["View cache / preload<br/>IsRestoredFromCacheJS"]
@@ -50,11 +53,12 @@ flowchart TB
     S2["ActionAppManager_SynchAppContext<br/>observed"]
     S3["ActionAppManager_AfterInitialize<br/>observed"]
     S4["ActionSync_Info_GetMain<br/>observed"]
-    S5["ServiceAPIGet_UI_UpdateItems_UnreadCount_All<br/>observed"]
-    S6["ActionGetUserInformation<br/>observed"]
-    S7["ActionGetNumberUnreadMessages<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S5["ActionGetUserInformation<br/>observed"]
+    S6["ActionGetNumberUnreadMessages<br/>observed"]
+    S7["ServiceAPIGet_UI_UpdateItems_UnreadCount_All<br/>observed"]
+    S8["ActionGetSignedImagesInBulk<br/>observed"]
+    S9["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S10["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
@@ -67,6 +71,7 @@ flowchart TB
   Content -.-> S7
   Content -.-> S8
   Content -.-> S9
+  Content -.-> S10
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class Backend unknown;
@@ -90,7 +95,7 @@ sequenceDiagram
   API-->>S: DateRangesList
   S->>S: onAfterFetch_GetDateRanges
   S->>API: DataActionFetchNotifications
-  API-->>S: UI_NotificationItemList, HasUnreadMessages, UnreadNotificationsCount
+  API-->>S: UI_NotificationItemList, UnreadNotificationsCount
   S->>S: onAfterFetch_FetchNotifications
   S->>API: ServiceAPIGet_UI_UpdateItems_UnreadCount_All
   Note over S,API: called from BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All (call-sites.md)
@@ -199,6 +204,25 @@ sequenceDiagram
   Note over S: via UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → Connect2_LegacyShared.synchronizeNumberUnreadMessages → server GetNumberUnreadMessages
   Note over S: 1 other caller chain(s) in call-sites.md
   S->>API: ActionGetNumberUnreadMessages(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Layouts.Layout_MainPages_Upgrade
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

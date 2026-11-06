@@ -2,7 +2,7 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 911 | `DataActionGetGuestArrangements` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` |
+| 1 | 980 | `DataActionGetGuestArrangements` | 200 | this screen | `/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements` |
 
 ## DataActionGetGuestArrangements
 - Scope: this screen
@@ -152,10 +152,10 @@
 | `fetch /UBTConnect/GuestArrangements` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.mvc.js` | 1 |

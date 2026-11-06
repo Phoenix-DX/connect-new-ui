@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "e8c4c494ee01bb97addf",
+ "fingerprint": "1d9305e3f460cba494b6",
  "options": {
   "text": true,
   "style": true,
@@ -19,26 +19,27 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 105,
-  "texts": 13,
+  "elements": 1,
+  "texts": 2,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:28:53.634Z",
- "counts": {},
+ "at": "2026-11-06T20:00:41.005Z",
+ "counts": {
+  "structure": 1,
+  "pixel": 1
+ },
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
-  "CAPTURE-LINK-HREF-CURSOR-NAVIGATIONLANDING": 2,
-  "ignoreSubtrees": 1
+  "CAPTURE-LOADING-BODYCLASS": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.11146,
+  "maxCell": 1,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
+  "diffPixels": 36688,
   "comparedPixels": 329160,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -50,10 +51,27 @@
    390,
    844
   ],
-  "masks": 1,
-  "hotspots": [],
+  "masks": 0,
+  "hotspots": [
+   "80,0 (1600px)",
+   "280,0 (1600px)",
+   "240,0 (1582px)",
+   "40,0 (1576px)",
+   "120,0 (1546px)"
+  ],
   "diffPng": "migration/screens/ConnectShare/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer",
+   "detail": "extra in build"
+  },
+  {
+   "kind": "pixel",
+   "path": "screenshot",
+   "detail": "11.15% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 80,0 (1600px); 280,0 (1600px); 240,0 (1582px); 40,0 (1576px); 120,0 (1546px); see migration/screens/ConnectShare/parity/offline.diff.png"
+  }
+ ]
 }

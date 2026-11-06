@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/OrbitAdminLanding`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait orbit-theme osx is-ltr`; body style: `--header-size-content: 32.875px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait orbit-theme osx is-ltr`; body style: `--header-size-content: 85.75px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js`
 
@@ -73,16 +73,23 @@ App_Common.CommonUI_InsideLayout
 | variable | kind | type | default |
 |---|---|---|---|
 | Response | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.GetAdminOrbitEvents_ScreenList())` |
+| YearFilter | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.YearItemList())` |
 | IsFetchingData | local | Boolean | `false` |
 | EventsSummary | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.GetAdminOrbitEvents_ScreenList())` |
 | UserFirstName | local | Text | `""` |
 | UserMemberId | local | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
+| EventFilter | local | Integer | `OS.BuiltinFunctions.nullIdentifier()` |
+| SortEventsASC | local | Boolean | `true` |
+| YearsSelection | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.YearItemList())` |
+| Popup_SortByOpened | local | Boolean | `false` |
+| Popup_FiltersOpened | local | Boolean | `false` |
+| PopupMeasurements | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_MUIModel.IntegerIntegerIntegerRecord())` |
 | Get_AdminEventsList | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_AdminEventsListDataActRec())` |
 - Data actions: `DataActionGet_AdminEventsList` → `screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList`
 - Lifecycle handlers: Ready
-- Client actions / event handlers: `refresh_GetEventsByMemberId`, `onReady`, `onHandle_EventCardClicked`, `onAfterFetch_Get_AdminEventsList`, `navigateTo_EventDetail`
-- JavaScript nodes: `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS`
-- Static entities / flags: `menuAction.menu`, `orbitSkeletonLoading.orbitLanding`
+- Client actions / event handlers: `resetFiltersAndSort`, `componentDidUpdate_Sort`, `componentDidUpdate_Filters`, `onHandle_ApplyFilters`, `onToggle_SortPopup`, `setAndSortEvents`, `refresh_GetEventsByMemberId`, `getPopupMeasurements`, `onReady`, `filterEvents`, `onHandle_ApplySort`, `onHandle_EventCardClicked`, `sortEvents`, `onToggle_FilterPopup`, `onAfterFetch_Get_AdminEventsList`, `navigateTo_EventDetail`
+- JavaScript nodes: `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc$controller.GetPopupMeasurements.GetMeasurementsJS`, `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS`
+- Static entities / flags: `menuAction.menu`, `orbitLandingFilter.pastEvents`, `orbitLandingFilter.upcomingEvents`, `orbitSkeletonLoading.orbitLanding`
 
 ## `Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.mvc.js`
 | variable | kind | type | default |
@@ -433,14 +440,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2716 ms
-- 2. `DataActionGet_AdminEventsList` (200) at 4041 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6156 ms
-- 4. `ActionSync_Info_GetMain` (200) at 6606 ms
-- 5. `ActionGetUserInformation` (200) at 6940 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 7200 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9860 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11507 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2227 ms
+- 2. `DataActionGet_AdminEventsList` (200) at 3071 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 5116 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5504 ms
+- 5. `ActionGetUserInformation` (200) at 5787 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 6056 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8435 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11158 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -453,6 +460,8 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`
 - `Orbit_Blocks.Card_Event`
+- `Orbit_Blocks.Popup_OrbitLanding_Filters`
+- `Orbit_Blocks.Popup_OrbitLanding_Sort`
 - `Orbit_Generic_Blocks.Skeleton_Loading`
 - `PIN.PinCode`
 - `Private.PullToRefresh`

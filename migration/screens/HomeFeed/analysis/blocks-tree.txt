@@ -71,16 +71,31 @@ Layouts.Layout_HomePage
                       BasePatterns.CustomContainer
           CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp
             ConfirmationDialogs.ActionConfirmationDialog
-  Home.Section_FeedWrapper
-    App_Common_Blocks.Section
-      BasePatterns.CustomContainer
-        Home.FeedBlock_CommunityPopulation
+  BasePatterns.CustomContainer
+    Directory_CommonBlocks.Directory_CommunityNumbers
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+        ConnectPatterns.Icon
+          ConnectPatterns.IconSVG
+        BasePatterns.CustomContainer
+        ConnectPatterns.Icon
+        BasePatterns.CustomContainer
+        BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
           BasePatterns.CustomContainer
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.SkeletonSection
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+          BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
   Home.Section_FeedWrapper
     App_Common_Blocks.Section
       BasePatterns.CustomContainer

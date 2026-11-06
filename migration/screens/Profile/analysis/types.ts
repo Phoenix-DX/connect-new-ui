@@ -121,20 +121,22 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string /* "" in capture */;
+  Email: string;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
+  HomeNumber: string;
+  MobileNumber: string;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -152,8 +154,18 @@ export interface GetCacheInfoResponse {
   TTL: number;
 }
 
+export interface HouseholdCoordinates {
+  Longitude: string /* Decimal as string */;
+  Latitude: string /* Decimal as string */;
+  UseCoordinates: boolean;
+}
+
+export interface GetHousehold_CoordinatesResponse {
+  HouseholdCoordinates: HouseholdCoordinates;
+}
+
 export interface DisplayOptions {
-  IsHidden: boolean;
+  IsAwayHousehold: boolean;
   IsDeceased: boolean;
   IsAncestry: boolean;
 }
@@ -208,8 +220,8 @@ export interface Out_HouseholdMembersItem {
   Description: string;
   DescriptionHighlight: string /* "" in capture */;
   MobilePhone: string;
-  HomePhone: string /* "" in capture */;
-  WorkPhone: string /* "" in capture */;
+  HomePhone: string;
+  WorkPhone: string;
   Email: string;
   MemberRole: string;
   LifeCycleText: string;
@@ -272,28 +284,6 @@ export interface GetHouseholdResponse {
   isVisible: boolean;
 }
 
-export interface ResultsItem {
-  Id: string /* Long Integer as string */;
-  Type: string;
-  Size: string;
-  SignedURL: string;
-  Error: string /* "" in capture */;
-}
-
-export interface GetSignedImagesInBulkResponse {
-  Results: ResultsItem[] /* wire: { List: [...] } */;
-}
-
-export interface HouseholdCoordinates {
-  Longitude: string /* Decimal as string */;
-  Latitude: string /* Decimal as string */;
-  UseCoordinates: boolean;
-}
-
-export interface GetHousehold_CoordinatesResponse {
-  HouseholdCoordinates: HouseholdCoordinates;
-}
-
 export interface ContactPopupData {
   ImageURL: string /* "" in capture */;
   EntityTypeId: string;
@@ -342,6 +332,17 @@ export interface AddressInfo2 {
 
 export interface GetCountryInfoResponse {
   AddressInfo2: AddressInfo2;
+}
+
+export interface Out_ImageDetailsItem {
+  Id: string /* Long Integer as string */;
+  SignedUrl: string;
+  isDeceased: boolean;
+  IsHidden: boolean;
+}
+
+export interface GetHouseHold_GalleryResponse {
+  Out_ImageDetails: Out_ImageDetailsItem[] /* wire: { List: [...] } */;
 }
 
 export interface OrbitEventTypesItem {
@@ -475,13 +476,9 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -491,7 +488,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -520,6 +517,18 @@ export interface Notes {
 
 export interface FetchNotesResponse {
   Notes: Notes;
+}
+
+export interface ResultsItem {
+  Id: string /* Long Integer as string */;
+  Type: string;
+  Size: string;
+  SignedURL: string;
+  Error: string /* "" in capture */;
+}
+
+export interface GetSignedImagesInBulkResponse {
+  Results: ResultsItem[] /* wire: { List: [...] } */;
 }
 
 export interface GetNumberUnreadMessagesResponse {
@@ -596,6 +605,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -632,6 +642,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -675,6 +686,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -688,6 +700,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {
