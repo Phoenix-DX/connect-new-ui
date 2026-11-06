@@ -1,11 +1,17 @@
 {
- "finishedAt": "2026-10-16T15:03:19",
+ "finishedAt": "2026-11-07T00:55:29",
  "files": {
-  "src/screens/GuestArrangements/api.ts": "51fefbb00aa4c9e6",
-  "src/screens/GuestArrangements/components/ScreenBlock_GuestArrangements.tsx": "b88d38044f8d3752",
-  "src/screens/GuestArrangements/components/actions.ts": "8c91879011345f12",
-  "src/screens/GuestArrangements/index.tsx": "14ba71b0a3126821",
-  "src/screens/GuestArrangements/mocks.ts": "9e07f8b9fbbcb49e",
-  "src/screens/GuestArrangements/types.ts": "18755fe6f493f641"
+  "src/pages/GuestArrangements/GuestArrangements.test.tsx": "f03e1e92c163333f",
+  "src/pages/GuestArrangements/GuestArrangementsPage.tsx": "61bbeae129360818",
+  "src/pages/GuestArrangements/components/GuestArrangementsView.test.tsx": "6e39001f3fa67df2",
+  "src/pages/GuestArrangements/components/GuestArrangementsView.tsx": "d1a142cc1a9575d8",
+  "src/pages/GuestArrangements/hooks/guestArrangementsActions.test.ts": "11d3ca7198995a74",
+  "src/pages/GuestArrangements/hooks/guestArrangementsActions.ts": "76ae73e24c1de019",
+  "src/pages/GuestArrangements/hooks/guestArrangementsState.test.ts": "3a424f32eac6e201",
+  "src/pages/GuestArrangements/hooks/guestArrangementsState.ts": "a25b09eb74c7c6ed",
+  "src/pages/GuestArrangements/hooks/useGuestArrangements.test.tsx": "a3573be987284ffc",
+  "src/pages/GuestArrangements/hooks/useGuestArrangements.ts": "ad5cc366ef932436",
+  "src/pages/GuestArrangements/inputs.ts": "27bb82f860e411ff",
+  "src/pages/GuestArrangements/mocks.ts": "4a3c747bc85c3f94"
  }
 }

@@ -1,10 +1,12 @@
 {
- "finishedAt": "2026-10-16T11:17:28",
+ "finishedAt": "2026-11-07T00:55:45",
  "files": {
-  "src/screens/ContactByEmailLDMCoordinator/api.ts": "c7b21851b694a675",
-  "src/screens/ContactByEmailLDMCoordinator/components/actions.ts": "00664c48197b3d3f",
-  "src/screens/ContactByEmailLDMCoordinator/index.tsx": "a3da117f9bd070bb",
-  "src/screens/ContactByEmailLDMCoordinator/mocks.ts": "7cdc49dddde52a10",
-  "src/screens/ContactByEmailLDMCoordinator/types.ts": "cfe9847dc0de72fc"
+  "src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinator.test.tsx": "c854854f72ac377b",
+  "src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx": "73a77cdf2f804f7a",
+  "src/pages/ContactByEmailLDMCoordinator/actions.ts": "ce3772db19954795",
+  "src/pages/ContactByEmailLDMCoordinator/config.ts": "564082223764ab9b",
+  "src/pages/ContactByEmailLDMCoordinator/hooks/useContactByEmailLDMCoordinatorSubmit.ts": "569af2d982ab366c",
+  "src/pages/ContactByEmailLDMCoordinator/inputs.ts": "34f29c89ca78ce43",
+  "src/pages/ContactByEmailLDMCoordinator/mocks.ts": "7d8dfac35d07a587"
  }
 }

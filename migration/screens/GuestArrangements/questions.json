@@ -44,5 +44,32 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T15:03:19"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered) [questions.md Q1]: fictional arrangements of the two families the Vitale household hosts for; As captured (Martín Herrera, the TST ids of the capture plan):; Ramos family (special needs, own car, arrival without number plate → \"Not available\"):; no data: `In_MemberId=880301`; loading: add `&mock=loading`; error: `&mock=error`.; Markup: matches the capture of 2026-11-06 (parity below). Before, built from the compiled view (SB).",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T00:55:27",
+  "items": [
+   "Q1 → A (answered) [questions.md Q1]: fictional arrangements of the two families the Vitale household hosts for",
+   "As captured (Martín Herrera, the TST ids of the capture plan):",
+   "Ramos family (special needs, own car, arrival without number plate → \"Not available\"):",
+   "no data: `In_MemberId=880301`; loading: add `&mock=loading`; error: `&mock=error`.",
+   "Markup: matches the capture of 2026-11-06 (parity below). Before, built from the compiled view (SB)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: tôi đồng ý all)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T00:55:27"
  }
 ]

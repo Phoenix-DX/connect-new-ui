@@ -185,3 +185,7 @@ Moved (2026-11-06): the folder `migration/runtime-sources/` became `migration/so
 (286 files, byte-identical to the top level) was deleted; `migration/sources/runtime/live-files.txt` lists those
 names, and the route check reads them from `runtime/`. The live `moduleinfo.json` of 2026-11-05 replaced the copy of
 2026-10-28 (3 modules with other static entity values; `static_entities.py` now finds 488 entities, before 486).
+
+Read (2026-11-07, static GET of the live `moduleinfo`, read-only, no session, no file stored): the live manifest has
+`versionSequence` 15765 (token `2Y9W_lIJ_vQJWhlCcUWixg`); the stored copy of 2026-11-05 has 15749. TST was published
+again after the captures of 2026-11-06. The sync wave of 2026-11 (`migration/sync/`) re-captures every captured route.

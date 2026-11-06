@@ -1,0 +1,80 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/GuestArrangements?In_EventId=2085&In_EventName=&In_MilestoneTitle=Accommodation&In_HostId=52768&In_MemberId=52989&In_MilestoneId=GMP15700&In_OrbitMilestoneTypeId=accommodation-host&mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "1c7a7459b8a0c4057a98",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 122,
+  "texts": 17,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T17:55:18.441Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "VIA-BACK-MENUICON-GUESTARRANGEMENTS": 27,
+  "ignoreSubtrees": 1,
+  "CAPTURE-VIA-MASK-SHIFT-GUESTARRANGEMENTS-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.02731,
+  "maxCell": 0.3356,
+  "maxCellRatio": 0.03,
+  "diffPixels": 8550,
+  "comparedPixels": 313030,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 4,
+  "hotspots": [
+   "120,40 (537px)",
+   "160,40 (532px)",
+   "80,40 (501px)",
+   "0,200 (488px)",
+   "200,40 (456px)"
+  ],
+  "diffPng": "migration/screens/GuestArrangements/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 1,
+  "actual": 8,
+  "viaAppStartSkipped": [
+   "ActionAppManager_AfterInitialize",
+   "ActionAppManager_SynchAppContext",
+   "ActionGetNumberUnreadMessages",
+   "ActionGetUserInformation",
+   "ActionSync_Info_GetMain",
+   "ServiceAPIFetchData_CacheableHouseholds",
+   "ServiceAPIFetchData_CacheableMapEntities"
+  ]
+ },
+ "diffs": []
+}
