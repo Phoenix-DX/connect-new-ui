@@ -1,7 +1,6 @@
 <!--
-Route spec (lite tier). Written for EVERY route before code: what the route is, how it is built, and what is unclear.
-Full-tier routes use spec-template.md instead, which has the same three required headings
-(Summary, Patterns used, Unclear points, Decisions to confirm). route.py finish refuses a route whose spec lacks them,
+Route spec. Written for EVERY route before code: what the route is, how it is built, and what is unclear.
+Required headings: Summary, Patterns used, Unclear points, Decisions to confirm. route.py finish refuses a route whose spec lacks them,
 still contains TODO or <...>, or has open questions.
 Every statement cites its evidence in brackets: [dom/default.html], [Block.mvc.js: expression], [calls.md #2],
 [OutSystems MCP: Module/Element], [Q3 answered by user]. Nothing without evidence goes in the body: it goes to Unclear points.

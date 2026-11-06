@@ -1,5 +1,5 @@
 """Where a destination or block instance sits in screens/blocks, with the If-widget conditions above it.
-Usage: python3 tools/mcp/paths.py <espace.json> dest|block <Name>"""
+Usage: python3 tools/route-check/paths.py <espace.json> dest|block <Name>"""
 import json, sys
 es = json.load(open(sys.argv[1])); kind, target = sys.argv[2], sys.argv[3]   # kind: dest | block
 owners = {n["Name"]: (f.get("Name"), n) for f in es["UIFlows"] for n in f.get("Nodes", []) if isinstance(n, dict) and n.get("Object") in ("IMobileScreen", "IMobileBlock")}

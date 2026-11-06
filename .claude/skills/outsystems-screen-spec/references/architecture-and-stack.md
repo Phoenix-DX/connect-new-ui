@@ -13,7 +13,7 @@ Consistency across dozens of routes built by different agents at different times
 
 ## 1. Items to confirm
 
-`stack.py init` proposes a value, options and a reason for each item. The proposals match what `scaffold_react_app.py` builds; choosing differently is allowed but means adapting the scaffold under an ADR.
+`stack.py init` proposes a value, options and a reason for each item. The proposals match what the app skeleton implements (`SCAFFOLD` in `stack.py`); choosing differently is allowed but means adapting the app under an ADR.
 
 | Group | Items |
 |---|---|
@@ -30,7 +30,7 @@ Consistency across dozens of routes built by different agents at different times
 2. `stack.py questions`: present every open item, pattern and proposed ADR in one message, each with the proposal, the options, the reason and the evidence. Use the client's question tool when available.
 3. Record exactly what the user said: `stack.py confirm <key> --value "<choice>" --by user --note "<context>"`. For option labels such as "npm package", record the concrete package and version. `confirm-all-proposed` is for an explicit "accept all as listed" from the user, after they saw the list; items without a proposal must be answered one by one.
 4. Accept patterns the user agrees with (`stack.py pattern accept <ID> --by user`); edit or drop the others before accepting.
-5. `stack.py check` must report OK before scaffolding (`scaffold_react_app.py --stack migration/stack.json`) and before any route starts.
+5. `stack.py check` must report OK before the app skeleton is built and before any route starts.
 
 ## 3. Patterns and reference implementations
 

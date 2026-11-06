@@ -549,8 +549,8 @@ def cmd_brief(c: Ctx, a) -> int:
               "\n".join(rules.splitlines()[1:]).strip(), ""]
     if step["kind"] == "move":
         parts += ["## Move step", "",
-                  "Only renames and import lines change in code files. Use the codemod "
-                  "`tools/refactor/move.ts` when it exists (from P0-3). Do not edit logic.", ""]
+                  "Only renames and import lines change in code files. Update every import of the "
+                  "moved files with a script, not by hand. Do not edit logic.", ""]
     parts += ["## Quick checks for the developer", "",
               "```", "npm --prefix app run typecheck",
               "cd app && npx vitest run <the test files of the changed code>",

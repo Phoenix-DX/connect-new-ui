@@ -94,8 +94,7 @@ I read REVIEW.md and I accept it. Run har_to_fixtures.py review --by user, cover
 
 ### Step 10. Foundation: app, shell, shared blocks (phase 5)
 ```
-Phase 5 (foundation owner): scaffold_react_app.py --survey migration/survey --shell-analysis migration/screens/<home screen>/analysis
---out app --stack migration/stack.json; npm install in app; npx msw init public. Write the app-shell spec, build the shell
+Phase 5 (foundation owner): the app skeleton is in app/ (built once with scaffold_react_app.py, deleted on 2026-11-06). Write the app-shell spec, build the shell
 and every block in foundation-queue.md (also the OSUI blocks, tag @os-block, one snapshot test for each state). Ask me about every unclear point.
 When done, freeze and commit.
 ```

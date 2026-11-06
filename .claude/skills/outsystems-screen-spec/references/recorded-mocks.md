@@ -62,7 +62,7 @@ Whether automatic or manual, cover what the routes need: each list with data and
 | dates (they drive logic) | sensitive dates (birth…) → year shifted, format kept |
 | | image URLs and base64 images → `""` (the UI's no-image state) |
 
-Rules file (`assets/mock-rules.example.json`): `keep` (field names never touched, e.g. status labels that the name rule caught), `anonymize` (field names always replaced), `ids` (extra identifier fields). Personal-field detection is a heuristic on names and values: that is why the user reviews `REVIEW.md`, which lists every field kept and every field replaced.
+Rules file (`migration/mock-rules.json`): `keep` (field names never touched, e.g. status labels that the name rule caught), `anonymize` (field names always replaced), `ids` (extra identifier fields). Personal-field detection is a heuristic on names and values: that is why the user reviews `REVIEW.md`, which lists every field kept and every field replaced.
 
 ## 4. Using fixtures in a route
 

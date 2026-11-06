@@ -2,7 +2,7 @@
 
 How the input is made: in a Claude session, call the OutSystems MCP tool `getSerializedObject` with eSpaceName
 "UBTConnect" (read-only). The result (~13.5 MB) is saved by Claude Code under the session's tool-results folder; copy it.
-Usage: python3 tools/mcp/unwrap.py <tool-result.txt> <out espace.json>
+Usage: python3 tools/route-check/unwrap.py <tool-result.txt> <out espace.json>
 The model is DEV (Service Studio): reference only; TST is the source of truth (CLAUDE.md).
 """
 import json, re, sys

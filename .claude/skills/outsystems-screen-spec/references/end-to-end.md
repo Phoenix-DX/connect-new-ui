@@ -48,7 +48,7 @@ migration/
 ├── metrics/ledger.csv           tokens per screen and phase
 ├── shell/                       app-shell.spec.md + analysis of the home screen
 └── screens/<S>/                 capture/ (gitignored), analysis/, pack.md, spec or notes, parity/
-app/                             React app (scaffold_react_app.py)
+app/                             React app
 .auth/                           browser session (secret, gitignored)
 ```
 
@@ -64,7 +64,7 @@ app/                             React app (scaffold_react_app.py)
 
 **Architecture and stack.** `stack.py init`, one session with the user over `stack.py questions`, every item and pattern confirmed, `stack.py check` OK. See `architecture-and-stack.md`.
 
-**Foundation.** Shell capture in screen mode into `migration/shell`, `app-shell.spec.md`, `scaffold_react_app.py --stack migration/stack.json`, build the shell, then every block in `foundation-queue.md` with a DOM snapshot test and an `@os-block` tag. Re-run `catalog.py`: waiting screens turn lite or full. Freeze.
+**Foundation.** Shell capture in screen mode into `migration/shell`, `app-shell.spec.md`, the app skeleton (as `stack.json` says), build the shell, then every block in `foundation-queue.md` with a DOM snapshot test and an `@os-block` tag. Re-run `catalog.py`: waiting screens turn lite or full. Freeze.
 
 **Route loop.** `route.py plan`, then per route: `route.py start`, capture if needed, pack, `route-spec.md` with every unclear point (facts to the OutSystems MCP, decisions to the user), build, parity on every captured state, `route.py ready`, the user tests (feedback rounds with `route.py feedback` and `fixed`), `route.py finish` after the user confirms. Change requests go to the foundation owner; the route renders `<NotCaptured>` for that part. Full protocol: `route-loop.md`.
 

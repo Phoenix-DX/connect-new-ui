@@ -55,7 +55,7 @@ call that is not a read. Only the actions that the user confirmed in `migration/
 | `sitemap.py`, `contract_gen.py`, `docs_gen.py`, `block_pack.py`, `css_sets.py`, `static_entities.py` | Navigation diagram, API contract, reference pages. | No |
 | `check_route.py` (`tools/route-check/`) | The check of one route, OutSystems against React, into `route-check/routes/<Route>.md`. | No |
 | `rf.py`, `refactor_parity.py`, `arch_baseline.py` (`tools/refactor/`, `tools/parity/`) | The architecture refactor: state machine, parity gate, lint baseline (`npm run ci`). | No |
-| `english_docs.py`, `ste_lint.py`, `meaning_guard.py`, `check_mermaid.cjs` | Tools for the English documents in ASD-STE100 style. | No |
+| `ste_lint.py`, `check_mermaid.cjs` | Tools for the English documents in ASD-STE100 style. | No |
 
 ### 3. Dashboard
 

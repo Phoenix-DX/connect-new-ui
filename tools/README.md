@@ -9,11 +9,10 @@ packages from `requirements.txt`. Each script describes itself in its docstring 
 | `pipeline/` | The route pipeline of the skill `outsystems-screen-spec`: `route.py`, `parity_check.cjs`, `batch_capture.cjs`, `site_auth.cjs`, `readonly_guard.cjs`, `record_har.cjs`, `har_to_fixtures.py`, `board.py`, `catalog.py`, `flags.py`, `stack.py`, `ledger.py`, … and `assets/` (site profiles, templates) | `.claude/skills/outsystems-screen-spec/SKILL.md`, `CLAUDE.md` (`$SK`) |
 | `parity/` | `parity_sweep.py`, `restamp.py`, `refactor_parity.py`, `qa_dev_demo.cjs` (+ `qa-urls.json`) | parity of the routes, the refactor gate, the demo check |
 | `generate/` | `contract_gen.py`, `docs_gen.py`, `css_sets.py`, `sitemap.py`, `static_entities.py`, `block_pack.py`, `review_page.py` | generated files in `app/` and `migration/` (each carries a banner with the tool name) |
-| `docs/` | `ste_lint.py`, `meaning_guard.py`, `english_docs.py`, `check_mermaid.cjs` | the English documents (ASD-STE100) |
+| `docs/` | `ste_lint.py`, `check_mermaid.cjs` | the English documents (ASD-STE100) |
 | `tst/` | `journey_capture.cjs`, `flag_probe.cjs`, `route_discovery.cjs` | read-only runs on TST (journeys, flag values, route ids) |
-| `mcp/` | `unwrap.py`, `paths.py` | the Service Studio MCP answers |
-| `refactor/` | `rf.py`, `gen_steps.py`, `test_rf.py`, `arch_baseline.py` (+ selfcheck; `npm --prefix app run ci` calls it), `move.ts`, `measure.mjs`, `measure-final.mjs`, `move-map.mjs` (+ `move-map.decisions.json`), `css-prune.py` (+ `css-coverage-*`), `os-block-to-origin.py` | the skill `refactor-master` and its agents |
-| `route-check/` | `check_route.py`, `os_static.py`, `os_extras.py`, `os_call_graph.py`, `extras_md.py`, `render_v2.py`, `mcp_client.py`, `react_calls.mjs`, `render_svg.cjs` | the skill `route-check`; reports in `route-check/` |
+| `refactor/` | `rf.py`, `gen_steps.py`, `test_rf.py`, `arch_baseline.py` (`npm --prefix app run ci` calls it) | the skill `refactor-master` and its agents |
+| `route-check/` | `check_route.py`, `os_static.py`, `os_extras.py`, `os_call_graph.py`, `extras_md.py`, `render_v2.py`, `mcp_client.py`, `unwrap.py`, `paths.py`, `react_calls.mjs`, `render_svg.cjs` | the skill `route-check`; reports in `route-check/` |
 
 History: until 2026-11-05 the scripts lived in `.claude/skills/<skill>/scripts/`, `migration/tools/` and
 `route-actions/tools/`. The one-off scripts were deleted that day. Commit `eee05575` is the last one that holds them:
@@ -195,28 +194,17 @@ With `--self-ref`, the script normalizes local origins before the style, attribu
 Reason: a self reference keeps the origin of the server that recorded it, and absolute image URLs in computed styles
 would differ on any other port. Only the origin is ignored; the path and the query still count.
 
-## Refactor codemod (`refactor/move.ts`)
+## Refactor step tools (deleted)
 
-The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). It moves files with `git mv`, moves their tests and stories, rewrites the imports that the move changes to `@/`, then runs the typecheck. Always use `--dry-run` first: it prints the file list and the import count and changes nothing.
+The refactor is done. Its step tools were deleted on 2026-11-06. Commit `d12b6041` is the last one that holds them:
 
-- One folder: `node tools/refactor/move.ts --from app/src/shell --to app/src/platform [--dry-run]`
-- Rows of the move map: `node tools/refactor/move.ts --map app/docs/refactor/move-map.csv --phase P1 [--dry-run]`
-- Only rewrite `../` imports to `@/`: `node tools/refactor/move.ts --alias-only [--dry-run]`
-- `--no-typecheck` skips the typecheck at the end. `import.meta.glob` patterns are not rewritten; the tool prints a warning.
+- `move.ts` (codemod), `measure.mjs`, `measure-final.mjs`, `move-map.mjs` with its decisions file;
+- `css-prune.py`, `css-coverage-node.sh`, `css-coverage-preload.cjs`, `os-block-to-origin.py`, `arch_baseline_selfcheck.py`,
+  `p7-3-rename-props.ts`.
 
-## Refactor prop rename (P7-3)
-
-- `p7-3-rename-props.ts` (deleted 2026-11-05, in git history) renamed props of a component in the component and in every user (ts-morph language service rename). Used for EmptyState and Skeleton.
-
-## Refactor measurement (P0-4)
-
-- `node tools/refactor/measure.mjs`: writes `app/docs/refactor/inventory.csv`, `routes.csv` and `calls-by-domain.md` from `app/src` (AST scan). Then run `npx prettier --write docs/refactor/calls-by-domain.md` in `app`.
-- `measure.mjs` needs the deleted `shared/` and `screens/` folders and fails now. `node tools/refactor/measure-final.mjs` replaces it for the final counts (P9-4).
-- `node app/build/bundle-report.mjs`: prints the first-load size (entry, route chunk, shared chunks) of HomeFeed and Login from `app/dist/`. Run `npm --prefix app run build` first.
-
-## Refactor move map (P0-5)
-
-- `node tools/refactor/move-map.mjs [--check]`: writes `app/docs/refactor/move-map.csv` (one row per row of `inventory.csv` and one row per route screen; 329 rows). Rules come from plan v2 §2.2 to §2.6 and §8. The file `tools/refactor/move-map.decisions.json` holds the decisions and wins over the rules. `--check` prints the counts and the name collisions and writes nothing. Run `measure.mjs` first when `src/` changed.
+The outputs they made stay in `app/docs/refactor/` (`inventory.csv`, `routes.csv`, `move-map.csv`).
+`node app/build/bundle-report.mjs` still prints the first-load size of HomeFeed and Login from `app/dist/`
+(run `npm --prefix app run build` first).
 
 Servers:
 

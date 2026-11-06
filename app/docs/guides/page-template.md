@@ -199,7 +199,7 @@ For pages that differ only in values, use a config and not a container (decision
 
 1. `@origin <OutSystems qualified name>` on each file that ports a screen or a block (R4). No `// @os-block`, no inline
    compiled-line references in rewritten code.
-2. The step is a move or a change, never both. Moves use the codemod `tools/refactor/move.ts`.
+2. The step is a move or a change, never both. A move updates every import of the moved files in the same step.
 3. No behavior change; no change to `openapi.yaml`, `src/mocks/` fixtures or `public/UBTConnect/css/`.
 4. Imports use `@/`; barrels only at the allowed boundaries (rule 12); no import cycle.
 5. `npm run ci` passes. It runs the contract types, typecheck, lint, `arch`, `arch:baselines`, `dup`, `unused`, `flags`,

@@ -14,7 +14,7 @@ You build or fix ONE route. Read this file, `migration/AGENTS.md` (the rules) an
 
 1. `route.py step <S> spec`, then `python3 tools/pipeline/context_pack.py --screen <S> --analysis migration/screens/<S>/analysis`. Read `pack.md` once, fully.
 2. If the route has feature flags (pack section "Feature flags"): `python3 tools/pipeline/flags.py questions --route <S>`.
-3. Write `migration/screens/<S>/route-spec.md` from `tools/pipeline/assets/route-spec-template.md` (lite) or `spec-template.md` (full). Required headings: Summary, Patterns used, Unclear points, Decisions to confirm, and Feature flags when the route has flags. Every statement cites its evidence.
+3. Write `migration/screens/<S>/route-spec.md` from `tools/pipeline/assets/route-spec-template.md`. Required headings: Summary, Patterns used, Unclear points, Decisions to confirm, and Feature flags when the route has flags. Every statement cites its evidence.
 4. Every point without evidence is a question (section 4). Ask during this step, before code.
 5. When no blocking question is open: `route.py spec-done <S>`. It records the spec with the hashes of its inputs, so a later interruption does not cost a new spec. Run it again after any later edit of the spec or any new answer; `ready` checks this.
 

@@ -57,7 +57,7 @@ OPTION_DEPS = {
     "ESLint 10 + Prettier": ({}, {"eslint": "10.8.1", "@eslint/js": "10.0.1", "prettier": "3.9.6", "typescript-eslint": "8.67.0",
                                   "eslint-plugin-react-hooks": "7.1.1", "globals": "17.11.0"}),
 }
-# Compatible with scripts/scaffold_react_app.py as written; anything else means adapting the scaffold (an ADR).
+# What the app skeleton implements (built once by scaffold_react_app.py, deleted on 2026-11-06); another choice means adapting the app (an ADR).
 SCAFFOLD = {"buildTool": "Vite + React SPA", "react": "React 19", "routing": "React Router 7 (data router)",
             "serverState": "TanStack Query 5", "mocking": "MSW 2 in the browser", "language": "TypeScript (strict)"}
 
@@ -382,7 +382,7 @@ def cmd_confirm(a):
     if added:
         msg += f"; allowed packages added: {', '.join(added)} (verify the pinned versions resolve)"
     if not scaffold_ok(a.key, a.value):
-        msg += f"\nnote: scaffold_react_app.py implements '{SCAFFOLD[a.key]}'; the foundation owner must adapt the scaffold (record an ADR)"
+        msg += f"\nnote: the app skeleton implements '{SCAFFOLD[a.key]}'; the foundation owner must adapt the app (record an ADR)"
     if a.value not in it["options"] and not added:
         msg += "\nnote: custom choice: add its packages with `dep add ... --adr` after an ADR the user accepts"
     print(msg)

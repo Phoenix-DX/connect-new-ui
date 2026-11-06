@@ -15,7 +15,7 @@ Outputs (in --out):
   variants.md        screens that look like versions of each other, with the flags found nearby
   osui.md            OutSystems UI: version, provider libraries in the manifest, every pattern block and the screens
                      that use it (built once in the foundation, pattern P-OSUI)
-  screens.json       machine-readable data (used by scaffold_react_app.py)
+  screens.json       machine-readable data (the generators and the route check read it)
 --agents-out writes AGENTS.md from assets/AGENTS-template.md with the app name filled in.
 --shell-ui is optional: a UI snapshot of the home screen; its styles are analysed by
 analyze_capture.py separately (see SKILL.md, survey mode).
