@@ -9,6 +9,7 @@ nvm use              # Node from .nvmrc
 npm install
 npm run dev          # http://localhost:5173 → /UBTConnect/HomeFeed
 npm run ci           # contract types, typecheck, lint, architecture, duplicates, unused code, flags, format, tests, build
+npm run test         # unit tests (vitest); npm run e2e:pwa, npm run lighthouse for the PWA checks
 npm run storybook    # http://localhost:6006: catalog of the shared blocks
 npm run build:demo   # installable static demo with mock data: dist-demo/ + dist-demo.zip
 ```
@@ -38,5 +39,5 @@ Mock data is served by MSW (recorded, anonymized fixtures in `src/mocks/fixtures
 
 PWA (service worker only in the demo and production builds, manifest, caching): `docs/guides/pwa.md`.
 Switch scenario/latency with `?mock=empty&latency=3000` on any page; switch feature flags with `?ffpanel=1`.
-Routes are the original OutSystems paths. Unmigrated screens show a "not captured" marker.
+Routes are the original OutSystems paths: 68 migrated screens; the 16 skipped screens show the `NotMigrated` placeholder.
 Server calls follow the contract in `src/api/openapi.yaml` (`npm run gen:api` after a change).
