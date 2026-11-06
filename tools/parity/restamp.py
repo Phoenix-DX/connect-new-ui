@@ -4,9 +4,11 @@ Only after the user answered "confirm" in the conversation (CLAUDE.md rules 2 an
 --confirm; route.py counts only answers that start with "confirm". A route with any unexempted parity difference is
 reported and left alone.
 Run from the project root, with the dev server up:
-    python3 tools/parity/restamp.py --confirm "confirm (user, <date>: <their words>)" [--base <ref>] [--no-scope-guard] Route1 [Route2 ...]
+    python3 tools/parity/restamp.py --confirm "confirm (user, <date>: <their words>)" [--app http://localhost:5173] [--base <ref>] [--no-scope-guard] Route1 [Route2 ...]
 --base and --no-scope-guard go to route.py ready and finish (the scope guard diffs the branch from main; after a
-repository-wide change use --no-scope-guard, or --base <the commit before the route work>).
+repository-wide change use --no-scope-guard, or --base <the commit before the route work>). --app is the dev server
+of THIS repository (check its folder with lsof -p <pid> -a -d cwd). A finished route has no run.json, so `step parity`
+is skipped for it (route.py step needs a run).
 """
 import argparse
 import glob
@@ -16,11 +18,12 @@ import re
 import subprocess
 
 SK = "tools/pipeline"
-APP = "http://localhost:5173"
+DEFAULT_APP = "http://localhost:5173"
 NODE_BIN = os.path.expanduser("~/.nvm/versions/node/v24.21.0/bin")
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--confirm", required=True, help="the user's review answer; must start with 'confirm'")
+ap.add_argument("--app", default=DEFAULT_APP, help="dev server URL of this repository")
 ap.add_argument("--base", default=None, help="git base of the scope guard (route.py ready/finish --base)")
 ap.add_argument("--no-scope-guard", action="store_true", help="skip the scope guard in ready and finish")
 ap.add_argument("routes", nargs="+")
@@ -29,6 +32,7 @@ if not args.confirm.startswith("confirm"):
     ap.error("--confirm must start with 'confirm' (route.py counts only those answers)")
 
 env = dict(os.environ, PATH=NODE_BIN + ":" + os.environ["PATH"])
+APP = args.app
 
 
 def run(*cmd):
@@ -50,7 +54,8 @@ for s in args.routes:
     if dirty:
         print(f"  NOT CLEAN: {', '.join(dirty)}", flush=True)
         continue
-    run("step", s, "parity")
+    if os.path.exists(f"migration/screens/{s}/run.json"):
+        run("step", s, "parity")
     gate = (["--base", args.base] if args.base else []) + (["--no-scope-guard"] if args.no_scope_guard else [])
     code, out = run("ready", s, *gate)
     m = re.search(r"review round \d+, (Q\d+)", out)
