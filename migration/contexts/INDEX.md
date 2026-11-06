@@ -7,7 +7,7 @@ section "Context notes".
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 2026-11-05/06 repository tidy: TST drift handled ([context-075](context-075-tst-drift-waves.md)); folders reorganised ([076](context-076-folder-reorg.md)); `migration/` cleaned ([077](context-077-migration-cleanup.md), [079](context-079-tools-and-migration-cleanup.md)). One store `migration/sources/` for every compiled TST file ([078](context-078-sources-store.md), [080](context-080-one-sources-store.md)). Root = `app/`, `tools/`, `migration/`, `.claude/`; several test accounts ([081](context-081-root-folders-and-accounts.md)).
 - Route check `route-check/` ([context-074](context-074-route-actions-pilot.md)): 68 of 68 routes; the tool reads the live compiled code for drifted routes.
-- Waits for the user: `confirm` of AcceptPendingPolicies, EventDetail, MilestoneDetail, LDM_EventDetail_V2, AssembleDetail (rebuilt to real captures, [context-084](context-084-real-capture-fix-wave.md), [085](context-085-assemble-detail-capture.md)); TST data or an account for the 14 routes still without a capture; a Household_Relations member.
+- Waits for the user: `confirm` of GuestArrangements and ContactByEmailLDMCoordinator ([context-086](context-086-evening-captures.md)); TST data or an account for the 12 routes still without a capture (knowledge page, section "Entry points"); a Household_Relations member.
 - TST has 84 routes: 68 build, 16 skip. Demo: `npm --prefix app run build:demo`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`).
 
 ## Contexts
@@ -99,3 +99,4 @@ section "Context notes".
 | [083](context-083-account-sweep.md) | 2026-11-06 | Three routes re-stamped; sweep of the 25 test accounts (coverage table in knowledge); AcceptPendingPolicies, EventDetail, MilestoneDetail, LDM_EventDetail_V2 captured with real data; discovery tool options. | current |
 | [084](context-084-real-capture-fix-wave.md) | 2026-11-06 | Four routes rebuilt to their real captures by parallel route agents; Orbit/LDM sweep 24 of 24 clean; Search re-stamped after the fixtures review. | current |
 | [085](context-085-assemble-detail-capture.md) | 2026-11-06 | Password list in accounts.json; more sweeps (Assemble meetings on global#9/#10); AssembleDetail captured and rebuilt; two shared blocks fixed; full sweep 68 of 68, CI green. | current |
+| [086](context-086-evening-captures.md) | 2026-11-06 | GuestArrangements and ContactByEmailLDMCoordinator captured through in-app paths and rebuilt; SectionExpandable StrictMode fix; data conditions of the 12 routes still without a capture. | current |
