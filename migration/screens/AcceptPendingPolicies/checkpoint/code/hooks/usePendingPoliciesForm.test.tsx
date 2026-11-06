@@ -1,0 +1,188 @@
+import { QueryClientProvider } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import type { ReactNode } from 'react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { PendingPoliciesInputs } from '@/api/policy';
+import { contractHandler, raiseUserException } from '@/mocks/contract';
+import { isCommunicationException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { freshPage, recordBodies } from '@/test/testSupport';
+import { server } from '@/test/setup';
+import { usePendingPoliciesForm, type PendingPoliciesFormEvents } from './usePendingPoliciesForm';
+import { testQueryClient } from '@/platform/navigation/testRouter';
+
+/* The flows of Policy_Custom_AcceptPendingPolicies against the MSW mocks of the page (one fictional Connect policy,
+   7001, as captured on 2026-11-06; ActionAcceptPolicies removes the accepted ids, so the test that accepts runs last).
+   The flow handler is replaced by a spy. */
+// The flow handler itself: the hook and the query-cache subscription (flowErrors.ts) both call it.
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
+
+const inputs: PendingPoliciesInputs = {
+  policyApplications: [
+    '65d96f75-9f71-42aa-8447-fd622aa09e7e',
+    'd8997dfa-7ae3-4eb1-bb48-0a14e151034a',
+    '4b033840-c133-4f0d-beb9-4c3659a9bc28',
+  ],
+  country: 'NZ',
+  contentBlockId: 'b1-Main',
+};
+
+function renderForm(events: PendingPoliciesFormEvents = {}, formInputs: PendingPoliciesInputs = inputs) {
+  const client = testQueryClient();
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <QueryClientProvider client={client}>{children}</QueryClientProvider>
+  );
+  return renderHook(() => usePendingPoliciesForm(formInputs, events), { wrapper });
+}
+const calls = () => (window.__osCalls ?? []).map((c) => c.action);
+
+beforeEach(() => {
+  freshPage();
+  vi.mocked(raiseToFlowHandler).mockClear();
+  // jsdom has no matchMedia: GetDeviceInfo reads display-mode standalone (a browser tab, not the installed app).
+  Object.defineProperty(window, 'matchMedia', {
+    configurable: true,
+    writable: true,
+    value: (query: string) => ({ matches: false, media: query }),
+  });
+});
+afterEach(() => {
+  vi.useRealTimers();
+  sessionStorage.clear();
+  Reflect.deleteProperty(window, 'matchMedia');
+});
+
+describe('usePendingPoliciesForm (Policy_Custom_AcceptPendingPolicies)', () => {
+  it('has no rows until the first fetch ends, then the pending policies, none selected', async () => {
+    const { result } = renderForm();
+    expect(result.current.rows).toBeUndefined();
+    await waitFor(() => {
+      expect(result.current.rows?.map((r) => r.id)).toEqual(['7001']);
+    });
+    expect(result.current.isAllSelected).toBe(false);
+    expect(calls()).toEqual(['DataActionGetPendingPolicies']);
+  });
+
+  it('the mock reads PolicyApplications: without the Connect GUID no policy is pending', async () => {
+    const { result } = renderForm({}, { ...inputs, policyApplications: inputs.policyApplications.slice(1) });
+    await waitFor(() => {
+      expect(result.current.rows).toEqual([]);
+    });
+  });
+
+  it('IsAllSelected follows the row checkboxes, and "I agree to all" sets every row', async () => {
+    const { result } = renderForm();
+    await waitFor(() => {
+      expect(result.current.rows).toHaveLength(1);
+    });
+    act(() => {
+      result.current.toggleCheckBox(0);
+    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true]);
+    expect(result.current.isAllSelected).toBe(true);
+    act(() => {
+      result.current.toggleCheckBox(0);
+    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([false]);
+    expect(result.current.isAllSelected).toBe(false);
+    act(() => {
+      result.current.toggleSelectAllCheckBox();
+    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([true]);
+    expect(result.current.isAllSelected).toBe(true);
+    act(() => {
+      result.current.toggleSelectAllCheckBox();
+    });
+    expect(result.current.rows?.map((r) => r.isSelected)).toEqual([false]);
+    expect(result.current.isAllSelected).toBe(false);
+    expect(calls()).toEqual(['DataActionGetPendingPolicies']);
+  });
+
+  it('a CommunicationException of AcceptPolicies raises NetworkError, not AcceptedAll', async () => {
+    const onAcceptedAll = vi.fn();
+    const onNetworkError = vi.fn();
+    const { result } = renderForm({ onAcceptedAll, onNetworkError });
+    await waitFor(() => {
+      expect(result.current.rows).toHaveLength(1);
+    });
+    sessionStorage.setItem('mock:mock', 'error');
+    await act(() => result.current.continueOnClick());
+    expect(onNetworkError).toHaveBeenCalledTimes(1);
+    expect(onAcceptedAll).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('another exception of AcceptPolicies goes to the flow handler', async () => {
+    const onAcceptedAll = vi.fn();
+    const onNetworkError = vi.fn();
+    server.use(
+      contractHandler('UBTConnect', 'ActionAcceptPolicies', () => raiseUserException('The policies changed.')),
+    );
+    const { result } = renderForm({ onAcceptedAll, onNetworkError });
+    await waitFor(() => {
+      expect(result.current.rows).toHaveLength(1);
+    });
+    await act(() => result.current.continueOnClick());
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(onNetworkError).not.toHaveBeenCalled();
+    expect(onAcceptedAll).not.toHaveBeenCalled();
+  });
+
+  it('a failed fetch goes to the flow handler once', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    const { result } = renderForm();
+    await waitFor(() => {
+      expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    });
+    expect(isCommunicationException(vi.mocked(raiseToFlowHandler).mock.calls[0]?.[0])).toBe(true);
+    expect(result.current.rows).toBeUndefined();
+  });
+
+  it('an empty list raises AcceptedAll after 5 seconds (GetPendingPoliciesOnAfterFetch)', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    sessionStorage.setItem('mock:mock', 'empty');
+    const onAcceptedAll = vi.fn();
+    const { result } = renderForm({ onAcceptedAll });
+    await waitFor(() => {
+      expect(result.current.rows).toEqual([]);
+    });
+    act(() => {
+      vi.advanceTimersByTime(4900);
+    });
+    expect(onAcceptedAll).not.toHaveBeenCalled();
+    act(() => {
+      vi.advanceTimersByTime(200);
+    });
+    expect(onAcceptedAll).toHaveBeenCalledTimes(1);
+  });
+
+  it('Continue accepts the selected ids with the device details, then raises AcceptedAll', async () => {
+    const onAcceptedAll = vi.fn();
+    const onNetworkError = vi.fn();
+    const bodies = recordBodies('UBTConnect/ActionAcceptPolicies');
+    const { result } = renderForm({ onAcceptedAll, onNetworkError });
+    await waitFor(() => {
+      expect(result.current.rows).toHaveLength(1);
+    });
+    act(() => {
+      result.current.toggleSelectAllCheckBox();
+    });
+    await act(() => result.current.continueOnClick());
+    expect(calls()).toEqual(['DataActionGetPendingPolicies', 'ActionAcceptPolicies']);
+    expect(bodies).toEqual([
+      {
+        Policies: { List: ['7001'] },
+        DeviceDetails: expect.objectContaining({
+          ClientIP: '',
+          Platform: 'Web',
+          Manufacturer: '',
+          Model: '',
+        }) as unknown,
+      },
+    ]);
+    expect(onAcceptedAll).toHaveBeenCalledTimes(1);
+    expect(onNetworkError).not.toHaveBeenCalled();
+  });
+});

@@ -21,3 +21,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T13:36:54): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q4 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.; Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:; the invited halls of the locality; the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only); two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none); one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids; Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):; default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the; offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route; Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-06T20:40:05): confirm (user, 2026-11-06: 'ok làm tiếp đi tôi accept' for AssembleDetail)

@@ -55,3 +55,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T12:25:55): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q9 [review] review round 3 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A [questions.md Q1]: member click navigates to HouseholdDetails (GetDirectoryAccess missing, CR-MilestoneDetail-1).; Q2 → A: phone dialog with phone, name, photo, no timezone (CR-MilestoneDetail-2).; Q3 → A: from a notification `<NotCaptured>`, GetGmpMilestoneHost skipped (CR-MilestoneDetail-1).; Q4 → A: no document in the mock; document click not ported (CR-MilestoneDetail-3).; Q5 → A: only ScreenBlock_AccommodationHost built; other types `<NotCaptured>`.; Q6 → A: cloneQuery (see proposed-exemptions.json `_comment`).; CR-MilestoneDetail-4: MilestoneHeader remounted (React key) once LocalOrbitMilestoneType is synced (shell timing).; Mock world: ORBIT_HOSTED_ROOMS in `app/src/mocks/fictional/orbit.ts` (two visiting families, six rooms, both nights).; Accepted exemptions [parity-exemptions.json]: VIA-BACK-MENUICON-MILESTONEDETAIL, CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL, CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS. Feature flags: action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-06T20:35:12): confirm (user, 2026-11-06: 'ok làm tiếp đi tôi accept' for AcceptPendingPolicies, EventDetail, MilestoneDetail, LDM_EventDetail_V2, AssembleDetail)

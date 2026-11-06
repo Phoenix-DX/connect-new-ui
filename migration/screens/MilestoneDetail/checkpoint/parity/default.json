@@ -1,0 +1,82 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/MilestoneDetail?In_OrbitMilestoneTypeId=accommodation-host&In_HostId=52768&In_EventId=2085&In_MilestoneId=GMP15700&mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "497e2067f69597ff3025",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 541,
+  "texts": 93,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-06T13:35:03.265Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "VIA-BACK-MENUICON-MILESTONEDETAIL": 14,
+  "CAPTURE-RUNTIME-LIST-KEY-ARIA-CONTROLS-MILESTONEDETAIL": 6,
+  "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL": 11,
+  "ignoreSubtrees": 2,
+  "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.06222,
+  "maxCell": 0.6512,
+  "maxCellRatio": 0.03,
+  "diffPixels": 15786,
+  "comparedPixels": 253731,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 43,
+  "hotspots": [
+   "80,80 (1042px)",
+   "120,80 (1020px)",
+   "160,80 (1005px)",
+   "40,80 (959px)",
+   "0,80 (804px)"
+  ],
+  "diffPng": "migration/screens/MilestoneDetail/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 3,
+  "actual": 10,
+  "viaAppStartSkipped": [
+   "ActionAppManager_AfterInitialize",
+   "ActionAppManager_SynchAppContext",
+   "ActionGetNumberUnreadMessages",
+   "ActionGetUserInformation",
+   "ActionSync_Info_GetMain",
+   "ServiceAPIFetchData_CacheableHouseholds",
+   "ServiceAPIFetchData_CacheableMapEntities"
+  ]
+ },
+ "diffs": []
+}

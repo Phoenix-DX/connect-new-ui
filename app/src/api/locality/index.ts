@@ -29,3 +29,4 @@ export { useOneSchoolGlobalDetailsQuery } from './hooks';
 
 /* LegacyShareObject: Get_UI_CommunityBusinessShareCard. */
 export { fetchCommunityBusinessShareCard } from './repository';
+export { subdivisionHouseholdRows } from './mapper';

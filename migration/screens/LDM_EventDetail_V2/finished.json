@@ -1,17 +1,22 @@
 {
- "finishedAt": "2026-10-16T11:23:44",
+ "finishedAt": "2026-11-06T20:35:30",
  "files": {
-  "src/screens/LDM_EventDetail_V2/api.ts": "c4d3eb3b198de4f1",
-  "src/screens/LDM_EventDetail_V2/components/EventDetail_Banner.tsx": "2808fddd45319a4c",
-  "src/screens/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx": "83f6f5e49cb74e25",
-  "src/screens/LDM_EventDetail_V2/components/EventDetail_ListItem.tsx": "5805f525034b529c",
-  "src/screens/LDM_EventDetail_V2/components/EventDetail_Section.tsx": "afcf9bc03e8a743f",
-  "src/screens/LDM_EventDetail_V2/components/EventDetail_SpecialNeeds_ListItem.tsx": "a2fb26fbcbf1d2c4",
-  "src/screens/LDM_EventDetail_V2/components/EventsDetail_Content.tsx": "0127791290294597",
-  "src/screens/LDM_EventDetail_V2/components/ScreenBlock_EventDetail_V2.tsx": "ff2ca320cdd095d1",
-  "src/screens/LDM_EventDetail_V2/components/actions.ts": "fcf29af583d32ab2",
-  "src/screens/LDM_EventDetail_V2/index.tsx": "1d33fe9f11397670",
-  "src/screens/LDM_EventDetail_V2/mocks.ts": "a1af492a764e2188",
-  "src/screens/LDM_EventDetail_V2/types.ts": "1395bff9aa614a2d"
+  "src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2.test.tsx": "dfae285cb66a245a",
+  "src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx": "39dcefde9f6972cc",
+  "src/pages/LDM_EventDetail_V2/components/EventDetail_Banner.tsx": "1cb2363889a69d44",
+  "src/pages/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx": "e76d6977c9f6c4b7",
+  "src/pages/LDM_EventDetail_V2/components/EventDetail_ListItem.tsx": "39a803ae4a3cbb41",
+  "src/pages/LDM_EventDetail_V2/components/EventDetail_Section.tsx": "979d92596089f5b8",
+  "src/pages/LDM_EventDetail_V2/components/EventDetail_SpecialNeeds_ListItem.tsx": "aa7bd7eacb159230",
+  "src/pages/LDM_EventDetail_V2/components/EventsDetail_Content.tsx": "7614ccd4ff23425b",
+  "src/pages/LDM_EventDetail_V2/components/LdmEventDetailView.tsx": "e446eb3adeeeb94d",
+  "src/pages/LDM_EventDetail_V2/components/actions.test.ts": "36c48789a113fa9b",
+  "src/pages/LDM_EventDetail_V2/components/actions.ts": "cb7b06f29cf88e3b",
+  "src/pages/LDM_EventDetail_V2/hooks/ldmEventDetailState.test.ts": "a020a667dd78f605",
+  "src/pages/LDM_EventDetail_V2/hooks/ldmEventDetailState.ts": "5abfa4ccedc407d6",
+  "src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.test.tsx": "157781a99597029e",
+  "src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.ts": "ee52a01f56585e42",
+  "src/pages/LDM_EventDetail_V2/inputs.ts": "ecb292b2ecd46569",
+  "src/pages/LDM_EventDetail_V2/mocks.ts": "3d59fadd2e83c52b"
  }
 }

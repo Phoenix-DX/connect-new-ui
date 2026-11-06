@@ -1,0 +1,89 @@
+import type { RequestHandler } from 'msw';
+import { contractHandler } from '@/mocks/contract';
+import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
+import { assembleEventOf, assembleWorldId, type AssembleEventSummaryWire } from '@/mocks/fictional/assemble';
+import { scenario } from '@/mocks/scenario';
+import { wireList } from '@/lib/os-wire';
+import { notesCollection } from '@/containers/NoteListActions/mocks';
+import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
+
+/* Mocks of AssembleDetail (P-MOCKS), on the fictional Assemble world (src/mocks/fictional/assemble.ts): every value is
+   fictional; the ids of the TST capture of 2026-11-06 (the capture plan's query) are translated with assembleWorldId()
+   to the online prayer meeting of the world, and the answer carries the ids the request sent. Scenarios: real (the
+   meeting of EventId; an unknown EventId → IsNotFound with an empty event), notfound, unavailable (IsUnavailable:
+   Service Interruption message + "Meeting not found"), error, loading (shared `?latency=`). The GMS contacts are
+   answered by the Connect2_LegacyShared member-contact mock. */
+
+const EMPTY_SUMMARY: AssembleEventSummaryWire = {
+  EventId: '',
+  SeriesId: '',
+  DateTime: '1900-01-01T00:00:00',
+  HostingSubdivisionId: '0',
+  HostingLocation: '',
+  HostingSubdivisionFormattedAddress: '',
+  HostingSubdivisionUseCoordinates: false,
+  HostingSubdivisionLatitude: '0',
+  HostingSubdivisionLongitude: '0',
+  HostingSubdivisionHallPhotoSignedURL: '',
+  AssembleEventType: { Id: '', Title: '' },
+  RecurrenceTypeId: '',
+  RecurrenceTypeLabel: '',
+  IsCustomRecurrence: false,
+  RecurrencyFirstDate: '1900-01-01',
+  IsAllDay: false,
+  BrothersCount: '0',
+  SistersCount: '0',
+  IsVirtual: false,
+  Notes: '',
+  LocalityName: '',
+  CountryName: '',
+  VirtualMeetingTypeLabel: '',
+  VirtualMeetingLink: '',
+  VirtualMeetingId: '',
+  VirtualMeetingPassword: '',
+  IsPBCC: false,
+  IsUnavailable: false,
+};
+
+const notFound = () => ({
+  IsNotFound: true,
+  AssembleEvent: {
+    AssembleEventSummary: EMPTY_SUMMARY,
+    AssembleAttendeeSubdivisionList: wireList([]),
+    AssembleSpecialAttendeeSubdivisionList: wireList([]),
+    AssembleAttendeeSpecialGuestList: wireList([]),
+    GSMContactList: wireList([]),
+  },
+});
+
+export const handlers: RequestHandler[] = [
+  // DataActionGetAssembleNotes (fetched at start): the user's notes on the meeting, from the in-memory notes
+  // collection (P-MUTATION), category Assemble Event, item EventId.
+  contractHandler('UBTConnect', 'AssembleDetail/DataActionGetAssembleNotes', ({ EventId }) => {
+    const rows = notesCollection()
+      .all()
+      .filter((n) => String(n.ItemId) === (EventId ?? '') && n.NoteCategoryId === NoteCategory2.AssembleEvent);
+    const items = rows.map((n) => ({
+      Id: String(n.Id),
+      Note: String(n.Note),
+      DateCreatedUtc: String(n.DateCreatedUtc),
+      DateEditedUtc: String(n.DateEditedUtc),
+    }));
+    return { Out_Notes: { Total: rows.length, Note_Item_List: wireList(items) } };
+  }),
+  contractHandler('Connect2_Assemble_MUI', 'AssembleEventDetail/DataActionGetAssembleEvent', (vars) => {
+    const requestIds = { EventId: vars.EventId ?? '', SeriesId: vars.SeriesId ?? '' };
+    const found = assembleEventOf(
+      assembleWorldId(requestIds.EventId),
+      (hallId) => householdsOfSupperMeeting(hallId).length,
+    );
+    if (scenario() === 'notfound' || !found) return notFound();
+    const event = { ...found, AssembleEventSummary: { ...found.AssembleEventSummary, ...requestIds } };
+    if (scenario() === 'unavailable')
+      return {
+        IsNotFound: false,
+        AssembleEvent: { ...event, AssembleEventSummary: { ...event.AssembleEventSummary, IsUnavailable: true } },
+      };
+    return { IsNotFound: false, AssembleEvent: event };
+  }),
+];

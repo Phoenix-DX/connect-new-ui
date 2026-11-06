@@ -1,12 +1,10 @@
 {
- "at": "2026-10-21T11:14:27",
- "spec": "7af63b29fed36dc4",
+ "at": "2026-11-06T20:34:28",
+ "spec": "85c20e4783884fe8",
  "inputs": {
-  "analysis": null,
-  "flags": "7da60ca765914792",
-  "pack": null,
-  "catalog": "9697fa629d5d544e",
-  "stack": "847b538919822963"
+  "analysis": "5d887ef92d51d570",
+  "flags": "44136fa355b3678a",
+  "pack": "7353882bdcab4a2e"
  },
  "answered": [
   "Q1",

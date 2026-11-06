@@ -1,0 +1,130 @@
+import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
+import { subdivisionHouseholdRows, type SubdivisionInformation } from '@/api/locality';
+import type { LocalBookmark } from '@/platform/storage/localEntities';
+import { longIntegerText } from '@/lib/ubtConnect/actions';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import type { UI_ShareableObject_Generic } from '@/lib/ubtConnectUtils/structures';
+
+/** The variables of the block AssembleEventDetail_AttendeeSubdivision, the reducer and its client actions. Pure; the
+    flows are in useAttendeeSubdivision.
+    @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision */
+
+/** Type_ShareObject.Household / Connect_Entity2.Household (static-entities-tst.json, Connect2_Assemble_MUI). */
+export const SHARE_OBJECT_HOUSEHOLD = 'Household';
+const CONNECT_ENTITY_HOUSEHOLD = 'Household';
+
+/** The id of a skeleton row (the null identifier). */
+export const SKELETON_ID = '0';
+
+/** The variables of the block. The view cache keeps them. */
+export interface AttendeeSubdivisionState {
+  /** IsSelected: the hall's households show. */
+  isSelected: boolean;
+  /** SubdivisionHouseholdList of the local copy: the rows of the hall. */
+  rows: AssembleAttendeeGuest[];
+  /** CountryCode: from GetCacheableSubdivision_V2 ("" before). */
+  countryCode: string;
+  /** LocalityId: from GetCacheableSubdivision_V2 ("0" before). */
+  localityId: string;
+  /** IsShareOpen of the household ShareSheet. */
+  isShareOpen: boolean;
+  /** ShareableObjectId: the shared household ("" = none). */
+  shareableObjectId: string;
+  /** ShareableObject_Generic of the shared household. */
+  shareable: UI_ShareableObject_Generic;
+}
+
+/** The assignments of the block. */
+type AttendeeSubdivisionAction =
+  | { type: 'set'; patch: Partial<AttendeeSubdivisionState> }
+  | { type: 'selectionToggled' }
+  | { type: 'rowBookmarked'; index: number; isBookmarked: boolean }
+  | { type: 'shareClosed' };
+
+/** BuildSkeletonList: HouseholdCount rows with the null id appended to the hall's households. */
+export function withSkeletonRows(s: AssembleAttendeeSubdivision): AssembleAttendeeGuest[] {
+  const rows = [...s.SubdivisionHouseholdList];
+  for (let i = 0; i < s.HouseholdCount; i++)
+    rows.push({
+      Id: SKELETON_ID,
+      Name: '',
+      FamilyNames: '',
+      Location: '',
+      IsBookmarked: false,
+      IsDisabled: false,
+      AvatarURL: { Bucket: '', Path: '', Type: '', SignedURL: '' },
+    });
+  return rows;
+}
+
+/** The variables of a new visit after OnReady's first assignments: the local copy of the input, collapsed, with the
+    skeleton rows (BuildSkeletonList). A view that the view cache restored starts from its saved variables instead. */
+export const initialAttendeeSubdivisionState = (
+  subdivision: AssembleAttendeeSubdivision,
+): AttendeeSubdivisionState => ({
+  isSelected: false,
+  rows: withSkeletonRows(subdivision),
+  countryCode: '',
+  localityId: '0',
+  isShareOpen: false,
+  shareableObjectId: '',
+  shareable: {},
+});
+
+/** GetCacheableSubdivision_V2 answered with the hall: LocalityId is the hall's locality ("0" before). A view that the
+    view cache restored with it keeps its rows and makes no call. */
+export const hasHallHouseholds = (state: AttendeeSubdivisionState): boolean => state.localityId !== '0';
+
+/** The households of GetCacheableSubdivision_V2 as the hall's rows (the mapper `subdivisionHouseholdRows` of `@/api/locality`
+    reads the wire record; a missing record has no households). */
+export const householdRowsOf = (info: SubdivisionInformation | undefined): AssembleAttendeeGuest[] =>
+  subdivisionHouseholdRows(info);
+
+/** CountryCode = Subdivision.Locality.Country.Code and LocalityId = Subdivision.Locality.Id ("" and "0" for a missing
+    record). */
+export const hallLocationOf = (
+  info: SubdivisionInformation | undefined,
+): Pick<AttendeeSubdivisionState, 'countryCode' | 'localityId'> => ({
+  countryCode: info?.Subdivision.Locality.Country.Code ?? '',
+  localityId: info?.Subdivision.Locality.Id ?? '0',
+});
+
+/** Set_SelectedAssembleAttendeeListBookmarks: each row's IsBookmarked = a C2 local bookmark has
+    LongIntegerToText(row.Id) as ItemId (ListIndexOf, live …AttendeeSubdivision.mvc.js:1173-1179). */
+export const withLocalBookmarks = (
+  rows: readonly AssembleAttendeeGuest[],
+  bookmarks: readonly Pick<LocalBookmark, 'ItemId'>[],
+): AssembleAttendeeGuest[] =>
+  rows.map((r) => ({ ...r, IsBookmarked: bookmarks.some((b) => b.ItemId === longIntegerText(r.Id)) }));
+
+/** ShareableObject_Generic of a household row: the household entity, the FlipHouseholdName title, the family names,
+    the location and the avatar. */
+export const householdShareable = (row: AssembleAttendeeGuest): UI_ShareableObject_Generic => ({
+  ConnectEntityTypeId: CONNECT_ENTITY_HOUSEHOLD,
+  Id: row.Id,
+  SignedURL: row.AvatarURL.SignedURL,
+  Title: flipHouseholdName(row.Name),
+  Subtitle: row.FamilyNames,
+  Location: row.Location,
+});
+
+/** The variables after an assignment. */
+export function attendeeSubdivisionReducer(
+  state: AttendeeSubdivisionState,
+  action: AttendeeSubdivisionAction,
+): AttendeeSubdivisionState {
+  switch (action.type) {
+    case 'set':
+      return { ...state, ...action.patch };
+    case 'selectionToggled':
+      return { ...state, isSelected: !state.isSelected };
+    case 'rowBookmarked':
+      // The row's IsBookmarked = not IsItemBookmarked, whatever the toggle did (as compiled).
+      return {
+        ...state,
+        rows: state.rows.map((r, i) => (i === action.index ? { ...r, IsBookmarked: action.isBookmarked } : r)),
+      };
+    case 'shareClosed':
+      return { ...state, isShareOpen: false, shareableObjectId: '' };
+  }
+}
