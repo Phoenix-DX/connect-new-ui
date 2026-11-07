@@ -39,7 +39,7 @@ describe('FilterSheet', () => {
     expect(getByText('Sort & Filter')).toBeInTheDocument();
     expect(getByText('Sort by')).toBeInTheDocument();
     fireEvent.click(getByText('Unread'));
-    fireEvent.click(getByText('Apply filters'));
+    fireEvent.click(getByText('Apply'));
     const [, choices, , localities, countries, sortBy, hasFilters] = onApplyFilters.mock.calls[0] as unknown[];
     expect(choices).toEqual(
       expect.arrayContaining([expect.objectContaining({ Title: 'Read', SelectedChoiceId: Choice.No })]),

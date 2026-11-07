@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 1616
+Complexity left on build rows not yet built: 1527
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -24,7 +24,7 @@ Complexity left on build rows not yet built: 1616
 | BrowseCountries | `/UBTConnect/BrowseCountries` | 4 | 72 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-browsecountries |
 | BrowseDirectory | `/UBTConnect/BrowseDirectory` | 4 | 74 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-browsedirectory |
 | CommunityBusinessDetails_CoomingSoon | `/UBTConnect/CommunityBusinessDetails_CoomingSoon` | 4 | 10 | lite | build | V3d · D2(a): opened from MyBookmarks / BookmarksByGroup (user, 2026-10-14) | built | route-communitybusinessdetails-coomingsoon |
-| CountryDetails | `/UBTConnect/CountryDetails` | 4 | 89 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | review | route-countrydetails |
+| CountryDetails | `/UBTConnect/CountryDetails` | 4 | 89 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-countrydetails |
 | CountryList | `/UBTConnect/CountryList` | 4 | 89 | lite | build | V3b · Directory tab on TST (C2EnableC1DirectoryView=true) (user, 2026-10-14) | built | route-countrylist |
 | HouseholdCarousel | `/UBTConnect/HouseholdCarousel` | 4 | 167 | full | build | V3b · C2EnableCarousel=true on TST; opened from 15 screens (user, 2026-10-14) | review | route-householdcarousel |
 | HouseholdDetails | `/UBTConnect/HouseholdDetails` | 4 | 144 | full | build | V3b · 28 nav sites, 16 not behind the carousel flag (user, 2026-10-14) | built | route-householddetails |

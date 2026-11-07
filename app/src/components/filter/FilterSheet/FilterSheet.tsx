@@ -302,7 +302,7 @@ export function FilterSheet({
                     apply();
                   }}
                 >
-                  Clear filters
+                  Clear
                 </Button>
               }
               right={
@@ -311,7 +311,7 @@ export function FilterSheet({
                   inButtonOptions={buttonOptions(UBT_ButtonType.Primary)}
                   onEventOnClick={apply}
                 >
-                  Apply filters
+                  Apply
                 </Button>
               }
             />

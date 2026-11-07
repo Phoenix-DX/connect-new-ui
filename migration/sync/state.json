@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Assemble_BrowseByCountry": {
+  "CountryDetails": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:36:45",
-   "shared": [],
-   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
-  },
-  "CountryDetails": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:12:47",
+   "since": "2026-11-07T16:37:03",
    "shared": [
     "app/src/components/filter/FilterSheet/**"
    ],
@@ -295,16 +288,20 @@
    "finished": "2026-11-07T16:36:28"
   },
   "Assemble_BrowseByCountry": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:33:28",
    "tokens": {
     "dev": 28474,
     "test": 25905,
     "docs": 28038
-   }
+   },
+   "commit": "025dbc58",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:36:45"
   },
   "CountryDetails": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 52304,
@@ -607,6 +604,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:36:28"
+  },
+  "CountryDetails": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:36:45"
   }
  }
 }

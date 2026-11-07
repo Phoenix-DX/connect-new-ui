@@ -95,6 +95,16 @@ SubLayout_Browse_Section `$b2`:
 - Quirk kept as compiled: list images use `Out_LocalitiesStatistics.Current.MainHallSubdivisionId`. With a search string, Local_List is a new list, so every card asks the first locality's image [mvc.js:1240].
 - The route first ported the module client actions that were not in shared code (`components/actions.ts`). CR-CountryDetails-1 (applied) moved them into the shared libs, and `components/actions.ts` re-exports them [CR-CountryDetails-1.md].
 
+## Changes 2026-11-07 (TST sync)
+- TST files that changed: `UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js` and `UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js` (brief.md).
+- The fresh capture shows the two footer buttons of the filter sheet as "Clear" and "Apply". The old capture showed "Clear filters" and "Apply filters". Evidence: `parity/default.json` and `parity/offline.json` (kind text, 2 differences each, before the fix); `p:UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js:973` ("Clear") and `:1023` ("Apply") (dev.md).
+- React now renders "Clear" and "Apply" in the shared FilterSheet (`app/src/components/filter/FilterSheet/FilterSheet.tsx`). The change applies to every route that uses the sheet.
+- `CacheControl_UserInfo` shows no change on this route. The calls of the route do not change (10 expected, 10 actual in the default state, test.md).
+- The Apply label in the mock comment and in the page test is updated (`app/src/pages/CountryDetails/mocks.ts`, `CountryDetails.test.tsx`).
+
+## Decisions to confirm (TST sync)
+- The shared FilterSheet labels changed for all filter routes: "Clear" and "Apply". Confirm that the other filter routes (Bookmarks, Notes, Search, Updates_SingleList) take the same change. `Notes.test.tsx:114` still looks for "Apply filters" and fails until the Notes item updates it.
+
 ## Change requests
 - CR-CountryDetails-2: shared LeafletMap markerJSON must keep the OutSystems MarkerOptions names (Keyboard, Opacity…): markers lack tabindex/role and get opacity 0 (applied) [CR-CountryDetails-2.md].
 - CR-CountryDetails-1: move GetLocalityLabel, GetSkeletonList_UI_LocalityStatistics, Directory_BrowseByCountry_TooltipBuilder (UBTConnect) and Map_FitBoundsAuto, Map_Marker_OpenPopUp, Map_SetPopupBindingCallback (Leaflet) into the shared libs (applied) [CR-CountryDetails-1.md].

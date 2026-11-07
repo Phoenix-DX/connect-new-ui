@@ -1,11 +1,16 @@
 {
- "finishedAt": "2026-10-15T17:37:27",
+ "finishedAt": "2026-11-07T16:37:03",
  "files": {
-  "src/screens/CountryDetails/api.ts": "336bd5053571933e",
-  "src/screens/CountryDetails/components/actions.ts": "6bc75cf98d1fb526",
-  "src/screens/CountryDetails/components/staticEntities.ts": "ca63ec38063d9845",
-  "src/screens/CountryDetails/index.tsx": "14137b77d75c3669",
-  "src/screens/CountryDetails/mocks.ts": "d0e6d2166b8eca18",
-  "src/screens/CountryDetails/types.ts": "ce4f18bffc70a586"
+  "src/pages/CountryDetails/CountryDetails.test.tsx": "54643e9af1ce5d89",
+  "src/pages/CountryDetails/CountryDetailsPage.tsx": "3ca3a17f46b19e11",
+  "src/pages/CountryDetails/components/CountryDetailsContent.test.tsx": "a3141a8ec307ae01",
+  "src/pages/CountryDetails/components/CountryDetailsContent.tsx": "9607fbecab777194",
+  "src/pages/CountryDetails/components/staticEntities.ts": "ca63ec38063d9845",
+  "src/pages/CountryDetails/hooks/countryDetailsState.test.ts": "f8065632e7e60b4e",
+  "src/pages/CountryDetails/hooks/countryDetailsState.ts": "c59035f83b7eabdd",
+  "src/pages/CountryDetails/hooks/useCountryDetails.test.tsx": "918965e1addf6ad5",
+  "src/pages/CountryDetails/hooks/useCountryDetails.ts": "d0070f593bf1718b",
+  "src/pages/CountryDetails/inputs.ts": "26c2702d1dafaca7",
+  "src/pages/CountryDetails/mocks.ts": "d0c5375202ff85aa"
  }
 }

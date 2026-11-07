@@ -43,6 +43,11 @@ the block variables; a render follows each event. Files:
 Helpers `app_CommonFilter_DefineOptionNames` / `_CheckCountry` are in
 `../lib/actions.ts`, `Choice` / `Connect_Subscription_Plan` in `../lib/staticEntities.ts`.
 
+## TST sync 2026-11-07
+
+The footer buttons read "Clear" and "Apply" (`FilterSheet.mvc.js:973,1023`). Before they read "Clear filters" and "Apply filters".
+The props do not change.
+
 ## Captured variants (3 distinct; 3 tested)
 
 | Capture | Source                     |

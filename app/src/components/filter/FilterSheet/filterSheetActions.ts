@@ -1,6 +1,7 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet */
 import type { CacheControl_AllLocalities as AllLocalities } from '@/lib/ubtConnectUtils/structures';
 import type { SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
+import { osList } from '@/lib/os-wire';
 import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/lib/ubtConnect/actions';
 import { Choice, Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
@@ -26,7 +27,7 @@ import type {
 /** The flow of p:UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (controller :1201-2900), action by action. */
 export function createActions(v: Vars, opt: () => Filter_Common_Options, start: () => Filter_Common) {
   const subscription = () => v.user.subscription;
-  const subscribed = () => subscription()?.SubscribedCountries.List ?? [];
+  const subscribed = () => osList(subscription()?.SubscribedCountries);
   const isFree = () => subscription()?.SubscriptionType === Connect_Subscription_Plan.Free;
   const lists = () => v.optionControl.OptionList_Control;
   const indexOf = (title: string) => lists().findIndex((p) => (p.Title ?? '') === title);
