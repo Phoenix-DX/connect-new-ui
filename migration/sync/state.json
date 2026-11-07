@@ -92,9 +92,9 @@
    "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
   },
   "HomeFeed": {
-   "stage": "docs",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:58:30",
+   "since": "2026-11-07T08:04:31",
    "shared": [
     "app/src/components/feed/CommunityPopulation/**",
     "app/src/components/ui/IconSvg/**",
@@ -119,36 +119,85 @@
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "CountryDetails": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:59:01",
+   "since": "2026-11-07T08:12:47",
    "shared": [
     "app/src/components/filter/FilterSheet/**"
    ],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "Locality_Details": {
-   "stage": "dev",
+   "stage": "docs",
    "loop": 0,
-   "since": "2026-11-07T07:59:01",
+   "since": "2026-11-07T08:28:39",
    "shared": [
     "app/src/components/ui/HorizontalTagList/**"
    ],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "OneSchoolGlobalDetails": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:59:02",
-   "shared": [],
+   "since": "2026-11-07T08:18:10",
+   "shared": [
+    "app/src/containers/EntityDetailsActions/mocks.ts",
+    "app/src/containers/OneSchoolGlobalDetails/**"
+   ],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "SupperMeeting_Carousel": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:59:02",
+   "since": "2026-11-07T08:11:35",
    "shared": [],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "CountryList": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T08:28:39",
+   "shared": [
+    "app/src/api/country/**",
+    "app/src/api/member/**",
+    "app/src/components/feed/CommunityPopulation/**"
+   ],
+   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
+  },
+  "Notifications": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T08:10:11",
+   "shared": [
+    "app/src/api/notification/**",
+    "app/src/mocks/fictional/notifications.ts"
+   ],
+   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
+  },
+  "Search": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T08:29:16",
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
+  },
+  "Updates_SingleList": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T08:29:29",
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
+  },
+  "OrbitLanding": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T08:30:02",
+   "shared": [],
+   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   }
  },
  "items": {
@@ -246,11 +295,12 @@
    }
   },
   "HomeFeed": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:30:37",
    "tokens": {
     "dev": 238268,
-    "test": 34661
+    "test": 34661,
+    "docs": 45570
    }
   },
   "AssembleEvents": {
@@ -272,23 +322,71 @@
    }
   },
   "CountryDetails": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:59:00",
-   "tokens": {}
+   "tokens": {
+    "dev": 52304,
+    "test": 34419,
+    "docs": 37058
+   }
   },
   "Locality_Details": {
    "status": "active",
    "started": "2026-11-07T07:59:00",
-   "tokens": {}
+   "tokens": {
+    "dev": 233109,
+    "test": 34354
+   }
   },
   "OneSchoolGlobalDetails": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:59:00",
-   "tokens": {}
+   "tokens": {
+    "dev": 145711,
+    "test": 39614,
+    "docs": 31608
+   }
   },
   "SupperMeeting_Carousel": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:59:00",
+   "tokens": {
+    "dev": 64062,
+    "test": 34782,
+    "docs": 31324
+   }
+  },
+  "CountryList": {
+   "status": "active",
+   "started": "2026-11-07T08:04:45",
+   "tokens": {
+    "dev": 183128
+   }
+  },
+  "Notifications": {
+   "status": "active",
+   "started": "2026-11-07T08:10:10",
+   "tokens": {
+    "dev": 334076
+   }
+  },
+  "Search": {
+   "status": "waiting_user",
+   "started": "2026-11-07T08:13:08",
+   "tokens": {
+    "dev": 29587,
+    "test": 40612,
+    "docs": 33367
+   }
+  },
+  "Updates_SingleList": {
+   "status": "active",
+   "started": "2026-11-07T08:29:29",
+   "tokens": {}
+  },
+  "OrbitLanding": {
+   "status": "active",
+   "started": "2026-11-07T08:30:02",
    "tokens": {}
   }
  },

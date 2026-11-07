@@ -491,9 +491,9 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b17-b10-l1-111_\\d+-b4-b1-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "pathRegex": "div#b17-b10-l1-\\d+_\\d+-b4-b1-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
    "reason": "The household photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259); the replayed reference shows a 26 px broken image, the clone the 260 px placeholder (same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS); auto-accepted in the user's auto mode 2026-10-15",
-   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:297-300; migration/screens/Locality_Details/parity/default.json"
+   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:297-300; migration/screens/Locality_Details/parity/default.json 2026-11-07 sync wave (master): the household-card list id is 106_ in the fresh capture (111_ before); pathRegex takes any list id, same artefact."
   },
   {
    "id": "CAPTURE-MASKED-AVATAR-LOCALITYDETAILS",
@@ -504,9 +504,9 @@
     "bottom"
    ],
    "states": "^default$",
-   "pathRegex": "div#b17-b10-l1-111_\\d+-b4-b1-AvatarList\\.ubt-image-card__avatar-list$",
+   "pathRegex": "div#b17-b10-l1-\\d+_\\d+-b4-b1-AvatarList\\.ubt-image-card__avatar-list$",
    "reason": "The member avatars were masked by the capture (img src removed, data-rendered-size 38x38): the broken inline images make the absolutely positioned avatar list 1 px taller in the replayed reference (computed bottom 82/64 vs 83/65 px on every card); auto-accepted in the user's auto mode 2026-10-15",
-   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:320-322; analysis/css-relevant.md:805; migration/screens/Locality_Details/parity/default.json"
+   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:320-322; analysis/css-relevant.md:805; migration/screens/Locality_Details/parity/default.json 2026-11-07 sync wave (master): the household-card list id is 106_ in the fresh capture (111_ before); pathRegex takes any list id, same artefact."
   },
   {
    "id": "CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS",
@@ -571,9 +571,9 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b2-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b3-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
    "reason": "Same artifact as CAPTURE-MASKED-IMAGE-SUPPERMEETING on the carousel slides: the subdivision photo and the household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130), so the replayed reference shows broken images (390x26, 195x24) while the clone shows the mock placeholder. auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
-   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (24 data-masked-src=\"user-image\", data-rendered-size=\"390x260\"); parity/default.json (layout 390×26 → 390×260 under b3-l1-1164_0-b2-b1-b1-b3-LazyImage_Placeholder, 195×24 → 195×130 under …-b9-b1-l1-1258_N-b5-b1-LazyImage_Placeholder)"
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (24 data-masked-src=\"user-image\", data-rendered-size=\"390x260\"); parity/default.json (layout 390×26 → 390×260 under b3-l1-1164_0-b2-b1-b1-b3-LazyImage_Placeholder, 195×24 → 195×130 under …-b9-b1-l1-1258_N-b5-b1-LazyImage_Placeholder) 2026-11-07 sync wave (master): TST added a widget to EntitiesCarousel_Element, the slide ids moved b2-b2-b1 to b2-b3-b1; pathRegex renumbered, same artefact."
   },
   {
    "id": "CAPTURE-MASKED-IMAGE-SMCAROUSEL-GRID",
@@ -597,9 +597,9 @@
     "left"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b2-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b3-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
    "reason": "The CarouselTag text was masked by the capture ('• • •' for '1 / 3'), so the right-aligned tag placeholder of the reference is a third of a pixel wider than the clone's (left 337.688px → 337.344px). auto-accepted in the user's auto mode 2026-10-15 Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
-   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html:90-92 (masked tag text); parity/default.json (left 337.688px → 337.344px on b3-l1-1164_0-b2-b1-b1-b3-Placeholder_ImageTag)"
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html:90-92 (masked tag text); parity/default.json (left 337.688px → 337.344px on b3-l1-1164_0-b2-b1-b1-b3-Placeholder_ImageTag) 2026-11-07 sync wave (master): TST added a widget to EntitiesCarousel_Element, the slide ids moved b2-b2-b1 to b2-b3-b1; pathRegex renumbered, same artefact."
   },
   {
    "id": "CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL",

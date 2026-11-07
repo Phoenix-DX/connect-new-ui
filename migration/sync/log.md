@@ -110,3 +110,43 @@ One line per event. Written by sync.py.
 - 2026-11-07T07:59:02 OneSchoolGlobalDetails stage dev
 - 2026-11-07T07:59:02 SupperMeeting_Carousel brief written (loop 0)
 - 2026-11-07T07:59:02 SupperMeeting_Carousel stage dev
+- 2026-11-07T08:04:30 CountryDetails stage test
+- 2026-11-07T08:04:30 HomeFeed stage spec
+- 2026-11-07T08:04:31 HomeFeed stage review
+- 2026-11-07T08:04:45 CountryList started with shared app/src/components/feed/CommunityPopulation/**
+- 2026-11-07T08:04:45 CountryList brief written (loop 0)
+- 2026-11-07T08:04:45 CountryList stage dev
+- 2026-11-07T08:06:31 SupperMeeting_Carousel stage test
+- 2026-11-07T08:08:59 OneSchoolGlobalDetails granted shared paths: app/src/containers/OneSchoolGlobalDetails/**, app/src/containers/EntityDetailsActions/mocks.ts ("Placeholder_CarouselTag of the live block; mocks of the new school id 132")
+- 2026-11-07T08:10:10 Notifications started
+- 2026-11-07T08:10:10 Notifications brief written (loop 0)
+- 2026-11-07T08:10:11 Notifications stage dev
+- 2026-11-07T08:10:39 SupperMeeting_Carousel stage docs
+- 2026-11-07T08:11:35 SupperMeeting_Carousel stage spec
+- 2026-11-07T08:11:35 SupperMeeting_Carousel stage review
+- 2026-11-07T08:12:01 CountryDetails stage docs
+- 2026-11-07T08:12:27 OneSchoolGlobalDetails stage test
+- 2026-11-07T08:12:47 CountryDetails stage spec
+- 2026-11-07T08:12:47 CountryDetails stage review
+- 2026-11-07T08:13:08 Search started with shared app/src/components/filter/FilterSheet/**
+- 2026-11-07T08:13:08 Search brief written (loop 0)
+- 2026-11-07T08:13:08 Search stage dev
+- 2026-11-07T08:14:23 OneSchoolGlobalDetails stage docs
+- 2026-11-07T08:18:09 Search stage test
+- 2026-11-07T08:18:09 CountryList granted shared paths: app/src/api/country/**, app/src/api/member/** ("remove the unused community-population functions after the CommunityNumbers port")
+- 2026-11-07T08:18:09 OneSchoolGlobalDetails stage spec
+- 2026-11-07T08:18:10 OneSchoolGlobalDetails stage review
+- 2026-11-07T08:22:00 Locality_Details stage test
+- 2026-11-07T08:22:45 Search stage docs
+- 2026-11-07T08:28:39 CountryList stage test
+- 2026-11-07T08:28:39 Locality_Details stage docs
+- 2026-11-07T08:29:03 Notifications granted shared paths: app/src/mocks/fictional/notifications.ts, app/src/api/notification/** ("22 rows of the fresh capture; createdByUserId mapping (NotificationDetails is frozen at review)")
+- 2026-11-07T08:29:16 Search stage spec
+- 2026-11-07T08:29:16 Search stage review
+- 2026-11-07T08:29:29 Updates_SingleList started with shared app/src/components/filter/FilterSheet/**
+- 2026-11-07T08:29:29 Updates_SingleList brief written (loop 0)
+- 2026-11-07T08:29:29 Updates_SingleList stage dev
+- 2026-11-07T08:30:02 OrbitLanding started
+- 2026-11-07T08:30:02 OrbitLanding brief written (loop 0)
+- 2026-11-07T08:30:02 OrbitLanding stage dev
+- 2026-11-07T08:30:02 OrbitLanding stage test

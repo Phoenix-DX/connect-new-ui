@@ -578,9 +578,9 @@ def cmd_note(c: Ctx, a) -> int:
 def scope_command(c: Ctx, rid: str, base: str | None) -> list[str]:
     act = c.state["active"].get(rid, {})
     allow = list(COMMON_ALLOW) + list(act.get("shared", []))
-    for other in c.state["active"]:
+    for other, a in c.state["active"].items():
         if other != rid:
-            allow += own_paths(other)
+            allow += own_paths(other) + list(a.get("shared", []))   # a sibling's own paths and its granted shared paths
     cmd = [sys.executable, str(SCOPE_GUARD), "--screen", rid, "--base", base or act.get("baseCommit") or "main"]
     for p in allow:
         cmd += ["--allow", p]

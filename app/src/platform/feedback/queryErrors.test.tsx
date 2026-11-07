@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, test } from 'vitest';
 import { useCountryInfoQuery, useCountryLocalityStatisticsQuery } from '@/api/country/hooks';
 import { useFeedConfigQuery } from '@/api/feed/hooks';
-import { useAvailableMembersQuery, useCommunityPopulationQuery } from '@/api/member/hooks';
+import { useAvailableMembersQuery } from '@/api/member/hooks';
 import { useSearchBirthdayOptionsQuery } from '@/api/search/hooks';
 import { useFeedServicesQuery } from '@/api/service/hooks';
 import { useAvailableUsersQuery, useShareObjectTypeLabelQuery } from '@/api/share/hooks';
@@ -26,7 +26,6 @@ import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from './
 const SHARE = { In_ShareObjectTypeId: 'Update', In_ShareableObjectId: '1', In_UpdateType: '', In_UpdateDate: '' };
 
 const CASES: [id: string, hook: () => unknown][] = [
-  ['D4 HomeFeed DataActionGetCommunityStatistics', () => useCommunityPopulationQuery('HomeFeed')],
   ['D5 Embedded_FeedCMS DataActionGetFeedConfig', () => useFeedConfigQuery({ FeedItemId: '', B2CTenant: 'tenant' })],
   [
     'D6 FeedBlock_Services DataActionGetServices',
