@@ -39,6 +39,21 @@ phases of the real integration (contract check and transport adapter), done befo
 - D5: a) real data is never stored ("D5: a)").
 - D6: a) mismatches go to a report and a question each ("D6: a").
 - D2 and D4: the user asked what "block all" means and what "per module" means; answered in the chat, decision open.
+- Way of work (user, 2026-11-07: "chạy theo từng phần, done phần nào thì dừng lại chờ tôi duyệt tiếp"): the master
+  runs one phase. It reports the result in 5 lines (counts, files, what needs a decision) and stops. The next phase starts
+  only after the user approves in the chat. The approval words are recorded in the status table below.
+
+### 3.2 Status
+
+| Phase | Status    | Approved by the user (words, date) |
+| ----- | --------- | ---------------------------------- |
+| B0    | not begun | -                                  |
+| B1    | not begun | -                                  |
+| B2    | not begun | -                                  |
+| B3    | not begun | -                                  |
+| B4    | not begun | -                                  |
+| B5    | not begun | -                                  |
+| B6    | not begun | -                                  |
 
 ## 4. Phases
 
