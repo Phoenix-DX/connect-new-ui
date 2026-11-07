@@ -1164,3 +1164,15 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,sync,analyze,92178,triage-reader-2,sonnet,"triage 2026-11-07, 10 routes, 16 calls"
 2026-11-07,sync,analyze,107807,triage-reader-1,sonnet,"triage 2026-11-07, 10 routes, 21 calls"
 2026-11-07,sync,analyze,114103,triage-judge,opus,"triage 2026-11-07, 30 routes, 19 calls"
+2026-11-07,MessageDetail,fix,43411,sync-dev,sonnet,sync MessageDetail
+2026-11-07,Menu,fix,49588,sync-dev,sonnet,sync Menu
+2026-11-07,MessageList,fix,38722,sync-dev,sonnet,sync MessageList
+2026-11-07,Menu,fix,54590,sync-dev,sonnet,sync Menu
+2026-11-07,MessageDetail,fix,48487,sync-dev,sonnet,sync MessageDetail
+2026-11-07,MessageList,verify,33093,sync-test,sonnet,sync MessageList
+2026-11-07,MessageDetail,fix,49226,sync-dev,sonnet,sync MessageDetail
+2026-11-07,ContactByEmailMember,fix,49641,sync-dev,opus,sync ContactByEmailMember
+2026-11-07,Menu,verify,29855,sync-test,sonnet,sync Menu
+2026-11-07,LDM_EventDetail_V2,fix,72534,sync-dev,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,verify,28848,sync-test,sonnet,sync MessageDetail
+2026-11-07,ContactByEmailMember,verify,34785,sync-test,sonnet,sync ContactByEmailMember

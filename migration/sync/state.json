@@ -1,0 +1,139 @@
+{
+ "branch": "sync/tst-2026-11",
+ "begun": {
+  "by": "user",
+  "text": "ok (item 8 of the decision session, 2026-11-07: start the wave)",
+  "at": "2026-11-07T07:11:34"
+ },
+ "active": {
+  "MessageList": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T07:15:25",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "LDM_EventDetail_V2": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:12:53",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "ContactByEmailMember": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T07:18:07",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "OrbitAdminLanding": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:12:54",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "Household_Relations": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:12:55",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "MessageDetail": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T07:18:07",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "Menu": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T07:16:28",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "LDM_MyEvents_V2": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:12:56",
+   "shared": [],
+   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  }
+ },
+ "items": {
+  "MessageList": {
+   "status": "active",
+   "started": "2026-11-07T07:12:53",
+   "tokens": {
+    "dev": 38722,
+    "test": 33093
+   }
+  },
+  "LDM_EventDetail_V2": {
+   "status": "active",
+   "started": "2026-11-07T07:12:53",
+   "tokens": {
+    "dev": 72534
+   }
+  },
+  "ContactByEmailMember": {
+   "status": "active",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {
+    "dev": 49641,
+    "test": 34785
+   }
+  },
+  "OrbitAdminLanding": {
+   "status": "active",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {}
+  },
+  "Household_Relations": {
+   "status": "active",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {}
+  },
+  "MessageDetail": {
+   "status": "active",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 141124,
+    "test": 28848
+   }
+  },
+  "Menu": {
+   "status": "active",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 104178,
+    "test": 29855
+   }
+  },
+  "LDM_MyEvents_V2": {
+   "status": "active",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {}
+  }
+ },
+ "questions": [
+  {
+   "id": "Q1",
+   "item": "LDM_EventDetail_V2",
+   "text": "Exemptions: (1) photo background-image + pixel for the host and guest photos (signed CloudFront URLs in the capture, placeholder in the mock) as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 already does for LDM_MyEvents_V2; (2) host-name title width 82 vs 118 px (masked 21-char name) as masked-text data drift. a: add both (master edits exemptions) / b: leave the diffs (route cannot restamp) / c: other",
+   "status": "open",
+   "at": "2026-11-07T07:19:04"
+  },
+  {
+   "id": "Q2",
+   "item": "MessageList",
+   "text": "consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles",
+   "status": "open",
+   "at": "2026-11-07T07:19:04"
+  }
+ ],
+ "confirms": {}
+}

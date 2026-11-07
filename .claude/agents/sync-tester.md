@@ -35,6 +35,11 @@ npm in `caffeinate`.
 4. Do not fix a failure. Report it with the evidence (command, exit code, the lines that show the problem).
 5. Do not run the full `npm run ci` or a full 68-route sweep: the master runs them at the end of the wave. Run the
    sweep of the routes the brief lists when the item has shared paths.
+6. Several items run in the same tree. For the scope guard run `python3 tools/sync/sync.py scope <Route>` (it
+   computes the allow list of the items active now; ignore an expanded command in an older brief). A `typecheck`
+   error whose file is inside the paths of another active item (`sync.py status` lists them) is a note, not a
+   failure: the master runs the full typecheck on the quiet tree before the commit. An error in this item's files
+   is a failure.
 
 ## Gate
 

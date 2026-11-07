@@ -43,7 +43,10 @@ DIR = Path("migration/sync")
 ALWAYS_DIRTY_OK = ("migration/sync/state.json", "migration/sync/log.md", "migration/metrics/ledger.csv", "migration/board.md")
 # folders every stage may touch besides the item's own paths (docs, pipeline outputs); the scope guard gets them as --allow
 COMMON_ALLOW = ("migration/sync/**", "app/docs/**", "migration/route-check/**", "migration/knowledge/**",
-                "migration/metrics/**", "migration/board.md")
+                "migration/metrics/**", "migration/board.md", "migration/capture-plan.json",
+                # pipeline outputs of the master's captures and parity runs of other routes (not code)
+                "migration/screens/*/analysis/**", "migration/screens/*/parity/**", "migration/screens/*/capture/**",
+                "migration/screens/_capture-summary.json", "migration/survey/**", "migration/sources/**")
 HANDOFF_TEMPLATE = Path(".claude/skills/tst-sync/references/handoff.md")
 AGENTS_MD = Path("migration/AGENTS.md")
 BRIEF_RULES = (3, 5, 9, 10, 11, 12, 13, 17, 21, 22, 23)
@@ -676,7 +679,7 @@ def cmd_brief(c: Ctx, a) -> int:
          "```", "",
          "## Gate (tester)", "", "```",
          f"curl -s -o /dev/null -w '%{{http_code}}' {app}/UBTConnect/HomeFeed   # 200, and lsof -p <pid> -a -d cwd = <root>/app",
-         " ".join(scope_command(c, rid, None)),
+         f"python3 tools/sync/sync.py scope {rid}      # computes --base and the --allow list of the items active NOW",
          f"python3 tools/pipeline/route.py parity {rid} --app {app}",
          f"python3 tools/pipeline/consistency_check.py --screen {rid}",
          "npm --prefix app run typecheck && npm --prefix app run arch && (cd app && npx eslint <changed files> && npx vitest run <changed tests>)",
