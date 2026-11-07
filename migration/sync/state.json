@@ -187,9 +187,7 @@
    "stage": "dev",
    "loop": 0,
    "since": "2026-11-07T08:29:29",
-   "shared": [
-    "app/src/components/filter/FilterSheet/**"
-   ],
+   "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
   "OrbitLanding": {
@@ -198,6 +196,27 @@
    "since": "2026-11-07T08:33:07",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
+  },
+  "Notes": {
+   "stage": "review",
+   "loop": 1,
+   "since": "2026-11-07T08:52:26",
+   "shared": [],
+   "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
+  },
+  "HouseholdCarousel": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T08:50:40",
+   "shared": [],
+   "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
+  },
+  "Bookmarks": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T08:53:33",
+   "shared": [],
+   "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
   }
  },
  "items": {
@@ -385,7 +404,9 @@
   "Updates_SingleList": {
    "status": "active",
    "started": "2026-11-07T08:29:29",
-   "tokens": {}
+   "tokens": {
+    "dev": 202905
+   }
   },
   "OrbitLanding": {
    "status": "waiting_user",
@@ -393,6 +414,33 @@
    "tokens": {
     "test": 26287,
     "docs": 30510
+   }
+  },
+  "Notes": {
+   "status": "waiting_user",
+   "started": "2026-11-07T08:43:06",
+   "tokens": {
+    "dev": 68978,
+    "test": 67146,
+    "docs": 33361
+   }
+  },
+  "HouseholdCarousel": {
+   "status": "waiting_user",
+   "started": "2026-11-07T08:43:24",
+   "tokens": {
+    "dev": 102942,
+    "test": 33671,
+    "docs": 28572
+   }
+  },
+  "Bookmarks": {
+   "status": "waiting_user",
+   "started": "2026-11-07T08:45:06",
+   "tokens": {
+    "dev": 88970,
+    "test": 34406,
+    "docs": 0
    }
   }
  },
@@ -445,6 +493,13 @@
    "text": "Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other",
    "status": "open",
    "at": "2026-11-07T08:41:57"
+  },
+  {
+   "id": "Q8",
+   "item": "Updates_SingleList",
+   "text": "Pre-existing consistency NO-BROWSER-STORAGE: actions.ts:15-24 keeps scrollAnchorId/scrollAnchorDelta in localStorage as the TST JS nodes CaptureScrollPosition/ScrollFix do (no token, no personal data). a: keep as the original and record a consistency exclusion with the citation / b: move the two keys to an in-memory store in platform/navigation (platform change by the master) / c: sessionStorage",
+   "status": "open",
+   "at": "2026-11-07T08:42:51"
   }
  ],
  "confirms": {}

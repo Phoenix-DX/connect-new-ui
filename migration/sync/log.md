@@ -160,3 +160,28 @@ One line per event. Written by sync.py.
 - 2026-11-07T08:33:19 CountryList stage review
 - 2026-11-07T08:38:03 Q6 (Notifications) asked: New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open
 - 2026-11-07T08:41:57 Q7 (Locality_Details) asked: Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other
+- 2026-11-07T08:42:51 Q8 (Updates_SingleList) asked: Pre-existing consistency NO-BROWSER-STORAGE: actions.ts:15-24 keeps scrollAnchorId/scrollAnchorDelta in localStorage as the TST JS nodes CaptureScrollPosition/ScrollFix do (no token, no personal data). a: keep as the original and record a consistency exclusion with the citation / b: move the two keys to an in-memory store in platform/navigation (platform change by the master) / c: sessionStorage
+- 2026-11-07T08:43:06 Notes started with shared app/src/components/filter/FilterSheet/**, app/src/components/filter/HorizontalFilterTagList/**
+- 2026-11-07T08:43:06 Notes brief written (loop 0)
+- 2026-11-07T08:43:07 Notes stage dev
+- 2026-11-07T08:43:24 HouseholdCarousel started with shared app/src/components/directory/EntitiesCarouselElement/**, app/src/components/ui/HorizontalTagList/**
+- 2026-11-07T08:43:24 HouseholdCarousel brief written (loop 0)
+- 2026-11-07T08:43:24 HouseholdCarousel stage dev
+- 2026-11-07T08:45:06 Notes stage test
+- 2026-11-07T08:45:06 Bookmarks started with shared app/src/components/filter/FilterSheet/**, app/src/components/filter/HorizontalFilterTagList/**
+- 2026-11-07T08:45:06 Bookmarks brief written (loop 0)
+- 2026-11-07T08:45:06 Bookmarks stage dev
+- 2026-11-07T08:47:25 Notes test failed, fix loop 1
+- 2026-11-07T08:47:26 Notes brief written (loop 1)
+- 2026-11-07T08:48:32 HouseholdCarousel stage test
+- 2026-11-07T08:49:09 Bookmarks stage test
+- 2026-11-07T08:49:18 Notes stage test
+- 2026-11-07T08:49:36 HouseholdCarousel stage docs
+- 2026-11-07T08:50:39 HouseholdCarousel stage spec
+- 2026-11-07T08:50:40 HouseholdCarousel stage review
+- 2026-11-07T08:51:28 Notes stage docs
+- 2026-11-07T08:51:55 Bookmarks stage docs
+- 2026-11-07T08:52:26 Notes stage spec
+- 2026-11-07T08:52:26 Notes stage review
+- 2026-11-07T08:53:32 Bookmarks stage spec
+- 2026-11-07T08:53:33 Bookmarks stage review

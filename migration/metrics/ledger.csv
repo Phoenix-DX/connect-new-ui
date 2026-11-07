@@ -1240,3 +1240,20 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,OrbitLanding,other,30510,sync-docs,sonnet,sync OrbitLanding
 2026-11-07,CountryList,other,28294,sync-docs,sonnet,sync CountryList
 2026-11-07,Notifications,fix,72137,sync-dev,opus,sync Notifications
+2026-11-07,Updates_SingleList,fix,0,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Updates_SingleList,fix,202905,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Notes,fix,44406,sync-dev,opus,sync Notes
+2026-11-07,Notes,verify,34988,sync-test,sonnet,sync Notes loop 1
+2026-11-07,HouseholdCarousel,fix,99681,sync-dev,opus,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,fix,3261,sync-dev,opus,sync HouseholdCarousel
+2026-11-07,Bookmarks,fix,88970,sync-dev,opus,sync Bookmarks
+2026-11-07,Notes,fix,24572,sync-dev,opus,sync Notes loop 1
+2026-11-07,HouseholdCarousel,verify,33671,sync-test,sonnet,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,other,0,sync-docs,sonnet,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,other,28572,sync-docs,sonnet,sync HouseholdCarousel
+2026-11-07,Notes,verify,0,sync-test,sonnet,sync Notes loop 1
+2026-11-07,Notes,verify,32158,sync-test,sonnet,sync Notes loop 1
+2026-11-07,Bookmarks,verify,34406,sync-test,sonnet,sync Bookmarks
+2026-11-07,Notes,other,0,sync-docs,sonnet,sync Notes loop 1
+2026-11-07,Notes,other,33361,sync-docs,sonnet,sync Notes loop 1
+2026-11-07,Bookmarks,other,0,sync-docs,sonnet,sync Bookmarks

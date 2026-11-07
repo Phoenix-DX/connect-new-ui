@@ -1,5 +1,5 @@
 ## Result
-status: fail
+status: pass
 summary: Parity (3 states), consistency, arch, eslint, vitest all pass; the member typecheck is clean. Only the scope guard fails (exit 1): two files outside the item's paths changed in the tree, neither named in dev.md (see below). Likely the master's own edits.
 
 ## Files changed
@@ -31,3 +31,7 @@ none
 
 ## Questions for the user
 none
+
+
+## Master verification (2026-11-07)
+The two files outside scope are the master's edits (`app/src/platform/feedback/queryErrors.test.tsx` call of the changed hook; `migration/parity-exemptions.json` Profile path), committed; `sync.py scope BrowseCountries` exits 0. Status set to pass by the master; every other check passed in the tester's run. The AssembleEvents and Assemble_BrowseByCountry differences (text 3 each) are their own items.
