@@ -11,7 +11,7 @@ import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import MessageList from './MessageListPage';
 
 /* The page with the flows of its block (useMessageList) in the app frame on a memory router, on the page mocks
-   (22 fictional messages, 20 on the first page, 2 unread). The mocks keep the read and cleared marks in memory: each test puts the rows
+   (22 fictional messages, 20 on the first page, 8 unread). The mocks keep the read and cleared marks in memory: each test puts the rows
    back. */
 const PATH = '/UBTConnect/MessageList';
 const HOME = '/UBTConnect/HomeFeed';
@@ -55,14 +55,14 @@ afterEach(() => {
 });
 
 describe('MessageList page', () => {
-  it('signed in: OnReady runs GetMessages once; 20 rows, 2 unread, the unread count; bottom bar and common UI', async () => {
+  it('signed in: OnReady runs GetMessages once; 20 rows, 8 unread, the unread count; bottom bar and common UI', async () => {
     const bodies = recordBodies(GET_MESSAGES);
     const { container } = await open();
     expect(rows(container)).toHaveLength(20);
-    expect(container.querySelectorAll('.background-blue-lightest')).toHaveLength(2);
+    expect(container.querySelectorAll('.background-blue-lightest')).toHaveLength(8);
     expect(titles(container)[0]).toBe('Test Noti 2');
     expect(screen.getByText('Mark All as Read')).toBeInTheDocument();
-    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(2);
+    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(8);
     expect(getMessagesCalls()).toBe(1);
     expect(bodies[0]).toMatchObject({
       ShowWarning: true,

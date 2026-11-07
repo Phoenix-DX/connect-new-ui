@@ -7,9 +7,9 @@
  },
  "active": {
   "MessageList": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T09:22:20",
+   "since": "2026-11-07T16:33:08",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -140,17 +140,6 @@
    "shared": [],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
-  "CountryList": {
-   "stage": "commit",
-   "loop": 0,
-   "since": "2026-11-07T16:32:40",
-   "shared": [
-    "app/src/api/country/**",
-    "app/src/api/member/**",
-    "app/src/components/feed/CommunityPopulation/**"
-   ],
-   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
-  },
   "Notifications": {
    "stage": "review",
    "loop": 0,
@@ -229,7 +218,7 @@
  },
  "items": {
   "MessageList": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:53",
    "tokens": {
     "dev": 38722,
@@ -395,13 +384,17 @@
    }
   },
   "CountryList": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:04:45",
    "tokens": {
     "dev": 183128,
     "test": 36113,
     "docs": 28294
-   }
+   },
+   "commit": "c0a2abc7",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:32:40"
   },
   "Notifications": {
    "status": "waiting_user",
@@ -593,6 +586,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:32:23"
+  },
+  "MessageList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:32:40"
   }
  }
 }

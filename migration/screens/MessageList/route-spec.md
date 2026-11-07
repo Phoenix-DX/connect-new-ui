@@ -300,6 +300,11 @@ Two are false positives, built as compiled. The screen reads none itself. C2NewN
 - Call order on load differs only by the shell's app-start timing (Q5); PullToRefresh opacity phase (Q6).
 - Mock GetMessages ignores filters and search (server logic not visible); sorts by date, limits to MaxRecords.
 - TotalPrivate/TotalPublic count unread rows of MessageType 1 / 2.
+- The fresh capture of 2026-11-06 shows 8 unread rows; the mock now has 8 (see "Changes 2026-11-07 (TST sync)").
+- Consistency exclusions for `components/MessageListItem.tsx:124,129` (user decision Q2 a, 2026-11-07,
+  `migration/consistency-exclusions.json`: INLINE-MESSAGELIST-MESSAGELISTITEM-L124 and -L129). The two inline styles
+  are in the urgent-message branch. No capture shows that branch (no test account has an urgent message). They are ported
+  from `Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js:370,380`.
 
 ## 16a. Parity
 `route.py parity MessageList` (2026-10-15, after the last code change): default, loading, offline all 0 (structure,
@@ -331,3 +336,15 @@ PINRegister, Splash, HomeFeed, MyEntertaining, Services, Search, Notifications, 
 ## 18. Builder notes
 - Ids follow the capture (`b1-b7-l1-36_<i>-…`).
 - Inline styles only where captured.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files that changed: none (brief: "Changed TST files: -"). The change is in the data of the fresh capture.
+- Fresh capture (2026-11-06, states default and search): 8 rows have the class `background-blue-lightest` on
+  `div.list-item`. These are the unread rows. Evidence: `analysis/dom/default.html` lines 105, 138, 171, 567, 600, 633, 666, 699
+  (rows 1-3 and rows 15-19 of the list). The old capture had no such row.
+- Other capture changes: `--footer-height` is 56px (was 42px) and the bottom-bar ids use `l1-56_` (was `l1-59_`). Evidence:
+  `git diff 2fe9efaf -- migration/screens/MessageList/analysis/dom`.
+- React now: `app/src/pages/MessageList/mocks.ts` returns 8 unread rows (read false) for rows 1-3 and 15-19. Before, it
+  returned 2. The test `MessageList.test.tsx` expects 8 unread rows. Parity: all 5 states have 0 differences (`test.md`).
+- Markup, calls and logic: no change.
