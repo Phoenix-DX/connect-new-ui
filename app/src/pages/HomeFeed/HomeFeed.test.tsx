@@ -47,6 +47,24 @@ describe('HomeFeed page', () => {
     );
   });
 
+  it('OnReady calls GetCommunityStatistics once and Directory_CommunityNumbers shows its answer (no FetchCount)', async () => {
+    await open();
+    await waitFor(() => {
+      expect(byId('$b7')?.textContent).toContain('48,215');
+    });
+    const card = byId('$b7');
+    expect(card?.textContent).toContain('COMMUNITY BY THE NUMBERS');
+    expect(card?.textContent).toContain('+6');
+    expect(card?.textContent).toContain('19,870');
+    expect(card?.querySelector('.ubt-skeleton-section')).toBeNull();
+    expect(byId('$b6')?.firstElementChild?.className).toBe(
+      'ubt-custom-container margin-x-base margin-top-s margin-bottom-base',
+    );
+    expect(byId('Section_CommunityPopulation')).toBeNull();
+    expect(calledActions().filter((a) => a === 'HomeFeed/DataActionGetCommunityStatistics')).toHaveLength(1);
+    expect(calledActions()).not.toContain('FeedBlock_CommunityPopulation/DataActionFetchCount');
+  });
+
   it('a service opens its screen', async () => {
     const { at } = await open();
     fireEvent.click(byId('b5-l2-53_1-l2-100_0-$b10')?.firstElementChild as Element);

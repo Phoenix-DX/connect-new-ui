@@ -319,6 +319,7 @@ The screen uses these strings:
   - CAPTURE-BADGE-MASKED-TEXT-HOMEFEED (`right` only).
   - SLIDER-APPEAR-TIMING.
   - SLIDER-LOADING-TIMEOUT.
+- TST sync 2026-11-07: the "Community Population" section is now the block Directory_CommunityNumbers ("COMMUNITY BY THE NUMBERS"). The mock values (48,215 members, +6, 19,870 households, 386 localities, 17 countries) are fictional. Update items 2 and 3 use short locations. Long fictional texts wrap to two lines, and the masked capture does not show the real width.
 
 ## 17. Patterns used
 - P-DATA / P-CALLS / P-MOCKS: api.ts has the adapters for MarkAsRead/Unread, GetServices and FetchUpdates; mocks.ts has the mocks.
@@ -351,3 +352,24 @@ Calls: 0 differences in every state.
 | CR-HomeFeed-1 | OpenInApp_OpenExternalLink / OpenApp web path | applied |
 | CR-HomeFeed-2 | Directory_Updates_GetCarouselPreloadedHouseholds + SetPreloadObject | applied |
 | CR-HomeFeed-3 | Bottom bar slider, transition events, unread-count call, bell link, offline bell rule | applied; slider timing = capture artifact (Q3 A) |
+
+## Changes 2026-11-07 (TST sync)
+
+TST files that changed (brief): `UBTConnect.Home.HomeFeed.mvc.js`, `UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`.
+
+What the fresh capture shows:
+- The section `Section_CommunityPopulation` is gone. A `BasePatterns.CustomContainer` (`$b6`, classes `margin-x-base margin-top-s margin-bottom-base`) holds the block `Directory_CommonBlocks.Directory_CommunityNumbers` (`$b7`). Evidence: `analysis/dom/default.html` (`data-block="Directory_CommonBlocks.Directory_CommunityNumbers"`).
+- The card shows the text "COMMUNITY BY THE NUMBERS" and the members count with an up arrow and the daily change. Three more rows have the icons SVG_CommunityHouseholds, SVG_CommunityLocalities and SVG_CommunityCountries. The members icon is 40 px; the other three are 24 px. Evidence: `analysis/dom/default.html`.
+- The loading state shows "••••••" placeholders in a SkeletonSection. Evidence: `analysis/dom/loading.html`.
+- The call `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics` (phase load) replaces `FeedBlock_CommunityPopulation/DataActionFetchCount`. Evidence: `analysis/calls.json:41`.
+- The CSS of `.directory-numbers-card*` is not applied in the capture (the card is stacked). The app has no such CSS.
+
+What the React code now does (`dev.md`):
+- `CommunityNumbers.tsx` (in `app/src/components/feed/CommunityPopulation/`) renders the block. Props: `isLoading`, `communityStatistics`.
+- `useHomeFeedReady` calls `fetchCommunityStatistics('HomeFeed')` in OnReady and keeps IsDataFetched and the answer in the view state. It skips the call when the view cache restores the screen.
+- While loading, the block shows 1000 placeholders; a negative change shows "-" + FormatCurrency(n). These two rules come from the compiled block code; the negative and zero cases are not captured.
+- The FetchCount mock handler is removed. The old `CommunityPopulation` component stays for CountryList.
+- The four icons SVG_CommunityMembers, SVG_CommunityHouseholds, SVG_CommunityLocalities and SVG_CommunityCountries are in the shared IconSvg.
+- The shared update mock has three "Birth" items, as the fresh capture shows.
+
+Parity (`test.md`): default, loading and offline have 0 differences after the last code change.

@@ -4,7 +4,7 @@ One file per route in `routes/`. Run `python3 tools/route-check/check_route.py <
 
 The app shell (`CommonUI_InsideLayout` and its blocks on TST; the code that `main.tsx` loads in React) is in [APP_SHELL.md](APP_SHELL.md). The tool merges it from the checked routes.
 
-UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-06. Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.
+UI flows: Service Studio MCP `getScreenNames(UBTConnect)`, DEV, read 2026-11-07. Routes and scope: `app/src/app/routes.generated.ts` (84 routes) and `migration/board.md`.
 
 | Route | UI flow | Status |
 |---|---|---|

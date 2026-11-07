@@ -14,6 +14,12 @@ Events and placeholders: none. One `<img>` per known SVG icon (`UBT_Icons.SVG_*`
 | ------- | ------------------------------ |
 | v1      | Services/default (`SVG_HR100`) |
 
+## Community icons
+
+`SVG_CommunityMembers`, `SVG_CommunityHouseholds`, `SVG_CommunityLocalities` and `SVG_CommunityCountries` are known
+icons (TST sync 2026-11-07, HomeFeed). `SVG_CommunityTradelink` was known before. The block
+[CommunityNumbers](../../feed/CommunityPopulation/README.md) uses the first four.
+
 ## Not captured / not settled
 
 - The nine other icons: built from the compiled view. Their Ids are assumed equal to the record names, as captured for

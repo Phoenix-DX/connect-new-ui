@@ -1,6 +1,6 @@
 # CountryList: OutSystems (TST) and React
 
-The route `/UBTConnect/CountryList`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/CountryList`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/CountryList/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
@@ -16,27 +16,31 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/CountryList/CountryListPage.tsx`](../../../app/src/pages/CountryList/CountryListPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/CountryList/parity`](../../screens/CountryList/parity) | `route.py parity` |
-| Code read | OutSystems: 4 files of the UI flow, 22 shared blocks, 28 app shell files. React: 165 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 4 files of the UI flow, 23 shared blocks, 29 app shell files. React: 165 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 5: React makes 5, **0 missing** |
-| Differences found | **0** (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 4: React makes 3, **1 missing** |
+| Differences found | **1** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
-| User actions of the route (own code) | OutSystems: 4. React: 6 |
+| User actions of the route (own code) | OutSystems: 4. React: 5 |
 | Screen and blocks of the UI flow with a React port | 4 of 4 |
 | Navigation targets found in React | 10 of 10 |
-| Shared blocks and components on the route | OutSystems 22, React 3 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 23, React 3 with user actions: see the last section |
 | App shell on this route | 7 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
+- Call `UBTConnect/Directory_Locality/CountryList/DataActionGetCommunityStatistics`. Chain on TST: CountryList.action_RefreshData_CommunityStatistics → CountryList.DataActionGetCommunityStatistics.
+  - No React code makes this call.
+  - Note in [`pages/CountryList/components/CountryListContent.tsx:40`](../../../app/src/pages/CountryList/components/CountryListContent.tsx#L40): "/** GetCommunityStatistics: Directory_CommunityNumbers shows it (a skeleton until IsDataFetched). */"
+  - Note in [`pages/CountryList/hooks/countryListState.ts:25`](../../../app/src/pages/CountryList/hooks/countryListState.ts#L25): "/** The screen data action GetCommunityStatistics (refresh only): IsDataFetched and Out_CommunityStatistics, read by"
+  - Note in [`pages/CountryList/hooks/useCountryList.ts:109`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L109): "/** Action_RefreshData_CommunityStatistics: the refresh of GetCommunityStatistics (R1, CountryList.mvc.js:1186-1208,"
 
 ## 4. Questions
 
@@ -59,10 +63,9 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect_Utils/CacheControl/CacheControl_UserInfo/DataActionGetCacheInfo` | data action | `CacheControl_UserInfo` | CacheControl.OnInitialize → CacheControl.onInitialize → event onNonCacheHit of CacheControl → CacheControl_UserInfo.cacheControlOnNonCacheHit → CacheControl_UserInfo.DataActionGetCacheInfo<br>CacheControl_UserInfo fetch at start → CacheControl_UserInfo.DataActionGetCacheInfo | yes | `UserInfoCacheControl()` [`legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx:37`](../../../app/src/legacy/os/cache/UserInfoCacheControl/UserInfoCacheControl.tsx#L37) (page) | `CountryList → UserInfoCache → UserInfoCacheControl`<br>[`pages/CountryList/CountryListPage.tsx`](../../../app/src/pages/CountryList/CountryListPage.tsx) | implemented |
-| 2 | `UBTConnect/Directory_Locality/CountryList/DataActionGetCommunityStatistics` | data action | `CountryList` | CountryList.action_RefreshData_CommunityStatistics → CountryList.DataActionGetCommunityStatistics<br>CountryList fetch at start → CountryList.DataActionGetCommunityStatistics | yes | `fetchCountryListCommunityStatistics()` [`api/country/repository.ts:43`](../../../app/src/api/country/repository.ts#L43) (page) | `CountryList → useCountryList → fetchCountryListCommunityStatistics`<br>[`pages/CountryList/CountryListPage.tsx`](../../../app/src/pages/CountryList/CountryListPage.tsx) | implemented |
+| 2 | `UBTConnect/Directory_Locality/CountryList/DataActionGetCommunityStatistics` | data action | `CountryList` | CountryList.action_RefreshData_CommunityStatistics → CountryList.DataActionGetCommunityStatistics<br>CountryList fetch at start → CountryList.DataActionGetCommunityStatistics | yes | – | – | **missing** |
 | 3 | `UBTConnect/Directory_Locality/CountryList/DataActionGetCountriesStatistics` | data action | `CountryList` | CountryList.OnReady → CountryList.screenEvent_OnReady → CountryList.action_RefreshData_CountryStatistics → CountryList.DataActionGetCountriesStatistics<br>CountryList fetch at start → CountryList.DataActionGetCountriesStatistics | yes | `fetchCountryListStatistics()` [`api/country/repository.ts:36`](../../../app/src/api/country/repository.ts#L36) (page) | `CountryList → useCountryList → fetchCountryListStatistics`<br>[`pages/CountryList/CountryListPage.tsx`](../../../app/src/pages/CountryList/CountryListPage.tsx) | implemented |
-| 4 | `UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount` | data action | `FeedBlock_CommunityPopulation` | FeedBlock_CommunityPopulation fetch at start → FeedBlock_CommunityPopulation.DataActionFetchCount | yes | `fetchCommunityPopulation()` [`api/member/repository.ts:25`](../../../app/src/api/member/repository.ts#L25) (page) | `CountryList → useCommunityPopulationQuery → fetchCommunityPopulation`<br>[`pages/CountryList/CountryListPage.tsx`](../../../app/src/pages/CountryList/CountryListPage.tsx) | implemented |
-| 5 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
+| 4 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
 
@@ -101,16 +104,15 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| 1 | [`pages/CountryList/CountryListPage.tsx:45`](../../../app/src/pages/CountryList/CountryListPage.tsx#L45) | `<StaticInput>` | `onClickInput` | `onSearchClicked` | – | goes to Search |
-| 2 | [`pages/CountryList/CountryListPage.tsx:55`](../../../app/src/pages/CountryList/CountryListPage.tsx#L55) | `<CountryListContent>` | `onMyLocalityClicked` | `onMyLocalityClicked` | – | goes to Locality_Details |
-| 3 | [`pages/CountryList/CountryListPage.tsx:56`](../../../app/src/pages/CountryList/CountryListPage.tsx#L56) | `<CountryListContent>` | `onMyCountryClicked` | `onMyCountryClicked` | – | goes to CountryDetails |
-| 4 | [`pages/CountryList/CountryListPage.tsx:57`](../../../app/src/pages/CountryList/CountryListPage.tsx#L57) | `<CountryListContent>` | `onCommunityPopulationClicked` | `onCommunityPopulationClicked` | – | goes to Updates_SingleList |
-| [5](#625-countrylistcontent-oncountryclicked) | [`pages/CountryList/CountryListPage.tsx:59`](../../../app/src/pages/CountryList/CountryListPage.tsx#L59) | `<CountryListContent>` | `onCountryClicked` | `onCountryClicked` | – | goes to CountryDetails; asks for a confirmation |
-| [6](#626-notificationicon-oniconclick) | [`pages/CountryList/CountryListPage.tsx:43`](../../../app/src/pages/CountryList/CountryListPage.tsx#L43) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
+| 1 | [`pages/CountryList/CountryListPage.tsx:42`](../../../app/src/pages/CountryList/CountryListPage.tsx#L42) | `<StaticInput>` | `onClickInput` | `onSearchClicked` | – | goes to Search |
+| 2 | [`pages/CountryList/CountryListPage.tsx:51`](../../../app/src/pages/CountryList/CountryListPage.tsx#L51) | `<CountryListContent>` | `onMyLocalityClicked` | `onMyLocalityClicked` | – | goes to Locality_Details |
+| 3 | [`pages/CountryList/CountryListPage.tsx:52`](../../../app/src/pages/CountryList/CountryListPage.tsx#L52) | `<CountryListContent>` | `onMyCountryClicked` | `onMyCountryClicked` | – | goes to CountryDetails |
+| [4](#624-countrylistcontent-oncountryclicked) | [`pages/CountryList/CountryListPage.tsx:54`](../../../app/src/pages/CountryList/CountryListPage.tsx#L54) | `<CountryListContent>` | `onCountryClicked` | `onCountryClicked` | – | goes to CountryDetails; asks for a confirmation |
+| [5](#625-notificationicon-oniconclick) | [`pages/CountryList/CountryListPage.tsx:40`](../../../app/src/pages/CountryList/CountryListPage.tsx#L40) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
 
 <details><summary>2 diagrams (handlers with two or more effects)</summary>
 
-#### 6.2.5 CountryListContent: onCountryClicked
+#### 6.2.4 CountryListContent: onCountryClicked
 
 ```mermaid
 sequenceDiagram
@@ -125,7 +127,7 @@ sequenceDiagram
   Note over H: confirm dialog dialogId
 ```
 
-#### 6.2.6 NotificationIcon: onIconClick
+#### 6.2.5 NotificationIcon: onIconClick
 
 ```mermaid
 sequenceDiagram
@@ -165,9 +167,9 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useCountryList.ts` | `CountryDetails` | `CountryCode` = `eventId` | [`pages/CountryList/hooks/useCountryList.ts:129`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L129) |
-| `useCountryList.ts` | `Locality_Details` | `LocalityId` = `state.user.localityId`<br>`PreloadedLocalityLabel` = `state.user.localityName` | [`pages/CountryList/hooks/useCountryList.ts:139`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L139) |
-| `useCountryList.ts` | `CountryDetails` | `CountryCode` = `state.user.countryCode` | [`pages/CountryList/hooks/useCountryList.ts:145`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L145) |
+| `useCountryList.ts` | `CountryDetails` | `CountryCode` = `eventId` | [`pages/CountryList/hooks/useCountryList.ts:132`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L132) |
+| `useCountryList.ts` | `Locality_Details` | `LocalityId` = `state.user.localityId`<br>`PreloadedLocalityLabel` = `state.user.localityName` | [`pages/CountryList/hooks/useCountryList.ts:142`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L142) |
+| `useCountryList.ts` | `CountryDetails` | `CountryCode` = `state.user.countryCode` | [`pages/CountryList/hooks/useCountryList.ts:148`](../../../app/src/pages/CountryList/hooks/useCountryList.ts#L148) |
 
 ## 8. Lifecycle
 
@@ -209,7 +211,7 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `CountryList` | `GetCommunityStatistics` | on demand (`-1`) | `CommunityNumbers.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:776`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L776)), `CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:777`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L777)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:778`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L778)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:798`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L798)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1174`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1174) |
+| `CountryList` | `GetCommunityStatistics` | on demand (`-1`) | `Directory_CommunityNumbers.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:776`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L776)), `Directory_CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:777`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L777)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:778`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L778)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:798`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L798)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1174`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1174) |
 | `CountryList` | `GetCountriesStatistics` | on demand (`-1`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:932`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L932)), `SkeletonSection.source` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:956`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L956)), `view` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:964`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L964)), `text` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:993`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L993)), `Statistics_TypedItem.In_HasImage` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:996`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L996)), `action onAfterFetch_GetCountriesStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1254`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1254)), `action screenEvent_OnReady` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1305`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1305)), `action action_RefreshData_CountryStatistics` ([`UBTConnect.Directory_Locality.CountryList.mvc.js:1437`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1437)) | [`UBTConnect.Directory_Locality.CountryList.mvc.js:1175`](../../sources/runtime/UBTConnect.Directory_Locality.CountryList.mvc.js#L1175) |
 
 ### 8.2 React
@@ -220,9 +222,7 @@ None.
 
 Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
-| File | Hook (function) | Calls | Read by | Place |
-|---|---|---|---|---|
-| `CountryListPage.tsx` | `useCommunityPopulationQuery` (`CountryList`) | `/api/UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount` | `CountryListContent.isCommunityPopulationLoading` ([`L53`](../../../app/src/pages/CountryList/CountryListPage.tsx#L53)), `CountryListContent.communityPopulationTotal` ([`L54`](../../../app/src/pages/CountryList/CountryListPage.tsx#L54)) | [`pages/CountryList/CountryListPage.tsx:23`](../../../app/src/pages/CountryList/CountryListPage.tsx#L23) |
+None.
 
 ## 9. Client state
 
@@ -290,7 +290,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `TextEllipsis` | `UBTConnectLibrary` | [`components/ui/TextEllipsis/TextEllipsis.tsx`](../../../app/src/components/ui/TextEllipsis/TextEllipsis.tsx) | 0 |
 | `UBT_LazyImage` | `UBTConnect_Utils` | [`components/ui/EntityLazyImage/EntityLazyImage.tsx`](../../../app/src/components/ui/EntityLazyImage/EntityLazyImage.tsx) | 0 |
 | `LazyImage` | `UBTConnectLibrary` | [`components/ui/LazyImage/LazyImage.tsx`](../../../app/src/components/ui/LazyImage/LazyImage.tsx) | 0 |
-| `FeedBlock_CommunityPopulation` | `UBTConnect` | [`components/feed/CommunityPopulation/CommunityPopulation.tsx`](../../../app/src/components/feed/CommunityPopulation/CommunityPopulation.tsx) | 1 |
+| `Directory_CommunityNumbers` | `UBTConnect` | [`components/feed/CommunityPopulation/CommunityNumbers.tsx`](../../../app/src/components/feed/CommunityPopulation/CommunityNumbers.tsx) | 0 |
+| `Directory_CommunityNumbers__Number` | `UBTConnect` | [`components/feed/CommunityPopulation/CommunityNumbers.tsx`](../../../app/src/components/feed/CommunityPopulation/CommunityNumbers.tsx) | 0 |
 | `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
 | `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
@@ -303,7 +304,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `BottomSheet` | `UBTConnectLibrary` | [`components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx`](../../../app/src/components/ui/ConnectBottomSheet/ConnectBottomSheet.tsx) | 0 |
 | `BottomSheet` | `OutSystemsUI_2_23` | [`components/ui/BottomSheet/BottomSheet.tsx`](../../../app/src/components/ui/BottomSheet/BottomSheet.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (7)</summary>
+<details><summary>User actions of the shared blocks (6)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
@@ -313,7 +314,6 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
 | 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 | 6 | `App_NotificationIcon` | `onClick of IconBadge` | `iconClick` | – | goes to Notifications, MessageList |
-| 7 | `FeedBlock_CommunityPopulation` | `clicked of CustomContainer` | `onClick_Block` | – | goes to Updates_SingleList |
 
 </details>
 

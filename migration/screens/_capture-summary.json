@@ -1,45 +1,10 @@
 {
- "Notifications": [
-  "default 16852 KB, 59 blocks, masked 17",
-  "runtime 11 calls, 0 phase mark(s)",
-  "auto loading (3 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "HouseholdCarousel": [
-  "default 17422 KB, 74 blocks, masked 64",
-  "runtime 35 calls, 0 phase mark(s)",
-  "auto loading (24 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "Household_Relations": [
-  "default 16059 KB, 49 blocks, masked 20",
-  "runtime 12 calls, 0 phase mark(s)",
-  "auto loading (4 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "Locality_Details": [
-  "default 16251 KB, 51 blocks, masked 64",
-  "step tag-suppermeetings",
-  "step tag-interchange",
-  "step tag-oneschoolglobal",
-  "runtime 46 calls, 3 phase mark(s)",
-  "auto loading (4 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "SupperMeeting_Carousel": [
-  "default 16974 KB, 67 blocks, masked 48",
-  "runtime 19 calls, 0 phase mark(s)",
-  "auto loading (18 call(s) held)",
-  "auto offline",
-  "analyzed"
- ],
- "ConnectShare": [
-  "default 17849 KB, 28 blocks, masked 1",
-  "runtime 8 calls, 0 phase mark(s)",
+ "OrbitLanding": [
+  "default 20042 KB, 38 blocks, masked 9",
+  "step popup-filters",
+  "step popup-filters-closed",
+  "step popup-sort",
+  "runtime 9 calls, 3 phase mark(s)",
   "auto loading (3 call(s) held)",
   "auto offline",
   "analyzed"

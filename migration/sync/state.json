@@ -92,9 +92,9 @@
    "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
   },
   "HomeFeed": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T08:04:31",
+   "since": "2026-11-07T16:32:15",
    "shared": [
     "app/src/components/feed/CommunityPopulation/**",
     "app/src/components/ui/IconSvg/**",
@@ -341,7 +341,7 @@
    }
   },
   "HomeFeed": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:30:37",
    "tokens": {
     "dev": 238268,
@@ -496,7 +496,7 @@
    "tokens": {
     "dev": 161539,
     "test": 29091,
-    "docs": 0
+    "docs": 35726
    }
   }
  },
@@ -592,5 +592,11 @@
    "answeredAt": "2026-11-07T09:37:50"
   }
  ],
- "confirms": {}
+ "confirms": {
+  "HomeFeed": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:31:55"
+  }
+ }
 }

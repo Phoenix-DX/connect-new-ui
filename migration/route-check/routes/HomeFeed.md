@@ -1,6 +1,6 @@
 # HomeFeed: OutSystems (TST) and React
 
-The route `/UBTConnect/HomeFeed`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/HomeFeed`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/HomeFeed/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
@@ -16,27 +16,31 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/HomeFeed/parity`](../../screens/HomeFeed/parity) | `route.py parity` |
-| Code read | OutSystems: 6 files of the UI flow, 31 shared blocks, 28 app shell files. React: 230 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 5 files of the UI flow, 33 shared blocks, 29 app shell files. React: 229 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
 | Check | Result |
 |---|---|
-| Server calls of the route on TST | 14: React makes 11, **0 missing**, 3 not a gap of the web app |
-| Differences found | **0** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
+| Server calls of the route on TST | 13: React makes 9, **1 missing**, 3 not a gap of the web app |
+| Differences found | **1** (+ 3 not a gap of the web app) (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 1: see the last section |
-| User actions of the route (own code) | OutSystems: 15. React: 14 |
-| Screen and blocks of the UI flow with a React port | 6 of 6 |
+| User actions of the route (own code) | OutSystems: 14. React: 13 |
+| Screen and blocks of the UI flow with a React port | 5 of 5 |
 | Navigation targets found in React | 20 of 20 |
-| Shared blocks and components on the route | OutSystems 31, React 3 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 33, React 3 with user actions: see the last section |
 | App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
 Each line is a fact of both sides: a TST call, navigation or variable, and the React code that has it or not. The tool does not judge the behaviour.
 
-None.
+- Call `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics`. Chain on TST: HomeFeed.OnReady → HomeFeed.screenEvent_OnReady → HomeFeed.DataActionGetCommunityStatistics.
+  - React has the function, but this route does not use it: `fetchHomeFeedCommunityStatistics()` [`api/country/repository.ts:49`](../../../app/src/api/country/repository.ts#L49).
+  - Note in [`pages/HomeFeed/HomeFeedPage.tsx:86`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L86): "// ScreenEvent_OnReady: IsScreenInitialized (False in OnInitialize, True in OnReady) and GetCommunityStatistics."
+  - Note in [`pages/HomeFeed/hooks/useHomeFeedReady.ts:6`](../../../app/src/pages/HomeFeed/hooks/useHomeFeedReady.ts#L6): "/** The screen data action GetCommunityStatistics (only on demand): IsDataFetched and Out_CommunityStatistics. */"
+  - Note in [`api/message/repository.ts:111`](../../../app/src/api/message/repository.ts#L111): "/** DataAction_GetCountriesNames of ContactUsDetails, refreshed by ScreenEvent_OnReady when the user is not signed in:"
 
 ### Not a gap of the web app
 
@@ -74,18 +78,17 @@ All columns come from the code, without interpretation:
 |---|---|---|---|---|---|---|---|---|
 | 1 | `Connect2_LegacyShared/ActionGetAllApplicationEvents` | server action | `Connect2_LegacyShared` | SharePopup.onClick_CallButton → event event_ShareToOthers of SharePopup → … → Connect2_LegacyShared.cacheLocalApplicationEvents → server GetAllApplicationEvents | no | – | – | not applicable (telemetry) |
 | 2 | `UBTConnect_EmbedFeed/Blocks/Embedded_FeedCMS/DataActionGetFeedConfig` | data action | `Embedded_FeedCMS` | Embedded_FeedCMS fetch at start → Embedded_FeedCMS.DataActionGetFeedConfig | yes | `fetchFeedConfig()` [`api/feed/repository.ts:9`](../../../app/src/api/feed/repository.ts#L9) (page) | `HomeFeed → useEmbeddedFeed → useFeedConfigQuery → fetchFeedConfig`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 3 | `UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount` | data action | `FeedBlock_CommunityPopulation` | FeedBlock_CommunityPopulation fetch at start → FeedBlock_CommunityPopulation.DataActionFetchCount | yes | `fetchCommunityPopulation()` [`api/member/repository.ts:25`](../../../app/src/api/member/repository.ts#L25) (page) | `HomeFeed → useCommunityPopulationQuery → fetchCommunityPopulation`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 4 | `UBTConnect/Home/FeedBlock_Services/DataActionGetServices` | data action | `FeedBlock_Services` | FeedBlock_Services fetch at start → FeedBlock_Services.DataActionGetServices | yes | `fetchFeedServices()` [`api/service/repository.ts:34`](../../../app/src/api/service/repository.ts#L34) (page) | `FeedServices → useFeedServices → useFeedServicesQuery → fetchFeedServices`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 5 | `UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates` | data action | `FeedBlock_Updates` | FeedBlock_Updates fetch at start → FeedBlock_Updates.DataActionFetchUpdates | yes | `fetchFeedUpdates()` [`api/update/repository.ts:22`](../../../app/src/api/update/repository.ts#L22) (page) | `FeedUpdates → useFeedUpdates → useFeedUpdatesQuery → fetchFeedUpdates`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 6 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in ContextMenu → event event_MarkAsRead of ContextMenu → event event_MarkAsRead of Update_ListItem → FeedBlock_Updates.event_MarkAsRead → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../../../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 7 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsUnread` | service action | `FeedBlock_Updates` | onClick in ContextMenu → event event_MarkAsUnread of ContextMenu → event event_MarkAsUnread of Update_ListItem → FeedBlock_Updates.event_MarkAsUnread → server Action_UI_UpdateItem_MarkAsUnread | no | `markUpdateItemAsUnread()` [`api/update/repository.ts:52`](../../../app/src/api/update/repository.ts#L52) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsUnread`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 8 | `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics` | data action | `HomeFeed` | HomeFeed.OnReady → HomeFeed.screenEvent_OnReady → HomeFeed.DataActionGetCommunityStatistics<br>HomeFeed fetch at start → HomeFeed.DataActionGetCommunityStatistics | yes | `fetchHomeFeedCommunityStatistics()` [`api/country/repository.ts:49`](../../../app/src/api/country/repository.ts#L49) (page) | `HomeFeed → useHomeFeedReady → fetchHomeFeedCommunityStatistics`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 9 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
-| 10 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject<br>ShareSheet.handler_OnClickSend → ShareSheet.action_SubmitShare → server CS_ShareObject | no | `csShareObject()` [`api/share/shareSheet.ts:25`](../../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 11 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no | `fetchAvailableMembers()` [`api/member/repository.ts:12`](../../../app/src/api/member/repository.ts#L12) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 12 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
-| 13 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in ContextMenu → event event_MarkAsRead of ContextMenu → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in ContextMenu → event event_MarkAsUnread of ContextMenu → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`FeedUpdates → useFeedUpdates → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
-| 14 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
+| 3 | `UBTConnect/Home/FeedBlock_Services/DataActionGetServices` | data action | `FeedBlock_Services` | FeedBlock_Services fetch at start → FeedBlock_Services.DataActionGetServices | yes | `fetchFeedServices()` [`api/service/repository.ts:34`](../../../app/src/api/service/repository.ts#L34) (page) | `FeedServices → useFeedServices → useFeedServicesQuery → fetchFeedServices`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
+| 4 | `UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates` | data action | `FeedBlock_Updates` | FeedBlock_Updates fetch at start → FeedBlock_Updates.DataActionFetchUpdates | yes | `fetchFeedUpdates()` [`api/update/repository.ts:22`](../../../app/src/api/update/repository.ts#L22) (page) | `FeedUpdates → useFeedUpdates → useFeedUpdatesQuery → fetchFeedUpdates`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
+| 5 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsRead` | service action | `FeedBlock_Updates` | onClick in ContextMenu → event event_MarkAsRead of ContextMenu → event event_MarkAsRead of Update_ListItem → FeedBlock_Updates.event_MarkAsRead → server Action_UI_UpdateItem_MarkAsRead | no | `markUpdateItemAsRead()` [`api/update/repository.ts:47`](../../../app/src/api/update/repository.ts#L47) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsRead`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
+| 6 | `UBTConnect/Home/FeedBlock_Updates/ServiceAPIAction_UI_UpdateItem_MarkAsUnread` | service action | `FeedBlock_Updates` | onClick in ContextMenu → event event_MarkAsUnread of ContextMenu → event event_MarkAsUnread of Update_ListItem → FeedBlock_Updates.event_MarkAsUnread → server Action_UI_UpdateItem_MarkAsUnread | no | `markUpdateItemAsUnread()` [`api/update/repository.ts:52`](../../../app/src/api/update/repository.ts#L52) (page) | `FeedUpdates → useFeedUpdates → markUpdateItemAsUnread`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
+| 7 | `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics` | data action | `HomeFeed` | HomeFeed.OnReady → HomeFeed.screenEvent_OnReady → HomeFeed.DataActionGetCommunityStatistics<br>HomeFeed fetch at start → HomeFeed.DataActionGetCommunityStatistics | yes | – | – | **missing** |
+| 8 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_CreateShareProfileLink` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → event onClick of CircleButton_WithLabel → ShareSheet.handler_OnClickExternalOption → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
+| 9 | `UBTConnect_Utils/CW_Share/ShareSheet/ActionCS_ShareObject` | server action | `ShareSheet` | onClick in CircleButton_WithLabel → CircleButton_WithLabel.action_OnClick → … → ShareSheet.action_SubmitShare → server CS_ShareObject<br>ShareSheet.handler_OnClickSend → ShareSheet.action_SubmitShare → server CS_ShareObject | no | `csShareObject()` [`api/share/shareSheet.ts:25`](../../../app/src/api/share/shareSheet.ts#L25) (page) | `ShareSheetContainer → useShareSheet → csShareObject`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 10 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetAvailableMembers` | data action | `ShareSheet` | ShareSheet.handler_InputEventSubmit → ShareSheet.DataActionGetAvailableMembers<br>ShareSheet fetch at start → ShareSheet.DataActionGetAvailableMembers | no | `fetchAvailableMembers()` [`api/member/repository.ts:19`](../../../app/src/api/member/repository.ts#L19) (page) | `ShareSheetContainer → useShareSheet → useAvailableMembersQuery → fetchAvailableMembers`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 11 | `UBTConnect_Utils/CW_Share/ShareSheet/DataActionGetRecentlyShared` | data action | `ShareSheet` | ShareSheet.OnParametersChanged → ShareSheet.screenEvent_OnParametersChanged → ShareSheet.DataActionGetRecentlyShared<br>ShareSheet fetch at start → ShareSheet.DataActionGetRecentlyShared | no | `fetchRecentlyShared()` [`api/share/shareSheet.ts:14`](../../../app/src/api/share/shareSheet.ts#L14) (page) | `ShareSheetContainer → useShareSheet → useRecentlySharedQuery → fetchRecentlyShared`<br>[`containers/ShareSheet/ShareSheetContainer.tsx`](../../../app/src/containers/ShareSheet/ShareSheetContainer.tsx) | implemented |
+| 12 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in ContextMenu → event event_MarkAsRead of ContextMenu → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All<br>onClick in ContextMenu → event event_MarkAsUnread of ContextMenu → … → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx)<br>`FeedUpdates → useFeedUpdates → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`pages/HomeFeed/HomeFeedPage.tsx`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx) | implemented |
+| 13 | `UBTConnect_Utils/ActionCS_CreateShareProfileLink` | server action | `UBTConnect_Utils` | event event_Clicked of ContactPopup → SharePopup.onClick_CallButton → … → UBTConnect_Utils.shareEntity_ByURL → server CS_CreateShareProfileLink | no | – | – | not applicable (nativeOnly) |
 
 ## 6. User actions
 
@@ -95,32 +98,31 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
-| 1 | `FeedBlock_CommunityPopulation` | `clicked of CustomContainer` | `onClick_Block` | – | goes to Updates_SingleList |
-| 2 | `FeedBlock_Services` | `onClick of CircleButton` | `onClick_ServiceSettings` | – | goes to Services |
-| 3 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `orbit` | goes to OrbitLanding |
-| [4](#614-feedblock_services-onclick_service-ldm) | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `lDM` | goes to LDM_MyEvents_V2, LDM_MyEvents |
-| 5 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `myCalendar` | goes to MyEntertaining |
-| 6 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `assemble` | goes to AssembleEvents |
-| 7 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `orbitAdmin` | goes to OrbitAdminLanding |
-| 8 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `myNotes` | goes to Notes |
-| 9 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `oneSchoolGlobal` | shows a message |
-| 10 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `other` | asks for a confirmation |
-| 11 | `FeedBlock_Updates` | `event_Share of ListItem` | `handler__Share` | – | shows a message |
-| 12 | `FeedBlock_Updates` | `event_SendGift of ListItem` | `event_SendGift` | – | shows a message |
-| [13](#6113-feedblock_updates-event_markasunread) | `FeedBlock_Updates` | `event_MarkAsUnread of ListItem` | `event_MarkAsUnread` | – | calls Action_UI_UpdateItem_MarkAsUnread, Get_UI_UpdateItems_UnreadCount_All |
-| [14](#6114-feedblock_updates-event_listitemonclick) | `FeedBlock_Updates` | `onClick of ListItem` | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| [15](#6115-feedblock_updates-event_markasread) | `FeedBlock_Updates` | `event_MarkAsRead of ListItem` | `event_MarkAsRead` | – | calls Action_UI_UpdateItem_MarkAsRead, Get_UI_UpdateItems_UnreadCount_All |
-| 16 | `FeedBlock_Updates` | `clicked of CustomContainer` | `onClick_SubscriptionUpgrade` | – | asks for a confirmation |
-| 17 | `Feed_Embeded` | `onDownloaded of FeedCMS` | `handle_Download` | – | opens an external link |
-| [18](#6118-feed_embeded-handle_share_others) | `Feed_Embeded` | `event_ShareToOthers of SharePopup` | `handle_Share_Others` | – | calls GetAllApplicationEvents, CS_CreateShareProfileLink, AppManager_SynchAppContext |
-| 19 | `Feed_Embeded` | `event_ShareToConnect of SharePopup` | `handle_Share_Connect` | – | goes to LegacyShareObject |
-| 20 | `Feed_Embeded` | `onDownloadError of HandleDownload` | `handleDownloadOnDownloadError` | – | shows a message |
-| 21 | `HomeFeed` | `onSearchClick of HomePage` | `onClick_Search` | – | goes to Search |
-| 22 | `HomeFeed` | `onClick_ViewAll of FeedWrapper` | `section_UpdatesOnClick_ViewAll` | – | goes to Updates_SingleList |
+| 1 | `FeedBlock_Services` | `onClick of CircleButton` | `onClick_ServiceSettings` | – | goes to Services |
+| 2 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `orbit` | goes to OrbitLanding |
+| [3](#613-feedblock_services-onclick_service-ldm) | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `lDM` | goes to LDM_MyEvents_V2, LDM_MyEvents |
+| 4 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `myCalendar` | goes to MyEntertaining |
+| 5 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `assemble` | goes to AssembleEvents |
+| 6 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `orbitAdmin` | goes to OrbitAdminLanding |
+| 7 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `myNotes` | goes to Notes |
+| 8 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `oneSchoolGlobal` | shows a message |
+| 9 | `FeedBlock_Services` | `onClick of WithLabel` | `onClick_Service` | `other` | asks for a confirmation |
+| 10 | `FeedBlock_Updates` | `event_Share of ListItem` | `handler__Share` | – | shows a message |
+| 11 | `FeedBlock_Updates` | `event_SendGift of ListItem` | `event_SendGift` | – | shows a message |
+| [12](#6112-feedblock_updates-event_markasunread) | `FeedBlock_Updates` | `event_MarkAsUnread of ListItem` | `event_MarkAsUnread` | – | calls Action_UI_UpdateItem_MarkAsUnread, Get_UI_UpdateItems_UnreadCount_All |
+| [13](#6113-feedblock_updates-event_listitemonclick) | `FeedBlock_Updates` | `onClick of ListItem` | `event_ListItemOnClick` | – | calls Action_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
+| [14](#6114-feedblock_updates-event_markasread) | `FeedBlock_Updates` | `event_MarkAsRead of ListItem` | `event_MarkAsRead` | – | calls Action_UI_UpdateItem_MarkAsRead, Get_UI_UpdateItems_UnreadCount_All |
+| 15 | `FeedBlock_Updates` | `clicked of CustomContainer` | `onClick_SubscriptionUpgrade` | – | asks for a confirmation |
+| 16 | `Feed_Embeded` | `onDownloaded of FeedCMS` | `handle_Download` | – | opens an external link |
+| [17](#6117-feed_embeded-handle_share_others) | `Feed_Embeded` | `event_ShareToOthers of SharePopup` | `handle_Share_Others` | – | calls GetAllApplicationEvents, CS_CreateShareProfileLink, AppManager_SynchAppContext |
+| 18 | `Feed_Embeded` | `event_ShareToConnect of SharePopup` | `handle_Share_Connect` | – | goes to LegacyShareObject |
+| 19 | `Feed_Embeded` | `onDownloadError of HandleDownload` | `handleDownloadOnDownloadError` | – | shows a message |
+| 20 | `HomeFeed` | `onSearchClick of HomePage` | `onClick_Search` | – | goes to Search |
+| 21 | `HomeFeed` | `onClick_ViewAll of FeedWrapper` | `section_UpdatesOnClick_ViewAll` | – | goes to Updates_SingleList |
 
 <details><summary>5 diagrams (handlers with two or more effects)</summary>
 
-#### 6.1.4 FeedBlock_Services: onClick_Service (lDM)
+#### 6.1.3 FeedBlock_Services: onClick_Service (lDM)
 
 ```mermaid
 sequenceDiagram
@@ -133,7 +135,7 @@ sequenceDiagram
   B->>N: go to LDM_MyEvents
 ```
 
-#### 6.1.13 FeedBlock_Updates: event_MarkAsUnread
+#### 6.1.12 FeedBlock_Updates: event_MarkAsUnread
 
 ```mermaid
 sequenceDiagram
@@ -149,7 +151,7 @@ sequenceDiagram
   S-->>B: UnreadCount
 ```
 
-#### 6.1.14 FeedBlock_Updates: event_ListItemOnClick
+#### 6.1.13 FeedBlock_Updates: event_ListItemOnClick
 
 ```mermaid
 sequenceDiagram
@@ -167,7 +169,7 @@ sequenceDiagram
   Note over B: confirm dialog
 ```
 
-#### 6.1.15 FeedBlock_Updates: event_MarkAsRead
+#### 6.1.14 FeedBlock_Updates: event_MarkAsRead
 
 ```mermaid
 sequenceDiagram
@@ -183,7 +185,7 @@ sequenceDiagram
   S-->>B: UnreadCount
 ```
 
-#### 6.1.18 Feed_Embeded: handle_Share_Others
+#### 6.1.17 Feed_Embeded: handle_Share_Others
 
 ```mermaid
 sequenceDiagram
@@ -209,32 +211,31 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| 1 | [`pages/HomeFeed/HomeFeedPage.tsx:128`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L128) | `<HomeLayout>` | `onOnSearchClick` | `inline` | – | goes to Search |
-| 2 | [`pages/HomeFeed/HomeFeedPage.tsx:156`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L156) | `<CommunityPopulation>` | `onClick` | `inline` | – | goes to Updates_SingleList |
-| 3 | [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170) | `<Section_FeedWrapper>` | `onOnClickViewAll` | `inline` | – | goes to Updates_SingleList |
-| 4 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickServiceSettings` | `services.onClickServiceSettings` | – | goes to Services |
-| 5 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `Orbit` | goes to OrbitLanding |
-| 6 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `LDM` | goes to LDM_MyEvents_V2 |
-| 7 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `MyCalendar` | goes to MyEntertaining |
-| 8 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `Assemble` | goes to AssembleEvents |
-| 9 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `OrbitAdmin` | goes to OrbitAdminLanding |
-| 10 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `MyNotes` | goes to Notes |
-| 11 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `ElGusto` | opens an external link |
-| 12 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `OneSchoolGlobal` | shows a message |
-| 13 | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `other` | asks for a confirmation |
-| [14](#6214-feedblock_services-ongotoexternalapp) | [`pages/HomeFeed/HomeFeedPage.tsx:60`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L60) | `<FeedBlock_Services>` | `onGoToExternalApp` | `services.onGoToExternalApp` | – | opens an external link; shows a message |
-| [15](#6215-feedblock_updates-onitemclick) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onItemClick` | `useFeedUpdates().onItemClick` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
-| 16 | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onSendGift` | `useFeedUpdates().onSendGift` | – | shows a message |
-| [17](#6217-feedblock_updates-onmarkasread) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onMarkAsRead` | `useFeedUpdates().onMarkAsRead` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [18](#6218-feedblock_updates-onmarkasunread) | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onMarkAsUnread` | `useFeedUpdates().onMarkAsUnread` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| 19 | [`pages/HomeFeed/HomeFeedPage.tsx:66`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L66) | `<FeedBlock_Updates>` | `onClickUpgrade` | `useFeedUpdates().onClickUpgrade` | – | asks for a confirmation |
-| [20](#6220-notificationicon-oniconclick) | [`pages/HomeFeed/HomeFeedPage.tsx:132`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L132) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
-| 21 | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onDownloaded` | `embeddedFeed.onDownloaded` | – | opens an external link |
-| 22 | [`pages/HomeFeed/HomeFeedPage.tsx:177`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L177) | `<EmbeddedFeed>` | `onShareToConnect` | `embeddedFeed.onShareToConnect` | – | goes to LegacyShareObject |
+| 1 | [`pages/HomeFeed/HomeFeedPage.tsx:125`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L125) | `<HomeLayout>` | `onOnSearchClick` | `inline` | – | goes to Search |
+| 2 | [`pages/HomeFeed/HomeFeedPage.tsx:163`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L163) | `<Section_FeedWrapper>` | `onOnClickViewAll` | `inline` | – | goes to Updates_SingleList |
+| 3 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickServiceSettings` | `services.onClickServiceSettings` | – | goes to Services |
+| 4 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `Orbit` | goes to OrbitLanding |
+| 5 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `LDM` | goes to LDM_MyEvents_V2 |
+| 6 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `MyCalendar` | goes to MyEntertaining |
+| 7 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `Assemble` | goes to AssembleEvents |
+| 8 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `OrbitAdmin` | goes to OrbitAdminLanding |
+| 9 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `MyNotes` | goes to Notes |
+| 10 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `ElGusto` | opens an external link |
+| 11 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `OneSchoolGlobal` | shows a message |
+| 12 | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onClickService` | `services.onClickService` | `other` | asks for a confirmation |
+| [13](#6213-feedblock_services-ongotoexternalapp) | [`pages/HomeFeed/HomeFeedPage.tsx:59`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L59) | `<FeedBlock_Services>` | `onGoToExternalApp` | `services.onGoToExternalApp` | – | opens an external link; shows a message |
+| [14](#6214-feedblock_updates-onitemclick) | [`pages/HomeFeed/HomeFeedPage.tsx:65`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L65) | `<FeedBlock_Updates>` | `onItemClick` | `useFeedUpdates().onItemClick` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead; goes to HouseholdCarousel, HouseholdDetails; asks for a confirmation |
+| 15 | [`pages/HomeFeed/HomeFeedPage.tsx:65`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L65) | `<FeedBlock_Updates>` | `onSendGift` | `useFeedUpdates().onSendGift` | – | shows a message |
+| [16](#6216-feedblock_updates-onmarkasread) | [`pages/HomeFeed/HomeFeedPage.tsx:65`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L65) | `<FeedBlock_Updates>` | `onMarkAsRead` | `useFeedUpdates().onMarkAsRead` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
+| [17](#6217-feedblock_updates-onmarkasunread) | [`pages/HomeFeed/HomeFeedPage.tsx:65`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L65) | `<FeedBlock_Updates>` | `onMarkAsUnread` | `useFeedUpdates().onMarkAsUnread` | – | calls ServiceAPIAction_UI_UpdateItem_MarkAsRead, ServiceAPIAction_UI_UpdateItem_MarkAsUnread, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
+| 18 | [`pages/HomeFeed/HomeFeedPage.tsx:65`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L65) | `<FeedBlock_Updates>` | `onClickUpgrade` | `useFeedUpdates().onClickUpgrade` | – | asks for a confirmation |
+| [19](#6219-notificationicon-oniconclick) | [`pages/HomeFeed/HomeFeedPage.tsx:129`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L129) | `<NotificationIcon>` | `onIconClick` | `notificationIcon.onIconClick` | – | goes to Notifications, MessageList |
+| 20 | [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170) | `<EmbeddedFeed>` | `onDownloaded` | `embeddedFeed.onDownloaded` | – | opens an external link |
+| 21 | [`pages/HomeFeed/HomeFeedPage.tsx:170`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L170) | `<EmbeddedFeed>` | `onShareToConnect` | `embeddedFeed.onShareToConnect` | – | goes to LegacyShareObject |
 
 <details><summary>5 diagrams (handlers with two or more effects)</summary>
 
-#### 6.2.14 FeedBlock_Services: onGoToExternalApp
+#### 6.2.13 FeedBlock_Services: onGoToExternalApp
 
 ```mermaid
 sequenceDiagram
@@ -248,7 +249,7 @@ sequenceDiagram
   H->>X: openInApp_OpenApp
 ```
 
-#### 6.2.15 FeedBlock_Updates: onItemClick
+#### 6.2.14 FeedBlock_Updates: onItemClick
 
 ```mermaid
 sequenceDiagram
@@ -268,7 +269,7 @@ sequenceDiagram
   H->>N: go to HouseholdDetails
 ```
 
-#### 6.2.17 FeedBlock_Updates: onMarkAsRead
+#### 6.2.16 FeedBlock_Updates: onMarkAsRead
 
 ```mermaid
 sequenceDiagram
@@ -288,7 +289,7 @@ sequenceDiagram
   A-->>H: UnreadCount
 ```
 
-#### 6.2.18 FeedBlock_Updates: onMarkAsUnread
+#### 6.2.17 FeedBlock_Updates: onMarkAsUnread
 
 ```mermaid
 sequenceDiagram
@@ -308,7 +309,7 @@ sequenceDiagram
   A-->>H: UnreadCount
 ```
 
-#### 6.2.20 NotificationIcon: onIconClick
+#### 6.2.19 NotificationIcon: onIconClick
 
 ```mermaid
 sequenceDiagram
@@ -407,9 +408,8 @@ Data actions and aggregates. The tool reads `dataFetchDependenciesOriginal`: `0`
 
 | Block | Data action | Fetch | Read by | Place |
 |---|---|---|---|---|
-| `HomeFeed` | `GetCommunityStatistics` | on demand (`-1`) | `CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Home.HomeFeed.mvc.js:326`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L326)), `view` ([`UBTConnect.Home.HomeFeed.mvc.js:327`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L327)), `CommunityNumbers.In_IsLoading` ([`UBTConnect.Home.HomeFeed.mvc.js:328`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L328)), `text` ([`UBTConnect.Home.HomeFeed.mvc.js:348`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L348)) | [`UBTConnect.Home.HomeFeed.mvc.js:682`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L682) |
+| `HomeFeed` | `GetCommunityStatistics` | on demand (`-1`) | `Directory_CommunityNumbers.In_CommunityStatistics` ([`UBTConnect.Home.HomeFeed.mvc.js:326`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L326)), `view` ([`UBTConnect.Home.HomeFeed.mvc.js:327`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L327)), `Directory_CommunityNumbers.In_IsLoading` ([`UBTConnect.Home.HomeFeed.mvc.js:328`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L328)), `text` ([`UBTConnect.Home.HomeFeed.mvc.js:348`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L348)) | [`UBTConnect.Home.HomeFeed.mvc.js:682`](../../sources/runtime/UBTConnect.Home.HomeFeed.mvc.js#L682) |
 | `FeedBlock_Services` | `GetServices` | at start (`0`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Home.FeedBlock_Services.mvc.js:512`](../../sources/raw/UBTConnect.Home.FeedBlock_Services.mvc.js#L512)), `text` ([`UBTConnect.Home.FeedBlock_Services.mvc.js:618`](../../sources/raw/UBTConnect.Home.FeedBlock_Services.mvc.js#L618)), `action onAfterFetch_GetServices` ([`UBTConnect.Home.FeedBlock_Services.mvc.js:830`](../../sources/raw/UBTConnect.Home.FeedBlock_Services.mvc.js#L830)), `action onClick_Service` ([`UBTConnect.Home.FeedBlock_Services.mvc.js:1003`](../../sources/raw/UBTConnect.Home.FeedBlock_Services.mvc.js#L1003)) | [`UBTConnect.Home.FeedBlock_Services.mvc.js:688`](../../sources/raw/UBTConnect.Home.FeedBlock_Services.mvc.js#L688) |
-| `FeedBlock_CommunityPopulation` | `FetchCount` | at start (`0`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js:244`](../../sources/raw/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js#L244)), `view` ([`UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js:274`](../../sources/raw/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js#L274)), `text` ([`UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js:302`](../../sources/raw/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js#L302)) | [`UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js:323`](../../sources/raw/UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js#L323) |
 | `FeedBlock_Updates` | `FetchUpdates` | at start (`0`) | `SkeletonSection.In_IsLoading` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:154`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L154)), `SkeletonSection.source` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:178`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L178)), `view` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:186`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L186)), `Update_ListItem.In_Date` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:251`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L251)), `Update_ListItem.IsEnabled` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:253`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L253)), `Update_ListItem.In_BirthType` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:256`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L256)), `Update_ListItem.In_IsRead` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:272`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L272)), `Update_ListItem.In_ParentsNames` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:274`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L274)), `Update_ListItem.HasBorderBottom` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:276`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L276)), `Update_ListItem.In_HasShare` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:288`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L288)), `Update_ListItem.In_Name` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:291`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L291)), `Update_ListItem.In_Type_UpdateFeedItem` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:293`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L293)), `Update_ListItem.In_Location` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:295`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L295)), `shown if (Update_ListItem)` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:387`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L387)), `text` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:550`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L550)), `action event_ListItemOnClick` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:658`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L658)), `action event_MarkAsUnread` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:763`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L763)), `action event_MarkAsRead` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:813`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L813)), `action fetchUpdatesOnAfterFetch` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:855`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L855)), `action onInitialize` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:943`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L943)), `action handler__Share` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:1063`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L1063)), `action onReady` ([`UBTConnect.Home.FeedBlock_Updates.mvc.js:1129`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L1129)) | [`UBTConnect.Home.FeedBlock_Updates.mvc.js:575`](../../sources/raw/UBTConnect.Home.FeedBlock_Updates.mvc.js#L575) |
 
 ### 8.2 React
@@ -420,31 +420,12 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 |---|---|---|---|---|---|
 | `Dialog_GoExternalApp.tsx` | `useEffect` (`Dialog_GoExternalApp`) | `[widgetId, onOnPopUpReady]` | no | none | [`pages/HomeFeed/components/Dialog_GoExternalApp.tsx:49`](../../../app/src/pages/HomeFeed/components/Dialog_GoExternalApp.tsx#L49) |
 | `useFeedUpdates.ts` | `useEffect` (`useFeedUpdates`) | `[fetched, onEventNoUpdates]` | no | none | [`pages/HomeFeed/hooks/useFeedUpdates.ts:83`](../../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L83) |
-| `useHomeFeedReady.ts` | `useEffect` (`useHomeFeedReady`) | `[flow, restored]` | yes | call `/api/UBTConnect/HomeFeed/DataActionGetCommunityStatistics` | [`pages/HomeFeed/hooks/useHomeFeedReady.ts:17`](../../../app/src/pages/HomeFeed/hooks/useHomeFeedReady.ts#L17) |
-
-<details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
-
-#### 8.2.1 useHomeFeedReady: useEffect
-
-```mermaid
-sequenceDiagram
-  autonumber
-  participant R as React
-  participant H as useHomeFeedReady · useHomeFeedReady.ts
-  participant A as Server (React api)
-  R->>H: useEffect (after the mount and when [flow, restored] changes)
-  H->>A: DataActionGetCommunityStatistics
-  A-->>H: DataActionGetCommunityStatistics
-  R->>H: cleanup (unmount or before the next run)
-```
-
-</details>
+| `useHomeFeedReady.ts` | `useEffect` (`useHomeFeedReady`) | `[flow, restored, setCommunityStatistics]` | yes | none | [`pages/HomeFeed/hooks/useHomeFeedReady.ts:36`](../../../app/src/pages/HomeFeed/hooks/useHomeFeedReady.ts#L36) |
 
 Queries. A query fetches when its component mounts and when its key changes. `Read by` lists what reads the result in the same file.
 
 | File | Hook (function) | Calls | Read by | Place |
 |---|---|---|---|---|
-| `HomeFeedPage.tsx` | `useCommunityPopulationQuery` (`HomeFeed`) | `/api/UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount` | `CommunityPopulation.isLoading` ([`L154`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L154)), `CommunityPopulation.total` ([`L155`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L155)) | [`pages/HomeFeed/HomeFeedPage.tsx:80`](../../../app/src/pages/HomeFeed/HomeFeedPage.tsx#L80) |
 | `useFeedServices.ts` | `useFeedServicesQuery` (`useFeedServices`) | `/api/UBTConnect/FeedBlock_Services/DataActionGetServices` | `var pages` ([`L67`](../../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L67)), `var data` ([`L108`](../../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L108)), `return` ([`L145`](../../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L145)) | [`pages/HomeFeed/hooks/useFeedServices.ts:57`](../../../app/src/pages/HomeFeed/hooks/useFeedServices.ts#L57) |
 | `useFeedUpdates.ts` | `useFeedUpdatesQuery` (`useFeedUpdates`) | `/api/UBTConnect/FeedBlock_Updates/DataActionFetchUpdates` | `var fetched` ([`L82`](../../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L82)), `return` ([`L132`](../../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L132)) | [`pages/HomeFeed/hooks/useFeedUpdates.ts:74`](../../../app/src/pages/HomeFeed/hooks/useFeedUpdates.ts#L74) |
 
@@ -490,7 +471,7 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useHomeFeedReady.ts` | flow handler | `useHomeFeedReady` | none | [`pages/HomeFeed/hooks/useHomeFeedReady.ts:26`](../../../app/src/pages/HomeFeed/hooks/useHomeFeedReady.ts#L26) |
+| `useHomeFeedReady.ts` | flow handler | `useHomeFeedReady` | none | [`pages/HomeFeed/hooks/useHomeFeedReady.ts:50`](../../../app/src/pages/HomeFeed/hooks/useHomeFeedReady.ts#L50) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -518,6 +499,8 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Gallery` | `OutSystemsUI_2_23` | [`components/ui/Gallery/Gallery.tsx`](../../../app/src/components/ui/Gallery/Gallery.tsx) | 0 |
 | `CircleButton_WithLabel` | `UBTConnectLibrary` | [`components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx`](../../../app/src/components/ui/CircleButtonWithLabel/CircleButtonWithLabel.tsx) | 0 |
 | `Dialog_GoExternalApp` | `UBTConnect_Utils` | [`pages/HomeFeed/components/Dialog_GoExternalApp.tsx`](../../../app/src/pages/HomeFeed/components/Dialog_GoExternalApp.tsx), [`pages/HomeFeed/hooks/goToExternalApp.ts`](../../../app/src/pages/HomeFeed/hooks/goToExternalApp.ts) | 1 |
+| `Directory_CommunityNumbers` | `UBTConnect` | [`components/feed/CommunityPopulation/CommunityNumbers.tsx`](../../../app/src/components/feed/CommunityPopulation/CommunityNumbers.tsx) | 0 |
+| `Directory_CommunityNumbers__Number` | `UBTConnect` | [`components/feed/CommunityPopulation/CommunityNumbers.tsx`](../../../app/src/components/feed/CommunityPopulation/CommunityNumbers.tsx) | 0 |
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
 | `Update_ListItem` | `UBTConnectLibrary` | [`components/feed/UpdateListItem/UpdateListItem.tsx`](../../../app/src/components/feed/UpdateListItem/UpdateListItem.tsx) | 0 |
 | `TagContent` | `UBTConnectLibrary` | [`components/ui/TagContent/TagContent.tsx`](../../../app/src/components/ui/TagContent/TagContent.tsx) | 0 |

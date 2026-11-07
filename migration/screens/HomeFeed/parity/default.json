@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "9e43ebb914614f4006e2",
+ "fingerprint": "045ca8cefff064b8fb8e",
  "options": {
   "text": true,
   "style": true,
@@ -27,29 +27,22 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:02:30.690Z",
- "counts": {
-  "structure": 5,
-  "class": 1,
-  "style": 1,
-  "position": 2,
-  "layout": 1,
-  "pixel": 1,
-  "call": 1
- },
+ "at": "2026-11-07T09:32:00.596Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
   "ignoreSubtrees": 3,
   "FEED-CMS-D8B-IFRAME": 3,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "SLIDER-APPEAR-TIMING": 1
+  "SLIDER-APPEAR-TIMING": 1,
+  "CAPTURE-MASKED-TEXT-COMMUNITYNUMBERS-PIXEL": 1
  },
  "pixel": {
-  "ratio": 0.3306,
-  "maxCell": 1,
+  "ratio": 0.00068,
+  "maxCell": 0.0744,
   "maxCellRatio": 0.03,
-  "diffPixels": 73464,
-  "comparedPixels": 222213,
+  "diffPixels": 142,
+  "comparedPixels": 207630,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -60,13 +53,11 @@
    390,
    844
   ],
-  "masks": 5,
+  "masks": 18,
   "hotspots": [
-   "160,440 (1600px)",
-   "200,440 (1600px)",
-   "240,440 (1600px)",
-   "280,440 (1600px)",
-   "320,440 (1600px)"
+   "80,600 (119px)",
+   "200,760 (14px)",
+   "40,600 (9px)"
   ],
   "diffPng": "migration/screens/HomeFeed/parity/default.diff.png"
  },
@@ -75,68 +66,7 @@
    "load"
   ],
   "expected": 11,
-  "actual": 13
+  "actual": 12
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#$b6.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base",
-   "detail": "missing .background-neutral-0 .margin-top-s extra .background-transparent"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base",
-   "detail": "margin-top 8px → 0px; background-color rgb(255, 255, 255) → rgba(0, 0, 0, 0)"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Header",
-   "detail": "offset in parent 16,24 → 16,8"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Header",
-   "detail": "358×24 → 358×0"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Header > div#b8-$b2.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Content",
-   "detail": "offset in parent 16,64 → 16,8"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Content > div#b8-Content > div#$b9.OSBlockWidget[Home.FeedBlock_Updates]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-4.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Section_Updates.OSBlockWidget[Home.Section_FeedWrapper] > div#b8-$b1.OSBlockWidget[App_Common_Blocks.Section] > div#b8-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b8-b1-b1-Content.background-neutral-0.margin-top-s.padding-x-base > div#b8-b1-Content > div#b8-Content > div#$b7.OSBlockWidget[Home.FeedBlock_CommunityPopulation]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "33.06% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 160,440 (1600px); 200,440 (1600px); 240,440 (1600px); 280,440 (1600px); 320,440 (1600px); see migration/screens/HomeFeed/parity/default.diff.png"
-  },
-  {
-   "kind": "call",
-   "path": "calls:load",
-   "detail": "extra call UBTConnect/DataActionFetchCount"
-  }
- ]
+ "diffs": []
 }
