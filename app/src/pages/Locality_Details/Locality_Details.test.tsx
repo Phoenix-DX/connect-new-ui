@@ -75,14 +75,18 @@ describe('Locality_Details page', () => {
     await open();
     expect(document.getElementById('$b7')?.textContent).toBe('Bahia Blanca, Argentina');
     expect(blocks('Directory_Locality.Locality_DateTimeLabel')).toHaveLength(1);
-    // The counts of the recorded Get_LocalityDetails fixture.
-    expect(screen.getByText('95 Brethren')).toBeInTheDocument();
+    // The counts of the recorded Get_LocalityDetails fixture (the household cards load before it answers).
+    expect(await screen.findByText('95 Brethren')).toBeInTheDocument();
     expect(screen.getByText('25 Households')).toBeInTheDocument();
     expect(blocks('Directory_Household_Blocks.Household_Card')).toHaveLength(23);
+    // OnInitialize selects Households (SetTags): the household list loads before the screen is initialized
+    // (calls.json of 2026-11-07: GetLocalityHouseholds before GetUserInformation and Get_LocalityDetails).
     expect(calledActions().filter((a) => a === GET_DETAILS || a === GET_HOUSEHOLDS)).toEqual([
-      GET_DETAILS,
       GET_HOUSEHOLDS,
+      GET_DETAILS,
     ]);
+    // One GetMembers per card (also in StrictMode).
+    expect(calledActions().filter((a) => a === GET_MEMBERS)).toHaveLength(23);
     expect(details).toEqual([
       expect.objectContaining({ LocalityId: '252', IsScreenInitialized: true, TagsList_SelectedTag: 'Households' }),
     ]);
@@ -106,7 +110,16 @@ describe('Locality_Details page', () => {
     await waitFor(() => {
       expect(document.getElementById('b21-b3-l1-3709_3-$b2')).not.toBeNull();
     });
-    expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(2);
+    expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(1);
+  });
+
+  it('shows the country as the subtitle of the interchange locality', async () => {
+    await open();
+    clickTag('Interchange');
+    await waitFor(() => {
+      expect(screen.getByText('Monte Hermoso')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Argentina')).toBeInTheDocument();
   });
 
   it('opens HouseholdCarousel at the clicked household with every household as the preload object', async () => {
@@ -162,13 +175,13 @@ describe('Locality_Details page', () => {
     const view = await open();
     clickTag('OneSchool Global');
     await waitFor(() => {
-      expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(2);
+      expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(1);
     });
-    // The actions menus of the cards have their contact details before the screen is left.
+    // The actions menu of the card has its contact details before the screen is left.
     await waitFor(() => {
       expect(
         calledActions().filter((a) => a === 'Directory_EntityDetailsActions/DataActionFetchContactDetails'),
-      ).toHaveLength(2);
+      ).toHaveLength(1);
     });
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 50));
@@ -176,12 +189,12 @@ describe('Locality_Details page', () => {
     const school = cards('Directory_Locality.Locality_OneSchoolGlobal')[0];
     if (school) fireEvent.click(school);
     await waitFor(() => {
-      expect(view.at()).toBe('/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430');
+      expect(view.at()).toBe('/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=132');
     });
     window.__osCalls = [];
     await act(() => view.router.navigate(-1));
     await waitFor(() => {
-      expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(2);
+      expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(1);
     });
     expect(document.getElementById('$b7')?.textContent).toBe('Bahia Blanca, Argentina');
     // The actions menus of the restored cards end OnReady too (CheckRestored, Directory_EntityDetailsActions.mvc.js:
@@ -196,6 +209,12 @@ describe('Locality_Details page', () => {
     // Household_Card OnReady ends on a view restored from the cache (Household_Card.mvc.js:478-490).
     setFlags({ C2EnableCarousel: true });
     const view = await open();
+    // Every card has its GetMembers answer before the screen is left (an answer after the unmount is dropped, R1).
+    await waitFor(() => {
+      expect(document.querySelectorAll('[id$="-b4-b3-Placeholder_LoadingSection"].ubt-skeleton-section')).toHaveLength(
+        0,
+      );
+    });
     const first = cards('Directory_Household_Blocks.Household_Card')[0];
     if (first) fireEvent.click(first);
     await waitFor(() => {

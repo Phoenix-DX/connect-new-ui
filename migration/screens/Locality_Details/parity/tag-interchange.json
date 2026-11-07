@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 2,
- "fingerprint": "a9b93aa27fb0991dfc6a",
+ "fingerprint": "256080ff5c5cb872e0b9",
  "options": {
   "text": true,
   "style": true,
@@ -27,23 +27,18 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:39:46.038Z",
- "counts": {
-  "text": 1,
-  "pseudo": 1,
-  "layout": 1,
-  "pixel": 1
- },
+ "at": "2026-11-07T09:37:28.726Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "ignoreSubtrees": 3,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00589,
-  "maxCell": 0.1156,
+  "ratio": 0.00025,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 1814,
+  "diffPixels": 77,
   "comparedPixels": 308092,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -57,11 +52,10 @@
   ],
   "masks": 9,
   "hotspots": [
-   "200,760 (185px)",
-   "0,760 (160px)",
-   "40,760 (160px)",
-   "80,760 (160px)",
-   "120,760 (160px)"
+   "200,800 (35px)",
+   "200,760 (25px)",
+   "160,120 (9px)",
+   "160,80 (8px)"
   ],
   "diffPng": "migration/screens/Locality_Details/parity/tag-interchange.diff.png"
  },
@@ -72,28 +66,7 @@
    "tag-interchange"
   ],
   "expected": 40,
-  "actual": 66
+  "actual": 43
  },
- "diffs": [
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b20.OSBlockWidget[Directory_Locality.Locality_Interchange] > div#b20-$b1.OSBlockWidget[Directory_Interchange.Directory_Interchange_StatisticsList] > div#b20-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b20-b1-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b20-b1-b2-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b20-b1-l1-146353_0-$b3.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b20-b1-l1-146353_0-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b20-b1-l1-146353_0-b3-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b20-b1-l1-146353_0-b3-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b20-b1-l1-146353_0-b3-b2-b1-Column1.columns-item > div#b20-b1-l1-146353_0-b3-b2-Left.ubt-columns--column.ubt-columns--left > div#b20-b1-l1-146353_0-b3-$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b3-Content.margin-bottom-xs.ubt-custom-container > div#b20-b1-l1-146353_0-b3-$b4.OSBlockWidget[BasePatterns.CustomText] > div.font-size-xxs.text-neutral-8 > span",
-   "detail": "\"Argentina\" → \"\""
-  },
-  {
-   "kind": "pseudo",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b20.OSBlockWidget[Directory_Locality.Locality_Interchange] > div#b20-$b1.OSBlockWidget[Directory_Interchange.Directory_Interchange_StatisticsList] > div#b20-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b20-b1-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b20-b1-b2-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b20-b1-l1-146353_0-$b3.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b20-b1-l1-146353_0-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b20-b1-l1-146353_0-b3-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b20-b1-l1-146353_0-b3-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b20-b1-l1-146353_0-b3-b2-b1-Column1.columns-item > div#b20-b1-l1-146353_0-b3-b2-Left.ubt-columns--column.ubt-columns--left > div#b20-b1-l1-146353_0-b3-$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b3-Content.margin-bottom-xs.ubt-custom-container > div#b20-b1-l1-146353_0-b3-$b4.OSBlockWidget[BasePatterns.CustomText] > div.font-size-xxs.text-neutral-8 > span",
-   "detail": "::after extra in build"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages] > div#b1-LayoutWrapper_Main.hide-header-on-scroll.ios-bounce.layout > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b20.OSBlockWidget[Directory_Locality.Locality_Interchange] > div#b20-$b1.OSBlockWidget[Directory_Interchange.Directory_Interchange_StatisticsList] > div#b20-b1-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-b1-Content.background-neutral-0.padding-x-base.padding-y-s > div#b20-b1-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b20-b1-b2-Placeholder_LoadingSection > div.OSFillParent.list.list--gap-s > div#b20-b1-l1-146353_0-$b3.OSBlockWidget[ConnectCorePatterns.Statistics_ListItem] > div#b20-b1-l1-146353_0-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b1-Content.background-neutral-0.border-color-neutral-3.border-radius-large > div > div#b20-b1-l1-146353_0-b3-$b2.OSBlockWidget[BasePatterns.Columns_Two] > div#b20-b1-l1-146353_0-b3-b2-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.phone-break-none > div#b20-b1-l1-146353_0-b3-b2-b1-Column1.columns-item > div#b20-b1-l1-146353_0-b3-b2-Left.ubt-columns--column.ubt-columns--left > div#b20-b1-l1-146353_0-b3-$b3.OSBlockWidget[BasePatterns.CustomContainer] > div#b20-b1-l1-146353_0-b3-b3-Content.margin-bottom-xs.ubt-custom-container > div#b20-b1-l1-146353_0-b3-$b4.OSBlockWidget[BasePatterns.CustomText] > div.font-size-xxs.text-neutral-8 > span",
-   "detail": "47×12 → 0×12"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "0.59% pixels differ (max 0.20%), worst 40px tile 11.6% (max 3.0%), hotspots 200,760 (185px); 0,760 (160px); 40,760 (160px); 80,760 (160px); 120,760 (160px); see migration/screens/Locality_Details/parity/tag-interchange.diff.png"
-  }
- ]
+ "diffs": []
 }

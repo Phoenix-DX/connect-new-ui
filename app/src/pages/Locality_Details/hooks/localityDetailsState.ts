@@ -63,15 +63,15 @@ const setTags = (
     : { tagsList: setTagSelected(getSample_FilterTags(isUserLocality), tagsList_SelectedTag), tagsList_SelectedTag };
 
 /** The default values, the inputs, then ScreenEvent_OnInitialize: LocalityLabel = PreloadedLocalityLabel when it is
-    empty; the tags of SetTags (IsUserLocality defaults to True) with TagsList_SelectedTag = the input. Without the
-    input, TagsList_SelectedTag stays "" until Action_InitializeScreen (no tag block before the screen is
-    initialized, as before the input existed). */
+    empty; TagsList is empty, so SetTags runs (IsUserLocality defaults to True): without the input,
+    TagsList_SelectedTag = Households already here, so the Households block shows before the screen is initialized
+    (live Locality_Details.mvc.js ScreenEvent_OnInitialize → SetTags, TST 2026-11-07; captures loading.html and
+    offline.html show Locality_Households). */
 export function initialLocalityDetailsState(inputs: LocalityDetailsInputs): LocalityDetailsState {
   const isUserLocality = true;
   return {
-    tagsList: setTags(isUserLocality, inputs.TagsList_SelectedTag).tagsList,
+    ...setTags(isUserLocality, inputs.TagsList_SelectedTag),
     headerIsScrolled: false,
-    tagsList_SelectedTag: inputs.TagsList_SelectedTag,
     logged_User: { householdId: '0', localityId: '0' },
     isUserLocality,
     localityLabel: inputs.PreloadedLocalityLabel,

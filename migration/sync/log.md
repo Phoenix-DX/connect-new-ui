@@ -304,3 +304,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:36:45 CountryDetails confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:36:45 CountryDetails stage restamp
 - 2026-11-07T16:37:03 CountryDetails stage commit
+- 2026-11-07T16:37:04 CountryDetails done 9629286a: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:37:04 Locality_Details confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:37:04 Locality_Details stage restamp
+- 2026-11-07T16:37:58 Locality_Details stage commit

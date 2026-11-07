@@ -199,7 +199,8 @@ function Locality_DetailsScreen() {
           {selected === LocalityMenu.Subdivsion && (
             <Locality_Subdivisions id={b(19)} localityId={v.localityId} flags={{ hasCarouselEnabled }} />
           )}
-          {selected === LocalityMenu.Interchange && (
+          {/* Live TST (Locality_Details.mvc.js view, 2026-11-07): Interchange only with a LocalityId. */}
+          {selected === LocalityMenu.Interchange && v.localityId !== '0' && (
             <Locality_Interchange id={b(20)} inInterchangeLocalityId={v.localityId} />
           )}
           {selected === LocalityMenu.OneSchoolGlobal && (

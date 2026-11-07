@@ -24,6 +24,8 @@ export interface LocalityHouseholdListEvents {
 export interface LocalityHouseholdListFlows {
   /** GetLocalityHouseholds is fetched. */
   isDataFetched: boolean;
+  /** GetLocalityHouseholds failed (DataFetchStatus Error). */
+  hasFetchError: boolean;
   /** The households: three skeleton records until the first answer. */
   list: LocalityHousehold[];
   /** Household_CardEvent_OnClickHousehold(HouseholdId). */
@@ -64,7 +66,13 @@ export function useLocalityHouseholdList(
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
-    const list = await flow.fetch(fetchLocalityHouseholds(localityId)); // R1
+    let list: LocalityHousehold[];
+    try {
+      list = await flow.fetch(fetchLocalityHouseholds(localityId)); // R1
+    } catch (e) {
+      dispatch({ type: 'householdsFailed' });
+      throw e;
+    }
     dispatch({ type: 'householdsFetched', list });
     // OnAfterFetch_GetLocalityHouseholds_Bookmarks.
     const marked: LocalityHousehold[] = [];
@@ -91,5 +99,5 @@ export function useLocalityHouseholdList(
     eventsRef.current.onEventNavigateToHouseholdDetails?.(householdId);
   };
 
-  return { isDataFetched: state.isDataFetched, list: state.list, onClickHousehold };
+  return { isDataFetched: state.isDataFetched, hasFetchError: state.hasFetchError, list: state.list, onClickHousehold };
 }

@@ -6,19 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "CountryDetails": {
+  "Locality_Details": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:37:03",
-   "shared": [
-    "app/src/components/filter/FilterSheet/**"
-   ],
-   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
-  },
-  "Locality_Details": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:30:41",
+   "since": "2026-11-07T16:37:58",
    "shared": [
     "app/src/components/ui/HorizontalTagList/**"
    ],
@@ -301,16 +292,20 @@
    "finished": "2026-11-07T16:36:45"
   },
   "CountryDetails": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 52304,
     "test": 34419,
     "docs": 37058
-   }
+   },
+   "commit": "9629286a",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:37:04"
   },
   "Locality_Details": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 233109,
@@ -609,6 +604,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:36:45"
+  },
+  "Locality_Details": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:37:04"
   }
  }
 }

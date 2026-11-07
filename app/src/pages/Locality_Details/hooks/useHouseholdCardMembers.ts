@@ -6,7 +6,7 @@ import {
   type LocalityHousehold,
 } from '@/api/household';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { useFlowScope, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 
 /** What the household card renders. */
@@ -39,19 +39,28 @@ export function useHouseholdCardMembers(household: LocalityHousehold): Household
     null,
   );
   const wasRestored = useWasRestoredFromCache();
+  /** The flow scope of the card: GetMembers is a data action (R1), its answer is dropped after the unmount. */
+  const flow = useFlowScope();
   /** The Household of a card restored from the cache with its members: its OnReady ends. */
   const restoredParameters = useRef(wasRestored && fetched !== null ? fetched.parameters : null);
+  /** The Household of the last GetMembers request. StrictMode (dev) runs the effect again on the same instance:
+      one request per Household value, as TST (calls.json: 23 GetMembers for 23 cards). */
+  const requested = useRef<string | null>(null);
   useEffect(() => {
+    if (requested.current === parameters) return;
+    requested.current = parameters;
     if (restoredParameters.current === parameters) return;
     restoredParameters.current = null;
     if (household.householdId === '0') return;
-    let alive = true;
-    fetchHouseholdCardMembers(household).then((data) => {
-      if (alive) setFetched({ parameters, data });
-    }, raiseToFlowHandler);
-    return () => {
-      alive = false;
-    };
+    flow.fetch(fetchHouseholdCardMembers(household)).then(
+      (data) => {
+        // An answer for an older Household is dropped.
+        if (requested.current === parameters) setFetched({ parameters, data });
+      },
+      (e: unknown) => {
+        raiseToFlowHandler(e, flow);
+      },
+    );
     // Refresh on a new Household value (OnParametersChanged compares by value).
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [parameters]);
