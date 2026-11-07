@@ -1,17 +1,16 @@
-import { FilterSheetIcon } from '@/components/filter/FilterSheetIcon';
+import { FilterSheet_Icon_Label } from '@/components/filter/FilterSheetIconLabel';
+import { Horizontal_Filter_TagList } from '@/components/filter/HorizontalFilterTagList';
 import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MainLayoutFixedTitle } from '@/components/layout/MainLayoutFixedTitle';
 import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
-import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { useFlagOn } from '@/platform/flags/flags';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { Choice, Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Icon } from '@/components/ui/Icon';
 import { Input } from '@/components/ui/Input';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
@@ -33,9 +32,10 @@ import { osDateInput } from './hooks/updatesSingleListState';
 
 /** @origin UBTConnect.Directory_Updates.Updates_SingleList
     The Updates route: Layout_MainPages_FixedTitle (gray) with the title "Updates" (after a scroll with the search
-    toggled: the back arrow and the post-scroll search input), the search and filter icons once the header scrolled,
-    the notification bell, the pre-scroll search input and filter icon, the type tags and the list header as header
-    content, the update list, the bottom bar and CommonUI. Outside the layout: Directory_Updates_FilterSheet and the
+    toggled: the back arrow and the post-scroll search input), the search icon once the header scrolled, the
+    notification bell, the pre-scroll search input, the "Filter" label with the type tags (Horizontal_Filter_TagList in
+    FilterPills, TST 2026-11-07: Updates_SingleList.mvc@857c68f9.js:573-723) and the list header as header content, the
+    update list, the bottom bar and CommonUI. Outside the layout: Directory_Updates_FilterSheet and the
     share sheet of an update. The flows are in useUpdatesSingleList; the flags are read here. */
 export default function Updates_SingleList() {
   const notificationIcon = useNotificationIcon(); // the flows of App_NotificationIcon
@@ -71,16 +71,6 @@ export default function Updates_SingleList() {
     EnableAutocompleteHTML: false,
     IsSyncValueWithInput: true,
   };
-  const filterIcon = (id: string) => (
-    <FilterSheetIcon
-      id={id}
-      haveFiltersApplied={v.hasFiltersApplied}
-      isLoaded={v.bottomSheetId_IsLoaded}
-      bottomSheetId={v.filter_BottomSheetId}
-      showSubscriptionOnClick={v.bottomSheetId_ShowSubscription}
-      onShowUpgradePopUp={showUpgradePopUp}
-    />
-  );
   const tags: Tag[] = v.filter_UpdateTypeOptions.map((o) => ({
     Text: o.text,
     Identifier: o.identifier,
@@ -130,21 +120,16 @@ export default function Updates_SingleList() {
         }
         placeholderHeaderRight={
           <>
-            {v.isHeaderScrolled && (
-              <>
-                {!v.isToggleSearch && (
-                  <Icon
-                    id="Icon_Search"
-                    inSizeId={UBT_IconsSize.Base_24}
-                    inIconId={UBT_Icons2_Updates.Search}
-                    inColorId={UBT_Color.Neutral0}
-                    onClick={onToggleSearch}
-                  />
-                )}
-                {filterIcon('Icon_FilterSheet_PostScroll')}
-              </>
+            {v.isHeaderScrolled && !v.isToggleSearch && (
+              <Icon
+                id="Icon_Search"
+                inSizeId={UBT_IconsSize.Base_24}
+                inIconId={UBT_Icons2_Updates.Search}
+                inColorId={UBT_Color.Neutral0}
+                onClick={onToggleSearch}
+              />
             )}
-            <NotificationIcon id="$b7" {...notificationIcon} />
+            <NotificationIcon id="$b6" {...notificationIcon} />
           </>
         }
         placeholderHeaderInput={
@@ -158,18 +143,42 @@ export default function Updates_SingleList() {
             onEventSubmit={onSearchSubmit}
           />
         }
-        placeholderHeaderInputIcon={filterIcon('Icon_FilterSheet_PreScroll')}
         headerContent={
           <>
             <CustomContainer
-              id="$b10"
+              id="$b8"
               options={{
                 Background: { BackgroundColor: UBT_Color.Neutral0 },
-                PaddingSize: { VerticalSizeId: UBT_Size.Small, HorizontalSizeId: UBT_Size.Base },
+                PaddingSize: {},
                 MarginSize: { TopSizeId: UBT_Size.Base },
               }}
             >
-              <HorizontalTagList id="$b11" inIsSingleSelection inTagToggleList={tags} onChanged={onFilterTypeChanged} />
+              <CustomContainer
+                id="FilterPills"
+                extendedClasses="background-neutral-0"
+                options={{
+                  PaddingSize: { VerticalSizeId: UBT_Size.ExtraSmall, HorizontalSizeId: UBT_Size.Base },
+                  MarginSize: { TopSizeId: UBT_Size.Base },
+                  DisplayOptions: {},
+                }}
+              >
+                <Horizontal_Filter_TagList
+                  id="$b10"
+                  inIsSingleSelection
+                  inTagsLoading={!v.pillsLoaded && v.isLoading}
+                  inTagToggleList={tags}
+                  onChanged={onFilterTypeChanged}
+                  filter={
+                    <FilterSheet_Icon_Label
+                      id="$b11"
+                      haveFiltersApplied={v.hasFiltersApplied}
+                      showSubscriptionOnClick={false}
+                      isLoaded
+                      bottomSheetId={v.filter_BottomSheetId}
+                    />
+                  }
+                />
+              </CustomContainer>
             </CustomContainer>
             <UpdateItem_Header
               id="ListHeader"

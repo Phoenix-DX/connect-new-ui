@@ -1,5 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { readItem, writeItem } from '@/platform/storage/storage';
 import { captureScrollPosition, scrollFix } from './actions';
+
+/* The two keys live in localStorage through the shell's storage wrapper (namespaced). */
+const stored = (key: string) => readItem('local', key) ?? null;
+const store = (key: string, value: string) => {
+  writeItem('local', key, value);
+};
 
 const rect = (top: number) => ({
   top,
@@ -30,18 +37,19 @@ describe('Updates_SingleList scroll anchor nodes (US:3369-3384, 3440-3460)', () 
 
   it('CaptureScrollPosition stores the anchor id and its offset from the container top', () => {
     captureScrollPosition('980096');
-    expect(localStorage.getItem('scrollAnchorId')).toBe('980096');
-    expect(localStorage.getItem('scrollAnchorDelta')).toBe('500');
+    expect(stored('scrollAnchorId')).toBe('980096');
+    expect(stored('scrollAnchorDelta')).toBe('500');
+    expect(localStorage.getItem('scrollAnchorId')).toBeNull(); // only the namespaced key
   });
 
   it('CaptureScrollPosition stores nothing for an unknown anchor', () => {
     captureScrollPosition('none');
-    expect(localStorage.getItem('scrollAnchorId')).toBeNull();
+    expect(stored('scrollAnchorId')).toBeNull();
   });
 
   it('ScrollFix scrolls the container so that the anchor sits at the stored delta, then removes the keys', async () => {
-    localStorage.setItem('scrollAnchorId', '980096');
-    localStorage.setItem('scrollAnchorDelta', '200');
+    store('scrollAnchorId', '980096');
+    store('scrollAnchorDelta', '200');
     const container = document.querySelector('.active-screen.screen-container') as HTMLElement;
     scrollFix('');
     await new Promise((resolve) =>
@@ -50,8 +58,8 @@ describe('Updates_SingleList scroll anchor nodes (US:3369-3384, 3440-3460)', () 
       }),
     );
     expect(container.scrollTop).toBe(1800 + 500 - 200);
-    expect(localStorage.getItem('scrollAnchorId')).toBeNull();
-    expect(localStorage.getItem('scrollAnchorDelta')).toBeNull();
+    expect(stored('scrollAnchorId')).toBeNull();
+    expect(stored('scrollAnchorDelta')).toBeNull();
   });
 
   it('ScrollFix with an input anchor id uses it; without any id it does nothing', async () => {
@@ -77,9 +85,9 @@ describe('Updates_SingleList scroll anchor nodes (US:3369-3384, 3440-3460)', () 
       cb(0);
       return 0;
     });
-    localStorage.setItem('scrollAnchorId', 'missing');
+    store('scrollAnchorId', 'missing');
     scrollFix('');
     expect(raf).toHaveBeenCalledTimes(180);
-    expect(localStorage.getItem('scrollAnchorId')).toBe('missing');
+    expect(stored('scrollAnchorId')).toBe('missing');
   });
 });

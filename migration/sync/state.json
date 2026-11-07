@@ -6,19 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Search": {
+  "Updates_SingleList": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:39:23",
-   "shared": [
-    "app/src/components/filter/FilterSheet/**"
-   ],
-   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
-  },
-  "Updates_SingleList": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T09:20:13",
+   "since": "2026-11-07T16:39:44",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
@@ -334,16 +325,20 @@
    "finished": "2026-11-07T16:39:06"
   },
   "Search": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:13:08",
    "tokens": {
     "dev": 29587,
     "test": 40612,
     "docs": 33367
-   }
+   },
+   "commit": "cd7a564a",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:24"
   },
   "Updates_SingleList": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T08:29:29",
    "tokens": {
     "dev": 219263,
@@ -609,6 +604,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:39:06"
+  },
+  "Updates_SingleList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:24"
   }
  }
 }

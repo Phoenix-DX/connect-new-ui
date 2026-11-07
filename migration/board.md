@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 869
+Complexity left on build rows not yet built: 746
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Complexity left on build rows not yet built: 869
 | Notifications | `/UBTConnect/Notifications` | 3 | 96 | full | build | V3a · D11(c): build both, bell picks by flag C2NewNotifications (true → Notifications) (user, 2026-10-14) | built | route-notifications |
 | Search | `/UBTConnect/Search` | 3 | 95 | lite | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | built | route-search |
 | Services | `/UBTConnect/Services` | 3 | 24 | lite | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | built | route-services |
-| Updates_SingleList | `/UBTConnect/Updates_SingleList` | 3 | 123 | full | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | review | route-updates-singlelist |
+| Updates_SingleList | `/UBTConnect/Updates_SingleList` | 3 | 123 | full | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | built | route-updates-singlelist |
 | BrowseCountries | `/UBTConnect/BrowseCountries` | 4 | 72 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-browsecountries |
 | BrowseDirectory | `/UBTConnect/BrowseDirectory` | 4 | 74 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-browsedirectory |
 | CommunityBusinessDetails_CoomingSoon | `/UBTConnect/CommunityBusinessDetails_CoomingSoon` | 4 | 10 | lite | build | V3d · D2(a): opened from MyBookmarks / BookmarksByGroup (user, 2026-10-14) | built | route-communitybusinessdetails-coomingsoon |
