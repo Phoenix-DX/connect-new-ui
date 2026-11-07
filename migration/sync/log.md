@@ -232,3 +232,12 @@ One line per event. Written by sync.py.
 - 2026-11-07T09:25:03 LDM_MyEvents_V2 stage docs
 - 2026-11-07T09:26:02 LDM_MyEvents_V2 stage spec
 - 2026-11-07T09:26:02 LDM_MyEvents_V2 stage review
+- 2026-11-07T09:27:00 AssembleDetail started
+- 2026-11-07T09:27:00 AssembleDetail brief written (loop 0)
+- 2026-11-07T09:27:01 AssembleDetail stage dev
+- 2026-11-07T09:36:41 Q9 (AssembleDetail) asked: Offline: header title 'Reading' comes from the AssembleEvents list preload on TST; React opened by URL shows ''. a: extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position + header pixel tile (same cause) / b: add AssembleEventTypeTile=Reading to the plan URL / c: parity runner sets the preload
+- 2026-11-07T09:37:50 Q9 answered by the user: "a (2026-11-07): extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position and the header pixel tile"
+- 2026-11-07T09:38:14 AssembleDetail stage test
+- 2026-11-07T09:39:42 AssembleDetail stage docs
+- 2026-11-07T09:41:15 AssembleDetail stage spec
+- 2026-11-07T09:41:15 AssembleDetail stage review

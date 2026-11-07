@@ -231,6 +231,13 @@
    "since": "2026-11-07T09:19:20",
    "shared": [],
    "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
+  },
+  "AssembleDetail": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T09:41:15",
+   "shared": [],
+   "baseCommit": "d186ee26e0faec9911ff7ac6b3e81a03ea84056a"
   }
  },
  "items": {
@@ -303,7 +310,7 @@
    "tokens": {
     "dev": 146735,
     "test": 64582,
-    "docs": 0
+    "docs": 35488
    }
   },
   "NotificationDetails": {
@@ -482,6 +489,15 @@
     "test": 24823,
     "docs": 27168
    }
+  },
+  "AssembleDetail": {
+   "status": "waiting_user",
+   "started": "2026-11-07T09:27:00",
+   "tokens": {
+    "dev": 161539,
+    "test": 29091,
+    "docs": 0
+   }
   }
  },
  "questions": [
@@ -564,6 +580,16 @@
    "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
    "by": "user",
    "answeredAt": "2026-11-07T09:10:30"
+  },
+  {
+   "id": "Q9",
+   "item": "AssembleDetail",
+   "text": "Offline: header title 'Reading' comes from the AssembleEvents list preload on TST; React opened by URL shows ''. a: extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position + header pixel tile (same cause) / b: add AssembleEventTypeTile=Reading to the plan URL / c: parity runner sets the preload",
+   "status": "answered",
+   "at": "2026-11-07T09:36:41",
+   "answer": "a (2026-11-07): extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position and the header pixel tile",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:37:50"
   }
  ],
  "confirms": {}

@@ -52,3 +52,8 @@ LegacyShareObject still wait for the user's answer (recommended b: restore the a
 | Q8 Updates_SingleList | d: shell storage wrapper (`platform/storage/storage.ts`) | TST uses localStorage (`Updates_SingleList.mvc.js:3419-3420,3487`); no exclusion needed |
 | Q4-old PINUnlock, LegacyShareObject | b now, c optional | code unchanged; old analysis in `2fe9efaf` |
 | Q7-old AssembleDetail | c then a | one discovery run over the 20 cards, stop at the first virtual meeting |
+
+Q7-old result (Fable, 2026-11-07): the read-only probe of the 20 Assemble cards of global#9 and global#10
+(`tools/tst/route_discovery.cjs`, scratchpad jobs) opened 20 AssembleDetail screens; none shows
+`AssembleCommon_VirtualMeetingDetails`. Option a applies: the fresh capture (in-person event, address row, two new calls)
+is the reference; the virtual-meeting analysis of 2026-11-06 stays in git history.

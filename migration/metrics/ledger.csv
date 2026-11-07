@@ -1282,3 +1282,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,LDM_MyEvents_V2,verify,0,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
 2026-11-07,LDM_MyEvents_V2,verify,31214,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
 2026-11-07,LDM_MyEvents_V2,other,0,sync-docs,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,other,35488,sync-docs,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,AssembleDetail,fix,0,sync-dev,opus,sync AssembleDetail
+2026-11-07,AssembleDetail,fix,161539,sync-dev,opus,sync AssembleDetail
+2026-11-07,AssembleDetail,verify,0,sync-test,sonnet,sync AssembleDetail
+2026-11-07,AssembleDetail,verify,29091,sync-test,sonnet,sync AssembleDetail
+2026-11-07,AssembleDetail,other,0,sync-docs,sonnet,sync AssembleDetail

@@ -1735,11 +1735,14 @@
    "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE",
    "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
    "kinds": [
-    "pseudo"
+    "layout",
+    "position",
+    "pseudo",
+    "text"
    ],
    "states": "^offline$",
    "pathRegex": "h1\\.header-title\\.text-align-center > div#[^ ]*Title > div#[^ ]*Title > span$",
-   "reason": "Offline the fetch fails and the React title stays empty, so OutSystemsReactWidgets.css [data-expression]:empty:after adds the ::after. The capture navigated from the AssembleEvents list, whose SetPreloadObject gave the title before the fetch; the parity opens the route by URL without that preload object.",
+   "reason": "Offline the fetch fails and the React title stays empty, so OutSystemsReactWidgets.css [data-expression]:empty:after adds the ::after. The capture navigated from the AssembleEvents list, whose SetPreloadObject gave the title before the fetch; the parity opens the route by URL without that preload object. Extended 2026-11-07 (user a, Q9): the fresh capture does not mask the title, so the same cause now shows as text \"Reading\" to \"\", layout 65x21 to 0x21 and position on the title span.",
    "evidence": "migration/screens/AssembleDetail/parity/offline.json (2026-11-06); analysis/states.json via; OutSystemsReactWidgets.css:219"
   },
   {
@@ -1888,6 +1891,18 @@
    "detailRegex": "^[2-4]\\.\\d\\d% pixels differ .*migration/screens/Notifications/parity/default\\.diff\\.png$",
    "reason": "Pixel side of CAPTURE-MASKED-IMAGE-NOTIFICATIONS (3.97 % on 2026-11-07, pinned to 2-4.99 %). decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
    "evidence": "migration/screens/Notifications/parity/default.diff.png"
+  },
+  {
+   "id": "CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/AssembleDetail(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.[0-4]\\d% pixels differ .*migration/screens/AssembleDetail/parity/offline\\.diff\\.png$",
+   "reason": "Pixel side of CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE: the header title tile only (TST keeps the title from the AssembleEvents list preload offline; the route opened by URL has none). decided by the user 2026-11-07 (Q9 a)",
+   "evidence": "migration/screens/AssembleDetail/parity/offline.diff.png (0.13 %, worst tile 13.5 % at the title)"
   }
  ],
  "ignoreClasses": [
