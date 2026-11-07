@@ -1,0 +1,678 @@
+{
+ "branch": "sync/tst-2026-11",
+ "captureBase": "2fe9efafbe44ea41859470495e6133cb2fcaaa8f",
+ "items": [
+  {
+   "id": "AssembleDetail",
+   "class": "B",
+   "states": {
+    "default": 12,
+    "offline": 4
+   },
+   "kinds": [
+    "structure",
+    "text",
+    "layout",
+    "position",
+    "pixel",
+    "call"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: B (A unsure): other event (in-person, address row); new calls not in drift. Q7"
+  },
+  {
+   "id": "AssembleEvents",
+   "class": "B",
+   "states": {
+    "default": 3
+   },
+   "kinds": [
+    "text"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: country counts 74 to 73, 29 to 28; same statistics data as Assemble_BrowseByCountry, BrowseCountries"
+  },
+  {
+   "id": "Assemble_BrowseByCountry",
+   "class": "B",
+   "states": {
+    "default": 4
+   },
+   "kinds": [
+    "text",
+    "pixel"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: country counts 74 to 73, 29 to 28; one fix with AssembleEvents and BrowseCountries"
+  },
+  {
+   "id": "Bookmarks",
+   "class": "A",
+   "states": {
+    "default": 41,
+    "offline": 2
+   },
+   "kinds": [
+    "structure",
+    "text",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
+    "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js",
+    "UBTConnect.Bookmarks.Bookmarks.mvc.js",
+    "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js",
+    "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/filter/FilterSheet/**",
+    "app/src/components/filter/HorizontalFilterTagList/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: A + B: new header blocks, tag order, filter labels; empty list from account. Q5"
+  },
+  {
+   "id": "BrowseCountries",
+   "class": "B",
+   "states": {
+    "default": 5
+   },
+   "kinds": [
+    "text"
+   ],
+   "files": [
+    "UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: counts lower by one (73, 36, 28); DataActionGetCountriesStatistics mock, shared with CountryList"
+  },
+  {
+   "id": "ContactByEmailMember",
+   "class": "A",
+   "states": {
+    "default": 16,
+    "offline": 16
+   },
+   "kinds": [
+    "class",
+    "style",
+    "pseudo",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.ContactFlow.ContactByEmailMember.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: page passes primary variant (DetailLayout already has it); title centred"
+  },
+  {
+   "id": "CountryDetails",
+   "class": "A",
+   "states": {
+    "default": 2,
+    "offline": 2
+   },
+   "kinds": [
+    "text"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: FilterSheet labels Clear and Apply (FilterSheet.tsx:305,314); fixes all filter routes"
+  },
+  {
+   "id": "CountryList",
+   "class": "A",
+   "states": {
+    "default": 15,
+    "offline": 6
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "style",
+    "position",
+    "pixel",
+    "call"
+   ],
+   "files": [
+    "UBTConnect.Directory_Locality.CountryList.mvc.js",
+    "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/feed/CommunityPopulation/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: A + B: Directory_CommunityNumbers replaces CommunityPopulation (also HomeFeed); counts drift"
+  },
+  {
+   "id": "HomeFeed",
+   "class": "A",
+   "states": {
+    "default": 12,
+    "offline": 11
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "style",
+    "layout",
+    "position",
+    "pixel",
+    "call"
+   ],
+   "files": [
+    "UBTConnect.Home.HomeFeed.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/feed/CommunityPopulation/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: COMMUNITY BY THE NUMBERS block (Directory_CommunityNumbers) replaces CommunityPopulation; DataActionFetchCount removed"
+  },
+  {
+   "id": "HouseholdCarousel",
+   "class": "A",
+   "states": {
+    "default": 40,
+    "offline": 277
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "style",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/directory/EntitiesCarouselElement/**",
+    "app/src/components/ui/HorizontalTagList/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: re-captured settle 8 s, default 365 to 40 layout, offline unchanged (skeleton stays offline). Q3 done. A + C: carousel markup changed; skeleton and lazy placeholder phase in capture. Q3"
+  },
+  {
+   "id": "Household_Relations",
+   "class": "A",
+   "states": {
+    "default": 2,
+    "offline": 18
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "layout",
+    "position",
+    "call"
+   ],
+   "files": [
+    "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js",
+    "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: re-captured settle 8 s, unchanged. Q3 done. A + C: call DataActionGet_SibllingsRelations replaces ParentHouseholdDetails; offline skeleton unsure. Q3"
+  },
+  {
+   "id": "LDM_EventDetail_V2",
+   "class": "B",
+   "states": {
+    "default": 8
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "style",
+    "layout",
+    "pixel"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: event now has host, address, guests; React branch exists (EventDetail_HostCard.tsx:150); test:74 changes"
+  },
+  {
+   "id": "LDM_MyEvents_V2",
+   "class": "B",
+   "states": {
+    "default": 34
+   },
+   "kinds": [
+    "structure",
+    "text",
+    "style",
+    "layout",
+    "position",
+    "pixel",
+    "call"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: one more past-event group, 13 Guests; ActionGetAllApplicationEvents 0 to 2 unsure. Q8"
+  },
+  {
+   "id": "LegacyShareObject",
+   "class": "B",
+   "states": {
+    "default": 50
+   },
+   "kinds": [
+    "structure",
+    "pixel"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: share list empty in capture (49 items in React); no TST drift. Q4"
+  },
+  {
+   "id": "Locality_Details",
+   "class": "A",
+   "states": {
+    "default": 267,
+    "offline": 5,
+    "tag-interchange": 4,
+    "tag-oneschoolglobal": 2
+   },
+   "kinds": [
+    "structure",
+    "text",
+    "style",
+    "pseudo",
+    "layout",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.Directory_Locality.Locality_Details.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/ui/HorizontalTagList/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: re-captured settle 8 s, unchanged (style 25, layout 240, pixel 0.01 pct). Q3 done. A + B + C: calls changed; time label, lazy placeholders, one OSG item fewer. Q3, Q8"
+  },
+  {
+   "id": "Menu",
+   "class": "B",
+   "states": {
+    "default": 13
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "pseudo",
+    "layout"
+   ],
+   "files": [
+    "UBTConnect.App_Menu.Menu.mvc.js",
+    "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: B + C: Request Photo Update row shown for householder account; Menu.mvc.js changed, A unsure. Q8"
+  },
+  {
+   "id": "MessageDetail",
+   "class": "B",
+   "states": {
+    "default": 4
+   },
+   "kinds": [
+    "structure",
+    "pixel",
+    "call"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: re-captured 2026-11-07 with id 5981096 (route_discovery); structure 2, call 1, no TST file changed; another message than the mock. Q2 done"
+  },
+  {
+   "id": "MessageList",
+   "class": "B",
+   "states": {
+    "default": 12,
+    "search": 12
+   },
+   "kinds": [
+    "class",
+    "style"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: 6 unread rows in capture, mock has 2 (mocks.ts:9, test:62)"
+  },
+  {
+   "id": "Notes",
+   "class": "A",
+   "states": {
+    "default": 6,
+    "offline": 12
+   },
+   "kinds": [
+    "class",
+    "text",
+    "style",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
+    "UBTConnect.Notes.NoteCard_List.mvc.js",
+    "UBTConnect.Notes.Notes.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/filter/FilterSheet/**",
+    "app/src/components/filter/HorizontalFilterTagList/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: filter-tag container loses padding-x-base; FilterSheet labels Clear and Apply"
+  },
+  {
+   "id": "NotificationDetails",
+   "class": "A",
+   "states": {
+    "default": 14,
+    "offline": 18
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "style",
+    "pseudo",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.App_Notifications.NotificationDetails.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: title CustomText wrapper, Notification_Title_Block, separator, border; page only"
+  },
+  {
+   "id": "Notifications",
+   "class": "A",
+   "states": {
+    "default": 41,
+    "offline": 10
+   },
+   "kinds": [
+    "structure",
+    "position",
+    "pixel",
+    "call"
+   ],
+   "files": [
+    "UBTConnect.App_Notifications.Notifications.mvc.js",
+    "UBTConnect.App_Notifications.NotificationsList.mvc.js",
+    "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js",
+    "UBTConnect.App_Notifications.Notifications_Header.mvc.js",
+    "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: re-captured settle 8 s, unchanged: 51 SkeletonSection stay in the DOM (code). Q3 done. A + B + C: header blocks, bulk signed-images call; 22 items, skeleton rows. Q3"
+  },
+  {
+   "id": "OneSchoolGlobalDetails",
+   "class": "A",
+   "states": {
+    "default": 51,
+    "offline": 1
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "style",
+    "pseudo",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js",
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: A + B: rows removed (photo, location, link, call); code or entity data unsure. Q6"
+  },
+  {
+   "id": "OrbitAdminLanding",
+   "class": "A",
+   "states": {
+    "default": 6,
+    "offline": 5
+   },
+   "kinds": [
+    "structure",
+    "layout",
+    "pixel"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: new header filters (Upcoming Events, Sort By) and two popup placeholders"
+  },
+  {
+   "id": "OrbitLanding",
+   "class": "B",
+   "states": {
+    "default": 22,
+    "popup-filters": 21,
+    "popup-filters-closed": 22,
+    "popup-sort": 21
+   },
+   "kinds": [
+    "structure",
+    "style",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "M: B + C: account has no Orbit event card; fewer household rows; no TST drift. Q4"
+  },
+  {
+   "id": "PINUnlock",
+   "class": "B",
+   "states": {
+    "default": 2
+   },
+   "kinds": [
+    "structure",
+    "layout"
+   ],
+   "files": [],
+   "shared": [],
+   "devModel": "sonnet",
+   "owner": "",
+   "note": "S: T&C link absent, policy URL empty in capture (Block_PINUnlock_ContentWrapper:584). Q4"
+  },
+  {
+   "id": "Profile",
+   "class": "A",
+   "states": {
+    "default": 68,
+    "offline": 21
+   },
+   "kinds": [
+    "structure",
+    "style",
+    "layout",
+    "position"
+   ],
+   "files": [
+    "UBTConnect.App_Profile.Profile.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
+    "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: Email row with switch, disabled email, phone display switches; new calls"
+  },
+  {
+   "id": "Search",
+   "class": "A",
+   "states": {
+    "default": 2,
+    "offline": 2
+   },
+   "kinds": [
+    "text"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
+    "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "S: FilterSheet labels only; expected clean after CountryDetails fix"
+  },
+  {
+   "id": "SupperMeeting_Carousel",
+   "class": "A",
+   "states": {
+    "default": 253
+   },
+   "kinds": [
+    "style",
+    "layout"
+   ],
+   "files": [
+    "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js"
+   ],
+   "shared": [],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: re-captured settle 8 s; pixel 0.00 pct, 250 layout diffs on offscreen slides; old OFFSCREEN-SLIDE rules unused: check paths. Q3 done"
+  },
+  {
+   "id": "Updates_SingleList",
+   "class": "A",
+   "states": {
+    "default": 658,
+    "offline": 22
+   },
+   "kinds": [
+    "structure",
+    "class",
+    "text",
+    "style",
+    "layout",
+    "position",
+    "pixel"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js",
+    "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js",
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
+    "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js"
+   ],
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "devModel": "opus",
+   "owner": "",
+   "note": "L: FilterSheet_Icon_Label and Horizontal_Filter_TagList replace old header blocks; filter labels"
+  }
+ ],
+ "triage": "migration/sync/triage-2026-11-07.md",
+ "drift": "migration/sync/drift-2026-11-07.json"
+}

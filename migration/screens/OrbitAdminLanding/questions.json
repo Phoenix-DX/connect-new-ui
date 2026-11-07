@@ -84,5 +84,81 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T14:33:10"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered [questions.md Q1]):; The real mock = three fictional admin events (orbitAdmin.ts):; the weekend conferences 7301 of orbit.ts; a youth day at Monte Hermoso; a gospel meeting at the Bahia Blanca hall; `?mock=noadminevents` = the captured empty account.; `proposed-capture-plan.json` proposes the capture-plan `scenarios.default = \"noadminevents\"`.; Q2 → A (answered [questions.md Q2]): GetMilestoneScanFF False; the True branch navigates to `/UBTConnect/OrbitAdminMilestones?EventId=…` as compiled (no such route in the app or on TST) via `?mock=scanpermilestone`.; Q3 → B (answered [questions.md Q3]): CR-OrbitAdminLanding-1 (shell returns the mock user's FirstName / MemberId from memory). The CR status is applied [CR-OrbitAdminLanding-1.md]. The user decided that no interim exemption is merged.; (TST sync) The open Filters and Sort popups stay `<NotCaptured>` until a capture of them (follow-up). Their content (Popup_OrbitLanding_Filters / _Sort) and the apply handlers are not in the capture.; (TST sync) The mock returns an empty `YearFilter` in every scenario, as captured. A non-empty `YearFilter` is not captured.; (TST sync) `GetPopupMeasurements` sends `Left` as an integer. How OutSystems converts a half value (odd header width) is not verified.; Proposed exemptions (migration/screens/OrbitAdminLanding/proposed-exemptions.json): offline skeleton shimmer phase; interim header pseudo.; Card list row ids `b1-l1-7_<i>-$b3` (the list's runtime counter is not captured; \"7\" is the list uuid, SB :278-290).; Admin events' OrbitEventType = 'event-admin' (static entity; record Type / Name \"Admin\" by analogy with the captured Host record, purple, meeting icon; orbitAdmin.ts ORBIT_ADMIN_EVENT_TYPE); TypeFriendly texts fictional (\"Weekend Conference Program\", \"Youth Day\", \"Gospel Meeting\").; OnApplicationEvent_ClickEvent writes the app log (as OrbitLanding's Orbit audit events), no server call. Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T07:40:23",
+  "items": [
+   "Q1 → A (answered [questions.md Q1]):",
+   "The real mock = three fictional admin events (orbitAdmin.ts):",
+   "the weekend conferences 7301 of orbit.ts",
+   "a youth day at Monte Hermoso",
+   "a gospel meeting at the Bahia Blanca hall",
+   "`?mock=noadminevents` = the captured empty account.",
+   "`proposed-capture-plan.json` proposes the capture-plan `scenarios.default = \"noadminevents\"`.",
+   "Q2 → A (answered [questions.md Q2]): GetMilestoneScanFF False; the True branch navigates to `/UBTConnect/OrbitAdminMilestones?EventId=…` as compiled (no such route in the app or on TST) via `?mock=scanpermilestone`.",
+   "Q3 → B (answered [questions.md Q3]): CR-OrbitAdminLanding-1 (shell returns the mock user's FirstName / MemberId from memory). The CR status is applied [CR-OrbitAdminLanding-1.md]. The user decided that no interim exemption is merged.",
+   "(TST sync) The open Filters and Sort popups stay `<NotCaptured>` until a capture of them (follow-up). Their content (Popup_OrbitLanding_Filters / _Sort) and the apply handlers are not in the capture.",
+   "(TST sync) The mock returns an empty `YearFilter` in every scenario, as captured. A non-empty `YearFilter` is not captured.",
+   "(TST sync) `GetPopupMeasurements` sends `Left` as an integer. How OutSystems converts a half value (odd header width) is not verified.",
+   "Proposed exemptions (migration/screens/OrbitAdminLanding/proposed-exemptions.json): offline skeleton shimmer phase; interim header pseudo.",
+   "Card list row ids `b1-l1-7_<i>-$b3` (the list's runtime counter is not captured; \"7\" is the list uuid, SB :278-290).",
+   "Admin events' OrbitEventType = 'event-admin' (static entity; record Type / Name \"Admin\" by analogy with the captured Host record, purple, meeting icon; orbitAdmin.ts ORBIT_ADMIN_EVENT_TYPE); TypeFriendly texts fictional (\"Weekend Conference Program\", \"Youth Day\", \"Gospel Meeting\").",
+   "OnApplicationEvent_ClickEvent writes the app log (as OrbitLanding's Orbit audit events), no server call."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:33:58"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered [questions.md Q1]):; The real mock = three fictional admin events (orbitAdmin.ts):; the weekend conferences 7301 of orbit.ts; a youth day at Monte Hermoso; a gospel meeting at the Bahia Blanca hall; `?mock=noadminevents` = the captured empty account.; `proposed-capture-plan.json` proposes the capture-plan `scenarios.default = \"noadminevents\"`.; Q2 → A (answered [questions.md Q2]): GetMilestoneScanFF False; the True branch navigates to `/UBTConnect/OrbitAdminMilestones?EventId=…` as compiled (no such route in the app or on TST) via `?mock=scanpermilestone`.; Q3 → B (answered [questions.md Q3]): CR-OrbitAdminLanding-1 (shell returns the mock user's FirstName / MemberId from memory). The CR status is applied [CR-OrbitAdminLanding-1.md]. The user decided that no interim exemption is merged.; (TST sync) The open Filters and Sort popups stay `<NotCaptured>` until a capture of them (follow-up). Their content (Popup_OrbitLanding_Filters / _Sort) and the apply handlers are not in the capture.; (TST sync) The mock returns an empty `YearFilter` in every scenario, as captured. A non-empty `YearFilter` is not captured.; (TST sync) `GetPopupMeasurements` sends `Left` as an integer. How OutSystems converts a half value (odd header width) is not verified.; Proposed exemptions (migration/screens/OrbitAdminLanding/proposed-exemptions.json): offline skeleton shimmer phase; interim header pseudo.; Card list row ids `b1-l1-7_<i>-$b3` (the list's runtime counter is not captured; \"7\" is the list uuid, SB :278-290).; Admin events' OrbitEventType = 'event-admin' (static entity; record Type / Name \"Admin\" by analogy with the captured Host record, purple, meeting icon; orbitAdmin.ts ORBIT_ADMIN_EVENT_TYPE); TypeFriendly texts fictional (\"Weekend Conference Program\", \"Youth Day\", \"Gospel Meeting\").; OnApplicationEvent_ClickEvent writes the app log (as OrbitLanding's Orbit audit events), no server call. Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:33:58",
+  "items": [
+   "Q1 → A (answered [questions.md Q1]):",
+   "The real mock = three fictional admin events (orbitAdmin.ts):",
+   "the weekend conferences 7301 of orbit.ts",
+   "a youth day at Monte Hermoso",
+   "a gospel meeting at the Bahia Blanca hall",
+   "`?mock=noadminevents` = the captured empty account.",
+   "`proposed-capture-plan.json` proposes the capture-plan `scenarios.default = \"noadminevents\"`.",
+   "Q2 → A (answered [questions.md Q2]): GetMilestoneScanFF False; the True branch navigates to `/UBTConnect/OrbitAdminMilestones?EventId=…` as compiled (no such route in the app or on TST) via `?mock=scanpermilestone`.",
+   "Q3 → B (answered [questions.md Q3]): CR-OrbitAdminLanding-1 (shell returns the mock user's FirstName / MemberId from memory). The CR status is applied [CR-OrbitAdminLanding-1.md]. The user decided that no interim exemption is merged.",
+   "(TST sync) The open Filters and Sort popups stay `<NotCaptured>` until a capture of them (follow-up). Their content (Popup_OrbitLanding_Filters / _Sort) and the apply handlers are not in the capture.",
+   "(TST sync) The mock returns an empty `YearFilter` in every scenario, as captured. A non-empty `YearFilter` is not captured.",
+   "(TST sync) `GetPopupMeasurements` sends `Left` as an integer. How OutSystems converts a half value (odd header width) is not verified.",
+   "Proposed exemptions (migration/screens/OrbitAdminLanding/proposed-exemptions.json): offline skeleton shimmer phase; interim header pseudo.",
+   "Card list row ids `b1-l1-7_<i>-$b3` (the list's runtime counter is not captured; \"7\" is the list uuid, SB :278-290).",
+   "Admin events' OrbitEventType = 'event-admin' (static entity; record Type / Name \"Admin\" by analogy with the captured Host record, purple, meeting icon; orbitAdmin.ts ORBIT_ADMIN_EVENT_TYPE); TypeFriendly texts fictional (\"Weekend Conference Program\", \"Youth Day\", \"Gospel Meeting\").",
+   "OnApplicationEvent_ClickEvent writes the app log (as OrbitLanding's Orbit audit events), no server call."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:33:58"
  }
 ]

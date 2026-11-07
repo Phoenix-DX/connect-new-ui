@@ -478,6 +478,25 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 > .columns-item:nth-child(2), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(1), .ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(3) { flex: 0; min-width: max-content; }
 .ubt-columns.ubt-columns--reverse.ubt-columns-reduce-first > .columns-item:nth-child(2), .ubt-columns.ubt-columns--reverse.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(1) { flex: 0; }
 ```
+## ConnectPatterns.SkeletonSection
+
+### .horizontal-tabs-list  (2 rules)
+```css
+.horizontal-tabs-filter-container > .OSBlockWidget:has(.horizontal-tabs-list) { flex: 1 1 auto; min-width: 0; }
+.horizontal-tabs-list { min-width: 0; }
+```
+### .list-horizontal--gap-xs  (2 rules)
+```css
+.list-horizontal--gap-xs > *:not(script):not(:last-of-type) { margin-right: var(--space-xs); }
+.list-horizontal--gap-xs > .OSBlockWidget { display: block; }
+```
+### .ubt-tag-list  (4 rules)
+```css
+.ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
+.ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
+.ubt-tag-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
+.connect-weekdays-tag-list.list.ubt-tag-list > div { margin-right: var(--space-none) }
+```
 ## OutSystemsUIOverrides.IconBadge
 
 ### .icon-badge  (7 rules)
@@ -503,6 +522,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ### .connect-icon-contacts  (1 rule)
 ```css
 .connect-icon-contacts:before { content: "\f04c"; }
+```
+### .connect-icon-expand_more  (1 rule)
+```css
+.connect-icon-expand_more:before { content: "\f064"; }
 ```
 ### .connect-icon-home  (1 rule)
 ```css
@@ -565,6 +588,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 .ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
 ```
+### .text-cyan-dark  (1 rule)
+```css
+.text-cyan-dark { color:var(--text-color-cyan-dark, var(--color-cyan-dark)); }
+```
 ### .text-inherit  (1 rule)
 ```css
 .text-inherit { color: inherit; }
@@ -619,10 +646,6 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .background-red { background-color:var(--background-color-red, var(--color-red)); }
 ```
-### .background-red-dark  (1 rule)
-```css
-.background-red-dark { background-color:var(--background-color-red-dark, var(--color-red-dark)); }
-```
 ### .badge  (9 rules)
 ```css
 .badge { -webkit-box-align:center; -ms-flex-align:center; align-items:center; color:var(--text-color-neutral-0, var(--color-neutral-0)); display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; font-weight:var(--font-semi-bold); height:32px; -webkit-box-pack:center; -ms-flex-pack:center; justify-content:center; line-height:1; min-width:32px; }
@@ -634,10 +657,6 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 .icon-badge .badge [data-expression] { white-space:nowrap; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
 .bottom-bar-wrapper .badge { top: 20%; }
-```
-### .badge-xs  (1 rule)
-```css
-.ubt-badge.badge-xs { font-size: var(--font-size-xxs); height: 16px; min-width: 16px; width: 16px; }
 ```
 ### .border-radius-rounded  (2 rules)
 ```css
@@ -810,6 +829,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .border-top-l:not(.columns), .border-top-l.columns > .columns-item:not(:last-child) { border-top:var(--border-size-l) solid currentColor; }
 .border-top-l:not(.columns), .border-top-l.columns > .columns-item:not(:last-child) { border-top: var(--border-size-l) solid var(--border-color, currentColor); }
 ```
+### .display-inline-flex  (1 rule)
+```css
+.display-inline-flex { display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; }
+```
 ### .font-semi-bold  (1 rule)
 ```css
 .font-semi-bold { font-weight:var(--font-semi-bold); }
@@ -817,6 +840,15 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .font-size-s  (1 rule)
 ```css
 .font-size-s { font-size:var(--font-size-s); }
+```
+### .horizontal-tabs-filter  (1 rule)
+```css
+.horizontal-tabs-filter { flex: 0 0 auto; }
+```
+### .horizontal-tabs-filter-container  (2 rules)
+```css
+.horizontal-tabs-filter-container { display: flex; align-items: center; flex-wrap: nowrap; }
+.horizontal-tabs-filter-container > .OSBlockWidget:has(.horizontal-tabs-list) { flex: 1 1 auto; min-width: 0; }
 ```
 ### .inline-block  (4 rules)
 ```css
@@ -849,6 +881,11 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .padding-base { padding:var(--space-base); }
 ```
+### .padding-right-xs  (2 rules)
+```css
+.padding-right-xs { padding-right:var(--space-xs); }
+.is-rtl .padding-right-xs { padding-left:var(--space-xs); padding-right:var(--space-none); }
+```
 ### .padding-s  (1 rule)
 ```css
 .padding-s { padding:var(--space-s); }
@@ -864,10 +901,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .padding-y-base  (1 rule)
 ```css
 .padding-y-base { padding-bottom:var(--space-base); padding-top:var(--space-base); }
-```
-### .padding-y-s  (1 rule)
-```css
-.padding-y-s { padding-bottom:var(--space-s); padding-top:var(--space-s); }
 ```
 ### .padding-y-xs  (1 rule)
 ```css
@@ -896,20 +929,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .ubt-tag span, .ubt-tag-toggle span { white-space: nowrap; }
 .connect-weekdays-tag-list .ubt-tag-toggle { border-radius: var(--border-radius-circle); width: 40px; aspect-ratio: 1/1; padding: var(--space-none); display: flex; justify-content: center; align-items: center; line-height:1 }
 ```
-## ConnectPatterns.HorizontalTagList
-
-### .list-horizontal--gap-xs  (2 rules)
-```css
-.list-horizontal--gap-xs > *:not(script):not(:last-of-type) { margin-right: var(--space-xs); }
-.list-horizontal--gap-xs > .OSBlockWidget { display: block; }
-```
-### .ubt-tag-list  (4 rules)
-```css
-.ubt-tag-list.list.list-group { display: flex; overflow-x: scroll; -ms-overflow-style: none; /* Internet Explorer 10+ */ scrollbar-width: none; /* Firefox */ }
-.ubt-tag-list.list.list-group::-webkit-scrollbar { display: none; /* Safari and Chrome */ }
-.ubt-tag-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
-.connect-weekdays-tag-list.list.ubt-tag-list > div { margin-right: var(--space-none) }
-```
 ## BasePatterns.CustomText
 
 ### .font-size-base  (1 rule)
@@ -923,6 +942,10 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ### .italic  (1 rule)
 ```css
 .italic { font-style:italic; }
+```
+### .padding-x-xs  (1 rule)
+```css
+.padding-x-xs { padding-left:var(--space-xs); padding-right:var(--space-xs); }
 ```
 ### .text-neutral-10  (1 rule)
 ```css
@@ -1217,7 +1240,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { pointer-events: auto; }
 .ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { opacity: 0; }
 ```
-### .osui-bottom-sheet__content  (13 rules)
+### .osui-bottom-sheet__content  (12 rules)
 ```css
 .osui-bottom-sheet .osui-bottom-sheet__content:empty, .osui-bottom-sheet .osui-bottom-sheet__header__top-bar:empty {  }
 .osui-bottom-sheet__content { max-height:var(--bottom-sheet-max-height); overflow-y:scroll; padding:var(--space-base); padding-bottom:calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom)); }
@@ -1229,8 +1252,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content { padding-right: calc(var(--space-s) + var(--os-safe-area-right)); padding-left: calc(var(--space-s) + var(--os-safe-area-left)); padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom)); }
 .connect-share-sheet .osui-bottom-sheet__content { padding: 0; display: flex; flex-direction: column; flex: 1; gap: var(--share-sheet-gap, var(--space-s)); }
 .connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content { margin: 0; flex: 1; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) { display: flex; flex-direction: column; min-height: 0; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list), .connect-share-sheet__content__search-list { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
 ### .osui-bottom-sheet__header  (10 rules)
@@ -1420,7 +1442,6 @@ ld > .columns-item:not(:last-child), .tablet .columns.gutter-none.tablet-break-m
 - `--color-purple-lighter`: `#EFEFFF` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-purple-lightest`: `#F6F6FD` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-red`: `#c92a2a` (in `@charset "UTF-8";    :root`); `#E97575` (in `:root, .connect-legacy-compatibily-containter`)
-- `--color-red-dark`: `#ab2424` (in `@charset "UTF-8";    :root`); `#DC2020` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-red-darker`: `#8d1d1d` (in `@charset "UTF-8";    :root`); `#841313` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-red-lightest`: `#faeaea` (in `@charset "UTF-8";    :root`); `#FCEAEA` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-rgb-blue-dark`: `17, 44, 186` (in `:root, .connect-legacy-compatibily-containter`)

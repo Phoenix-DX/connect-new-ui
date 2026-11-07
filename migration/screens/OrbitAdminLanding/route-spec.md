@@ -80,10 +80,23 @@ CacheableMapEntities / Households) are the shell's [calls.md #1, #3-#8].
   - `proposed-capture-plan.json` proposes the capture-plan `scenarios.default = "noadminevents"`.
 - Q2 → A (answered [questions.md Q2]): GetMilestoneScanFF False; the True branch navigates to `/UBTConnect/OrbitAdminMilestones?EventId=…` as compiled (no such route in the app or on TST) via `?mock=scanpermilestone`.
 - Q3 → B (answered [questions.md Q3]): CR-OrbitAdminLanding-1 (shell returns the mock user's FirstName / MemberId from memory). The CR status is applied [CR-OrbitAdminLanding-1.md]. The user decided that no interim exemption is merged.
+- (TST sync) The open Filters and Sort popups stay `<NotCaptured>` until a capture of them (follow-up). Their content (Popup_OrbitLanding_Filters / _Sort) and the apply handlers are not in the capture.
+- (TST sync) The mock returns an empty `YearFilter` in every scenario, as captured. A non-empty `YearFilter` is not captured.
+- (TST sync) `GetPopupMeasurements` sends `Left` as an integer. How OutSystems converts a half value (odd header width) is not verified.
 - Proposed exemptions (migration/screens/OrbitAdminLanding/proposed-exemptions.json): offline skeleton shimmer phase; interim header pseudo.
 - Card list row ids `b1-l1-7_<i>-$b3` (the list's runtime counter is not captured; "7" is the list uuid, SB :278-290).
 - Admin events' OrbitEventType = 'event-admin' (static entity; record Type / Name "Admin" by analogy with the captured Host record, purple, meeting icon; orbitAdmin.ts ORBIT_ADMIN_EVENT_TYPE); TypeFriendly texts fictional ("Weekend Conference Program", "Youth Day", "Gospel Meeting").
 - OnApplicationEvent_ClickEvent writes the app log (as OrbitLanding's Orbit audit events), no server call.
+
+## Changes 2026-11-07 (TST sync)
+- TST file changed (brief.md): `Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js` (36074 -> 79362 bytes, `migration/knowledge/tst-drift-2026-11-07.md`).
+- Header: the fresh capture shows a filter row with "Upcoming Events" and "Sort By", each with a `fa-caret-down` icon, in `div.orbit-landing-filters-cont`. It also shows two popup roots, `b1-RootPlaceholder_Filters` and `b1-RootPlaceholder_Sort`. Evidence: `analysis/dom/default.html:60-75` (git diff 2fe9efaf). The header size changes from 32.875px to 85.75px.
+- Load flow: GetPopupMeasurements, then ResetFiltersAndSort, then DataActionGet_AdminEventsList. Evidence: `migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc@b0785345.js:1115` (GetPopupMeasurements), `:1088` (ResetFiltersAndSort), `:1224` (call in OnReady).
+- Inputs: the call now sends the block variables `EventFilter`, `SortEventsASC`, `YearsSelection`, `Popup_SortByOpened`, `Popup_FiltersOpened` and `PopupMeasurements` (`analysis/calls.md:85`). The response has a new output `YearFilter` (`analysis/calls.json:123`, source `:15`). It is an empty list in the capture.
+- After the fetch: FilterEvents (`:934`, `:1261`) filters the list (Upcoming, Past, Past with selected years) and sets `YearsSelection` from `YearFilter`.
+- React now: header filters with toggle clicks, the two popup roots, the new load order and the new inputs. `YearFilter`, the inputs and `OrbitSummaryItem.DateTime` go through `app/src/api/event` (dev.md). Parity is clean in default, loading and offline (test.md).
+- Not ported: the content of the two popups and the apply handlers (ApplyFilters, ApplySort, the sort and the scroll to top). An open popup renders `<NotCaptured>`.
+- Route check: `migration/route-check/routes/OrbitAdminLanding.md` made again with `check_route.py`.
 
 ## Change requests
 - CR-OrbitAdminLanding-1: shell `appManager_GetCachedUserInfo` returns the mock user's FirstName / MemberId in memory (applied, Q3)

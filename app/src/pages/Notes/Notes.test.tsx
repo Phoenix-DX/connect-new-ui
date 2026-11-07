@@ -111,7 +111,7 @@ describe('Notes page', () => {
     expect(bodies[0]).toMatchObject({ Notes_Filter: { Years: { List: [] }, SortByNewest: '' } });
     fireEvent.click(screen.getByText('Filter'));
     fireEvent.click(await screen.findByText('2025'));
-    const apply = screen.getAllByText('Apply filters');
+    const apply = screen.getAllByText('Apply');
     fireEvent.click(apply[apply.length - 1] as Element);
     await waitFor(() => {
       expect(bodies).toHaveLength(2);

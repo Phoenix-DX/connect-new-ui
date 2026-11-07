@@ -213,5 +213,67 @@
   "answer": "confirm (user, 2026-11-06: 'confirm' for Search; fixtures review 'ok')",
   "answeredBy": "user",
   "answeredAt": "2026-11-06T13:35:28"
+ },
+ {
+  "id": "Q10",
+  "kind": "review",
+  "topic": "review round 5",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: TST sync 2026-11-07: Search needed no code change; the FilterSheet label fix of the CountryDetails item made it clean. The shared-block sweep shows diffs in Bookmarks, HouseholdCarousel, Notes and Updates_SingleList; they belong to their own sync items.; FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).; No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).; Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.; OSWidgets.List markup of the uncaptured lists (`list list-group OSFillParent` + `data-list`; recent clicked also `data-animation-disabled`/`data-virtualization-disabled`) follows the captured lists of other blocks.; Static values not in the shared constants taken from TST (knowledge/static-entities-tst.json): icons history/calendar/close, space xs, font weight bold.; The React app stores the recent lists in IndexedDB, as TST does (no tokens; user id, terms and clicked result names stay on the device).; Input FocusOnReady kept; captured unfocused border masked by the accepted exemption CAPTURE-UNFOCUSED-SEARCH-INPUT (Q4).; Shell change (CR-Search-3): the signed-in app start waits for the first screen before Sync_Info_GetMain. User-info readers wait for the step of the app start. Regression parity is 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining. Feature flags: action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); outSystems_FF.c2EnableSearchByBirthday → default-only: TST value on (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T08:29:29",
+  "items": [
+   "TST sync 2026-11-07: Search needed no code change; the FilterSheet label fix of the CountryDetails item made it clean. The shared-block sweep shows diffs in Bookmarks, HouseholdCarousel, Notes and Updates_SingleList; they belong to their own sync items.",
+   "FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).",
+   "No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).",
+   "Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.",
+   "OSWidgets.List markup of the uncaptured lists (`list list-group OSFillParent` + `data-list`; recent clicked also `data-animation-disabled`/`data-virtualization-disabled`) follows the captured lists of other blocks.",
+   "Static values not in the shared constants taken from TST (knowledge/static-entities-tst.json): icons history/calendar/close, space xs, font weight bold.",
+   "The React app stores the recent lists in IndexedDB, as TST does (no tokens; user id, terms and clicked result names stay on the device).",
+   "Input FocusOnReady kept; captured unfocused border masked by the accepted exemption CAPTURE-UNFOCUSED-SEARCH-INPUT (Q4).",
+   "Shell change (CR-Search-3): the signed-in app start waits for the first screen before Sync_Info_GetMain. User-info readers wait for the step of the app start. Regression parity is 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:39:20"
+ },
+ {
+  "id": "Q11",
+  "kind": "review",
+  "topic": "review round 5",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: TST sync 2026-11-07: Search needed no code change; the FilterSheet label fix of the CountryDetails item made it clean. The shared-block sweep shows diffs in Bookmarks, HouseholdCarousel, Notes and Updates_SingleList; they belong to their own sync items.; FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).; No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).; Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.; OSWidgets.List markup of the uncaptured lists (`list list-group OSFillParent` + `data-list`; recent clicked also `data-animation-disabled`/`data-virtualization-disabled`) follows the captured lists of other blocks.; Static values not in the shared constants taken from TST (knowledge/static-entities-tst.json): icons history/calendar/close, space xs, font weight bold.; The React app stores the recent lists in IndexedDB, as TST does (no tokens; user id, terms and clicked result names stay on the device).; Input FocusOnReady kept; captured unfocused border masked by the accepted exemption CAPTURE-UNFOCUSED-SEARCH-INPUT (Q4).; Shell change (CR-Search-3): the signed-in app start waits for the first screen before Sync_Info_GetMain. User-info readers wait for the step of the app start. Regression parity is 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining. Feature flags: action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); outSystems_FF.c2EnableSearchByBirthday → default-only: TST value on (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:39:20",
+  "items": [
+   "TST sync 2026-11-07: Search needed no code change; the FilterSheet label fix of the CountryDetails item made it clean. The shared-block sweep shows diffs in Bookmarks, HouseholdCarousel, Notes and Updates_SingleList; they belong to their own sync items.",
+   "FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).",
+   "No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).",
+   "Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.",
+   "OSWidgets.List markup of the uncaptured lists (`list list-group OSFillParent` + `data-list`; recent clicked also `data-animation-disabled`/`data-virtualization-disabled`) follows the captured lists of other blocks.",
+   "Static values not in the shared constants taken from TST (knowledge/static-entities-tst.json): icons history/calendar/close, space xs, font weight bold.",
+   "The React app stores the recent lists in IndexedDB, as TST does (no tokens; user id, terms and clicked result names stay on the device).",
+   "Input FocusOnReady kept; captured unfocused border masked by the accepted exemption CAPTURE-UNFOCUSED-SEARCH-INPUT (Q4).",
+   "Shell change (CR-Search-3): the signed-in app start waits for the first screen before Sync_Info_GetMain. User-info readers wait for the step of the app start. Regression parity is 0 on Login, PINUnlock, PINRegister, Splash, HomeFeed, MyEntertaining."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:39:20"
  }
 ]

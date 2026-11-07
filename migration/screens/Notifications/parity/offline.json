@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "152ab4bce0a1ac2a20c0",
+ "fingerprint": "f240ff73ed818ed1b7bc",
  "options": {
   "text": true,
   "style": true,
@@ -19,18 +19,19 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 346,
-  "texts": 31,
+  "elements": 824,
+  "texts": 51,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:35:00.399Z",
+ "at": "2026-11-07T10:01:29.691Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 33,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
@@ -39,7 +40,7 @@
   "maxCell": 0.0219,
   "maxCellRatio": 0.03,
   "diffPixels": 60,
-  "comparedPixels": 328784,
+  "comparedPixels": 328589,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,7 +51,7 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 4,
   "hotspots": [
    "200,800 (35px)",
    "200,760 (25px)"

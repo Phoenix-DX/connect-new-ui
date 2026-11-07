@@ -283,7 +283,7 @@ export const FLAGS = {
     description: 'The Locality Contacts filter tag of Locality_Details.',
     ...UNSET,
     source: 'server',
-    default: false,
+    default: true, // user 2026-11-07 (TST sync Q7): default-only, the read-only probe of 2026-11-07 reads true
     routes: ['Locality_Details'],
   },
   mobileDirectoryHouseholdGallery: {

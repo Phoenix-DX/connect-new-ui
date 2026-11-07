@@ -11,7 +11,7 @@ import { captureScrollPosition, scrollFix } from './actions';
 vi.mock('./actions', () => ({ captureScrollPosition: vi.fn(), scrollFix: vi.fn() }));
 
 /* The page with its flows (useUpdatesSingleList) in the app frame on a memory router, with the MSW mocks of the test
-   setup (pages/Updates_SingleList/mocks.ts: 88 fictional updates, 85 unread, none of today). The mock collection
+   setup (pages/Updates_SingleList/mocks.ts: 88 fictional updates, all unread, none of today). The mock collection
    lives as long as this file: MarkAllAsRead writes to it, so that test runs last. MarkAsRead writes to the HomeFeed
    collection only (CR-Updates_SingleList-1). */
 const PATH = '/UBTConnect/Updates_SingleList';
@@ -71,10 +71,16 @@ describe('Updates_SingleList page', () => {
     expect(calls.indexOf('DataActionGetDateRanges')).toBeGreaterThanOrEqual(0);
     expect(calls.indexOf('DataActionFetchUpdates')).toBeGreaterThan(calls.indexOf('DataActionGetDateRanges'));
     expect(rows()).toHaveLength(88);
-    expect(unreadRows()).toHaveLength(85);
+    expect(unreadRows()).toHaveLength(88);
     expect(listHeaderTitle()).toContain('Last 7 Days');
     expect(screen.getByText('Mark All as Read')).toBeInTheDocument();
     expect(document.querySelector('.ubt-layout-main__title h2.header-title')?.textContent).toBe('Updates');
+    // TST 2026-11-07: the "Filter" label sits in Horizontal_Filter_TagList; no filter icon in the header, no badge in
+    // the list header.
+    const label = document.querySelector('[id="$b10"] [data-block="App_CommonBlocks_Filter.FilterSheet_Icon_Label"]');
+    expect(label?.textContent).toContain('Filter');
+    expect(document.querySelector('[data-block="App_CommonBlocks_Filter.FilterSheet_Icon"]')).toBeNull();
+    expect(document.querySelector('#ListHeader [data-block="OutSystemsUIOverrides.Badge"]')).toBeNull();
   });
 
   it('a search reloads the list with the text in Filter_Updates; the same text again does not', async () => {
@@ -111,7 +117,7 @@ describe('Updates_SingleList page', () => {
     const bodies = recordBodies(FETCH);
     renderPage();
     await listLoaded();
-    const tagList = document.querySelector<HTMLElement>('[id="$b11"]');
+    const tagList = document.querySelector<HTMLElement>('[id="$b10"]'); // Horizontal_Filter_TagList
     if (tagList === null) throw new Error('type tags not rendered');
     fireEvent.click(within(tagList).getByText('Marriage'));
     await waitFor(() => {
@@ -131,7 +137,7 @@ describe('Updates_SingleList page, read state', () => {
     await listLoaded();
     fireEvent.click(screen.getByText('Joshua & Emily Caldwell'));
     await waitFor(() => {
-      expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=880098');
+      expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=880056');
     });
     const fetches = calledActions().filter((c) => c.endsWith('DataActionFetchUpdates')).length;
 
@@ -146,10 +152,10 @@ describe('Updates_SingleList page, read state', () => {
     await listLoaded();
 
     expect(at()).toBe(PATH);
-    // Row 2 was clicked (marked read before the navigation); rows 4 and 6 were swiped in the carousel.
+    // Row 44 was clicked (marked read before the navigation); rows 4 and 6 were swiped in the carousel.
     const isUnread = (i: number) => rows()[i]?.querySelector('[class*="--unread"]') !== null;
-    expect([2, 4, 6, 7].map(isUnread)).toEqual([false, false, false, true]);
-    expect(unreadRows()).toHaveLength(82);
+    expect([44, 4, 6, 7].map(isUnread)).toEqual([false, false, false, true]);
+    expect(unreadRows()).toHaveLength(85);
     expect(calledActions().filter((c) => c.endsWith('DataActionFetchUpdates'))).toHaveLength(fetches);
   });
 
@@ -165,7 +171,7 @@ describe('Updates_SingleList page, read state', () => {
     expect(tappedId).not.toBe('');
     fireEvent.click(screen.getByText('Joshua & Emily Caldwell'));
     await waitFor(() => {
-      expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=880098');
+      expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=880056');
     });
     expect(vi.mocked(captureScrollPosition).mock.calls).toEqual([[tappedId]]);
     expect(leavingScrollAnchors.get('List_Updates')).toEqual({ index: tappedRow, offsetTop: 0 }); // NH:1620-1623

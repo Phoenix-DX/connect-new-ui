@@ -1,0 +1,467 @@
+{
+ "date": "2026-11-07",
+ "collectedAt": "2026-11-06T17:59:49.250Z",
+ "versionSequence": {
+  "stored": "15749",
+  "live": "15765"
+ },
+ "routes": {
+  "changed": {
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js": {
+    "routes": [
+     "Bookmarks",
+     "CountryDetails",
+     "Notes",
+     "Search",
+     "Updates_SingleList"
+    ],
+    "captured": 155221,
+    "live": 155999
+   },
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js": {
+    "routes": [
+     "Bookmarks",
+     "Notes",
+     "Search"
+    ],
+    "captured": 21324,
+    "live": 21331
+   },
+   "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js": {
+    "routes": [
+     "Bookmarks"
+    ],
+    "captured": 17400,
+    "live": 17691
+   },
+   "UBTConnect.Bookmarks.Bookmarks.mvc.js": {
+    "routes": [
+     "Bookmarks"
+    ],
+    "captured": 84280,
+    "live": 103937
+   },
+   "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js": {
+    "routes": [
+     "Bookmarks"
+    ],
+    "captured": 30294,
+    "live": 30840
+   },
+   "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js": {
+    "routes": [
+     "Bookmarks"
+    ],
+    "captured": 25153,
+    "live": 29378
+   },
+   "UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js": {
+    "routes": [
+     "Bookmarks",
+     "BrowseCountries",
+     "Notifications"
+    ],
+    "captured": 19973,
+    "live": 20249
+   },
+   "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js": {
+    "routes": [
+     "Bookmarks",
+     "Notes"
+    ],
+    "captured": 27420,
+    "live": 34136
+   },
+   "UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js": {
+    "routes": [
+     "Bookmarks"
+    ],
+    "captured": 52767,
+    "live": 47914
+   },
+   "UBTConnect.ContactFlow.ContactByEmailMember.mvc.js": {
+    "routes": [
+     "ContactByEmailMember"
+    ],
+    "captured": 47958,
+    "live": 47958
+   },
+   "UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js": {
+    "routes": [
+     "ContactUsDetails",
+     "CountryDetails",
+     "CountryList",
+     "Menu",
+     "Profile",
+     "Updates_SingleList"
+    ],
+    "captured": 19296,
+    "live": 19296
+   },
+   "UBTConnect.Directory_Locality.CountryList.mvc.js": {
+    "routes": [
+     "CountryList"
+    ],
+    "captured": 85716,
+    "live": 86669
+   },
+   "UBTConnect.Home.HomeFeed.mvc.js": {
+    "routes": [
+     "HomeFeed"
+    ],
+    "captured": 48876,
+    "live": 51364
+   },
+   "UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js": {
+    "routes": [
+     "HomeFeed",
+     "HouseholdCarousel",
+     "SupperMeeting_Carousel",
+     "Updates_SingleList"
+    ],
+    "captured": 14202,
+    "live": 16962
+   },
+   "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js": {
+    "routes": [
+     "HomeFeed",
+     "HouseholdCarousel",
+     "HouseholdDetails",
+     "OneSchoolGlobalCarousel",
+     "OneSchoolGlobalDetails",
+     "Profile",
+     "SupperMeeting_Carousel",
+     "SupperMeeting_Details",
+     "Updates_SingleList"
+    ],
+    "captured": 167050,
+    "live": 169144
+   },
+   "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js": {
+    "routes": [
+     "HouseholdCarousel",
+     "OneSchoolGlobalCarousel",
+     "SupperMeeting_Carousel"
+    ],
+    "captured": 25752,
+    "live": 26959
+   },
+   "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js": {
+    "routes": [
+     "HouseholdCarousel",
+     "HouseholdDetails",
+     "OneSchoolGlobalCarousel",
+     "OneSchoolGlobalDetails",
+     "Profile",
+     "SupperMeeting_Carousel",
+     "SupperMeeting_Details"
+    ],
+    "captured": 121195,
+    "live": 126277
+   },
+   "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js": {
+    "routes": [
+     "HouseholdCarousel",
+     "HouseholdDetails",
+     "Profile"
+    ],
+    "captured": 146366,
+    "live": 153109
+   },
+   "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js": {
+    "routes": [
+     "HouseholdCarousel",
+     "HouseholdDetails",
+     "Locality_Details",
+     "Profile",
+     "Search",
+     "Updates_SingleList"
+    ],
+    "captured": 21178,
+    "live": 23170
+   },
+   "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js": {
+    "routes": [
+     "HouseholdCarousel",
+     "HouseholdDetails",
+     "LDM_MyEvents_V2",
+     "OneSchoolGlobalCarousel",
+     "OneSchoolGlobalDetails",
+     "Profile",
+     "SupperMeeting_Carousel",
+     "SupperMeeting_Details"
+    ],
+    "captured": 26008,
+    "live": 24511
+   },
+   "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js": {
+    "routes": [
+     "Household_Relations"
+    ],
+    "captured": 111168,
+    "live": 133686
+   },
+   "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js": {
+    "routes": [
+     "Household_Relations"
+    ],
+    "captured": 22246,
+    "live": 22386
+   },
+   "UBTConnect.Directory_Locality.Locality_Details.mvc.js": {
+    "routes": [
+     "Locality_Details"
+    ],
+    "captured": 86427,
+    "live": 88309
+   },
+   "UBTConnect.App_Menu.Menu.mvc.js": {
+    "routes": [
+     "Menu"
+    ],
+    "captured": 53280,
+    "live": 53325
+   },
+   "UBTConnect.Calendar.MyEntertaining_Embedded.mvc.js": {
+    "routes": [
+     "MyEntertaining"
+    ],
+    "captured": 20520,
+    "live": 20521
+   },
+   "UBTConnect.Notes.NoteCard_List.mvc.js": {
+    "routes": [
+     "Notes"
+    ],
+    "captured": 28608,
+    "live": 32582
+   },
+   "UBTConnect.Notes.Notes.mvc.js": {
+    "routes": [
+     "Notes"
+    ],
+    "captured": 87296,
+    "live": 101838
+   },
+   "UBTConnect.App_Notifications.NotificationDetails.mvc.js": {
+    "routes": [
+     "NotificationDetails"
+    ],
+    "captured": 110368,
+    "live": 136580
+   },
+   "UBTConnect.App_Notifications.Notifications.mvc.js": {
+    "routes": [
+     "Notifications"
+    ],
+    "captured": 166558,
+    "live": 135099
+   },
+   "UBTConnect.App_Notifications.NotificationsList.mvc.js": {
+    "routes": [
+     "Notifications"
+    ],
+    "captured": 44491,
+    "live": 49029
+   },
+   "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js": {
+    "routes": [
+     "Notifications"
+    ],
+    "captured": 22571,
+    "live": 34541
+   },
+   "UBTConnect.App_Notifications.Notifications_Header.mvc.js": {
+    "routes": [
+     "Notifications"
+    ],
+    "captured": 17432,
+    "live": 21262
+   },
+   "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc.js": {
+    "routes": [
+     "Notifications"
+    ],
+    "captured": 27018,
+    "live": 27924
+   },
+   "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js": {
+    "routes": [
+     "OneSchoolGlobalCarousel"
+    ],
+    "captured": 12983,
+    "live": 13656
+   },
+   "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js": {
+    "routes": [
+     "OneSchoolGlobalCarousel",
+     "OneSchoolGlobalDetails"
+    ],
+    "captured": 66665,
+    "live": 62687
+   },
+   "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js": {
+    "routes": [
+     "OneSchoolGlobalDetails"
+    ],
+    "captured": 17344,
+    "live": 17599
+   },
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js": {
+    "routes": [
+     "OrbitAdminLanding"
+    ],
+    "captured": 36074,
+    "live": 79362
+   },
+   "UBTConnect.App_Profile.Profile.mvc.js": {
+    "routes": [
+     "Profile"
+    ],
+    "captured": 192307,
+    "live": 194991
+   },
+   "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js": {
+    "routes": [
+     "Search"
+    ],
+    "captured": 216883,
+    "live": 216883
+   },
+   "UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js": {
+    "routes": [
+     "Updates_SingleList"
+    ],
+    "captured": 20735,
+    "live": 19015
+   },
+   "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js": {
+    "routes": [
+     "Updates_SingleList"
+    ],
+    "captured": 178248,
+    "live": 179795
+   }
+  },
+  "missing": {}
+ },
+ "surveys": {
+  "added": [
+   "UBTConnect.App_Notifications.ActionButtonGroup.mvc.js",
+   "UBTConnect.Map.Map2.mvc.js"
+  ],
+  "removed": [],
+  "changed": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding.mvc.js",
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
+   "UBTConnect.App_Menu.Menu.mvc.js",
+   "UBTConnect.App_Notifications.NotificationDetails.mvc.js",
+   "UBTConnect.App_Notifications.Notifications.mvc.js",
+   "UBTConnect.App_Notifications.NotificationsList.mvc.js",
+   "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js",
+   "UBTConnect.Bookmarks.Bookmarks.mvc.js",
+   "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js",
+   "UBTConnect.Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal.mvc.js",
+   "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+   "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
+   "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js",
+   "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc.js",
+   "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js",
+   "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block.mvc.js",
+   "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js",
+   "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js",
+   "UBTConnect.Map.CacheControl_CountriesMarkers.mvc.js",
+   "UBTConnect.Map.CacheControl_GlobalEntities.mvc.js",
+   "UBTConnect.Map.CacheControl_Household.mvc.js",
+   "UBTConnect.Map.CacheControl_Localities.mvc.js",
+   "UBTConnect.Map.Map.mvc.js",
+   "UBTConnect.Map.Map_PoIPreview.mvc.js",
+   "UBTConnect.Notes.Notes.mvc.js",
+   "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js"
+  ],
+  "same": 616
+ },
+ "folders": {
+  "migration/sources/survey/": {
+   "Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js": [
+    42886,
+    43192
+   ],
+   "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc.js": [
+    10945,
+    15370
+   ],
+   "UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js": [
+    37871,
+    47738
+   ],
+   "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js": [
+    19467,
+    19936
+   ]
+  },
+  "migration/sources/runtime/": {
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js": [
+    156013,
+    155999
+   ],
+   "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js": [
+    21324,
+    21331
+   ],
+   "UBTConnect.App_Menu.Menu.mvc.js": [
+    53318,
+    53325
+   ],
+   "UBTConnect.App_Notifications.NotificationDetails.mvc.js": [
+    110368,
+    136580
+   ],
+   "UBTConnect.App_Notifications.Notifications.mvc.js": [
+    142618,
+    135099
+   ],
+   "UBTConnect.App_Notifications.NotificationsList.mvc.js": [
+    48577,
+    49029
+   ],
+   "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc.js": [
+    24454,
+    34541
+   ],
+   "UBTConnect.Bookmarks.Bookmarks.mvc.js": [
+    95290,
+    103937
+   ],
+   "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js": [
+    124580,
+    126277
+   ],
+   "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js": [
+    152769,
+    153109
+   ],
+   "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js": [
+    133262,
+    133686
+   ],
+   "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc.js": [
+    15143,
+    15370
+   ],
+   "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js": [
+    216883,
+    216883
+   ],
+   "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js": [
+    179299,
+    179795
+   ],
+   "UBTConnect.Notes.Notes.mvc.js": [
+    101640,
+    101838
+   ]
+  }
+ }
+}

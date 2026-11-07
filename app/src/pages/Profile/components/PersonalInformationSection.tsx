@@ -11,10 +11,10 @@ import {
   NOTE_XS,
   PAD_BOTTOM_BASE,
   PAD_BOTTOM_S,
-  PAD_TOP_BASE_BOTTOM_S,
   SECTION_PADDING,
   SECTION_TITLE,
   SWITCH_COLUMNS,
+  SWITCH_ROW_PADDING,
 } from './formOptions';
 
 type PersonalInformation = AccountForm['AccountForm_PersonalInformation'];
@@ -29,7 +29,8 @@ export interface PersonalInformationSectionProps {
 }
 
 /** The section Personal Information of the Profile form (the container PersonalInfo): the read-only username, the
-    email, and the switch that shows the birth date and the age.
+    read-only email (TST 2026-11: Email_Container with the label in a Columns_Two whose right column is empty,
+    Profile.mvc.js `$if(false)`), and the switch that shows the birth date and the age.
     @origin UBTConnect.App_Profile.Profile */
 export function PersonalInformationSection({ personal, onChange, onShowAgeChange }: PersonalInformationSectionProps) {
   return (
@@ -57,11 +58,18 @@ export function PersonalInformationSection({ personal, onChange, onShowAgeChange
           onChange({ Username: v });
         }}
       />
-      <CustomText id="Email" inText="Email" inTextOptions={FIELD_LABEL} inPaddingOptions={PAD_TOP_BASE_BOTTOM_S} />
+      <CustomContainer id="Email_Container" options={SWITCH_ROW_PADDING}>
+        <ColumnsTwo
+          id="Email"
+          columnOptions={SWITCH_COLUMNS}
+          left={<CustomText id="EmailLabel" inText="Email" inTextOptions={FIELD_LABEL} />}
+          right={null}
+        />
+      </CustomContainer>
       <FormInput
         id="Input_Email"
         type="email"
-        enabled
+        enabled={false}
         maxLength={50}
         value={personal.Email}
         onChange={(v) => {

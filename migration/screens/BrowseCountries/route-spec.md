@@ -63,6 +63,16 @@ The app-start calls (#1, #3-#8 of calls.md) belong to the shell [call-sites.md].
 - The no-access branch calls the shell's `showUpgradePopUp` (Q1, auto-accepted).
 - The mock user's plan is Global (app/src/shell/mockUser.ts:62), so every country card navigates to BrowseDirectory.
 
+## Changes 2026-11-07 (TST sync)
+- TST file that changed: `UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js` (brief.md). The page shows no markup change from it.
+- The fresh capture shows statistic counts one lower than the old capture. Saint Vincent 73 brethren and 36 sisters, Trinidad 73 brethren and 37 sisters, United States 28 localities. Evidence: `analysis/dom/default.html` (diff 74 to 73, 37 to 36, 38 to 37, 29 to 28).
+- The only call of the page is still DataActionGetCountriesStatistics (`analysis/calls.json:19`). The count of calls is 8 and unchanged.
+- The React mock now serves the recorded fixture with these counts (`app/src/pages/BrowseCountries/mocks.ts`). The fixture is not edited. Parity is clean in the three states (test.md).
+- Shared code: `app/src/api/member/**` now calls `DataActionGetCommunityStatistics` of the owner HomeFeed or CountryList. This replaces `FeedBlock_CommunityPopulation/DataActionFetchCount` (dev.md). BrowseCountries does not call it. The route-check file of the route shows no change of call.
+
+## Decisions to confirm (TST sync)
+- The mock patches the counts on top of the recorded fixture, because a fixture is never edited. Confirm that this is acceptable until the fixture is recorded again.
+
 ## Change requests
 - none
 

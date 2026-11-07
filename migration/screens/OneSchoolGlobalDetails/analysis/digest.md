@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/OneSchoolGlobalDetails`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js`
 
@@ -476,6 +476,7 @@ CW_Share.ShareSheet
 | NoteCategoryId | local | Text | `""` |
 | EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | FetchNoteId | local | Text | `""` |
+| PendingOpen | local | Boolean | `false` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
@@ -487,14 +488,14 @@ CW_Share.ShareSheet
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handler_OpenNotesSheetDeferred`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `action_UpdateBookmarksAndNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
-- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
+- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handler_OnNotesSheetClosed.JavaScript1JS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
 - Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
-- Candidate static strings: `Action_AsyncRefresh_ContactDetails`
+- Candidate static strings: `Handler_OpenNotesSheetDeferred` | `Action_AsyncRefresh_ContactDetails`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 | variable | kind | type | default |
@@ -933,18 +934,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2900 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 5154 ms
-- 3. `DataActionFetchContactDetails` (200) at 5479 ms
-- 4. `DataActionFetchContactDetails` (200) at 5481 ms
-- 5. `DataActionGetOneSchoolGlobalDetails` (200) at 5503 ms
-- 6. `ActionSync_Info_GetMain` (200) at 5614 ms
-- 7. `DataActionFetchNotes` (200) at 5664 ms
-- 8. `DataActionFetchContactDetails` (200) at 5814 ms
-- 9. `ActionGetUserInformation` (200) at 5928 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 6192 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8671 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11055 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2816 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 5410 ms
+- 3. `DataActionGetOneSchoolGlobalDetails` (200) at 5451 ms
+- 4. `DataActionFetchContactDetails` (200) at 5452 ms
+- 5. `DataActionFetchContactDetails` (200) at 5455 ms
+- 6. `DataActionFetchNotes` (200) at 5669 ms
+- 7. `DataActionFetchContactDetails` (200) at 5773 ms
+- 8. `ActionSync_Info_GetMain` (200) at 5851 ms
+- 9. `ActionGetUserInformation` (200) at 6217 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 6481 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8693 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11332 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

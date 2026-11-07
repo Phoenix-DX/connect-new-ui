@@ -9,6 +9,7 @@
 Each one is a UI state (loading, empty, error, popup...) that still needs a capture, or a branch that never runs for this user.
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
+- [ ] `App_Notifications.ActionButtonGroup`
 - [ ] `App_Policies.Policy_Checker`
 - [ ] `CacheControl.CacheControl_Policies`
 - [ ] `ConnectPatterns.HighlightSearch`
@@ -45,9 +46,11 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
-- [ ] `DataActionFetchMessageInstance` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
 - [x] `DataActionGetMessageInstance` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
 - [ ] `Wrapper_NotificationOpened` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
+- [ ] `Get_OrbitHostSurveyNotificationParameters` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
+- [ ] `Get_OrbitNotificationParameters` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
+- [ ] `StoreAdaptiveCardResponses` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
 - [ ] `ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` (UBTConnect.App_Notifications.NotificationDetails.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)

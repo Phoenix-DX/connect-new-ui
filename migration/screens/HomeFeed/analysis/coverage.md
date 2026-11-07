@@ -1,8 +1,8 @@
 # Coverage for HomeFeed
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 12 call(s)
-- Masked text nodes: 12, user images removed: 0
+- Runtime captures: 1 file(s), 11 call(s)
+- Masked text nodes: 15, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -26,7 +26,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.ContextMenu_Item`
 - [ ] `ConnectPatterns.EmptyList`
 - [ ] `ConnectPatterns.HighlightSearch`
-- [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.Input`
 - [ ] `ConnectPatterns.LazyImage`
 - [ ] `Fingerprint.FingerprintScanner`
@@ -38,6 +37,20 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `img/Connect2_LegacyShared.User_rectangle.png`
 - [ ] `img/UBTConnect.ConnectLogo.svg`
 - [x] `img/UBTConnect.ConnectLogoWhite.svg`
+- [x] `img/UBTConnectLibrary.CommunityCountries.svg`
+- [x] `img/UBTConnectLibrary.CommunityHouseholds.svg`
+- [x] `img/UBTConnectLibrary.CommunityLocalities.svg`
+- [x] `img/UBTConnectLibrary.CommunityMembers.svg`
+- [ ] `img/UBTConnectLibrary.CommunityTradelink.svg`
+- [ ] `img/UBTConnectLibrary.ElGusto.svg`
+- [ ] `img/UBTConnectLibrary.HR100.svg`
+- [ ] `img/UBTConnectLibrary.OneSchoolGlobal.svg`
+- [ ] `img/UBTConnectLibrary.Pin_Country.svg`
+- [ ] `img/UBTConnectLibrary.Pin_House.svg`
+- [ ] `img/UBTConnectLibrary.Pin_Locality.svg`
+- [ ] `img/UBTConnectLibrary.Pin_Lock.svg`
+- [ ] `img/UBTConnectLibrary.Pin_Member.svg`
+- [ ] `img/UBTConnectLibrary.Pin_OneSchool.svg`
 - [ ] `img/UBTConnectLibrary.ar.png`
 - [ ] `img/UBT_CW.UK.png`
 - [ ] `img/UBT_CW.au.png`
@@ -64,7 +77,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 ## Data/server actions declared in the screen and its blocks
 - [x] `DataActionGetCommunityStatistics` (UBTConnect.Home.HomeFeed.mvc.js)
 - [x] `DataActionGetServices` (UBTConnect.Home.FeedBlock_Services.mvc.js)
-- [x] `DataActionFetchCount` (UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js)
 - [x] `DataActionFetchUpdates` (UBTConnect.Home.FeedBlock_Updates.mvc.js)
 - [ ] `Action_UI_UpdateItem_MarkAsRead` (UBTConnect.Home.FeedBlock_Updates.mvc.js)
 - [ ] `Action_UI_UpdateItem_MarkAsUnread` (UBTConnect.Home.FeedBlock_Updates.mvc.js)
@@ -75,17 +87,15 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `CS_ShareObject` (UBTConnect_Utils.CW_Share.ShareSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

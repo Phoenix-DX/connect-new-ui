@@ -36,7 +36,7 @@ export interface HouseholdRelationsState {
   isLoading: boolean;
   ShowNotesSheet: boolean;
   Get_MemberDetails: MemberRelations & { dataFetchStatus: DataFetchStatus };
-  Get_ParentHouseholdDetails: SiblingRelations & { dataFetchStatus: DataFetchStatus };
+  Get_SibllingsRelations: SiblingRelations & { dataFetchStatus: DataFetchStatus };
   FetchNotes: { Notes: Notes; dataFetchStatus: DataFetchStatus };
 }
 
@@ -54,8 +54,10 @@ export const INITIAL_HOUSEHOLD_RELATIONS_STATE: HouseholdRelationsState = {
     Mother: MEMBER_DEFAULTS,
     FormerSpouses: [],
     ParentHouseholdId: '',
+    AwayParents: { Title: '', HouseholdId: '0', LocalityName: '', CountryName: '' },
+    NoDisplaySiblings: [],
   },
-  Get_ParentHouseholdDetails: { dataFetchStatus: DataFetchStatus.Fetching, Out_siblingRelations: [] },
+  Get_SibllingsRelations: { dataFetchStatus: DataFetchStatus.Fetching, Out_siblingRelations: [] },
   FetchNotes: { dataFetchStatus: DataFetchStatus.Fetching, Notes: { Total: 0, Note_Item_List: [] } },
 };
 
@@ -68,13 +70,9 @@ function withSkeleton(state: HouseholdRelationsState): HouseholdRelationsState {
   return {
     ...state,
     Get_MemberDetails: { ...state.Get_MemberDetails, Father: skeletonParent, Mother: skeletonParent },
-    Get_ParentHouseholdDetails: {
-      ...state.Get_ParentHouseholdDetails,
-      Out_siblingRelations: [
-        ...state.Get_ParentHouseholdDetails.Out_siblingRelations,
-        skeletonSibling,
-        skeletonSibling,
-      ],
+    Get_SibllingsRelations: {
+      ...state.Get_SibllingsRelations,
+      Out_siblingRelations: [...state.Get_SibllingsRelations.Out_siblingRelations, skeletonSibling, skeletonSibling],
     },
   };
 }
@@ -103,7 +101,7 @@ export type HouseholdRelationsAction =
   | { type: 'memberDetailsFetching' }
   | { type: 'memberDetailsFetched'; details: MemberRelations }
   | { type: 'memberDetailsFailed' }
-  /** Get_ParentHouseholdDetails: the call starts, answers or fails. */
+  /** Get_SibllingsRelations: the call starts, answers or fails. */
   | { type: 'siblingsFetching' }
   | { type: 'siblingsFetched'; details: SiblingRelations }
   | { type: 'siblingsFailed' }
@@ -136,7 +134,7 @@ export function householdRelationsReducer(
         ...state,
         isLoading:
           action.isRefresh ||
-          (isNotFetched(state.Get_ParentHouseholdDetails.dataFetchStatus) &&
+          (isNotFetched(state.Get_SibllingsRelations.dataFetchStatus) &&
             isNotFetched(state.Get_MemberDetails.dataFetchStatus)),
       };
     case 'memberDetailsFetching':
@@ -151,14 +149,14 @@ export function householdRelationsReducer(
     case 'siblingsFetching':
       return {
         ...state,
-        Get_ParentHouseholdDetails: { ...state.Get_ParentHouseholdDetails, dataFetchStatus: DataFetchStatus.Fetching },
+        Get_SibllingsRelations: { ...state.Get_SibllingsRelations, dataFetchStatus: DataFetchStatus.Fetching },
       };
     case 'siblingsFetched':
-      return { ...state, Get_ParentHouseholdDetails: { ...action.details, dataFetchStatus: DataFetchStatus.Fetched } };
+      return { ...state, Get_SibllingsRelations: { ...action.details, dataFetchStatus: DataFetchStatus.Fetched } };
     case 'siblingsFailed':
       return {
         ...state,
-        Get_ParentHouseholdDetails: { ...state.Get_ParentHouseholdDetails, dataFetchStatus: DataFetchStatus.Error },
+        Get_SibllingsRelations: { ...state.Get_SibllingsRelations, dataFetchStatus: DataFetchStatus.Error },
       };
     case 'notesSheetOpened':
       return { ...state, ShowNotesSheet: true };

@@ -25,3 +25,13 @@ describe('SanitizedHtml', () => {
     expect(span?.innerHTML).toBe('<b>y</b>');
   });
 });
+
+it('gives the expression span the captured id: block id without "$" plus "-SanitizedHtml"', () => {
+  const { container } = render(<SanitizedHtml id="b1-b4-$b3" value="<b>x</b>" />);
+  expect(container.querySelector('span.OSFillParent')?.id).toBe('b1-b4-b3-SanitizedHtml');
+});
+
+it('renders the expression span without an id when the block has none', () => {
+  const { container } = render(<SanitizedHtml value="x" />);
+  expect(container.querySelector('span.OSFillParent')?.hasAttribute('id')).toBe(false);
+});

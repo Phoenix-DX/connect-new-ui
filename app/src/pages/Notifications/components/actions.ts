@@ -13,17 +13,34 @@ export const isInRange = (item: NotificationItem, r: NotificationDateRange) =>
 export const itemsOfRange = (items: NotificationItem[], r: NotificationDateRange) =>
   items.filter((i) => isInRange(i, r));
 
+/** The OutSystems DiffSeconds / DiffMinutes / DiffHours / DiffDays (runtime OutSystems.js, `Y`/`X`): both dates are
+    cut to the unit first (DiffHours drops minutes and seconds, DiffDays keeps the date only), then Floor of the
+    difference. DiffDays therefore counts calendar days. */
+const UNIT_MS = { seconds: 1000, minutes: 60000, hours: 3600000, days: 86400000 } as const;
+function osDiff(from: Date, to: Date, unit: keyof typeof UNIT_MS): number {
+  const cut = (d: Date) =>
+    Date.UTC(
+      d.getFullYear(),
+      d.getMonth(),
+      d.getDate(),
+      unit === 'days' ? 0 : d.getHours(),
+      unit === 'days' || unit === 'hours' ? 0 : d.getMinutes(),
+      unit === 'seconds' ? d.getSeconds() : 0,
+    );
+  return Math.floor((cut(to) - cut(from)) / UNIT_MS[unit]);
+}
+
 /** Get_ElapsedTime_Notification (UBTConnectLibrary controller :1703-1760): seconds ≤ 60 "Ns", minutes ≤ 60 "Nm",
-    hours < 24 "Nh", days < 7 "Nd", otherwise Round(days / 7) "Nw". Diff* count whole units. */
+    hours < 24 "Nh", days < 7 "Nd", otherwise Round(days / 7) "Nw", with the OutSystems Diff* functions (osDiff). */
 export function get_ElapsedTime_Notification(dateTime: string, now = new Date()): string {
-  const ms = now.getTime() - parseOsDate(dateTime).getTime();
-  const seconds = Math.trunc(ms / 1000);
+  const created = parseOsDate(dateTime);
+  const seconds = osDiff(created, now, 'seconds');
   if (seconds <= 60) return `${seconds}s`;
-  const minutes = Math.trunc(ms / 60000);
+  const minutes = osDiff(created, now, 'minutes');
   if (minutes <= 60) return `${minutes}m`;
-  const hours = Math.trunc(ms / 3600000);
+  const hours = osDiff(created, now, 'hours');
   if (hours < 24) return `${hours}h`;
-  const days = Math.trunc(ms / 86400000);
+  const days = osDiff(created, now, 'days');
   if (days < 7) return `${days}d`;
   return `${Math.round(days / 7)}w`;
 }

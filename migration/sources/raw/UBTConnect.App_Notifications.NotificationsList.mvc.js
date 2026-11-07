@@ -1,4 +1,4 @@
-define("UBTConnect.App_Notifications.NotificationsList.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$model", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$model", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$model", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec"], function (OutSystems, UBTConnectModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel, NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel) {
+define("UBTConnect.App_Notifications.NotificationsList.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$model", "Connect2_LegacyShared.MyNotifications.MessageImage.mvc$model", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$model", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$model", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec"], function (OutSystems, UBTConnectModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel, Connect2_LegacyShared_MyNotifications_MessageImage_mvcModel, NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -72,7 +72,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = (((((UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel.hasValidationWidgets) || NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((((UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel.hasValidationWidgets) || Connect2_LegacyShared_MyNotifications_MessageImage_mvcModel.hasValidationWidgets) || NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -109,7 +109,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "App_Notifications.NotificationsList");
 });
-define("UBTConnect.App_Notifications.NotificationsList.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.NotificationsList.mvc$model", "UBTConnect.App_Notifications.NotificationsList.mvc$controller", "UBTConnect.clientVariables", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$view", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$view", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$view", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect2_Notification_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_App_Notifications_NotificationsList_mvc_model, UBTConnect_App_Notifications_NotificationsList_mvc_controller, UBTConnectClientVariables, OSWidgets, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view) {
+define("UBTConnect.App_Notifications.NotificationsList.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.NotificationsList.mvc$model", "UBTConnect.App_Notifications.NotificationsList.mvc$controller", "UBTConnect.clientVariables", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$view", "Connect2_LegacyShared.MyNotifications.MessageImage.mvc$view", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$view", "UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc$view", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect2_Notification_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_App_Notifications_NotificationsList_mvc_model, UBTConnect_App_Notifications_NotificationsList_mvc_controller, UBTConnectClientVariables, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, Connect2_LegacyShared_MyNotifications_MessageImage_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -141,7 +141,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view];
+            return [UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, Connect2_LegacyShared_MyNotifications_MessageImage_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -196,6 +196,27 @@ name: "List_Notifications"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new IteratorPlaceholderContent(function (idService, callContext) {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, {
+inputs: {
+In_IsLoading: model.variables.isLoadingIn,
+_in_IsLoadingInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._isLoadingInDataFetchStatus)
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "1",
+alias: "1"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+placeholder_LoadingSection: new PlaceholderContent(function () {
 return [React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
@@ -205,8 +226,7 @@ _idProps: {
 service: idService,
 name: "ListItemContainer"
 },
-_widgetRecordProvider: widgetsRecordProvider,
-_dependencies: [asPrimitiveValue(model.variables._isLoadingInDataFetchStatus), asPrimitiveValue(model.variables.isLoadingIn), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).dateTimeCreatedAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr)]
+_widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(OSWidgets.ListItem, {
 style: "list-item list-itemNotifications-action-primary",
 triggerActionOnFullSwipeLeft: true,
@@ -238,7 +258,7 @@ style: "list-item-action list-itemNotifications-Read-action-primary",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "3"
+uuid: "4"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(OSWidgets.Container, {
@@ -247,13 +267,13 @@ animate: false,
 visible: true,
 _idProps: {
 service: idService,
-uuid: "4"
+uuid: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.mail,
 In_ColorId: UBTConnectModel.staticEntities.uBT_Color.cyanDarkest,
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.mail,
 In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.medium_20
 },
 events: {
@@ -266,19 +286,19 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "5",
-alias: "1"
+uuid: "6",
+alias: "2"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_Text: model.getCachedValue(idService.getId("p8qwBDG840W5CByBfsd8Hw.In_Text"), function () {
+In_Text: model.getCachedValue(idService.getId("kJlHztbCkEC92qFsU+jyjw.In_Text"), function () {
 return ((model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr) ? ("Mark as unread") : ("Mark as read"));
 }, function () {
 return model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr;
 }),
-In_TextOptions: model.getCachedValue(idService.getId("p8qwBDG840W5CByBfsd8Hw.In_TextOptions"), function () {
+In_TextOptions: model.getCachedValue(idService.getId("kJlHztbCkEC92qFsU+jyjw.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.cyanDarkest;
@@ -297,8 +317,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "6",
-alias: "2"
+uuid: "7",
+alias: "3"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -320,8 +340,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "7",
-alias: "3"
+uuid: "8",
+alias: "4"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -338,7 +358,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsList/Container onclick");
-return controller.onClick_NotificationDetail$Action(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr, model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr, controller.callContext(eventHandlerContext));
+return controller.onClick_NotificationDetail$Action(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr, model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr, model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).messageTemplateIdAttr, "", model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).sentAsAttr, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -353,14 +373,16 @@ style: "updates-list__list-item",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "8"
+uuid: "9"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, {
 inputs: {
 In_IsRead: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr,
-In_Description: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr,
+IsIconURLDefined: ((model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr) !== ("")),
 In_NotificationDate: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).dateTimeCreatedAttr,
+In_Description: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr,
+In_IsDoubleAvatar: false,
 In_AvatarImage_Left: model.getCachedValue(idService.getId("NotificationItem.In_AvatarImage_Left"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.AvatarImageRec();
@@ -369,8 +391,7 @@ return rec;
 }();
 }, function () {
 return model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr;
-}),
-In_IsDoubleAvatar: false
+})
 },
 events: {
 _handleError: function (ex) {
@@ -383,10 +404,37 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "NotificationItem",
-alias: "4"
+alias: "5"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+fetchingImage: new PlaceholderContent(function () {
+return [React.createElement(Connect2_LegacyShared_MyNotifications_MessageImage_mvc_view, {
+inputs: {
+IconURL: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr,
+MemberId: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByMemberIdAttr,
+In_SizeId: UBTConnectModel.staticEntities.uBT_AvatarSize.base_52,
+UserId: model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByUserIdAttr
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "11",
+alias: "6"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByUserIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByMemberIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr)]
 }), React.createElement(NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, {
 inputs: {
 Id: OS.BuiltinFunctions.longIntegerToText(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr)
@@ -401,15 +449,15 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "10",
-alias: "5"
+uuid: "12",
+alias: "7"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 }))];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).dateTimeCreatedAttr)]
+_dependencies: [asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByUserIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByMemberIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).dateTimeCreatedAttr)]
 })];
 }),
 rightActions: new PlaceholderContent(function () {
@@ -432,7 +480,7 @@ style: "list-item-action list-itemNotifications-Delete-action-primary",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "11"
+uuid: "13"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(OSWidgets.Container, {
@@ -441,7 +489,7 @@ animate: false,
 visible: true,
 _idProps: {
 service: idService,
-uuid: "12"
+uuid: "14"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
@@ -460,15 +508,15 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "13",
-alias: "6"
+uuid: "15",
+alias: "8"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
 In_Text: "Delete",
-In_TextOptions: model.getCachedValue(idService.getId("MdVnjkKE_0KXq1yPSz7rzA.In_TextOptions"), function () {
+In_TextOptions: model.getCachedValue(idService.getId("CZ2tW_3jzUWqpS2xYrs_Wg.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral0;
@@ -487,8 +535,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "14",
-alias: "7"
+uuid: "16",
+alias: "9"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -496,6 +544,10 @@ _dependencies: []
 })
 }
 }))];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables._isLoadingInDataFetchStatus), asPrimitiveValue(model.variables.isLoadingIn), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByUserIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).createdByMemberIdAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).titleAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).profileIconURLAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).dateTimeCreatedAttr), asPrimitiveValue(model.variables.uI_NotificationItemListVar.getCurrent(callContext.iterationContext).isReadAttr)]
+})];
 }, callContext, idService, "1")
 },
 _dependencies: [asPrimitiveValue(model.variables._isLoadingInDataFetchStatus), asPrimitiveValue(model.variables.isLoadingIn)]
@@ -504,7 +556,7 @@ showPopup: model.variables.showDeleteNotificationPopupVar,
 style: "popup-dialog",
 _idProps: {
 service: idService,
-uuid: "15"
+uuid: "17"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnect_App_Notifications_Notifications_ConfirmDialog_mvc_view, {
@@ -550,8 +602,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "16",
-alias: "8"
+uuid: "18",
+alias: "10"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -581,7 +633,7 @@ var inputs = {
 MessageInstanceId: OS.DataConversion.ServerDataConverter.to(messageInstanceIdIn, OS.DataTypes.DataTypes.LongInteger),
 IsRead: OS.DataConversion.ServerDataConverter.to(isReadIn, OS.DataTypes.DataTypes.Boolean)
 };
-return controller.callServerAction("ToggleRead", "screenservices/UBTConnect/App_Notifications/NotificationsList/ActionToggleRead", "AtFoy0BCbfM4i9yOW9_gqw", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("ToggleRead", "screenservices/UBTConnect/App_Notifications/NotificationsList/ActionToggleRead", "dgibBru0QWkujwMZHSirUg", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 });
@@ -591,7 +643,7 @@ var controller = this.controller;
 var inputs = {
 Messages: OS.DataConversion.ServerDataConverter.to(messagesIn, OS.DataTypes.DataTypes.RecordList)
 };
-return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications", "SvVK+IMeHLKks+MyVbNeRw", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
+return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications", "5HZYkx9oz+KHD3sFPF0FrQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, false).then(function (outputs) {
 });
@@ -819,7 +871,7 @@ return new Connect2_Notification_CSModel.MessageListItemRec();
 },
 complexType: Connect2_Notification_CSModel.MessageListItemRec
 }]);
-Controller.prototype._onClick_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, callContext) {
+Controller.prototype._onClick_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
 var varBag = {};
 var model = this.model;
 var controller = this.controller;
@@ -831,14 +883,17 @@ callContext = controller.callContext(callContext);
 var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.NotificationsList.OnClick_NotificationDetail$vars"))());
 vars.value.messageInstanceIdInLocal = messageInstanceIdIn;
 vars.value.isReadInLocal = isReadIn;
+vars.value.messageTemplateIdInLocal = messageTemplateIdIn;
+vars.value.hardwareIdInLocal = hardwareIdIn;
+vars.value.sentAsInLocal = sentAsIn;
 varBag.callContext = callContext;
 varBag.vars = vars;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Or612Sb5BE+Swt3UticHsQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.rDlE3e1unUOpvstX4ce4bw/ClientActions.Or612Sb5BE+Swt3UticHsQ:33oLjkPDzIfYNftd+0rsnw", "UBTConnect", "OnClick_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Or612Sb5BE+Swt3UticHsQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.rDlE3e1unUOpvstX4ce4bw/ClientActions.Or612Sb5BE+Swt3UticHsQ:kWfoQlJRzZI9CA6gLzHTRA", "UBTConnect", "OnClick_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DTa3aUBmDkeitvoqRgEsNA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cSidvBu2PEGuYLNBOZ0dww", callContext.id);
 // Trigger Event: NotificationDetail
-return controller.notificationDetail$Action(vars.value.messageInstanceIdInLocal, vars.value.isReadInLocal, callContext).then(function () {
+return controller.notificationDetail$Action(vars.value.messageInstanceIdInLocal, vars.value.isReadInLocal, vars.value.messageTemplateIdInLocal, vars.value.hardwareIdInLocal, vars.value.sentAsInLocal, callContext).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ln3csrRr3UGAed53lTyTjg", callContext.id);
 });
 }).then(function (res) {
@@ -867,6 +922,30 @@ mandatory: true,
 dataType: OS.DataTypes.DataTypes.Boolean,
 defaultValue: function () {
 return false;
+}
+}, {
+name: "MessageTemplateId",
+attrName: "messageTemplateIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.LongInteger,
+defaultValue: function () {
+return OS.DataTypes.LongInteger.defaultValue;
+}
+}, {
+name: "HardwareId",
+attrName: "hardwareIdInLocal",
+mandatory: false,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}, {
+name: "SentAs",
+attrName: "sentAsInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Integer,
+defaultValue: function () {
+return 0;
 }
 }]);
 Controller.prototype._onParametersChanged$Action = function (callContext) {
@@ -925,9 +1004,9 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._toggleDeleteNotification$Action, callContext, messageListItemIn);
 
 };
-Controller.prototype.onClick_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, callContext) {
+Controller.prototype.onClick_NotificationDetail$Action = function (messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
 var controller = this.controller;
-return controller.safeExecuteClientAction(controller._onClick_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn);
+return controller.safeExecuteClientAction(controller._onClick_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn);
 
 };
 Controller.prototype.onParametersChanged$Action = function (callContext) {
@@ -945,8 +1024,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rDlE3e1unUOpvstX4ce4bw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.rDlE3e1unUOpvstX4ce4bw:RVzTrbGXmp8xZCqaxOtTiQ", "UBTConnect", "NotificationsList", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:_vq0gFXuOpZKZ4Em4vyllw", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rDlE3e1unUOpvstX4ce4bw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.rDlE3e1unUOpvstX4ce4bw:IaBGJZqtoG+ByJQKwv0nGA", "UBTConnect", "NotificationsList", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:rDlE3e1unUOpvstX4ce4bw", callContext.id);
@@ -1060,6 +1139,24 @@ return varBag.vars.value.isReadInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"qR_XTX3S8U+2_uuViycfGw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.messageTemplateIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.LongInteger
+},
+"HxdZE0KTt0GURdWm+hHIdw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.hardwareIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"DPHgMTZDSkey4n_jj7SfRg": {
+getter: function (varBag, idService) {
+return varBag.vars.value.sentAsInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Integer
+},
 "EhrqyupW40Svt74yL+RHBA": {
 getter: function (varBag, idService) {
 return varBag.listFilter_GetRangeVar.value;
@@ -1110,31 +1207,45 @@ return model.widgets.get(idService.getId("List_Notifications"));
 })(varBag.model, idService);
 }
 },
-"a62YVpUvM0qeG_77KC0Gtw": {
-getter: function (varBag, idService) {
-return (function (model, idService) {
-return model.widgets.get(idService.getId("ListItemContainer"));
-})(varBag.model, idService);
-}
-},
-"71wr+nvgWUGW5fwHbdnniQ": {
-getter: function (varBag, idService) {
-return (function (model, idService) {
-return model.widgets.get(idService.getId("ListItemNotification"));
-})(varBag.model, idService);
-}
-},
-"LVlwGjaozkW+c5xtuHvKvA": {
+"srPKIaz+q0qcR0jWXZZ1gQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
 })(varBag.model, idService);
 }
 },
-"oumV1ZrlXUun0uHXRjHkBA": {
+"2by58F01+0K6p7VxNGr3EQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("ListItemContainer"));
+})(varBag.model, idService);
+}
+},
+"KwecVSU85EaciZuqV5HX1g": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("ListItemNotification"));
+})(varBag.model, idService);
+}
+},
+"oHywQBcr60i0GAptyMmMIw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
+})(varBag.model, idService);
+}
+},
+"_VIVpqjVXESQzIjpfihUKQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("NotificationItem"));
+})(varBag.model, idService);
+}
+},
+"zJNx4znXj025lms861qwLA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("FetchingImage"));
 })(varBag.model, idService);
 }
 }

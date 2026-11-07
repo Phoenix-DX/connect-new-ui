@@ -1,14 +1,22 @@
 {
- "finishedAt": "2026-10-16T06:59:46",
+ "finishedAt": "2026-11-07T16:41:47",
  "files": {
-  "src/screens/LegacyShareObject/api.ts": "64a3fa20035867e5",
-  "src/screens/LegacyShareObject/components/HighlightSearch.tsx": "a43ed5989336d5d9",
-  "src/screens/LegacyShareObject/components/ListBlankSlate.tsx": "e523eaf148987e13",
-  "src/screens/LegacyShareObject/components/ProfileList.tsx": "21b4615e6c53ff73",
-  "src/screens/LegacyShareObject/components/ScreenBlock_ShareObject.tsx": "3f58833eab797a33",
-  "src/screens/LegacyShareObject/components/staticEntities.ts": "9cce0688ee4644da",
-  "src/screens/LegacyShareObject/index.tsx": "810994cf05cac002",
-  "src/screens/LegacyShareObject/mocks.ts": "3b1f35419695f4f8",
-  "src/screens/LegacyShareObject/types.ts": "6e301f7b83882088"
+  "src/pages/LegacyShareObject/LegacyShareObject.test.tsx": "8d9f276b1601735d",
+  "src/pages/LegacyShareObject/LegacyShareObjectPage.tsx": "673ea6b26b4d2466",
+  "src/pages/LegacyShareObject/components/HighlightSearch.tsx": "16bc0be0e287fc38",
+  "src/pages/LegacyShareObject/components/ListBlankSlate.tsx": "6bbe5c85f0f5f66b",
+  "src/pages/LegacyShareObject/components/ProfileList.tsx": "5e4c00437f176c18",
+  "src/pages/LegacyShareObject/components/ShareObjectView.tsx": "35998669c474eb3f",
+  "src/pages/LegacyShareObject/components/staticEntities.ts": "9cce0688ee4644da",
+  "src/pages/LegacyShareObject/hooks/profileListState.test.ts": "9e1adc9fe3934580",
+  "src/pages/LegacyShareObject/hooks/profileListState.ts": "572899e0adb06a03",
+  "src/pages/LegacyShareObject/hooks/shareObjectState.test.ts": "4aea441171a5dee1",
+  "src/pages/LegacyShareObject/hooks/shareObjectState.ts": "966a791993c56014",
+  "src/pages/LegacyShareObject/hooks/useProfileList.test.tsx": "696a7349d0cd2684",
+  "src/pages/LegacyShareObject/hooks/useProfileList.ts": "65667f78f74eedd3",
+  "src/pages/LegacyShareObject/hooks/useShareObject.test.tsx": "91b543550a62380b",
+  "src/pages/LegacyShareObject/hooks/useShareObject.ts": "3349256749188bad",
+  "src/pages/LegacyShareObject/inputs.ts": "09758ce4a0d0679c",
+  "src/pages/LegacyShareObject/mocks.ts": "c69874b1e12103e1"
  }
 }

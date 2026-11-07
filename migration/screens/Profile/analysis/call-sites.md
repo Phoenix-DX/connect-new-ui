@@ -16,17 +16,14 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `CacheControl.OnInitialize` → `CacheControl.onInitialize` → `event onNonCacheHit of CacheControl` → `CacheControl_UserInfo.cacheControlOnNonCacheHit` → `CacheControl_UserInfo.DataActionGetCacheInfo`
 - `CacheControl_UserInfo fetch at start` → `CacheControl_UserInfo.DataActionGetCacheInfo`
 
+### `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates`
+- `HouseholdDetails_Block.refresh_GetHouseholdCoordinates` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`
+
 ### `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold`
 - `HouseholdDetails_Block.refresh_GetHouseholdDetail` → `HouseholdDetails_Block.DataActionGetHousehold`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `HouseholdDetails_Block.OnParametersChanged` → `HouseholdDetails_Block.screenEvent_OnParametersChanged` → `HouseholdDetails_Block.DataActionGetHousehold`
 - `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHousehold`
-
-### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
-- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-
-### `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates`
-- `HouseholdDetails_Block.refresh_GetHouseholdCoordinates` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHousehold_Coordinates`
 
 ### `UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`
 - `Directory_EntityDetailsActions.action_AsyncRefresh_ContactDetails` → `Directory_EntityDetailsActions.DataActionFetchContactDetails`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
@@ -38,14 +35,21 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `Profile.onChange_LocalityDropdown` → `Profile.DataActionGetCountryInfo`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `Profile fetch at start` → `Profile.DataActionGetCountryInfo`
 
+### `UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery`
+- `HouseholdDetails_Block.refresh_GetHouseHold_Gallery` → `HouseholdDetails_Block.DataActionGetHouseHold_Gallery`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+- `HouseholdDetails_Block fetch at start` → `HouseholdDetails_Block.DataActionGetHouseHold_Gallery`
+
 ### `UBTConnect/ActionSync_Info_GetMain`
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `UBTConnect.sync_Info_Main` → `server Sync_Info_GetMain`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `UBTConnect.onApplicationReady` → `UBTConnect.sync_Info_Main` → `server Sync_Info_GetMain`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
+- `Directory_EntityDetailsActions.OnReady` → `Directory_EntityDetailsActions.onReady` → `Directory_EntityDetailsActions.action_UpdateBookmarksAndNotes` → `Directory_EntityDetailsActions.action_RefreshFetchNotes` → `Directory_EntityDetailsActions.DataActionFetchNotes`
 - `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Notes of ActionsMenu` → `Directory_EntityDetailsActions.handler_AddNotesOnClick` → `Directory_EntityDetailsActions.action_RefreshFetchNotes` → `Directory_EntityDetailsActions.DataActionFetchNotes`
-- `Directory_EntityDetailsActions.OnReady` → `Directory_EntityDetailsActions.onReady` → `Directory_EntityDetailsActions.action_RefreshFetchNotes` → `Directory_EntityDetailsActions.DataActionFetchNotes`
 - `Directory_EntityDetailsActions fetch at start` → `Directory_EntityDetailsActions.DataActionFetchNotes`
+
+### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `Connect2_LegacyShared/ActionGetNumberUnreadMessages`
 - `UBTConnect.onApplicationReady` → `UBTConnect.connect_SetLoggedContext` → `Connect2_LegacyShared.synchronizeNumberUnreadMessages` → `server GetNumberUnreadMessages`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
@@ -80,16 +84,16 @@ For every service call: the chains of code that lead to it, from a root (user ev
 ### `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
 - `NotesSheet.handler_OnSubmitNote` → `server AddNote`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `UBTConnect/ServiceAPIAddBookmark2`
-- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Bookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect.toggleBookmarkItem_C2` → `server AddBookmark2`
-- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Unbookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect.toggleBookmarkItem_C2` → `server AddBookmark2`
-
-### `UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2`
-- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Bookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
-- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Unbookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
+### `UBTConnect_Utils/ServiceAPIAddBookmark2`
+- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Bookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server AddBookmark2`
+- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Unbookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server AddBookmark2`
 
 ### `UBTConnect_Utils/ActionCS_CreateShareProfileLink`
 - `onClick in Button` → `event event_OnClick of Button` → `event event_Clicked of ContactPopup` → `SharePopup.onClick_CallButton` → `event event_ShareToOthers of SharePopup` → `Directory_EntityDetailsActions.handle_Share_Others` → `UBTConnect_Utils.shareEntity_ByURL` → `server CS_CreateShareProfileLink`
+
+### `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2`
+- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Bookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
+- `onClick in CircleButton_WithLabel` → `CircleButton_WithLabel.action_OnClick` → `event onClick of CircleButton_WithLabel` → `CircleButton_IconPrimary.circleButton_WithLabelOnClick` → `event onClick of CircleButton_IconPrimary` → `event event_Click_Unbookmark of ActionsMenu` → `Directory_EntityDetailsActions.handle_Bookmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

@@ -50,10 +50,11 @@ Utils controller.
 - No inputs. Bottom bar Bookmarks item, no condition (`BottomBarMenu.mvc.js:623-626`). Role: Registered.
 
 ## View
-- `Layout_MainPages_FixedTitle` (gray): title "Bookmarks", search icon when the header scrolled, `App_NotificationIcon`,
-  search `Input` (enabled when the last fetch has more than 1 card), header content `FilterPills` with
-  `Horizontal_Filter_TagList` (single selection) and `FilterSheet_Icon_Label`; content `Bookmarks_Card_List`; bottom
-  bar; CommonUI. Outside the layout: `Bookmarks_FilterSheet` (dom/default.html:1136-1467).
+- `Layout_MainPages_FixedTitle` (gray). Parts: title "Bookmarks", search icon when the header scrolled,
+  `App_NotificationIcon`, search `Input` (enabled when the last fetch has more than 1 card).
+  Header content: `FilterPills` with `Horizontal_Filter_TagList` (single selection) and `FilterSheet_Icon_Label`.
+- Content: `Bookmarks_Card_List`. Also the bottom bar and CommonUI.
+- Outside the layout: `Bookmarks_FilterSheet` (dom/default.html:1136-1467).
 - `Bookmarks_Card_List`: SkeletonSection (In_IsLoading), EmptyList "No Bookmarks found" / "We were unable to find any
   Bookmarks to" / "display.", else List of `Bookmarks_Card_Item` (`list list-group list--gap-s`).
 - `Bookmarks_Card_Item`: `ItemCard_WithNotes`, `NoteListActions` (preview), `ItemCardActions` (Unmark, Add Note;
@@ -80,8 +81,9 @@ Utils controller.
   timeout row in `api/client/callAction.ts` comes with the regenerated contract.
 
 ## States
-- default: parity with the mock scenario `captured` (Q2 (a), user 2026-10-29): 3 fictional cards of the captured kinds
-  (2 Household, 1 OneSchool Global), the 9 pills, the captured text lengths. The first plan (`empty`, I10-4 (a)) is
+- default: parity with the mock scenario `captured` (Q2 (a), user 2026-10-29): 3 fictional cards
+  (Household, Household, Supper Meeting; re-capture of 2026-11-07). The 9 pills follow the order of the TST answer.
+  The texts have the captured lengths. The first plan (`empty`, I10-4 (a)) is
   replaced.
 - loading, offline: captured as they are.
 - The default demo mock (`real`) keeps 7 fictional cards of several kinds. The scenario `empty` is kept.
@@ -110,9 +112,40 @@ Utils controller.
 - Q4 (a), user 2026-10-29: update `Input` and `StaticInput` to the live TST code, re-capture the routes with older
   captures (read-only), re-run their parity.
 - Q5 (a), user 2026-10-29: build the channel row of `ItemCard_WithNotes` now. The user reviews it by eye.
+- TST sync 2026-11-07: the re-capture shows other card kinds and a new pill order. The mock scenario `captured` now has
+  Household, Household and Supper Meeting (the old capture had 2 Household and 1 OneSchool Global). Check that
+  these kinds are the real data of account global#5 and not a change in the TST logic.
 - Auto decisions of window 7 (`migration/clarify/auto-decisions-2026-10-29.md`), rows that concern this route:
   - Row 1 (C1, a): keep the local-time rule for `PublishedAt`.
   - Row 2 (C2, a): keep the mock Feed card header until a capture exists.
   - Row 3 (Notes C3, a): the channel fields are required, with defaults at the contract regeneration.
   - Row 11 (G1, a): GridGallery is deleted. No user is left after the retirement.
   - Row 12 (G2, a): 4 handlers of `Connect2_MyBookmarks_MUI` are deleted. The legacy bookmark collection stays.
+
+## Changes 2026-11-07 (TST sync)
+
+TST files changed (brief): `Bookmarks`, `Bookmarks_Card_Item`, `Bookmarks_Card_List`, `ItemCardActions`, `FilterSheet`,
+`FilterSheet_Icon_Label`, `AvatarImage`, `Horizontal_Filter_TagList`, `ItemCard_WithNotes`
+(`migration/knowledge/tst-drift-2026-11-07.md`, per-route table).
+
+Capture:
+- The re-capture was made on 2026-11-07 with account global#5 right after a fresh sign-in. The saved session showed an
+  empty list.
+- The capture shows 3 cards: Household, Household, Supper Meeting (`analysis/dom/default.html:309, 515, 690-711`;
+  the Supper Meeting card has the icon `connect-icon-calendar_fill`, no initials, empty title and subtitle). The spec
+  said 2 Household and 1 OneSchool Global: lines 83-84 are updated.
+- The pills are in this order: All, Households, Supper Meetings, Assemble, a masked 5-character pill, Interchange, LDM,
+  Members, OneSchool Global, Orbit (`analysis/dom/default.html:171-250`). The old order had OneSchool Global 2nd and
+  Supper Meetings last.
+- The body style of state default is now `--header-size-content: 62px; --footer-height: 42px` (`analysis/states.json`).
+  The server calls are the same (`analysis/calls.json`: only the time stamps changed).
+
+React code now:
+- `app/src/pages/Bookmarks/mocks.ts`: the list `PILLS` follows the order of the TST answer. The scenario `captured` has
+  the 3 cards above, with fictional texts of the captured lengths (item ids 41063, 41064, 5204).
+- The pill order is the order of the server answer (`Get_BookmarkPills_ByBookmarkCategoryIds`). The page does not
+  sort the pills, so only the mock changed.
+- The new header blocks, the FilterSheet labels and the tag list ids already matched the capture: no shared component
+  changed for this route (`dev.md`).
+
+Evidence: parity of `route.py parity Bookmarks` is 0 in default, loading and offline (`test.md`).

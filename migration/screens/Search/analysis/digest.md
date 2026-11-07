@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Search`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 55px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Directory_Search.Search.mvc.js`
 
@@ -469,7 +469,7 @@ Directory_Search.ScreenBlock_Search
 | isLoaded | input | Boolean | `false` |
 | ShowSubscriptionOnClick | input | Boolean | `false` |
 - Client actions / event handlers: `iconClick`
-- Static entities / flags: `uBT_Color.red`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.errorFill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
+- Static entities / flags: `uBT_Color.teal`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.circle_Fill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
 
 ## `UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js`
 | variable | kind | type | default |
@@ -982,16 +982,16 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3038 ms
-- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 3811 ms
-- 3. `DataActionGetCacheInfo` (200) at 3837 ms
-- 4. `DataActionGetCacheInfo` (200) at 4001 ms
-- 5. `DataActionGet_FilteredRecentClickedResults` (200) at 4010 ms
-- 6. `ActionAppManager_AfterInitialize` (200) at 6003 ms
-- 7. `ActionSync_Info_GetMain` (200) at 6480 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 6712 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8071 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 8626 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2707 ms
+- 2. `ScreenDataSetGet_SearchBirthdayOptions` (200) at 3487 ms
+- 3. `DataActionGetCacheInfo` (200) at 3501 ms
+- 4. `DataActionGetCacheInfo` (200) at 3582 ms
+- 5. `DataActionGet_FilteredRecentClickedResults` (200) at 3728 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 5308 ms
+- 7. `ActionSync_Info_GetMain` (200) at 5835 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 6103 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8112 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10324 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

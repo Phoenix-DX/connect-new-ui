@@ -1,25 +1,25 @@
-define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "Connect_Household_CS.model", "UBTConnect_Utils.controller", "UBTConnect.controller", "APIDomain_Directory_IS.model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnect_Utils.CW_Common.Button.mvc$model", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc$model", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$model", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, Connect_Household_CSModel, UBTConnect_UtilsController, UBTConnectController, APIDomain_Directory_ISModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnect_Utils_CW_Common_Button_mvcModel, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvcModel, UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvcModel, UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel) {
+define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "UBTConnect.controller", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnect_Utils.CW_Common.Button.mvc$model", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc$model", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$model", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect_Utils.controller$ToggleBookmarkItem_C2", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetLocal_Bookmark_C2", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper", "Connect_Household_CS.model$UI_HouseholdRelations_AwayParentsRec"], function (OutSystems, UBTConnectModel, UBTConnectLibraryModel, UBTConnect_UtilsController, UBTConnectController, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnect_Utils_CW_Common_Button_mvcModel, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvcModel, UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvcModel, UBTConnect_Utils_CW_Notes_NotesSheet_mvcModel) {
 var OS = OutSystems.Internal;
 
-var Get_ParentHouseholdDetailsDataActRec = (function (_super) {
-__extends(Get_ParentHouseholdDetailsDataActRec, _super);
-function Get_ParentHouseholdDetailsDataActRec(defaults) {
+var Get_SibllingsRelationsDataActRec = (function (_super) {
+__extends(Get_SibllingsRelationsDataActRec, _super);
+function Get_SibllingsRelationsDataActRec(defaults) {
 _super.apply(this, arguments);
 }
-Get_ParentHouseholdDetailsDataActRec.attributesToDeclare = function () {
+Get_SibllingsRelationsDataActRec.attributesToDeclare = function () {
 return [
 this.attr("Out_siblingRelations", "out_siblingRelationsOut", "Out_siblingRelations", true, false, OS.DataTypes.DataTypes.RecordList, function () {
 return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList());
 }, true, UBTConnectModel.UI_HouseholdMemberList)
 ].concat(_super.attributesToDeclare.call(this));
 };
-Get_ParentHouseholdDetailsDataActRec.fromStructure = function (str) {
-return new Get_ParentHouseholdDetailsDataActRec(new Get_ParentHouseholdDetailsDataActRec.RecordClass({
+Get_SibllingsRelationsDataActRec.fromStructure = function (str) {
+return new Get_SibllingsRelationsDataActRec(new Get_SibllingsRelationsDataActRec.RecordClass({
 out_siblingRelationsOut: OS.DataTypes.ImmutableBase.getData(str)
 }));
 };
-Get_ParentHouseholdDetailsDataActRec.init();
-return Get_ParentHouseholdDetailsDataActRec;
+Get_SibllingsRelationsDataActRec.init();
+return Get_SibllingsRelationsDataActRec;
 })(OS.Model.DataSourceRecord);
 var FetchNotesDataActRec = (function (_super) {
 __extends(FetchNotesDataActRec, _super);
@@ -68,7 +68,13 @@ return "";
 }, true), 
 this.attr("IsMemberDeceased", "isMemberDeceasedOut", "IsMemberDeceased", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
-}, true)
+}, true), 
+this.attr("NoDisplaySiblings", "noDisplaySiblingsOut", "NoDisplaySiblings", true, false, OS.DataTypes.DataTypes.RecordList, function () {
+return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList());
+}, true, UBTConnectModel.UI_HouseholdMemberList), 
+this.attr("AwayParents", "awayParentsOut", "AwayParents", true, false, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec());
+}, true, Connect_Household_CSModel.UI_HouseholdRelations_AwayParentsRec)
 ].concat(_super.attributesToDeclare.call(this));
 };
 Get_MemberDetailsDataActRec.init();
@@ -91,6 +97,9 @@ return true;
 this.attr("ShowNotesSheet", "showNotesSheetVar", "ShowNotesSheet", true, false, OS.DataTypes.DataTypes.Boolean, function () {
 return false;
 }, false), 
+this.attr("IsBookmarked", "isBookmarkedVar", "IsBookmarked", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
 this.attr("HouseholdId", "householdIdIn", "HouseholdId", true, false, OS.DataTypes.DataTypes.LongInteger, function () {
 return OS.DataTypes.LongInteger.defaultValue;
 }, false), 
@@ -103,9 +112,9 @@ return OS.DataTypes.LongInteger.defaultValue;
 this.attr("_memberIdInDataFetchStatus", "_memberIdInDataFetchStatus", "_memberIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
 }, false), 
-this.attr("Get_ParentHouseholdDetails", "get_ParentHouseholdDetailsDataAct", "get_ParentHouseholdDetailsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
-return OS.DataTypes.ImmutableBase.getData(new Get_ParentHouseholdDetailsDataActRec());
-}, true, Get_ParentHouseholdDetailsDataActRec), 
+this.attr("Get_SibllingsRelations", "get_SibllingsRelationsDataAct", "get_SibllingsRelationsDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
+return OS.DataTypes.ImmutableBase.getData(new Get_SibllingsRelationsDataActRec());
+}, true, Get_SibllingsRelationsDataActRec), 
 this.attr("FetchNotes", "fetchNotesDataAct", "fetchNotesDataAct", true, true, OS.DataTypes.DataTypes.Record, function () {
 return OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec());
 }, true, FetchNotesDataActRec), 
@@ -174,7 +183,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Directory_Household.HouseholdRelations_Block");
 });
-define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$model", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnect_Utils.CW_Common.Button.mvc$view", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc$view", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$view", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Household_CSModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, React, OSView, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_model, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnect_Utils_CW_Common_Button_mvc_view, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvc_view, UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view) {
+define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$model", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnect_Utils.CW_Common.Button.mvc$view", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.mvc$view", "UBTConnect_Utils.CW_Notes.NotesSheet.mvc$view", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect_Utils.controller$ToggleBookmarkItem_C2", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetLocal_Bookmark_C2", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper", "Connect_Household_CS.model$UI_HouseholdRelations_AwayParentsRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsController, Connect_Household_CSModel, APIDomain_Directory_ISModel, React, OSView, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_model, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnect_Utils_CW_Common_Button_mvc_view, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvc_view, UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvc_view, UBTConnect_Utils_CW_Notes_NotesSheet_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -547,12 +556,13 @@ ButtonOptions: model.getCachedValue(idService.getId("2vkX3bLhCUm5dCohWt8V1w.Butt
 return function () {
 var rec = new UBTConnectLibraryModel.ButtonOptionsRec();
 rec.uBT_ButtonSizeIdAttr = UBTConnectModel.staticEntities.uBT_ButtonSize.small;
-rec.uBT_ButtonTypeIdAttr = UBTConnectModel.staticEntities.uBT_ButtonType.primary;
+rec.uBT_ButtonTypeIdAttr = ((model.variables.isBookmarkedVar) ? (UBTConnectModel.staticEntities.uBT_ButtonType.primary) : (UBTConnectModel.staticEntities.uBT_ButtonType.scondary));
 return rec;
 }();
+}, function () {
+return model.variables.isBookmarkedVar;
 }),
 IconId: UBTConnectModel.staticEntities.uBT_Icons2.bookmark,
-IsDisabled: true,
 ButtonText: "Bookmark",
 IconText_SpacingSize: UBTConnectModel.staticEntities.uBT_Size.small
 },
@@ -561,17 +571,18 @@ _handleError: function (ex) {
 controller.handleError(ex);
 },
 buttonOnClick$Action: function () {
+return Promise.resolve().then(function () {
 var eventHandlerContext = callContext.clone();
 return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "CW_Common/Button buttonOnClick");
-controller.onClick_Bookmark$Action(controller.callContext(eventHandlerContext));
+return controller.onClick_Bookmark$Action(controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
-
+});
 ;
 }
 },
@@ -588,15 +599,15 @@ _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
+_dependencies: [asPrimitiveValue(model.variables.isBookmarkedVar), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
+_dependencies: [asPrimitiveValue(model.variables.isBookmarkedVar), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.memberNameOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._memberIdInDataFetchStatus), asPrimitiveValue(model.variables.memberIdIn)]
+_dependencies: [asPrimitiveValue(model.variables.isBookmarkedVar), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.isMemberDeceasedOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.memberNameOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._memberIdInDataFetchStatus), asPrimitiveValue(model.variables.memberIdIn)]
 }), React.createElement(UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, {
 inputs: {
 In_IsLoading: model.variables.isLoadingVar
@@ -617,12 +628,13 @@ alias: "11"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_LoadingSection: new PlaceholderContent(function () {
-return [$if(((((!(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier()))) || !(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())))) || !(model.variables.get_MemberDetailsDataAct.formerSpousesOut.isEmpty)) || !(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.isEmpty)) || model.variables.isLoadingVar), false, this, function () {
+return [$if((((((!(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier()))) || !(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(OS.BuiltinFunctions.nullIdentifier())))) || !(model.variables.get_MemberDetailsDataAct.formerSpousesOut.isEmpty)) || !(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.isEmpty)) || !(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.isEmpty)) || model.variables.isLoadingVar), false, this, function () {
+return [$if(((model.variables.get_MemberDetailsDataAct.parentHouseholdIdOut) !== ("")), false, this, function () {
 return [React.createElement(UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvc_view, {
 inputs: {
-In_PaddingBottom: UBTConnectModel.staticEntities.uBT_Size.base,
+In_PaddingTop: UBTConnectModel.staticEntities.uBT_Size.small,
 In_Title: "Relations",
-In_PaddingTop: UBTConnectModel.staticEntities.uBT_Size.small
+In_PaddingBottom: UBTConnectModel.staticEntities.uBT_Size.base
 },
 events: {
 _handleError: function (ex) {
@@ -642,7 +654,7 @@ placeholders: {
 placeholder_SectionContent: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("FF9_Lu0F_EGGzKHX4p29rQ.Options"), function () {
+Options: model.getCachedValue(idService.getId("ShMduQTm9kWEZYWlnZFptw.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.paddingSizeAttr = function () {
@@ -670,19 +682,12 @@ alias: "13"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
-return [$if(!(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(0))), false, this, function () {
+return [$if(!(model.variables.get_MemberDetailsDataAct.awayParentsOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(0))), false, this, function () {
 return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, {
 inputs: {
-isEnabled: true,
-In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr,
-_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_Relation: "Father",
-In_Title: model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr,
+In_Title: model.variables.get_MemberDetailsDataAct.awayParentsOut.titleAttr,
 _in_TitleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_FormattedLocality: model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr,
-_in_FormattedLocalityInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_IsDeceased: model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr,
-_in_IsDeceasedInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
+isEnabled: true
 },
 events: {
 _handleError: function (ex) {
@@ -696,7 +701,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/MemberRelation_ListItem OnClickPerson");
-return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
+return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.awayParentsOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.awayParentsOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.awayParentsOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -715,16 +720,21 @@ alias: "14"
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_Left: new PlaceholderContent(function () {
-return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
+return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr),
-_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-EntityType: UBTConnectModel.staticEntities.connect_Entity.member,
-ImageSize: model.getCachedValue(idService.getId("iqzlt36isk6umBNPxWQJWQ.ImageSize"), function () {
+Options: model.getCachedValue(idService.getId("ktL7tayKEE+kZsYj3LW2zg.Options"), function () {
 return function () {
-var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
-rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
-rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.heightOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.mainAttr = "52px";
+return rec;
+}();
+rec.widthOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.mainAttr = "52px";
+return rec;
+}();
 return rec;
 }();
 })
@@ -743,6 +753,9 @@ uuid: "14",
 alias: "15"
 },
 _widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: PlaceholderContent.Empty
+},
 _dependencies: []
 })];
 }),
@@ -760,7 +773,7 @@ uuid: "15"
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("fYBDjxFDtEuDgQVXyRs6hg.Options"), function () {
+Options: model.getCachedValue(idService.getId("e4ePofjW_k2TSdhSgsVUUQ.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.displayOptionsAttr = function () {
@@ -798,8 +811,8 @@ placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight,
-In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4,
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight
 },
 events: {
 _handleError: function (ex) {
@@ -841,33 +854,23 @@ return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr)]
 })];
 }, function () {
-return [];
-}), $if(!(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(0))), false, this, function () {
-return [React.createElement(OSWidgets.Container, {
-align: /*Default*/ 0,
-animate: false,
-style: "margin-top-s",
-visible: true,
-_idProps: {
-service: idService,
-uuid: "18"
-},
-_widgetRecordProvider: widgetsRecordProvider
-}, React.createElement(UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, {
+return [$if(!(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(0))), false, this, function () {
+return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, {
 inputs: {
-In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr,
-_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_Title: model.variables.get_MemberDetailsDataAct.motherOut.titleAttr,
+In_Title: model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr,
 _in_TitleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-isEnabled: true,
-In_IsDeceased: model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr,
+In_IsDeceased: model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr,
 _in_IsDeceasedInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_FormattedLocality: model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr,
+In_FormattedLocality: model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr,
 _in_FormattedLocalityInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_Relation: "Mother"
+isEnabled: true,
+In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr,
+_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_Relation: model.variables.get_MemberDetailsDataAct.fatherOut.descriptionAttr,
+_in_RelationInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -881,7 +884,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/MemberRelation_ListItem OnClickPerson");
-return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
+return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -894,7 +897,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "19",
+uuid: "18",
 alias: "18"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -902,9 +905,7 @@ placeholders: {
 placeholder_Left: new PlaceholderContent(function () {
 return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
 inputs: {
-EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.motherOut.idAttr),
-_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-ImageSize: model.getCachedValue(idService.getId("Jz6zn2GE60OkeOcZdPYr7A.ImageSize"), function () {
+ImageSize: model.getCachedValue(idService.getId("sEdY+0WDiUarB4TccW4BfQ.ImageSize"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
 rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
@@ -912,6 +913,8 @@ rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
 return rec;
 }();
 }),
+EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr),
+_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
 EntityType: UBTConnectModel.staticEntities.connect_Entity.member
 },
 events: {
@@ -924,7 +927,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "20",
+uuid: "19",
 alias: "19"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -932,7 +935,7 @@ _dependencies: []
 })];
 }),
 actions: new PlaceholderContent(function () {
-return [$if(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr, false, this, function () {
+return [$if(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr, false, this, function () {
 return [React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
@@ -940,12 +943,12 @@ style: "display-flex flex-direction-column justify-content-center",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "21"
+uuid: "20"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("N6SWP2Rh4EKyk_toI_PoVg.Options"), function () {
+Options: model.getCachedValue(idService.getId("7bqDmrT1iUW5Q6T6aVxd_w.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.displayOptionsAttr = function () {
@@ -975,7 +978,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "22",
+uuid: "21",
 alias: "20"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -985,6 +988,192 @@ return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
 In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4,
 In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+click$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "22",
+alias: "21"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr)]
+}))];
+}, function () {
+return [];
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr)]
+})];
+}, function () {
+return [];
+}), $if(!(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr.equals(OS.BuiltinFunctions.integerToLongInteger(0))), false, this, function () {
+return [React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "margin-top-s",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "23"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, {
+inputs: {
+In_FormattedLocality: model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr,
+_in_FormattedLocalityInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_Relation: model.variables.get_MemberDetailsDataAct.motherOut.descriptionAttr,
+_in_RelationInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_IsDeceased: model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr,
+_in_IsDeceasedInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr,
+_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_Title: model.variables.get_MemberDetailsDataAct.motherOut.titleAttr,
+_in_TitleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+isEnabled: true
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onClickPerson$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/MemberRelation_ListItem OnClickPerson");
+return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr, model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr, model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "24",
+alias: "22"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+placeholder_Left: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
+inputs: {
+ImageSize: model.getCachedValue(idService.getId("F3nHJbLwZ0G6EGIDL9bpaw.ImageSize"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
+rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
+rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
+return rec;
+}();
+}),
+EntityType: UBTConnectModel.staticEntities.connect_Entity.member,
+EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.motherOut.idAttr),
+_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "25",
+alias: "23"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}),
+actions: new PlaceholderContent(function () {
+return [$if(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr, false, this, function () {
+return [React.createElement(OSWidgets.Container, {
+align: /*Default*/ 0,
+animate: false,
+style: "display-flex flex-direction-column justify-content-center",
+visible: true,
+_idProps: {
+service: idService,
+uuid: "26"
+},
+_widgetRecordProvider: widgetsRecordProvider
+}, React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+inputs: {
+Options: model.getCachedValue(idService.getId("Avi8241G8UuwF1x+EjwYig.Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.displayOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.DisplayOptionsRec();
+return rec;
+}();
+rec.heightOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+return rec;
+}();
+rec.widthOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.minAttr = "100";
+return rec;
+}();
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "27",
+alias: "24"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: new PlaceholderContent(function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+inputs: {
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4
 },
 events: {
 _handleError: function (ex) {
@@ -1011,8 +1200,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "23",
-alias: "21"
+uuid: "28",
+alias: "25"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1030,6 +1219,7 @@ _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFe
 }))];
 }, function () {
 return [];
+})];
 }), React.createElement(OSWidgets.Container, {
 align: /*Default*/ 0,
 animate: false,
@@ -1060,15 +1250,15 @@ content: new IteratorPlaceholderContent(function (idService, callContext) {
 return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_MemberRelation_ListItem_mvc_view, {
 inputs: {
 isEnabled: true,
+In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).lifeCycleTextAttr,
+_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
 In_IsDeceased: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).isDeceasedAttr,
 _in_IsDeceasedInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
 In_Relation: "Previous spouse",
-In_FormattedLocality: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).formattedLocalityAttr,
-_in_FormattedLocalityInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
-In_DeceasedCaption: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).lifeCycleTextAttr,
-_in_DeceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
 In_Title: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).titleAttr,
-_in_TitleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
+_in_TitleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+In_FormattedLocality: model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).formattedLocalityAttr,
+_in_FormattedLocalityInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -1095,16 +1285,17 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "26",
-alias: "22"
+uuid: "31",
+alias: "26"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_Left: new PlaceholderContent(function () {
 return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
 inputs: {
-EntityType: UBTConnectModel.staticEntities.connect_Entity.member,
-ImageSize: model.getCachedValue(idService.getId("sURey6mpXUeS9bYFJDM6gQ.ImageSize"), function () {
+EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).idAttr),
+_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+ImageSize: model.getCachedValue(idService.getId("1Mgy8JZqvkGr5VTU7H1_kg.ImageSize"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
 rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
@@ -1112,8 +1303,7 @@ rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
 return rec;
 }();
 }),
-EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_MemberDetailsDataAct.formerSpousesOut.getCurrent(callContext.iterationContext).idAttr),
-_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
+EntityType: UBTConnectModel.staticEntities.connect_Entity.member
 },
 events: {
 _handleError: function (ex) {
@@ -1125,8 +1315,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "27",
-alias: "23"
+uuid: "32",
+alias: "27"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1141,12 +1331,12 @@ style: "display-flex flex-direction-column justify-content-center",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "28"
+uuid: "33"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("F86qkHmjKUC78zu5J1Pi0A.Options"), function () {
+Options: model.getCachedValue(idService.getId("St7a5PH_VU2DRWtAfTUaJA.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.displayOptionsAttr = function () {
@@ -1176,16 +1366,16 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "29",
-alias: "24"
+uuid: "34",
+alias: "28"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4,
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4
 },
 events: {
 _handleError: function (ex) {
@@ -1212,8 +1402,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "30",
-alias: "25"
+uuid: "35",
+alias: "29"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1235,12 +1425,15 @@ _dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFe
 }))];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.householdIdAttr)]
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr)]
-}), $if(!(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.isEmpty), false, this, function () {
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.householdIdAttr)]
+})];
+}, function () {
+return [];
+}), $if((!(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.isEmpty) || !(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.isEmpty)), false, this, function () {
 return [React.createElement(UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_Section_mvc_view, {
 inputs: {
 In_Title: "Household"
@@ -1256,7 +1449,7 @@ validationService: validationService
 _idProps: {
 service: idService,
 name: "Household",
-alias: "26"
+alias: "30"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
@@ -1289,44 +1482,45 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "32",
-alias: "27"
+uuid: "37",
+alias: "31"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
+return [$if(!(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.isEmpty), false, this, function () {
 return [React.createElement(OSWidgets.List, {
 animateItems: true,
 gridProperties: {
 classes: "OSFillParent"
 },
 mode: /*Default*/ 0,
-source: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut,
+source: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut,
 style: "list list-group list--gap-s",
 tag: "div",
 _idProps: {
 service: idService,
-uuid: "33"
+uuid: "38"
 },
 _widgetRecordProvider: widgetsRecordProvider,
-source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
+source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
 placeholders: {
 content: new IteratorPlaceholderContent(function (idService, callContext) {
 return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvc_view, {
 inputs: {
 isEnabled: true,
-Title: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).titleAttr,
-_titleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-MarriedPartnerTakenText: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriagePartnerTakenTextAttr,
-_marriedPartnerTakenTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-DeceasedCaption: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).lifeCycleTextAttr,
-_deceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-MarriedCaption: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriageTextAttr,
-_marriedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-MarriageHighlightText: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriageHighlightTextAttr,
-_marriageHighlightTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-LifeCycleText_Italic: model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).lifeCycleText_IsItallicAttr,
-_lifeCycleText_ItalicInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr)
+Title: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).titleAttr,
+_titleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+DeceasedCaption: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).lifeCycleTextAttr,
+_deceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+LifeCycleText_Italic: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).lifeCycleText_IsItallicAttr,
+_lifeCycleText_ItalicInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+MarriedCaption: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriageTextAttr,
+_marriedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+MarriedPartnerTakenText: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriagePartnerTakenTextAttr,
+_marriedPartnerTakenTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+MarriageHighlightText: model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).marriageHighlightTextAttr,
+_marriageHighlightTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -1340,7 +1534,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/NonMember_ListItem OnClickPerson");
-return controller.onClick_Member$Action(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
+return controller.onClick_Member$Action(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -1353,17 +1547,15 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "34",
-alias: "28"
+uuid: "39",
+alias: "32"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_Left: new PlaceholderContent(function () {
 return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
 inputs: {
-EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr),
-_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr),
-ImageSize: model.getCachedValue(idService.getId("cWy54V_Wk0SDuvSFhswIXQ.ImageSize"), function () {
+ImageSize: model.getCachedValue(idService.getId("wNCmTcTgvk6_Lw68zq+GAg.ImageSize"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
 rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
@@ -1371,7 +1563,9 @@ rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
 return rec;
 }();
 }),
-EntityType: UBTConnectModel.staticEntities.connect_Entity.member
+EntityType: UBTConnectModel.staticEntities.connect_Entity.member,
+EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr),
+_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr)
 },
 events: {
 _handleError: function (ex) {
@@ -1383,18 +1577,18 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "35",
-alias: "29"
+uuid: "40",
+alias: "33"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 }),
 actions: new PlaceholderContent(function () {
-return [$if(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr, false, this, function () {
+return [$if(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr, false, this, function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
 inputs: {
-Options: model.getCachedValue(idService.getId("Zfd53Ijx4EytvObW8Th34A.Options"), function () {
+Options: model.getCachedValue(idService.getId("TU0NVc3XQki8p3Vig9yQsQ.Options"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
 rec.displayOptionsAttr = function () {
@@ -1427,16 +1621,16 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "36",
-alias: "30"
+uuid: "41",
+alias: "34"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 content: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4,
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4
 },
 events: {
 _handleError: function (ex) {
@@ -1450,7 +1644,7 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
-return controller.onClick_Member$Action(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
+return controller.onClick_Member$Action(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
@@ -1463,34 +1657,229 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "37",
-alias: "31"
+uuid: "42",
+alias: "35"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr)]
 })];
 }, function () {
 return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr)]
 })];
 }, callContext, idService, "2")
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr)]
+})];
+}, function () {
+return [];
+}), $if(!(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.isEmpty), false, this, function () {
+return [React.createElement(OSWidgets.List, {
+animateItems: true,
+gridProperties: {
+classes: "OSFillParent"
+},
+mode: /*Default*/ 0,
+source: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut,
+style: "list list-group list--gap-s",
+tag: "div",
+_idProps: {
+service: idService,
+uuid: "43"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+placeholders: {
+content: new IteratorPlaceholderContent(function (idService, callContext) {
+return [React.createElement(UBTConnectLibrary_ConnectCorePatterns_NonMember_ListItem_mvc_view, {
+inputs: {
+isEnabled: true,
+DeceasedCaption: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).lifeCycleTextAttr,
+_deceasedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+MarriageHighlightText: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).marriageHighlightTextAttr,
+_marriageHighlightTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+LifeCycleText_Italic: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).lifeCycleText_IsItallicAttr,
+_lifeCycleText_ItalicInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+MarriedCaption: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).marriageTextAttr,
+_marriedCaptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+Title: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).titleAttr,
+_titleInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr),
+MarriedPartnerTakenText: model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).marriagePartnerTakenTextAttr,
+_marriedPartnerTakenTextInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+onClickPerson$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectCorePatterns/NonMember_ListItem OnClickPerson");
+return controller.onClick_Member$Action(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "44",
+alias: "36"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+placeholder_Left: new PlaceholderContent(function () {
+return [React.createElement(UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, {
+inputs: {
+EntityId: OS.BuiltinFunctions.longIntegerToText(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr),
+_entityIdInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr),
+ImageSize: model.getCachedValue(idService.getId("ahQ86Up0QEmsZuC2T+grLw.ImageSize"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.LazyImageSizeRec();
+rec.heightAttr = UBTConnectModel.staticEntities.uBT_ImageSize.base_52;
+rec.widthAttr = UBTConnectModel.staticEntities.uBT_ImageSize.square;
+return rec;
+}();
+}),
+EntityType: UBTConnectModel.staticEntities.connect_Entity.member
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "45",
+alias: "37"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
+})];
+}),
+actions: new PlaceholderContent(function () {
+return [$if(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr, false, this, function () {
+return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
+inputs: {
+Options: model.getCachedValue(idService.getId("HkEVEj7RIk+AbW1cDlgszA.Options"), function () {
+return function () {
+var rec = new UBTConnectLibraryModel.ContainerOptionsRec();
+rec.displayOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.DisplayOptionsRec();
+rec.displayAttr = UBTConnectModel.staticEntities.uBT_Display.flex;
+rec.alignItemsAttr = UBTConnectModel.staticEntities.uBT_AlignItems.center;
+rec.justifyContentAttr = UBTConnectModel.staticEntities.uBT_JustifyContent.center;
+return rec;
+}();
+rec.heightOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+return rec;
+}();
+rec.widthOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.minAttr = "100";
+return rec;
+}();
+return rec;
+}();
+})
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "46",
+alias: "38"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+placeholders: {
+content: new PlaceholderContent(function () {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
+inputs: {
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.chevronRight,
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.neutral4
+},
+events: {
+_handleError: function (ex) {
+controller.handleError(ex);
+},
+click$Action: function () {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "ConnectPatterns/Icon Click");
+return controller.onClick_Member$Action(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr, model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr, false, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
+;
+}
+},
+_validationProps: {
+validationService: validationService
+},
+_idProps: {
+service: idService,
+uuid: "47",
+alias: "39"
+},
+_widgetRecordProvider: widgetsRecordProvider,
+_dependencies: []
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr)]
+})];
+}, function () {
+return [];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr)]
+})];
+}, callContext, idService, "3")
+},
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).householdIdAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).countryNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).localityNameAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).hasNavigationAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr)]
+})];
+}, function () {
+return [];
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut)]
+})];
+})
+},
+_dependencies: [asPrimitiveValue(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut)]
 })];
 }, function () {
 return [];
@@ -1503,14 +1892,14 @@ style: "padding-right-base padding-left-base text-align-center",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "38"
+uuid: "48"
 },
 _widgetRecordProvider: widgetsRecordProvider
-}, "No relation or household information avaialble.")];
+}, "No relation or household information available.")];
 })];
 })
 },
-_dependencies: [asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr)]
+_dependencies: [asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.awayParentsOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.parentHouseholdIdOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.noDisplaySiblingsOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.formerSpousesOut), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.idAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.descriptionAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.lifeCycleTextAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.formattedLocalityAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.isDeceasedAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.countryNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.localityNameAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.hasNavigationAttr), asPrimitiveValue(model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr)]
 }), $if(false, false, this, function () {
 return [];
 }, function () {
@@ -1575,8 +1964,8 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "39",
-alias: "32"
+uuid: "49",
+alias: "40"
 },
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
@@ -1588,7 +1977,7 @@ _dependencies: []
 	
     return View;
 });
-define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "UBTConnect_Utils.controller", "APIDomain_Directory_IS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$debugger", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, Connect_Household_CSModel, UBTConnect_UtilsController, APIDomain_Directory_ISModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_Debugger, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller_ScreenEvent_OnReady_IsViewRestoredFromCacheJS) {
+define("UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnectLibrary.model", "UBTConnect_Utils.controller", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$debugger", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "UBTConnect.Directory_Household.HouseholdRelations_Block.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$InlineIconRec", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$ButtonOptionsRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList", "UBTConnect_Utils.controller$ToggleBookmarkItem_C2", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnect.controller$GetLocal_Bookmark_C2", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdMemberList", "UBTConnect_Utils.controller$App_Subscription_ShowUpgradePopUp", "UBTConnect.controller$HasAccessToRegion", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnect.controller$GetUserInformation_Wrapper", "Connect_Household_CS.model$UI_HouseholdRelations_AwayParentsRec"], function (OutSystems, UBTConnectModel, UBTConnectController, UBTConnectLibraryModel, UBTConnect_UtilsController, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_Debugger, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller_ScreenEvent_OnReady_IsViewRestoredFromCacheJS) {
 var OS = OutSystems.Internal;
 var Controller = (function (_super) {
 __extends(Controller, _super);
@@ -1597,21 +1986,21 @@ _super.apply(this, arguments);
 var controller = this.controller;
 this.clientActionProxies = {};
 this.dataFetchDependenciesOriginal = {
-get_ParentHouseholdDetails$DataActRefresh: -1,
+get_SibllingsRelations$DataActRefresh: -1,
 fetchNotes$DataActRefresh: -1,
 get_MemberDetails$DataActRefresh: -1
 };
 this.dataFetchDependentsGraph = {
-get_ParentHouseholdDetails$DataActRefresh: [],
+get_SibllingsRelations$DataActRefresh: [],
 fetchNotes$DataActRefresh: [],
-get_MemberDetails$DataActRefresh: ["get_ParentHouseholdDetails$DataActRefresh"]
+get_MemberDetails$DataActRefresh: ["get_SibllingsRelations$DataActRefresh"]
 };
 this.shouldSendClientVarsToDataSources = false;
 }
 // Server Actions
 
 // Aggregates and Data Actions
-Controller.prototype.get_ParentHouseholdDetails$DataActRefresh = function (callContext) {
+Controller.prototype.get_SibllingsRelations$DataActRefresh = function (callContext) {
 var model = this.model;
 var controller = this.controller;
 var callContext = controller.callContext(callContext);
@@ -1619,12 +2008,12 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:dgawMJ1jYk64gofwHuDqww:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.dgawMJ1jYk64gofwHuDqww:uD2UjeGjvDxZU9Nr1fWlCw", "UBTConnect", "Get_ParentHouseholdDetails", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
-OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdRelations_Block/Get_ParentHouseholdDetails");
-return controller.callDataAction("DataActionGet_ParentHouseholdDetails", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails", "7SKq2VjVfcTQlo7CZz_ryA", function (b) {
-model.variables.get_ParentHouseholdDetailsDataAct.dataFetchStatusAttr = b;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:dgawMJ1jYk64gofwHuDqww:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.dgawMJ1jYk64gofwHuDqww:UuGvmVX_NuCJggja2fIosw", "UBTConnect", "Get_SibllingsRelations", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdRelations_Block/Get_SibllingsRelations");
+return controller.callDataAction("DataActionGet_SibllingsRelations", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_SibllingsRelations", "04QMfLLndd2LiAckL3QuAw", function (b) {
+model.variables.get_SibllingsRelationsDataAct.dataFetchStatusAttr = b;
 }, function (json) {
-model.variables.get_ParentHouseholdDetailsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.get_ParentHouseholdDetailsDataAct.constructor));
+model.variables.get_SibllingsRelationsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.get_SibllingsRelationsDataAct.constructor));
 }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function (json, headers) {
 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
 }, callContext, undefined, false);
@@ -1667,9 +2056,9 @@ return OS.Flow.tryFinally(function () {
 var varBag = {};
 controller.pushDebuggerContext(callContext);
 
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rSQDWkk4D0eHQZMEvY8MWw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.rSQDWkk4D0eHQZMEvY8MWw:qA_R8_+e5jzz2L7GE2Turg", "UBTConnect", "Get_MemberDetails", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rSQDWkk4D0eHQZMEvY8MWw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/DataActions.rSQDWkk4D0eHQZMEvY8MWw:r28dIQTZI9h4l6RBSr_RDw", "UBTConnect", "Get_MemberDetails", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdRelations_Block/Get_MemberDetails");
-return controller.callDataAction("DataActionGet_MemberDetails", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails", "1EncAAdPlQ4CugvrXXpVfQ", function (b) {
+return controller.callDataAction("DataActionGet_MemberDetails", "screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_MemberDetails", "v69EVoqVVEQL_x7eAKGY8w", function (b) {
 model.variables.get_MemberDetailsDataAct.dataFetchStatusAttr = b;
 }, function (json) {
 model.variables.get_MemberDetailsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.get_MemberDetailsDataAct.constructor));
@@ -1688,7 +2077,7 @@ controller.popDebuggerContext(callContext);
 });
 };
 
-Controller.prototype.dataFetchActionNames = ["get_ParentHouseholdDetails$DataActRefresh", "fetchNotes$DataActRefresh", "get_MemberDetails$DataActRefresh"];
+Controller.prototype.dataFetchActionNames = ["get_SibllingsRelations$DataActRefresh", "fetchNotes$DataActRefresh", "get_MemberDetails$DataActRefresh"];
 // Client Actions
 Controller.prototype._onAfterFetch_Get_MemberDetails$Action = function (callContext) {
 var varBag = {};
@@ -1700,17 +2089,22 @@ varBag.idService = idService;
 controller.ensureControllerAlive("OnAfterFetch_Get_MemberDetails");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KPFlFEl2TkSCvJB6I0k16w:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.KPFlFEl2TkSCvJB6I0k16w:6cBltcuIq0XEHXyRG0PlPg", "UBTConnect", "OnAfterFetch_Get_MemberDetails", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KPFlFEl2TkSCvJB6I0k16w:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.KPFlFEl2TkSCvJB6I0k16w:Fg9SyxcCUPvgHQeJizx2Ig", "UBTConnect", "OnAfterFetch_Get_MemberDetails", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2YOwis0YXUeHkUuQHImeVA", callContext.id);
 return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Rb_YpoU9pEaAGB6jfxBGIA", callContext.id);
 // Trigger Event: RelationsDetails_Fetched
 return controller.relationsDetails_Fetched$Action(model.variables.get_MemberDetailsDataAct.familyNameOut, callContext).then(function () {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ssWCyBEkpUuv9_9nKiOikg", callContext.id) && ((model.variables.get_MemberDetailsDataAct.parentHouseholdIdOut) !== ((OS.BuiltinFunctions.nullIdentifier()).toString())))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:65oX0hC0L02bReTuLPsD+g", callContext.id);
-// Refresh Query: Get_ParentHouseholdDetails
-var result = controller.get_ParentHouseholdDetails$DataActRefresh(callContext);
+// Refresh Query: Get_SibllingsRelations
+var result = controller.get_SibllingsRelations$DataActRefresh(callContext);
 model.flush();
 return result;
+}
+
+});
 }).then(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:52xC7luRaEiqRiPw8NCFmQ", callContext.id);
 // Execute Action: Actions_DefineLoading
@@ -1750,8 +2144,8 @@ model.variables.isLoadingVar = true;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KTFJGTtgpkasuE4U8oXZnw", callContext.id);
 } else {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SzLruRjlTkamBuRC_WfPPA", callContext.id);
-// isLoading = notGet_ParentHouseholdDetails.IsDataFetched and notGet_ParentHouseholdDetails.HasFetchError and notGet_MemberDetails.IsDataFetched and notGet_MemberDetails.HasFetchError
-model.variables.isLoadingVar = ((!(model.variables.get_ParentHouseholdDetailsDataAct.isDataFetchedAttr) && !(model.variables.get_ParentHouseholdDetailsDataAct.hasFetchErrorAttr)) && (!(model.variables.get_MemberDetailsDataAct.isDataFetchedAttr) && !(model.variables.get_MemberDetailsDataAct.hasFetchErrorAttr)));
+// isLoading = notGet_SibllingsRelations.IsDataFetched and notGet_SibllingsRelations.HasFetchError and notGet_MemberDetails.IsDataFetched and notGet_MemberDetails.HasFetchError
+model.variables.isLoadingVar = ((!(model.variables.get_SibllingsRelationsDataAct.isDataFetchedAttr) && !(model.variables.get_SibllingsRelationsDataAct.hasFetchErrorAttr)) && (!(model.variables.get_MemberDetailsDataAct.isDataFetchedAttr) && !(model.variables.get_MemberDetailsDataAct.hasFetchErrorAttr)));
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:m3YJazxM30akRrE9YtBqLw", callContext.id);
 }
 
@@ -1782,16 +2176,28 @@ varBag.idService = idService;
 controller.ensureControllerAlive("OnClick_Bookmark");
 callContext = controller.callContext(callContext);
 varBag.callContext = callContext;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KfKcM49wo0Gojv83IFWAIQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.KfKcM49wo0Gojv83IFWAIQ:7g7z8dT8eAoTW1EOiSo0uA", "UBTConnect", "OnClick_Bookmark", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KfKcM49wo0Gojv83IFWAIQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.KfKcM49wo0Gojv83IFWAIQ:L0OVVYYvQGI4+5jiv8l6vw", "UBTConnect", "OnClick_Bookmark", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rFh4o9pid0K3WdZM4wUaCA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EpGKl7oAr0aRWPJoGuAoHQ", callContext.id);
+// Execute Action: ToggleBookmarkItem_C2
+model.flush();
+return UBTConnect_UtilsController.default.toggleBookmarkItem_C2$Action(OS.BuiltinFunctions.longIntegerToText(model.variables.memberIdIn), UBTConnectModel.staticEntities.bookmarkCategory.member, model.variables.isBookmarkedVar, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:3ffwj7v4d0CgI_wMbz+Lww", callContext.id);
+// IsBookmarked = notIsBookmarked
+model.variables.isBookmarkedVar = !(model.variables.isBookmarkedVar);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MPLuztUKbUKwLhZ8B31BQg", callContext.id);
-} catch (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-throw ex;
-} finally {
+});
+}).then(function (res) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KfKcM49wo0Gojv83IFWAIQ", callContext.id);
-}
+return res;
 
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KfKcM49wo0Gojv83IFWAIQ", callContext.id);
+throw ex;
+
+});
 };
 Controller.prototype._screenEvent_OnInitialize$Action = function (callContext) {
 var varBag = {};
@@ -1802,11 +2208,14 @@ varBag.model = model;
 varBag.idService = idService;
 controller.ensureControllerAlive("ScreenEvent_OnInitialize");
 callContext = controller.callContext(callContext);
+var getLocal_Bookmark_C2Var = new OS.DataTypes.VariableHolder();
 var isViewRestoredFromCacheJSResult = new OS.DataTypes.VariableHolder();
 varBag.callContext = callContext;
+varBag.getLocal_Bookmark_C2Var = getLocal_Bookmark_C2Var;
 varBag.isViewRestoredFromCacheJSResult = isViewRestoredFromCacheJSResult;
-try {OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:woHaNTA0KUG3stXRDUSpaA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.woHaNTA0KUG3stXRDUSpaA:1IMYyF17BOLcz0ZyuKJNEg", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:woHaNTA0KUG3stXRDUSpaA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA/ClientActions.woHaNTA0KUG3stXRDUSpaA:99OqdbSUfQ+aLWHHgs9UuQ", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XoVYkUF00EaXNnEyDl4F6g", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pGtu9xtRekeLqdSC6GM95g", callContext.id);
 isViewRestoredFromCacheJSResult.value = controller.safeExecuteJSNode(UBTConnect_Directory_Household_HouseholdRelations_Block_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, "IsViewRestoredFromCache", "ScreenEvent_OnInitialize", {
 IsRestoredFromCache: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
@@ -1816,33 +2225,35 @@ jsNodeResult.isRestoredFromCacheOut = OS.DataConversion.JSNodeParamConverter.fro
 return jsNodeResult;
 }, {}, {});
 // Check if IsViewRestoredFromCache IsRestoredFromCache
+return OS.Flow.executeSequence(function () {
 if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:isrJrobc10CjXnwuRaSZKQ", callContext.id) && isViewRestoredFromCacheJSResult.value.isRestoredFromCacheOut)) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dbJH5lNdgUCdAD8ZSSfA6g", callContext.id);
 } else {
-if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2ONqPiFFJ0KNe6WswiTI1A", callContext.id) && (model.variables.get_MemberDetailsDataAct.isDataFetchedAttr || model.variables.get_ParentHouseholdDetailsDataAct.isDataFetchedAttr))) {
+return OS.Flow.executeSequence(function () {
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2ONqPiFFJ0KNe6WswiTI1A", callContext.id) && (model.variables.get_MemberDetailsDataAct.isDataFetchedAttr || model.variables.get_SibllingsRelationsDataAct.isDataFetchedAttr))) {
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dbJH5lNdgUCdAD8ZSSfA6g", callContext.id);
 } else {
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id);
 // Get_MemberDetails.Father.Title = "Loading"
 model.variables.get_MemberDetailsDataAct.fatherOut.titleAttr = "Loading";
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
 // Get_MemberDetails.Father.Id = -1
 model.variables.get_MemberDetailsDataAct.fatherOut.idAttr = OS.BuiltinFunctions.integerToLongInteger(-1);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "3");
 // Get_MemberDetails.Father.HouseholdId = -1
 model.variables.get_MemberDetailsDataAct.fatherOut.householdIdAttr = OS.BuiltinFunctions.integerToLongInteger(-1);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "4");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "4");
 // Get_MemberDetails.Mother.Title = "Loading"
 model.variables.get_MemberDetailsDataAct.motherOut.titleAttr = "Loading";
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "5");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "5");
 // Get_MemberDetails.Mother.Id = -1
 model.variables.get_MemberDetailsDataAct.motherOut.idAttr = OS.BuiltinFunctions.integerToLongInteger(-1);
-OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "6");
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8a56MO1JJ0aaPEqUVJeyBg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "6");
 // Get_MemberDetails.Mother.HouseholdId = -1
 model.variables.get_MemberDetailsDataAct.motherOut.householdIdAttr = OS.BuiltinFunctions.integerToLongInteger(-1);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HxcmXXusAEaUwh2AkplrTw", callContext.id);
 // Execute Action: ListAppend
-OS.SystemActions.listAppend(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut, function () {
+OS.SystemActions.listAppend(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut, function () {
 var rec = new Connect_Household_CSModel.UI_HouseholdMemberRec();
 rec.firstNameAttr = "Loading";
 rec.memberRoleAttr = "";
@@ -1850,24 +2261,39 @@ return rec;
 }(), callContext);
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:792nWaXsak+sW1f7z7hamg", callContext.id);
 // Execute Action: ListAppend2
-OS.SystemActions.listAppend(model.variables.get_ParentHouseholdDetailsDataAct.out_siblingRelationsOut, function () {
+OS.SystemActions.listAppend(model.variables.get_SibllingsRelationsDataAct.out_siblingRelationsOut, function () {
 var rec = new Connect_Household_CSModel.UI_HouseholdMemberRec();
 rec.firstNameAttr = "Loading";
 rec.memberRoleAttr = "";
 return rec;
 }(), callContext);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YpC+FgVs3kKtylTchryymw", callContext.id);
+// Execute Action: GetLocal_Bookmark_C2
+model.flush();
+return UBTConnectController.default.getLocal_Bookmark_C2$Action(UBTConnectModel.staticEntities.bookmarkCategory.member, model.variables.memberIdIn, callContext).then(function (value) {
+getLocal_Bookmark_C2Var.value = value;
+}).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSU5+H0H+kKnCps717lCUQ", callContext.id);
+// IsBookmarked = GetLocal_Bookmark_C2.IsBookmarked
+model.variables.isBookmarkedVar = getLocal_Bookmark_C2Var.value.isBookmarkedOut;
 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eaziwHXnUE254Qq1V8L7Rw", callContext.id);
+});
 }
 
+});
 }
 
-} catch (ex) {
-OutSystemsDebugger.handleException(ex, callContext.id);
-throw ex;
-} finally {
+});
+}).then(function (res) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:woHaNTA0KUG3stXRDUSpaA", callContext.id);
-}
+return res;
 
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:woHaNTA0KUG3stXRDUSpaA", callContext.id);
+throw ex;
+
+});
 };
 Controller.registerVariableGroupType("UBTConnect.Directory_Household.HouseholdRelations_Block.ScreenEvent_OnInitialize$isViewRestoredFromCacheJSResult", [{
 name: "IsRestoredFromCache",
@@ -2305,7 +2731,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UzAQerKaHEuDhnx4QUJtIw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw:t9nDzAZAuYZJViBgLBCv_w", "UBTConnect", "Directory_Household", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA:bPCfSsLenivnUGXsxainhw", "UBTConnect", "HouseholdRelations_Block", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.03nCiumGkkWi6gqhWUEGzA:kGONDE+hr1SHRsAu7nVYpw", "UBTConnect", "HouseholdRelations_Block", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:03nCiumGkkWi6gqhWUEGzA", callContext.id);
@@ -2381,6 +2807,11 @@ getter: function (varBag, idService) {
 return varBag.vars.value.isRefreshInLocal;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
+},
+"YpC+FgVs3kKtylTchryymw": {
+getter: function (varBag, idService) {
+return varBag.getLocal_Bookmark_C2Var.value;
+}
 },
 "pGtu9xtRekeLqdSC6GM95g": {
 getter: function (varBag, idService) {
@@ -2460,6 +2891,12 @@ return varBag.model.variables.showNotesSheetVar;
 },
 dataType: OS.DataTypes.DataTypes.Boolean
 },
+"ETpOZm215UG4VVVU5mOmvw": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isBookmarkedVar;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
 "7Kr8mDyxlEO+k2yFygUzig": {
 getter: function (varBag, idService) {
 return varBag.model.variables.householdIdIn;
@@ -2474,7 +2911,7 @@ dataType: OS.DataTypes.DataTypes.LongInteger
 },
 "dgawMJ1jYk64gofwHuDqww": {
 getter: function (varBag, idService) {
-return varBag.model.variables.get_ParentHouseholdDetailsDataAct;
+return varBag.model.variables.get_SibllingsRelationsDataAct;
 }
 },
 "FmjUTAPX_EKjveHeO5NchA": {
@@ -2553,116 +2990,151 @@ return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
 "+5kKF8q7NkmosCShMUB+DA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
-return model.widgets.get(idService.getId("Relations2"));
+return model.widgets.get(idService.getId("Member_Relations"));
 })(varBag.model, idService);
 }
 },
-"yuplDLtnsECh5Fb8fyAZYQ": {
+"v3WvTQlDKkq1VBg34fGBcg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Relations"));
 })(varBag.model, idService);
 }
 },
-"V4sXLzp2tEWgFfANBrC8lA": {
+"KgIIY740fkuTzmAMwGaq8g": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_SectionContent"));
 })(varBag.model, idService);
 }
 },
-"eWElDTmeBEekqWHo0sYAiQ": {
+"cXRlKUB9q0GS1aQSUcOxDQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"YwuFBeG8wEmuVhNShqWCgA": {
+"Yc3mpScHcUGYJSUpyWhlZQ": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("HasAwayParents"));
+})(varBag.model, idService);
+}
+},
+"O8cyeP+Up0O2f44UZGiGqw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_Left"));
+})(varBag.model, idService);
+}
+},
+"BL62gqnxR02G0dB3BPGOpA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"Ihxva2IXG0yE_Gt1GDMyHg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Actions"));
+})(varBag.model, idService);
+}
+},
+"zp61kBRGsUqitpGmjlO8ZA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"oHWLTfL7WEOfAkQXWcWZ_A": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("HasFather"));
 })(varBag.model, idService);
 }
 },
-"oftCCFzc5UaXBu35Ly_6uA": {
+"KkQwA5iaNEW4dHiDvc3v5A": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Left"));
 })(varBag.model, idService);
 }
 },
-"mhxuC9tZhkq7Y+6IM6xGNw": {
+"cUlmJxoLbE+N9rOjFae4NQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Actions"));
 })(varBag.model, idService);
 }
 },
-"DBBeWePqt0eTsuRefpr1Dg": {
+"22A7mOWt7kOQRh2gJOx78A": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"V3AI_Vx2b0WsJxmpctEl+A": {
+"BWB6ajKTxk+ZdSEPcskEGw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("HasMother"));
 })(varBag.model, idService);
 }
 },
-"4U6jOy4X4kW5ECdqjQxHUw": {
+"VKWBygrNTESMmwEQ5h+AeA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Left"));
 })(varBag.model, idService);
 }
 },
-"U_YPTBg0l0qFuetU3xorqQ": {
+"derzHlfnDEmkz_91B+Nl2Q": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Actions"));
 })(varBag.model, idService);
 }
 },
-"8zo+NThXwUCvoREfrDp5mQ": {
+"SBaON+LCYEiblClb7MuAeg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"YtnVIU8hlU2DUzH6fvKesA": {
+"qfufmqLS206cjmeLS8nOQA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Previous_Spouses"));
 })(varBag.model, idService);
 }
 },
-"P_PnYU4ChE2lYpqI4qYZdQ": {
+"YMdIOPbzTUy+rcMNRkukYA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("PreviousSpouses"));
 })(varBag.model, idService);
 }
 },
-"Pgg26PtufEuOizNEtYpgBg": {
+"hKvkHNGiHUSmbuopy97JEA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Left"));
 })(varBag.model, idService);
 }
 },
-"ZZnxAND6SkSAx3fsHXo2Hg": {
+"pa3LDsv1Y0W_kLvF+ssw2A": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Actions"));
 })(varBag.model, idService);
 }
 },
-"wQDsFj+PT0iUnSfvhyeWnw": {
+"gF1u1g110EuyHu_Szs9XKw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));
@@ -2672,7 +3144,7 @@ return model.widgets.get(idService.getId("Content"));
 "ScwYVzlL+kansmBvpojmHA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
-return model.widgets.get(idService.getId("Household2"));
+return model.widgets.get(idService.getId("Member_FormalHousehold"));
 })(varBag.model, idService);
 }
 },
@@ -2697,21 +3169,56 @@ return model.widgets.get(idService.getId("Content"));
 })(varBag.model, idService);
 }
 },
-"3hKZM7XjxEOfRr+YK6hPCw": {
+"dDNyniDZC0ejy_Js1GNKpA": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Exis_SiblingRelations"));
+})(varBag.model, idService);
+}
+},
+"C1tFXI59jkGqCEOKs4DqYw": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Placeholder_Left"));
 })(varBag.model, idService);
 }
 },
-"nX+twoEo4EGUSgVHH7VHQw": {
+"tNQr1MvzKES8Lwn0k5k2iQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Actions"));
 })(varBag.model, idService);
 }
 },
-"Q+JvIXMJRkCIJ01BsPu5HA": {
+"I9S7Y5UnaEGRiVlg0_9acw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Content"));
+})(varBag.model, idService);
+}
+},
+"JESQ69nGOkyuWXVc81MaNg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Exist_NoDisplaySiblings"));
+})(varBag.model, idService);
+}
+},
+"N2if+z__z0+KBGJrFc2vuw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Placeholder_Left"));
+})(varBag.model, idService);
+}
+},
+"zc9MhnvqUEmaIxOJBVmwRg": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("Actions"));
+})(varBag.model, idService);
+}
+},
+"id6IWkjOHkKHtdY+vziclg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("Content"));

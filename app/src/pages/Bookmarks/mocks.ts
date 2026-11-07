@@ -9,8 +9,8 @@ import { Choice } from '@/lib/ubtConnect/staticEntities';
    contract, I10-6); the cards are UI_Bookmark_CardItem of the live model of 2026-11-05 (ItemId Text, ItemId2,
    HasDetailAccess, channel fields).
    - UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds: MOCK ASSUMPTION: the 9 pills that TST
-     answered to the test account (capture of 2026-10-29, dom/default.html:169-250), whatever ids are sent. The 5th
-     pill is masked in the capture (5 characters): "Feeds" (Feed Item) here.
+     answered to the test account, in the order of the answer (re-capture of 2026-11-07, dom/default.html:174-253),
+     whatever ids are sent. The 5th pill is masked in the capture (5 characters): "Feeds" (Feed Item) here.
    - Bookmarks/DataActionGetBookmarks: person data, never recorded. MOCK ASSUMPTION: the mock applies the
      Bookmarks_Filter fields: BookmarkCategoryId ('' = all), SearchText (case-insensitive "contains" on the title),
      Years (the bookmark's year; empty = all), SortByNewest (Choice.No = oldest first), PageNumber / PageSize.
@@ -20,14 +20,14 @@ import { Choice } from '@/lib/ubtConnect/staticEntities';
 
 const PILLS: [string, string][] = [
   ['Households', 'Household'],
-  ['OneSchool Global', 'OneSchool Global'],
+  ['Supper Meetings', 'Supper Meeting'],
   ['Assemble', 'Assemble Event'],
   ['Feeds', 'Feed Item'],
   ['Interchange', 'Interchange'],
   ['LDM', 'LDM Event'],
   ['Members', 'Member'],
+  ['OneSchool Global', 'OneSchool Global'],
   ['Orbit', 'Orbit Event'],
-  ['Supper Meetings', 'Supper Meeting'],
 ];
 
 interface FictionalBookmark {
@@ -157,17 +157,18 @@ const BOOKMARKS: FictionalBookmark[] = [
   },
 ];
 
-/** Scenario captured (Bookmarks Q2 (a), user 2026-10-29): the 3 cards of the TST capture in their order
-    (dom/default.html, cards b8-l1-112_0 to 112_2). FICTIONAL texts with the captured (masked) lengths: card 0 initials
-    1, title 20 ("••••• • •••••• •••••"), subtitle 23 ("•••••••• •••••• •••••••"); card 1 initials 1, empty title and
-    subtitle; card 2 OneSchool Global (SVG icon, empty title and subtitle) with item id 1430, the school that the TST
-    carousel opened from this card. No notes (the total-notes text is empty). */
+/** Scenario captured (Bookmarks Q2 (a), user 2026-10-29): the 3 cards of the TST re-capture of 2026-11-07 in their
+    order (dom/default.html, cards b11-l1-111_0 to 111_2). FICTIONAL texts with the captured (masked) lengths: card 0
+    Household, initials 1, title 20 ("••••• ••••••• ••••••"), subtitle 18 ("••••••••• ••••••••"); card 1 Household,
+    initials 1, title 20 ("••••• • ••••• ••••••"), subtitle 18 ("••••••••• ••••••••"); card 2 Supper Meeting (icon
+    connect-icon-calendar_fill, no initials, empty title and subtitle). No notes (the total-notes text is empty). The
+    item ids are fictional. */
 const CAPTURED: FictionalBookmark[] = [
   {
     itemId: '41063',
     category: 'Household',
-    title: 'Hayes D Melton Grove',
-    subtitle: 'Ashcombe Valley Meeting',
+    title: 'Hayes Melbury Grange',
+    subtitle: 'Northgate Locality',
     initials: 'H',
     iconId: '',
     year: '2026',
@@ -176,20 +177,20 @@ const CAPTURED: FictionalBookmark[] = [
   {
     itemId: '41064',
     category: 'Household',
-    title: '',
-    subtitle: '',
-    initials: 'F',
+    title: 'Pryce T Allen Harlow',
+    subtitle: 'Westbrook Locality',
+    initials: 'P',
     iconId: '',
     year: '2026',
     notes: [],
   },
   {
-    itemId: '1430',
-    category: 'OneSchool Global',
+    itemId: '5204',
+    category: 'Supper Meeting',
     title: '',
     subtitle: '',
     initials: '',
-    iconId: 'SVG_OneSchoolGlobal',
+    iconId: 'connect-icon-calendar_fill',
     year: '2026',
     notes: [],
   },

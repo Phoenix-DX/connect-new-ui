@@ -204,6 +204,27 @@ C2ExtendedShare on, C2NewBookmarks off, mobilePhotobook on, default-only, user 2
   - CR-SupperMeeting_Details-1: UBT_LazyImage OnParametersChanged, contact-details mock per entity.
 
   The report notes the parity differences from these issues.
+- TST sync 2026-11-07: the user accepts the renumbered exemption rules CAPTURE-MASKED-IMAGE-SMCAROUSEL and
+  CAPTURE-MASKED-TEXT-CAROUSELTAG-SMCAROUSEL (`-b2-b2-b1-` to `-b2-b3-b1-`; TST moved the slide ids). No code changed.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files changed (brief): `UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js`,
+  `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`,
+  `UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js`, `UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js`,
+  `UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`
+  (`migration/knowledge/tst-drift-2026-11-07.md` lines 16-24).
+- Fresh capture: the slide ids moved. EntitiesCarousel_Element now renders the SupperMeetingDetails block as `$b3`
+  (it was `$b2`) and CarouselTag as `$b4` (it was `$b3`). Ids under a slide are `b3-l1-<key>_<n>-b2-b3-b1-...`
+  (`migration/screens/SupperMeeting_Carousel/parity/default.json`; `dev.md`).
+- React code: no change. The clone has 0 structure, class and attribute differences. Parity is clean in default,
+  loading and offline (0 differences, 0.00 % pixels; `test.md`).
+- The 253 default rows (250 layout, 3 style) are the capture-masking artefacts of the masked photos and the masked
+  CarouselTag text (`analysis/dom/default.html`: 24 `data-masked-src="user-image"`). The master renumbered the
+  `pathRegex` of two rules from `-b2-b2-b1-` to `-b2-b3-b1-` in `migration/parity-exemptions.json`:
+  CAPTURE-MASKED-IMAGE-SMCAROUSEL and CAPTURE-MASKED-TEXT-CAROUSELTAG-SMCAROUSEL. Reasons and kinds are unchanged.
+- The rules CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL, -ACTIONS-SKELETON-SMCAROUSEL,
+  -ACTIONS-SKELETON-CLASS-SMCAROUSEL and CAPTURE-MASKED-IMAGE-SMCAROUSEL-GRID match no row now (8 s settle). They stay until the end of the wave (user decision Q10 b).
 
 ## 17. Patterns used
 - P-PARAMS: `In_StartingSupperMeetingId` from the query string (`api.ts`).

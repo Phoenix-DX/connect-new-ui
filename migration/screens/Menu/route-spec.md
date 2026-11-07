@@ -78,6 +78,15 @@ Siblings of the layout [view :600-705; dom:686-711]:
   - Logout uses the shell `signOut()` (no AppManager_Logout call, shell spec 10) and then goes to HomeFeed. There the signed-out gate of the shell opens Login.
   - Logout goes to HomeFeed with the Fade transition, as in the compiled code (Menu.mvc.js:773). The other navigations use the app default transition. F18 added the compiled transition arguments [questions.md Q4].
 - Version text shows "App version (N)" without the environment (Version README "Not settled"): masked in the capture.
+- TST sync 2026-11-07 (sync Q8 a): the capture account is a householder again, so the default scenario of Menu is `householder` and `member` is review-only. Confirm that the TST test account stays a householder.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files changed: `UBTConnect.App_Menu.Menu.mvc.js` (53280 to 53325 bytes), `UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js` (same size, other code) [tst-drift-2026-11-07.md:20,31].
+- Fresh capture (2026-11-06): the "Request Photo Update" row shows again, in the first position of the list [`analysis/dom/default.html:309`]. The capture of 2026-10-29 had no such row.
+- Compiled code: the row is removed when the user is neither a householder nor the spouse of a householder [`migration/sources/pretty/UBTConnect.App_Menu.Menu.mvc@7fa65f74.js:849`]. The row is shown, so the capture account is a householder (or a spouse) again.
+- React now: no markup or logic change. The `householder` scenario of `mocks.ts` is the default of the capture (capture-plan `scenarios.default` = `householder`). The `member` scenario stays for review only (`app/src/pages/Menu/mocks.ts`, comment lines 19-24).
+- Evidence: parity of the three states (default, loading, offline) has 0 differences after the change [`parity/default.json`].
 
 ## Change requests
 - none

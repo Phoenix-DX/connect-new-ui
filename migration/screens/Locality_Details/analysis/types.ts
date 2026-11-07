@@ -50,6 +50,19 @@ export interface AppManager_SynchAppContextResponse {
   FirebaseRealTimeDB_Token: string;
 }
 
+export interface LocalityHouseholdsItem {
+  HouseholdId: string /* Long Integer as string */;
+  HouseholdName: string;
+  ChildrenNames: string;
+  IsBookmarked: boolean;
+  LocalityName: string;
+  CountryName: string;
+}
+
+export interface GetLocalityHouseholdsResponse {
+  LocalityHouseholds: LocalityHouseholdsItem[] /* wire: { List: [...] } */;
+}
+
 export interface Directory_UserCurrent_Visibility {
   DisplayWorkPhone: boolean;
   DisplayMobilePhone: boolean;
@@ -117,20 +130,22 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string /* "" in capture */;
+  Email: string;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
+  HomeNumber: string;
+  MobileNumber: string;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -145,6 +160,17 @@ export interface UserInformation {
 
 export interface GetUserInformationResponse {
   UserInformation: UserInformation;
+}
+
+export interface HouseholdMembersItem {
+  ImageURL: string /* "" in capture */;
+  EntityId: string /* Long Integer as string */;
+  EntityType: string;
+}
+
+export interface GetMembersResponse {
+  HouseholdMembers: HouseholdMembersItem[] /* wire: { List: [...] } */;
+  VisibleAvatars: number;
 }
 
 export interface UI_LocalityDetails {
@@ -170,30 +196,6 @@ export interface LocalityDetails {
 
 export interface Get_LocalityDetailsResponse {
   LocalityDetails: LocalityDetails;
-}
-
-export interface LocalityHouseholdsItem {
-  HouseholdId: string /* Long Integer as string */;
-  HouseholdName: string;
-  ChildrenNames: string;
-  IsBookmarked: boolean;
-  LocalityName: string;
-  CountryName: string;
-}
-
-export interface GetLocalityHouseholdsResponse {
-  LocalityHouseholds: LocalityHouseholdsItem[] /* wire: { List: [...] } */;
-}
-
-export interface HouseholdMembersItem {
-  ImageURL: string /* "" in capture */;
-  EntityId: string /* Long Integer as string */;
-  EntityType: string;
-}
-
-export interface GetMembersResponse {
-  HouseholdMembers: HouseholdMembersItem[] /* wire: { List: [...] } */;
-  VisibleAvatars: number;
 }
 
 export interface ResultsItem {
@@ -343,24 +345,18 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
-}
-
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  NoteId: string /* Long Integer as string */;
-  NoteCategoryId: string /* "" in capture */;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string /* "" in capture */;
   ItemId: string /* "" in capture */;
-  DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  DateEditedUtc: string /* "1900-01-01..." = no value */;
-  NotesTotalCount: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
+}
+
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -370,7 +366,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -461,6 +457,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -497,6 +494,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -540,6 +538,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -553,6 +552,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {
@@ -604,7 +604,7 @@ export interface StatisticsItem {
 
 export interface InterchangeStatistics {
   Title: string;
-  Subtitle: string /* "" in capture */;
+  Subtitle: string;
   AvatarURL: string /* "" in capture */;
   Statistics: StatisticsItem[] /* wire: { List: [...] } */;
 }

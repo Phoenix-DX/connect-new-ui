@@ -27,6 +27,19 @@ export interface MemberSearchResult {
   RecordDisabled: boolean;
 }
 
+/** The screens that own a DataActionGetCommunityStatistics (fresh TST capture of 2026-11-07): the action is called with
+    its owner, UBTConnect/<Folder>/<Screen>/DataActionGetCommunityStatistics. */
+export type CommunityStatisticsOwner = 'HomeFeed' | 'CountryList';
+
+/** Connect_Geography_CS.UI_CommunityStatistics (Out_CommunityStatistics): the community counts. */
+export interface CommunityStatistics {
+  In_Change: number;
+  In_CountriesCount: number;
+  In_HouseholdCount: number;
+  In_LocalitiesCount: number;
+  In_MembersCount: number;
+}
+
 /** A member record (APIDomain_Directory_IS.Directory_MemberById): the id, the names, the locality and the country. */
 export interface Member {
   Id: string;

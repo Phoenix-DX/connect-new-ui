@@ -964,11 +964,11 @@
    "candidate": false,
    "variantGroups": [],
    "mcp": {
-    "status": "open",
+    "status": "unavailable",
     "answer": "",
     "values": "",
-    "source": "",
-    "at": null
+    "source": "LaunchDarkly flag, not an OutSystems element: no MCP answer; TST value true from the read-only probe tools/tst/flag_probe.cjs (2026-10-29 and 2026-11-07); decision on (user, 2026-10-29)",
+    "at": "2026-11-07T07:35:53"
    },
    "decision": {
     "status": "decided",
@@ -1026,17 +1026,25 @@
    "candidate": false,
    "variantGroups": [],
    "mcp": {
-    "status": "open",
+    "status": "unavailable",
     "answer": "",
     "values": "",
-    "source": "",
-    "at": null
+    "source": "LaunchDarkly flag, not an OutSystems element: no MCP answer; TST value true from the read-only probe tools/tst/flag_probe.cjs (2026-11-07); gates the locality-contacts branch of Locality_Details (Locality_Details.mvc.js:993-1004)",
+    "at": "2026-11-07T08:41:56"
    },
    "decision": {
-    "status": "open",
-    "value": "",
-    "by": null,
-    "at": null
+    "status": "decided",
+    "value": "ok all (2026-11-07): default-only, value true as the read-only probe of 2026-11-07 (as the gallery flag on 2026-10-29)",
+    "by": "user",
+    "at": "2026-11-07T09:11:35",
+    "key": "mobileDirectoryLocalityContacts",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
    }
   },
   "launchDarkly_FF.mobileDirectoryUpdateFeedDeceasedProfile": {

@@ -21,6 +21,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 ## Third-party hosts contacted
 - `australiaeast-0.in.applicationinsights.azure.com`
 - `js.monitor.azure.com`
+- `s-gke-apse1-nssi4-8.asia-southeast1.firebasedatabase.app`
 - `www.googleapis.com`
 
 ## Client storage by category
@@ -106,7 +107,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `firebase:host:connect2-tst-default-rtdb.asia-southeast1.firebasedatabase.app` (localStorage)
 - `Streamline_IsInstalled` (localStorage)
 
-### other (24)
+### other (26)
 - `PhotobookCarousel_SelectedSpeed` (localStorage)
 - `CurrentLocale` (localStorage)
 - `OutSystems_LastURL` (localStorage)
@@ -117,12 +118,14 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `Bookmarks_IsSynched` (localStorage)
 - `IsNavigateToHomeOnBack` (localStorage)
 - `NetworkDetection_VerboseMode` (localStorage)
+- `Directory_Updates_UnreadCount_LastCheck` (localStorage)
 - `NetworkDetection_ErrorMessage_GenericError` (localStorage)
 - `Offline_NetworkStatus_PendingPing_Check` (localStorage)
 - `Notifications_LastChecked` (localStorage)
 - `AppManager_AppBaseURL` (localStorage)
 - `Directory_Updates_MonthsToShow` (localStorage)
 - `Notes_IsSynched` (localStorage)
+- `Directory_Updates_UnreadCount` (localStorage)
 - `AppManager_CustomCallback` (localStorage)
 - `NetworkDetection_StatusIsOnline_IsPersistent` (localStorage)
 - `Notifications_IsSynched` (localStorage)

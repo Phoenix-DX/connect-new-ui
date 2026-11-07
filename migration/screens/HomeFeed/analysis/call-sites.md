@@ -11,15 +11,12 @@ For every service call: the chains of code that lead to it, from a root (user ev
 ### `UBTConnect_EmbedFeed/Blocks/Embedded_FeedCMS/DataActionGetFeedConfig`
 - `Embedded_FeedCMS fetch at start` → `Embedded_FeedCMS.DataActionGetFeedConfig`
 
-### `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics`
-- `HomeFeed.OnReady` → `HomeFeed.screenEvent_OnReady` → `HomeFeed.DataActionGetCommunityStatistics`
-- `HomeFeed fetch at start` → `HomeFeed.DataActionGetCommunityStatistics`
-
 ### `UBTConnect/Home/FeedBlock_Updates/DataActionFetchUpdates`
 - `FeedBlock_Updates fetch at start` → `FeedBlock_Updates.DataActionFetchUpdates`
 
-### `UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount`
-- `FeedBlock_CommunityPopulation fetch at start` → `FeedBlock_CommunityPopulation.DataActionFetchCount`
+### `UBTConnect/Home/HomeFeed/DataActionGetCommunityStatistics`
+- `HomeFeed.OnReady` → `HomeFeed.screenEvent_OnReady` → `HomeFeed.DataActionGetCommunityStatistics`
+- `HomeFeed fetch at start` → `HomeFeed.DataActionGetCommunityStatistics`
 
 ### `UBTConnect/Home/FeedBlock_Services/DataActionGetServices`
 - `FeedBlock_Services fetch at start` → `FeedBlock_Services.DataActionGetServices`

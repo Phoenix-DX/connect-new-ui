@@ -20,7 +20,7 @@ const CONTENT_PADDING = { GeneralSizeId: UBT_Size.None };
     kebab menu shown, empty carousel tag). Initialized raises OnInitialized.
     @origin UBTConnect.App_Profile.Profile_HouseholdPreview */
 export function ProfileHouseholdPreview({ id, onOnInitialized, renderHousehold }: ProfileHouseholdPreviewProps) {
-  const scope = id?.replace('$', '') ?? 'b60';
+  const scope = id?.replace('$', '') ?? 'b62';
   return (
     <OSBlock name="App_Profile.Profile_HouseholdPreview" id={id}>
       <ConnectBottomSheet

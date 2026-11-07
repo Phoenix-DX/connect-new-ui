@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useCommunityPopulationQuery } from '@/api/member';
 import type { UpdateItem } from '@/api/update';
+import { osDate } from '@/lib/os-wire';
 import { DialogExitConfirmation, useOsNavigate, useViewState } from '@/platform/navigation';
 import { useFlagOn } from '@/platform/flags/flags';
 import { APP_ID } from '@/platform/navigation/paths';
@@ -10,7 +10,8 @@ import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { HomeLayout } from '@/components/layout/HomeLayout';
-import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
+import { CommunityNumbers } from '@/components/feed/CommunityPopulation';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { EmbeddedFeed } from '@/components/feed/EmbeddedFeed';
 import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { ShareableObject } from '@/components/share/ShareableObject';
@@ -27,16 +28,14 @@ import { useFeedServices } from './hooks/useFeedServices';
 import { useFeedUpdates, type FeedUpdatesEvents } from './hooks/useFeedUpdates';
 import { useHomeFeedReady } from './hooks/useHomeFeedReady';
 
-/** OutSystems NullDate() as it travels on the wire: the In_UpdateDate of ShareSheet when nothing is shared. */
-const NULL_DATE = '1900-01-01';
-
+/** ShareableUpdateItem before a share: an empty UI_UpdateItem (its null date is the domain '', never rendered). */
 const EMPTY_UPDATE_ITEM: UpdateItem = {
   updateItemId: '0',
   updateItemTypeId: '',
   householdId: '0',
   memberId: '',
   name: '',
-  date: NULL_DATE,
+  date: '',
   genderId: '',
   locationString: '',
   parentsNames: '',
@@ -68,16 +67,14 @@ function FeedUpdates(events: FeedUpdatesEvents) {
 
 /** @origin UBTConnect.Home.HomeFeed
     The home screen: the home layout with the logo, the notification bell and the search, then the services card, the
-    community population, the latest updates (with "View all") and the feed, the bottom bar, and the share sheet for an
-    update or a feed item. The flows of the shared blocks are in their hooks (useNotificationIcon,
-    useCommunityPopulationQuery, useEmbeddedFeed); the flows of the blocks of the screen are in useFeedServices and
-    useFeedUpdates. */
+    community numbers (the answer of the screen data action GetCommunityStatistics), the latest updates (with "View
+    all") and the feed, the bottom bar, and the share sheet for an update or a feed item. The flows of the shared blocks
+    are in their hooks (useNotificationIcon, useEmbeddedFeed); the flows of the screen and of its blocks are in
+    useHomeFeedReady, useFeedServices and useFeedUpdates. */
 export default function HomeFeed() {
   const navigate = useOsNavigate();
-  // The flows of the shared blocks: App_NotificationIcon, FeedBlock_CommunityPopulation (DataActionFetchCount) and
-  // Feed_Embeded (the feed list: no FeedItemId).
+  // The flows of the shared blocks: App_NotificationIcon and Feed_Embeded (the feed list: no FeedItemId).
   const notificationIcon = useNotificationIcon();
-  const communityPopulation = useCommunityPopulationQuery();
   const embeddedFeed = useEmbeddedFeed();
   // Screen variables that the view cache keeps (P-BACK).
   const [hasUpdates, setHasUpdates] = useViewState('HasUpdates', true);
@@ -87,7 +84,7 @@ export default function HomeFeed() {
   const [shareObjectTypeId, setShareObjectTypeId] = useViewState('ShareObjectTypeId', '');
   const [shareableFeedItem, setShareableFeedItem] = useViewState<UI_ShareableObject_Generic>('ShareableFeedItem', {});
   // ScreenEvent_OnReady: IsScreenInitialized (False in OnInitialize, True in OnReady) and GetCommunityStatistics.
-  const isScreenInitialized = useHomeFeedReady();
+  const { isScreenInitialized, communityStatistics } = useHomeFeedReady();
 
   // Handler_NoUpdates
   const onNoUpdates = useCallback(() => {
@@ -142,22 +139,18 @@ export default function HomeFeed() {
             >
               <FeedServices />
             </Section_FeedWrapper>
-            <Section_FeedWrapper
-              id="Section_CommunityPopulation"
-              scope="b6"
-              showHeader={false}
-              isTransparentBackground
-              showViewAll={false}
+            <CustomContainer
+              id="$b6"
+              options={{
+                MarginSize: { HorizontalSizeId: UBT_Size.Base, TopSizeId: UBT_Size.Small, BottomSizeId: UBT_Size.Base },
+              }}
             >
-              <CommunityPopulation
+              <CommunityNumbers
                 id="$b7"
-                isLoading={communityPopulation.isPending}
-                total={communityPopulation.data ?? '0'}
-                onClick={() => {
-                  navigate(`/${APP_ID}/Updates_SingleList`);
-                }} // OnClick_Block
+                isLoading={!communityStatistics.isDataFetched}
+                communityStatistics={communityStatistics.out}
               />
-            </Section_FeedWrapper>
+            </CustomContainer>
             {hasUpdates && (
               <Section_FeedWrapper
                 id="Section_Updates"
@@ -186,7 +179,8 @@ export default function HomeFeed() {
         inShareObjectTypeId={shareObjectTypeId}
         inShareableObjectId={shareableObjectId}
         inUpdateType={isUpdate ? shareableUpdateItem.updateItemTypeId : ''}
-        inUpdateDate={isUpdate ? shareableUpdateItem.date : NULL_DATE}
+        // NullDate() when nothing is shared: the default of the container.
+        inUpdateDate={(isUpdate && osDate(shareableUpdateItem.date)) || undefined}
         inIsOpen={isShareOpen}
         onEventClosedShareSheet={() => {
           setIsShareOpen(false);

@@ -203,10 +203,10 @@ placeholder_LoadingSection: new PlaceholderContent(function () {
 return [$if(model.variables.haveFiltersAppliedIn, false, this, function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, {
 inputs: {
-In_ExtendedClasses: "header-filter-enabled",
-In_ColorId: UBTConnectModel.staticEntities.uBT_Color.red,
+In_ExtendedClasses: "icon header-filter-enabled",
+In_ColorId: UBTConnectModel.staticEntities.uBT_Color.teal,
 In_SizeId: UBTConnectModel.staticEntities.uBT_IconsSize.nonStandard_14,
-In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.errorFill
+In_IconId: UBTConnectModel.staticEntities.uBT_Icons2.circle_Fill
 },
 events: {
 _handleError: function (ex) {
@@ -478,7 +478,7 @@ return controller.safeExecuteClientAction(controller._iconClick$Action, callCont
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Jpw6vcM30keGIepdkjtS7A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A:aO+UykmPPS6VEpIYdNjDCA", "UBTConnect", "App_CommonBlocks_Filter", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4Q2cmn6Y0ES7KHwz0lQ_mw:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.4Q2cmn6Y0ES7KHwz0lQ_mw:okvVg7h5szO_81siFDkDeQ", "UBTConnect", "FilterSheet_Icon_Label", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:4Q2cmn6Y0ES7KHwz0lQ_mw:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.4Q2cmn6Y0ES7KHwz0lQ_mw:UoMpiaW+H0ADWc36o5IlkA", "UBTConnect", "FilterSheet_Icon_Label", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:4Q2cmn6Y0ES7KHwz0lQ_mw", callContext.id);

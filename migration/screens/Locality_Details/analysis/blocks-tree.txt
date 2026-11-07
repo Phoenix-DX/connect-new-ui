@@ -428,6 +428,13 @@ Layouts.Layout_MainPages
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
+                      CW_Image.UBT_LazyImage
+                        ConnectPatterns.SkeletonSection
+                          ConnectPatterns.LazyImage
+                            ConnectPatterns.SkeletonSection
+                              BasePatterns.CustomContainer
+                              BasePatterns.CustomContainer
+                                ConnectPatterns.Icon
                   BasePatterns.CustomContainer
                     ConnectPatterns.ImageCard__Content
                       BasePatterns.CustomContainer
@@ -453,6 +460,13 @@ Layouts.Layout_MainPages
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
+                      CW_Image.UBT_LazyImage
+                        ConnectPatterns.SkeletonSection
+                          ConnectPatterns.LazyImage
+                            ConnectPatterns.SkeletonSection
+                              BasePatterns.CustomContainer
+                              BasePatterns.CustomContainer
+                                ConnectPatterns.Icon
                   BasePatterns.CustomContainer
                     ConnectPatterns.ImageCard__Content
                       ConnectPatterns.IconText

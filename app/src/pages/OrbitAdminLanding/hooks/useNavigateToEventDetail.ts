@@ -1,4 +1,6 @@
 import { getMilestoneScanFF } from '@/api/event';
+import { osDate } from '@/lib/os-wire';
+import { OS_NULL_DATE_TIME } from '@/lib/osDateTime';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useOsNavigate, type OsParams } from '@/platform/navigation';
 import type { EventDetailTarget } from './adminLandingState';
@@ -34,8 +36,11 @@ export const orbitAdminEventDetailParams = (target: EventDetailTarget): OsParams
 });
 
 /** A DateTime screen input as the original puts it in the URL: ServerDataConverter.asString(value, DateTime), the
-    toString() of the DateTime. The null date gives "1900-01-01T00:00:00", any other value the toISOString() of the
-    instant (the dateTimeParam of platform/navigation/osNavigate.ts). The Orbit DateTimes here are UTC wire values
-    ("yyyy-MM-ddTHH:mm:ssZ"), so the instant is the wire value itself. */
-export const wireDateTimeParam = (value: string): string =>
-  value === '' || value.startsWith('1900-01-01') ? '1900-01-01T00:00:00' : new Date(value).toISOString();
+    toString() of the DateTime. The null date (empty or the null DateTime: `osDate` gives null) gives
+    OS_NULL_DATE_TIME, any other value the toISOString() of the instant (the dateTimeParam of
+    platform/navigation/osNavigate.ts). The Orbit DateTimes here are UTC wire values ("yyyy-MM-ddTHH:mm:ssZ"), so the
+    instant is the wire value itself. */
+export const wireDateTimeParam = (value: string): string => {
+  const date = osDate(value);
+  return date === null ? OS_NULL_DATE_TIME : new Date(date).toISOString();
+};

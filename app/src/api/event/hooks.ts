@@ -34,8 +34,8 @@ import type {
   AccommodationHostResult,
   AdminEventInformation,
   AdminEventInformationCallInputs,
-  AdminEventItem,
   AdminEventsCallInputs,
+  AdminEventsResult,
   AssembleEventCallInputs,
   AssembleEventResult,
   AssembleEventTypeItem,
@@ -240,7 +240,7 @@ export function useEventQRCodeQuery(inputs: EventQRCodeCallInputs, options: Even
 }
 
 /** DataActionGet_AdminEventsList as a query. */
-export function useAdminEventsQuery(inputs: AdminEventsCallInputs, options: EventQueryOptions<AdminEventItem[]> = {}) {
+export function useAdminEventsQuery(inputs: AdminEventsCallInputs, options: EventQueryOptions<AdminEventsResult> = {}) {
   return useEventQuery(eventKeys.adminEvents(inputs), () => fetchAdminEvents(inputs), options);
 }
 

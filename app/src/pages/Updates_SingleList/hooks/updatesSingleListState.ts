@@ -6,6 +6,7 @@ import type {
   UpdatesListVariables,
   UpdateTypeOption,
 } from '@/api/update';
+import { OS_NULL_DATE } from '@/lib/osDateTime';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
 import { Connect_UpdateTypeId } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Updates_DateRanges } from '@/pages/Updates_SingleList/components/staticEntities';
@@ -28,6 +29,10 @@ export interface UpdatesSingleListState extends UpdatesListVariables {
   dateRangesFailed: boolean;
   /** Bumped by SetupScrollListener: the scroll-end correction runs after the next commit. */
   scrollListenerSeq: number;
+  /** PillsLoaded: set True by OnInitialize of a new visit (after UpdateFilterTypesOptions); the type tags show their
+      skeleton only while it is False and isLoading (In_TagsLoading of Horizontal_Filter_TagList,
+      p:UBTConnect.Directory_Updates.Updates_SingleList.mvc@857c68f9.js:657, 2121). */
+  pillsLoaded: boolean;
 }
 
 /** An assignment of one or more screen variables. */
@@ -95,7 +100,7 @@ export const EMPTY_BREAKPOINT: UpdateBreakpoint = {
 };
 
 /** The screen variables with their defaults, then ScreenEvent_OnInitialize of a new visit: CurrentBreakpoint
-    {0, Today, 0} and UpdateFilterTypesOptions. */
+    {0, Today, 0}, UpdateFilterTypesOptions and PillsLoaded True. */
 export const INITIAL_UPDATES_SINGLE_LIST_STATE: UpdatesSingleListState = {
   filter_UpdateTypeOptions: FILTER_TYPE_OPTIONS,
   filter_BottomSheetId: '',
@@ -122,6 +127,7 @@ export const INITIAL_UPDATES_SINGLE_LIST_STATE: UpdatesSingleListState = {
   isDataFetched: false,
   dateRangesFailed: false,
   scrollListenerSeq: 0,
+  pillsLoaded: true,
 };
 
 /** ScreenEvent_OnInitialize of a restored view: the updates swiped in the carousel (the preload object
@@ -145,10 +151,8 @@ export function restoreUpdatesSingleListState(saved: UpdatesSingleListState, pre
   return { ...saved, items, breakpoints, unreadCount };
 }
 
-const NULL_DATE = '1900-01-01';
-
 /** A domain date ('' = null) as a block input that takes the OutSystems null date (ShareSheet In_UpdateDate). */
-export const osDateInput = (date: string): string => date || NULL_DATE;
+export const osDateInput = (date: string): string => date || OS_NULL_DATE;
 
 /** The runtime key of the List rows, as captured: 478 after FetchUpdates, 129 after a failed GetDateRanges, 106 while
     loading. */

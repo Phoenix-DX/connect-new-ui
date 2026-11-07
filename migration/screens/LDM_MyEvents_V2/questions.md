@@ -33,3 +33,15 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T15:01:14): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q6 [review] review round 4 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered A, user 2026-10-16) [questions.md Q1]: filter dialog with NotCaptured content.; Q2 → A (answered A, user 2026-10-16) [questions.md Q2]: expanded guest list built from the compiled code.; Fictional data for the two unrecorded data actions (5 past events, captured counts; shared `src/mocks/fictional/ldm.ts`).; MenuIcon: the Orbit `MenuAction.Auto` goes to MenuIcon as Back, as the captured `app-menu-icon back` shows (dom/default.html:201).; Proposed exemptions (not applied): guest photo background-image + pixel (data drift), NetworkWarning animation phase. Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-07T16:35:14): superseded by a newer review
+
+## Q7 [review] review round 4 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered A, user 2026-10-16) [questions.md Q1]: filter dialog with NotCaptured content.; Q2 → A (answered A, user 2026-10-16) [questions.md Q2]: expanded guest list built from the compiled code.; Fictional data for the two unrecorded data actions (5 past events, captured counts; shared `src/mocks/fictional/ldm.ts`).; MenuIcon: the Orbit `MenuAction.Auto` goes to MenuIcon as Back, as the captured `app-menu-icon back` shows (dom/default.html:201).; Proposed exemptions (not applied): guest photo background-image + pixel (data drift), NetworkWarning animation phase. Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-07T16:35:15): confirm (user, 2026-11-07: confirm ok, all 29 routes at review)

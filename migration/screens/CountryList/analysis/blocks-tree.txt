@@ -45,13 +45,30 @@ Layouts.Layout_MainPages
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
     BasePatterns.CustomContainer
-      Home.FeedBlock_CommunityPopulation
-        BasePatterns.CustomContainer
-          BasePatterns.CustomText
-            ConnectPatterns.IconInline_Internal
-          ConnectPatterns.SkeletonSection
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
+      Directory_CommonBlocks.Directory_CommunityNumbers
+        ConnectPatterns.SkeletonSection
+          BasePatterns.CustomContainer
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          ConnectPatterns.Icon
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
         Adaptive.Columns2

@@ -23,6 +23,10 @@ const IMAGES: readonly (readonly [string, string])[] = [
   [UBT_Icons.SVG_CommunityTradelink, 'CommunityTradelink.svg'],
   [UBT_Icons.SVG_PinLocality, 'Pin_Locality.svg'],
   [UBT_Icons.SVG_PinCountry, 'Pin_Country.svg'],
+  [UBT_Icons.SVG_CommunityHouseholds, 'CommunityHouseholds.svg'],
+  [UBT_Icons.SVG_CommunityLocalities, 'CommunityLocalities.svg'],
+  [UBT_Icons.SVG_CommunityCountries, 'CommunityCountries.svg'],
+  [UBT_Icons.SVG_CommunityMembers, 'CommunityMembers.svg'],
 ];
 
 export function IconSvg({ id, inIconId = '' }: IconSvgProps) {

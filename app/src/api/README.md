@@ -92,13 +92,13 @@ The route's `api.ts` and `types.ts` are deleted. `useUserServicesQuery` keeps th
 
 The route's `api.ts` and `types.ts` are deleted; `useSearch` in `pages/Search/hooks` calls the domain. The query key is `['Search', 'ScreenDataSetGet_SearchBirthdayOptions']`, as before.
 
-`member/` also holds DataActionFetchCount (FeedBlock_CommunityPopulation). `useCommunityPopulationQuery` is called by HomeFeed and CountryList.
+`member/` also holds `fetchCommunityStatistics(owner)` (DataActionGetCommunityStatistics of HomeFeed and CountryList). The pages call it through `flow.fetch`; it has no query hook.
 
-The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcTime: 0`, `retry: false` and `refetchOnReconnect: false`, as the old effects did. They set `meta.errorLog` (a message). `logQueryError` in `client/queryClient.ts` logs it with `log.warn` when the fetch fails, so that `api/` does not import `platform/log`.
+The queries of `feed/` set `staleTime: 0`, `gcTime: 0`, `retry: false` and `refetchOnReconnect: false`, as the old effects did. They set `meta.errorLog` (a message). `logQueryError` in `client/queryClient.ts` logs it with `log.warn` when the fetch fails, so that `api/` does not import `platform/log`.
 
 `household/` also holds the two Photobook calls: DataActionGetLocalityHouseholdIds (`fetchLocalityHouseholdIds`, called by `usePhotobook`) and DataActionGetHouseholdCaption (`fetchHouseholdCaption`, called by `useHouseholdCaption`). The old `api.ts` and `types.ts` of Photobook are deleted. The request shapes are `LocalityHouseholdIdsCallInputs` and `HouseholdCaptionCallInputs`; `SelectedHousehold`, `PhotobookHousehold` and `HouseholdCaption` are in `household/types.ts`. The flows call the repository functions.
 
-`household/` also holds the two Household_Relations calls: DataActionGet_MemberDetails (`fetchMemberRelations`) and DataActionGet_ParentHouseholdDetails (`fetchSiblingRelations`), called by `useHouseholdRelations`. The old `api.ts` and `types.ts` of Household_Relations are deleted. The types are `MemberRelationsCallInputs`, `MemberRelations` and `SiblingRelations`. The mapper keeps the 13 member fields that the relations UI reads; `HouseholdMember` gets the optional field `FormattedLocality`.
+`household/` also holds the two Household_Relations calls: DataActionGet_MemberDetails (`fetchMemberRelations`) and DataActionGet_SibllingsRelations (`fetchSiblingRelations`), called by `useHouseholdRelations`. The old `api.ts` and `types.ts` of Household_Relations are deleted. The types are `MemberRelationsCallInputs`, `MemberRelations` and `SiblingRelations`. The mapper keeps the 13 member fields that the relations UI reads; `HouseholdMember` gets the optional field `FormattedLocality`.
 
 `household/` also holds the two Locality_Details calls: DataActionGetLocalityHouseholds (`fetchLocalityHouseholds`, called by `useLocalityHouseholdList`) and DataActionGetMembers (`fetchHouseholdCardMembers`, called by `useHouseholdCardMembers`). The old `api.ts` and `types.ts` of Locality_Details are deleted. The flows call the repository functions.
 

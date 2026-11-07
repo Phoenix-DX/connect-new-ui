@@ -4,13 +4,13 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430",
+  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=132",
   "steps": [],
   "scenario": "real",
   "auto": null,
   "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
-  "bodyStyle": "--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "loading": {
@@ -18,7 +18,7 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430",
+  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=132",
   "steps": [],
   "scenario": "loading",
   "auto": "loading",
@@ -32,13 +32,13 @@
   "viewportName": "phone",
   "variant": null,
   "flags": {},
-  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430",
+  "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=132",
   "steps": [],
   "scenario": "error",
   "auto": "offline",
   "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
-  "bodyStyle": "--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  }
 }

@@ -26,7 +26,7 @@ flowchart TB
       B12["Adaptive.Gallery<br/>OutSystemsUI_2_23<br/>lifecycle"]
       B13["CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp<br/>UBTConnect_Utils<br/>lifecycle"]
       B14["ConfirmationDialogs.ActionConfirmationDialog<br/>NavigationHandler<br/>lifecycle"]
-      B15["Home.FeedBlock_CommunityPopulation<br/>UBTConnect<br/>fetch, navigation"]
+      B15["Directory_CommonBlocks.Directory_CommunityNumbers<br/>UBTConnect<br/>lifecycle"]
       B16["Home.FeedBlock_Updates<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
       B17["ConnectCorePatterns.ContextMenu<br/>UBTConnectLibrary<br/>markup"]
       B18["ConnectPatterns.PopupMenu<br/>UBTConnectLibrary<br/>lifecycle"]
@@ -62,38 +62,36 @@ flowchart TB
   subgraph Server["OutSystems server · screenservices"]
     direction LR
     S0["DataActionGetServices<br/>data action / aggregate, observed"]
-    S1["DataActionFetchCount<br/>data action / aggregate, observed"]
-    S2["DataActionFetchUpdates<br/>data action / aggregate, observed"]
-    S3["DataActionGetFeedConfig<br/>data action / aggregate, observed"]
-    S4["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
-    S5["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
-    S6["DataActionGetCommunityStatistics<br/>data action / aggregate, observed"]
-    S7["ActionAppManager_SynchAppContext<br/>observed"]
-    S8["ActionAppManager_AfterInitialize<br/>observed"]
-    S9["ActionSync_Info_GetMain<br/>observed"]
-    S10["ActionGetUserInformation<br/>observed"]
-    S11["ActionGetNumberUnreadMessages<br/>observed"]
-    S12["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S13["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S1["DataActionFetchUpdates<br/>data action / aggregate, observed"]
+    S2["DataActionGetFeedConfig<br/>data action / aggregate, observed"]
+    S3["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
+    S4["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
+    S5["DataActionGetCommunityStatistics<br/>data action / aggregate, observed"]
+    S6["ActionAppManager_SynchAppContext<br/>observed"]
+    S7["ActionAppManager_AfterInitialize<br/>observed"]
+    S8["ActionSync_Info_GetMain<br/>observed"]
+    S9["ActionGetUserInformation<br/>observed"]
+    S10["ActionGetNumberUnreadMessages<br/>observed"]
+    S11["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S12["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   B10 --> S0
-  B15 --> S1
-  B16 --> S2
-  B20 --> S3
+  B16 --> S1
+  B20 --> S2
+  Content -.-> S3
   Content -.-> S4
-  Content -.-> S5
-  Content --> S6
+  Content --> S5
+  Content -.-> S6
   Content -.-> S7
   Content -.-> S8
   Content -.-> S9
   Content -.-> S10
   Content -.-> S11
   Content -.-> S12
-  Content -.-> S13
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S4,S5,Backend unknown;
+  class S3,S4,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -114,8 +112,6 @@ sequenceDiagram
   S->>API: DataActionGetServices
   API-->>S: List, ExternalLinks_ElGusto, ExterrnalPackages_CommunityTradelink, ExterrnalPackages_HR100, ExterrnalPackages_Trove
   S->>S: onAfterFetch_GetServices
-  S->>API: DataActionFetchCount
-  API-->>S: UI_MembersStatistics
   S->>API: DataActionFetchUpdates
   API-->>S: UI_UpdateItemList
   S->>API: DataActionGetFeedConfig

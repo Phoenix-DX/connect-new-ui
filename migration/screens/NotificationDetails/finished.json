@@ -1,10 +1,12 @@
 {
- "finishedAt": "2026-11-06T10:54:09",
+ "finishedAt": "2026-11-07T16:35:34",
  "files": {
-  "src/pages/NotificationDetails/NotificationDetails.test.tsx": "57375196107906c9",
-  "src/pages/NotificationDetails/NotificationDetailsPage.tsx": "376eb3f27d83af8a",
-  "src/pages/NotificationDetails/hooks/useNotificationDetail.ts": "88a497e6866f2d13",
+  "src/pages/NotificationDetails/NotificationDetails.cardActions.test.tsx": "24b70b1d5df25ec2",
+  "src/pages/NotificationDetails/NotificationDetails.test.tsx": "b092cbcd604f1a60",
+  "src/pages/NotificationDetails/NotificationDetailsPage.tsx": "7292650fe328eabe",
+  "src/pages/NotificationDetails/actions.ts": "b59ed54855f29fe1",
+  "src/pages/NotificationDetails/hooks/useNotificationDetail.ts": "ba4baca556f462d2",
   "src/pages/NotificationDetails/inputs.ts": "22047d2949b71c78",
-  "src/pages/NotificationDetails/mocks.ts": "a91ee0e3027af0e6"
+  "src/pages/NotificationDetails/mocks.ts": "114cfcf1d45f0920"
  }
 }

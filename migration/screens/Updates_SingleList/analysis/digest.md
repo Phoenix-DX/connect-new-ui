@@ -25,19 +25,27 @@ Layouts.Layout_MainPages_FixedTitle
         Interaction.InputWithIcon
           ConnectPatterns.Icon
           Interaction.InputWithIcon
-      App_CommonBlocks_Filter.FilterSheet_Icon
-        ConnectPatterns.SkeletonSection
-          ConnectPatterns.Icon
   BasePatterns.CustomContainer
-    ConnectPatterns.HorizontalTagList
-      ConnectPatterns.TagToggle
+    BasePatterns.CustomContainer
+      ConnectPatterns.Horizontal_Filter_TagList
         BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
-      ConnectPatterns.TagToggle
-        BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+            App_CommonBlocks_Filter.FilterSheet_Icon_Label
+              ConnectPatterns.SkeletonSection
+                BasePatterns.CustomContainer
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+                  ConnectPatterns.Icon
+          ConnectPatterns.SkeletonSection
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
+            ConnectPatterns.TagToggle
+              BasePatterns.CustomContainer
   Directory_Updates.UpdateItem_Header
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
@@ -46,84 +54,11 @@ Layouts.Layout_MainPages_FixedTitle
             ConnectPatterns.IconText
               BasePatterns.Columns_Two
                 Adaptive.Columns2
-                  OutSystemsUIOverrides.Badge
                   BasePatterns.CustomText
                     ConnectPatterns.IconInline_Internal
           BasePatterns.CustomText
             ConnectPatterns.IconInline_Internal
   ConnectPatterns.SkeletonSection
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
-    ConnectCorePatterns.Update_ListItem
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.IconText
-              BasePatterns.Columns_Two
-                Adaptive.Columns2
-                  ConnectPatterns.Icon
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-            BasePatterns.Columns_Two
-              Adaptive.Columns2
-                ConnectPatterns.TagContent
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomText
-                  ConnectPatterns.IconInline_Internal
-            ConnectCorePatterns.ContextMenu
-              ConnectPatterns.PopupMenu
-                ConnectPatterns.Icon
-    ScrollAnchors.ScrollAnchor
-  ConnectPatterns.SkeletonSection
-    Directory_Updates.SectionHeader
     ConnectCorePatterns.Update_ListItem
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
@@ -804,9 +739,80 @@ Layouts.Layout_MainPages_FixedTitle
                 ConnectPatterns.IconText
                   BasePatterns.Columns_Two
                     Adaptive.Columns2
-                      OutSystemsUIOverrides.Badge
                       BasePatterns.CustomText
                         ConnectPatterns.IconInline_Internal
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
+    ConnectCorePatterns.Update_ListItem
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
+            ConnectPatterns.IconText
+              BasePatterns.Columns_Two
+                Adaptive.Columns2
+                  ConnectPatterns.Icon
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+            BasePatterns.Columns_Two
+              Adaptive.Columns2
+                ConnectPatterns.TagContent
+                  BasePatterns.CustomContainer
+                BasePatterns.CustomText
+                  ConnectPatterns.IconInline_Internal
+            ConnectCorePatterns.ContextMenu
+              ConnectPatterns.PopupMenu
+                ConnectPatterns.Icon
+    ScrollAnchors.ScrollAnchor
+  ConnectPatterns.SkeletonSection
+    Directory_Updates.SectionHeader
     ConnectCorePatterns.Update_ListItem
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
@@ -2329,6 +2335,7 @@ CW_Share.ShareSheet
 | IsToggleSearch | local | Boolean | `false` |
 | FocusedScrollAnchorId | local | Text | `""` |
 | CurrentSearchString | local | Text | `""` |
+| PillsLoaded | local | Boolean | `false` |
 | FetchUpdates | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchUpdatesDataActRec())` |
 | GetDateRanges | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetDateRangesDataActRec())` |
 - Data actions: `DataActionFetchUpdates` → `screenservices/UBTConnect/Directory_Updates/Updates_SingleList/DataActionFetchUpdates`, `DataActionGetDateRanges` → `screenservices/UBTConnect/Directory_Updates/Updates_SingleList/DataActionGetDateRanges`
@@ -2338,7 +2345,7 @@ CW_Share.ShareSheet
 - Navigation: `/UBTConnect/HouseholdCarousel`(In_StartingHouseholdId); `/UBTConnect/HouseholdDetails`(HouseholdId)
 - JavaScript nodes: `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.Handler_OnClickUpdateItem.CaptureScrollPositionJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.ScreenEvent_OnReady.ScrollFixJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.ScreenEvent_OnReady.IsViewRestoredFromCacheJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.SetupScrollListener.SetupScrollListenerJS`, `UBTConnect.Directory_Updates.Updates_SingleList.mvc$controller.DestroyEventListener.DestroyEventListenerJS`
 - Exceptions handled: UserException
-- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `uBT_Icons2.arrowLeftAlt`, `uBT_Color.neutral0`, `uBT_IconsSize.base_24`, `shape.rounded`, `uBT_Icons2.search`, `uBT_Size.small`, `uBT_Size.base`, `choice.yes`, `connect_BottomBar_Items.updates`, `type_ShareObject.update`, `updates_DateRanges.older`, `updates_DateRanges.today`, `choice.none`, `connect_UpdateTypeId.birth`, `connect_UpdateTypeId.marriage`, `connect_UpdateTypeId.taken`
+- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `uBT_Icons2.arrowLeftAlt`, `uBT_Color.neutral0`, `uBT_IconsSize.base_24`, `shape.rounded`, `uBT_Icons2.search`, `uBT_Size.base`, `uBT_Size.extraSmall`, `choice.yes`, `connect_BottomBar_Items.updates`, `type_ShareObject.update`, `updates_DateRanges.older`, `updates_DateRanges.today`, `choice.none`, `connect_UpdateTypeId.birth`, `connect_UpdateTypeId.marriage`, `connect_UpdateTypeId.taken`
 - Candidate static strings: `UpdateCurrentBreakpoint` | `Handler_ScrollEnding_UpdateBreakpoint` | `SetupScrollThreshold`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js`
@@ -2475,16 +2482,6 @@ CW_Share.ShareSheet
 | AlignIconRight | input | Boolean | `false` |
 | ExtendedClass | input | Text | `""` |
 
-## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| HaveFiltersApplied | input | Boolean | `false` |
-| BottomSheetId | input | Text | `""` |
-| isLoaded | input | Boolean | `false` |
-| ShowSubscriptionOnClick | input | Boolean | `false` |
-- Client actions / event handlers: `iconClick`
-- Static entities / flags: `uBT_Icons2.errorFill`, `uBT_IconsSize.nonStandard_14`, `uBT_Color.red`, `uBT_IconsSize.base_24`, `uBT_Icons2.tune`, `uBT_Color.neutral0`
-
 ## `UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -2494,7 +2491,7 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Ready, ParametersChanged
 - Client actions / event handlers: `onReady`, `onParametersChanged`, `clicked`
 
-## `UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`
+## `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
 | MainContainerClass | local | Text | `"ubt-tag-list"` |
@@ -2506,41 +2503,21 @@ CW_Share.ShareSheet
 | In_HorizontalPadding | input | Text | `""` |
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+| In_TagsLoading | input | Boolean | `false` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `scrollToSelectedPill`, `onParametersChanged`, `tagToggleToggle`, `onReady`, `changed`
+- JavaScript nodes: `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS`
+- Static entities / flags: `uBT_Size.extraSmall`
 
-## `UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
+## `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-tag-toggle"` |
-| Tag | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TagRec())` |
-| ExtendedClasses | input | Text | `""` |
-| isEnabled | input | Boolean | `true` |
-- Client actions / event handlers: `customContainerClicked`, `event_Click`
-- Static entities / flags: `uBT_Color.primary`, `uBT_Color.neutral0`, `uBT_Color.neutral3`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_Shape.rounded`, `uBT_Color.neutral7`, `uBT_Color.neutral6`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_IconSize.nonStandard_16`
-
-## `UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| ShowMarkAll | input | Boolean | `true` |
-| Title | input | Text | `""` |
-| BadgeNumber | input | Integer | `0` |
-| isLoading | input | Boolean | `false` |
-- Client actions / event handlers: `click_MarkAll`
-- Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_Color.neutral4`, `uBT_Size.large`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`, `uBT_FontWeight.semiBold`, `uBT_Color.redDark`, `uBT_Color.primary`
-
-## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| IsIconOnRight | input | Boolean | `false` |
-| Text | input | Text | `""` |
-| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
-| ExtendedClasses | input | Text | `""` |
-| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_Subtext | input | Text | `""` |
-| In_JustifyText | input | Boolean | `false` |
-- Client actions / event handlers: `clicked`
-- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
+| HaveFiltersApplied | input | Boolean | `false` |
+| BottomSheetId | input | Text | `""` |
+| isLoaded | input | Boolean | `false` |
+| ShowSubscriptionOnClick | input | Boolean | `false` |
+- Client actions / event handlers: `iconClick`
+- Static entities / flags: `uBT_Color.teal`, `uBT_IconsSize.nonStandard_14`, `uBT_Icons2.circle_Fill`, `uBT_Size.extraSmall`, `uBT_Display.inlineFlex`, `uBT_AlignItems.center`, `uBT_Icons2.tune`, `uBT_IconsSize.base_24`, `uBT_Color.cyanDark`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_Icons2.expandMore`, `uBT_IconsSize.medium_20`
 
 ## `UBTConnectLibrary.BasePatterns.CustomText.mvc.js`
 | variable | kind | type | default |
@@ -2561,6 +2538,40 @@ CW_Share.ShareSheet
 | variable | kind | type | default |
 |---|---|---|---|
 | InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
+
+## `UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-tag-toggle"` |
+| Tag | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TagRec())` |
+| ExtendedClasses | input | Text | `""` |
+| isEnabled | input | Boolean | `true` |
+- Client actions / event handlers: `customContainerClicked`, `event_Click`
+- Static entities / flags: `uBT_Color.primary`, `uBT_Color.neutral0`, `uBT_Color.neutral3`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_Shape.rounded`, `uBT_Color.neutral7`, `uBT_Color.neutral6`, `uBT_FontSize.small`, `uBT_FontWeight.semiBold`, `uBT_IconSize.nonStandard_16`
+
+## `UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| ShowMarkAll | input | Boolean | `true` |
+| Title | input | Text | `""` |
+| BadgeNumber | input | Integer | `0` |
+| isLoading | input | Boolean | `false` |
+- Client actions / event handlers: `click_MarkAll`
+- Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_Color.neutral4`, `uBT_Size.large`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`, `uBT_FontWeight.semiBold`, `uBT_Color.primary`
+
+## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsIconOnRight | input | Boolean | `false` |
+| Text | input | Text | `""` |
+| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| ExtendedClasses | input | Text | `""` |
+| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_Subtext | input | Text | `""` |
+| In_JustifyText | input | Boolean | `false` |
+- Client actions / event handlers: `clicked`
+- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.mvc.js`
 | variable | kind | type | default |
@@ -2592,6 +2603,9 @@ CW_Share.ShareSheet
 | ExtendedClasses | input | Text | `""` |
 | BackgroundColorId | input | Text | `""` |
 | TextColorId | input | Text | `""` |
+| In_VerticalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| In_HorizontalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
+| In_ShapeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.rounded` |
 - Client actions / event handlers: `clicked`
 - Static entities / flags: `uBT_Size.extraSmall`, `uBT_Size.small`, `uBT_Shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 
@@ -3089,18 +3103,18 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3225 ms
-- 2. `DataActionGetDateRanges` (200) at 4128 ms
-- 3. `DataActionGetCacheInfo` (200) at 4183 ms
-- 4. `DataActionGetCacheInfo` (200) at 4246 ms
-- 5. `DataActionGetCacheInfo` (200) at 4274 ms
-- 6. `DataActionFetchUpdates` (200) at 4660 ms
-- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 5142 ms
-- 8. `ActionAppManager_AfterInitialize` (200) at 6014 ms
-- 9. `ActionSync_Info_GetMain` (200) at 6519 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 6882 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9904 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13045 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2675 ms
+- 2. `DataActionGetDateRanges` (200) at 3638 ms
+- 3. `DataActionGetCacheInfo` (200) at 3659 ms
+- 4. `DataActionGetCacheInfo` (200) at 3732 ms
+- 5. `DataActionGetCacheInfo` (200) at 3838 ms
+- 6. `DataActionFetchUpdates` (200) at 4186 ms
+- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 4444 ms
+- 8. `ActionAppManager_AfterInitialize` (200) at 5543 ms
+- 9. `ActionSync_Info_GetMain` (200) at 5959 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 6304 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7780 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10470 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

@@ -133,7 +133,7 @@ describe('useProfile', () => {
   it('"Preview Household Profile" copies the form to the preview and opens the sheet', () => {
     const { result } = renderProfile();
     act(() => {
-      result.current.onPreviewSheetInitialized('b60-$b1');
+      result.current.onPreviewSheetInitialized('b62-$b1');
     });
     act(() => {
       result.current.onPersonalChange({ Email: 'preview@example.org' });
@@ -143,7 +143,7 @@ describe('useProfile', () => {
     act(() => {
       result.current.onViewPreview();
     });
-    expect(bottomSheetOpen).toHaveBeenCalledWith('b60-$b1');
+    expect(bottomSheetOpen).toHaveBeenCalledWith('b62-$b1');
     expect(result.current.preview.UI_AccountForm).toBe(result.current.state.accountForm);
     expect(result.current.state.accountFormViewPreview.AccountForm_PersonalInformation.Email).toBe(
       'preview@example.org',

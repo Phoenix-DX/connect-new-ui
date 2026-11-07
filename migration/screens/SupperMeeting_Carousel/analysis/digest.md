@@ -863,6 +863,9 @@ CW_Share.ShareSheet
 | ExtendedClasses | input | Text | `""` |
 | BackgroundColorId | input | Text | `""` |
 | TextColorId | input | Text | `""` |
+| In_VerticalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| In_HorizontalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
+| In_ShapeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.rounded` |
 - Client actions / event handlers: `clicked`
 - Static entities / flags: `uBT_Size.extraSmall`, `uBT_Size.small`, `uBT_Shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 
@@ -1027,6 +1030,7 @@ CW_Share.ShareSheet
 | NoteCategoryId | local | Text | `""` |
 | EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | FetchNoteId | local | Text | `""` |
+| PendingOpen | local | Boolean | `false` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
@@ -1038,14 +1042,14 @@ CW_Share.ShareSheet
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handler_OpenNotesSheetDeferred`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `action_UpdateBookmarksAndNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
-- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
+- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handler_OnNotesSheetClosed.JavaScript1JS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
 - Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
-- Candidate static strings: `Action_AsyncRefresh_ContactDetails`
+- Candidate static strings: `Handler_OpenNotesSheetDeferred` | `Action_AsyncRefresh_ContactDetails`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 | variable | kind | type | default |
@@ -1463,25 +1467,25 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionGetSubdivisionHouseholds` (200) at 2812 ms
-- 2. `DataActionGetSubdivisionHouseholds` (200) at 2831 ms
-- 3. `DataActionGetSubdivisionHouseholds` (200) at 2838 ms
-- 4. `DataActionFetchNotes` (200) at 2898 ms
-- 5. `DataActionFetchContactDetails` (200) at 2933 ms
-- 6. `DataActionGetSubdivision` (200) at 2969 ms
-- 7. `DataActionFetchNotes` (200) at 3001 ms
-- 8. `DataActionFetchNotes` (200) at 3016 ms
-- 9. `DataActionFetchContactDetails` (200) at 3019 ms
-- 10. `DataActionFetchContactDetails` (200) at 3034 ms
-- 11. `DataActionGetSubdivision` (200) at 3675 ms
-- 12. `DataActionFetchContactDetails` (200) at 3688 ms
-- 13. `ActionGetSignedImagesInBulk` (200) at 3985 ms
-- 14. `DataActionFetchContactDetails` (200) at 4429 ms
-- 15. `DataActionGetSubdivision` (200) at 4646 ms
-- 16. `DataActionFetchContactDetails` (200) at 4772 ms
-- 17. `DataActionFetchContactDetails` (200) at 4901 ms
-- 18. `DataActionFetchContactDetails` (200) at 4951 ms
-- 19. `DataActionFetchContactDetails` (200) at 5136 ms
+- 1. `DataActionGetSubdivisionHouseholds` (200) at 2931 ms
+- 2. `DataActionGetSubdivisionHouseholds` (200) at 2948 ms
+- 3. `DataActionGetSubdivisionHouseholds` (200) at 2956 ms
+- 4. `DataActionFetchContactDetails` (200) at 3005 ms
+- 5. `DataActionFetchNotes` (200) at 3042 ms
+- 6. `DataActionFetchNotes` (200) at 3075 ms
+- 7. `DataActionFetchNotes` (200) at 3086 ms
+- 8. `DataActionGetSubdivision` (200) at 3786 ms
+- 9. `DataActionGetSubdivision` (200) at 4187 ms
+- 10. `DataActionFetchContactDetails` (200) at 5340 ms
+- 11. `DataActionFetchContactDetails` (200) at 5422 ms
+- 12. `DataActionFetchContactDetails` (200) at 5474 ms
+- 13. `DataActionFetchContactDetails` (200) at 5875 ms
+- 14. `DataActionGetSubdivision` (200) at 5979 ms
+- 15. `DataActionFetchContactDetails` (200) at 6112 ms
+- 16. `DataActionFetchContactDetails` (200) at 6142 ms
+- 17. `DataActionFetchContactDetails` (200) at 6180 ms
+- 18. `ActionGetSignedImagesInBulk` (200) at 6270 ms
+- 19. `DataActionFetchContactDetails` (200) at 6366 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

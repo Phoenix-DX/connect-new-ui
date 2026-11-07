@@ -44,20 +44,19 @@ flowchart TB
   end
   subgraph Server["OutSystems server · screenservices"]
     direction LR
-    S0["DataActionFetchMessageInstance<br/>data action / aggregate, declared, not observed"]
-    S1["DataActionGetMessageInstance<br/>data action / aggregate, observed"]
-    S2["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br/>data action / aggregate, declared, not observed"]
-    S3["ActionAppManager_SynchAppContext<br/>observed"]
-    S4["ActionAppManager_AfterInitialize<br/>observed"]
-    S5["ActionSync_Info_GetMain<br/>observed"]
-    S6["ActionGetUserInformation<br/>observed"]
-    S7["ActionGetNumberUnreadMessages<br/>observed"]
-    S8["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S9["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S0["DataActionGetMessageInstance<br/>data action / aggregate, observed"]
+    S1["ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br/>data action / aggregate, declared, not observed"]
+    S2["ActionAppManager_SynchAppContext<br/>observed"]
+    S3["ActionAppManager_AfterInitialize<br/>observed"]
+    S4["ActionSync_Info_GetMain<br/>observed"]
+    S5["ActionGetUserInformation<br/>observed"]
+    S6["ActionGetNumberUnreadMessages<br/>observed"]
+    S7["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S8["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
-  Content -.-> S0
-  Content --> S1
+  Content --> S0
+  Content -.-> S1
   Content -.-> S2
   Content -.-> S3
   Content -.-> S4
@@ -65,10 +64,9 @@ flowchart TB
   Content -.-> S6
   Content -.-> S7
   Content -.-> S8
-  Content -.-> S9
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S0,S2,Backend unknown;
+  class S1,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -85,8 +83,6 @@ sequenceDiagram
   else back from history (view restored)
     S->>S: TODO keep cached data?
   end
-  S->>API: DataActionFetchMessageInstance
-  API-->>S: TODO outputs
   S->>API: DataActionGetMessageInstance
   API-->>S: Message, IsRetracted, IsCleared, PlaceholderDelimiters
   S->>API: ScreenDataSetGetMessageTemplateParametersByMessageTemplateId

@@ -269,6 +269,7 @@ household name / family names / locality, user names and localities, Label.
 - Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).
 - No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).
 - ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList.
+- Sync 2026-11-07 (user, Q4-old b): the analysis of the capture of 2026-10-14 (commit 2fe9efaf) stays the reference. The fresh capture had an empty share list (data of the capture account); no TST code changed. Confirm that the 49-item list stays.
 
 ## 17. Patterns used
 - P-PARAMS: inputs from the query string (`readInputs` in api.ts).
@@ -281,3 +282,13 @@ household name / family names / locality, user names and localities, Label.
 
 ## 18. Builder notes
 - HighlightSearch renders the same text / `<mark>` segments the Highlight JS node writes (no DOM replacement).
+
+## Changes 2026-11-07 (TST sync)
+- TST files that changed for this route: none (`migration/sync/drift-2026-11-07.json`; brief: "Changed TST files: -").
+- Fresh capture of 2026-11-07 (account global#1): `DataActionGetAvailableUsers` answers an empty list, so the DOM has no list rows.
+  Evidence: `migration/sync/decisions-2026-11-07.md`, "Q4 investigation" (calls.json: status 200; analysis/dom/default.raw.html: no rows; flag `getHasExtendedShare` true in both probes).
+  The cause is data of the account (the list had 49 users for another account on 2026-10-29), not a TST change.
+- Decision (user, Q4-old b, `migration/sync/decisions-2026-11-07.md`): restore `migration/screens/LegacyShareObject/analysis` from commit 2fe9efaf.
+  The captured DOM, calls and states of the previous capture stay valid.
+- React code: no change. `route.py parity LegacyShareObject` is clean in default, loading and offline (all counts 0; `dev.md`, `test.md`).
+

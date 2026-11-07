@@ -1,8 +1,8 @@
 # Coverage for LDM_MyEvents_V2
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 10 call(s)
-- Masked text nodes: 13, user images removed: 0
+- Runtime captures: 1 file(s), 11 call(s)
+- Masked text nodes: 22, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -71,10 +71,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [x] `DataActionGetEventLocalitiesForFilter` (Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
@@ -89,7 +85,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `SyncOrbitHostSurvey` (Connect2_OrbitMobile_MUI.controller.js)
 - [ ] `SyncOrbitSurveyStatus` (Connect2_OrbitMobile_MUI.controller.js)
 - [ ] `CS_CreateShareProfileLink` (Connect2_LegacyShared.controller.js)
-- [ ] `GetAllApplicationEvents` (Connect2_LegacyShared.controller.js)
+- [x] `GetAllApplicationEvents` (Connect2_LegacyShared.controller.js)
 - [ ] `GetBulkSubdivisions_V2` (Connect2_LegacyShared.controller.js)
 - [ ] `GetCountriesBySubscription` (Connect2_LegacyShared.controller.js)
 - [ ] `GetLocalityInformation` (Connect2_LegacyShared.controller.js)
@@ -100,7 +96,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `GetTimezoneInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserLocalitiesForCountryCodeWithGPS` (Connect2_LegacyShared.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

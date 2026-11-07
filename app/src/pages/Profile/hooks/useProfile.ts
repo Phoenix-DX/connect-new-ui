@@ -23,6 +23,7 @@ import { dropdownSearch_ForceResizeOnOpen } from '@/pages/Profile/actions';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 import type { HouseholdPreviewStructure } from '@/lib/ubtConnect/structures';
 import { jSUtils_CopyToClipboard } from '@/lib/jsUtils';
+import { osList } from '@/lib/os-wire';
 import {
   action_FormatAddress,
   initialProfileState,
@@ -266,10 +267,10 @@ export function useProfile(): ProfileFlows {
       dispatch({ type: 'subdivisionChanged', subdivisionId: selectedOptionList[0]?.Value ?? '' });
     },
     onAllLocalities: (response) => {
-      dispatch({ type: 'allLocalitiesFetched', localityList: response.LocalityList.List });
+      dispatch({ type: 'allLocalitiesFetched', localityList: osList(response.LocalityList) });
     },
     onAllSubdivisions: (response) => {
-      dispatch({ type: 'allSubdivisionsFetched', subdivionsList: response.SubdivionsList.List });
+      dispatch({ type: 'allSubdivisionsFetched', subdivionsList: osList(response.SubdivionsList) });
     },
     onCacheControlError: raiseToFlowHandler,
     onSave: () => {

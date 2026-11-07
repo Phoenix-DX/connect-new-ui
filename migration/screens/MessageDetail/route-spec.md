@@ -176,6 +176,9 @@ mobileAssemble, mobileOrbitAccess, mobileOrbitHostSurvey default-only (only used
 - Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).
 - Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15). The spinner rotation phase has the exemption SPINNER-ROTATION-PHASE (Q3 answered A, user, 2026-10-15) [questions.md Q3].
 - Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank).
+- Consistency exclusions for `components/NotificationDetailBlock.tsx:164,178,183` (user decision Q3 a, 2026-11-07, `migration/consistency-exclusions.json`). The inline styles are in branches that no capture shows. User citation: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:417,453,463`.
+- Line check of that citation: the declarations of :178 are at line 453 and those of :183 at line 463. The declarations of :164 are at line 417. Line 481 holds a border style.
+- Mock: the capture plan uses message id 5981096 now. The old id 5982748 redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The mock has a fictional seed for 5981096. Its title and body are the captured literal text "test" (`dom/default.html:74,86`). A user sent it and it is read (`app/src/pages/MessageDetail/mocks.ts`).
 
 ## 17. Patterns used
 - P-PARAMS: query inputs, navigation targets (index.tsx).
@@ -188,3 +191,9 @@ mobileAssemble, mobileOrbitAccess, mobileOrbitHostSurvey default-only (only used
 
 ## 18. Builder notes
 - Copy MessageList's local decrementReadMessagesCounter (controller.js:1846-1862).
+
+## Changes 2026-11-07 (TST sync)
+- TST files that changed: none (brief: "Changed TST files: -").
+- Fresh capture: the capture plan uses MessageInstanceId 5981096. The old id redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The message shows the literal text "test" as title and body (`migration/screens/MessageDetail/analysis/dom/default.html:74,86`). The footer height is 56px in the new capture (`dom/default.html` body style).
+- React code now: the mock has a seed for id 5981096 with the title and body "test", already read, sent by a user (`app/src/pages/MessageDetail/mocks.ts`). Before, the id was unknown and the build showed the MessageList block.
+- Evidence: parity of the 3 states clean after the change (`test.md`).

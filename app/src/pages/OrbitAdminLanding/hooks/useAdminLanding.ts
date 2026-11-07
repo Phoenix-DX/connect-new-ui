@@ -6,7 +6,10 @@ import {
   adminLandingReducer,
   clickEventPayloadOf,
   eventDetailTargetOf,
+  filterEvents,
+  getPopupMeasurements,
   INITIAL_ADMIN_LANDING_STATE,
+  RESET_FILTERS_AND_SORT,
   textToLongIntegerOrNull,
   type AdminLandingState,
   type EventDetailTarget,
@@ -26,14 +29,23 @@ export interface AdminLandingFlows {
   state: AdminLandingState;
   /** Card_Event ClickedEvent(EventSummary), with the TypeFriendly of the card's row. */
   onEventCardClicked: (eventSummary: Event_Screen, eventTypeFriendly: string) => void;
+  /** The click on the filter header (OnToggle_FilterPopup). */
+  onToggleFilterPopup: () => void;
+  /** The click on the sort header (OnToggle_SortPopup). */
+  onToggleSortPopup: () => void;
 }
 
 /** The flows of ScreenBlock_AdminLanding. The page calls this hook and gives the result to AdminLandingView.
     - OnReady: a view that the view cache restored with the Get_AdminEventsList answer does nothing
       (WasCurrentViewRestoredFromCache); restored without the answer, OnReady runs again (F40). Otherwise
       IsFetchingData True, UserFirstName and UserMemberId from AppManager_GetCachedUserInfo (the MemberId as a Long
-      Integer, else the null identifier), then Refresh_GetEventsByMemberId: Get_AdminEventsList (on demand; it sends
-      the block variables) and OnAfterFetch (EventsSummary = Response, IsFetchingData False).
+      Integer, else the null identifier), then Refresh_GetEventsByMemberId: ResetFiltersAndSort, Get_AdminEventsList
+      (on demand; it sends the block variables) and OnAfterFetch (FilterEvents: the upcoming events, YearsSelection =
+      YearFilter, IsFetchingData False). Before the refresh, GetPopupMeasurements stores the header and footer sizes
+      (the popup position; sent with the block variables).
+    - OnToggle_FilterPopup / OnToggle_SortPopup: the header clicks open or close Popup_Filters / Popup_Sort when no
+      fetch runs. The popup content (Popup_OrbitLanding_Filters / _Sort) and its ApplyFilters / ApplySort are not
+      captured for this route (NotCaptured in the view).
     - OnHandle_EventCardClicked: the event NavigateTo_EventDetail, then OnApplicationEvent_ClickEvent.
     - Flow scope (item 8): Get_AdminEventsList is a data action (R1, `flow.fetch`): after the unmount its answer and its
       failure are dropped, and OnAfterFetch does not run (ScreenBlock_AdminLanding.js:452, :460). The block event goes
@@ -51,10 +63,32 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
     onReady: (_flow, restored) => onReady(restored),
   });
 
-  /** Refresh_GetEventsByMemberId: Get_AdminEventsList, then OnAfterFetch_Get_AdminEventsList. */
+  /** Refresh_GetEventsByMemberId: ResetFiltersAndSort, Get_AdminEventsList, then OnAfterFetch_Get_AdminEventsList. */
   const refreshGetEventsByMemberId = async () => {
-    const eventsSummary = await flow.fetch(fetchAdminEvents(adminEventsCallInputsOf(latest.current))); // R1
-    dispatch({ isDataFetched: true, eventsSummary, isFetchingData: false });
+    dispatch(RESET_FILTERS_AND_SORT);
+    const answer = await flow.fetch(fetchAdminEvents(adminEventsCallInputsOf(latest.current))); // R1
+    // OnAfterFetch: FilterEvents (with the YearsSelection before the answer); SetAndSortEvents(True, False) returns at
+    // once (SortEventsASC is True after ResetFiltersAndSort and no sort is forced); YearsSelection = YearFilter;
+    // IsFetchingData False.
+    const filtered = filterEvents(answer.events, latest.current.eventFilter, latest.current.yearsSelection);
+    dispatch({
+      isDataFetched: true,
+      ...(filtered ? { eventsSummary: filtered } : {}),
+      yearsSelection: answer.yearFilter,
+      isFetchingData: false,
+    });
+  };
+
+  /** OnToggle_FilterPopup: with data (not fetching), Popup_FiltersOpened = not Popup_FiltersOpened. */
+  const onToggleFilterPopup = () => {
+    if (latest.current.isFetchingData) return;
+    dispatch({ popupFiltersOpened: !latest.current.popupFiltersOpened });
+  };
+
+  /** OnToggle_SortPopup: with data (not fetching), Popup_SortByOpened = not Popup_SortByOpened. */
+  const onToggleSortPopup = () => {
+    if (latest.current.isFetchingData) return;
+    dispatch({ popupSortByOpened: !latest.current.popupSortByOpened });
   };
 
   /** OnReady. A rejection goes to the flow handler (useFlowState); the skeleton stays. */
@@ -67,6 +101,7 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
       userFirstName: userInformation.FirstName,
       userMemberId: textToLongIntegerOrNull(userInformation.MemberId),
     });
+    dispatch({ popupMeasurements: getPopupMeasurements() }); // GetPopupMeasurements
     await refreshGetEventsByMemberId();
   };
 
@@ -81,5 +116,7 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
     onEventCardClicked: (eventSummary, eventTypeFriendly) => {
       flow.run(() => eventCardClicked(eventSummary, eventTypeFriendly));
     },
+    onToggleFilterPopup,
+    onToggleSortPopup,
   };
 }

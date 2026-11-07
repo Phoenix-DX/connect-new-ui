@@ -717,40 +717,34 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .connect-icon-people:before { content: "\e909"; }
 ```
+### .connect-icon-place  (1 rule)
+```css
+.connect-icon-place:before { content: "\e90a"; }
+```
 ### .connect-icon-time-clock  (1 rule)
 ```css
 .connect-icon-time-clock:before { content: "\e919"; }
-```
-### .connect-icon-video-camera  (1 rule)
-```css
-.connect-icon-video-camera:before { content: "\e914"; }
-```
-### .display-inline  (3 rules)
-```css
-.display-inline { display:inline; }
-.display-inline span { display: inline; }
-.display-inline.inline { display: inline; }
 ```
 ### .fa-flag  (1 rule)
 ```css
 .fa-flag:before { content:"\f024" }
 ```
+### .font-regular  (1 rule)
+```css
+.font-regular { font-weight:var(--font-regular); }
+```
 ### .font-semi-bold  (1 rule)
 ```css
 .font-semi-bold { font-weight:var(--font-semi-bold); }
 ```
-### .inline  (10 rules)
+### .font-size-base  (1 rule)
 ```css
-.flatpickr-calendar.open, .flatpickr-calendar.inline { opacity:1; max-height:640px; visibility:visible; }
-.flatpickr-calendar.inline { display:block; position:relative; top:2px; }
-.flatpickr-calendar.hasTime:not(.inline) { position:fixed; }
-.flatpickr-calendar.inline { --osui-flatpickr-layer:var(--layer-global-screen); display:inline-block; }
-.flatpickr-calendar.inline .flatpickr-weekwrapper { min-width:-webkit-max-content; min-width:-moz-max-content; min-width:max-content; }
-.osui-datepicker input:first-of-type:not(.flatpickr-calendar.inline input) { display:none; }
-.osui-datepicker input:first-of-type:not(.flatpickr-calendar.inline input) {  }
-.osui-monthpicker input:first-of-type:not(.flatpickr-calendar.inline input) { display:none; }
-.osui-monthpicker input:first-of-type:not(.flatpickr-calendar.inline input) {  }
-.display-inline.inline { display: inline; }
+.font-size-base { font-size:var(--font-size-base); }
+```
+### .margin-right-xs  (2 rules)
+```css
+.margin-right-xs { margin-right:var(--space-xs); }
+.is-rtl .margin-right-xs { margin-left:var(--space-xs); margin-right:var(--space-none); }
 ```
 ### .text-neutral-6  (1 rule)
 ```css
@@ -760,15 +754,14 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .text-neutral-7 { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
 ```
-## Assemble.AssembleCommon_VirtualMeetingURL
-
-### .assemble-meeting-info-popup  (1 rule)
+### .text-primary  (2 rules)
 ```css
-.assemble-meeting-info-popup .dx-dialog-footer button.btn.btn-primary { display: none; }
+.text-primary, .text-primary-darker { color:var(--text-color-primary, var(--color-primary)); }
+.leaflet-bar a.text-primary { color: var(--color-primary); }
 ```
-### .font-regular  (1 rule)
+### .white-space-normal  (1 rule)
 ```css
-.font-regular { font-weight:var(--font-regular); }
+.white-space-normal { white-space: normal; }
 ```
 ## BasePatterns.CustomContainer
 
@@ -988,6 +981,14 @@ notification-preview.right .is-right, .osui-notification-preview.left .is-left, 
 ```css
 .font-size-s { font-size:var(--font-size-s); }
 ```
+### .img-circle  (1 rule)
+```css
+img.img-circle { border-radius:var(--border-radius-circle); }
+```
+### .img-cover--top-center  (1 rule)
+```css
+img.img-cover--top-center { object-position: top center; }
+```
 ### .list-sticky-records__sticky-record__action  (1 rule)
 ```css
 .list-sticky-records__sticky-record--active .list-sticky-records__sticky-record__action { color: var(--color-primary); }
@@ -1005,6 +1006,39 @@ notification-preview.right .is-right, .osui-notification-preview.left .is-left, 
 ### .font-size-h4  (1 rule)
 ```css
 .font-size-h4 { font-size:var(--font-size-h4); }
+```
+## Reusable.Person_Contact_Options
+
+### .block-household-person-options  (16 rules)
+```css
+:where(.backwards-compatibility) .block-household-person-options { display: flex; align-items: center; flex-direction: row; justify-content: flex-end; }
+:where(.backwards-compatibility) .block-household-person-options > a { justify-content: center; display: flex; flex-direction: row; margin: 0; padding: 0; }
+:where(.backwards-compatibility) .block-household-person-options > a:nth-child(odd) { margin: 0; }
+:where(.backwards-compatibility) .block-household-person-options > a:nth-child(even) { margin: 0 var(--space-base); }
+:where(.backwards-compatibility) .block-household-person-options > a:first-child { margin-left: 0; }
+:where(.backwards-compatibility) .block-household-person-options > a:last-child { margin-right: 0; }
+:where(.backwards-compatibility) .block-household-person-options > a[disabled] > div { color: grey; pointer-events: none; }
+:where(.backwards-compatibility) .block-household-person-options a div { font-size: 1.5em; }
+:where(.backwards-compatibility) .block-household-person-options a .block-household-person-options-mobile { font-size: 2em; }
+:where(.backwards-compatibility) .block-household-person-options a .block-household-person-options-email { margin-top: -3px; }
+:where(.backwards-compatibility) .block-household-person-options { display: flex; align-items: center; flex-direction: column; justify-content: flex-end; }
+:where(.backwards-compatibility) .block-household-person-options > a { margin: 0; }
+:where(.backwards-compatibility) .block-household-person-options > a:nth-child(even) { margin: 0; }
+:where(.backwards-compatibility) .ignore-backwards-compatibility-content .block-household-person-options { display: flex; align-items: center; flex-direction: row; justify-content: flex-end; flex-wrap: wrap }
+:where(.backwards-compatibility) .assemble-detail-content .block-household-person-options > a:nth-child(even) { margin-left: var(--space-base); }
+:where(.backwards-compatibility) .assemble-detail-content .block-household-person-options > a { margin-left: var(--space-base); }
+```
+### .block-household-person-options-email  (1 rule)
+```css
+:where(.backwards-compatibility) .block-household-person-options a .block-household-person-options-email { margin-top: -3px; }
+```
+### .fa-envelope  (1 rule)
+```css
+.fa-envelope:before { content:"\f0e0" }
+```
+### .fa-phone  (1 rule)
+```css
+.fa-phone:before { content:"\f095" }
 ```
 ## App_Common.BottomBarContent
 
@@ -1267,7 +1301,6 @@ ibility) .screen-container.active-screen:not([class*=-enter]) + .screen-containe
 - `--header-size-content`: `48px` (in `@charset "UTF-8";    :root`); `48px` (in `.ignore-backwards-compatibility-content`)
 - `--layer-global-navigation`: `calc(var(--layer-above) + var(--layer-global-elevated))` (in `@charset "UTF-8";    :root`)
 - `--layer-global-negative`: `-1` (in `@charset "UTF-8";    :root`)
-- `--layer-global-screen`: `0` (in `@charset "UTF-8";    :root`)
 - `--layer-local-tier-1`: `1` (in `@charset "UTF-8";    :root`)
 - `--loading-dot-size`: `10px` (in `:root`)
 - `--orbit-primary-6`: `#2857D8` (in `:root`); `var(--color-primary)` (in `:root`)

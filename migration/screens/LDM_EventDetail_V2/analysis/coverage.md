@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 3 call(s)
-- Masked text nodes: 4, user images removed: 1
+- Masked text nodes: 14, user images removed: 1
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -20,8 +20,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.LazyImage`
 - [ ] `Fingerprint.FingerprintScanner`
-- [ ] `LDM_Blocks.EventDetail_ListItem`
-- [ ] `LDM_Blocks.EventDetail_Section`
 - [ ] `LDM_Blocks.EventDetail_SpecialNeeds_ListItem`
 - [ ] `LDM_Blocks.EventDetail_SubSection`
 - [ ] `NavigationHandler.PreventBackNavigation`

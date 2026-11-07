@@ -6,6 +6,8 @@ import type {
   AccommodationHostResult,
   AdminEventInformation,
   AdminEventItem,
+  AdminEventsCallInputs,
+  AdminEventsResult,
   AssembleAttendeeGuest,
   AssembleEventFilter,
   AssembleEventResult,
@@ -93,6 +95,9 @@ export type ScanEventQRCodeWire = Orbit<'ActionGetScanEventQRCode'>;
 type ScanEventQRCodeInputsWire = ActionInputs<PathOf<'Connect2_OrbitMobile_MUI', 'ActionGetScanEventQRCode'>>;
 /** DataActionGet_AdminEventsList of ScreenBlock_AdminLanding. */
 export type AdminEventsWire = Orbit<'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>;
+type AdminEventsInputsWire = ActionInputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>
+>;
 /** DataActionGet_EventsByMemberId of ScreenBlock_OrbitLanding. */
 export type EventsByMemberIdWire = Orbit<'ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId'>;
 /** DataActionGet_EventQRCode of ScreenBlock_GenerateQRCode. */
@@ -694,11 +699,22 @@ const toAdminEventItem = (w: AdminOrbitEventWire): AdminEventItem => ({
     EventInfo: w.OrbitSummaryItem.EventInfo,
   },
   typeFriendly: w.OrbitSummaryItem.TypeFriendly,
+  dateTime: w.OrbitSummaryItem.DateTime,
 });
 
-/** The events of the admin (Response). */
-export const toAdminEventItems = (wire: AdminEventsWire): AdminEventItem[] =>
-  osList(wire.Response).map(toAdminEventItem);
+/** The events of the admin (Response) and the years of the Filters popup (YearFilter). */
+export const toAdminEventsResult = (wire: AdminEventsWire): AdminEventsResult => ({
+  events: osList(wire.Response).map(toAdminEventItem),
+  yearFilter: osList(wire.YearFilter).map((y) => ({ year: y.Year, isSelected: y.IsSelected, count: y.Count })),
+});
+
+/** The block variables that DataActionGet_AdminEventsList sends, with YearsSelection as a wire list of YearItem. */
+export const toAdminEventsInputs = (inputs: AdminEventsCallInputs): AdminEventsInputsWire => ({
+  ...inputs,
+  YearsSelection: wireList(
+    inputs.YearsSelection.map((y) => ({ Year: y.year, IsSelected: y.isSelected, Count: y.count })),
+  ),
+});
 
 /** BookletGuestsMaxRows. */
 export const toBookletGuestsMaxRows = (wire: BookletGuestsMaxRowsWire): number => wire.BookletGuestsMaxRows;

@@ -4,14 +4,15 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-4. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-5. `/UBTConnect/css/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.css`
-6. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-9. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css`
+4. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+5. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+6. `/UBTConnect/css/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.css`
+7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -425,6 +426,26 @@ button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; di
 .carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
 input.OSFillParent.calendar-input { display:none; }
 ```
+### .directory-numbers-card  (1 rule)
+```css
+.directory-numbers-card { display: flex; padding: var(--space-base); flex-direction: column; align-items: flex-start; gap: var(--space-s); border-radius: var(--Radius---border-radius-l, 16px); border: 1px solid #63A9BA; background: var(--color-neutral-0); }
+```
+### .directory-numbers-card__content  (1 rule)
+```css
+.directory-numbers-card__content { display: flex; align-items: center; gap: 8px; align-self: stretch; border-radius: var(--border-radius-large); }
+```
+### .directory-numbers-card__left  (1 rule)
+```css
+.directory-numbers-card__left { display: flex; width: 160px; padding: var(--space-base); flex-direction: column; justify-content: center; align-items: flex-start; gap: var(--space-s); align-self: stretch; background: linear-gradient(180deg, rgba(237, 246, 248, 0.10) 0%, rgba(0, 129, 156, 0.10) 100%); border-radius: var(--border-radius-large); }
+```
+### .directory-numbers-card__right  (1 rule)
+```css
+.directory-numbers-card__right { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; flex: 1 0 0; align-self: stretch; }
+```
+### .directory-numbers-card__variation  (1 rule)
+```css
+.directory-numbers-card__variation { display: flex; min-height: 16px; align-items: center; gap: var(--space-xs); align-self: stretch; }
+```
 ### .list-group  (25 rules)
 ```css
 .list.list-group { overflow:hidden; position:relative; }
@@ -467,6 +488,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```
 ## ConnectPatterns.Icon
 
+### .connect-icon-Arrow-up1  (1 rule)
+```css
+.connect-icon-Arrow-up1:before { content: "\f0c2"; }
+```
 ### .connect-icon-boy  (1 rule)
 ```css
 .connect-icon-boy:before { content: "\f0bc"; }
@@ -527,6 +552,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .icon-base { --ubt-icon-size: var(--ubt-icon-size-base); }
 ```
+### .icon-extra-small  (1 rule)
+```css
+.icon-extra-small { --ubt-icon-size: var(--ubt-icon-size-extra-small); }
+```
 ### .icon-medium  (1 rule)
 ```css
 .icon-medium { --ubt-icon-size: var(--ubt-icon-size-medium); }
@@ -538,6 +567,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .icon-non-standard-32  (1 rule)
 ```css
 .icon-non-standard-32 { --ubt-icon-size: var(--ubt-icon-size-non-standard-32); }
+```
+### .icon-non-standard-40  (1 rule)
+```css
+.icon-non-standard-40 { --ubt-icon-size: var(--ubt-icon-size-non-standard-40); }
 ```
 ### .ignore-loading  (2 rules)
 ```css
@@ -556,6 +589,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .text-error { color:var(--text-color-error, var(--color-error)); }
 ```
+### .text-green-dark  (1 rule)
+```css
+.text-green-dark { color:var(--text-color-green-dark, var(--color-green-dark)); }
+```
 ### .text-inherit  (1 rule)
 ```css
 .text-inherit { color: inherit; }
@@ -567,6 +604,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ### .text-neutral-6  (1 rule)
 ```css
 .text-neutral-6 { color:var(--text-color-neutral-6, var(--color-neutral-6)); }
+```
+### .text-neutral-9  (1 rule)
+```css
+.text-neutral-9 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
 ```
 ### .text-pink-non-standard-darker  (1 rule)
 ```css
@@ -666,11 +707,6 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
 .background-neutral-0 { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
 ```
-### .background-primary-gradient-radial  (2 rules)
-```css
-.background-primary-gradient-radial { background: var(--color-primary-gradient-radial); }
-.ubt-layout-home .header.background-primary-gradient-radial { background: var(--color-primary-gradient-radial); }
-```
 ### .border-color-neutral-4  (1 rule)
 ```css
 .border-color-neutral-4 { border-color: var(--color-neutral-4); --border-color: var(--color-neutral-4); }
@@ -705,6 +741,18 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .font-size-base { font-size:var(--font-size-base); }
 ```
+### .font-size-h1  (1 rule)
+```css
+.font-size-h1 { font-size:var(--font-size-h1); }
+```
+### .font-size-xs  (1 rule)
+```css
+.font-size-xs { font-size:var(--font-size-xs); }
+```
+### .font-size-xxs  (1 rule)
+```css
+.font-size-xxs { font-size: var(--font-size-xxs); }
+```
 ### .hidden  (6 rules)
 ```css
 .flatpickr-day.hidden { visibility:hidden; }
@@ -718,6 +766,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .margin-bottom-s { margin-bottom:var(--space-s); }
 ```
+### .margin-top-base  (1 rule)
+```css
+.margin-top-base { margin-top:var(--space-base); }
+```
 ### .margin-y-s  (1 rule)
 ```css
 .margin-y-s { margin-bottom:var(--space-s); margin-top:var(--space-s); }
@@ -730,21 +782,17 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .padding-s { padding:var(--space-s); }
 ```
-### .padding-top-base  (1 rule)
-```css
-.padding-top-base { padding-top:var(--space-base); }
-```
-### .padding-x-base  (1 rule)
-```css
-.padding-x-base { padding-left:var(--space-base); padding-right:var(--space-base); }
-```
 ### .padding-y-base  (1 rule)
 ```css
 .padding-y-base { padding-bottom:var(--space-base); padding-top:var(--space-base); }
 ```
-### .padding-y-s  (1 rule)
+### .text-neutral-7  (1 rule)
 ```css
-.padding-y-s { padding-bottom:var(--space-s); padding-top:var(--space-s); }
+.text-neutral-7 { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
+```
+### .text-peach-dark  (1 rule)
+```css
+.text-peach-dark { color: var(--color-peach-dark); }
 ```
 ### .ubt-custom-container  (1 rule)
 ```css
@@ -794,21 +842,9 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## BasePatterns.CustomText
 
-### .font-size-h2  (1 rule)
-```css
-.font-size-h2 { font-size:var(--font-size-h2); }
-```
 ### .font-size-s  (1 rule)
 ```css
 .font-size-s { font-size:var(--font-size-s); }
-```
-### .font-size-xs  (1 rule)
-```css
-.font-size-xs { font-size:var(--font-size-xs); }
-```
-### .font-size-xxs  (1 rule)
-```css
-.font-size-xxs { font-size: var(--font-size-xxs); }
 ```
 ### .text-justify  (1 rule)
 ```css
@@ -818,9 +854,15 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```css
 .text-neutral-10 { color:var(--text-color-neutral-10, var(--color-neutral-10)); }
 ```
-### .text-neutral-7  (1 rule)
+## Directory_CommonBlocks.Directory_CommunityNumbers__Number
+
+### .directory-numbers-card__number  (1 rule)
 ```css
-.text-neutral-7 { color:var(--text-color-neutral-7, var(--color-neutral-7)); }
+.directory-numbers-card__number { display: flex; padding: var(--space-s); align-items: center; gap: var(--space-s); align-self: stretch; }
+```
+### .directory-numbers-card__number--border-top  (1 rule)
+```css
+.directory-numbers-card__number--border-top { border-top: 1px solid rgba(0, 129, 156, 0.10); }
 ```
 ## Adaptive.Columns3
 
@@ -1071,7 +1113,7 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { pointer-events: auto; }
 .ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { opacity: 0; }
 ```
-### .osui-bottom-sheet__content  (13 rules)
+### .osui-bottom-sheet__content  (12 rules)
 ```css
 .osui-bottom-sheet .osui-bottom-sheet__content:empty, .osui-bottom-sheet .osui-bottom-sheet__header__top-bar:empty {  }
 .osui-bottom-sheet__content { max-height:var(--bottom-sheet-max-height); overflow-y:scroll; padding:var(--space-base); padding-bottom:calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom)); }
@@ -1083,8 +1125,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content { padding-right: calc(var(--space-s) + var(--os-safe-area-right)); padding-left: calc(var(--space-s) + var(--os-safe-area-left)); padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom)); }
 .connect-share-sheet .osui-bottom-sheet__content { padding: 0; display: flex; flex-direction: column; flex: 1; gap: var(--share-sheet-gap, var(--space-s)); }
 .connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content { margin: 0; flex: 1; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) { display: flex; flex-direction: column; min-height: 0; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list), .connect-share-sheet__content__search-list { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
 ### .osui-bottom-sheet__header  (10 rules)
@@ -1116,6 +1157,10 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 ### .padding-bottom-xxl  (1 rule)
 ```css
 .padding-bottom-xxl { padding-bottom:var(--space-xxl); }
+```
+### .padding-x-base  (1 rule)
+```css
+.padding-x-base { padding-left:var(--space-base); padding-right:var(--space-base); }
 ```
 ### .ubt-bottom-sheet  (13 rules)
 ```css
@@ -1238,6 +1283,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-cyan-lightest`: `#e7f2f4` (in `@charset "UTF-8";    :root`); `#EDF6F8` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-error`: `#dc2020` (in `@charset "UTF-8";    :root`); `var(--color-red-darker)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-focus-outer`: `#ffd337` (in `@charset "UTF-8";    :root`)
+- `--color-green-dark`: `#2f9741` (in `@charset "UTF-8";    :root`); `#29823B` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-green-darker`: `#267d36` (in `@charset "UTF-8";    :root`); `#194E23` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-green-lightest`: `#ebf7ed` (in `@charset "UTF-8";    :root`); `#EAF3EB` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-neutral-0`: `#ffffff` (in `@charset "UTF-8";    :root`)
@@ -1259,7 +1305,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-pink-non-standard-darker`: `#DB178D` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-primary`: `#1068eb` (in `@charset "UTF-8";    :root`); `var(--color-cyan-dark)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-primary-gradient-linear`: `linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%)` (in `:root, .connect-legacy-compatibily-containter`)
-- `--color-primary-gradient-radial`: `radial-gradient(63.8% 63.8% at 62.5% 55.47%, var(--color-cyan) 17.79%, var(--color-cyan-dark) 100%)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-purple`: `#9D9EFF` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-purple-dark`: `#6E71FF` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-purple-darker`: `#494BAA` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1283,6 +1328,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--font-regular`: `400` (in `@charset "UTF-8";    :root`)
 - `--font-semi-bold`: `600` (in `@charset "UTF-8";    :root`)
 - `--font-size-base`: `16px` (in `@charset "UTF-8";    :root`); `1rem` (in `:root, .connect-legacy-compatibily-containter`)
+- `--font-size-h1`: `32px` (in `@charset "UTF-8";    :root`); `2rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h2`: `28px` (in `@charset "UTF-8";    :root`); `1.75rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h4`: `22px` (in `@charset "UTF-8";    :root`); `1.375rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h5`: `20px` (in `@charset "UTF-8";    :root`); `1.25rem` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1330,9 +1376,11 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--ubt-button-icon-size`: `var(--ubt-icon-size-small)` (in `.ubt-button--xs`); `var(--ubt-icon-size-medium)` (in `.ubt-button--s`); `var(--ubt-icon-size-base)` (in `.ubt-button--m`)
 - `--ubt-icon-size`: `var(--ubt-icon-size-base)` (in `:root`); `var(--ubt-icon-size-base)` (in `.ubt-avatar-image-base, .ubt-lazy-image-base, .ubt-lazy-image--width-base`); `var(--ubt-icon-size-non-standard-32)` (in `.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base`); `var(--ubt-icon-size-medium)` (in `.ubt-avatar-image-xxs, .ubt-lazy-image-xxs`)
 - `--ubt-icon-size-base`: `24px` (in `:root`)
+- `--ubt-icon-size-extra-small`: `10px` (in `:root`)
 - `--ubt-icon-size-medium`: `20px` (in `:root`)
 - `--ubt-icon-size-non-standard-16`: `16px` (in `:root`)
 - `--ubt-icon-size-non-standard-32`: `32px` (in `:root`)
+- `--ubt-icon-size-non-standard-40`: `40px` (in `:root`)
 - `--ubt-layout-login-padding`: `var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base))` (in `:root`)
 - `--ubt-login-screen-padding-top`: `calc(var(--ubt-layout-login-padding-top) + 80px)` (in `:root`)
 - `--ubt-login-svg-min-height`: `732px` (in `:root`)

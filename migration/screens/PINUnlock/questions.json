@@ -138,5 +138,77 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T15:01:57"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user: B) applied:; The shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1 applied).; After unlock, the screen goes to the resume link, else `UBTConnect.LastURL`, else HomeFeed.; The HomeFeed fallback for an empty LastURL is not in the original code.; Example: Profile → PINUnlock → Profile.; Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14):; The screen renders the shell's `BlockPinUnlock` (In_ForceVisible, Unlock, CommonUI placeholder,; The unsupported-system card is the U16 mock scenario `?mock=unsupported-browser`.; Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,; `ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2).; It is a replace navigation inside the SPA.; A same-origin href in LastURL becomes its path + search + hash (Splash stores the href).; Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README).; Sync 2026-11-07 (Q4-old b, user): the analysis of the capture of 2026-10-14 is restored. The Terms & Conditions link stays, because the fresh capture lacks it only through account data. Confirm. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T09:19:51",
+  "items": [
+   "Q1 (user: B) applied:",
+   "The shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1 applied).",
+   "After unlock, the screen goes to the resume link, else `UBTConnect.LastURL`, else HomeFeed.",
+   "The HomeFeed fallback for an empty LastURL is not in the original code.",
+   "Example: Profile → PINUnlock → Profile.",
+   "Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14):",
+   "The screen renders the shell's `BlockPinUnlock` (In_ForceVisible, Unlock, CommonUI placeholder,",
+   "The unsupported-system card is the U16 mock scenario `?mock=unsupported-browser`.",
+   "Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,",
+   "`ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2).",
+   "It is a replace navigation inside the SPA.",
+   "A same-origin href in LastURL becomes its path + search + hash (Splash stores the href).",
+   "Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README).",
+   "Sync 2026-11-07 (Q4-old b, user): the analysis of the capture of 2026-10-14 is restored. The Terms & Conditions link stays, because the fresh capture lacks it only through account data. Confirm."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:41:28"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user: B) applied:; The shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1 applied).; After unlock, the screen goes to the resume link, else `UBTConnect.LastURL`, else HomeFeed.; The HomeFeed fallback for an empty LastURL is not in the original code.; Example: Profile → PINUnlock → Profile.; Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14):; The screen renders the shell's `BlockPinUnlock` (In_ForceVisible, Unlock, CommonUI placeholder,; The unsupported-system card is the U16 mock scenario `?mock=unsupported-browser`.; Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,; `ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2).; It is a replace navigation inside the SPA.; A same-origin href in LastURL becomes its path + search + hash (Splash stores the href).; Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README).; Sync 2026-11-07 (Q4-old b, user): the analysis of the capture of 2026-10-14 is restored. The Terms & Conditions link stays, because the fresh capture lacks it only through account data. Confirm. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:41:28",
+  "items": [
+   "Q1 (user: B) applied:",
+   "The shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1 applied).",
+   "After unlock, the screen goes to the resume link, else `UBTConnect.LastURL`, else HomeFeed.",
+   "The HomeFeed fallback for an empty LastURL is not in the original code.",
+   "Example: Profile → PINUnlock → Profile.",
+   "Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14):",
+   "The screen renders the shell's `BlockPinUnlock` (In_ForceVisible, Unlock, CommonUI placeholder,",
+   "The unsupported-system card is the U16 mock scenario `?mock=unsupported-browser`.",
+   "Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,",
+   "`ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2).",
+   "It is a replace navigation inside the SPA.",
+   "A same-origin href in LastURL becomes its path + search + hash (Splash stores the href).",
+   "Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README).",
+   "Sync 2026-11-07 (Q4-old b, user): the analysis of the capture of 2026-10-14 is restored. The Terms & Conditions link stays, because the fresh capture lacks it only through account data. Confirm."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:41:28"
  }
 ]

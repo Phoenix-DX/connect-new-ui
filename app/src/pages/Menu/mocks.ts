@@ -19,7 +19,9 @@ import { mockSignedImageURL } from '@/components/ui/EntityLazyImage/mocks';
    - Scenario `member` (?mock=member, drift wave M-Q3 a, user 2026-10-29): the TST account of the capture of 2026-10-29
      is no longer a householder or a householder's spouse, so Menu.mvc.js:840-856 removes "Request Photo Update" (no
      such row in dom/default.html). The same answer with the householder toggle off: the shell's mock user (a son of
-     the Vitale household) with the member photo. The capture default of Menu (capture-plan `scenarios.default`).
+     the Vitale household) with the member photo. A review-only scenario since the re-capture of 2026-11-06: the TST
+     account is a householder again (row in dom/default.html), so the capture default of Menu (capture-plan
+     `scenarios.default`) is `householder` (sync Q8 a, 2026-11-07).
      Every other scenario falls through to the shell handler.
    Other scenarios: real, empty, error, loading (src/mocks/scenario.ts). */
 type UserInfoCacheOutput = ActionOutputs<PathOf<'UBTConnect_Utils', 'CacheControl_UserInfo/DataActionGetCacheInfo'>>;

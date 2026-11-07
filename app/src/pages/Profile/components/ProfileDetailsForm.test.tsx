@@ -49,6 +49,13 @@ describe('ProfileDetailsForm', () => {
     expect(input('Input_Username')).toBeDisabled();
     expect(input('Input_Email')).toHaveValue('matias@example.org');
     expect(input('Input_Email')).toHaveAttribute('type', 'email');
+    // TST 2026-11: the email input is read-only (Enabled False) under the label EmailLabel in Email_Container.
+    expect(input('Input_Email')).toBeDisabled();
+    expect(document.querySelector('#Email_Container [data-block="BasePatterns.Columns_Two"]#Email')).not.toBeNull();
+    expect(screen.getByText('Email').closest('[data-block="BasePatterns.CustomText"]')).toHaveAttribute(
+      'id',
+      'EmailLabel',
+    );
     expect(input('HomeNumber2')).toHaveValue('+54 291 555 0100');
     expect(input('Input_MobileNumber')).toHaveAttribute('type', 'tel');
   });
@@ -91,8 +98,8 @@ describe('ProfileDetailsForm', () => {
       isHouseholder: true,
       showContactSwitches: true,
     });
-    fireEvent.change(input('Input_Email') as HTMLInputElement, { target: { value: 'new@example.org' } });
-    expect(onPersonalChange).toHaveBeenCalledWith({ Email: 'new@example.org' });
+    fireEvent.change(input('Input_Username') as HTMLInputElement, { target: { value: 'matias.v' } });
+    expect(onPersonalChange).toHaveBeenCalledWith({ Username: 'matias.v' });
     fireEvent.change(input('Input_WorkNumber') as HTMLInputElement, { target: { value: '+54 291 555 0199' } });
     expect(onContactChange).toHaveBeenCalledWith({ WorkNumber: '+54 291 555 0199' });
     fireEvent.click(input('Switch3') as HTMLInputElement);

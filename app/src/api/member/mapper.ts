@@ -1,10 +1,20 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList } from '@/lib/os-wire';
-import type { Member, MemberAccountForm, MemberSearchResult } from './types';
+import type {
+  CommunityStatistics,
+  CommunityStatisticsOwner,
+  Member,
+  MemberAccountForm,
+  MemberSearchResult,
+} from './types';
 
 /** The outputs of DataActionGetAvailableMembers, as the contract describes them. */
 export type AvailableMembersWire = ActionOutputs<
   PathOf<'UBTConnect_Utils', 'ShareSheet/DataActionGetAvailableMembers'>
+>;
+/** The outputs of DataActionGetCommunityStatistics of HomeFeed and of CountryList (the same record). */
+type CommunityStatisticsWire = ActionOutputs<
+  PathOf<'UBTConnect', `${CommunityStatisticsOwner}/DataActionGetCommunityStatistics`>
 >;
 /** The outputs of GetMemberByMemberId, as the contract describes them. */
 export type MemberWire = ActionOutputs<PathOf<'Connect2_OrbitMobile_MUI', 'ActionGetMemberByMemberId'>>;
@@ -27,6 +37,15 @@ const toMemberSearchResult = (w: SearchResultWire): MemberSearchResult => ({
 /** The members of DataActionGetAvailableMembers: Out_SearchResultItemList, unwrapped. */
 export const toMemberSearchResults = (wire: AvailableMembersWire): MemberSearchResult[] =>
   osList(wire.Out_SearchResultItemList).map(toMemberSearchResult);
+
+/** The community counts of DataActionGetCommunityStatistics (Out_CommunityStatistics). */
+export const toCommunityStatistics = (wire: CommunityStatisticsWire): CommunityStatistics => ({
+  In_Change: wire.Out_CommunityStatistics.In_Change,
+  In_CountriesCount: wire.Out_CommunityStatistics.In_CountriesCount,
+  In_HouseholdCount: wire.Out_CommunityStatistics.In_HouseholdCount,
+  In_LocalitiesCount: wire.Out_CommunityStatistics.In_LocalitiesCount,
+  In_MembersCount: wire.Out_CommunityStatistics.In_MembersCount,
+});
 
 /** The member of GetMemberByMemberId (its output Response). */
 export const toMember = (wire: MemberWire): Member => ({

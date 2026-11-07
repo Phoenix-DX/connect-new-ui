@@ -33,13 +33,13 @@
   "UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js": "migration/sources/raw/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js",
   "UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js": "migration/sources/raw/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js",
   "UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js": "migration/sources/raw/UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js",
-  "UBTConnect.App_Notifications.NotificationDetails.mvc.js": "migration/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc@c66b0908.js",
+  "UBTConnect.App_Notifications.NotificationDetails.mvc.js": "migration/sources/raw/UBTConnect.App_Notifications.NotificationDetails.mvc.js",
   "UBTConnect.App_PIN.Block_PINUnlock.mvc.js": "migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock.mvc.js",
   "UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js": "migration/sources/raw/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
   "UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js": "migration/sources/raw/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js",
-  "UBTConnect.controller.js": "migration/sources/raw/UBTConnect.controller@f48349f1.js",
+  "UBTConnect.controller.js": "migration/sources/raw/UBTConnect.controller@029189b7.js",
   "UBTConnect.languageResources.js": "migration/sources/raw/UBTConnect.languageResources.js",
-  "UBTConnect.model.js": "migration/sources/raw/UBTConnect.model@522bb6c9.js",
+  "UBTConnect.model.js": "migration/sources/raw/UBTConnect.model@e6a632fb.js",
   "UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js": "migration/sources/raw/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
   "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js": "migration/sources/raw/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
   "UBTConnectLibrary.BasePatterns.CustomText.mvc.js": "migration/sources/raw/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
@@ -56,9 +56,9 @@
   "UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js": "migration/sources/raw/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js",
   "UBTConnectLibrary.controller.js": "migration/sources/raw/UBTConnectLibrary.controller.js",
   "UBTConnectLibrary.languageResources.js": "migration/sources/raw/UBTConnectLibrary.languageResources.js",
-  "UBTConnectLibrary.model.js": "migration/sources/raw/UBTConnectLibrary.model@e921ed10.js",
+  "UBTConnectLibrary.model.js": "migration/sources/raw/UBTConnectLibrary.model@4261239d.js",
   "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js": "migration/sources/raw/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js",
-  "UBTConnect_Utils.controller.js": "migration/sources/raw/UBTConnect_Utils.controller@38e95f51.js",
+  "UBTConnect_Utils.controller.js": "migration/sources/raw/UBTConnect_Utils.controller@3f072106.js",
   "UBTConnect_Utils.languageResources.js": "migration/sources/raw/UBTConnect_Utils.languageResources.js",
   "UBTConnect_Utils.model.js": "migration/sources/raw/UBTConnect_Utils.model@824a4266.js",
   "UBT_AppManager.PIN.InactivityTimer.mvc.js": "migration/sources/raw/UBT_AppManager.PIN.InactivityTimer.mvc.js",
@@ -101,7 +101,7 @@
   "UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js": "migration/sources/pretty/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js",
   "UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js": "migration/sources/pretty/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js",
   "UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js": "migration/sources/pretty/UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js",
-  "UBTConnect.App_Notifications.NotificationDetails.mvc.js": "migration/sources/pretty/UBTConnect.App_Notifications.NotificationDetails.mvc@9c45dd65.js",
+  "UBTConnect.App_Notifications.NotificationDetails.mvc.js": "migration/sources/pretty/UBTConnect.App_Notifications.NotificationDetails.mvc@6445b6d0.js",
   "UBTConnect.App_PIN.Block_PINUnlock.mvc.js": "migration/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock.mvc.js",
   "UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js": "migration/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
   "UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js": "migration/sources/pretty/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js",
@@ -134,7 +134,7 @@
   "UBT_AppManager_Mobile.model.js": "migration/sources/pretty/UBT_AppManager_Mobile.model.js"
  },
  "styles": {
-  "assets.json": "migration/sources/styles/assets@a5d71bb7.json",
-  "bundle.css": "migration/sources/styles/bundle@4b28ab7b.css"
+  "assets.json": "migration/sources/styles/assets@3e2c688f.json",
+  "bundle.css": "migration/sources/styles/bundle@0c6181a0.css"
  }
 }

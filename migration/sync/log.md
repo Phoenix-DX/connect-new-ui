@@ -1,0 +1,359 @@
+# TST sync log
+
+One line per event. Written by sync.py.
+
+- 2026-11-07T07:11:34 imported 29 items from migration/sync/triage-2026-11-07.md
+- 2026-11-07T07:11:34 begun by the user: "ok (item 8 of the decision session, 2026-11-07: start the wave)"
+- 2026-11-07T07:12:53 MessageList started
+- 2026-11-07T07:12:53 MessageList brief written (loop 0)
+- 2026-11-07T07:12:53 MessageList stage dev
+- 2026-11-07T07:12:53 LDM_EventDetail_V2 started
+- 2026-11-07T07:12:53 LDM_EventDetail_V2 brief written (loop 0)
+- 2026-11-07T07:12:53 LDM_EventDetail_V2 stage dev
+- 2026-11-07T07:12:54 ContactByEmailMember started
+- 2026-11-07T07:12:54 ContactByEmailMember brief written (loop 0)
+- 2026-11-07T07:12:54 ContactByEmailMember stage dev
+- 2026-11-07T07:12:54 OrbitAdminLanding started
+- 2026-11-07T07:12:54 OrbitAdminLanding brief written (loop 0)
+- 2026-11-07T07:12:54 OrbitAdminLanding stage dev
+- 2026-11-07T07:12:54 Household_Relations started
+- 2026-11-07T07:12:55 Household_Relations brief written (loop 0)
+- 2026-11-07T07:12:55 Household_Relations stage dev
+- 2026-11-07T07:12:55 MessageDetail started
+- 2026-11-07T07:12:55 MessageDetail brief written (loop 0)
+- 2026-11-07T07:12:55 MessageDetail stage dev
+- 2026-11-07T07:12:55 Menu started
+- 2026-11-07T07:12:55 Menu brief written (loop 0)
+- 2026-11-07T07:12:55 Menu stage dev
+- 2026-11-07T07:12:55 LDM_MyEvents_V2 started
+- 2026-11-07T07:12:56 LDM_MyEvents_V2 brief written (loop 0)
+- 2026-11-07T07:12:56 LDM_MyEvents_V2 stage dev
+- 2026-11-07T07:15:25 MessageList stage test
+- 2026-11-07T07:16:28 Menu stage test
+- 2026-11-07T07:18:07 MessageDetail stage test
+- 2026-11-07T07:18:07 ContactByEmailMember stage test
+- 2026-11-07T07:19:04 Q1 (LDM_EventDetail_V2) asked: Exemptions: (1) photo background-image + pixel for the host and guest photos (signed CloudFront URLs in the capture, placeholder in the mock) as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 already does for LDM_MyEvents_V2; (2) host-name title width 82 vs 118 px (masked 21-char name) as masked-text data drift. a: add both (master edits exemptions) / b: leave the diffs (route cannot restamp) / c: other
+- 2026-11-07T07:19:04 Q2 (MessageList) asked: consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles
+- 2026-11-07T07:20:13 ContactByEmailMember test failed, fix loop 1
+- 2026-11-07T07:20:13 ContactByEmailMember brief written (loop 1)
+- 2026-11-07T07:20:13 Q3 (MessageDetail) asked: Same as MessageList Q2: consistency NO-INLINE-COLOR in components/NotificationDetailBlock.tsx:164,178,183 (inline styles ported from the compiled TST block, no capture shows the branch); Notifications has 1 more. Options as Q2 (a exclusion with citation / b NotCaptured / c remove)
+- 2026-11-07T07:20:26 Menu stage docs
+- 2026-11-07T07:21:10 Q4 (LDM_MyEvents_V2) asked: Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\.\d\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave
+- 2026-11-07T07:21:11 Q5 (Household_Relations) asked: Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift
+- 2026-11-07T07:21:11 NotificationDetails started
+- 2026-11-07T07:21:11 NotificationDetails brief written (loop 0)
+- 2026-11-07T07:21:11 NotificationDetails stage dev
+- 2026-11-07T07:21:11 Profile started
+- 2026-11-07T07:21:11 Profile brief written (loop 0)
+- 2026-11-07T07:21:11 Profile stage dev
+- 2026-11-07T07:21:56 ContactByEmailMember stage test
+- 2026-11-07T07:21:56 Menu stage spec
+- 2026-11-07T07:21:57 Menu stage review
+- 2026-11-07T07:24:05 OrbitAdminLanding granted shared paths: app/src/api/event/** ("YearFilter output of DataActionGet_AdminEventsList (contract regenerated 2026-11-07)")
+- 2026-11-07T07:24:05 Household_Relations granted shared paths: app/src/api/household/** ("DataActionGet_SibllingsRelations (contract regenerated 2026-11-07), AwayParents, NoDisplaySiblings, Description")
+- 2026-11-07T07:24:39 ContactByEmailMember stage docs
+- 2026-11-07T07:24:59 BrowseCountries started with shared app/src/api/member/**
+- 2026-11-07T07:24:59 BrowseCountries brief written (loop 0)
+- 2026-11-07T07:24:59 BrowseCountries stage dev
+- 2026-11-07T07:25:28 ContactByEmailMember stage spec
+- 2026-11-07T07:25:29 ContactByEmailMember stage review
+- 2026-11-07T07:30:06 NotificationDetails granted shared paths: app/src/api/notification/** ("ActionStoreAdaptiveCardResponses (UBTConnect, contract regenerated 2026-11-07) for the Adaptive Card button flow")
+- 2026-11-07T07:30:37 BrowseCountries stage test
+- 2026-11-07T07:30:37 HomeFeed started with shared app/src/components/feed/CommunityPopulation/**
+- 2026-11-07T07:30:38 HomeFeed brief written (loop 0)
+- 2026-11-07T07:30:38 HomeFeed stage dev
+- 2026-11-07T07:32:26 Profile stage test
+- 2026-11-07T07:33:10 BrowseCountries stage docs
+- 2026-11-07T07:33:28 AssembleEvents started
+- 2026-11-07T07:33:28 AssembleEvents brief written (loop 0)
+- 2026-11-07T07:33:28 AssembleEvents stage dev
+- 2026-11-07T07:33:28 Assemble_BrowseByCountry started
+- 2026-11-07T07:33:28 Assemble_BrowseByCountry brief written (loop 0)
+- 2026-11-07T07:33:28 Assemble_BrowseByCountry stage dev
+- 2026-11-07T07:33:53 Profile stage docs
+- 2026-11-07T07:34:17 Household_Relations stage test
+- 2026-11-07T07:34:41 OrbitAdminLanding stage test
+- 2026-11-07T07:34:48 BrowseCountries stage spec
+- 2026-11-07T07:34:49 BrowseCountries stage review
+- 2026-11-07T07:35:18 AssembleEvents stage test
+- 2026-11-07T07:35:18 Assemble_BrowseByCountry stage test
+- 2026-11-07T07:35:18 Profile stage spec
+- 2026-11-07T07:35:19 Profile stage review
+- 2026-11-07T07:36:53 Assemble_BrowseByCountry stage docs
+- 2026-11-07T07:37:01 AssembleEvents stage docs
+- 2026-11-07T07:37:38 Assemble_BrowseByCountry stage spec
+- 2026-11-07T07:37:38 Assemble_BrowseByCountry stage review
+- 2026-11-07T07:38:19 AssembleEvents stage spec
+- 2026-11-07T07:38:20 AssembleEvents stage review
+- 2026-11-07T07:38:45 Household_Relations stage docs
+- 2026-11-07T07:38:45 OrbitAdminLanding stage docs
+- 2026-11-07T07:40:10 OrbitAdminLanding stage spec
+- 2026-11-07T07:40:10 OrbitAdminLanding stage review
+- 2026-11-07T07:40:31 Household_Relations stage spec
+- 2026-11-07T07:40:31 Household_Relations stage review
+- 2026-11-07T07:42:35 NotificationDetails stage test
+- 2026-11-07T07:45:19 HomeFeed granted shared paths: app/src/components/ui/IconSvg/**, app/src/lib/ubtConnectLibrary/staticEntities.ts, app/src/lib/os-assets.manifest.json, app/src/mocks/modules/UBTConnect/Directory_Updates/** ("four SVG_Community icons (master fetched the files), update-items mock of the fresh capture")
+- 2026-11-07T07:45:20 NotificationDetails stage docs
+- 2026-11-07T07:52:24 NotificationDetails stage spec
+- 2026-11-07T07:52:24 NotificationDetails stage review
+- 2026-11-07T07:53:00 HomeFeed stage test
+- 2026-11-07T07:58:30 HomeFeed stage docs
+- 2026-11-07T07:59:00 CountryDetails started with shared app/src/components/filter/FilterSheet/**
+- 2026-11-07T07:59:00 Locality_Details started with shared app/src/components/ui/HorizontalTagList/**
+- 2026-11-07T07:59:00 OneSchoolGlobalDetails started
+- 2026-11-07T07:59:00 SupperMeeting_Carousel started
+- 2026-11-07T07:59:01 CountryDetails brief written (loop 0)
+- 2026-11-07T07:59:01 CountryDetails stage dev
+- 2026-11-07T07:59:01 Locality_Details brief written (loop 0)
+- 2026-11-07T07:59:01 Locality_Details stage dev
+- 2026-11-07T07:59:02 OneSchoolGlobalDetails brief written (loop 0)
+- 2026-11-07T07:59:02 OneSchoolGlobalDetails stage dev
+- 2026-11-07T07:59:02 SupperMeeting_Carousel brief written (loop 0)
+- 2026-11-07T07:59:02 SupperMeeting_Carousel stage dev
+- 2026-11-07T08:04:30 CountryDetails stage test
+- 2026-11-07T08:04:30 HomeFeed stage spec
+- 2026-11-07T08:04:31 HomeFeed stage review
+- 2026-11-07T08:04:45 CountryList started with shared app/src/components/feed/CommunityPopulation/**
+- 2026-11-07T08:04:45 CountryList brief written (loop 0)
+- 2026-11-07T08:04:45 CountryList stage dev
+- 2026-11-07T08:06:31 SupperMeeting_Carousel stage test
+- 2026-11-07T08:08:59 OneSchoolGlobalDetails granted shared paths: app/src/containers/OneSchoolGlobalDetails/**, app/src/containers/EntityDetailsActions/mocks.ts ("Placeholder_CarouselTag of the live block; mocks of the new school id 132")
+- 2026-11-07T08:10:10 Notifications started
+- 2026-11-07T08:10:10 Notifications brief written (loop 0)
+- 2026-11-07T08:10:11 Notifications stage dev
+- 2026-11-07T08:10:39 SupperMeeting_Carousel stage docs
+- 2026-11-07T08:11:35 SupperMeeting_Carousel stage spec
+- 2026-11-07T08:11:35 SupperMeeting_Carousel stage review
+- 2026-11-07T08:12:01 CountryDetails stage docs
+- 2026-11-07T08:12:27 OneSchoolGlobalDetails stage test
+- 2026-11-07T08:12:47 CountryDetails stage spec
+- 2026-11-07T08:12:47 CountryDetails stage review
+- 2026-11-07T08:13:08 Search started with shared app/src/components/filter/FilterSheet/**
+- 2026-11-07T08:13:08 Search brief written (loop 0)
+- 2026-11-07T08:13:08 Search stage dev
+- 2026-11-07T08:14:23 OneSchoolGlobalDetails stage docs
+- 2026-11-07T08:18:09 Search stage test
+- 2026-11-07T08:18:09 CountryList granted shared paths: app/src/api/country/**, app/src/api/member/** ("remove the unused community-population functions after the CommunityNumbers port")
+- 2026-11-07T08:18:09 OneSchoolGlobalDetails stage spec
+- 2026-11-07T08:18:10 OneSchoolGlobalDetails stage review
+- 2026-11-07T08:22:00 Locality_Details stage test
+- 2026-11-07T08:22:45 Search stage docs
+- 2026-11-07T08:28:39 CountryList stage test
+- 2026-11-07T08:28:39 Locality_Details stage docs
+- 2026-11-07T08:29:03 Notifications granted shared paths: app/src/mocks/fictional/notifications.ts, app/src/api/notification/** ("22 rows of the fresh capture; createdByUserId mapping (NotificationDetails is frozen at review)")
+- 2026-11-07T08:29:16 Search stage spec
+- 2026-11-07T08:29:16 Search stage review
+- 2026-11-07T08:29:29 Updates_SingleList started with shared app/src/components/filter/FilterSheet/**
+- 2026-11-07T08:29:29 Updates_SingleList brief written (loop 0)
+- 2026-11-07T08:29:29 Updates_SingleList stage dev
+- 2026-11-07T08:30:02 OrbitLanding started
+- 2026-11-07T08:30:02 OrbitLanding brief written (loop 0)
+- 2026-11-07T08:30:02 OrbitLanding stage dev
+- 2026-11-07T08:30:02 OrbitLanding stage test
+- 2026-11-07T08:30:40 Locality_Details stage spec
+- 2026-11-07T08:30:41 Locality_Details stage review
+- 2026-11-07T08:31:53 OrbitLanding stage docs
+- 2026-11-07T08:31:54 CountryList stage docs
+- 2026-11-07T08:33:06 OrbitLanding stage spec
+- 2026-11-07T08:33:07 OrbitLanding stage review
+- 2026-11-07T08:33:18 CountryList stage spec
+- 2026-11-07T08:33:19 CountryList stage review
+- 2026-11-07T08:38:03 Q6 (Notifications) asked: New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open
+- 2026-11-07T08:41:57 Q7 (Locality_Details) asked: Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other
+- 2026-11-07T08:42:51 Q8 (Updates_SingleList) asked: Pre-existing consistency NO-BROWSER-STORAGE: actions.ts:15-24 keeps scrollAnchorId/scrollAnchorDelta in localStorage as the TST JS nodes CaptureScrollPosition/ScrollFix do (no token, no personal data). a: keep as the original and record a consistency exclusion with the citation / b: move the two keys to an in-memory store in platform/navigation (platform change by the master) / c: sessionStorage
+- 2026-11-07T08:43:06 Notes started with shared app/src/components/filter/FilterSheet/**, app/src/components/filter/HorizontalFilterTagList/**
+- 2026-11-07T08:43:06 Notes brief written (loop 0)
+- 2026-11-07T08:43:07 Notes stage dev
+- 2026-11-07T08:43:24 HouseholdCarousel started with shared app/src/components/directory/EntitiesCarouselElement/**, app/src/components/ui/HorizontalTagList/**
+- 2026-11-07T08:43:24 HouseholdCarousel brief written (loop 0)
+- 2026-11-07T08:43:24 HouseholdCarousel stage dev
+- 2026-11-07T08:45:06 Notes stage test
+- 2026-11-07T08:45:06 Bookmarks started with shared app/src/components/filter/FilterSheet/**, app/src/components/filter/HorizontalFilterTagList/**
+- 2026-11-07T08:45:06 Bookmarks brief written (loop 0)
+- 2026-11-07T08:45:06 Bookmarks stage dev
+- 2026-11-07T08:47:25 Notes test failed, fix loop 1
+- 2026-11-07T08:47:26 Notes brief written (loop 1)
+- 2026-11-07T08:48:32 HouseholdCarousel stage test
+- 2026-11-07T08:49:09 Bookmarks stage test
+- 2026-11-07T08:49:18 Notes stage test
+- 2026-11-07T08:49:36 HouseholdCarousel stage docs
+- 2026-11-07T08:50:39 HouseholdCarousel stage spec
+- 2026-11-07T08:50:40 HouseholdCarousel stage review
+- 2026-11-07T08:51:28 Notes stage docs
+- 2026-11-07T08:51:55 Bookmarks stage docs
+- 2026-11-07T08:52:26 Notes stage spec
+- 2026-11-07T08:52:26 Notes stage review
+- 2026-11-07T08:53:32 Bookmarks stage spec
+- 2026-11-07T08:53:33 Bookmarks stage review
+- 2026-11-07T09:10:29 Q1 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q2 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q3 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q4 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q5 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q6 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q7 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:30 Q8 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:13:03 PINUnlock started
+- 2026-11-07T09:13:03 PINUnlock brief written (loop 0)
+- 2026-11-07T09:13:03 PINUnlock stage dev
+- 2026-11-07T09:13:03 PINUnlock stage test
+- 2026-11-07T09:13:03 LegacyShareObject started
+- 2026-11-07T09:13:03 LegacyShareObject brief written (loop 0)
+- 2026-11-07T09:13:03 LegacyShareObject stage dev
+- 2026-11-07T09:13:04 LegacyShareObject stage test
+- 2026-11-07T09:15:41 Updates_SingleList stage test
+- 2026-11-07T09:18:13 LegacyShareObject stage docs
+- 2026-11-07T09:18:38 PINUnlock stage docs
+- 2026-11-07T09:18:39 Updates_SingleList stage docs
+- 2026-11-07T09:18:39 Notifications stage test
+- 2026-11-07T09:19:09 LDM_EventDetail_V2 stage test
+- 2026-11-07T09:19:09 LDM_MyEvents_V2 stage test
+- 2026-11-07T09:19:19 LegacyShareObject stage spec
+- 2026-11-07T09:19:20 LegacyShareObject stage review
+- 2026-11-07T09:19:35 PINUnlock stage spec
+- 2026-11-07T09:19:35 PINUnlock stage review
+- 2026-11-07T09:20:11 Updates_SingleList stage spec
+- 2026-11-07T09:20:13 Updates_SingleList stage review
+- 2026-11-07T09:21:18 LDM_EventDetail_V2 stage docs
+- 2026-11-07T09:21:18 MessageDetail stage docs
+- 2026-11-07T09:21:32 MessageList stage docs
+- 2026-11-07T09:21:32 LDM_MyEvents_V2 test failed, fix loop 1
+- 2026-11-07T09:21:32 LDM_MyEvents_V2 brief written (loop 1)
+- 2026-11-07T09:21:45 Notifications stage docs
+- 2026-11-07T09:22:20 MessageList stage spec
+- 2026-11-07T09:22:20 MessageList stage review
+- 2026-11-07T09:23:01 MessageDetail stage spec
+- 2026-11-07T09:23:02 MessageDetail stage review
+- 2026-11-07T09:23:15 LDM_EventDetail_V2 stage spec
+- 2026-11-07T09:23:15 LDM_EventDetail_V2 stage review
+- 2026-11-07T09:23:39 LDM_MyEvents_V2 stage test
+- 2026-11-07T09:23:39 Notifications stage spec
+- 2026-11-07T09:23:40 Notifications stage review
+- 2026-11-07T09:25:03 LDM_MyEvents_V2 stage docs
+- 2026-11-07T09:26:02 LDM_MyEvents_V2 stage spec
+- 2026-11-07T09:26:02 LDM_MyEvents_V2 stage review
+- 2026-11-07T09:27:00 AssembleDetail started
+- 2026-11-07T09:27:00 AssembleDetail brief written (loop 0)
+- 2026-11-07T09:27:01 AssembleDetail stage dev
+- 2026-11-07T09:36:41 Q9 (AssembleDetail) asked: Offline: header title 'Reading' comes from the AssembleEvents list preload on TST; React opened by URL shows ''. a: extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position + header pixel tile (same cause) / b: add AssembleEventTypeTile=Reading to the plan URL / c: parity runner sets the preload
+- 2026-11-07T09:37:50 Q9 answered by the user: "a (2026-11-07): extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position and the header pixel tile"
+- 2026-11-07T09:38:14 AssembleDetail stage test
+- 2026-11-07T09:39:42 AssembleDetail stage docs
+- 2026-11-07T09:41:15 AssembleDetail stage spec
+- 2026-11-07T09:41:15 AssembleDetail stage review
+- 2026-11-07T16:31:55 HomeFeed confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:31:56 HomeFeed stage restamp
+- 2026-11-07T16:32:15 HomeFeed stage commit
+- 2026-11-07T16:32:15 HomeFeed done be210823: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:32:23 CountryList confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:32:23 CountryList stage restamp
+- 2026-11-07T16:32:40 CountryList stage commit
+- 2026-11-07T16:32:40 CountryList done c0a2abc7: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:32:40 MessageList confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:32:40 MessageList stage restamp
+- 2026-11-07T16:33:08 MessageList stage commit
+- 2026-11-07T16:33:08 MessageList done 9995a9bb: parity: default,filter,loading,offline,search/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:33:08 LDM_EventDetail_V2 confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:33:08 LDM_EventDetail_V2 stage restamp
+- 2026-11-07T16:33:27 LDM_EventDetail_V2 stage commit
+- 2026-11-07T16:33:28 LDM_EventDetail_V2 done 836a31b2: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:33:28 ContactByEmailMember confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:33:28 ContactByEmailMember stage restamp
+- 2026-11-07T16:33:44 ContactByEmailMember stage commit
+- 2026-11-07T16:33:45 ContactByEmailMember done bbed0cfe: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)
+- 2026-11-07T16:33:45 OrbitAdminLanding confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:33:45 OrbitAdminLanding stage restamp
+- 2026-11-07T16:34:01 OrbitAdminLanding stage commit
+- 2026-11-07T16:34:01 OrbitAdminLanding done f892a0a6: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:34:01 Household_Relations confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:34:01 Household_Relations stage restamp
+- 2026-11-07T16:34:17 Household_Relations stage commit
+- 2026-11-07T16:34:18 Household_Relations done 1819a3b9: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:34:18 MessageDetail confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:34:18 MessageDetail stage restamp
+- 2026-11-07T16:34:34 MessageDetail stage commit
+- 2026-11-07T16:34:34 MessageDetail done d9ec2e96: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:34:44 Menu confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:34:44 Menu stage restamp
+- 2026-11-07T16:35:00 Menu stage commit
+- 2026-11-07T16:35:00 Menu done 30c8b29d: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:35:00 LDM_MyEvents_V2 confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:35:01 LDM_MyEvents_V2 stage restamp
+- 2026-11-07T16:35:17 LDM_MyEvents_V2 stage commit
+- 2026-11-07T16:35:18 LDM_MyEvents_V2 done 6c9f1e27: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)
+- 2026-11-07T16:35:18 NotificationDetails confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:35:18 NotificationDetails stage restamp
+- 2026-11-07T16:35:34 NotificationDetails stage commit
+- 2026-11-07T16:35:34 NotificationDetails done ede0deac: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:35:35 Profile confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:35:35 Profile stage restamp
+- 2026-11-07T16:35:52 Profile stage commit
+- 2026-11-07T16:35:52 Profile done bd7b4206: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:35:52 BrowseCountries confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:35:52 BrowseCountries stage restamp
+- 2026-11-07T16:36:09 BrowseCountries stage commit
+- 2026-11-07T16:36:10 BrowseCountries done 479a2e6c: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:36:10 AssembleEvents confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:36:10 AssembleEvents stage restamp
+- 2026-11-07T16:36:27 AssembleEvents stage commit
+- 2026-11-07T16:36:28 AssembleEvents done ace05c22: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:36:28 Assemble_BrowseByCountry confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:36:28 Assemble_BrowseByCountry stage restamp
+- 2026-11-07T16:36:45 Assemble_BrowseByCountry stage commit
+- 2026-11-07T16:36:45 Assemble_BrowseByCountry done 025dbc58: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:36:45 CountryDetails confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:36:45 CountryDetails stage restamp
+- 2026-11-07T16:37:03 CountryDetails stage commit
+- 2026-11-07T16:37:04 CountryDetails done 9629286a: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:37:04 Locality_Details confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:37:04 Locality_Details stage restamp
+- 2026-11-07T16:37:58 Locality_Details stage commit
+- 2026-11-07T16:37:58 Locality_Details done 5081c990: parity: default,loading,offline,tag-interchange,tag-oneschoolglobal,tag-suppermeetings/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:37:58 OneSchoolGlobalDetails confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:37:58 OneSchoolGlobalDetails stage restamp
+- 2026-11-07T16:38:18 OneSchoolGlobalDetails stage commit
+- 2026-11-07T16:38:18 OneSchoolGlobalDetails done 6200a677: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:38:26 SupperMeeting_Carousel confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:38:26 SupperMeeting_Carousel stage restamp
+- 2026-11-07T16:38:44 SupperMeeting_Carousel stage commit
+- 2026-11-07T16:38:44 SupperMeeting_Carousel done b007648c: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:38:44 Notifications confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:38:44 Notifications stage restamp
+- 2026-11-07T16:39:05 Notifications stage commit
+- 2026-11-07T16:39:06 Notifications done 6fc084e3: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:39:06 Search confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:39:06 Search stage restamp
+- 2026-11-07T16:39:23 Search stage commit
+- 2026-11-07T16:39:24 Search done cd7a564a: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:39:24 Updates_SingleList confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:39:24 Updates_SingleList stage restamp
+- 2026-11-07T16:39:44 Updates_SingleList stage commit
+- 2026-11-07T16:39:44 Updates_SingleList done 1dfdceac: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:39:44 OrbitLanding confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:39:45 OrbitLanding stage restamp
+- 2026-11-07T16:40:20 OrbitLanding stage commit
+- 2026-11-07T16:40:20 OrbitLanding done ee662192: parity: default,loading,offline,popup-filters,popup-filters-closed,popup-sort/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:40:20 Notes confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:40:21 Notes stage restamp
+- 2026-11-07T16:40:40 Notes stage commit
+- 2026-11-07T16:40:41 Notes done 9c32b66d: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)
+- 2026-11-07T16:40:41 HouseholdCarousel confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:40:41 HouseholdCarousel stage restamp
+- 2026-11-07T16:40:58 HouseholdCarousel stage commit
+- 2026-11-07T16:40:58 HouseholdCarousel done 4b3b12ee: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:40:59 Bookmarks confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:40:59 Bookmarks stage restamp
+- 2026-11-07T16:41:15 Bookmarks stage commit
+- 2026-11-07T16:41:15 Bookmarks done 7fd54a58: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:41:15 PINUnlock confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:41:16 PINUnlock stage restamp
+- 2026-11-07T16:41:31 PINUnlock stage commit
+- 2026-11-07T16:41:32 PINUnlock done 753c629d: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:41:32 LegacyShareObject confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:41:32 LegacyShareObject stage restamp
+- 2026-11-07T16:41:47 LegacyShareObject stage commit
+- 2026-11-07T16:41:48 LegacyShareObject done a73f0506: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:41:48 AssembleDetail confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:41:48 AssembleDetail stage restamp
+- 2026-11-07T16:42:05 AssembleDetail stage commit
+- 2026-11-07T16:42:05 AssembleDetail done ca5b408f: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)

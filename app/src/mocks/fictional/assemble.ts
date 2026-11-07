@@ -69,12 +69,6 @@ export const countryWithMapPositionWire = (c: AssembleCountry): CountryWithMapPo
   WithinSubscription: true,
 });
 
-/** GetCountriesBySubscription(SubscriptionRegionId) output: the captured Global subscription sees every country (the
-    17 rows of both captures), so every region id answers the whole list. */
-export const countriesBySubscriptionOutput = () => ({
-  Countries: wireList(ASSEMBLE_COUNTRIES.map(countryWithMapPositionWire)),
-});
-
 /* ---- Meetings (AssembleEvents, later AssembleDetail) ----
    TST's test account had no meeting (AssembleEvents dom/default.html: NC_ErrorScreen), so every value below is
    fictional. Halls are the supper meetings of the directory world (./directory.ts SUPPER_MEETINGS, INTERCHANGE and the

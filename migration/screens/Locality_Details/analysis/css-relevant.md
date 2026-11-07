@@ -4,16 +4,17 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
-4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
-5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
-6. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-7. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-8. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-11. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-12. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css`
+4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
+5. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
+6. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
+7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -492,6 +493,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .padding-left-xs { padding-left:var(--space-xs); }
 .is-rtl .padding-left-xs { padding-left:var(--space-none); padding-right:var(--space-xs); }
 ```
+### .text-cyan-darker  (1 rule)
+```css
+.text-cyan-darker { color:var(--text-color-cyan-darker, var(--color-cyan-darker)); }
+```
 ### .text-inherit  (1 rule)
 ```css
 .text-inherit { color: inherit; }
@@ -615,6 +620,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .align-items-flex-start { -webkit-box-align:start; -ms-flex-align:start; align-items:flex-start; }
 ```
+### .background-cyan-lightest  (1 rule)
+```css
+.background-cyan-lightest { background-color:var(--background-color-cyan-lightest, var(--color-cyan-lightest)); }
+```
 ### .background-neutral-0  (4 rules)
 ```css
 .tag.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
@@ -704,6 +713,15 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .font-size-xxs { font-size: var(--font-size-xxs); }
 ```
+### .hidden  (6 rules)
+```css
+.flatpickr-day.hidden { visibility:hidden; }
+.chat-message-status.hidden { display:none; }
+.carousel .carousel-navigation.hidden { display:none; }
+.hidden { display:none; }
+.ubt-avatar-image.hidden { display:none; }
+.ubt-lazy-image.hidden { --avatar-image-size: 0px; --lazy-image-width: 0px; }
+```
 ### .image-card-content__subtitle  (1 rule)
 ```css
 .ubt-image-card--gallery .image-card-content__subtitle { font-size: var(--font-size-xxs) }
@@ -726,6 +744,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ### .locality-count  (1 rule)
 ```css
 .locality-count { --ubt-icon-size: var(--ubt-icon-size-non-standard-16); flex-direction: row; }
+```
+### .padding-base  (1 rule)
+```css
+.padding-base { padding:var(--space-base); }
 ```
 ### .padding-bottom-s  (1 rule)
 ```css
@@ -836,6 +858,14 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base { --ubt-icon-size: var(--ubt-icon-size-non-standard-32); }
 .ubt-object-fit-avatar-img .ubt-avatar-image img, .ubt-object-fit-avatar-img .ubt-lazy-image img { height: 100%; width: 100%; object-fit: cover; }
 .photobook-carousel .photobook-gallery--item .ubt-lazy-image img { object-fit: cover; }
+.shareable-object-generic .ubt-lazy-image:not(.ubt-lazy-image--no-image) img { aspect-ratio: 100/58; object-fit: cover; }
+```
+### .ubt-lazy-image--no-image  (5 rules)
+```css
+/* .ubt-lazy-image--no-image .ubt-icon { font-size: inherit; }
+.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-height { min-height: var(--_ubt-background-image-size); height: var(--_ubt-background-image-size); }
+.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-width { min-width: var(--_ubt-background-image-size); width: var(--_ubt-background-image-size); }
+.shareable-object-generic .ubt-lazy-image--no-image { aspect-ratio: 100/58; }
 .shareable-object-generic .ubt-lazy-image:not(.ubt-lazy-image--no-image) img { aspect-ratio: 100/58; object-fit: cover; }
 ```
 ### .ubt-lazy-image--width-max-width  (2 rules)

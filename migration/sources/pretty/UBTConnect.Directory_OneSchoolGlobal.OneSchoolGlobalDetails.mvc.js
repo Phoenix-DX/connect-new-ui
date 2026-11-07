@@ -207,6 +207,9 @@ define("UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$view", [
                                 alias: "3"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
+                            placeholders: {
+                                placeholder_CarouselTag: PlaceholderContent.Empty
+                            },
                             _dependencies: []
                         })];
                     }),
@@ -343,7 +346,7 @@ define("UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$controll
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3J4QFNDNrkSZEJPtQ2GNEQ:/NRWebFlows.3J4QFNDNrkSZEJPtQ2GNEQ:61tRPbddoF5C2aoWKab8HA", "UBTConnect", "Directory_OneSchoolGlobal", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rrwjrufeGE6U9UQAzOfghg:/NRWebFlows.3J4QFNDNrkSZEJPtQ2GNEQ/NodesShownInESpaceTree.rrwjrufeGE6U9UQAzOfghg:2rvVOm7E9mb4hXjeo3J12w", "UBTConnect", "OneSchoolGlobalDetails", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:rrwjrufeGE6U9UQAzOfghg:/NRWebFlows.3J4QFNDNrkSZEJPtQ2GNEQ/NodesShownInESpaceTree.rrwjrufeGE6U9UQAzOfghg:0YfaSwaqBIQIKfhRK86gyQ", "UBTConnect", "OneSchoolGlobalDetails", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:rrwjrufeGE6U9UQAzOfghg", callContext.id);
@@ -435,6 +438,13 @@ define("UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc$debugger
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Content"));
+                })(varBag.model, idService);
+            }
+        },
+        "XSuWfhn3NUu2jFzJyH67ew": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("Placeholder_CarouselTag"));
                 })(varBag.model, idService);
             }
         },

@@ -1,8 +1,8 @@
 # Coverage for AssembleDetail
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 2 call(s)
-- Masked text nodes: 7, user images removed: 0
+- Runtime captures: 1 file(s), 4 call(s)
+- Masked text nodes: 9, user images removed: 2
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -10,10 +10,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
 - [ ] `App_Policies.Policy_Checker`
-- [ ] `Assemble.AssembleCommon_VirtualMeetingDetails`
+- [ ] `Assemble.AssembleCommon_VirtualMeetingURL`
 - [ ] `Assemble.AssembleEventDetail_AttendeeSubdivision`
 - [ ] `Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet`
-- [ ] `Assemble.AssembleEventDetail_ContactList`
 - [ ] `Assemble.AssembleEventDetail__Error`
 - [ ] `AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton`
 - [ ] `CW_Common.Button`
@@ -31,6 +30,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.HighlightSearch`
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.Input`
+- [ ] `ConnectPatterns.LazyImage`
 - [ ] `ConnectPatterns.Note_Item`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `NavigationHandler.PreventBackNavigation`
@@ -43,7 +43,7 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `img/Connect2_LegacyShared.BGTAudioRecording.svg`
 - [ ] `img/Connect2_LegacyShared.BGTAudioRecordingSquare.png`
 - [ ] `img/Connect2_LegacyShared.User_rectangle.png`
-- [x] `img/Connect2_LegacyShared.VirtualMeeting.svg`
+- [ ] `img/Connect2_LegacyShared.VirtualMeeting.svg`
 - [ ] `img/Connect2_LegacyShared.no_division_rectangle.png`
 - [ ] `img/Connect2_LegacyShared.no_division_square.png`
 - [ ] `img/UBTConnect.ConnectLogo.svg`
@@ -103,10 +103,10 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `GetBulkSubdivisions_V2` (Connect2_LegacyShared.controller.js)
 - [ ] `GetCountriesBySubscription` (Connect2_LegacyShared.controller.js)
 - [ ] `GetLocalityInformation` (Connect2_LegacyShared.controller.js)
-- [ ] `GetMemberContactByCacheKey` (Connect2_LegacyShared.controller.js)
+- [x] `GetMemberContactByCacheKey` (Connect2_LegacyShared.controller.js)
 - [ ] `GetNumberUnreadMessages` (Connect2_LegacyShared.controller.js)
 - [ ] `GetSignedImagesInBulk` (Connect2_LegacyShared.controller.js)
-- [ ] `GetSignedPhotosInBulk` (Connect2_LegacyShared.controller.js)
+- [x] `GetSignedPhotosInBulk` (Connect2_LegacyShared.controller.js)
 - [ ] `GetTimezoneInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserLocalitiesForCountryCodeWithGPS` (Connect2_LegacyShared.controller.js)

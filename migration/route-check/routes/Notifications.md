@@ -1,6 +1,6 @@
 # Notifications: OutSystems (TST) and React
 
-The route `/UBTConnect/Notifications`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/Notifications`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/Notifications/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
@@ -16,7 +16,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect C2NewNotifications = false → MessageList | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/Notifications/parity`](../../screens/Notifications/parity) | `route.py parity` |
-| Code read | OutSystems: 7 files of the UI flow, 23 shared blocks, 28 app shell files. React: 175 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 7 files of the UI flow, 25 shared blocks, 28 app shell files. React: 177 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -26,11 +26,11 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | Differences found | **0** (see [section 3](#3-differences-found)) |
 | Questions | 0 (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 6. React: 16 |
+| User actions of the route (own code) | OutSystems: 6. React: 12 |
 | Screen and blocks of the UI flow with a React port | 7 of 7 |
 | Navigation targets found in React | 7 of 7 |
-| Shared blocks and components on the route | OutSystems 23, React 2 with user actions: see the last section |
-| App shell on this route | 9 calls: see [APP_SHELL.md](../APP_SHELL.md) |
+| Shared blocks and components on the route | OutSystems 25, React 2 with user actions: see the last section |
+| App shell on this route | 10 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
 
@@ -57,7 +57,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications` | server action | `Notifications` | onClick in IconText → event clicked of IconText → … → Notifications.handler_MoreActionSheetMarkAllAsRead → server MarkAllAsReadNotifications | no | `markAllAsReadNotifications()` [`api/notification/repository.ts:68`](../../../app/src/api/notification/repository.ts#L68) (page) | `Notifications → useNotifications → markAllAsReadNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
-| 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:14`](../../../app/src/api/notification/notificationDetail.ts#L14) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
+| 2 | `UBTConnect/App_Notifications/Notifications/ActionMarkAsRead` | server action | `Notifications` | onClick in NotificationsList → NotificationsList.onClick_NotificationDetail → … → Notifications.handler_NotificationDetail → server MarkAsRead | no | `markNotificationAsRead()` [`api/notification/notificationDetail.ts:16`](../../../app/src/api/notification/notificationDetail.ts#L16) (page) | `Notifications → useNotifications → markNotificationAsRead`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 3 | `UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications` | data action | `Notifications` | onChange in Notifications_Action → Notifications_Action.switch_IsOnlyShowUnReadOnChange → event onlyShowUnread of Notifications_Action → Notifications.handler_OnlyShowUnread → Notifications.DataActionFetchNotifications<br>NotificationsListBreakpoints.notificationsListBreakpoints_OnScrollEnding → event onLoadMore of NotificationsListBreakpoints → Notifications.notificationsListBreakpoints_OnLoadMore → Notifications.DataActionFetchNotifications<br>event event_OnClick of Button → MoreActionSheet.onClick_Clear → … → Notifications.refreshNotifications → Notifications.DataActionFetchNotifications<br>(+2 more chains) | yes | `fetchNotifications()` [`api/notification/repository.ts:40`](../../../app/src/api/notification/repository.ts#L40) (page) | `Notifications → useNotifications → fetchNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges` | data action | `Notifications` | Notifications.OnReady → Notifications.screenEvent_OnReady → Notifications.DataActionGetDateRanges<br>Notifications fetch at start → Notifications.DataActionGetDateRanges | yes | `fetchNotificationDateRanges()` [`api/notification/repository.ts:32`](../../../app/src/api/notification/repository.ts#L32) (page) | `Notifications → useNotifications → fetchNotificationDateRanges`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
 | 5 | `UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications` | service action | `Notifications` | MoreActionSheet.deleteAllNotificationClicked → event deleteAllNotification of MoreActionSheet → … → Notifications.handler_MoreActionSheetDeleteAll → server Delete_Notifications | no | `deleteNotifications()` [`api/notification/repository.ts:60`](../../../app/src/api/notification/repository.ts#L60) (page) | `NotificationsList → deleteNotifications`<br>[`pages/Notifications/components/NotificationsList.tsx`](../../../app/src/pages/Notifications/components/NotificationsList.tsx)<br>`Notifications → useNotifications → deleteNotifications`<br>[`pages/Notifications/NotificationsPage.tsx`](../../../app/src/pages/Notifications/NotificationsPage.tsx) | implemented |
@@ -122,25 +122,21 @@ sequenceDiagram
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
 | 1 | [`pages/Notifications/NotificationsPage.tsx:83`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L83) | `<MainPagesUpgradeLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
-| 2 | [`pages/Notifications/NotificationsPage.tsx:108`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L108) | `<Input>` | `onEventClearString` | `inline` | – | calls DataActionFetchNotifications |
-| 3 | [`pages/Notifications/NotificationsPage.tsx:111`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L111) | `<Input>` | `onEventSubmit` | `onFilterSearchText` | – | calls DataActionFetchNotifications |
-| 4 | [`pages/Notifications/NotificationsPage.tsx:147`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L147) | `<Input>` | `onEventClearString` | `inline` | – | calls DataActionFetchNotifications |
-| 5 | [`pages/Notifications/NotificationsPage.tsx:150`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L150) | `<Input>` | `onEventSubmit` | `onFilterSearchText` | – | calls DataActionFetchNotifications |
-| [6](#626-notifications_action-ononlyshowunread) | [`pages/Notifications/NotificationsPage.tsx:161`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L161) | `<Notifications_Action>` | `onOnlyShowUnread` | `onOnlyShowUnread` | – | calls DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [7](#627-notificationslistbreakpoints-onnotificationdetail) | [`pages/Notifications/NotificationsPage.tsx:189`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L189) | `<NotificationsListBreakpoints>` | `onNotificationDetail` | `onNotificationDetail` | – | calls ActionMarkAsRead; goes to NotificationDetails |
-| [8](#628-notifications_sortsheet-onapplyfilters) | [`pages/Notifications/NotificationsPage.tsx:201`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L201) | `<Notifications_SortSheet>` | `onApplyFilters` | `onApplyFilters` | – | calls DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [9](#629-notifications_moreactionsheet-onapplyfilters) | [`pages/Notifications/NotificationsPage.tsx:206`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L206) | `<Notifications_MoreActionSheet>` | `onApplyFilters` | `inline` | – | calls DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [10](#6210-notifications_moreactionsheet-onmarkallasread) | [`pages/Notifications/NotificationsPage.tsx:209`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L209) | `<Notifications_MoreActionSheet>` | `onMarkAllAsRead` | `onMarkAllAsRead` | – | calls ActionMarkAllAsReadNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All, DataActionFetchNotifications |
-| [11](#6211-notifications_moreactionsheet-ondeleteall) | [`pages/Notifications/NotificationsPage.tsx:210`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L210) | `<Notifications_MoreActionSheet>` | `onDeleteAll` | `onDeleteAll` | – | calls ServiceAPIDelete_Notifications, DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
-| [12](#6212-oslistitemaction-onclick) | [`pages/Notifications/components/NotificationsList.tsx:113`](../../../app/src/pages/Notifications/components/NotificationsList.tsx#L113) | `<OSListItemAction>` | `onClick` | `inline` | – | calls ActionToggleRead; calls the prop onUpdateReadCount() |
-| [13](#6213-notifications_confirmdialog-onconfirm) | [`pages/Notifications/components/NotificationsList.tsx:183`](../../../app/src/pages/Notifications/components/NotificationsList.tsx#L183) | `<Notifications_ConfirmDialog>` | `onConfirm` | `inline` | – | calls ServiceAPIDelete_Notifications; calls the prop onUpdateReadCount() |
-| 14 | [`pages/Notifications/components/Notifications_Action.tsx:73`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L73) | `<IconText>` | `onClicked` | `iconClick` | – | asks for a confirmation |
-| 15 | [`pages/Notifications/components/Notifications_Action.tsx:79`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L79) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
-| 16 | [`pages/Notifications/components/Notifications_Action.tsx:87`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L87) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
+| [2](#622-notifications_action-ononlyshowunread) | [`pages/Notifications/NotificationsPage.tsx:161`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L161) | `<Notifications_Action>` | `onOnlyShowUnread` | `onOnlyShowUnread` | – | calls DataActionFetchNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All |
+| [3](#623-notificationslistbreakpoints-onnotificationdetail) | [`pages/Notifications/NotificationsPage.tsx:190`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L190) | `<NotificationsListBreakpoints>` | `onNotificationDetail` | `onNotificationDetail` | – | calls ActionMarkAsRead; goes to NotificationDetails |
+| 4 | [`pages/Notifications/NotificationsPage.tsx:203`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L203) | `<Notifications_SortSheet>` | `onApplyFilters` | `onApplyFilters` | – | calls DataActionFetchNotifications |
+| 5 | [`pages/Notifications/NotificationsPage.tsx:208`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L208) | `<Notifications_MoreActionSheet>` | `onApplyFilters` | `inline` | – | calls DataActionFetchNotifications |
+| [6](#626-notifications_moreactionsheet-onmarkallasread) | [`pages/Notifications/NotificationsPage.tsx:211`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L211) | `<Notifications_MoreActionSheet>` | `onMarkAllAsRead` | `onMarkAllAsRead` | – | calls ActionMarkAllAsReadNotifications, ServiceAPIGet_UI_UpdateItems_UnreadCount_All, DataActionFetchNotifications |
+| [7](#627-notifications_moreactionsheet-ondeleteall) | [`pages/Notifications/NotificationsPage.tsx:212`](../../../app/src/pages/Notifications/NotificationsPage.tsx#L212) | `<Notifications_MoreActionSheet>` | `onDeleteAll` | `onDeleteAll` | – | calls ServiceAPIDelete_Notifications, DataActionFetchNotifications |
+| [8](#628-oslistitemaction-onclick) | [`pages/Notifications/components/NotificationsList.tsx:121`](../../../app/src/pages/Notifications/components/NotificationsList.tsx#L121) | `<OSListItemAction>` | `onClick` | `inline` | – | calls ActionToggleRead; calls the prop onUpdateReadCount() |
+| [9](#629-notifications_confirmdialog-onconfirm) | [`pages/Notifications/components/NotificationsList.tsx:206`](../../../app/src/pages/Notifications/components/NotificationsList.tsx#L206) | `<Notifications_ConfirmDialog>` | `onConfirm` | `inline` | – | calls ServiceAPIDelete_Notifications; calls the prop onUpdateReadCount() |
+| 10 | [`pages/Notifications/components/Notifications_Action.tsx:73`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L73) | `<IconText>` | `onClicked` | `iconClick` | – | asks for a confirmation |
+| 11 | [`pages/Notifications/components/Notifications_Action.tsx:79`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L79) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
+| 12 | [`pages/Notifications/components/Notifications_Action.tsx:87`](../../../app/src/pages/Notifications/components/Notifications_Action.tsx#L87) | `<Icon>` | `onClick` | `iconClick` | – | asks for a confirmation |
 
-<details><summary>8 diagrams (handlers with two or more effects)</summary>
+<details><summary>6 diagrams (handlers with two or more effects)</summary>
 
-#### 6.2.6 Notifications_Action: onOnlyShowUnread
+#### 6.2.2 Notifications_Action: onOnlyShowUnread
 
 ```mermaid
 sequenceDiagram
@@ -149,7 +145,7 @@ sequenceDiagram
   participant H as Notifications_Action · NotificationsPage.tsx
   participant A as Server (React api)
   U->>H: onOnlyShowUnread → onOnlyShowUnread
-  Note over H: via refreshNotifications()
+  Note over H: via fetchAndAfterFetch()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
   A-->>H: UI_NotificationItemList, UnreadNotificationsCount
@@ -159,7 +155,7 @@ sequenceDiagram
   A-->>H: UnreadCount
 ```
 
-#### 6.2.7 NotificationsListBreakpoints: onNotificationDetail
+#### 6.2.3 NotificationsListBreakpoints: onNotificationDetail
 
 ```mermaid
 sequenceDiagram
@@ -176,46 +172,7 @@ sequenceDiagram
   H->>N: go to NotificationDetails
 ```
 
-#### 6.2.8 Notifications_SortSheet: onApplyFilters
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as Notifications_SortSheet · NotificationsPage.tsx
-  participant A as Server (React api)
-  U->>H: onApplyFilters → onApplyFilters
-  Note over H: via refreshNotifications()
-  Note over H: via fetchNotifications()
-  H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
-  Note over H: via directory_Updates_RefreshBottomBarCount()
-  Note over H: via fetchUnreadUpdateItemsCount()
-  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
-  A-->>H: UnreadCount
-```
-
-#### 6.2.9 Notifications_MoreActionSheet: onApplyFilters
-
-```mermaid
-sequenceDiagram
-  autonumber
-  actor U as User
-  participant H as Notifications_MoreActionSheet · NotificationsPage.tsx
-  participant A as Server (React api)
-  U->>H: onApplyFilters → inline
-  Note over H: via onApplyFilters()
-  Note over H: via refreshNotifications()
-  Note over H: via fetchNotifications()
-  H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
-  A-->>H: UI_NotificationItemList, UnreadNotificationsCount
-  Note over H: via directory_Updates_RefreshBottomBarCount()
-  Note over H: via fetchUnreadUpdateItemsCount()
-  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
-  A-->>H: UnreadCount
-```
-
-#### 6.2.10 Notifications_MoreActionSheet: onMarkAllAsRead
+#### 6.2.6 Notifications_MoreActionSheet: onMarkAllAsRead
 
 ```mermaid
 sequenceDiagram
@@ -233,16 +190,13 @@ sequenceDiagram
   H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
   A-->>H: UnreadCount
   Note over H: via refreshNotifications()
+  Note over H: via fetchAndAfterFetch()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
   A-->>H: UI_NotificationItemList, UnreadNotificationsCount
-  Note over H: via directory_Updates_RefreshBottomBarCount()
-  Note over H: via fetchUnreadUpdateItemsCount()
-  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
-  A-->>H: UnreadCount
 ```
 
-#### 6.2.11 Notifications_MoreActionSheet: onDeleteAll
+#### 6.2.7 Notifications_MoreActionSheet: onDeleteAll
 
 ```mermaid
 sequenceDiagram
@@ -256,16 +210,13 @@ sequenceDiagram
   H->>A: ServiceAPIDelete_Notifications(Messages)
   A-->>H: no outputs
   Note over H: via refreshNotifications()
+  Note over H: via fetchAndAfterFetch()
   Note over H: via fetchNotifications()
   H->>A: DataActionFetchNotifications(BottomSheetId_IsLoaded, BottomSheetId_ShowSubscription, Breakpoints, …)
   A-->>H: UI_NotificationItemList, UnreadNotificationsCount
-  Note over H: via directory_Updates_RefreshBottomBarCount()
-  Note over H: via fetchUnreadUpdateItemsCount()
-  H->>A: ServiceAPIGet_UI_UpdateItems_UnreadCount_All()
-  A-->>H: UnreadCount
 ```
 
-#### 6.2.12 OSListItemAction: onClick
+#### 6.2.8 OSListItemAction: onClick
 
 ```mermaid
 sequenceDiagram
@@ -281,7 +232,7 @@ sequenceDiagram
   Note over H: calls the prop onUpdateReadCount()
 ```
 
-#### 6.2.13 Notifications_ConfirmDialog: onConfirm
+#### 6.2.9 Notifications_ConfirmDialog: onConfirm
 
 ```mermaid
 sequenceDiagram
@@ -322,7 +273,7 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useNotifications.ts` | `NotificationDetails` | `HardwareId` = `hardwareId`<br>`MessageInstanceId` = `messageInstanceId`<br>`MessageTemplateId` = `messageTemplateId` | [`pages/Notifications/hooks/useNotifications.ts:258`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L258) |
+| `useNotifications.ts` | `NotificationDetails` | `HardwareId` = `hardwareId`<br>`MessageInstanceId` = `messageInstanceId`<br>`MessageTemplateId` = `messageTemplateId` | [`pages/Notifications/hooks/useNotifications.ts:269`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L269) |
 
 ## 8. Lifecycle
 
@@ -431,7 +382,8 @@ Effects (`useEffect`, `useLayoutEffect`) of the screen files, and the effects of
 
 | File | Hook (function) | Dependencies | Cleanup | Effects | Place |
 |---|---|---|---|---|---|
-| `useNotifications.ts` | `useEffect` (`useNotifications`) | `[]` | no | call `/api/UBTConnect/Notifications/DataActionGetDateRanges`<br>call `/api/UBTConnect/Notifications/DataActionFetchNotifications` | [`pages/Notifications/hooks/useNotifications.ts:154`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L154) |
+| `MessageImage.tsx` | `useEffect` (`MessageImage`) | `[]` | yes | none | [`pages/Notifications/components/MessageImage.tsx:92`](../../../app/src/pages/Notifications/components/MessageImage.tsx#L92) |
+| `useNotifications.ts` | `useEffect` (`useNotifications`) | `[]` | no | call `/api/UBTConnect/Notifications/DataActionGetDateRanges` | [`pages/Notifications/hooks/useNotifications.ts:161`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L161) |
 
 <details><summary>Sequence diagrams of the effects with a call, a navigation, a message or a refresh (1)</summary>
 
@@ -446,8 +398,6 @@ sequenceDiagram
   R->>H: useEffect (after the mount)
   H->>A: DataActionGetDateRanges
   A-->>H: DataActionGetDateRanges
-  H->>A: DataActionFetchNotifications
-  A-->>H: DataActionFetchNotifications
 ```
 
 </details>
@@ -498,8 +448,8 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 | File | Kind | Function | Effects | Place |
 |---|---|---|---|---|
-| `useNotifications.ts` | try/catch | `refreshNotifications` | none | [`pages/Notifications/hooks/useNotifications.ts:131`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L131) |
-| `useNotifications.ts` | try/catch | `onReady` | none | [`pages/Notifications/hooks/useNotifications.ts:148`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L148) |
+| `useNotifications.ts` | try/catch | `fetchAndAfterFetch` | none | [`pages/Notifications/hooks/useNotifications.ts:131`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L131) |
+| `useNotifications.ts` | try/catch | `onReady` | none | [`pages/Notifications/hooks/useNotifications.ts:155`](../../../app/src/pages/Notifications/hooks/useNotifications.ts#L155) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -519,9 +469,11 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Notification_ListItem` | `UBTConnectLibrary` | [`pages/Notifications/components/Notification_ListItem.tsx`](../../../app/src/pages/Notifications/components/Notification_ListItem.tsx) | 0 |
 | `Columns_Three` | `UBTConnectLibrary` | [`components/ui/ColumnsThree/ColumnsThree.tsx`](../../../app/src/components/ui/ColumnsThree/ColumnsThree.tsx) | 0 |
 | `Columns3` | `OutSystemsUI_2_23` | [`components/ui/Columns3/Columns3.tsx`](../../../app/src/components/ui/Columns3/Columns3.tsx) | 0 |
-| `AvatarImage` | `UBTConnectLibrary` | [`components/ui/AvatarImage/AvatarImage.tsx`](../../../app/src/components/ui/AvatarImage/AvatarImage.tsx) | 0 |
+| `MessageImage` | `Connect2_LegacyShared` | [`pages/Notifications/components/MessageImage.tsx`](../../../app/src/pages/Notifications/components/MessageImage.tsx) | 0 |
+| `AvatarImage` | `Connect2_LegacyShared` | [`pages/Notifications/components/MessageImage.tsx`](../../../app/src/pages/Notifications/components/MessageImage.tsx) | 0 |
 | `SanitizedHtml` | `ReactiveHtmlSanitizer` | [`components/ui/SanitizedHtml/SanitizedHtml.tsx`](../../../app/src/components/ui/SanitizedHtml/SanitizedHtml.tsx) | 0 |
 | `ScrollAnchor` | `NavigationHandler` | [`platform/navigation/ScrollAnchor/ScrollAnchor.tsx`](../../../app/src/platform/navigation/ScrollAnchor/ScrollAnchor.tsx) | 0 |
+| `AvatarImage` | `UBTConnectLibrary` | [`components/ui/AvatarImage/AvatarImage.tsx`](../../../app/src/components/ui/AvatarImage/AvatarImage.tsx) | 0 |
 | `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
 | `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |
 | `BottomBarItem` | `OutSystemsUI_2_23` | [`components/ui/BottomBarItem/BottomBarItem.tsx`](../../../app/src/components/ui/BottomBarItem/BottomBarItem.tsx) | 0 |

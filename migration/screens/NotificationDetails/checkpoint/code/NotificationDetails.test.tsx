@@ -37,9 +37,11 @@ async function open(query: string) {
 
 const textOf = (selector: string) => document.querySelector(selector)?.textContent;
 const headerTitle = () => textOf('#b1-Placeholder_Header_Title');
-const title = () => textOf('[data-block="ConnectPatterns.IconText"]');
-/** The container with the top border inside Notification_Content (ND:466-473). */
-const bodyContainer = () => document.querySelector('#Notification_Content .margin-top-base');
+/** The title of the IconText (its first CustomText; the second one is the summary). */
+const title = () => textOf('[data-block="ConnectPatterns.IconText"] .font-semi-bold');
+const subtext = () => textOf('[data-block="ConnectPatterns.IconText"] .font-light');
+/** The ContentDetail container inside Notification_Content (capture of 2026-11-07, ND7:494-499). */
+const bodyContainer = () => document.querySelector('#Notification_Content #ContentDetail');
 const rowOf = (rowTitle: string): MessageListItemRow => {
   const row = (notificationRows().all() as unknown as MessageListItemRow[]).find((r) => r.Title === rowTitle);
   if (!row) throw new Error(`no notification ${rowTitle}`);
@@ -112,22 +114,25 @@ describe('NotificationDetails page', () => {
     ]);
     expect(bodies[0]).toMatchObject({ MessageInstanceId: '5496739', MessageTemplateId: '47702', HardwareId: '' });
     expect(textOf('#Notification_Date')).toBe('Wed 28/10/2026 09:30 AM');
-    const box = bodyContainer();
-    expect(box instanceof HTMLElement && box.style).toMatchObject({
-      borderColor: 'rgb(198, 198, 198)',
-      borderStyle: 'solid',
-      borderWidth: '2px 0px 0px',
-      marginRight: '10px',
-      marginTop: '10px',
-      padding: '15px 0px 10px',
-    });
-    // The body is the adaptive card of the capture (two actions), not the HTML content.
+    // Capture of 2026-11-07: the header title is a SemiBold CustomText "Notifications".
+    expect(
+      container.querySelector('#Notifications[data-block="BasePatterns.CustomText"] .font-semi-bold'),
+    ).not.toBeNull();
+    // The title row: a padded container around Notification_Title_Block (border-bottom-neutral), the summary as the
+    // subtext of the IconText, the CircleButton with margin-right-s; no SectionSeparator.
+    expect(container.querySelector('#Notification_Title')?.className).toBe('padding-left-m padding-right-m');
+    expect(
+      container.querySelector('#Notification_Title > #Notification_Title_Block .ubt-custom-container')?.className,
+    ).toBe('ubt-custom-container border-bottom-neutral background-neutral-0 padding-s');
+    expect(subtext()).toBe('Host for Wednesday Meal');
+    expect(container.querySelector('.ubt-icon-button.margin-right-s')).not.toBeNull();
+    expect(container.querySelector('[data-block="App_Common_Blocks.SectionSeparator"]')).toBeNull();
+    // The body is the adaptive card of the capture (two actions) in ContentDetail, not the HTML content.
+    expect(bodyContainer()).not.toBeNull();
     expect(container.querySelector('.notification-detail-content')).toBeNull();
-    expect(container.querySelector('[data-block="Widgets.AdaptiveCardViewer"]')?.id).toBe('$b9');
-    expect(textOf('#Notification_Content')).toContain('Host for Wednesday Meal');
+    expect(container.querySelector('[data-block="Widgets.AdaptiveCardViewer"]')?.id).toBe('$b10');
     expect(container.querySelector('.connect-icon-calendar_busy.text-primary')).not.toBeNull();
-    expect(container.querySelector('[data-block="App_Common_Blocks.SectionSeparator"]')).not.toBeNull();
-    expect(container.querySelector('[data-block="App_Common.BottomBarMenu"]')?.id).toBe('$b13');
+    expect(container.querySelector('[data-block="App_Common.BottomBarMenu"]')?.id).toBe('$b15');
     expect(
       container.querySelector('[data-block="ConnectPatterns.Spinner"], [data-block="Reusable.Spinner"]'),
     ).toBeNull();
@@ -154,7 +159,7 @@ describe('NotificationDetails page', () => {
   });
 
   it('shows "Meal Allocation" as header for a LordsDayMeal message', async () => {
-    await open(`?MessageInstanceId=${rowOf('Your Host on Saturday').Id}`);
+    await open('?MessageInstanceId=5496739'); // the captured Lord's Day Meal record (the 22-row mock of 2026-11-07 has no other)
     await waitFor(() => {
       expect(headerTitle()).toBe('Meal Allocation');
     });
@@ -249,7 +254,25 @@ describe('NotificationDetails page', () => {
       );
     });
     expect(headerTitle()).toBe('Orbit');
+    // ND7:347-358: the Orbit icon in the CircleButton.
+    expect(document.querySelector('.connect-icon-orbit_text.text-primary')).not.toBeNull();
     expect(calledActions()).toContain(PARAMETERS);
+  });
+
+  it('header title Rapid Relief Team for an RRT message (ND7:239-241)', async () => {
+    serve(seed({ SenderTarget: { Id: 12, Name: 'RRT' } }));
+    await open('?MessageInstanceId=7700');
+    await waitFor(() => {
+      expect(headerTitle()).toBe('Rapid Relief Team');
+    });
+  });
+
+  it('header title Community for a Community Hub message (ND7:239-241)', async () => {
+    serve(seed({ SenderTarget: { Id: 17, Name: 'Community Hub' } }));
+    await open('?MessageInstanceId=7700');
+    await waitFor(() => {
+      expect(headerTitle()).toBe('Community');
+    });
   });
 
   it('an Assemble message: the parameters, then BuildAssembleNotificationContent', async () => {
@@ -264,6 +287,8 @@ describe('NotificationDetails page', () => {
     await waitFor(() => {
       expect(textOf('.notification-detail-content')).toBe(`Dear ${MOCK_USER.firstName}, the hall is ready.`);
     });
+    expect(headerTitle()).toBe('Assemble');
+    expect(document.querySelector('.connect-icon-assemble.text-primary')).not.toBeNull();
     expect(calledActions()).toContain(PARAMETERS);
   });
 
@@ -286,7 +311,7 @@ describe('NotificationDetails page', () => {
     serve(seed({ AdaptiveCardContent: card }));
     const { container } = await open('?MessageInstanceId=7700');
     await waitFor(() => {
-      expect(container.querySelector('[data-block="Widgets.AdaptiveCardViewer"]')?.id).toBe('$b9');
+      expect(container.querySelector('[data-block="Widgets.AdaptiveCardViewer"]')?.id).toBe('$b10');
     });
     expect(container.querySelector('.notification-detail-content')).toBeNull();
   });
@@ -300,6 +325,7 @@ describe('NotificationDetails page', () => {
     const html = container.querySelector('.notification-detail-content')?.innerHTML ?? '';
     expect(html).not.toContain('script');
     expect(html).not.toContain('onerror');
-    expect(container.querySelector('[data-block="HtmlSanitizer.SanitizedHtml"]')?.id).toBe('$b10');
+    expect(container.querySelector('[data-block="HtmlSanitizer.SanitizedHtml"]')?.id).toBe('$b11');
+    expect(container.querySelector('.notification-detail-content')?.className).toBe('notification-detail-content');
   });
 });

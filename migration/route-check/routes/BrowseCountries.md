@@ -1,6 +1,6 @@
 # BrowseCountries: OutSystems (TST) and React
 
-The route `/UBTConnect/BrowseCountries`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/BrowseCountries`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/BrowseCountries/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 

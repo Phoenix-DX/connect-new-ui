@@ -6,7 +6,7 @@ import type { MessageWire } from './types';
 /* Messages are person data and DataActionGetMessages was never recorded (no fixture): 22 fictional rows with the shape
    of the TST capture of 2026-10-29 (drift wave, messages B2; dom/default.html rows 0-19, GetMessages answers at most
    MaxRecords 20, so the two oldest rows are not on the first page): three new rows on top with the unmasked TST test
-   labels ("Test Noti 2", "test", "New Connect notification"), 2 unread (background-blue-lightest: the second and the third row), the
+   labels ("Test Noti 2", "test", "New Connect notification"), 8 unread (background-blue-lightest: rows 1-3 and rows 15-19 of the capture of 2026-11-06), the
    others read, the oldest one urgent (MessagePriority Urgent "2"). Titles are meaningful fictional texts with the captured word lengths (mock-fixtures.md,
    user 2026-10-16); the unmasked captured labels are generic TST test labels and are reused as they are (Q4). Rows with a ProfileIconURL keep the captured UBT_CW image paths; the 9 rows
    without one have a sender (CreatedByUserId, CreatedByMemberId) whose photo comes from GetSignedImagesInBulk
@@ -41,7 +41,7 @@ const row = (
 });
 
 const seed = (): MessageWire[] => [
-  row('81022', 'Test Noti 2', '2026-10-28T09:40:00', { memberId: '900122', read: true }),
+  row('81022', 'Test Noti 2', '2026-10-28T09:40:00', { memberId: '900122', read: false }),
   row('81021', 'test', '2026-10-27T08:15:00', { memberId: '900121', read: false }),
   row('81020', 'New Connect notification', '2026-10-26T07:30:00', { memberId: '900120', read: false }),
   row('81019', 'Test Noti 56', '2026-10-14T10:20:00', { icon: DIRECTORY_LOGO, read: true }),
@@ -67,11 +67,11 @@ const seed = (): MessageWire[] => [
   row('81011', 'Dinner for ten', '2026-10-06T10:45:00', { memberId: '900111', read: true }),
   row('81010', 'Family camp next month with entertainment', '2026-10-05T04:15:00', { memberId: '900110', read: true }),
   row('81009', 'School fete this month with entertainment', '2026-10-04T05:35:00', { memberId: '900109', read: true }),
-  row('81008', 'Garden club open house with entertainment', '2026-10-03T12:05:00', { memberId: '900108', read: true }),
-  row('81007', 'Notification 6', '2026-10-02T09:55:00', { memberId: '900107', read: true }),
-  row('81006', 'Notification 4', '2026-10-01T08:20:00', { icon: DIRECTORY_LOGO, read: true }),
-  row('81005', 'Notification 3', '2026-09-30T07:40:00', { icon: DIRECTORY_LOGO, read: true }),
-  row('81004', 'Notification 1', '2026-09-29T06:00:00', { icon: DIRECTORY_LOGO, read: true }),
+  row('81008', 'Garden club open house with entertainment', '2026-10-03T12:05:00', { memberId: '900108', read: false }),
+  row('81007', 'Notification 6', '2026-10-02T09:55:00', { memberId: '900107', read: false }),
+  row('81006', 'Notification 4', '2026-10-01T08:20:00', { icon: DIRECTORY_LOGO, read: false }),
+  row('81005', 'Notification 3', '2026-09-30T07:40:00', { icon: DIRECTORY_LOGO, read: false }),
+  row('81004', 'Notification 1', '2026-09-29T06:00:00', { icon: DIRECTORY_LOGO, read: false }),
   row('81003', 'Camp is booked out', '2026-09-28T05:25:00', { memberId: '900103', read: true }),
   row('81002', 'Conference dates moved', '2026-09-27T04:50:00', { icon: ASSEMBLE_LOGO, read: true }),
   row('81001', 'Heatwave risk for all', '2026-09-26T10:10:00', { icon: DIRECTORY_LOGO, read: true, urgent: true }),

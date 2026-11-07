@@ -253,9 +253,11 @@ export interface Householder {
   Details: Details;
   DisplayTitle: string /* "" in capture */;
   DisplayDescription: string /* "" in capture */;
-  HomePhoneLastUpdated: string /* ISO DateTime */;
-  MobilePhoneLastUpdated: string /* ISO DateTime */;
+  HomePhoneLastUpdated: string /* "1900-01-01..." = no value */;
+  MobilePhoneLastUpdated: string /* "1900-01-01..." = no value */;
   DisplayAge: boolean;
+  Latitude: string /* Decimal as string */;
+  Longitude: string /* Decimal as string */;
 }
 
 export interface PhotoTag {
@@ -272,12 +274,12 @@ export interface PhotoTag {
 
 export interface Spouse {
   Id: string /* Long Integer as string */;
-  FirstName: string /* "" in capture */;
-  LastName: string /* "" in capture */;
-  DisplayName: string /* "" in capture */;
-  Title: string /* "" in capture */;
+  FirstName: string;
+  LastName: string;
+  DisplayName: string;
+  Title: string;
   MaidenName: string /* "" in capture */;
-  Email: string /* "" in capture */;
+  Email: string;
   IsHouseholder: boolean;
   IsDeceased: boolean;
 }
@@ -286,13 +288,13 @@ export interface Member {
   Id: string /* Long Integer as string */;
   FirstName: string;
   LastName: string;
-  MaidenName: string /* "" in capture */;
-  DateOfBirth: string /* ISO DateTime */;
+  MaidenName: string;
+  DateOfBirth: string /* "1900-01-01..." = no value */;
   Title: string;
-  HomePhone: string /* "" in capture */;
+  HomePhone: string;
   WorkPhone: string /* "" in capture */;
-  MobilePhone: string /* "" in capture */;
-  Email: string /* "" in capture */;
+  MobilePhone: string;
+  Email: string;
   IsHouseholder: boolean;
   Householder: Householder;
   PhotoTag: PhotoTag;
@@ -308,8 +310,8 @@ export interface Member {
   Locality: Locality;
   Subdivision: Subdivision;
   IsDeceased: boolean;
-  HomePhoneLastUpdated: string /* ISO DateTime */;
-  WorkPhoneLastUpdated: string /* ISO DateTime */;
+  HomePhoneLastUpdated: string /* "1900-01-01..." = no value */;
+  WorkPhoneLastUpdated: string /* "1900-01-01..." = no value */;
   MobilePhoneLastUpdated: string /* ISO DateTime */;
   Spouse: Spouse;
   FormattedAddress: string;
@@ -405,15 +407,6 @@ export interface GetUserInformationResponse {
   UserInformation: UserInformation;
 }
 
-export interface AssembleEventTypeListItem {
-  Id: string;
-  Title: string;
-}
-
-export interface GetAssembleEventTypesResponse {
-  AssembleEventTypeList: AssembleEventTypeListItem[] /* wire: { List: [...] } */;
-}
-
 export interface CountriesItem {
   Code: string;
   Name: string;
@@ -431,10 +424,6 @@ export interface GetCountriesBySubscriptionResponse {
   Countries: CountriesItem[] /* wire: { List: [...] } */;
 }
 
-export interface AppManager_AfterInitializeResponse {
-  isNotRegistered: boolean;
-}
-
 export interface AssembleSummaryMeetingList {
   List: unknown[] /* empty in capture */;
   EmptyListItem: EmptyListItem;
@@ -442,6 +431,19 @@ export interface AssembleSummaryMeetingList {
 
 export interface GetAssembleMeetingSummaryListResponse {
   AssembleSummaryMeetingList: AssembleSummaryMeetingList;
+}
+
+export interface AssembleEventTypeListItem {
+  Id: string;
+  Title: string;
+}
+
+export interface GetAssembleEventTypesResponse {
+  AssembleEventTypeList: AssembleEventTypeListItem[] /* wire: { List: [...] } */;
+}
+
+export interface AppManager_AfterInitializeResponse {
+  isNotRegistered: boolean;
 }
 
 export interface OrbitEventTypesItem {
@@ -575,13 +577,9 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -591,7 +589,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -682,6 +680,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -718,6 +717,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -761,6 +761,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -774,6 +775,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {

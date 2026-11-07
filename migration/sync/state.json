@@ -1,0 +1,624 @@
+{
+ "branch": "sync/tst-2026-11",
+ "begun": {
+  "by": "user",
+  "text": "ok (item 8 of the decision session, 2026-11-07: start the wave)",
+  "at": "2026-11-07T07:11:34"
+ },
+ "active": {},
+ "items": {
+  "MessageList": {
+   "status": "done",
+   "started": "2026-11-07T07:12:53",
+   "tokens": {
+    "dev": 38722,
+    "test": 63500,
+    "docs": 34108
+   },
+   "commit": "9995a9bb",
+   "gate": "parity: default,filter,loading,offline,search/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:33:08"
+  },
+  "LDM_EventDetail_V2": {
+   "status": "done",
+   "started": "2026-11-07T07:12:53",
+   "tokens": {
+    "dev": 72534,
+    "test": 28083,
+    "docs": 34460
+   },
+   "commit": "836a31b2",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:33:28"
+  },
+  "ContactByEmailMember": {
+   "status": "done",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {
+    "dev": 74082,
+    "test": 67790,
+    "docs": 30155
+   },
+   "commit": "bbed0cfe",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)",
+   "loops": 1,
+   "finished": "2026-11-07T16:33:45"
+  },
+  "OrbitAdminLanding": {
+   "status": "done",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {
+    "dev": 240744,
+    "test": 39511,
+    "docs": 42217
+   },
+   "commit": "f892a0a6",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:01"
+  },
+  "Household_Relations": {
+   "status": "done",
+   "started": "2026-11-07T07:12:54",
+   "tokens": {
+    "dev": 222739,
+    "test": 32703,
+    "docs": 40779
+   },
+   "commit": "1819a3b9",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:18"
+  },
+  "MessageDetail": {
+   "status": "done",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 141124,
+    "test": 57356,
+    "docs": 34097
+   },
+   "commit": "d9ec2e96",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:34"
+  },
+  "Menu": {
+   "status": "done",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 104178,
+    "test": 57807,
+    "docs": 36534
+   },
+   "commit": "30c8b29d",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:00"
+  },
+  "LDM_MyEvents_V2": {
+   "status": "done",
+   "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 146735,
+    "test": 64582,
+    "docs": 35488
+   },
+   "commit": "6c9f1e27",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)",
+   "loops": 1,
+   "finished": "2026-11-07T16:35:18"
+  },
+  "NotificationDetails": {
+   "status": "done",
+   "started": "2026-11-07T07:21:11",
+   "tokens": {
+    "dev": 217904,
+    "test": 39484,
+    "docs": 30781
+   },
+   "commit": "ede0deac",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:34"
+  },
+  "Profile": {
+   "status": "done",
+   "started": "2026-11-07T07:21:11",
+   "tokens": {
+    "dev": 261206,
+    "test": 36152,
+    "docs": 34342
+   },
+   "commit": "bd7b4206",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:52"
+  },
+  "BrowseCountries": {
+   "status": "done",
+   "started": "2026-11-07T07:24:59",
+   "tokens": {
+    "dev": 89414,
+    "test": 36171,
+    "docs": 35264
+   },
+   "commit": "479a2e6c",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:36:10"
+  },
+  "HomeFeed": {
+   "status": "done",
+   "started": "2026-11-07T07:30:37",
+   "tokens": {
+    "dev": 238268,
+    "test": 34661,
+    "docs": 45570
+   },
+   "commit": "be210823",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:32:15"
+  },
+  "AssembleEvents": {
+   "status": "done",
+   "started": "2026-11-07T07:33:27",
+   "tokens": {
+    "dev": 33678,
+    "test": 28328,
+    "docs": 30299
+   },
+   "commit": "ace05c22",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:36:28"
+  },
+  "Assemble_BrowseByCountry": {
+   "status": "done",
+   "started": "2026-11-07T07:33:28",
+   "tokens": {
+    "dev": 28474,
+    "test": 25905,
+    "docs": 28038
+   },
+   "commit": "025dbc58",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:36:45"
+  },
+  "CountryDetails": {
+   "status": "done",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {
+    "dev": 52304,
+    "test": 34419,
+    "docs": 37058
+   },
+   "commit": "9629286a",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:37:04"
+  },
+  "Locality_Details": {
+   "status": "done",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {
+    "dev": 233109,
+    "test": 34354,
+    "docs": 39395
+   },
+   "commit": "5081c990",
+   "gate": "parity: default,loading,offline,tag-interchange,tag-oneschoolglobal,tag-suppermeetings/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:37:58"
+  },
+  "OneSchoolGlobalDetails": {
+   "status": "done",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {
+    "dev": 145711,
+    "test": 39614,
+    "docs": 31608
+   },
+   "commit": "6200a677",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:38:18"
+  },
+  "SupperMeeting_Carousel": {
+   "status": "done",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {
+    "dev": 64062,
+    "test": 34782,
+    "docs": 31324
+   },
+   "commit": "b007648c",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:38:44"
+  },
+  "CountryList": {
+   "status": "done",
+   "started": "2026-11-07T08:04:45",
+   "tokens": {
+    "dev": 183128,
+    "test": 36113,
+    "docs": 28294
+   },
+   "commit": "c0a2abc7",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:32:40"
+  },
+  "Notifications": {
+   "status": "done",
+   "started": "2026-11-07T08:10:10",
+   "tokens": {
+    "dev": 406213,
+    "test": 35616,
+    "docs": 35995
+   },
+   "commit": "6fc084e3",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:06"
+  },
+  "Search": {
+   "status": "done",
+   "started": "2026-11-07T08:13:08",
+   "tokens": {
+    "dev": 29587,
+    "test": 40612,
+    "docs": 33367
+   },
+   "commit": "cd7a564a",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:24"
+  },
+  "Updates_SingleList": {
+   "status": "done",
+   "started": "2026-11-07T08:29:29",
+   "tokens": {
+    "dev": 219263,
+    "test": 29992,
+    "docs": 31567
+   },
+   "commit": "1dfdceac",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:44"
+  },
+  "OrbitLanding": {
+   "status": "done",
+   "started": "2026-11-07T08:30:02",
+   "tokens": {
+    "test": 26287,
+    "docs": 30510
+   },
+   "commit": "ee662192",
+   "gate": "parity: default,loading,offline,popup-filters,popup-filters-closed,popup-sort/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:40:20"
+  },
+  "Notes": {
+   "status": "done",
+   "started": "2026-11-07T08:43:06",
+   "tokens": {
+    "dev": 68978,
+    "test": 67146,
+    "docs": 33361
+   },
+   "commit": "9c32b66d",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)",
+   "loops": 1,
+   "finished": "2026-11-07T16:40:41"
+  },
+  "HouseholdCarousel": {
+   "status": "done",
+   "started": "2026-11-07T08:43:24",
+   "tokens": {
+    "dev": 102942,
+    "test": 33671,
+    "docs": 28572
+   },
+   "commit": "4b3b12ee",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:40:58"
+  },
+  "Bookmarks": {
+   "status": "done",
+   "started": "2026-11-07T08:45:06",
+   "tokens": {
+    "dev": 88970,
+    "test": 34406,
+    "docs": 45262
+   },
+   "commit": "7fd54a58",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:41:15"
+  },
+  "PINUnlock": {
+   "status": "done",
+   "started": "2026-11-07T09:13:03",
+   "tokens": {
+    "test": 26697,
+    "docs": 22770
+   },
+   "commit": "753c629d",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:41:32"
+  },
+  "LegacyShareObject": {
+   "status": "done",
+   "started": "2026-11-07T09:13:03",
+   "tokens": {
+    "test": 24823,
+    "docs": 27168
+   },
+   "commit": "a73f0506",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:41:48"
+  },
+  "AssembleDetail": {
+   "status": "done",
+   "started": "2026-11-07T09:27:00",
+   "tokens": {
+    "dev": 161539,
+    "test": 29091,
+    "docs": 35726
+   },
+   "commit": "ca5b408f",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:42:05"
+  }
+ },
+ "questions": [
+  {
+   "id": "Q1",
+   "item": "LDM_EventDetail_V2",
+   "text": "Exemptions: (1) photo background-image + pixel for the host and guest photos (signed CloudFront URLs in the capture, placeholder in the mock) as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 already does for LDM_MyEvents_V2; (2) host-name title width 82 vs 118 px (masked 21-char name) as masked-text data drift. a: add both (master edits exemptions) / b: leave the diffs (route cannot restamp) / c: other",
+   "status": "answered",
+   "at": "2026-11-07T07:19:04",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q2",
+   "item": "MessageList",
+   "text": "consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles",
+   "status": "answered",
+   "at": "2026-11-07T07:19:04",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q3",
+   "item": "MessageDetail",
+   "text": "Same as MessageList Q2: consistency NO-INLINE-COLOR in components/NotificationDetailBlock.tsx:164,178,183 (inline styles ported from the compiled TST block, no capture shows the branch); Notifications has 1 more. Options as Q2 (a exclusion with citation / b NotCaptured / c remove)",
+   "status": "answered",
+   "at": "2026-11-07T07:20:13",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q4",
+   "item": "LDM_MyEvents_V2",
+   "text": "Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\\.\\d\\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave",
+   "status": "answered",
+   "at": "2026-11-07T07:21:10",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q5",
+   "item": "Household_Relations",
+   "text": "Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift",
+   "status": "answered",
+   "at": "2026-11-07T07:21:11",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q6",
+   "item": "Notifications",
+   "text": "New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open",
+   "status": "answered",
+   "at": "2026-11-07T08:38:03",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q7",
+   "item": "Locality_Details",
+   "text": "Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other",
+   "status": "answered",
+   "at": "2026-11-07T08:41:57",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
+  },
+  {
+   "id": "Q8",
+   "item": "Updates_SingleList",
+   "text": "Pre-existing consistency NO-BROWSER-STORAGE: actions.ts:15-24 keeps scrollAnchorId/scrollAnchorDelta in localStorage as the TST JS nodes CaptureScrollPosition/ScrollFix do (no token, no personal data). a: keep as the original and record a consistency exclusion with the citation / b: move the two keys to an in-memory store in platform/navigation (platform change by the master) / c: sessionStorage",
+   "status": "answered",
+   "at": "2026-11-07T08:42:51",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:30"
+  },
+  {
+   "id": "Q9",
+   "item": "AssembleDetail",
+   "text": "Offline: header title 'Reading' comes from the AssembleEvents list preload on TST; React opened by URL shows ''. a: extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position + header pixel tile (same cause) / b: add AssembleEventTypeTile=Reading to the plan URL / c: parity runner sets the preload",
+   "status": "answered",
+   "at": "2026-11-07T09:36:41",
+   "answer": "a (2026-11-07): extend CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE to text/layout/position and the header pixel tile",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:37:50"
+  }
+ ],
+ "confirms": {
+  "HomeFeed": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:31:55"
+  },
+  "CountryList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:32:23"
+  },
+  "MessageList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:32:40"
+  },
+  "LDM_EventDetail_V2": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:33:08"
+  },
+  "ContactByEmailMember": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:33:28"
+  },
+  "OrbitAdminLanding": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:33:45"
+  },
+  "Household_Relations": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:01"
+  },
+  "MessageDetail": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:18"
+  },
+  "Menu": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:44"
+  },
+  "LDM_MyEvents_V2": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:00"
+  },
+  "NotificationDetails": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:18"
+  },
+  "Profile": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:35"
+  },
+  "BrowseCountries": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:52"
+  },
+  "AssembleEvents": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:36:10"
+  },
+  "Assemble_BrowseByCountry": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:36:28"
+  },
+  "CountryDetails": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:36:45"
+  },
+  "Locality_Details": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:37:04"
+  },
+  "OneSchoolGlobalDetails": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:37:58"
+  },
+  "SupperMeeting_Carousel": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:38:26"
+  },
+  "Notifications": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:38:44"
+  },
+  "Search": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:06"
+  },
+  "Updates_SingleList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:24"
+  },
+  "OrbitLanding": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:44"
+  },
+  "Notes": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:40:20"
+  },
+  "HouseholdCarousel": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:40:41"
+  },
+  "Bookmarks": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:40:59"
+  },
+  "PINUnlock": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:41:15"
+  },
+  "LegacyShareObject": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:41:32"
+  },
+  "AssembleDetail": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:41:48"
+  }
+ }
+}

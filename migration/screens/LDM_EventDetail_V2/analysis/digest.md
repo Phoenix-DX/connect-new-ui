@@ -29,6 +29,15 @@ LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2
                           BasePatterns.CustomText
                             ConnectPatterns.IconInline_Internal
               CW_Notes.NotesSheet
+        LDM_Blocks.EventDetail_Section
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
+          LDM_Blocks.EventDetail_ListItem
+            Reusable.Person_Contact_Options
       CW_CTA_PopUps.ContactPopup_ByPhone
         CW_CTA_PopUps.ContactPopup
       CW_CTA_PopUps.ContactByMessage_Wrapper
@@ -342,6 +351,27 @@ App_Common.CommonUI_InsideLayout
 - Exceptions handled: CommunicationException, UserException
 - Static entities / flags: `noteActionType.add`
 - Candidate static strings: `Action_SetBottomSheetOpen`
+
+## `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_IsHost | input | Boolean | `false` |
+| In_Title | input | Text | `""` |
+| In_HasBottomBorder | input | Boolean | `false` |
+
+## `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_MaxPhotoWidth | input | Integer | `100` |
+| In_MaxPhotoHeight | input | Integer | `55` |
+| In_HasBottomBorder | input | Boolean | `true` |
+| IsHosting | input | Boolean | `false` |
+| Guest | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_ISModel.DetailGuestItemRec())` |
+- Client actions / event handlers: `onHandle_CallClicked`, `onClick_Item`, `onHandle_EmailClicked`, `onClick_PhoneCall`, `clicked`, `onClick_Message`
+- JavaScript nodes: `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$controller.OnHandle_CallClicked.GetLocalityNameJS`, `Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem.mvc$controller.OnHandle_EmailClicked.GetLocalityNameJS`
+- Feedback messages: `"Please check your network connection and try again", /*Info*/ 0)`
+- Static entities / flags: `connect_Entity2.household`
+- Images: `img/Connect2_LegacyShared.User_rectangle.png`
 
 ## `UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js`
 | variable | kind | type | default |
@@ -658,9 +688,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `DataActionFetchEventNotes` (200) at 2950 ms
-- 2. `DataActionGetCoordinatorDetails` (200) at 2992 ms
-- 3. `DataActionGetEventByEventId` (200) at 3055 ms
+- 1. `DataActionFetchEventNotes` (200) at 3123 ms
+- 2. `DataActionGetCoordinatorDetails` (200) at 3174 ms
+- 3. `DataActionGetEventByEventId` (200) at 3480 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -675,8 +705,6 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.IconSVG`
 - `ConnectPatterns.LazyImage`
 - `Fingerprint.FingerprintScanner`
-- `LDM_Blocks.EventDetail_ListItem`
-- `LDM_Blocks.EventDetail_Section`
 - `LDM_Blocks.EventDetail_SpecialNeeds_ListItem`
 - `LDM_Blocks.EventDetail_SubSection`
 - `NavigationHandler.PreventBackNavigation`

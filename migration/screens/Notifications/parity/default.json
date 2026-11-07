@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "1fea48badb00fc0e53c3",
+ "fingerprint": "fb60e07eb604e88ba6f6",
  "options": {
   "text": true,
   "style": true,
@@ -19,27 +19,29 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 3192,
-  "texts": 169,
+  "elements": 1370,
+  "texts": 77,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:34:54.351Z",
+ "at": "2026-11-07T10:01:23.506Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-MASKED-IMAGE-NOTIFICATIONS": 170,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "CAPTURE-MASKED-IMAGE-NOTIFICATIONS-PIXEL": 1
  },
  "pixel": {
-  "ratio": 0,
-  "maxCell": 0,
+  "ratio": 0.03967,
+  "maxCell": 0.4544,
   "maxCellRatio": 0.03,
-  "diffPixels": 0,
-  "comparedPixels": 299610,
+  "diffPixels": 11099,
+  "comparedPixels": 279788,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,16 +52,22 @@
    390,
    844
   ],
-  "masks": 55,
-  "hotspots": [],
+  "masks": 30,
+  "hotspots": [
+   "40,680 (727px)",
+   "0,680 (719px)",
+   "40,600 (638px)",
+   "0,600 (585px)",
+   "40,560 (563px)"
+  ],
   "diffPng": "migration/screens/Notifications/parity/default.diff.png"
  },
  "calls": {
   "phases": [
    "load"
   ],
-  "expected": 10,
-  "actual": 10
+  "expected": 11,
+  "actual": 11
  },
  "diffs": []
 }

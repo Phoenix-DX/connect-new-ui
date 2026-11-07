@@ -150,7 +150,6 @@ Layouts.Layout_MainPages_FixedTitle
                       ConnectPatterns.AvatarImage
                         BasePatterns.CustomContainer
                           ConnectPatterns.Icon
-                            ConnectPatterns.IconSVG
                       BasePatterns.CustomText
                         ConnectPatterns.IconInline_Internal
                     BasePatterns.CustomContainer

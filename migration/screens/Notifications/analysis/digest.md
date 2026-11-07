@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Notifications`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 42px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 116px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.App_Notifications.Notifications.mvc.js`
 
@@ -32,961 +32,351 @@ Layouts.Layout_MainPages_Upgrade
           ConnectPatterns.SkeletonSection
   App_Notifications.NotificationsListBreakpoints
     App_Notifications.Notifications_Header
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            ConnectPatterns.SkeletonSection
-              ConnectPatterns.IconText
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
-                    OutSystemsUIOverrides.Badge
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+          BasePatterns.Columns_Two
+            Adaptive.Columns2
+              ConnectPatterns.SkeletonSection
+                ConnectPatterns.IconText
+                  BasePatterns.Columns_Two
+                    Adaptive.Columns2
+                      OutSystemsUIOverrides.Badge
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
     App_Notifications.NotificationsList
       ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
                   BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
       ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
                   BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
       ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
                   BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
     App_Notifications.Notifications_Header
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            ConnectPatterns.SkeletonSection
-              ConnectPatterns.IconText
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
-                    BasePatterns.CustomText
-                      ConnectPatterns.IconInline_Internal
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+          BasePatterns.Columns_Two
+            Adaptive.Columns2
+              ConnectPatterns.SkeletonSection
+                ConnectPatterns.IconText
+                  BasePatterns.Columns_Two
+                    Adaptive.Columns2
+                      OutSystemsUIOverrides.Badge
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
     App_Notifications.NotificationsList
       ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
                   BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-    App_Notifications.Notifications_Header
-      BasePatterns.CustomContainer
-        BasePatterns.Columns_Two
-          Adaptive.Columns2
-            ConnectPatterns.SkeletonSection
-              ConnectPatterns.IconText
-                BasePatterns.Columns_Two
-                  Adaptive.Columns2
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
                     BasePatterns.CustomText
                       ConnectPatterns.IconInline_Internal
-    App_Notifications.NotificationsList
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                    ConnectPatterns.Icon
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
-      ConnectPatterns.SkeletonSection
-        ConnectCorePatterns.Notification_ListItem
-          BasePatterns.CustomContainer
-            BasePatterns.Columns_Three
-              Adaptive.Columns3
-                ConnectPatterns.AvatarImage
-                  BasePatterns.CustomContainer
-                BasePatterns.CustomContainer
-                  HtmlSanitizer.SanitizedHtml
-                BasePatterns.CustomContainer
-                  BasePatterns.CustomText
-                    ConnectPatterns.IconInline_Internal
-        ScrollAnchors.ScrollAnchor
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  MyNotifications.MessageImage
+                    MyNotifications.AvatarImage
+                      BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
+      ConnectPatterns.SkeletonSection
+        ConnectPatterns.SkeletonSection
+          ConnectCorePatterns.Notification_ListItem
+            BasePatterns.CustomContainer
+              BasePatterns.Columns_Three
+                Adaptive.Columns3
+                  ConnectPatterns.AvatarImage
+                    BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                    HtmlSanitizer.SanitizedHtml
+                  BasePatterns.CustomContainer
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal
+          ScrollAnchors.ScrollAnchor
   App_Common.BottomBarMenu
     App_Common.BottomBarContent
       Navigation.BottomBarItem
@@ -1095,7 +485,6 @@ App_Notifications.Notifications_MoreActionSheet
 |---|---|---|---|
 | DateRangesList | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Updates_DateRangesList())` |
 | UI_NotificationItemList | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList())` |
-| HasUnreadMessages | output | Boolean | `false` |
 | UnreadNotificationsCount | output | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | Filter_BottomSheetId | local | Text | `""` |
 | Filter_Updates | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Updates_CSModel.Filter_UpdatesRec())` |
@@ -1128,17 +517,18 @@ App_Notifications.Notifications_MoreActionSheet
 | Local_OnlyShowUnread | local | Boolean | `false` |
 | ReadCount | local | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | Screen_NotificationItemList | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList())` |
+| StartIndex | local | Integer | `0` |
+| PageNumber | local | Integer | `1` |
 | GetDateRanges | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetDateRangesDataActRec())` |
 | FetchNotifications | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotificationsDataActRec())` |
 - Data actions: `DataActionGetDateRanges` → `screenservices/UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges`, `DataActionFetchNotifications` → `screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications`
-- Server actions: `Action_UI_UpdateItem_MarkAllAsRead` → `screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`, `MarkAllAsReadNotifications` → `screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications`, `Delete_Notifications` → `screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications`, `MarkAsRead` → `screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead`
+- Server actions: `MarkAllAsReadNotifications` → `screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAllAsReadNotifications`, `Delete_Notifications` → `screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications`, `MarkAsRead` → `screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead`
 - Lifecycle handlers: Initialize, Ready, Destroy
-- Client actions / event handlers: `handler_FilterSearchText`, `destroyEventListener`, `handler_ToggleSearch`, `handler_OnChangeSearchInput`, `handler_MarkAsRead`, `handler_OnlyShowUnread`, `screenEvent_OnInitialize`, `handler_MoreActionSheetSheetInitialized`, `onClick_KebabButton`, `setMarkAllTag`, `updateCurrentBreakpoint`, `setDefaultFilters`, `setBadgeCountsToZero`, `handler_MarkAllAsRead`, `screenEvent_OnReady`, `handler_FilterSheetSheetInitialized`, `initializeSetting`, `onAfterFetch_GetDateRanges`, `refreshNotifications`, `refreshUpdatesAndFlags`, `handler_FilterSheetLoaded`, `sectionHeaderEvent_UpdateListHeader`, `handler_MarkAsUnread`, `onAfterFetch_FetchNotifications`, `handler_MoreActionSheetMarkAllAsRead`, `handler_MoreActionSheetLoaded`, `handler_MoreActionSheetDeleteAll`, `handler_OnHeaderScrolled`, `handler_ApplyFilters`, `handler_UpdateReadCount`, `setupScrollThreshold`, `handler_NotificationDetail`, `handler_ScrollEnding_UpdateBreakpoint`, `setupScrollListener`
-- Navigation: `/UBTConnect/NotificationDetails`(MessageInstanceId)
-- JavaScript nodes: `UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS`
+- Client actions / event handlers: `handler_FilterSearchText`, `destroyEventListener`, `handler_ToggleSearch`, `handler_OnChangeSearchInput`, `handler_OnlyShowUnread`, `screenEvent_OnInitialize`, `handler_MoreActionSheetSheetInitialized`, `onClick_KebabButton`, `resetNotifications`, `notificationsListBreakpoints_OnLoadMore`, `setDefaultFilters`, `setBadgeCountsToZero`, `screenEvent_OnReady`, `handler_FilterSheetSheetInitialized`, `initializeSetting`, `onAfterFetch_GetDateRanges`, `refreshNotifications`, `handler_FilterSheetLoaded`, `onAfterFetch_FetchNotifications`, `handler_MoreActionSheetMarkAllAsRead`, `handler_MoreActionSheetLoaded`, `handler_MoreActionSheetDeleteAll`, `handler_OnHeaderScrolled`, `handler_ApplyFilters`, `handler_UpdateReadCount`, `handler_NotificationDetail`
+- Navigation: `/UBTConnect/MyEntertaining`(); `/UBTConnect/NotificationDetails`(HardwareId, MessageInstanceId, MessageTemplateId)
+- JavaScript nodes: `UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS`, `UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS`
 - Exceptions handled: UserException
-- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `shape.rounded`, `uBT_Color.redDark`, `uBT_Size.extraSmall`, `uBT_IconsSize.base_24`, `uBT_Color.neutral0`, `uBT_Icons2.search`, `uBT_Icons2.moreVertical`, `uBT_Size.small`, `updates_DateRanges.today`, `updates_DateRanges.older`, `choice.none`, `choice.yes`
-- Candidate static strings: `UpdateCurrentBreakpoint` | `Handler_ScrollEnding_UpdateBreakpoint`
+- Static entities / flags: `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.row`, `shape.rounded`, `uBT_Color.redDark`, `uBT_Size.extraSmall`, `uBT_IconsSize.base_24`, `uBT_Color.neutral0`, `uBT_Icons2.search`, `uBT_Icons2.moreVertical`, `uBT_Size.small`, `updates_DateRanges.today`, `updates_DateRanges.older`, `choice.none`, `choice.yes`, `messageSenderTarget.myEntertaining`
 
 ## `UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc.js`
 | variable | kind | type | default |
@@ -1298,7 +688,12 @@ App_Notifications.Notifications_MoreActionSheet
 | Breakpoints | input | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_UpdateItem_BreakpointList())` |
 | IsLoading | input | Boolean | `false` |
 | UI_NotificationItemList | input | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList())` |
-- Client actions / event handlers: `handler_UpdateReadCount`, `updateReadCount`, `notificationDetail`
+| CurrentBreakpoint | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_UpdateItem_BreakpointRec())` |
+| TopElementId | input | Text | `""` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `handler_ScrollEnding_UpdateBreakpoint`, `handler_UpdateReadCount`, `onReady`, `setupScrollListener`, `notificationsListBreakpoints_OnScrollEnding`, `updateReadCount`, `onLoadMore`, `notificationDetail`
+- JavaScript nodes: `UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS`
+- Candidate static strings: `Handler_ScrollEnding_UpdateBreakpoint`
 
 ## `UBTConnect.App_Notifications.Notifications_Header.mvc.js`
 | variable | kind | type | default |
@@ -1306,6 +701,9 @@ App_Notifications.Notifications_MoreActionSheet
 | Title | input | Text | `""` |
 | BadgeNumber | input | Integer | `0` |
 | isLoading | input | Boolean | `false` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+- JavaScript nodes: `UBTConnect.App_Notifications.Notifications_Header.mvc$controller.OnReady.SetStickyHeaderHeightJS`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.extraSmall`, `uBT_Size.base`, `uBT_Color.neutral4`, `uBT_Size.large`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`, `uBT_FontWeight.semiBold`, `uBT_Color.redDark`
 
 ## `UBTConnect.App_Notifications.NotificationsList.mvc.js`
@@ -1321,7 +719,7 @@ App_Notifications.Notifications_MoreActionSheet
 - Server actions: `ToggleRead` → `screenservices/UBTConnect/App_Notifications/NotificationsList/ActionToggleRead`, `Delete_Notifications` → `screenservices/UBTConnect/App_Notifications/NotificationsList/ServiceAPIDelete_Notifications`
 - Lifecycle handlers: Initialize, ParametersChanged
 - Client actions / event handlers: `handler_ToggleRead`, `handler_DeleteNotification`, `onInitialize`, `toggleDeleteNotification`, `onClick_NotificationDetail`, `onParametersChanged`, `notificationDetail`, `updateReadCount`
-- Static entities / flags: `uBT_Icons2.mail`, `uBT_Color.cyanDarkest`, `uBT_IconsSize.medium_20`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.neutral0`, `uBT_Icons2.delete`
+- Static entities / flags: `uBT_Color.cyanDarkest`, `uBT_Icons2.mail`, `uBT_IconsSize.medium_20`, `uBT_FontSize.doubleExtraSmall`, `uBT_AvatarSize.base_52`, `uBT_Color.neutral0`, `uBT_Icons2.delete`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc.js`
 | variable | kind | type | default |
@@ -1333,6 +731,9 @@ App_Notifications.Notifications_MoreActionSheet
 | In_NotificationDate | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
 | In_AvatarImage_Left | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
 | In_AvatarImage_Right | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
+| IsIconURLDefined | input | Boolean | `false` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
 - Static entities / flags: `uBT_Size.base`, `uBT_ColumnBehaviour.expandMiddle`, `uBT_Size.small`, `uBT_VerticalAlign.center`, `uBT_AvatarSize.base_52`, `uBT_FontSize.extraSmall`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 - Images: `img/UBTConnectLibrary.NotificationDot.svg`
 
@@ -1354,13 +755,29 @@ App_Notifications.Notifications_MoreActionSheet
 | ExtendedClass | input | Text | `""` |
 - Static entities / flags: `gutterSize.base`, `breakColumns.none`
 
-## `UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
+## `Connect2_LegacyShared.MyNotifications.MessageImage.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| UserPhotoURL | local | Text | `""` |
+| IsFetchingUserPhoto | local | Boolean | `false` |
+| MainContainerClass | local | Text | `"ubt-avatar-image"` |
+| IconURL | input | Text | `""` |
+| UserId | input | Integer | `0` |
+| MemberId | input | Text | `""` |
+| In_SizeId | input | Text | `""` |
+| In_BorderRadius | input | Text | `Connect2_LegacySharedModel.staticEntities.uBT_Shape.circle` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+- Static entities / flags: `uBT_Shape.circle`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_AvatarSize.base_52`, `connect_Entity.member`, `imageSize.small`
+- Images: `img/Connect2_LegacyShared.User_rectangle.png`
+
+## `Connect2_LegacyShared.MyNotifications.AvatarImage.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
 | MainContainerClass | local | Text | `"ubt-avatar-image"` |
 | In_AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
 | In_SizeId | input | Text | `""` |
-| In_BorderRadius | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.circle` |
+| In_BorderRadius | input | Text | `Connect2_LegacySharedModel.staticEntities.uBT_Shape.circle` |
 - Static entities / flags: `uBT_Shape.circle`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_FontWeight.semiBold`
 
 ## `ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.mvc.js`
@@ -1382,6 +799,15 @@ App_Notifications.Notifications_MoreActionSheet
 | variable | kind | type | default |
 |---|---|---|---|
 | Id | input | Text | `""` |
+
+## `UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-avatar-image"` |
+| In_AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
+| In_SizeId | input | Text | `""` |
+| In_BorderRadius | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.circle` |
+- Static entities / flags: `uBT_Shape.circle`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_FontWeight.semiBold`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -1763,16 +1189,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3264 ms
-- 2. `DataActionGetDateRanges` (200) at 4377 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 6414 ms
-- 4. `DataActionFetchNotifications` (200) at 6956 ms
-- 5. `ActionSync_Info_GetMain` (200) at 6970 ms
-- 6. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 7294 ms
-- 7. `ActionGetUserInformation` (200) at 7339 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7659 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9668 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12112 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3192 ms
+- 2. `DataActionGetDateRanges` (200) at 4482 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 6216 ms
+- 4. `ActionSync_Info_GetMain` (200) at 6742 ms
+- 5. `DataActionFetchNotifications` (200) at 6835 ms
+- 6. `ActionGetUserInformation` (200) at 7087 ms
+- 7. `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` (200) at 7137 ms
+- 8. `ActionGetSignedImagesInBulk` (200) at 7338 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 7380 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9165 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11891 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Cache.CacheControl_UserInfo_Wrapper`

@@ -1,5 +1,5 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSList } from '@/components/ui/os/OSList';
+import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
@@ -23,7 +23,8 @@ export interface Locality_Households_HouseholdListProps {
 
 /** The household list of a locality: a CustomContainer (Neutral0, horizontal padding Base) with a skeleton until
     GetLocalityHouseholds is fetched; Directory_EmptyState (Household) for an empty list, otherwise the List
-    "locality_Households" ("list list-group list--gap-s") of Household_Card. The flows are in
+    "locality_Households" ("list list-group list--gap-s", source_dataFetchStatus of GetLocalityHouseholds: ` list-loading`
+    while it loads, ` list-error` after it failed) of Household_Card. The flows are in
     useLocalityHouseholdList.
     @origin UBTConnect.Directory_Locality.Locality_Households_HouseholdList */
 export function Locality_Households_HouseholdList({
@@ -32,7 +33,7 @@ export function Locality_Households_HouseholdList({
   onEventNavigateToHouseholdDetails,
   flags,
 }: Locality_Households_HouseholdListProps) {
-  const { isDataFetched, list, onClickHousehold } = useLocalityHouseholdList(
+  const { isDataFetched, hasFetchError, list, onClickHousehold } = useLocalityHouseholdList(
     inLocalityId,
     { onEventNavigateToHouseholdDetails },
     flags,
@@ -57,6 +58,13 @@ export function Locality_Households_HouseholdList({
               className="list list-group list--gap-s"
               animateItems
               positionRelative
+              sourceDataFetchStatus={
+                isDataFetched
+                  ? DataFetchStatus.Fetched
+                  : hasFetchError
+                    ? DataFetchStatus.Error
+                    : DataFetchStatus.Fetching
+              }
               source={list}
               keyOf={(h, i) => `111_${String(i)}_${h.householdId}`}
             >

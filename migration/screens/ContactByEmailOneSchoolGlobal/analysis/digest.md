@@ -255,10 +255,10 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 5961 ms
-- 4. `ActionGetUserInformation` (200) at 6297 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8948 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11228 ms
+- 3. `ActionSync_Info_GetMain` (200) at 7211 ms
+- 4. `ActionGetUserInformation` (200) at 7607 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 11066 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13517 ms
 - plus 3 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

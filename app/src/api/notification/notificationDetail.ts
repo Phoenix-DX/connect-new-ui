@@ -1,4 +1,6 @@
 import { callAction } from '@/api/client/callAction';
+import { toNotificationAdaptiveCardResponseWire } from './mapper';
+import type { NotificationAdaptiveCardResponse } from './types';
 
 /* The server actions around the screen NotificationDetails (live TST 2026-11-05): MarkAsRead of the screen
    Notifications (Handler_NotificationDetail, Notifications.mvc.js:2562-2596) and Wrapper_NotificationOpened of the
@@ -12,6 +14,15 @@ import { callAction } from '@/api/client/callAction';
 /** The server action MarkAsRead(MessageInstanceId) of the screen Notifications: no output. */
 export async function markNotificationAsRead(messageInstanceId: string): Promise<void> {
   await callAction('UBTConnect', 'ActionMarkAsRead', { MessageInstanceId: messageInstanceId });
+}
+
+/** The server action StoreAdaptiveCardResponses(DeviceHardwareId, AdaptiveCardPayloadJSON, ActionTaken, FormDataJSON,
+    MessageInstanceId) of the screen NotificationDetails (TST re-capture 2026-11-07,
+    NotificationDetails.mvc@6445b6d0.js:910-919, path
+    screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionStoreAdaptiveCardResponses): stores the submit
+    of an adaptive card. No outputs. */
+export async function storeNotificationAdaptiveCardResponse(response: NotificationAdaptiveCardResponse): Promise<void> {
+  await callAction('UBTConnect', 'ActionStoreAdaptiveCardResponses', toNotificationAdaptiveCardResponseWire(response));
 }
 
 /** The server action Wrapper_NotificationOpened(MessageInstanceId) of the screen NotificationDetails: marks the

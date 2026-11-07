@@ -21,6 +21,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 ## Third-party hosts contacted
 - `australiaeast-0.in.applicationinsights.azure.com`
 - `js.monitor.azure.com`
+- `s-gke-apse1-nssi4-8.asia-southeast1.firebasedatabase.app`
 - `www.googleapis.com`
 
 ## Client storage by category

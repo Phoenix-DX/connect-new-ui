@@ -970,7 +970,7 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", ["OutSystems/C
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     placeholders: {
                                                         content: new PlaceholderContent(function() {
-                                                            return ["Clear filters"];
+                                                            return ["Clear"];
                                                         })
                                                     },
                                                     _dependencies: []
@@ -1020,7 +1020,7 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$view", ["OutSystems/C
                                                     _widgetRecordProvider: widgetsRecordProvider,
                                                     placeholders: {
                                                         content: new PlaceholderContent(function() {
-                                                            return ["Apply filters"];
+                                                            return ["Apply"];
                                                         })
                                                     },
                                                     _dependencies: []
@@ -1333,12 +1333,29 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$controller", ["OutSys
             varBag.callContext = callContext;
             varBag.vars = vars;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:K9t0GxtIBk6FxziXxY9RJg:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A/ClientActions.K9t0GxtIBk6FxziXxY9RJg:N5u57w7dDT+eESTHPYnbIA", "UBTConnect", "BottomSheetOnToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:K9t0GxtIBk6FxziXxY9RJg:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A/ClientActions.K9t0GxtIBk6FxziXxY9RJg:ekw+O_dR0o51TOSgII5cmA", "UBTConnect", "BottomSheetOnToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2rNzZmmtS0eLIp30kP8MXw", callContext.id);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0FFuWd88s0mFzdmww68N0Q", callContext.id);
                 // isOpen_Local = IsOpen
                 model.variables.isOpen_LocalVar = vars.value.isOpenInLocal;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C+896+D5OEyAN6c6tFhtug", callContext.id);
+                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ogdqwOZ0OUGMEDBfUs_KWA", callContext.id) && !(vars.value.isOpenInLocal))) {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SeNJ0QWXIEKHqGp14aMtug", callContext.id);
+                    // OptionControl = LastSearched_OptionControl
+                    model.variables.optionControlVar = model.variables.lastSearched_OptionControlVar;
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MUJQH0S8a0GC8H1dS0D8nw", callContext.id) && model.variables.isSingleFilterVar)) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZIjWyP3qBUeQD_bPS9+n1g", callContext.id);
+                        // ForceUpdateOptionList = notForceUpdateOptionList
+                        model.variables.forceUpdateOptionListVar = !(model.variables.forceUpdateOptionListVar);
+                    }
+
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lYT2m_YvUkeTzHnmHQtr9g", callContext.id);
+                    // Execute Action: Action_SetSubState
+                    controller._action_SetSubState$Action(model.variables.subState_MainVar, callContext);
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C+896+D5OEyAN6c6tFhtug", callContext.id);
+                } else {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:C+896+D5OEyAN6c6tFhtug", callContext.id);
+                }
+
             } catch (ex) {
                 OutSystemsDebugger.handleException(ex, callContext.id);
                 throw ex;
@@ -3085,7 +3102,7 @@ define("UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc$controller", ["OutSys
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:Jpw6vcM30keGIepdkjtS7A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A:aO+UykmPPS6VEpIYdNjDCA", "UBTConnect", "App_CommonBlocks_Filter", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A:84p0uxa7QqdVSnEBRF8ivQ", "UBTConnect", "FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A:/NRWebFlows.Jpw6vcM30keGIepdkjtS7A/NodesShownInESpaceTree.puW55n9l7EKEPdI6ZSmT8A:nQwJ88iCEthxODwdAJ1UEQ", "UBTConnect", "FilterSheet", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:puW55n9l7EKEPdI6ZSmT8A", callContext.id);

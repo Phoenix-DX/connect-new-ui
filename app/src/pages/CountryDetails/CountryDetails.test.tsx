@@ -172,7 +172,7 @@ describe('CountryDetails page', () => {
     });
     const australia = screen.getAllByText('Australia');
     fireEvent.click(australia[australia.length - 1] as Element);
-    const apply = screen.getAllByText('Apply filters');
+    const apply = screen.getAllByText('Apply');
     fireEvent.click(apply[apply.length - 1] as Element);
     await waitFor(() => {
       expect(fetchCount()).toBe(2);

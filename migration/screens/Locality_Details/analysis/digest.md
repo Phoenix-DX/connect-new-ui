@@ -438,6 +438,13 @@ Layouts.Layout_MainPages
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
+                      CW_Image.UBT_LazyImage
+                        ConnectPatterns.SkeletonSection
+                          ConnectPatterns.LazyImage
+                            ConnectPatterns.SkeletonSection
+                              BasePatterns.CustomContainer
+                              BasePatterns.CustomContainer
+                                ConnectPatterns.Icon
                   BasePatterns.CustomContainer
                     ConnectPatterns.ImageCard__Content
                       BasePatterns.CustomContainer
@@ -463,6 +470,13 @@ Layouts.Layout_MainPages
                           ConnectPatterns.LazyImage
                             ConnectPatterns.SkeletonSection
                               BasePatterns.CustomContainer
+                      CW_Image.UBT_LazyImage
+                        ConnectPatterns.SkeletonSection
+                          ConnectPatterns.LazyImage
+                            ConnectPatterns.SkeletonSection
+                              BasePatterns.CustomContainer
+                              BasePatterns.CustomContainer
+                                ConnectPatterns.Icon
                   BasePatterns.CustomContainer
                     ConnectPatterns.ImageCard__Content
                       ConnectPatterns.IconText
@@ -795,17 +809,17 @@ Layouts.Layout_MainPages
 | LocalityDetails | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_LocalityDetails_ForHouseholdRec())` |
 | TagsList | local | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.TagList())` |
 | HeaderIsScrolled | local | Boolean | `false` |
-| TagsList_SelectedTag | local | Text | `""` |
 | Logged_User | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.LongIntegerLongIntegerRecord())` |
 | IsUserLocality | local | Boolean | `true` |
 | LocalityLabel | local | Text | `""` |
 | IsScreenInitialized | local | Boolean | `false` |
 | LocalityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
 | PreloadedLocalityLabel | input | Text | `""` |
+| TagsList_SelectedTag | input | Text | `""` |
 | Get_LocalityDetails | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new Get_LocalityDetailsDataActRec())` |
 - Data actions: `DataActionGet_LocalityDetails` → `screenservices/UBTConnect/Directory_Locality/Locality_Details/DataActionGet_LocalityDetails`
 - Lifecycle handlers: Initialize, Ready
-- Client actions / event handlers: `handler_NavigateTo_BrowsebyLocation`, `handler_OnClick_Bookmark`, `screenEvent_OnInitialize`, `handler_OnHeaderScrolled`, `onAfterFetch_Get_LocalityDetails`, `action_SetLocalityLabel`, `action_InitializeScreen`, `screenEvent_OnReady`, `onClick_Search`, `handler_HorizontalTagListChanged`, `handler_NavigateTo_OneschoolGlobalDetails`, `onClick_Maps`, `handler_NavigateTo_HouseholdDetails`
+- Client actions / event handlers: `handler_NavigateTo_BrowsebyLocation`, `handler_OnClick_Bookmark`, `screenEvent_OnInitialize`, `handler_OnHeaderScrolled`, `onAfterFetch_Get_LocalityDetails`, `action_SetLocalityLabel`, `action_InitializeScreen`, `setTags`, `screenEvent_OnReady`, `onClick_Search`, `handler_HorizontalTagListChanged`, `handler_NavigateTo_OneschoolGlobalDetails`, `onClick_Maps`, `handler_NavigateTo_HouseholdDetails`
 - Navigation: `/UBTConnect/CountryDetails`(CountryCode); `/UBTConnect/BrowseDirectory`(CountryCode); `/UBTConnect/Search`(); `/UBTConnect/OneSchoolGlobalDetails`(In_OneSchoolGlobalId); `/UBTConnect/Map`(In_InitialLongitude, In_InitialLatitude); `/UBTConnect/HouseholdDetails`(HouseholdId)
 - JavaScript nodes: `UBTConnect.Directory_Locality.Locality_Details.mvc$controller.Handler_HorizontalTagListChanged.ScrollTopJS`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Icons2.explore`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_Icons2.expandMore`, `uBT_FontSize.doubleExtraSmall`, `uBT_Size.small`, `uBT_Size.base`, `launchDarkly_FF.mobileDirectoryLocalityContacts`, `connect_BottomBar_Items.directory`
@@ -938,7 +952,8 @@ Layouts.Layout_MainPages
 | In_HorizontalPadding | input | Text | `""` |
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `tagToggleToggle`, `onParametersChanged`, `changed`
 
 ## `UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
 | variable | kind | type | default |
@@ -1369,47 +1384,47 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3197 ms
-- 2. `ActionGetUserInformation` (200) at 4263 ms
-- 3. `DataActionGet_LocalityDetails` (200) at 4548 ms
-- 4. `DataActionGetLocalityHouseholds` (200) at 4670 ms
-- 5. `DataActionGetMembers` (200) at 4957 ms
-- 6. `DataActionGetMembers` (200) at 4960 ms
-- 7. `DataActionGetMembers` (200) at 4970 ms
-- 8. `DataActionGetMembers` (200) at 4987 ms
-- 9. `DataActionGetMembers` (200) at 4989 ms
-- 10. `DataActionGetMembers` (200) at 4991 ms
-- 11. `DataActionGetMembers` (200) at 5008 ms
-- 12. `DataActionGetMembers` (200) at 5015 ms
-- 13. `DataActionGetMembers` (200) at 5017 ms
-- 14. `DataActionGetMembers` (200) at 5018 ms
-- 15. `DataActionGetMembers` (200) at 5033 ms
-- 16. `DataActionGetMembers` (200) at 5039 ms
-- 17. `DataActionGetMembers` (200) at 5041 ms
-- 18. `DataActionGetMembers` (200) at 5043 ms
-- 19. `DataActionGetMembers` (200) at 5049 ms
-- 20. `DataActionGetMembers` (200) at 5055 ms
-- 21. `DataActionGetMembers` (200) at 5057 ms
-- 22. `DataActionGetMembers` (200) at 5059 ms
-- 23. `DataActionGetMembers` (200) at 5061 ms
-- 24. `DataActionGetMembers` (200) at 5063 ms
-- 25. `ActionGetSignedImagesInBulk` (200) at 5087 ms
-- 26. `DataActionGetMembers` (200) at 5094 ms
-- 27. `ActionGetSignedImagesInBulk` (200) at 5096 ms
-- 28. `DataActionGetMembers` (200) at 5112 ms
-- 29. `DataActionGetMembers` (200) at 5113 ms
-- 30. `ActionGetSignedImagesInBulk` (200) at 5298 ms
-- 31. `ActionGetSignedImagesInBulk` (200) at 5306 ms
-- 32. `ActionAppManager_AfterInitialize` (200) at 6074 ms
-- 33. `ActionGetSignedImagesInBulk` (200) at 6108 ms
-- 34. `ActionGetSignedImagesInBulk` (200) at 6243 ms
-- 35. `ActionGetSignedImagesInBulk` (200) at 6584 ms
-- 36. `ActionSync_Info_GetMain` (200) at 6604 ms
-- 37. `ActionGetNumberUnreadMessages` (200) at 6901 ms
-- 38. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8883 ms
-- 39. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11248 ms
-- 41. `ActionGetSignedImagesInBulk` (200) at 40844 ms
-- plus 8 call(s) outside this screen, listed in calls.md
+- 1. `ActionAppManager_SynchAppContext` (200) at 3410 ms
+- 2. `DataActionGetLocalityHouseholds` (200) at 4823 ms
+- 3. `ActionGetUserInformation` (200) at 4831 ms
+- 4. `DataActionGetMembers` (200) at 5106 ms
+- 5. `DataActionGetMembers` (200) at 5115 ms
+- 6. `DataActionGetMembers` (200) at 5117 ms
+- 7. `DataActionGetMembers` (200) at 5119 ms
+- 8. `DataActionGetMembers` (200) at 5121 ms
+- 9. `DataActionGetMembers` (200) at 5127 ms
+- 10. `DataActionGetMembers` (200) at 5129 ms
+- 11. `DataActionGetMembers` (200) at 5131 ms
+- 12. `DataActionGetMembers` (200) at 5133 ms
+- 13. `DataActionGetMembers` (200) at 5142 ms
+- 14. `DataActionGetMembers` (200) at 5144 ms
+- 15. `DataActionGetMembers` (200) at 5146 ms
+- 16. `DataActionGetMembers` (200) at 5148 ms
+- 17. `DataActionGet_LocalityDetails` (200) at 5150 ms
+- 18. `DataActionGetMembers` (200) at 5153 ms
+- 19. `DataActionGetMembers` (200) at 5155 ms
+- 20. `DataActionGetMembers` (200) at 5168 ms
+- 21. `DataActionGetMembers` (200) at 5170 ms
+- 22. `DataActionGetMembers` (200) at 5173 ms
+- 23. `DataActionGetMembers` (200) at 5175 ms
+- 24. `DataActionGetMembers` (200) at 5180 ms
+- 25. `ActionGetSignedImagesInBulk` (200) at 5197 ms
+- 26. `ActionGetSignedImagesInBulk` (200) at 5199 ms
+- 27. `DataActionGetMembers` (200) at 5211 ms
+- 28. `DataActionGetMembers` (200) at 5225 ms
+- 29. `DataActionGetMembers` (200) at 5227 ms
+- 30. `ActionGetSignedImagesInBulk` (200) at 5445 ms
+- 31. `ActionGetSignedImagesInBulk` (200) at 5455 ms
+- 32. `ActionGetSignedImagesInBulk` (200) at 5822 ms
+- 33. `ActionGetSignedImagesInBulk` (200) at 5901 ms
+- 34. `ActionGetSignedImagesInBulk` (200) at 6168 ms
+- 35. `ActionAppManager_AfterInitialize` (200) at 7510 ms
+- 36. `ActionSync_Info_GetMain` (200) at 7989 ms
+- 37. `ActionGetNumberUnreadMessages` (200) at 8305 ms
+- 38. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10345 ms
+- 39. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13155 ms
+- 41. `ActionGetSignedImagesInBulk` (200) at 51348 ms
+- plus 6 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

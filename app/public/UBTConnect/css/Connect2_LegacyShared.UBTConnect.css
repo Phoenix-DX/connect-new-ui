@@ -416,6 +416,7 @@ connect-login-screen:has(.unsupported-card--webview),
     position: absolute;
     right: -6px;
     top: -6px;
+    z-index: 100;
 }
 
 div:has(div > div.ubt-icon.header-filter-enabled) {
@@ -1972,20 +1973,21 @@ therefore the final listed last element on the list will not be considered the l
 
 
 /* every ancestor of the results list: column, can shrink */
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) {
+/* sheet content → search list: always fill the available height */
+
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list),
+.connect-share-sheet__content__search-list {
     display: flex;
     flex-direction: column;
+    flex: 1;
     min-height: 0;
 }
 
-/* ancestors of the marker also fill the available height */
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) {
-    flex: 1;
-}
-
-/* Div_SearchList takes the space left after the search input and avatar row */
-.connect-share-sheet__content__search-list {
-    flex: 1 1 auto;
+/* inside the search list → results: can shrink so the results can scroll */
+.connect-share-sheet__content__search-list *:has(.connect-share-sheet__results) {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* the results list is the scroll container */

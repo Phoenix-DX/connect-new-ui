@@ -1517,6 +1517,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/UBTConnect/ActionGet_OrbitHostSurveyNotificationParameters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Server action Get_OrbitHostSurveyNotificationParameters (UBTConnect) */
+        post: operations["UBTConnect.ActionGet_OrbitHostSurveyNotificationParameters"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect/ActionGet_OrbitNotificationParameters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Server action Get_OrbitNotificationParameters (UBTConnect) */
+        post: operations["UBTConnect.ActionGet_OrbitNotificationParameters"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/UBTConnect/ActionGet_ShareDetails": {
         parameters: {
             query?: never;
@@ -1596,6 +1630,23 @@ export interface paths {
         put?: never;
         /** Server action SendContactEmail (UBTConnect) */
         post: operations["UBTConnect.ActionSendContactEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect/ActionStoreAdaptiveCardResponses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Server action StoreAdaptiveCardResponses (UBTConnect) */
+        post: operations["UBTConnect.ActionStoreAdaptiveCardResponses"];
         delete?: never;
         options?: never;
         head?: never;
@@ -1857,23 +1908,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Data action DataActionFetchCount (UBTConnect, Home/FeedBlock_CommunityPopulation) */
-        post: operations["UBTConnect.FeedBlock_CommunityPopulation.DataActionFetchCount"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/UBTConnect/FeedBlock_Services/DataActionGetServices": {
         parameters: {
             query?: never;
@@ -2010,7 +2044,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/UBTConnect/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails": {
+    "/api/UBTConnect/HouseholdRelations_Block/DataActionGet_SibllingsRelations": {
         parameters: {
             query?: never;
             header?: never;
@@ -2019,8 +2053,8 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Data action DataActionGet_ParentHouseholdDetails (UBTConnect, Directory_Household/HouseholdRelations_Block) */
-        post: operations["UBTConnect.HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails"];
+        /** Data action DataActionGet_SibllingsRelations (UBTConnect, Directory_Household/HouseholdRelations_Block) */
+        post: operations["UBTConnect.HouseholdRelations_Block.DataActionGet_SibllingsRelations"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2157,23 +2191,6 @@ export interface paths {
         put?: never;
         /** Data action DataActionGetNotes (UBTConnect, Notes/Notes) */
         post: operations["UBTConnect.Notes.DataActionGetNotes"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/api/UBTConnect/NotificationDetails/DataActionFetchMessageInstance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Data action DataActionFetchMessageInstance (UBTConnect, App_Notifications/NotificationDetails) */
-        post: operations["UBTConnect.NotificationDetails.DataActionFetchMessageInstance"];
         delete?: never;
         options?: never;
         head?: never;
@@ -2480,6 +2497,23 @@ export interface paths {
         put?: never;
         /** Service action FetchData_CacheableMapEntities (UBTConnect) */
         post: operations["UBTConnect.ServiceAPIFetchData_CacheableMapEntities"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/UBTConnect/ServiceAPIGetAllVisibleBookmarksByType": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Service action GetAllVisibleBookmarksByType (UBTConnect) */
+        post: operations["UBTConnect.ServiceAPIGetAllVisibleBookmarksByType"];
         delete?: never;
         options?: never;
         head?: never;
@@ -6264,13 +6298,22 @@ export interface components {
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         Connect2_OrbitMobile_MUI__ScreenBlock_AdminLanding__DataActionGet_AdminEventsList__Input: {
+            EventFilter?: number;
             EventsSummary?: {
                 EmptyListItem?: components["schemas"]["Connect2_OrbitMobile_BL__GetAdminOrbitEvents_Screen"];
                 List: components["schemas"]["Connect2_OrbitMobile_BL__GetAdminOrbitEvents_Screen"][];
             };
             IsFetchingData?: boolean;
+            PopupMeasurements?: components["schemas"]["Connect2_OrbitMobile_MUI__IntegerIntegerIntegerRecord"];
+            Popup_FiltersOpened?: boolean;
+            Popup_SortByOpened?: boolean;
+            SortEventsASC?: boolean;
             UserFirstName?: string;
             UserMemberId?: string;
+            YearsSelection?: {
+                EmptyListItem?: components["schemas"]["Connect2_OrbitMobile_BL__YearItem"];
+                List: components["schemas"]["Connect2_OrbitMobile_BL__YearItem"][];
+            };
         } & {
             [key: string]: unknown;
         };
@@ -6278,6 +6321,10 @@ export interface components {
             Response: {
                 EmptyListItem?: components["schemas"]["Connect2_OrbitMobile_BL__GetAdminOrbitEvents_Screen"];
                 List: components["schemas"]["Connect2_OrbitMobile_BL__GetAdminOrbitEvents_Screen"][];
+            };
+            YearFilter: {
+                EmptyListItem?: components["schemas"]["Connect2_OrbitMobile_BL__YearItem"];
+                List: components["schemas"]["Connect2_OrbitMobile_BL__YearItem"][];
             };
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
@@ -7381,10 +7428,6 @@ export interface components {
             TimezoneName: string;
             TimezoneOffset: string;
         };
-        Connect_Geography_CS__UI_MembersStatistics: {
-            TotalNumberOfHouseholds: string;
-            TotalNumberOfMembers: string;
-        };
         Connect_Geography_CS__UI_StatisticsTexts: {
             Brothers: string;
             Distance: string;
@@ -7754,6 +7797,7 @@ export interface components {
             };
         };
         Leaflet__Marker: {
+            Bookmarked: boolean;
             ExtraData: string;
             Id: string;
             Latlng: {
@@ -8402,6 +8446,29 @@ export interface components {
         UBTConnect__ActionGetMilestoneScanFF__Output: {
             IsScanPerMilestone: boolean;
         };
+        UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Input: {
+            ListOfMessageParameters: {
+                EmptyListItem?: components["schemas"]["Comms_CS__MessageParameter"];
+                List: components["schemas"]["Comms_CS__MessageParameter"][];
+            };
+        };
+        UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Output: {
+            OrbitEndDate: string;
+            OrbitEventId: string;
+            OrbitEventName: string;
+            OrbitStartDate: string;
+        };
+        UBTConnect__ActionGet_OrbitNotificationParameters__Input: {
+            ListOfMessageParameters: {
+                EmptyListItem?: components["schemas"]["Comms_CS__MessageParameter"];
+                List: components["schemas"]["Comms_CS__MessageParameter"][];
+            };
+        };
+        UBTConnect__ActionGet_OrbitNotificationParameters__Output: {
+            OrbitEventId: string;
+            OrbitEventName: string;
+            OrbitMilestoneId: string;
+        };
         UBTConnect__ActionGet_ShareDetails__Input: {
             IncludeDeceased: boolean;
             ShareId: string;
@@ -8443,6 +8510,14 @@ export interface components {
         UBTConnect__ActionSendContactEmail__Output: {
             IsSuccess: boolean;
         };
+        UBTConnect__ActionStoreAdaptiveCardResponses__Input: {
+            ActionTaken: string;
+            AdaptiveCardPayloadJSON: string;
+            DeviceHardwareId: string;
+            FormDataJSON: string;
+            MessageInstanceId: string;
+        };
+        UBTConnect__ActionStoreAdaptiveCardResponses__Output: Record<string, never>;
         UBTConnect__ActionSync_Info_GetMain__Input: {
             isFromLogin: boolean;
         };
@@ -8502,6 +8577,7 @@ export interface components {
             Filter_BottomSheetId?: string;
             HasFiltersApplied?: boolean;
             HeaderIsScrolled?: boolean;
+            IsSearching?: boolean;
             MaxRecords?: string;
             PageNumber?: number;
             PageSize?: number;
@@ -8783,13 +8859,6 @@ export interface components {
             Notes: components["schemas"]["UBTConnectLibrary__Notes"];
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
-        UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input: {
-            [key: string]: unknown;
-        };
-        UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Output: {
-            UI_MembersStatistics: components["schemas"]["Connect_Geography_CS__UI_MembersStatistics"];
-        };
-        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__FeedBlock_Services__DataActionGetServices__Input: {
             ExternalAppPopUp_Id?: string;
             ForceAddService?: boolean;
@@ -8995,7 +9064,7 @@ export interface components {
             ParentHouseholdId: string;
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
-        UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Input: {
+        UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Input: {
             HouseholdId?: string;
             IsBookmarked?: boolean;
             MemberId?: string;
@@ -9005,7 +9074,7 @@ export interface components {
         } & {
             [key: string]: unknown;
         };
-        UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Output: {
+        UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Output: {
             Out_siblingRelations: {
                 EmptyListItem?: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"];
                 List: components["schemas"]["Connect_Household_CS__UI_HouseholdMember"][];
@@ -9184,20 +9253,6 @@ export interface components {
         };
         UBTConnect__Notes__DataActionGetNotes__Output: {
             Out_Notes: components["schemas"]["Connect_Notes_CS__UI_Notes"];
-        };
-        /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
-        UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Input: {
-            FeedItemId?: string;
-            HardwareId?: string;
-            IsLoading?: boolean;
-            MessageInstanceId?: string;
-            MessageTemplateId?: string;
-            ShowAssembleAction?: boolean;
-        } & {
-            [key: string]: unknown;
-        };
-        UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output: {
-            UI_NotificationDetail: components["schemas"]["Connect2_Notification_CS__MessageListItem"];
         };
         /** @description Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter. */
         UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input: {
@@ -9652,6 +9707,12 @@ export interface components {
                 List: components["schemas"]["Connect_Map_CS__Map_MarkersStructure"][];
             };
         };
+        UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Input: {
+            BookmarkCategoryId: string;
+        };
+        UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Output: {
+            BookmarkIds: components["schemas"]["UBTConnect__TextRecordList"];
+        };
         UBTConnect__ServiceAPIGet_UI_UpdateItems_UnreadCount_All__Input: Record<string, never>;
         UBTConnect__ServiceAPIGet_UI_UpdateItems_UnreadCount_All__Output: {
             UnreadCount: number;
@@ -9764,6 +9825,8 @@ export interface components {
             LocalityId: string;
             LocalityName: string;
         };
+        /** @description structure UBTConnect.TextRecordList (module not in the downloaded code) never captured */
+        UBTConnect__TextRecordList: unknown;
         UBTConnect__TextTextTextRecord: {
             Delimiter_Function: string;
             Delimiter_Parameter: string;
@@ -9833,6 +9896,7 @@ export interface components {
             IsHeaderScrolled?: boolean;
             IsShareOpen?: boolean;
             IsToggleSearch?: boolean;
+            PillsLoaded?: boolean;
             ShareableObjectId?: string;
             ShareableUpdateItem?: components["schemas"]["Connect_Updates_CS__UI_UpdateItem"];
             ShowMarkAll?: boolean;
@@ -9877,6 +9941,7 @@ export interface components {
             IsHeaderScrolled?: boolean;
             IsShareOpen?: boolean;
             IsToggleSearch?: boolean;
+            PillsLoaded?: boolean;
             ShareableObjectId?: string;
             ShareableUpdateItem?: components["schemas"]["Connect_Updates_CS__UI_UpdateItem"];
             ShowMarkAll?: boolean;
@@ -13134,6 +13199,76 @@ export interface operations {
             };
         };
     };
+    "UBTConnect.ActionGet_OrbitHostSurveyNotificationParameters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect.ActionGet_OrbitNotificationParameters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__ActionGet_OrbitNotificationParameters__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__ActionGet_OrbitNotificationParameters__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
     "UBTConnect.ActionGet_ShareDetails": {
         parameters: {
             query?: never;
@@ -13295,6 +13430,41 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBTConnect__ActionSendContactEmail__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect.ActionStoreAdaptiveCardResponses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__ActionStoreAdaptiveCardResponses__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__ActionStoreAdaptiveCardResponses__Output"];
                     };
                 };
             };
@@ -13834,41 +14004,6 @@ export interface operations {
             };
         };
     };
-    "UBTConnect.FeedBlock_CommunityPopulation.DataActionFetchCount": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
     "UBTConnect.FeedBlock_Services.DataActionGetServices": {
         parameters: {
             query?: never;
@@ -14149,7 +14284,7 @@ export interface operations {
             };
         };
     };
-    "UBTConnect.HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails": {
+    "UBTConnect.HouseholdRelations_Block.DataActionGet_SibllingsRelations": {
         parameters: {
             query?: never;
             header?: never;
@@ -14158,7 +14293,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Input"];
+                "application/json": components["schemas"]["UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Input"];
             };
         };
         responses: {
@@ -14169,7 +14304,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
-                        data: components["schemas"]["UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Output"];
+                        data: components["schemas"]["UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Output"];
                     };
                 };
             };
@@ -14450,41 +14585,6 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBTConnect__Notes__DataActionGetNotes__Output"];
-                    };
-                };
-            };
-            /** @description Error. */
-            default: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Error"];
-                };
-            };
-        };
-    };
-    "UBTConnect.NotificationDetails.DataActionFetchMessageInstance": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Input"];
-            };
-        };
-        responses: {
-            /** @description The action outputs. */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": {
-                        data: components["schemas"]["UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output"];
                     };
                 };
             };
@@ -15115,6 +15215,41 @@ export interface operations {
                 content: {
                     "application/json": {
                         data: components["schemas"]["UBTConnect__ServiceAPIFetchData_CacheableMapEntities__Output"];
+                    };
+                };
+            };
+            /** @description Error. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Error"];
+                };
+            };
+        };
+    };
+    "UBTConnect.ServiceAPIGetAllVisibleBookmarksByType": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Input"];
+            };
+        };
+        responses: {
+            /** @description The action outputs. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        data: components["schemas"]["UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Output"];
                     };
                 };
             };

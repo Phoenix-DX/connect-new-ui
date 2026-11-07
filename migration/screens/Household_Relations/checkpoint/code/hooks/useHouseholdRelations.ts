@@ -1,0 +1,274 @@
+import {
+  fetchHouseholdRelationNotes,
+  fetchMemberRelations,
+  fetchSiblingRelations,
+  type AwayParents,
+  type HouseholdMember,
+  type MemberRelations,
+  type MemberRelationsCallInputs,
+  type SiblingRelations,
+} from '@/api/household';
+import type { DataFetchStatus } from '@/components/ui/os/OSList';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { isViewHasChangedException } from '@/platform/feedback/flowErrors';
+import { useFlowState, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getUserInformation } from '@/platform/session/userInfo';
+import { getLocal_Bookmark_C2, hasAccessToRegion, longIntegerText } from '@/lib/ubtConnect/actions';
+import { BookmarkCategory } from '@/lib/ubtConnect/staticEntities';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
+import {
+  householdRelationsReducer,
+  initialHouseholdRelationsState,
+  isNotFetched,
+  memberHouseholdToOpen,
+  type HouseholdRelationsAction,
+} from './householdRelationsState';
+
+/** The flows of HouseholdRelations_Block: OnReady (GetUserInformation_Wrapper, then Action_Refresh_Get_MemberDetails
+    unless the view is restored from the cache with the same age visibility), OnAfterFetch_Get_MemberDetails (the event
+    RelationsDetails_Fetched, the refresh of Get_SibllingsRelations, Actions_DefineLoading), the bookmark read of
+    OnInitialize, OnClick_Bookmark, OnClick_Member and the handlers of the notes sheet. The page calls this hook and passes the result to HouseholdRelationsView.
+    @origin UBTConnect.Directory_Household.HouseholdRelations_Block */
+
+/** The inputs of the block. */
+export interface HouseholdRelationsInputs {
+  /** HouseholdId (Long Integer as text). */
+  householdId: string;
+  /** MemberId (Long Integer as text). */
+  memberId: string;
+}
+
+/** The events of the block, which the screen handles. */
+export interface HouseholdRelationsEvents {
+  /** Event RelationsDetails_Fetched(RelationsTitle): after Get_MemberDetails, with its FamilyName. */
+  onRelationsDetailsFetched?: (relationsTitle: string) => void;
+}
+
+/** What the view reads, and its handlers. */
+export interface HouseholdRelationsFlows {
+  /** Get_MemberDetails is not fetched yet and has no error: the skeleton of the member shows. */
+  isMemberDetailsLoading: boolean;
+  /** isLoading: the skeleton of the relations shows. */
+  isLoading: boolean;
+  /** Get_MemberDetails.MemberName. */
+  memberName: string;
+  /** Get_MemberDetails.Father. */
+  father: HouseholdMember;
+  /** Get_MemberDetails.Mother. */
+  mother: HouseholdMember;
+  /** Get_MemberDetails.FormerSpouses. */
+  formerSpouses: HouseholdMember[];
+  /** Get_MemberDetails.ParentHouseholdId: the "Relations" section shows only when it is not "". */
+  parentHouseholdId: string;
+  /** Get_MemberDetails.AwayParents. */
+  awayParents: AwayParents;
+  /** Get_MemberDetails.NoDisplaySiblings. */
+  noDisplaySiblings: HouseholdMember[];
+  /** The fetch status of Get_MemberDetails, the source of the previous-spouse list. */
+  formerSpousesFetchStatus: DataFetchStatus;
+  /** Get_SibllingsRelations.Out_siblingRelations. */
+  siblings: HouseholdMember[];
+  /** The fetch status of Get_SibllingsRelations. */
+  siblingsFetchStatus: DataFetchStatus;
+  /** FetchNotes.Notes. */
+  notes: Notes;
+  /** ShowNotesSheet. */
+  isNotesSheetOpen: boolean;
+  /** IsBookmarked: the Bookmark button is Primary when True, else Secondary. */
+  isBookmarked: boolean;
+  /** OnClick_Bookmark. */
+  onClickBookmark: () => void;
+  /** OnClick_Member of a relation (IsDeceased False at every caller). */
+  onClickMember: (member: HouseholdMember) => void;
+  /** Handler_AddNotes. */
+  onAddNotes: () => void;
+  /** Handler_OnNotesSheetClosed. */
+  onNotesSheetClosed: () => void;
+  /** Handler_OnNotesChanged. */
+  onNotesChanged: (notes: Notes) => void;
+  /** Handler_OnNoteDeleted. */
+  onNoteDeleted: (noteId: string) => void;
+}
+
+/** The state and the flows of the relations of a member. The state comes from useFlowState and the view cache keeps it.
+    Flow scope (item 8): Get_MemberDetails and Get_SibllingsRelations are data actions (R1, `flow.fetch`): after
+    the unmount their answer and their failure are dropped, so OnAfterFetch_Get_MemberDetails (the event
+    RelationsDetails_Fetched, the sibling refresh, Actions_DefineLoading) does not run (HouseholdRelations_Block.js:
+    1695-1740). After GetUserInformation_Wrapper (a module action), Action_Refresh_Get_MemberDetails is an own action
+    of the block (R3, ensureControllerAlive, `flow.own`; S1a Q2 (a), user 2026-10-28): OnReady stops there after the
+    unmount. HasAccessToRegion and the
+    upgrade popup are module actions: they run after leaving. The navigation from a left screen does not happen (R4,
+    useOsNavigate). useFlowState runs OnReady once, also in StrictMode. */
+export function useHouseholdRelations(
+  { householdId, memberId }: HouseholdRelationsInputs,
+  events: HouseholdRelationsEvents,
+): HouseholdRelationsFlows {
+  const restoredFromCache = useWasRestoredFromCache();
+  const navigate = useOsNavigate();
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
+    viewName: `Directory_Household.HouseholdRelations_Block#${householdId}#${memberId}`,
+    reducer: householdRelationsReducer,
+    initial: initialHouseholdRelationsState(restoredFromCache),
+    parameters: { householdId, memberId },
+    events,
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (_flow, restored) => onReady(restored),
+  });
+
+  /** The block variables that the data actions send, as they are now. */
+  const callInputs = (): MemberRelationsCallInputs => ({
+    HouseholdId: parameters.current.householdId,
+    MemberId: parameters.current.memberId,
+    UserAge_Visibility: latest.current.UserAge_Visibility,
+    isLoading: latest.current.isLoading,
+    ShowNotesSheet: latest.current.ShowNotesSheet,
+  });
+
+  /** The refresh of a data action (callServerDataSource, R1): Fetching when the call starts, the answer or Error (not
+      for a ViewHasChangedException) when it ends. A failure goes on to the caller. After the unmount `flow.fetch`
+      drops the answer and the failure (ControllerDisposedException), and `dispatch` does nothing. */
+  const refresh = async <T>(
+    call: () => Promise<T>,
+    actions: { fetching: HouseholdRelationsAction; failed: HouseholdRelationsAction },
+  ): Promise<T> => {
+    dispatch(actions.fetching);
+    try {
+      return await flow.fetch(call());
+    } catch (error) {
+      if (!isViewHasChangedException(error)) dispatch(actions.failed);
+      throw error;
+    }
+  };
+
+  /** The refresh of Get_SibllingsRelations. */
+  const refreshSiblings = async () => {
+    const details: SiblingRelations = await refresh(() => fetchSiblingRelations(callInputs()), {
+      fetching: { type: 'siblingsFetching' },
+      failed: { type: 'siblingsFailed' },
+    });
+    dispatch({ type: 'siblingsFetched', details });
+  };
+
+  /** The refresh of Get_MemberDetails, then OnAfterFetch_Get_MemberDetails: RelationsDetails_Fetched(FamilyName), the
+      refresh of Get_SibllingsRelations only when ParentHouseholdId is not NullIdentifier() as text ("0"; live TST
+      HouseholdRelations_Block.mvc.js:2093-2099), Actions_DefineLoading(False). */
+  const refreshMemberDetails = async () => {
+    const details: MemberRelations = await refresh(() => fetchMemberRelations(callInputs()), {
+      fetching: { type: 'memberDetailsFetching' },
+      failed: { type: 'memberDetailsFailed' },
+    });
+    dispatch({ type: 'memberDetailsFetched', details });
+    flow.events.onRelationsDetailsFetched?.(details.FamilyName);
+    if (details.ParentHouseholdId !== '0') await refreshSiblings();
+    dispatch({ type: 'loadingDefined', isRefresh: false });
+  };
+
+  /** Action_Refresh_Get_MemberDetails: Actions_DefineLoading(True), then the refresh of Get_MemberDetails. An own
+      action of the block (R3, ensureControllerAlive, HouseholdRelations_Block.js:2094): after the unmount the call
+      throws ControllerDisposedException, so the flow that calls it stops there and the handler ignores the exception. */
+  const actionRefreshGetMemberDetails = flow.own(async () => {
+    dispatch({ type: 'loadingDefined', isRefresh: true });
+    await refreshMemberDetails();
+  });
+
+  /** The bookmark read of ScreenEvent_OnInitialize (live HouseholdRelations_Block.mvc.js:2200-2275) for a view that is
+      not restored from the cache (:2226-2228) and has no data action fetched (:2231; always so for a new view):
+      GetLocal_Bookmark_C2(bookmarkCategory.member, MemberId) (:2237), a module action, then IsBookmarked =
+      GetLocal_Bookmark_C2.IsBookmarked (:2259-2260). The skeleton records of OnInitialize are in the initial state. */
+  const readBookmark = async () => {
+    const isBookmarked = await getLocal_Bookmark_C2(
+      BookmarkCategory.Member,
+      longIntegerText(parameters.current.memberId),
+    );
+    dispatch({ type: 'bookmarkRead', isBookmarked });
+  };
+
+  /** OnClick_Bookmark (live HouseholdRelations_Block.mvc.js:2167-2195), an own action of the block (R3,
+      ensureControllerAlive :2174): ToggleBookmarkItem_C2(LongIntegerToText(MemberId), bookmarkCategory.member,
+      IsBookmarked) (:2183), then IsBookmarked = not IsBookmarked (:2186) whatever the toggle answered (the toggle
+      shows its own messages and catches the non-system exceptions). No subscription check, no confirm, no refresh. */
+  const actionOnClickBookmark = flow.own(async () => {
+    if (!bookmarkServerActions) return;
+    await toggleBookmarkItem_C2(
+      longIntegerText(parameters.current.memberId),
+      BookmarkCategory.Member,
+      latest.current.IsBookmarked,
+      bookmarkServerActions,
+    );
+    dispatch({ type: 'bookmarkToggled' });
+  });
+
+  /** ScreenEvent_OnReady: GetUserInformation_Wrapper (after the app start's own step), then, unless the view is
+      restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails.
+      After the unmount the wrapper still answers; the variable write then does nothing and
+      Action_Refresh_Get_MemberDetails (R3) stops the flow (HouseholdRelations_Block.js:2136-2160). */
+  const onReady = async (restored: boolean) => {
+    if (!restored) await readBookmark();
+    const userInformation = await getUserInformation(); // a module action: not wrapped
+    // The wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
+    const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
+    if (restored && displayAge === latest.current.UserAge_Visibility) return;
+    dispatch({ type: 'userAgeVisibilitySet', displayAge });
+    await actionRefreshGetMemberDetails();
+  };
+
+  /** OnClick_Member: HasAccessToRegion (a module action), then HouseholdDetails(HouseholdId) (R4 in useOsNavigate) or
+      the upgrade popup (a module action: it runs after leaving). Every caller passes IsDeceased False. */
+  const onClickMember = (member: HouseholdMember) => {
+    const householdId = memberHouseholdToOpen(member, false);
+    if (householdId === null) return;
+    const open = async () => {
+      if (await hasAccessToRegion(member.LocalityName ?? '', member.CountryName ?? '')) {
+        navigate(`/${APP_ID}/HouseholdDetails`, { HouseholdId: householdId });
+      } else {
+        await showUpgradePopUp();
+      }
+    };
+    flow.run(open);
+  };
+
+  const memberDetails = state.Get_MemberDetails;
+  return {
+    isMemberDetailsLoading: isNotFetched(memberDetails.dataFetchStatus),
+    isLoading: state.isLoading,
+    memberName: memberDetails.MemberName,
+    father: memberDetails.Father,
+    mother: memberDetails.Mother,
+    formerSpouses: memberDetails.FormerSpouses,
+    parentHouseholdId: memberDetails.ParentHouseholdId,
+    awayParents: memberDetails.AwayParents,
+    noDisplaySiblings: memberDetails.NoDisplaySiblings,
+    formerSpousesFetchStatus: memberDetails.dataFetchStatus,
+    siblings: state.Get_SibllingsRelations.Out_siblingRelations,
+    siblingsFetchStatus: state.Get_SibllingsRelations.dataFetchStatus,
+    notes: state.FetchNotes.Notes,
+    isNotesSheetOpen: state.ShowNotesSheet,
+    isBookmarked: state.IsBookmarked,
+    onClickBookmark: () => {
+      flow.run(actionOnClickBookmark);
+    },
+    onClickMember,
+    // Handler_AddNotes: Refresh Query FetchNotes (R1), then ShowNotesSheet = True (HouseholdRelations_Block.mvc.js:1918).
+    onAddNotes: () => {
+      flow.run(async () => {
+        const notes = await refresh(() => fetchHouseholdRelationNotes(callInputs()), {
+          fetching: { type: 'notesFetching' },
+          failed: { type: 'notesFailed' },
+        });
+        dispatch({ type: 'notesFetched', notes });
+        dispatch({ type: 'notesSheetOpened' });
+      });
+    },
+    onNotesSheetClosed: () => {
+      dispatch({ type: 'notesSheetClosed' });
+    },
+    onNotesChanged: (notes) => {
+      dispatch({ type: 'notesChanged', notes });
+    },
+    onNoteDeleted: (noteId) => {
+      dispatch({ type: 'noteDeleted', noteId });
+    },
+  };
+}

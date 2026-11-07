@@ -21,13 +21,15 @@ const details: MemberRelations = {
   Mother: member({ Id: '5102', HouseholdId: '5200', Title: 'Elena Soto' }),
   FormerSpouses: [],
   ParentHouseholdId: '5200',
+  AwayParents: { Title: '', HouseholdId: '0', LocalityName: '', CountryName: '' },
+  NoDisplaySiblings: [],
 };
 
 const withStatus = (member: DataFetchStatus, siblings: DataFetchStatus): HouseholdRelationsState => ({
   ...INITIAL_HOUSEHOLD_RELATIONS_STATE,
   Get_MemberDetails: { ...INITIAL_HOUSEHOLD_RELATIONS_STATE.Get_MemberDetails, dataFetchStatus: member },
-  Get_ParentHouseholdDetails: {
-    ...INITIAL_HOUSEHOLD_RELATIONS_STATE.Get_ParentHouseholdDetails,
+  Get_SibllingsRelations: {
+    ...INITIAL_HOUSEHOLD_RELATIONS_STATE.Get_SibllingsRelations,
     dataFetchStatus: siblings,
   },
 });
@@ -37,14 +39,14 @@ describe('householdRelationsState', () => {
     const state = initialHouseholdRelationsState(false);
     expect(state.Get_MemberDetails.Father).toEqual(member({ Title: 'Loading', Id: '-1', HouseholdId: '-1' }));
     expect(state.Get_MemberDetails.Mother).toEqual(state.Get_MemberDetails.Father);
-    expect(state.Get_ParentHouseholdDetails.Out_siblingRelations).toEqual([MEMBER_DEFAULTS, MEMBER_DEFAULTS]);
+    expect(state.Get_SibllingsRelations.Out_siblingRelations).toEqual([MEMBER_DEFAULTS, MEMBER_DEFAULTS]);
     expect(state.isLoading).toBe(true);
     expect(state.Get_MemberDetails.dataFetchStatus).toBe(DataFetchStatus.Fetching);
   });
 
   it('keeps the defaults for a restored view without a saved record', () => {
     expect(initialHouseholdRelationsState(true)).toBe(INITIAL_HOUSEHOLD_RELATIONS_STATE);
-    expect(INITIAL_HOUSEHOLD_RELATIONS_STATE.Get_ParentHouseholdDetails.Out_siblingRelations).toEqual([]);
+    expect(INITIAL_HOUSEHOLD_RELATIONS_STATE.Get_SibllingsRelations.Out_siblingRelations).toEqual([]);
   });
 
   it('Actions_DefineLoading: a refresh sets isLoading; else isLoading while neither data action ended', () => {
@@ -67,10 +69,10 @@ describe('householdRelationsState', () => {
     state = householdRelationsReducer(state, { type: 'memberDetailsFetched', details });
     expect(state.Get_MemberDetails).toEqual({ ...details, dataFetchStatus: DataFetchStatus.Fetched });
     state = householdRelationsReducer(state, { type: 'siblingsFetching' });
-    expect(state.Get_ParentHouseholdDetails.dataFetchStatus).toBe(DataFetchStatus.Fetching);
+    expect(state.Get_SibllingsRelations.dataFetchStatus).toBe(DataFetchStatus.Fetching);
     const siblings = [member({ Id: '5103', Title: 'Lucía' })];
     state = householdRelationsReducer(state, { type: 'siblingsFetched', details: { Out_siblingRelations: siblings } });
-    expect(state.Get_ParentHouseholdDetails).toEqual({
+    expect(state.Get_SibllingsRelations).toEqual({
       Out_siblingRelations: siblings,
       dataFetchStatus: DataFetchStatus.Fetched,
     });
@@ -82,8 +84,8 @@ describe('householdRelationsState', () => {
       type: 'siblingsFailed',
     });
     expect(failed.Get_MemberDetails).toEqual({ ...start.Get_MemberDetails, dataFetchStatus: DataFetchStatus.Error });
-    expect(failed.Get_ParentHouseholdDetails).toEqual({
-      ...start.Get_ParentHouseholdDetails,
+    expect(failed.Get_SibllingsRelations).toEqual({
+      ...start.Get_SibllingsRelations,
       dataFetchStatus: DataFetchStatus.Error,
     });
   });

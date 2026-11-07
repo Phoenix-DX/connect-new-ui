@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/MessageList`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 42px; --viewport-height: 844px;`
+- body class: `phone portrait connect-theme osx is-ltr`; body style: `--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js`
 
@@ -526,15 +526,15 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3242 ms
-- 2. `DataActionGetMessages` (200) at 4309 ms
-- 3. `ActionGetSignedImagesInBulk` (200) at 5262 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 6235 ms
-- 5. `ActionSync_Info_GetMain` (200) at 6684 ms
-- 6. `ActionGetUserInformation` (200) at 7036 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 7294 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9456 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11902 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2728 ms
+- 2. `DataActionGetMessages` (200) at 4083 ms
+- 3. `ActionGetSignedImagesInBulk` (200) at 4406 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 5304 ms
+- 5. `ActionSync_Info_GetMain` (200) at 5783 ms
+- 6. `ActionGetUserInformation` (200) at 6133 ms
+- 7. `ActionGetNumberUnreadMessages` (200) at 6402 ms
+- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8435 ms
+- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10769 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

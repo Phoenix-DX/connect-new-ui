@@ -1,4 +1,4 @@
-define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnect.controller", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Notifications.Notifications_Action.mvc$model", "UBTConnect.App_Notifications.Notifications_Header.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$model", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$model", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$model", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectController, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Notifications_Notifications_Action_mvcModel, UBTConnect_App_Notifications_Notifications_Header_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel, NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel) {
+define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "UBTConnect.controller", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.Input.mvc$model", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect.App_Notifications.Notifications_Action.mvc$model", "UBTConnect.App_Notifications.Notifications_Header.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$model", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$model", "UBTConnect.App_Common.BottomBarMenu.mvc$model", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$model", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$model", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$model", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function(OutSystems, UBTConnectModel, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, UBTConnectController, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_Input_mvcModel, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_App_Notifications_Notifications_Action_mvcModel, UBTConnect_App_Notifications_Notifications_Header_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel, UBTConnect_App_Common_BottomBarMenu_mvcModel, UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel, UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel) {
     var OS = OutSystems.Internal;
 
     var GetDateRangesDataActRec = (function(_super) {
@@ -33,9 +33,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
                 this.attr("UI_NotificationItemList", "uI_NotificationItemListOut", "UI_NotificationItemList", true, false, OS.DataTypes.DataTypes.RecordList, function() {
                     return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList());
                 }, true, UBTConnectModel.MessageListItemList),
-                this.attr("HasUnreadMessages", "hasUnreadMessagesOut", "HasUnreadMessages", true, false, OS.DataTypes.DataTypes.Boolean, function() {
-                    return false;
-                }, true),
                 this.attr("UnreadNotificationsCount", "unreadNotificationsCountOut", "UnreadNotificationsCount", true, false, OS.DataTypes.DataTypes.LongInteger, function() {
                     return OS.DataTypes.LongInteger.defaultValue;
                 }, true)
@@ -146,6 +143,12 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
                 this.attr("Screen_NotificationItemList", "screen_NotificationItemListVar", "Screen_NotificationItemList", true, false, OS.DataTypes.DataTypes.RecordList, function() {
                     return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.MessageListItemList());
                 }, false, UBTConnectModel.MessageListItemList),
+                this.attr("StartIndex", "startIndexVar", "StartIndex", true, false, OS.DataTypes.DataTypes.Integer, function() {
+                    return 0;
+                }, false),
+                this.attr("PageNumber", "pageNumberVar", "PageNumber", true, false, OS.DataTypes.DataTypes.Integer, function() {
+                    return 1;
+                }, false),
                 this.attr("GetDateRanges", "getDateRangesDataAct", "getDateRangesDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetDateRangesDataActRec());
                 }, true, GetDateRangesDataActRec),
@@ -187,7 +190,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
             configurable: true,
             get: function() {
                 if ((Model._hasValidationWidgetsValue === undefined)) {
-                    Model._hasValidationWidgetsValue = ((((((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Action_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Header_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvcModel.hasValidationWidgets) || NavigationHandler_ScrollAnchors_ScrollAnchor_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel.hasValidationWidgets);
+                    Model._hasValidationWidgetsValue = (((((((((((((UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvcModel.hasValidationWidgets || UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Input_mvcModel.hasValidationWidgets) || UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_Icon_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Action_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_Header_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_NoItemsFound_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_NotificationsListBreakpoints_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_BottomBarMenu_mvcModel.hasValidationWidgets) || UBTConnect_App_Common_CommonUI_InsideLayout_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_SortSheet_mvcModel.hasValidationWidgets) || UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvcModel.hasValidationWidgets);
                 }
 
                 return Model._hasValidationWidgetsValue;
@@ -199,7 +202,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$model", ["OutSystems/Clie
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "App_Notifications.Notifications");
 });
-define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications.mvc$model", "UBTConnect.App_Notifications.Notifications.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Notifications.Notifications_Action.mvc$view", "UBTConnect.App_Notifications.Notifications_Header.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$view", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$view", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem.mvc$view", "NavigationHandler.ScrollAnchors.ScrollAnchor.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_App_Notifications_Notifications_mvc_model, UBTConnect_App_Notifications_Notifications_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view) {
+define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "react", "OutSystems/ReactView/Main", "UBTConnect.App_Notifications.Notifications.mvc$model", "UBTConnect.App_Notifications.Notifications.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.Input.mvc$view", "UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect.App_Notifications.Notifications_Action.mvc$view", "UBTConnect.App_Notifications.Notifications_Header.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc$view", "UBTConnect.App_Notifications.NotificationsListBreakpoints.mvc$view", "UBTConnect.App_Common.BottomBarMenu.mvc$view", "UBTConnect.App_Common.CommonUI_InsideLayout.mvc$view", "UBTConnect.App_Notifications.Notifications_SortSheet.mvc$view", "UBTConnect.App_Notifications.Notifications_MoreActionSheet.mvc$view", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, React, OSView, UBTConnect_App_Notifications_Notifications_mvc_model, UBTConnect_App_Notifications_Notifications_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, OSWidgets, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -232,7 +235,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
             return ["scripts/UBTConnectLibrary.ScrollAnimations.js"];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view];
+            return [UBTConnectLibrary_Layouts_Layout_MainPages_Upgrade_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_Input_mvc_view, UBTConnectLibrary_OutSystemsUIOverrides_Badge_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_App_Notifications_Notifications_Action_mvc_view, UBTConnect_App_Notifications_Notifications_Header_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnect_App_Notifications_Notifications_NoItemsFound_mvc_view, UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, UBTConnect_App_Common_BottomBarMenu_mvc_view, UBTConnect_App_Common_CommonUI_InsideLayout_mvc_view, UBTConnect_App_Notifications_Notifications_SortSheet_mvc_view, UBTConnect_App_Notifications_Notifications_MoreActionSheet_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function() {
@@ -734,7 +737,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                         }))];
                     }),
                     content: new PlaceholderContent(function() {
-                        return [$if(((!(model.variables.isLoadingVar) && model.variables.fetchNotificationsDataAct.isDataFetchedAttr) && model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.isEmpty), false, this, function() {
+                        return [$if(((!(model.variables.isLoadingVar) && model.variables.fetchNotificationsDataAct.isDataFetchedAttr) && model.variables.screen_NotificationItemListVar.isEmpty), false, this, function() {
                             return [$if(((model.variables.selectedHistorySearchVar) !== ("")), false, this, function() {
                                 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
                                     inputs: {
@@ -840,9 +843,10 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                         }, function() {
                             return [React.createElement(UBTConnect_App_Notifications_NotificationsListBreakpoints_mvc_view, {
                                 inputs: {
+                                    CurrentBreakpoint: model.variables.currentBreakpointVar,
+                                    TopElementId: idService.getId("Notifications_ListHeader"),
                                     Breakpoints: model.variables.breakpointsVar,
-                                    UI_NotificationItemList: model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut,
-                                    _uI_NotificationItemListInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr),
+                                    UI_NotificationItemList: model.variables.screen_NotificationItemListVar,
                                     IsLoading: model.variables.isLoadingVar
                                 },
                                 events: {
@@ -863,7 +867,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
 
                                         ;
                                     },
-                                    notificationDetail$Action: function(messageInstanceIdIn, isReadIn) {
+                                    notificationDetail$Action: function(messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn) {
                                         return Promise.resolve().then(function() {
                                             var eventHandlerContext = callContext.clone();
                                             return OS.Flow.tryFinally(function() {
@@ -871,11 +875,25 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                                 controller.pushDebuggerContext(eventHandlerContext);
 
                                                 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints NotificationDetail");
-                                                return controller.handler_NotificationDetail$Action(messageInstanceIdIn, isReadIn, controller.callContext(eventHandlerContext));
+                                                return controller.handler_NotificationDetail$Action(messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, controller.callContext(eventHandlerContext));
                                             }, function() {
                                                 controller.popDebuggerContext(eventHandlerContext);
                                             });
                                         });;
+                                    },
+                                    onLoadMore$Action: function() {
+                                        var eventHandlerContext = callContext.clone();
+                                        return OS.Flow.tryFinally(function() {
+                                            var varBag = {};
+                                            controller.pushDebuggerContext(eventHandlerContext);
+
+                                            OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "App_Notifications/NotificationsListBreakpoints OnLoadMore");
+                                            controller.notificationsListBreakpoints_OnLoadMore$Action(controller.callContext(eventHandlerContext));
+                                        }, function() {
+                                            controller.popDebuggerContext(eventHandlerContext);
+                                        });
+
+                                        ;
                                     }
                                 },
                                 _validationProps: {
@@ -888,132 +906,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                                 },
                                 _widgetRecordProvider: widgetsRecordProvider,
                                 _dependencies: []
-                            }), React.createElement(OSWidgets.Container, {
-                                align: /*Default*/ 0,
-                                animate: false,
-                                visible: false,
-                                _idProps: {
-                                    service: idService,
-                                    uuid: "18"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider
-                            }, React.createElement(OSWidgets.List, {
-                                animateItems: false,
-                                extendedProperties: {
-                                    "disable-virtualization": "False"
-                                },
-                                gridProperties: {
-                                    classes: "OSFillParent"
-                                },
-                                mode: /*Default*/ 0,
-                                source: model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut,
-                                style: "list list-group background-neutral-0 updates-list",
-                                tag: "div",
-                                _idProps: {
-                                    service: idService,
-                                    name: "List_Notifications"
-                                },
-                                _widgetRecordProvider: widgetsRecordProvider,
-                                source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr),
-                                placeholders: {
-                                    content: new IteratorPlaceholderContent(function(idService, callContext) {
-                                        return [React.createElement(UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, {
-                                            inputs: {
-                                                In_IsLoading: model.variables.isLoadingVar
-                                            },
-                                            events: {
-                                                _handleError: function(ex) {
-                                                    controller.handleError(ex);
-                                                }
-                                            },
-                                            _validationProps: {
-                                                validationService: validationService
-                                            },
-                                            _idProps: {
-                                                service: idService,
-                                                uuid: "20",
-                                                alias: "16"
-                                            },
-                                            _widgetRecordProvider: widgetsRecordProvider,
-                                            placeholders: {
-                                                placeholder_LoadingSection: new PlaceholderContent(function() {
-                                                    return [React.createElement(OSWidgets.Container, {
-                                                        align: /*Default*/ 0,
-                                                        animate: false,
-                                                        extendedProperties: {
-                                                            "data-plus-date": OS.BuiltinFunctions.dateTimeToText(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).dateTimeCreatedAttr)
-                                                        },
-                                                        style: "updates-list__list-item",
-                                                        visible: true,
-                                                        _idProps: {
-                                                            service: idService,
-                                                            uuid: "21"
-                                                        },
-                                                        _widgetRecordProvider: widgetsRecordProvider
-                                                    }, React.createElement(UBTConnectLibrary_ConnectCorePatterns_Notification_ListItem_mvc_view, {
-                                                        inputs: {
-                                                            In_AvatarImage_Left: model.getCachedValue(idService.getId("NotificationItem.In_AvatarImage_Left"), function() {
-                                                                return function() {
-                                                                    var rec = new UBTConnectLibraryModel.AvatarImageRec();
-                                                                    rec.uRLAttr = model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).profileIconURLAttr;
-                                                                    return rec;
-                                                                }();
-                                                            }, function() {
-                                                                return model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).profileIconURLAttr;
-                                                            }),
-                                                            _in_AvatarImage_LeftInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr),
-                                                            In_IsRead: model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).isReadAttr,
-                                                            _in_IsReadInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr),
-                                                            In_IsDoubleAvatar: false,
-                                                            In_Description: model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).titleAttr,
-                                                            _in_DescriptionInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr),
-                                                            In_NotificationDate: model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).dateTimeCreatedAttr,
-                                                            _in_NotificationDateInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr)
-                                                        },
-                                                        events: {
-                                                            _handleError: function(ex) {
-                                                                controller.handleError(ex);
-                                                            }
-                                                        },
-                                                        _validationProps: {
-                                                            validationService: validationService
-                                                        },
-                                                        _idProps: {
-                                                            service: idService,
-                                                            name: "NotificationItem",
-                                                            alias: "17"
-                                                        },
-                                                        _widgetRecordProvider: widgetsRecordProvider,
-                                                        _dependencies: []
-                                                    }), React.createElement(NavigationHandler_ScrollAnchors_ScrollAnchor_mvc_view, {
-                                                        inputs: {
-                                                            Id: OS.BuiltinFunctions.longIntegerToText(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).idAttr),
-                                                            _idInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr)
-                                                        },
-                                                        events: {
-                                                            _handleError: function(ex) {
-                                                                controller.handleError(ex);
-                                                            }
-                                                        },
-                                                        _validationProps: {
-                                                            validationService: validationService
-                                                        },
-                                                        _idProps: {
-                                                            service: idService,
-                                                            uuid: "23",
-                                                            alias: "18"
-                                                        },
-                                                        _widgetRecordProvider: widgetsRecordProvider,
-                                                        _dependencies: []
-                                                    }))];
-                                                })
-                                            },
-                                            _dependencies: [asPrimitiveValue(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).idAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).titleAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).isReadAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).profileIconURLAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.getCurrent(callContext.iterationContext).dateTimeCreatedAttr)]
-                                        })];
-                                    }, callContext, idService, "1")
-                                },
-                                _dependencies: [asPrimitiveValue(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.isLoadingVar)]
-                            }))];
+                            })];
                         })];
                     }),
                     bottom: new PlaceholderContent(function() {
@@ -1033,8 +926,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             },
                             _idProps: {
                                 service: idService,
-                                uuid: "24",
-                                alias: "19"
+                                uuid: "18",
+                                alias: "16"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
@@ -1053,15 +946,15 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                             },
                             _idProps: {
                                 service: idService,
-                                uuid: "25",
-                                alias: "20"
+                                uuid: "19",
+                                alias: "17"
                             },
                             _widgetRecordProvider: widgetsRecordProvider,
                             _dependencies: []
                         })];
                     })
                 },
-                _dependencies: [asPrimitiveValue(model.variables.breakpointsVar), asPrimitiveValue(model.variables.selectedHistorySearchVar), asPrimitiveValue(model.variables.fetchNotificationsDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut), asPrimitiveValue(model.variables.fetchNotificationsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.currentBreakpointVar.badgeCountAttr), asPrimitiveValue(model.variables.currentBreakpointVar.sectionNameAttr), asPrimitiveValue(model.variables.bottomSheetId_ShowSubscriptionVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.readCountVar), asPrimitiveValue(model.variables.currentSearchStringVar), asPrimitiveValue(model.variables.isHeaderScrolledVar), asPrimitiveValue(model.variables.isToggleSearchVar)]
+                _dependencies: [asPrimitiveValue(model.variables.breakpointsVar), asPrimitiveValue(model.variables.selectedHistorySearchVar), asPrimitiveValue(model.variables.screen_NotificationItemListVar), asPrimitiveValue(model.variables.fetchNotificationsDataAct.isDataFetchedAttr), asPrimitiveValue(model.variables.isLoadingVar), asPrimitiveValue(model.variables.currentBreakpointVar), asPrimitiveValue(model.variables.bottomSheetId_ShowSubscriptionVar), asPrimitiveValue(model.variables.filter_BottomSheetIdVar), asPrimitiveValue(model.variables.hasFiltersAppliedVar), asPrimitiveValue(model.variables.readCountVar), asPrimitiveValue(model.variables.currentSearchStringVar), asPrimitiveValue(model.variables.isHeaderScrolledVar), asPrimitiveValue(model.variables.isToggleSearchVar)]
             }), $if(false, false, this, function() {
                 return [];
             }, function() {
@@ -1119,8 +1012,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     },
                     _idProps: {
                         service: idService,
-                        uuid: "26",
-                        alias: "21"
+                        uuid: "20",
+                        alias: "18"
                     },
                     _widgetRecordProvider: widgetsRecordProvider,
                     _dependencies: []
@@ -1210,8 +1103,8 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
                     },
                     _idProps: {
                         service: idService,
-                        uuid: "27",
-                        alias: "22"
+                        uuid: "21",
+                        alias: "19"
                     },
                     _widgetRecordProvider: widgetsRecordProvider,
                     _dependencies: []
@@ -1223,7 +1116,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$view", ["OutSystems/Clien
 
     return View;
 });
-define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications.mvc$debugger", "UBTConnect.App_Notifications.controller", "UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnectLibrary.model$AvatarImageRec", "UBTConnectLibrary.model$AvatarImageFallbackoptionsRec", "UBTConnect.controller$ScrollTop", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$App_Notifications_GetBreakpoints", "UBTConnect.controller$Directory_Updates_GetListBreakpoint"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_mvc_Debugger, _flow_UBTConnect_App_NotificationsController, UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnReady_SetStickyHeaderHeightJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollThreshold_SetupScrollThresholdsJS, UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollListener_SetupScrollEndListenerJS) {
+define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Updates_CS.model", "Connect2_Notification_CS.model", "UBTConnectLibrary.model", "NavigationHandler.controller", "OutSystemsUI_2_23.model", "OutSystemsUI_2_23.controller", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.App_Notifications.Notifications.mvc$debugger", "UBTConnect.App_Notifications.controller", "UBTConnect.App_Notifications.Notifications.mvc$controller.DestroyEventListener.DestroyEventListenerJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.FocusCursorJS", "UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS", "Connect_Updates_CS.model$Filter_UpdatesRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Updates_CS", "UBTConnect.model$UI_Updates_DateRangeList", "UBTConnect.model$UI_UpdateItem_BreakpointList", "UBTConnect.model$UI_UpdateItem_BreakpointRec", "Connect2_Notification_CS.model$MessageListItemRec", "UBTConnect.referencesHealth$Connect2_Notification_CS", "UBTConnect.model$MessageListItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$SearchInputRec", "UBTConnect.model$UI_Updates_DateRangeRec", "UBTConnect.controller$ScrollTop", "NavigationHandler.controller$GetPreloadObject", "UBTConnect.referencesHealth$NavigationHandler", "NavigationHandler.controller$AssignFromObject", "UBTConnect.model$EntitiesCarousel_SwippedItemList", "OutSystemsUI_2_23.model$ErrorMessageRec", "UBTConnect.referencesHealth$OutSystemsUI_2_23", "OutSystemsUI_2_23.controller$BottomSheetOpen", "UBTConnect.controller$GetSkeletonList_UI_Notification", "UBTConnect.model$Updates_DateRangesList", "UBTConnect.controller$App_Notifications_AugmentDateRanges", "UBTConnect.controller$Directory_Updates_RefreshBottomBarCount", "UBTConnect.controller$App_Notifications_GetBreakpoints"], function(OutSystems, UBTConnectModel, UBTConnectController, Connect_Updates_CSModel, Connect2_Notification_CSModel, UBTConnectLibraryModel, NavigationHandlerController, OutSystemsUI_2_23Model, OutSystemsUI_2_23Controller, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_App_Notifications_Notifications_mvc_Debugger, _flow_UBTConnect_App_NotificationsController, UBTConnect_App_Notifications_Notifications_mvc_controller_DestroyEventListener_DestroyEventListenerJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_FocusCursorJS, UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1231,24 +1124,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
         function Controller() {
             _super.apply(this, arguments);
             var controller = this.controller;
-            this.clientActionProxies = {
-                updateCurrentBreakpoint$Action: function(breakpointIn) {
-                    breakpointIn = (breakpointIn === undefined) ? "" : breakpointIn;
-                    return controller.executeActionInsideJSNode(controller._updateCurrentBreakpoint$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(breakpointIn, OS.DataTypes.DataTypes.Text)), controller.callContext(), function(actionResults) {
-                        return {};
-                    }, function() {
-                        return;
-                    }, "UpdateCurrentBreakpoint");
-                },
-                handler_ScrollEnding_UpdateBreakpoint$Action: function(in_DateIn) {
-                    in_DateIn = (in_DateIn === undefined) ? "" : in_DateIn;
-                    return controller.executeActionInsideJSNode(controller._handler_ScrollEnding_UpdateBreakpoint$Action.bind(controller, OS.DataConversion.JSNodeParamConverter.from(in_DateIn, OS.DataTypes.DataTypes.Text)), controller.callContext(), function(actionResults) {
-                        return {};
-                    }, function() {
-                        return;
-                    }, "Handler_ScrollEnding_UpdateBreakpoint");
-                }
-            };
+            this.clientActionProxies = {};
             this.dataFetchDependenciesOriginal = {
                 getDateRanges$DataActRefresh: -1,
                 fetchNotifications$DataActRefresh: -1
@@ -1260,15 +1136,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             this.shouldSendClientVarsToDataSources = false;
         }
         // Server Actions
-        Controller.prototype.action_UI_UpdateItem_MarkAllAsRead$ServerAction = function(filter_UpdatesIn, callContext) {
-            var controller = this.controller;
-            var inputs = {
-                Filter_Updates: OS.DataConversion.ServerDataConverter.to(filter_UpdatesIn, OS.DataTypes.DataTypes.Record)
-            };
-            return controller.callServerAction("Action_UI_UpdateItem_MarkAllAsRead", "screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIAction_UI_UpdateItem_MarkAllAsRead", "+WdIU5_kw9pLQimxUkxuew", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
-                OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
-            }, false).then(function(outputs) {});
-        };
         Controller.prototype.markAllAsReadNotifications$ServerAction = function(isPublicIn, isPrivateIn, deviceHardwareIdIn, searchTermIn, callContext) {
             var controller = this.controller;
             var inputs = {
@@ -1299,7 +1166,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             var inputs = {
                 Messages: OS.DataConversion.ServerDataConverter.to(messagesIn, OS.DataTypes.DataTypes.RecordList)
             };
-            return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications", "SvVK+IMeHLKks+MyVbNeRw", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+            return controller.callServerAction("Delete_Notifications", "screenservices/UBTConnect/App_Notifications/Notifications/ServiceAPIDelete_Notifications", "5HZYkx9oz+KHD3sFPF0FrQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
                 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
             }, false).then(function(outputs) {});
         };
@@ -1308,7 +1175,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             var inputs = {
                 MessageInstanceId: OS.DataConversion.ServerDataConverter.to(messageInstanceIdIn, OS.DataTypes.DataTypes.LongInteger)
             };
-            return controller.callServerAction("MarkAsRead", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead", "3QibMYQOoD+ru5If14QffQ", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+            return controller.callServerAction("MarkAsRead", "screenservices/UBTConnect/App_Notifications/Notifications/ActionMarkAsRead", "fUdp7U1pQf_a844IH3Nwug", inputs, controller.callContext(callContext), OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
                 OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
             }, false).then(function(outputs) {});
         };
@@ -1350,9 +1217,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 var varBag = {};
                 controller.pushDebuggerContext(callContext);
 
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.MIT7zgZzJ0urDbwBA22R5w:iDSdxe_I8kbuXeFtPlf+dA", "UBTConnect", "FetchNotifications", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MIT7zgZzJ0urDbwBA22R5w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/DataActions.MIT7zgZzJ0urDbwBA22R5w:9kg81CSdqMdryT_BtcaGPQ", "UBTConnect", "FetchNotifications", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "App_Notifications/Notifications/FetchNotifications");
-                return controller.callDataAction("DataActionFetchNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications", "5f64GmY73D9nis0X1mHptw", function(b) {
+                return controller.callDataAction("DataActionFetchNotifications", "screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications", "i_PCWjncUDzvBuSXmFtF8g", function(b) {
                     model.variables.fetchNotificationsDataAct.dataFetchStatusAttr = b;
                 }, function(json) {
                     model.variables.fetchNotificationsDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.fetchNotificationsDataAct.constructor));
@@ -1386,7 +1253,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             vars.value.textInLocal = textIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.M_+VDP1teUWZD7RK8Zgwpg:jLoGsw+m3Mcg8DMaFxWW1w", "UBTConnect", "Handler_FilterSearchText", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:M_+VDP1teUWZD7RK8Zgwpg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.M_+VDP1teUWZD7RK8Zgwpg:M2vWI2c7SHKuvihJZmhCgQ", "UBTConnect", "Handler_FilterSearchText", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KamIlQ2JrUSmPK7_xzsDlw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_d01obfHqketUAqs2VtDSQ", callContext.id);
@@ -1409,10 +1276,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:6UAQB+ep_kWhy6DJM6Qzmg", callContext.id);
                         // Execute Action: ScrollTop
                         UBTConnectController.default.scrollTop$Action(".active-screen", "instant", callContext);
-                        // isLoading
-                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Iht94hw_cEmZcbVldHIwXQ", callContext.id);
-                        // isLoading = True
-                        model.variables.isLoadingVar = true;
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ZqWyBWYD1E2KU5B6BdlZOQ", callContext.id);
+                        // Execute Action: ResetNotifications
+                        controller._resetNotifications$Action(callContext);
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:dTZP+U0Gm0eBBEVtaHJmfw", callContext.id);
                         // Execute Action: RefreshNotifications
                         return controller._refreshNotifications$Action(callContext).then(function() {
@@ -1547,60 +1413,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return false;
             }
         }]);
-        Controller.prototype._handler_MarkAsRead$Action = function(updateItemIdIn, currentPositionIn, callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("Handler_MarkAsRead");
-            callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MarkAsRead$vars"))());
-            vars.value.updateItemIdInLocal = updateItemIdIn;
-            vars.value.currentPositionInLocal = currentPositionIn;
-            varBag.callContext = callContext;
-            varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jlReIww23UehslP4FBdVrw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.jlReIww23UehslP4FBdVrw:qscl2ge3tdzxRbD_8ek4wQ", "UBTConnect", "Handler_MarkAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pR6P4clKokmGCKZZOM7tlg", callContext.id);
-            return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:thFOqQCj5EWhcUBrT9y16A", callContext.id);
-                // Execute Action: RefreshUpdatesAndFlags
-                controller._refreshUpdatesAndFlags$Action(vars.value.currentPositionInLocal, callContext);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9NYFOmFDN0W4Z10k23zbZw", callContext.id);
-                // Execute Action: Directory_Updates_RefreshBottomBarCount
-                model.flush();
-                return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:zt9D_OO0W0q8Om9xiH0wEQ", callContext.id);
-                });
-            }).then(function(res) {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:jlReIww23UehslP4FBdVrw", callContext.id);
-                return res;
-
-            }).catch(function(ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:jlReIww23UehslP4FBdVrw", callContext.id);
-                throw ex;
-
-            });
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MarkAsRead$vars", [{
-            name: "UpdateItemId",
-            attrName: "updateItemIdInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.LongInteger,
-            defaultValue: function() {
-                return OS.DataTypes.LongInteger.defaultValue;
-            }
-        }, {
-            name: "CurrentPosition",
-            attrName: "currentPositionInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Integer,
-            defaultValue: function() {
-                return 0;
-            }
-        }]);
         Controller.prototype._handler_OnlyShowUnread$Action = function(onlyShowUnreadIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -1614,12 +1426,19 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             vars.value.onlyShowUnreadInLocal = onlyShowUnreadIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.aF2yJucyQkGf8u+5OwmH3w:X5UhaLlGIHIC_3fSPVnVEA", "UBTConnect", "Handler_OnlyShowUnread", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:aF2yJucyQkGf8u+5OwmH3w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.aF2yJucyQkGf8u+5OwmH3w:oY75HptcMB45+iNSgZ3RkQ", "UBTConnect", "Handler_OnlyShowUnread", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:T_q8wqylbk+UdQyflaxwDA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7A4Y+3m2+06zrhU1PByXXw", callContext.id);
                 // Local_OnlyShowUnread = OnlyShowUnread
                 model.variables.local_OnlyShowUnreadVar = vars.value.onlyShowUnreadInLocal;
+                // isLoading
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:9EpaFzi6XEOdq2+wbo96yQ", callContext.id);
+                // isLoading = True
+                model.variables.isLoadingVar = true;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:o6VdTsBv2E6iEtfVtdAsYw", callContext.id);
+                // Execute Action: ResetNotifications
+                controller._resetNotifications$Action(callContext);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:y+sa+G1VfESqSxu54ddSbw", callContext.id);
                 // Refresh Query: FetchNotifications
                 var result = controller.fetchNotifications$DataActRefresh(callContext);
@@ -1668,8 +1487,11 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             varBag.assignFromObjectVar = assignFromObjectVar;
             varBag.isViewRestoredFromCacheJSResult = isViewRestoredFromCacheJSResult;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.MUEAKd2DjE2aiuGILTE2AA:p0IOJKWIiX3AtdNn7F7KSQ", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:MUEAKd2DjE2aiuGILTE2AA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.MUEAKd2DjE2aiuGILTE2AA:5HQ4CT4gRk3NOMVnt5Zisg", "UBTConnect", "ScreenEvent_OnInitialize", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MOApiuQyhUeQ35kRuoK3hA", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:MePR+ixuVEabQtsaVfKHxw", callContext.id);
+                // Execute Action: ResetNotifications
+                controller._resetNotifications$Action(callContext);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:G2D90PzT4ke3OuMiHJrU1w", callContext.id);
                 isViewRestoredFromCacheJSResult.value = controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnInitialize_IsViewRestoredFromCacheJS, "IsViewRestoredFromCache", "ScreenEvent_OnInitialize", {
                     IsRestoredFromCache: OS.DataConversion.JSNodeParamConverter.to(false, OS.DataTypes.DataTypes.Boolean)
@@ -1853,84 +1675,59 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             }
 
         };
-        Controller.prototype._setMarkAllTag$Action = function(callContext) {
+        Controller.prototype._resetNotifications$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
             var idService = this.idService;
             varBag.model = model;
             varBag.idService = idService;
-            controller.ensureControllerAlive("SetMarkAllTag");
+            controller.ensureControllerAlive("ResetNotifications");
             callContext = controller.callContext(callContext);
-            var listFilter_GetUnreadVar = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
-            varBag.listFilter_GetUnreadVar = listFilter_GetUnreadVar;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:FaOjSJTIH0imj9mh7_5uyQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.FaOjSJTIH0imj9mh7_5uyQ:8H2sAHg4nv42C2ljkmxWWg", "UBTConnect", "SetMarkAllTag", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:2c9jbl+1aUisaq818TTwxA", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:k9We+B+Xy0iSL6WCeZMAuA", callContext.id);
-                // Execute Action: ListFilter_GetUnread
-                listFilter_GetUnreadVar.value = OS.SystemActions.listFilter(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, function(p) {
-                    return !(p.isReadAttr);
-                }, callContext);
-
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pGXdE4q5ekOb4bihyvBLCQ", callContext.id);
-                // ShowMarkAll = notListFilter_GetUnread.FilteredList.Empty
-                model.variables.showMarkAllVar = !(listFilter_GetUnreadVar.value.filteredListOut.isEmpty);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:p8DmqaotDkOkV_sgt_zpmA", callContext.id);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:n9Q9TfQhXUOYvcVpZ_s+ig:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.n9Q9TfQhXUOYvcVpZ_s+ig:JMrRuuY_ddo0Ow5zR4R_GQ", "UBTConnect", "ResetNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yN9d3sY27066nqfW5qTPUQ", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vdh8qtA1K0y587n0XlKxlg", callContext.id);
+                // StartIndex = 0
+                model.variables.startIndexVar = 0;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:vdh8qtA1K0y587n0XlKxlg", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+                // PageNumber = 1
+                model.variables.pageNumberVar = 1;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Dy98jplWHUyu+MNPpX7pRw", callContext.id);
+                // Execute Action: ListClear
+                OS.SystemActions.listClear(model.variables.screen_NotificationItemListVar, callContext);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1FDMu2Oak0G_NrpdNx3lpQ", callContext.id);
             } catch (ex) {
                 OutSystemsDebugger.handleException(ex, callContext.id);
                 throw ex;
             } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:FaOjSJTIH0imj9mh7_5uyQ", callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:n9Q9TfQhXUOYvcVpZ_s+ig", callContext.id);
             }
 
         };
-        Controller.prototype._updateCurrentBreakpoint$Action = function(breakpointIn, callContext) {
+        Controller.prototype._notificationsListBreakpoints_OnLoadMore$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
             var idService = this.idService;
             varBag.model = model;
             varBag.idService = idService;
-            controller.ensureControllerAlive("UpdateCurrentBreakpoint");
+            controller.ensureControllerAlive("NotificationsListBreakpoints_OnLoadMore");
             callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.UpdateCurrentBreakpoint$vars"))());
-            vars.value.breakpointInLocal = breakpointIn;
-            var listFilterBreakpointsVar = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
-            varBag.vars = vars;
-            varBag.listFilterBreakpointsVar = listFilterBreakpointsVar;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:VunpUWnFOkWURtrgLlepFg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.VunpUWnFOkWURtrgLlepFg:vjXb1rl2zTVp2_gLiH5aNg", "UBTConnect", "UpdateCurrentBreakpoint", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LagQraWywUe2_RdtVI7xzw", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:I8RjVOiuuEuHidiGlREV5g", callContext.id);
-                // Execute Action: ListFilterBreakpoints
-                listFilterBreakpointsVar.value = OS.SystemActions.listFilter(model.variables.breakpointsVar, function(p) {
-                    return (p.sectionNameAttr === OS.BuiltinFunctions.textToIdentifier(vars.value.breakpointInLocal));
-                }, callContext);
-
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AVq1ojawqUemyqGbKvlfBQ", callContext.id);
-                // CurrentBreakpoint = If
-                model.variables.currentBreakpointVar = ((!(listFilterBreakpointsVar.value.filteredListOut.isEmpty)) ? (listFilterBreakpointsVar.value.filteredListOut.getCurrent(callContext.iterationContext)) : (model.variables.currentBreakpointVar));
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Fc2XXPGnb0Wl89qwKXhJgg", callContext.id);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:BP4ZVJ33tEy6FRts+OhMLQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.BP4ZVJ33tEy6FRts+OhMLQ:dNT9PQbrLddqLxWQf9TVQA", "UBTConnect", "NotificationsListBreakpoints_OnLoadMore", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gp8r9Wj+qkSNlD6l3dLjuA", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FWzsNq9dJEiXbBuWWxJHUw", callContext.id);
             } catch (ex) {
                 OutSystemsDebugger.handleException(ex, callContext.id);
                 throw ex;
             } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:VunpUWnFOkWURtrgLlepFg", callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:BP4ZVJ33tEy6FRts+OhMLQ", callContext.id);
             }
 
         };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.UpdateCurrentBreakpoint$vars", [{
-            name: "Breakpoint",
-            attrName: "breakpointInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Text,
-            defaultValue: function() {
-                return "";
-            }
-        }]);
         Controller.prototype._setDefaultFilters$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2042,74 +1839,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             }
 
         };
-        Controller.prototype._handler_MarkAllAsRead$Action = function(callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("Handler_MarkAllAsRead");
-            callContext = controller.callContext(callContext);
-            var allExceptionsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.ErrorHandlerOutputType());
-            varBag.callContext = callContext;
-            varBag.allExceptionsVar = allExceptionsVar;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YYnQXaLJ1UStnIowUxuIMg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.YYnQXaLJ1UStnIowUxuIMg:l+XGGxpXbrdNtYg3oFSmfA", "UBTConnect", "Handler_MarkAllAsRead", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:mzYlqwc8PEC88t__IGg+7w", callContext.id);
-            return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:QTySwlSuCkGznOSKOtLCKg", callContext.id);
-                // ShowMarkAll = False
-                model.variables.showMarkAllVar = false;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4g__a4jJYkiz9DQFYUM6Kg", callContext.id);
-                // isLoading = True
-                model.variables.isLoadingVar = true;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:sVq7dr2GyUarZpAZX6dsSw", callContext.id);
-                // Execute Action: Action_UI_UpdateItem_MarkAllAsRead
-                model.flush();
-                return controller.action_UI_UpdateItem_MarkAllAsRead$ServerAction(model.variables.filter_UpdatesVar, callContext).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:xI+9hyKu8Ui0TbJKlZA+TQ", callContext.id);
-                    // Execute Action: SetBadgeCountsToZero
-                    controller._setBadgeCountsToZero$Action(callContext);
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:4mgoBXo3iEGwXQ32RX3hQg", callContext.id);
-                    // isLoading = False
-                    model.variables.isLoadingVar = false;
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FR2RYeiODUqNVJbwDkUffw", callContext.id);
-                    // Execute Action: Directory_Updates_RefreshBottomBarCount
-                    model.flush();
-                    return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext);
-                }).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:UohmIBwFIUimjX7Y8aO0Zw", callContext.id);
-                });
-            }).catch(function(ex) {
-                OS.Logger.trace("Notifications.Handler_MarkAllAsRead", OS.Exceptions.getMessage(ex), ex.name);
-                // Handle Error: AllExceptions
-                if (!(OS.Exceptions.isSystem(ex))) {
-                    OS.Logger.error(null, ex);
-                    allExceptionsVar.value.exceptionMessageAttr = OS.Exceptions.getMessage(ex);
-                    OutSystemsDebugger.handleException(allExceptionsVar.value.exceptionMessageAttr, callContext.id);
-                    return OS.Flow.executeAsyncFlow(function() {
-                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7HLo2POa+UKBQAJhC50Nig", callContext.id);
-                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:m4Xoc8xpsUSqQz3wN_hjCQ", callContext.id);
-                        // isLoading = False
-                        model.variables.isLoadingVar = false;
-                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:racmddu9b0KX3m3a7puwOg", callContext.id);
-                        return OS.Flow.returnAsync();
-
-                    });
-                }
-
-                throw ex;
-            }).then(function(res) {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YYnQXaLJ1UStnIowUxuIMg", callContext.id);
-                return res;
-
-            }).catch(function(ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:YYnQXaLJ1UStnIowUxuIMg", callContext.id);
-                throw ex;
-
-            });
-        };
         Controller.prototype._screenEvent_OnReady$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2122,11 +1851,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             var getSkeletonList_UI_NotificationVar = new OS.DataTypes.VariableHolder();
             varBag.callContext = callContext;
             varBag.getSkeletonList_UI_NotificationVar = getSkeletonList_UI_NotificationVar;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:g6HPX5F04UqVz6IcAOBJTg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.g6HPX5F04UqVz6IcAOBJTg:rfqqbE6iwT3KM7IIKO9w6Q", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:g6HPX5F04UqVz6IcAOBJTg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.g6HPX5F04UqVz6IcAOBJTg:esN221x5rp86Cct7DlQzrg", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hklKEQKvK0O64auESqaQgQ", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IUZwKvbZNUeVXIZtow6GMA", callContext.id);
-                controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_ScreenEvent_OnReady_SetStickyHeaderHeightJS, "SetStickyHeaderHeight", "ScreenEvent_OnReady", null, function($parameters) {}, {}, {});
                 // isLoading
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lSXYUyFBgUKA1PhZ+XYXxQ", callContext.id);
                 // isLoading = True
@@ -2137,8 +1864,11 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
 
                 // Setup Skeleton Data
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1r+U9iMixka7D9+DDEvhBQ", callContext.id);
-                // FetchNotifications.UI_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationItems
-                model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut = getSkeletonList_UI_NotificationVar.value.uI_NotificationItemsOut;
+                // Screen_NotificationItemList = GetSkeletonList_UI_Notification.UI_NotificationItems
+                model.variables.screen_NotificationItemListVar = getSkeletonList_UI_NotificationVar.value.uI_NotificationItemsOut;
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1r+U9iMixka7D9+DDEvhBQ", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
+                // Breakpoints = GetSkeletonList_UI_Notification.Breakpoints
+                model.variables.breakpointsVar = getSkeletonList_UI_NotificationVar.value.breakpointsOut;
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hCp0qv1u+064wUt10WiREg", callContext.id);
                 // Refresh Query: GetDateRanges
                 var result = controller.getDateRanges$DataActRefresh(callContext);
@@ -2319,9 +2049,12 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             controller.ensureControllerAlive("RefreshNotifications");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3I79fA3DHki3qOF9UG6sCQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.3I79fA3DHki3qOF9UG6sCQ:yFWZ_++y8vcnBWcr9gsViQ", "UBTConnect", "RefreshNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:3I79fA3DHki3qOF9UG6sCQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.3I79fA3DHki3qOF9UG6sCQ:oduTlq8FKJJlnaNMbDQT3w", "UBTConnect", "RefreshNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XXayzIg+9Eqsi82Vh+IFZw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:LSWgVjlqKE6+7J3AzUjAtw", callContext.id);
+                // isLoading = True
+                model.variables.isLoadingVar = true;
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_GwvU7st0Eil5wFj31tW_Q", callContext.id);
                 // Refresh Query: FetchNotifications
                 var result = controller.fetchNotifications$DataActRefresh(callContext);
@@ -2340,40 +2073,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
 
             });
         };
-        Controller.prototype._refreshUpdatesAndFlags$Action = function(currentPositionIn, callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("RefreshUpdatesAndFlags");
-            callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.RefreshUpdatesAndFlags$vars"))());
-            vars.value.currentPositionInLocal = currentPositionIn;
-            varBag.callContext = callContext;
-            varBag.vars = vars;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ZkLEh5zq3kGK1jkmqkAXrw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.ZkLEh5zq3kGK1jkmqkAXrw:_c_t+x2XKn7WXI6TlukSCA", "UBTConnect", "RefreshUpdatesAndFlags", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:kNkm_WOuWEmRAxE9f7Q1bg", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tpgUiHn95U+f329rV5B+9w", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ZkLEh5zq3kGK1jkmqkAXrw", callContext.id);
-            }
-
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.RefreshUpdatesAndFlags$vars", [{
-            name: "CurrentPosition",
-            attrName: "currentPositionInLocal",
-            mandatory: false,
-            dataType: OS.DataTypes.DataTypes.Integer,
-            defaultValue: function() {
-                return 0;
-            }
-        }]);
         Controller.prototype._handler_FilterSheetLoaded$Action = function(showSubscriptionOnClickIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -2415,98 +2114,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return false;
             }
         }]);
-        Controller.prototype._sectionHeaderEvent_UpdateListHeader$Action = function(event_BreakpointIn, callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("SectionHeaderEvent_UpdateListHeader");
-            callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.SectionHeaderEvent_UpdateListHeader$vars"))());
-            vars.value.event_BreakpointInLocal = event_BreakpointIn.clone();
-            varBag.callContext = callContext;
-            varBag.vars = vars;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:VgP6lbhiCEOBs7x5q0psPw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.VgP6lbhiCEOBs7x5q0psPw:hmW+sSUDipOExdXqosEAuA", "UBTConnect", "SectionHeaderEvent_UpdateListHeader", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DjYyd7idD0S9v53eFU+35w", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7aX8jMVNzUmxCpH8B7oTmw", callContext.id);
-                // CurrentBreakpoint = Event_Breakpoint
-                model.variables.currentBreakpointVar = vars.value.event_BreakpointInLocal;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:lkAP+iWDnk+KOwc8WNxQqg", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:VgP6lbhiCEOBs7x5q0psPw", callContext.id);
-            }
-
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.SectionHeaderEvent_UpdateListHeader$vars", [{
-            name: "Event_Breakpoint",
-            attrName: "event_BreakpointInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Record,
-            defaultValue: function() {
-                return new UBTConnectModel.UI_UpdateItem_BreakpointRec();
-            },
-            complexType: UBTConnectModel.UI_UpdateItem_BreakpointRec
-        }]);
-        Controller.prototype._handler_MarkAsUnread$Action = function(updateItemIdIn, currentPositionIn, callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("Handler_MarkAsUnread");
-            callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MarkAsUnread$vars"))());
-            vars.value.updateItemIdInLocal = updateItemIdIn;
-            vars.value.currentPositionInLocal = currentPositionIn;
-            varBag.callContext = callContext;
-            varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:ymAzoatJ80eAB12RPbnj2w:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.ymAzoatJ80eAB12RPbnj2w:tXCWcU6GHzsL2phfGVXzHg", "UBTConnect", "Handler_MarkAsUnread", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:EXbyjmaf90i9QdMSdT8z2w", callContext.id);
-            return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:KNIk3FZeC0GgFtCUGXqNGw", callContext.id);
-                // Execute Action: RefreshUpdatesAndFlags
-                controller._refreshUpdatesAndFlags$Action(vars.value.currentPositionInLocal, callContext);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:il2X+_vAKUGvw80UhyG7aQ", callContext.id);
-                // Execute Action: Directory_Updates_RefreshBottomBarCount
-                model.flush();
-                return UBTConnectController.default.directory_Updates_RefreshBottomBarCount$Action(true, callContext).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:mKhVpg1uF0Kcqg9jtnC+bA", callContext.id);
-                });
-            }).then(function(res) {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ymAzoatJ80eAB12RPbnj2w", callContext.id);
-                return res;
-
-            }).catch(function(ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:ymAzoatJ80eAB12RPbnj2w", callContext.id);
-                throw ex;
-
-            });
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_MarkAsUnread$vars", [{
-            name: "UpdateItemId",
-            attrName: "updateItemIdInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.LongInteger,
-            defaultValue: function() {
-                return OS.DataTypes.LongInteger.defaultValue;
-            }
-        }, {
-            name: "CurrentPosition",
-            attrName: "currentPositionInLocal",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Integer,
-            defaultValue: function() {
-                return 0;
-            }
-        }]);
         Controller.prototype._onAfterFetch_FetchNotifications$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2523,32 +2130,50 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             varBag.vars = vars;
             varBag.allExceptionsVar = allExceptionsVar;
             varBag.app_Notifications_GetBreakpointsVar = app_Notifications_GetBreakpointsVar;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions._nDMuYywM0SeuHnioSuYpw:43WEJn8sn3XAinboGEBucg", "UBTConnect", "OnAfterFetch_FetchNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_nDMuYywM0SeuHnioSuYpw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions._nDMuYywM0SeuHnioSuYpw:dcPI3_DvVNgh36DpLcBDCg", "UBTConnect", "OnAfterFetch_FetchNotifications", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IS0X6ycyY0O9besICMNhmw", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jR8B_wO+gUKAsms7F5q9gg", callContext.id);
-                // Execute Action: App_Notifications_GetBreakpoints
-                app_Notifications_GetBreakpointsVar.value = UBTConnectController.default.app_Notifications_GetBreakpoints$Action(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, model.variables.dateRangesVar, callContext);
+                // Is have breakpoint yet?
+                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:cwE_bXssOkSyGFKiWOprZg", callContext.id) && (model.variables.breakpointsVar.getItem(0).positionAttr === -1))) {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:jR8B_wO+gUKAsms7F5q9gg", callContext.id);
+                    // Execute Action: App_Notifications_GetBreakpoints
+                    app_Notifications_GetBreakpointsVar.value = UBTConnectController.default.app_Notifications_GetBreakpoints$Action(model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, model.variables.dateRangesVar, callContext);
 
-                // Set Breakpoints
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+nmLsbacSUm0_Xw10sViUQ", callContext.id);
-                // Breakpoints = App_Notifications_GetBreakpoints.Breakpoints
-                model.variables.breakpointsVar = app_Notifications_GetBreakpointsVar.value.breakpointsOut;
-                // Has Breakpoints?
-                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:d0AaupqB2UmmXjOAF8oj3Q", callContext.id) && !(app_Notifications_GetBreakpointsVar.value.breakpointsOut.isEmpty))) {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:r28WuIBu40C804zhoG_aIg", callContext.id);
-                    // CurrentBreakpoint = Breakpoints[0]
-                    model.variables.currentBreakpointVar = model.variables.breakpointsVar.getItem(0);
+                    // Set Breakpoints
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+nmLsbacSUm0_Xw10sViUQ", callContext.id);
+                    // Breakpoints = App_Notifications_GetBreakpoints.Breakpoints
+                    model.variables.breakpointsVar = app_Notifications_GetBreakpointsVar.value.breakpointsOut;
+                    // Has Breakpoints?
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:d0AaupqB2UmmXjOAF8oj3Q", callContext.id) && !(app_Notifications_GetBreakpointsVar.value.breakpointsOut.isEmpty))) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:r28WuIBu40C804zhoG_aIg", callContext.id);
+                        // CurrentBreakpoint = Breakpoints[0]
+                        model.variables.currentBreakpointVar = model.variables.breakpointsVar.getItem(0);
+                    } else {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:otDF8Ffx+0umigSxMMY4Bg", callContext.id);
+                        // CurrentBreakpoint = EmptyBreakpoint
+                        model.variables.currentBreakpointVar = vars.value.emptyBreakpointVar;
+                    }
+
                 } else {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:otDF8Ffx+0umigSxMMY4Bg", callContext.id);
-                    // CurrentBreakpoint = EmptyBreakpoint
-                    model.variables.currentBreakpointVar = vars.value.emptyBreakpointVar;
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:HVnXfk6lnU6GVQEHtjPWTA", callContext.id);
                 }
 
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:XOr0IHDegku1HnicxXVR6w", callContext.id);
                 // ShowMarkAll = FetchNotifications.UnreadNotificationsCount > 0
                 model.variables.showMarkAllVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut.gt(OS.BuiltinFunctions.integerToLongInteger(0));
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:M7mAzuI240W51Jot8Lx7Kw", callContext.id);
+                if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GudImiR4lU6xndwsK3Vatw", callContext.id) && (model.variables.pageNumberVar === 1))) {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SaXrwImbXkyomzYASz8kXQ", callContext.id);
+                    // MaxRecords = FetchNotifications.UI_NotificationItemList.Length
+                    model.variables.maxRecordsVar = model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut.length;
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:w07koaDEyEu65x5Pz0prRw", callContext.id);
+                    // Screen_NotificationItemList = FetchNotifications.UI_NotificationItemList
+                    model.variables.screen_NotificationItemListVar = model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut;
+                } else {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ga3bRo7ISUSCgabo0vfTPA", callContext.id);
+                    // Execute Action: ListAppendAll
+                    OS.SystemActions.listAppendAll(model.variables.screen_NotificationItemListVar, model.variables.fetchNotificationsDataAct.uI_NotificationItemListOut, callContext);
+                }
+
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qg3wjJId+kqdu2MX85IW6Q", callContext.id);
                 // ReadCount = FetchNotifications.UnreadNotificationsCount
                 model.variables.readCountVar = model.variables.fetchNotificationsDataAct.unreadNotificationsCountOut;
@@ -2559,9 +2184,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pjJXH+HE60WV4qL2uz7rsg", callContext.id);
                 // Execute Action: DestroyEventListener
                 controller._destroyEventListener$Action(callContext);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:glZWBn2gEkSSD3k8OtOKlw", callContext.id);
-                // Execute Action: SetupScrollListener
-                controller._setupScrollListener$Action(callContext);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:n4KY2uYty02hTDy1LKqmHw", callContext.id);
                 // Execute Action: Directory_Updates_RefreshBottomBarCount
                 model.flush();
@@ -2910,77 +2532,7 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                 return false;
             }
         }]);
-        Controller.prototype._setupScrollThreshold$Action = function(callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("SetupScrollThreshold");
-            callContext = controller.callContext(callContext);
-            var setupScrollThresholdsJSResult = new OS.DataTypes.VariableHolder();
-            var jSONSerialize_BreakpointsVar = new OS.DataTypes.VariableHolder(new OS.DataTypes.JSONSerializeOutputType());
-            varBag.callContext = callContext;
-            varBag.setupScrollThresholdsJSResult = setupScrollThresholdsJSResult;
-            varBag.jSONSerialize_BreakpointsVar = jSONSerialize_BreakpointsVar;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:JZrs6LIaaUO04Me4WC9Mjg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.JZrs6LIaaUO04Me4WC9Mjg:le20Fjjje1vj_dxsUGpQPA", "UBTConnect", "SetupScrollThreshold", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:qnQz1b91fkeOc6OOf9E+uw", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:WMyX4qhe5EuTgiRYWXr4Hg", callContext.id);
-                // JSON Serialize: JSONSerialize_Breakpoints
-                jSONSerialize_BreakpointsVar.value.jSONOut = OS.JSONUtils.serializeToJSON(model.variables.breakpointsVar, true, false);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DTw3jfMu70u2zFYtsxYRDQ", callContext.id);
-                setupScrollThresholdsJSResult.value = controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollThreshold_SetupScrollThresholdsJS, "SetupScrollThresholds", "SetupScrollThreshold", {
-                    In_ListId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("List_Notifications"), OS.DataTypes.DataTypes.Text),
-                    In_UpdateItemClass: OS.DataConversion.JSNodeParamConverter.to(".ubt-update-item", OS.DataTypes.DataTypes.Text),
-                    In_Breakpoints: OS.DataConversion.JSNodeParamConverter.to(jSONSerialize_BreakpointsVar.value.jSONOut, OS.DataTypes.DataTypes.Text),
-                    In_HeaderSearchClass: OS.DataConversion.JSNodeParamConverter.to(".header-top-search", OS.DataTypes.DataTypes.Text),
-                    In_ScrollContainer: OS.DataConversion.JSNodeParamConverter.to(".active-screen.screen-container:has(.layout)", OS.DataTypes.DataTypes.Text),
-                    Out_DestroyListener: OS.DataConversion.JSNodeParamConverter.to(null, OS.DataTypes.DataTypes.Object),
-                    Out_DestroyListenerTarget: OS.DataConversion.JSNodeParamConverter.to(null, OS.DataTypes.DataTypes.Object)
-                }, function($parameters) {
-                    var jsNodeResult = new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.SetupScrollThreshold$setupScrollThresholdsJSResult"))();
-                    jsNodeResult.out_DestroyListenerOut = OS.DataConversion.JSNodeParamConverter.from($parameters.Out_DestroyListener, OS.DataTypes.DataTypes.Object);
-                    jsNodeResult.out_DestroyListenerTargetOut = OS.DataConversion.JSNodeParamConverter.from($parameters.Out_DestroyListenerTarget, OS.DataTypes.DataTypes.Object);
-                    return jsNodeResult;
-                }, {
-                    UpdateCurrentBreakpoint: controller.clientActionProxies.updateCurrentBreakpoint$Action
-                }, {});
-                // Setup Scroll Objects
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gVnrjmkLqE2m_MAQm6G4IA", callContext.id);
-                // EventListener = SetupScrollThresholds.Out_DestroyListener
-                model.variables.eventListenerVar = setupScrollThresholdsJSResult.value.out_DestroyListenerOut;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gVnrjmkLqE2m_MAQm6G4IA", callContext.id, OutSystemsDebugger.BreakpointType.BetweenAssignments, "2");
-                // EventListenerTarget = SetupScrollThresholds.Out_DestroyListenerTarget
-                model.variables.eventListenerTargetVar = setupScrollThresholdsJSResult.value.out_DestroyListenerTargetOut;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:eH7Fn42gcUaCSHIxMLPkog", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:JZrs6LIaaUO04Me4WC9Mjg", callContext.id);
-            }
-
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.SetupScrollThreshold$setupScrollThresholdsJSResult", [{
-            name: "Out_DestroyListener",
-            attrName: "out_DestroyListenerOut",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Object,
-            defaultValue: function() {
-                return null;
-            }
-        }, {
-            name: "Out_DestroyListenerTarget",
-            attrName: "out_DestroyListenerTargetOut",
-            mandatory: true,
-            dataType: OS.DataTypes.DataTypes.Object,
-            defaultValue: function() {
-                return null;
-            }
-        }]);
-        Controller.prototype._handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, callContext) {
+        Controller.prototype._handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
@@ -2992,9 +2544,12 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_NotificationDetail$vars"))());
             vars.value.messageInstanceIdInLocal = messageInstanceIdIn;
             vars.value.isReadInLocal = isReadIn;
+            vars.value.messageTemplateIdInLocal = messageTemplateIdIn;
+            vars.value.hardwareIdInLocal = hardwareIdIn;
+            vars.value.sentAsInLocal = sentAsIn;
             varBag.callContext = callContext;
             varBag.vars = vars;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.cYVy7NaI0kKIu1LiWOl93Q:FTWa6vAdStj_0810hjahRw", "UBTConnect", "Handler_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.cYVy7NaI0kKIu1LiWOl93Q:wGLYBAwSP04kYvgfBhl+3g", "UBTConnect", "Handler_NotificationDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7HhYs2s6uk6lvQQ8Etj0ZA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 return OS.Flow.executeSequence(function() {
@@ -3006,11 +2561,20 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
                     }
 
                 }).then(function() {
-                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gIRvHz3e9UKztZAnxH+fQQ", callContext.id);
-                    // Destination: /UBTConnect/NotificationDetails
-                    return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/NotificationDetails", {
-                        MessageInstanceId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageInstanceIdInLocal, OS.DataTypes.DataTypes.LongInteger)
-                    }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:olPbfJ53QECRrftz6kdYFw", callContext.id) && (vars.value.sentAsInLocal === UBTConnectModel.staticEntities.messageSenderTarget.myEntertaining))) {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:hs4QQkEq4kmzuviNO6JxXA", callContext.id);
+                        // Destination: /UBTConnect/MyEntertaining
+                        return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/MyEntertaining", {}), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+                    } else {
+                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:gIRvHz3e9UKztZAnxH+fQQ", callContext.id);
+                        // Destination: /UBTConnect/NotificationDetails
+                        return OS.Flow.returnAsync(OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/NotificationDetails", {
+                            HardwareId: OS.DataConversion.ServerDataConverter.asString(vars.value.hardwareIdInLocal, OS.DataTypes.DataTypes.Text),
+                            MessageInstanceId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageInstanceIdInLocal, OS.DataTypes.DataTypes.LongInteger),
+                            MessageTemplateId: OS.DataConversion.ServerDataConverter.asString(vars.value.messageTemplateIdInLocal, OS.DataTypes.DataTypes.LongInteger)
+                        }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true));
+                    }
+
                 });
             }).then(function(res) {
                 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:cYVy7NaI0kKIu1LiWOl93Q", callContext.id);
@@ -3039,78 +2603,31 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             defaultValue: function() {
                 return false;
             }
-        }]);
-        Controller.prototype._handler_ScrollEnding_UpdateBreakpoint$Action = function(in_DateIn, callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("Handler_ScrollEnding_UpdateBreakpoint");
-            callContext = controller.callContext(callContext);
-            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ScrollEnding_UpdateBreakpoint$vars"))());
-            vars.value.in_DateInLocal = in_DateIn;
-            var directory_Updates_GetListBreakpointVar = new OS.DataTypes.VariableHolder();
-            varBag.callContext = callContext;
-            varBag.vars = vars;
-            varBag.directory_Updates_GetListBreakpointVar = directory_Updates_GetListBreakpointVar;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:NW0T93kisUOfbwjLY9IhJw:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.NW0T93kisUOfbwjLY9IhJw:nWUj6Xn_4WG4KtpDd0kbFw", "UBTConnect", "Handler_ScrollEnding_UpdateBreakpoint", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:h3dHiK9uPEaur_BvjVn30Q", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TJdEIU9aHUiNgxiUkqQo1A", callContext.id);
-                // Execute Action: Directory_Updates_GetListBreakpoint
-                directory_Updates_GetListBreakpointVar.value = UBTConnectController.default.directory_Updates_GetListBreakpoint$Action(model.variables.breakpointsVar, OS.BuiltinFunctions.textToDate(vars.value.in_DateInLocal), OS.BuiltinFunctions.currDate(), false, callContext);
-
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:H7Ic076S90y1UFS4g8FOuA", callContext.id);
-                // CurrentBreakpoint = Directory_Updates_GetListBreakpoint.Out_ListBreakpoint
-                model.variables.currentBreakpointVar = directory_Updates_GetListBreakpointVar.value.out_ListBreakpointOut;
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:8esrz_6Uj0+ZM+sIu4vhiw", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:NW0T93kisUOfbwjLY9IhJw", callContext.id);
+        }, {
+            name: "MessageTemplateId",
+            attrName: "messageTemplateIdInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.LongInteger,
+            defaultValue: function() {
+                return OS.DataTypes.LongInteger.defaultValue;
             }
-
-        };
-        Controller.registerVariableGroupType("UBTConnect.App_Notifications.Notifications.Handler_ScrollEnding_UpdateBreakpoint$vars", [{
-            name: "In_Date",
-            attrName: "in_DateInLocal",
+        }, {
+            name: "HardwareId",
+            attrName: "hardwareIdInLocal",
             mandatory: true,
             dataType: OS.DataTypes.DataTypes.Text,
             defaultValue: function() {
                 return "";
             }
-        }]);
-        Controller.prototype._setupScrollListener$Action = function(callContext) {
-            var varBag = {};
-            var model = this.model;
-            var controller = this.controller;
-            var idService = this.idService;
-            varBag.model = model;
-            varBag.idService = idService;
-            controller.ensureControllerAlive("SetupScrollListener");
-            callContext = controller.callContext(callContext);
-            varBag.callContext = callContext;
-            try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:aGPj_rqG6E6kBfv7McdzLA:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ/ClientActions.aGPj_rqG6E6kBfv7McdzLA:Omd2BGgWDTxjNsE+GEJWhA", "UBTConnect", "SetupScrollListener", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:SY7T+fJOhUewIg1oad14ag", callContext.id);
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:t39pkagoxUiiTWvU2urqXw", callContext.id);
-                controller.safeExecuteJSNode(UBTConnect_App_Notifications_Notifications_mvc_controller_SetupScrollListener_SetupScrollEndListenerJS, "SetupScrollEndListener", "SetupScrollListener", {
-                    In_TopElementId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("Notifications_ListHeader"), OS.DataTypes.DataTypes.Text)
-                }, function($parameters) {}, {
-                    Handler_ScrollEnding_UpdateBreakpoint: controller.clientActionProxies.handler_ScrollEnding_UpdateBreakpoint$Action
-                }, {});
-                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Np4lH4NgM0yanhqvhB8m3w", callContext.id);
-            } catch (ex) {
-                OutSystemsDebugger.handleException(ex, callContext.id);
-                throw ex;
-            } finally {
-                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:aGPj_rqG6E6kBfv7McdzLA", callContext.id);
+        }, {
+            name: "SentAs",
+            attrName: "sentAsInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Integer,
+            defaultValue: function() {
+                return 0;
             }
-
-        };
+        }]);
 
         Controller.prototype.handler_FilterSearchText$Action = function(textIn, callContext) {
             var controller = this.controller;
@@ -3130,11 +2647,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
         Controller.prototype.handler_OnChangeSearchInput$Action = function(event_CurrentStringIn, in_IsToggleSearchIn, callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._handler_OnChangeSearchInput$Action, callContext, event_CurrentStringIn, in_IsToggleSearchIn);
-
-        };
-        Controller.prototype.handler_MarkAsRead$Action = function(updateItemIdIn, currentPositionIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_MarkAsRead$Action, callContext, updateItemIdIn, currentPositionIn);
 
         };
         Controller.prototype.handler_OnlyShowUnread$Action = function(onlyShowUnreadIn, callContext) {
@@ -3157,14 +2669,14 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._onClick_KebabButton$Action, callContext);
 
         };
-        Controller.prototype.setMarkAllTag$Action = function(callContext) {
+        Controller.prototype.resetNotifications$Action = function(callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._setMarkAllTag$Action, callContext);
+            return controller.safeExecuteClientAction(controller._resetNotifications$Action, callContext);
 
         };
-        Controller.prototype.updateCurrentBreakpoint$Action = function(breakpointIn, callContext) {
+        Controller.prototype.notificationsListBreakpoints_OnLoadMore$Action = function(callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._updateCurrentBreakpoint$Action, callContext, breakpointIn);
+            return controller.safeExecuteClientAction(controller._notificationsListBreakpoints_OnLoadMore$Action, callContext);
 
         };
         Controller.prototype.setDefaultFilters$Action = function(callContext) {
@@ -3175,11 +2687,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
         Controller.prototype.setBadgeCountsToZero$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._setBadgeCountsToZero$Action, callContext);
-
-        };
-        Controller.prototype.handler_MarkAllAsRead$Action = function(callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_MarkAllAsRead$Action, callContext);
 
         };
         Controller.prototype.screenEvent_OnReady$Action = function(callContext) {
@@ -3207,24 +2714,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._refreshNotifications$Action, callContext);
 
         };
-        Controller.prototype.refreshUpdatesAndFlags$Action = function(currentPositionIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._refreshUpdatesAndFlags$Action, callContext, currentPositionIn);
-
-        };
         Controller.prototype.handler_FilterSheetLoaded$Action = function(showSubscriptionOnClickIn, callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._handler_FilterSheetLoaded$Action, callContext, showSubscriptionOnClickIn);
-
-        };
-        Controller.prototype.sectionHeaderEvent_UpdateListHeader$Action = function(event_BreakpointIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._sectionHeaderEvent_UpdateListHeader$Action, callContext, event_BreakpointIn);
-
-        };
-        Controller.prototype.handler_MarkAsUnread$Action = function(updateItemIdIn, currentPositionIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_MarkAsUnread$Action, callContext, updateItemIdIn, currentPositionIn);
 
         };
         Controller.prototype.onAfterFetch_FetchNotifications$Action = function(callContext) {
@@ -3262,32 +2754,17 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller", ["OutSystems
             return controller.safeExecuteClientAction(controller._handler_UpdateReadCount$Action, callContext, addToCountIn, isDeleteIn, isReadIn);
 
         };
-        Controller.prototype.setupScrollThreshold$Action = function(callContext) {
+        Controller.prototype.handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn, callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._setupScrollThreshold$Action, callContext);
-
-        };
-        Controller.prototype.handler_NotificationDetail$Action = function(messageInstanceIdIn, isReadIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn);
-
-        };
-        Controller.prototype.handler_ScrollEnding_UpdateBreakpoint$Action = function(in_DateIn, callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._handler_ScrollEnding_UpdateBreakpoint$Action, callContext, in_DateIn);
-
-        };
-        Controller.prototype.setupScrollListener$Action = function(callContext) {
-            var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._setupScrollListener$Action, callContext);
+            return controller.safeExecuteClientAction(controller._handler_NotificationDetail$Action, callContext, messageInstanceIdIn, isReadIn, messageTemplateIdIn, hardwareIdIn, sentAsIn);
 
         };
 
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:sMKFKooX6A1nm6D_Lsn4Wg", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ:vhstpAD1sQY9_2ByhiyAiA", "UBTConnect", "Notifications", "NRNodes.WebScreen", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:jD6cc912jEmdKmf5_8Sipg:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg:_vq0gFXuOpZKZ4Em4vyllw", "UBTConnect", "App_Notifications", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ:/NRWebFlows.jD6cc912jEmdKmf5_8Sipg/NodesShownInESpaceTree.nXyc+9VWHk+uigsyRKJRVQ:H4E9sUMs4HLV09bb1AuY2g", "UBTConnect", "Notifications", "NRNodes.WebScreen", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:nXyc+9VWHk+uigsyRKJRVQ", callContext.id);
@@ -3384,176 +2861,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_On
         $parameters.IsRestoredFromCache = $public.View.wasCurrentViewRestoredFromCache()
     };
 });
-define("UBTConnect.App_Notifications.Notifications.mvc$controller.ScreenEvent_OnReady.SetStickyHeaderHeightJS", [], function() {
-    return function($actions, $roles, $public) {
-        function setStickyTopOffsetVariable() {
-            const headerEl = document.querySelector('.header');
-            const updatesHeaderEl = document.querySelector('.updates-list__header');
-            const scrollContainer = document.querySelector('.active-screen.screen-container');
-
-            if (!headerEl || !updatesHeaderEl || !scrollContainer) {
-                console.warn('Could not find element(s) for offset calculation:', {
-                    headerEl,
-                    updatesHeaderEl,
-                    scrollContainer
-                });
-                return;
-            }
-
-            const headerHeight = headerEl.getBoundingClientRect().height;
-            const updatesHeaderHeight = updatesHeaderEl.getBoundingClientRect().height;
-            const topOffsetPx = headerHeight + updatesHeaderHeight + 9;
-
-            scrollContainer.style.setProperty('--sticky-top-offset', `${topOffsetPx}px`);
-
-            if (window._stickyDebug) {
-                console.log('Set --sticky-top-offset:', {
-                    headerHeight,
-                    updatesHeaderHeight,
-                    topOffsetPx
-                });
-            }
-        }
-
-        setStickyTopOffsetVariable();
-    };
-});
-define("UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollThreshold.SetupScrollThresholdsJS", [], function() {
-    return function($parameters, $actions, $roles, $public) {
-        const scrollCont = document.querySelector($parameters.In_ScrollContainer);
-        const headerSearch = document.querySelector($parameters.In_HeaderSearchClass);
-        const updateItem = document.getElementById($parameters.In_ListId).querySelector($parameters.In_UpdateItemClass);
-        const breakpoints = JSON.parse($parameters.In_Breakpoints);
-
-        if (scrollCont && headerSearch && updateItem && (Array.isArray(breakpoints) && breakpoints.length !== 0)) {
-            const itemHeight = updateItem.offsetHeight;
-            let previousBreakpoint = -1;
-            let isDebouncing = {
-                value: false
-            };
-
-            function getIndex(scrollTop) {
-                const index = Math.floor((scrollTop - headerSearch.offsetHeight) / itemHeight);
-                if (!Number.isFinite(index)) {
-                    return 0;
-                }
-                return Math.max(0, index);
-            }
-
-            function getCurrentBreakpoint(index) {
-                for (let i = breakpoints.length - 1; i >= 0; i--) {
-                    if (index >= breakpoints[i].position) {
-                        return breakpoints[i];
-                    }
-                }
-                return breakpoints[0];
-            }
-
-            function onScrollThreshold() {
-
-                const currentScroll = scrollCont.scrollTop;
-                const currentBreakpoint = getCurrentBreakpoint(getIndex(currentScroll));
-
-                if (currentBreakpoint !== previousBreakpoint) {
-                    previousBreakpoint = currentBreakpoint;
-                    $actions.UpdateCurrentBreakpoint(currentBreakpoint.sectionName);
-                }
-            }
-
-            const processScroll = () => {
-                ScrollEvent.debounceScroll(onScrollThreshold, isDebouncing);
-            }
-
-            scrollCont.addEventListener('scroll', processScroll, {
-                passive: true
-            });
-
-            $parameters.Out_DestroyListener = processScroll;
-            $parameters.Out_DestroyListenerTarget = scrollCont;
-        }
-    };
-});
-define("UBTConnect.App_Notifications.Notifications.mvc$controller.SetupScrollListener.SetupScrollEndListenerJS", [], function() {
-    return function($parameters, $actions, $roles, $public) {
-        function setupScrollEndCorrection(scrollContainerSelector, stickyHeaderId, listItemSelector) {
-            if (typeof window._stickyDebug === 'undefined') {
-                window._stickyDebug = false;
-            }
-
-            const scrollContainer = document.querySelector(scrollContainerSelector);
-            const stickyHeaderEl = document.getElementById(stickyHeaderId);
-
-            if (!scrollContainer || !stickyHeaderEl) {
-                console.warn('Missing element(s):', {
-                    scrollContainer,
-                    stickyHeaderEl
-                });
-                return;
-            }
-
-            function resolveCurrentDate(retriesLeft = 3) {
-                const headerRect = stickyHeaderEl.getBoundingClientRect();
-                const boundaryY = headerRect.bottom; // the line we're checking against
-
-                // grab all currently rendered list items
-                const allItems = [...document.querySelectorAll(listItemSelector)];
-
-                // find the item whose bounds straddle the boundary line
-                // i.e. top is above (or at) the line, and bottom is below (or at) the line
-                let currentItem = null;
-                for (const item of allItems) {
-                    const rect = item.getBoundingClientRect();
-                    if (rect.top <= boundaryY && rect.bottom >= boundaryY) {
-                        currentItem = item;
-                        break; // there should only be one true match at a time
-                    }
-                }
-
-                if (!currentItem) {
-                    // virtualized list may not have committed the correct render window yet —
-                    // retry on the next frame(s) instead of giving up immediately
-                    if (retriesLeft > 0) {
-                        if (window._stickyDebug) {
-                            console.warn(`No list item currently intersects the sticky header boundary — retrying (${retriesLeft} left)`);
-                        }
-                        requestAnimationFrame(() => resolveCurrentDate(retriesLeft - 1));
-                    } else {
-                        if (window._stickyDebug) {
-                            console.warn('No list item currently intersects the sticky header boundary after retries — giving up.');
-                        }
-                    }
-                    return;
-                }
-
-                const plusDate = currentItem.getAttribute('data-plus-date');
-
-                if (window._stickyDebug) {
-                    console.log('%c SCROLLEND CORRECTION', 'color: white; background: darkorange; padding: 2px 6px; border-radius: 3px;');
-                    console.log('Resolved item:', currentItem, '| data-plus-date:', plusDate);
-                }
-
-                $actions.Handler_ScrollEnding_UpdateBreakpoint(plusDate);
-
-                if (window._stickyDebug) {
-                    console.log(plusDate);
-                }
-            }
-
-            scrollContainer.addEventListener('scrollend', () => resolveCurrentDate(), {
-                passive: true
-            });
-            resolveCurrentDate(); // run once on load to establish correct initial state
-
-            return resolveCurrentDate;
-        }
-
-        window.setTimeout(() => setupScrollEndCorrection(
-            '.active-screen.screen-container',
-            $parameters.In_TopElementId,
-            '.updates-list__list-item' // adjust to whatever the actual list item selector is
-        ), 0);
-    };
-});
 
 define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function(exports, Debugger, OutSystems) {
     var OS = OutSystems.Internal;
@@ -3580,18 +2887,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.vars.value.in_IsToggleSearchInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Boolean
-        },
-        "sDKJW8CUQUSLgRFxIoivSw": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.updateItemIdInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.LongInteger
-        },
-        "TNtL6edjwUGMntxVprawCw": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.currentPositionInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.Integer
         },
         "IEuTKVYzcEOLLzsg0UZJ8g": {
             getter: function(varBag, idService) {
@@ -3640,22 +2935,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.bottomSheetOpenVar.value;
             }
         },
-        "k9We+B+Xy0iSL6WCeZMAuA": {
-            getter: function(varBag, idService) {
-                return varBag.listFilter_GetUnreadVar.value;
-            }
-        },
-        "MZgmEOLQz0a8KJPQSZlrsQ": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.breakpointInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.Text
-        },
-        "I8RjVOiuuEuHidiGlREV5g": {
-            getter: function(varBag, idService) {
-                return varBag.listFilterBreakpointsVar.value;
-            }
-        },
         "Ynh+UYi6qECIcuWXDDVrVg": {
             getter: function(varBag, idService) {
                 return varBag.listFilter_TodayVar.value;
@@ -3666,19 +2945,9 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.listFilter_OlderVar.value;
             }
         },
-        "7HLo2POa+UKBQAJhC50Nig": {
-            getter: function(varBag, idService) {
-                return varBag.allExceptionsVar.value;
-            }
-        },
         "fO23MaliVUaKsvz3m8nbwQ": {
             getter: function(varBag, idService) {
                 return varBag.getSkeletonList_UI_NotificationVar.value;
-            }
-        },
-        "IUZwKvbZNUeVXIZtow6GMA": {
-            getter: function(varBag, idService) {
-                return varBag.setStickyHeaderHeightJSResult.value;
             }
         },
         "mn1SJhgbcEuxzHfWtyJbwg": {
@@ -3697,34 +2966,11 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.app_Notifications_AugmentDateRangesVar.value;
             }
         },
-        "eiSWGjDQQUSJt47aRzc_5w": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.currentPositionInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.Integer
-        },
         "Pw8V6O4t4k6emBf3ibkQNA": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.showSubscriptionOnClickInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Boolean
-        },
-        "Atm0UmzBZU+L3XACm_WA6A": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.event_BreakpointInLocal;
-            }
-        },
-        "9RJkJeGrf0GTN1D1FY1hJA": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.updateItemIdInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.LongInteger
-        },
-        "N7ywv+hMC025rNO0tf726w": {
-            getter: function(varBag, idService) {
-                return varBag.vars.value.currentPositionInLocal;
-            },
-            dataType: OS.DataTypes.DataTypes.Integer
         },
         "_m1W4TLjt0qQrpLsKjYpXA": {
             getter: function(varBag, idService) {
@@ -3788,16 +3034,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },
-        "WMyX4qhe5EuTgiRYWXr4Hg": {
-            getter: function(varBag, idService) {
-                return varBag.jSONSerialize_BreakpointsVar.value;
-            }
-        },
-        "DTw3jfMu70u2zFYtsxYRDQ": {
-            getter: function(varBag, idService) {
-                return varBag.setupScrollThresholdsJSResult.value;
-            }
-        },
         "h+8PjqXiIEa53zXRV5GiAg": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.messageInstanceIdInLocal;
@@ -3810,21 +3046,23 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             },
             dataType: OS.DataTypes.DataTypes.Boolean
         },
-        "ZeD9YUwhO0u4TuCaXY0YCQ": {
+        "+qMM6KyFrUOK99gD36eJNQ": {
             getter: function(varBag, idService) {
-                return varBag.vars.value.in_DateInLocal;
+                return varBag.vars.value.messageTemplateIdInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.LongInteger
+        },
+        "BmPyF6pK_USNKuM4FQwfYA": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.hardwareIdInLocal;
             },
             dataType: OS.DataTypes.DataTypes.Text
         },
-        "TJdEIU9aHUiNgxiUkqQo1A": {
+        "YeyFwsv7nUOQcVh+EMLJ4w": {
             getter: function(varBag, idService) {
-                return varBag.directory_Updates_GetListBreakpointVar.value;
-            }
-        },
-        "t39pkagoxUiiTWvU2urqXw": {
-            getter: function(varBag, idService) {
-                return varBag.setupScrollEndListenerJSResult.value;
-            }
+                return varBag.vars.value.sentAsInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Integer
         },
         "WPYH6WUF602eNTsWIob5jQ": {
             getter: function(varBag, idService) {
@@ -4007,6 +3245,18 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
                 return varBag.model.variables.screen_NotificationItemListVar;
             }
         },
+        "Mq4Qo29Dck+z+EhybiW0Qg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.startIndexVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Integer
+        },
+        "mM4YpSfoAEiZES10z9GJFg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.pageNumberVar;
+            },
+            dataType: OS.DataTypes.DataTypes.Integer
+        },
         "UPatnTxUzUSyph6SkRu4vw": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.getDateRangesDataAct;
@@ -4161,27 +3411,6 @@ define("UBTConnect.App_Notifications.Notifications.mvc$debugger", ["exports", "O
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("TextPlaceholder"));
-                })(varBag.model, idService);
-            }
-        },
-        "hp6BoyCtPEq5COpMCcSfzg": {
-            getter: function(varBag, idService) {
-                return (function(model, idService) {
-                    return model.widgets.get(idService.getId("List_Notifications"));
-                })(varBag.model, idService);
-            }
-        },
-        "pW8y04jKvUi2AvTovApoMw": {
-            getter: function(varBag, idService) {
-                return (function(model, idService) {
-                    return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
-                })(varBag.model, idService);
-            }
-        },
-        "WiiX+cr7V0G0NdMrfN7pZQ": {
-            getter: function(varBag, idService) {
-                return (function(model, idService) {
-                    return model.widgets.get(idService.getId("NotificationItem"));
                 })(varBag.model, idService);
             }
         },

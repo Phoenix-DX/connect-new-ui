@@ -17,13 +17,15 @@ import { markNoPhoto } from '@/components/ui/EntityLazyImage/mocks';
    counts, main hall coordinates, locality/country names and time zone, no person data). Its LocalityId was remapped by
    the anonymisation (585) while the captured route uses 252, so the single recording is served without input matching.
    DataActionGetLocalityHouseholds and DataActionGetMembers were never recorded (households and members are person
-   data): fictional values with the captured counts and text lengths (dom/default.html: 23 cards; a subtitle on 17;
-   2 member avatars per card, 1 on cards 12 and 13; location "Bahia Blanca, Argentina", the TST locality label).
+   data): fictional values with the captured counts and text lengths (dom/default.html of 2026-11-07: 23 cards; a
+   subtitle on 17; 2 member avatars per card, the second of cards 12 and 13 (0-based) the fallback icon; location
+   "Bahia Blanca, Argentina", the TST locality label).
    Scenarios: `real`, `empty` (no households: Directory_EmptyState), `error` (HTTP 500), `loading` (never answers). */
 
 /* The 23 households of locality 252 in the directory cast (src/mocks/fictional/directory.ts), in the captured card
-   order, whose names and children keep the captured word lengths; member avatars: 2 per card, 1 for the two single
-   householders (cards 13 and 14). Card 1 is household 42438 (decision A, 2026-10-16), the captured bookmarked first card (bookmark row 4 of
+   order, whose names and children keep the captured word lengths; member avatars: 2 per card (re-capture of
+   2026-11-07); the second member of the two single householders (cards 13 and 14) has no photo (the captured
+   fallback icon `connect-icon-person-fill`, `ubt-lazy-image--no-image`). Card 1 is household 42438 (decision A, 2026-10-16), the captured bookmarked first card (bookmark row 4 of
    the retired legacy bookmark list). */
 export const sampleHouseholds = LOCALITY_HOUSEHOLDS.map((h) => ({
   HouseholdId: h.id,
@@ -34,12 +36,15 @@ export const sampleHouseholds = LOCALITY_HOUSEHOLDS.map((h) => ({
   CountryName: LOCALITY.country,
 }));
 
+const memberId = (index: number, m: number) => String(92001 + Math.max(index, 0) * 10 + m);
+LOCALITY_HOUSEHOLDS.forEach((h, index) => {
+  if (h.spouse === undefined) markNoPhoto('Member', memberId(index, 1));
+});
 const membersOf = (id: string | undefined) => {
   const index = LOCALITY_HOUSEHOLDS.findIndex((h) => h.id === id);
-  const count = LOCALITY_HOUSEHOLDS[index]?.spouse === undefined && index >= 0 ? 1 : 2;
-  return Array.from({ length: count }, (_m, m) => ({
+  return Array.from({ length: 2 }, (_m, m) => ({
     ImageURL: '',
-    EntityId: String(92001 + Math.max(index, 0) * 10 + m),
+    EntityId: memberId(index, m),
     EntityType: 'Member',
   }));
 };
@@ -72,7 +77,8 @@ export const sampleSubdivisions = SUBDIVISIONS.map(([id, name, brethren, brother
   },
 }));
 
-/* Interchange (dom/tag-interchange.html, `l1-3679_0`): one locality (the cast's Monte Hermoso), empty subtitle, the
+/* Interchange (dom/tag-interchange.html, `l1-3679_0`): one locality (the cast's Monte Hermoso), subtitle "Argentina"
+   (re-capture of 2026-11-07; the country, empty in the capture of 2026-10-16), the
    captured statistics in their order (Brethren and Supper Meetings were masked: 3 and 1 digits; Distance 3 + 2). */
 const statistic = (Name: string, Value: string) => ({ Name, Value, IconColorId: '', IconId: '' });
 export const sampleInterchanges = [
@@ -84,7 +90,7 @@ export const sampleInterchanges = [
     IsBookmarked: false,
     InterchangeStatistics: {
       Title: INTERCHANGE.name,
-      Subtitle: '',
+      Subtitle: INTERCHANGE.country,
       AvatarURL: '',
       Statistics: wireList([
         statistic('Brethren', '163'),
@@ -98,12 +104,15 @@ export const sampleInterchanges = [
   },
 ];
 
-/* OneSchool Global (dom/tag-oneschoolglobal.html, `l1-3709_3`, `_4`): the cast's two schools with photos (the neutral
-   landscape placeholder, Q-W2C-1), names of 9 4 and 9 5 6 letters, locality "Bahia Blanca". The first reuses the
-   OneSchoolGlobalDetails route id 1430. Phone and Email are not shown by the card (contact details come from
+/* OneSchool Global (dom/tag-oneschoolglobal.html of 2026-11-07, `l1-146382_3`): one school with a photo (the neutral
+   landscape placeholder, Q-W2C-1), name of 9 5 6 letters (the cast's second school), locality "Bahia Blanca". The
+   capture of 2026-10-16 had two schools (9 4 and 9 5 6). Id 132: on TST the card of locality 252 opens
+   OneSchoolGlobalDetails?In_OneSchoolGlobalId=132 (route_discovery.cjs, 2026-11-07; user Q2 a), and the
+   OneSchoolGlobalDetails mock has school 132. Phone and Email are not shown by the card (contact details come from
    FetchContactDetails): empty. */
-export const sampleOneSchools = SCHOOLS.map(({ id, name }) => ({
-  CommunityBusinessId: id,
+const TST_SCHOOL_ID = '132';
+export const sampleOneSchools = SCHOOLS.slice(1).map(({ name }) => ({
+  CommunityBusinessId: TST_SCHOOL_ID,
   SignedURL: LANDSCAPE_PHOTO,
   OneSchool_Card_Content: {
     Name: name,

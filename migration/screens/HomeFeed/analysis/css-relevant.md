@@ -4,14 +4,15 @@ Load order of stylesheets (keep this order in the build):
 
 1. `/UBTConnect/css/_Basic.css`
 2. `/UBTConnect/css/OutSystemsReactWidgets.css`
-3. `/UBTConnect/css/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css`
-4. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-5. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-6. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-9. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+3. `/UBTConnect/css/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css`
+4. `/UBTConnect/css/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css`
+5. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+6. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+7. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+9. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+10. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -400,6 +401,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```
 ## ConnectPatterns.Icon
 
+### .connect-icon-Arrow-up1  (1 rule)
+```css
+.connect-icon-Arrow-up1:before { content: "\f0c2"; }
+```
 ### .connect-icon-arrow_right_alt  (1 rule)
 ```css
 .connect-icon-arrow_right_alt:before { content: "\f09b"; }
@@ -476,9 +481,17 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .icon-display { --ubt-icon-size: var(--ubt-icon-size-display); }
 ```
+### .icon-extra-small  (1 rule)
+```css
+.icon-extra-small { --ubt-icon-size: var(--ubt-icon-size-extra-small); }
+```
 ### .icon-medium  (1 rule)
 ```css
 .icon-medium { --ubt-icon-size: var(--ubt-icon-size-medium); }
+```
+### .icon-non-standard-40  (1 rule)
+```css
+.icon-non-standard-40 { --ubt-icon-size: var(--ubt-icon-size-non-standard-40); }
 ```
 ### .icon-small  (1 rule)
 ```css
@@ -488,6 +501,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
 an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
+```
+### .text-green-dark  (1 rule)
+```css
+.text-green-dark { color:var(--text-color-green-dark, var(--color-green-dark)); }
 ```
 ### .text-inherit  (1 rule)
 ```css
@@ -549,6 +566,26 @@ button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; di
 .carousel .carousel-container-content .OSFillParent { display:inline-block; }
 .carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
 input.OSFillParent.calendar-input { display:none; }
+```
+### .directory-numbers-card  (1 rule)
+```css
+.directory-numbers-card { display: flex; padding: var(--space-base); flex-direction: column; align-items: flex-start; gap: var(--space-s); border-radius: var(--Radius---border-radius-l, 16px); border: 1px solid #63A9BA; background: var(--color-neutral-0); }
+```
+### .directory-numbers-card__content  (1 rule)
+```css
+.directory-numbers-card__content { display: flex; align-items: center; gap: 8px; align-self: stretch; border-radius: var(--border-radius-large); }
+```
+### .directory-numbers-card__left  (1 rule)
+```css
+.directory-numbers-card__left { display: flex; width: 160px; padding: var(--space-base); flex-direction: column; justify-content: center; align-items: flex-start; gap: var(--space-s); align-self: stretch; background: linear-gradient(180deg, rgba(237, 246, 248, 0.10) 0%, rgba(0, 129, 156, 0.10) 100%); border-radius: var(--border-radius-large); }
+```
+### .directory-numbers-card__right  (1 rule)
+```css
+.directory-numbers-card__right { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; flex: 1 0 0; align-self: stretch; }
+```
+### .directory-numbers-card__variation  (1 rule)
+```css
+.directory-numbers-card__variation { display: flex; min-height: 16px; align-items: center; gap: var(--space-xs); align-self: stretch; }
 ```
 ### .list-group  (25 rules)
 ```css
@@ -654,6 +691,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```
 ## BasePatterns.CustomContainer
 
+### .background-blue-non-standard  (1 rule)
+```css
+.background-blue-non-standard { background-color: var(--color-blue-non-standard); }
+```
 ### .background-cyan-lightest  (1 rule)
 ```css
 .background-cyan-lightest { background-color:var(--background-color-cyan-lightest, var(--color-cyan-lightest)); }
@@ -665,21 +706,9 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
 .background-neutral-0 { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
 ```
-### .background-neutral-3  (4 rules)
-```css
-.tag.background-neutral-1, .tag.background-neutral-2, .tag.background-neutral-3, .tag.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.avatar.background-neutral-1, .avatar.background-neutral-2, .avatar.background-neutral-3, .avatar.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.background-neutral-3 { background-color:var(--background-color-neutral-3, var(--color-neutral-3)); }
-```
 ### .background-pink-non-standard  (1 rule)
 ```css
 .background-pink-non-standard { background-color: var(--color-pink-non-standard); }
-```
-### .background-primary-gradient-radial  (2 rules)
-```css
-.background-primary-gradient-radial { background: var(--color-primary-gradient-radial); }
-.ubt-layout-home .header.background-primary-gradient-radial { background: var(--color-primary-gradient-radial); }
 ```
 ### .background-transparent  (5 rules)
 ```css
@@ -688,10 +717,6 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .badge.background-transparent { color:var(--text-color-primary, var(--color-primary)); }
 .counter.background-transparent { border:none; }
 .background-transparent, .ie11 .background-transparent { background-color:transparent; }
-```
-### .background-yellow-lightest  (1 rule)
-```css
-.background-yellow-lightest { background-color:var(--background-color-yellow-lightest, var(--color-yellow-lightest)); }
 ```
 ### .border-color-neutral-3  (1 rule)
 ```css
@@ -706,11 +731,6 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 .border-radius-large.form-control[data-input], .border-radius-large.form-control[data-textarea], .border-radius-large.dropdown-container > div.dropdown-display { border-radius: var(--border-radius-large); }
 .border-radius-large { border-radius: var(--border-radius-large); }
 ```
-### .border-radius-medium  (2 rules)
-```css
-.border-radius-medium.form-control[data-input], .border-radius-medium.form-control[data-textarea], .border-radius-medium.dropdown-container > div.dropdown-display { border-radius: var(--border-radius-medium); }
-.border-radius-medium { border-radius: var(--border-radius-medium); }
-```
 ### .border-s  (1 rule)
 ```css
 .border-size-s, .border-s { border: var(--border-size-s) solid var(--border-color, currentColor); }
@@ -719,12 +739,28 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .font-semi-bold { font-weight:var(--font-semi-bold); }
 ```
+### .font-size-base  (1 rule)
+```css
+.font-size-base { font-size:var(--font-size-base); }
+```
+### .font-size-h1  (1 rule)
+```css
+.font-size-h1 { font-size:var(--font-size-h1); }
+```
+### .font-size-xs  (1 rule)
+```css
+.font-size-xs { font-size:var(--font-size-xs); }
+```
 ### .inline-block  (4 rules)
 ```css
 .OSBlockWidget:has(> .inline-block), .OSBlockWidget:has(> .OSBlockWidget > .ubt-custom-container.inline-block) { display: inline-block; width: fit-content; }
 .lazy-image-middle .OSBlockWidget:has(> .inline-block.ubt-avatar-image) { vertical-align: middle; }
 .ubt-tag-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
 .Household_GalleryCard-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
+```
+### .margin-bottom-base  (1 rule)
+```css
+.margin-bottom-base { margin-bottom:var(--space-base); }
 ```
 ### .margin-top-base  (1 rule)
 ```css
@@ -737,6 +773,10 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ### .margin-top-xs  (1 rule)
 ```css
 .margin-top-xs { margin-top:var(--space-xs); }
+```
+### .margin-x-base  (1 rule)
+```css
+.margin-x-base { margin-left:var(--space-base); margin-right:var(--space-base); }
 ```
 ### .margin-y-base  (1 rule)
 ```css
@@ -779,9 +819,9 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ```css
 .text-cyan-darker { color:var(--text-color-cyan-darker, var(--color-cyan-darker)); }
 ```
-### .text-yellow-dark  (1 rule)
+### .text-peach-dark  (1 rule)
 ```css
-.text-yellow-dark { color:var(--text-color-yellow-dark, var(--color-yellow-dark)); }
+.text-peach-dark { color: var(--color-peach-dark); }
 ```
 ### .ubt-custom-container  (1 rule)
 ```css
@@ -846,22 +886,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```
 ## BasePatterns.CustomText
 
-### .font-size-base  (1 rule)
-```css
-.font-size-base { font-size:var(--font-size-base); }
-```
-### .font-size-h2  (1 rule)
-```css
-.font-size-h2 { font-size:var(--font-size-h2); }
-```
-### .font-size-xs  (1 rule)
-```css
-.font-size-xs { font-size:var(--font-size-xs); }
-```
-### .italic  (1 rule)
-```css
-.italic { font-style:italic; }
-```
 ### .margin-left-s  (2 rules)
 ```css
 .margin-left-s { margin-left:var(--space-s); }
@@ -1112,6 +1136,16 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 .dx-confirmation-dialog > [data-popup-backdrop][data-expanded=false] > [data-popup-dialog] > div > * { display: block !important; }
 .connect-dialog-popup .dx-confirmation-dialog .dx-dialog-header { font-size: var(--font-size-base); }
 ```
+## Directory_CommonBlocks.Directory_CommunityNumbers__Number
+
+### .directory-numbers-card__number  (1 rule)
+```css
+.directory-numbers-card__number { display: flex; padding: var(--space-s); align-items: center; gap: var(--space-s); align-self: stretch; }
+```
+### .directory-numbers-card__number--border-top  (1 rule)
+```css
+.directory-numbers-card__number--border-top { border-top: 1px solid rgba(0, 129, 156, 0.10); }
+```
 ## ConnectPatterns.PopupMenu
 
 ### .dx-popup-menu-container  (2 rules)
@@ -1281,11 +1315,13 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-background-body`: `#f3f6f8` (in `@charset "UTF-8";    :root`); `var(--color-neutral-0)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-dark`: `#1667ad` (in `@charset "UTF-8";    :root`); `#112CBA` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-lightest`: `#e8f2fa` (in `@charset "UTF-8";    :root`); `#E1E5FF` (in `:root, .connect-legacy-compatibily-containter`)
+- `--color-blue-non-standard`: `#6ca0dc` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan`: `#0d8091` (in `@charset "UTF-8";    :root`); `#4EAEC2` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan-dark`: `#0b6d7b` (in `@charset "UTF-8";    :root`); `#00819C` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan-darker`: `#095a66` (in `@charset "UTF-8";    :root`); `#005668` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-cyan-lightest`: `#e7f2f4` (in `@charset "UTF-8";    :root`); `#EDF6F8` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-focus-outer`: `#ffd337` (in `@charset "UTF-8";    :root`)
+- `--color-green-dark`: `#2f9741` (in `@charset "UTF-8";    :root`); `#29823B` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-green-darker`: `#267d36` (in `@charset "UTF-8";    :root`); `#194E23` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-green-lightest`: `#ebf7ed` (in `@charset "UTF-8";    :root`); `#EAF3EB` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-neutral-0`: `#ffffff` (in `@charset "UTF-8";    :root`)
@@ -1322,7 +1358,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--color-rgb-purple-dark`: `110, 113, 255` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-rgb-red-darker`: `132, 19, 19` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-rgb-yellow-darker`: `140, 97, 0` (in `:root, .connect-legacy-compatibily-containter`)
-- `--color-yellow-dark`: `#d08700` (in `@charset "UTF-8";    :root`); `#E9A100` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-yellow-darker`: `#ac6f00` (in `@charset "UTF-8";    :root`); `#8C6100` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-yellow-lightest`: `#fef5e5` (in `@charset "UTF-8";    :root`); `#FDF6E5` (in `:root, .connect-legacy-compatibily-containter`)
 - `--connect-event-form-item-border`: `var(--border-size-s) solid var(--color-neutral-3)` (in `.connect-event-form`)
@@ -1331,6 +1366,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--font-regular`: `400` (in `@charset "UTF-8";    :root`)
 - `--font-semi-bold`: `600` (in `@charset "UTF-8";    :root`)
 - `--font-size-base`: `16px` (in `@charset "UTF-8";    :root`); `1rem` (in `:root, .connect-legacy-compatibily-containter`)
+- `--font-size-h1`: `32px` (in `@charset "UTF-8";    :root`); `2rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h2`: `28px` (in `@charset "UTF-8";    :root`); `1.75rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h4`: `22px` (in `@charset "UTF-8";    :root`); `1.375rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h5`: `20px` (in `@charset "UTF-8";    :root`); `1.25rem` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1379,7 +1415,9 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--ubt-icon-size`: `var(--ubt-icon-size-base)` (in `:root`); `var(--ubt-icon-size-base)` (in `.ubt-avatar-image-base, .ubt-lazy-image-base, .ubt-lazy-image--width-base`); `var(--ubt-icon-size-non-standard-32)` (in `.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base`); `var(--ubt-icon-size-medium)` (in `.ubt-avatar-image-xxs, .ubt-lazy-image-xxs`)
 - `--ubt-icon-size-base`: `24px` (in `:root`)
 - `--ubt-icon-size-display`: `36px` (in `:root`)
+- `--ubt-icon-size-extra-small`: `10px` (in `:root`)
 - `--ubt-icon-size-medium`: `20px` (in `:root`)
+- `--ubt-icon-size-non-standard-40`: `40px` (in `:root`)
 - `--ubt-icon-size-small`: `12px` (in `:root`)
 - `--ubt-layout-login-padding`: `var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base))` (in `:root`)
 - `--ubt-login-screen-padding-top`: `calc(var(--ubt-layout-login-padding-top) + 80px)` (in `:root`)

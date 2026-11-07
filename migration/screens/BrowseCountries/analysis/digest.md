@@ -982,14 +982,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2751 ms
-- 2. `DataActionGetCountriesStatistics` (200) at 3672 ms
-- 3. `ActionAppManager_AfterInitialize` (200) at 5417 ms
-- 4. `ActionSync_Info_GetMain` (200) at 5904 ms
-- 5. `ActionGetUserInformation` (200) at 6299 ms
-- 6. `ActionGetNumberUnreadMessages` (200) at 6587 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8657 ms
-- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10665 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2452 ms
+- 2. `DataActionGetCountriesStatistics` (200) at 3340 ms
+- 3. `ActionAppManager_AfterInitialize` (200) at 4743 ms
+- 4. `ActionSync_Info_GetMain` (200) at 5242 ms
+- 5. `ActionGetUserInformation` (200) at 5576 ms
+- 6. `ActionGetNumberUnreadMessages` (200) at 5809 ms
+- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7674 ms
+- 8. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10328 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

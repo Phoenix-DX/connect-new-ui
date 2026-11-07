@@ -95,7 +95,7 @@ export function AddressInformationSection({
   onSubdivisionChange,
 }: AddressInformationSectionProps) {
   return (
-    <Skeleton id="$b29" isLoading={isLoading}>
+    <Skeleton id="$b31" isLoading={isLoading}>
       <CustomContainer id="AddressInfo" options={SECTION_PADDING}>
         <CustomText
           id="AddressInformation"

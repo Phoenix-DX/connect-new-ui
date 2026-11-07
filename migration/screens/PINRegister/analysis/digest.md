@@ -319,13 +319,13 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3484 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 6018 ms
-- 3. `ActionSync_Info_GetMain` (200) at 8282 ms
-- 4. `ActionGetUserInformation` (200) at 8613 ms
-- 5. `ActionGetNumberUnreadMessages` (200) at 8863 ms
-- 6. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11096 ms
-- 7. `ServiceAPIFetchData_CacheableMapEntities` (200) at 11149 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2385 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 4525 ms
+- 3. `ActionSync_Info_GetMain` (200) at 7177 ms
+- 4. `ActionGetUserInformation` (200) at 7482 ms
+- 5. `ActionGetNumberUnreadMessages` (200) at 7701 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9734 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12734 ms
 
 ## Not yet captured (see coverage.md)
 - `App_PIN.Block_PINUnlock`

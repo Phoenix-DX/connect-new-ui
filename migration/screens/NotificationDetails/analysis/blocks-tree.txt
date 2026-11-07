@@ -1,6 +1,8 @@
 Layouts.Layout_MainPages_Upgrade
   LayoutRuntime_NavigationHandler.LayoutRuntime_Top
   ConnectPatterns.Icon
+  BasePatterns.CustomText
+    ConnectPatterns.IconInline_Internal
   BasePatterns.CustomContainer
     ConnectPatterns.IconText
       BasePatterns.Columns_Two
@@ -10,11 +12,9 @@ Layouts.Layout_MainPages_Upgrade
               ConnectPatterns.Icon
           BasePatterns.CustomText
             ConnectPatterns.IconInline_Internal
-  App_Common_Blocks.SectionSeparator
-    BasePatterns.CustomContainer
+          BasePatterns.CustomText
+            ConnectPatterns.IconInline_Internal
   BasePatterns.CustomContainer
-    BasePatterns.CustomText
-      ConnectPatterns.IconInline_Internal
     Widgets.AdaptiveCardViewer
   BasePatterns.CustomContainer
     BasePatterns.CustomText

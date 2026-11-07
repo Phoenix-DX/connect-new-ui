@@ -162,7 +162,8 @@ export default function Notifications() {
           />
         }
         content={
-          !v.isLoading && v.isDataFetched && v.items.length === 0 ? (
+          // Live TST 2026-11-07: the empty check and the list read Screen_NotificationItemList.
+          !v.isLoading && v.isDataFetched && v.screenItems.length === 0 ? (
             v.selectedHistorySearch !== '' ? (
               <CustomContainer
                 id="$b12"
@@ -185,23 +186,24 @@ export default function Notifications() {
             <NotificationsListBreakpoints
               id="$b15"
               breakpoints={v.breakpoints}
-              uiNotificationItemList={v.items}
+              uiNotificationItemList={v.screenItems}
               onNotificationDetail={onNotificationDetail}
               onUpdateReadCount={onUpdateReadCount}
               isLoading={v.isLoading}
             />
           )
         }
-        bottom={<BottomBar id="$b19" activeItem="" />}
-        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b20" />}
+        // The ids of the TST capture of 2026-11-07 (the hidden list of the screen is gone: the aliases moved by 3).
+        bottom={<BottomBar id="$b16" activeItem="" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b17" />}
       />
       <Notifications_SortSheet
-        id="$b21"
+        id="$b18"
         onSheetInitialized={onFilterSheetInitialized}
         onApplyFilters={onApplyFilters}
       />
       <Notifications_MoreActionSheet
-        id="$b22"
+        id="$b19"
         onSheetInitialized={onMoreActionSheetInitialized}
         onApplyFilters={() => {
           onApplyFilters(true);

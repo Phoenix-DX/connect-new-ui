@@ -1,11 +1,13 @@
 {
- "finishedAt": "2026-10-16T06:57:54",
+ "finishedAt": "2026-11-07T16:40:58",
  "files": {
-  "src/screens/HouseholdCarousel/api.ts": "e04843b392011665",
-  "src/screens/HouseholdCarousel/components/logic.test.ts": "43b1835c45556c90",
-  "src/screens/HouseholdCarousel/components/logic.ts": "b50e54bfdc6baf66",
-  "src/screens/HouseholdCarousel/index.tsx": "c7ae0ed3e84aa8d9",
-  "src/screens/HouseholdCarousel/mocks.ts": "98f3c95db9f3a89e",
-  "src/screens/HouseholdCarousel/types.ts": "6652f724fc3a6fb9"
+  "src/pages/HouseholdCarousel/HouseholdCarousel.test.tsx": "bede13e2fa44c263",
+  "src/pages/HouseholdCarousel/HouseholdCarouselPage.tsx": "a86d8f394a671f96",
+  "src/pages/HouseholdCarousel/hooks/householdCarouselActions.test.ts": "55f291305b23ca5b",
+  "src/pages/HouseholdCarousel/hooks/householdCarouselActions.ts": "51fa872117a6532d",
+  "src/pages/HouseholdCarousel/hooks/useHouseholdCarousel.test.tsx": "4189826e4bf30812",
+  "src/pages/HouseholdCarousel/hooks/useHouseholdCarousel.ts": "f637f423819cf84c",
+  "src/pages/HouseholdCarousel/inputs.ts": "5e86f2d84f1d688f",
+  "src/pages/HouseholdCarousel/mocks.ts": "426b8ad956547c18"
  }
 }

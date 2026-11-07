@@ -35,6 +35,24 @@ return "";
 }, false), 
 this.attr("_textColorIdInDataFetchStatus", "_textColorIdInDataFetchStatus", "_textColorIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("In_VerticalPaddingSizeId", "in_VerticalPaddingSizeIdIn", "In_VerticalPaddingSizeId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall;
+}, false), 
+this.attr("_in_VerticalPaddingSizeIdInDataFetchStatus", "_in_VerticalPaddingSizeIdInDataFetchStatus", "_in_VerticalPaddingSizeIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
+}, false), 
+this.attr("In_HorizontalPaddingSizeId", "in_HorizontalPaddingSizeIdIn", "In_HorizontalPaddingSizeId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return UBTConnectLibraryModel.staticEntities.uBT_Size.small;
+}, false), 
+this.attr("_in_HorizontalPaddingSizeIdInDataFetchStatus", "_in_HorizontalPaddingSizeIdInDataFetchStatus", "_in_HorizontalPaddingSizeIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
+}, false), 
+this.attr("In_ShapeId", "in_ShapeIdIn", "In_ShapeId", true, false, OS.DataTypes.DataTypes.Text, function () {
+return UBTConnectLibraryModel.staticEntities.uBT_Shape.rounded;
+}, false), 
+this.attr("_in_ShapeIdInDataFetchStatus", "_in_ShapeIdInDataFetchStatus", "_in_ShapeIdInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -105,6 +123,30 @@ if("TextColorId" in inputs) {
 this.variables.textColorIdIn = inputs.TextColorId;
 if("_textColorIdInDataFetchStatus" in inputs) {
 this.variables._textColorIdInDataFetchStatus = inputs._textColorIdInDataFetchStatus;
+}
+
+}
+
+if("In_VerticalPaddingSizeId" in inputs) {
+this.variables.in_VerticalPaddingSizeIdIn = inputs.In_VerticalPaddingSizeId;
+if("_in_VerticalPaddingSizeIdInDataFetchStatus" in inputs) {
+this.variables._in_VerticalPaddingSizeIdInDataFetchStatus = inputs._in_VerticalPaddingSizeIdInDataFetchStatus;
+}
+
+}
+
+if("In_HorizontalPaddingSizeId" in inputs) {
+this.variables.in_HorizontalPaddingSizeIdIn = inputs.In_HorizontalPaddingSizeId;
+if("_in_HorizontalPaddingSizeIdInDataFetchStatus" in inputs) {
+this.variables._in_HorizontalPaddingSizeIdInDataFetchStatus = inputs._in_HorizontalPaddingSizeIdInDataFetchStatus;
+}
+
+}
+
+if("In_ShapeId" in inputs) {
+this.variables.in_ShapeIdIn = inputs.In_ShapeId;
+if("_in_ShapeIdInDataFetchStatus" in inputs) {
+this.variables._in_ShapeIdInDataFetchStatus = inputs._in_ShapeIdInDataFetchStatus;
 }
 
 }
@@ -206,15 +248,15 @@ return rec;
 }();
 rec.paddingSizeAttr = function () {
 var rec = new UBTConnectLibraryModel.SpacingOptionsRec();
-rec.verticalSizeIdAttr = UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall;
-rec.horizontalSizeIdAttr = UBTConnectLibraryModel.staticEntities.uBT_Size.small;
+rec.verticalSizeIdAttr = model.variables.in_VerticalPaddingSizeIdIn;
+rec.horizontalSizeIdAttr = model.variables.in_HorizontalPaddingSizeIdIn;
 return rec;
 }();
 rec.borderOptionsAttr = function () {
 var rec = new UBTConnectLibraryModel.BorderOptionsRec();
 rec.radiusAttr = function () {
 var rec = new UBTConnectLibraryModel.RadiusOptionsRec();
-rec.generalSizeIdAttr = UBTConnectLibraryModel.staticEntities.uBT_Shape.rounded;
+rec.generalSizeIdAttr = model.variables.in_ShapeIdIn;
 return rec;
 }();
 return rec;
@@ -231,9 +273,15 @@ return rec;
 }, function () {
 return model.variables.backgroundColorIdIn;
 }, function () {
+return model.variables.in_VerticalPaddingSizeIdIn;
+}, function () {
+return model.variables.in_HorizontalPaddingSizeIdIn;
+}, function () {
+return model.variables.in_ShapeIdIn;
+}, function () {
 return model.variables.textColorIdIn;
 }),
-_optionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._backgroundColorIdInDataFetchStatus, model.variables._textColorIdInDataFetchStatus)
+_optionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._backgroundColorIdInDataFetchStatus, model.variables._in_VerticalPaddingSizeIdInDataFetchStatus, model.variables._in_HorizontalPaddingSizeIdInDataFetchStatus, model.variables._in_ShapeIdInDataFetchStatus, model.variables._textColorIdInDataFetchStatus)
 },
 events: {
 _handleError: function (ex) {
@@ -310,8 +358,8 @@ return Promise.resolve();
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:Uhopg3AbJkywCuQ3W0M+Fw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.Uhopg3AbJkywCuQ3W0M+Fw:6EbMp90YfDLVW9dszdJwpQ", "UBTConnectLibrary", "TagContent", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:th6DJx0oI5mDufaOXUgceQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:Uhopg3AbJkywCuQ3W0M+Fw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.Uhopg3AbJkywCuQ3W0M+Fw:btW++Rz7VBpP4IKFNRfqPg", "UBTConnectLibrary", "TagContent", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:Uhopg3AbJkywCuQ3W0M+Fw", callContext.id);
@@ -365,6 +413,24 @@ dataType: OS.DataTypes.DataTypes.Text
 "iaJfvymTl0CVcb_S9pfQZQ": {
 getter: function (varBag, idService) {
 return varBag.model.variables.textColorIdIn;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"Fs40BUXDWEi7IGSnjCuaHA": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_VerticalPaddingSizeIdIn;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"MkOzQFPOG0iMTrz_hvZCIQ": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_HorizontalPaddingSizeIdIn;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"aQd_1g2_ZkS1k4LbnNuSkg": {
+getter: function (varBag, idService) {
+return varBag.model.variables.in_ShapeIdIn;
 },
 dataType: OS.DataTypes.DataTypes.Text
 },

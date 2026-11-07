@@ -10,27 +10,6 @@ export interface GetSubdivisionHouseholdsResponse {
   Household_GalleryCard_List: Household_GalleryCard_ListItem[] /* wire: { List: [...] } */;
 }
 
-export interface EmptyListItem {
-  Id: string /* Long Integer as string */;
-  Note: string /* "" in capture */;
-  DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  DateEditedUtc: string /* "1900-01-01..." = no value */;
-}
-
-export interface Note_Item_List {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
-}
-
-export interface Notes {
-  Total: number /* 0 in capture */;
-  Note_Item_List: Note_Item_List;
-}
-
-export interface FetchNotesResponse {
-  Notes: Notes;
-}
-
 export interface ContactPopupData {
   ImageURL: string /* "" in capture */;
   EntityTypeId: string /* "" in capture */;
@@ -63,6 +42,27 @@ export interface FetchContactDetailsResponse {
   LocalityName: string;
   EntitySubtitle: string /* "" in capture */;
   EntityName: string;
+}
+
+export interface EmptyListItem {
+  Id: string /* Long Integer as string */;
+  Note: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+}
+
+export interface Note_Item_List {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
+}
+
+export interface Notes {
+  Total: number /* 0 in capture */;
+  Note_Item_List: Note_Item_List;
+}
+
+export interface FetchNotesResponse {
+  Notes: Notes;
 }
 
 export interface Subdivision_Card_Content {

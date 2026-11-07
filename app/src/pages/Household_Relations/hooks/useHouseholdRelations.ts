@@ -2,6 +2,7 @@ import {
   fetchHouseholdRelationNotes,
   fetchMemberRelations,
   fetchSiblingRelations,
+  type AwayParents,
   type HouseholdMember,
   type MemberRelations,
   type MemberRelationsCallInputs,
@@ -27,7 +28,7 @@ import {
 
 /** The flows of HouseholdRelations_Block: OnReady (GetUserInformation_Wrapper, then Action_Refresh_Get_MemberDetails
     unless the view is restored from the cache with the same age visibility), OnAfterFetch_Get_MemberDetails (the event
-    RelationsDetails_Fetched, the refresh of Get_ParentHouseholdDetails, Actions_DefineLoading), the bookmark read of
+    RelationsDetails_Fetched, the refresh of Get_SibllingsRelations, Actions_DefineLoading), the bookmark read of
     OnInitialize, OnClick_Bookmark, OnClick_Member and the handlers of the notes sheet. The page calls this hook and passes the result to HouseholdRelationsView.
     @origin UBTConnect.Directory_Household.HouseholdRelations_Block */
 
@@ -59,11 +60,17 @@ export interface HouseholdRelationsFlows {
   mother: HouseholdMember;
   /** Get_MemberDetails.FormerSpouses. */
   formerSpouses: HouseholdMember[];
+  /** Get_MemberDetails.ParentHouseholdId: the "Relations" section shows only when it is not "". */
+  parentHouseholdId: string;
+  /** Get_MemberDetails.AwayParents. */
+  awayParents: AwayParents;
+  /** Get_MemberDetails.NoDisplaySiblings. */
+  noDisplaySiblings: HouseholdMember[];
   /** The fetch status of Get_MemberDetails, the source of the previous-spouse list. */
   formerSpousesFetchStatus: DataFetchStatus;
-  /** Get_ParentHouseholdDetails.Out_siblingRelations. */
+  /** Get_SibllingsRelations.Out_siblingRelations. */
   siblings: HouseholdMember[];
-  /** The fetch status of Get_ParentHouseholdDetails. */
+  /** The fetch status of Get_SibllingsRelations. */
   siblingsFetchStatus: DataFetchStatus;
   /** FetchNotes.Notes. */
   notes: Notes;
@@ -86,7 +93,7 @@ export interface HouseholdRelationsFlows {
 }
 
 /** The state and the flows of the relations of a member. The state comes from useFlowState and the view cache keeps it.
-    Flow scope (item 8): Get_MemberDetails and Get_ParentHouseholdDetails are data actions (R1, `flow.fetch`): after
+    Flow scope (item 8): Get_MemberDetails and Get_SibllingsRelations are data actions (R1, `flow.fetch`): after
     the unmount their answer and their failure are dropped, so OnAfterFetch_Get_MemberDetails (the event
     RelationsDetails_Fetched, the sibling refresh, Actions_DefineLoading) does not run (HouseholdRelations_Block.js:
     1695-1740). After GetUserInformation_Wrapper (a module action), Action_Refresh_Get_MemberDetails is an own action
@@ -135,7 +142,7 @@ export function useHouseholdRelations(
     }
   };
 
-  /** The refresh of Get_ParentHouseholdDetails. */
+  /** The refresh of Get_SibllingsRelations. */
   const refreshSiblings = async () => {
     const details: SiblingRelations = await refresh(() => fetchSiblingRelations(callInputs()), {
       fetching: { type: 'siblingsFetching' },
@@ -145,7 +152,8 @@ export function useHouseholdRelations(
   };
 
   /** The refresh of Get_MemberDetails, then OnAfterFetch_Get_MemberDetails: RelationsDetails_Fetched(FamilyName), the
-      refresh of Get_ParentHouseholdDetails, Actions_DefineLoading(False). */
+      refresh of Get_SibllingsRelations only when ParentHouseholdId is not NullIdentifier() as text ("0"; live TST
+      HouseholdRelations_Block.mvc.js:2093-2099), Actions_DefineLoading(False). */
   const refreshMemberDetails = async () => {
     const details: MemberRelations = await refresh(() => fetchMemberRelations(callInputs()), {
       fetching: { type: 'memberDetailsFetching' },
@@ -153,7 +161,7 @@ export function useHouseholdRelations(
     });
     dispatch({ type: 'memberDetailsFetched', details });
     flow.events.onRelationsDetailsFetched?.(details.FamilyName);
-    await refreshSiblings();
+    if (details.ParentHouseholdId !== '0') await refreshSiblings();
     dispatch({ type: 'loadingDefined', isRefresh: false });
   };
 
@@ -229,9 +237,12 @@ export function useHouseholdRelations(
     father: memberDetails.Father,
     mother: memberDetails.Mother,
     formerSpouses: memberDetails.FormerSpouses,
+    parentHouseholdId: memberDetails.ParentHouseholdId,
+    awayParents: memberDetails.AwayParents,
+    noDisplaySiblings: memberDetails.NoDisplaySiblings,
     formerSpousesFetchStatus: memberDetails.dataFetchStatus,
-    siblings: state.Get_ParentHouseholdDetails.Out_siblingRelations,
-    siblingsFetchStatus: state.Get_ParentHouseholdDetails.dataFetchStatus,
+    siblings: state.Get_SibllingsRelations.Out_siblingRelations,
+    siblingsFetchStatus: state.Get_SibllingsRelations.dataFetchStatus,
     notes: state.FetchNotes.Notes,
     isNotesSheetOpen: state.ShowNotesSheet,
     isBookmarked: state.IsBookmarked,

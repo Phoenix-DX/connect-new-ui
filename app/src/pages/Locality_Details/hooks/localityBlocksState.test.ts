@@ -65,7 +65,14 @@ describe('Locality_Households_HouseholdList', () => {
   it('householdsFetched replaces the list', () => {
     expect(
       localityHouseholdListReducer(INITIAL_LOCALITY_HOUSEHOLD_LIST, { type: 'householdsFetched', list: [household] }),
-    ).toEqual({ isDataFetched: true, list: [household] });
+    ).toEqual({ isDataFetched: true, hasFetchError: false, list: [household] });
+  });
+
+  it('householdsFailed keeps the rows and sets the fetch error (the List shows list-error)', () => {
+    expect(localityHouseholdListReducer(INITIAL_LOCALITY_HOUSEHOLD_LIST, { type: 'householdsFailed' })).toEqual({
+      ...INITIAL_LOCALITY_HOUSEHOLD_LIST,
+      hasFetchError: true,
+    });
   });
 
   it('withBookmark keeps the record when IsBookmarked does not change', () => {

@@ -10,7 +10,7 @@ import { server } from '@/test/setup';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import LDM_MyEvents_V2 from './LDM_MyEvents_V2Page';
 
-/* The page with the flows of the block and the MSW mocks of the route (the three past LDM meals of the fictional
+/* The page with the flows of the block and the MSW mocks of the route (the four past LDM meals of the fictional
    household 42438, src/mocks/fictional/ldm.ts), in the app frame on a memory router. */
 const PATH = '/UBTConnect/LDM_MyEvents_V2';
 const HOME = '/UBTConnect/HomeFeed';
@@ -42,12 +42,12 @@ const click = (element: Element | undefined | null) => {
   fireEvent.click(element);
 };
 
-/** Opens the page after HomeFeed, so a back navigation has a previous screen, and waits for the three cards. */
+/** Opens the page after HomeFeed, so a back navigation has a previous screen, and waits for the four cards. */
 async function open() {
   const view = renderRoutes(routes, HOME);
   await act(() => view.router.navigate(PATH));
   await waitFor(() => {
-    expect(cards()).toHaveLength(3);
+    expect(cards()).toHaveLength(4);
   });
   return view;
 }
@@ -64,14 +64,18 @@ afterEach(() => {
 });
 
 describe('LDM_MyEvents_V2 page', () => {
-  it('shows the three past meals by month, after one call of each data action', async () => {
+  it('shows the four past meals by month, after one call of each data action', async () => {
     const timeline = recordBodies(`Connect2_OrbitMobile_MUI/${GET_TIMELINE}`);
     await open();
     expect(screen.getByText('My Timeline')).toBeInTheDocument();
     expect(screen.getByText('Past Events')).toBeInTheDocument();
     expect(screen.queryByText(/^Upcoming/)).toBeNull();
-    expect(document.querySelectorAll('.past-event-cont')).toHaveLength(3);
-    expect(screen.getByText('18 Guests')).toBeInTheDocument();
+    expect(document.querySelectorAll('.past-event-cont')).toHaveLength(4);
+    // The captured guest lines (dom/default.html of 2026-11-06); the last card shows the sixth household as "+1".
+    expect(screen.getAllByText('13 Guests')).toHaveLength(2);
+    expect(screen.getAllByText('16 Guests')).toHaveLength(2);
+    expect(document.querySelectorAll('.overlapping-photo-cropper')).toHaveLength(19);
+    expect(document.querySelector('.overlapping-overlay-text')?.textContent).toBe('+1');
     // The filter icon is active after the load; the loader is gone.
     expect(document.querySelector('.fa-filter')?.classList.contains('text-neutral-6')).toBe(false);
     expect(document.querySelector('.list-updating')).toBeNull();
@@ -186,7 +190,7 @@ describe('LDM_MyEvents_V2 page', () => {
     expect(document.querySelector('.list-updating')).toBeNull();
     fireEvent.click(screen.getByText('Try again'));
     await waitFor(() => {
-      expect(cards()).toHaveLength(3);
+      expect(cards()).toHaveLength(4);
     });
     expect(timelineCalls()).toHaveLength(2);
   });
@@ -200,7 +204,7 @@ describe('LDM_MyEvents_V2 page', () => {
     await screen.findByText('LDM_EventDetail_V2 screen');
     await act(() => view.router.navigate(-1));
     await waitFor(() => {
-      expect(cards()).toHaveLength(3);
+      expect(cards()).toHaveLength(4);
     });
     expect(timelineCalls()).toHaveLength(1);
     expect(screen.queryByText('Mobile')).toBeNull();
@@ -287,7 +291,7 @@ describe('LDM_MyEvents_V2 timeline filter (decision Q1)', () => {
     expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('All Localities');
     click(document.querySelector('.past-event-filter-exit .fa-times'));
     await waitFor(() => {
-      expect(cards()).toHaveLength(3);
+      expect(cards()).toHaveLength(4);
     });
     expect(popup()).toBeNull();
     expect(document.querySelector('.my-events-popup-aura')).toBeNull();

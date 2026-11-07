@@ -4,7 +4,8 @@ import {
   toAccommodationHostDocument,
   toAccommodationHostResult,
   toAdminEventInformation,
-  toAdminEventItems,
+  toAdminEventsInputs,
+  toAdminEventsResult,
   toAssembleEventResult,
   toAssembleEventTypes,
   toAssembleMeetingListInputs,
@@ -44,8 +45,8 @@ import type {
   AccommodationHostResult,
   AdminEventInformation,
   AdminEventInformationCallInputs,
-  AdminEventItem,
   AdminEventsCallInputs,
+  AdminEventsResult,
   AssembleEventCallInputs,
   AssembleEventResult,
   AssembleNotesCallInputs,
@@ -279,8 +280,10 @@ export async function fetchEventQRCode(inputs: EventQRCodeCallInputs): Promise<E
 /* ---- Orbit admin ---- */
 
 /** DataActionGet_AdminEventsList of ScreenBlock_AdminLanding: the events of the admin. */
-export async function fetchAdminEvents(inputs: AdminEventsCallInputs): Promise<AdminEventItem[]> {
-  return toAdminEventItems(await callAction(ORBIT, 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList', inputs));
+export async function fetchAdminEvents(inputs: AdminEventsCallInputs): Promise<AdminEventsResult> {
+  return toAdminEventsResult(
+    await callAction(ORBIT, 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList', toAdminEventsInputs(inputs)),
+  );
 }
 
 /** DataActionGet_EventInformation of ScreenBlock_AdminEventDetail: HasQRCode and the event type. */

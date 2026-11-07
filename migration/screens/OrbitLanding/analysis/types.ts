@@ -317,6 +317,8 @@ export interface Directory_UserCurrent_Member {
   SpouseIsHouseholder: boolean;
   Photo: Photo;
   Address: Address;
+  HouseholderLatitude: string /* Decimal as string */;
+  HouseholderLongitude: string /* Decimal as string */;
 }
 
 export interface Directory_UserCurrent {
@@ -421,6 +423,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -457,6 +460,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -500,6 +504,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -513,6 +518,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {

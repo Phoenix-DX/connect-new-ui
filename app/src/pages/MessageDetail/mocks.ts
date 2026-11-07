@@ -24,6 +24,20 @@ const DIRECTORY_LOGO = '/UBT_CW/img/UBT_CW.directory_entity_logo.png';
 
 const seed = (): Record<string, unknown>[] => [
   {
+    // The message of the TST capture of 2026-11-07 (route_discovery id): sent by a user (no ProfileIconURL), the
+    // captured title and body "test", already read, the date with a 4-character time ("••• •••••••••• •••• ••").
+    Id: '5981096',
+    Title: 'test',
+    DateTimeCreated: '2026-10-28T09:40:00',
+    IsRead: true,
+    IsClear: false,
+    ProfileIconURL: '',
+    CreatedByMemberId: '900122',
+    MessageTemplateTypeId: 2,
+    MessageTemplatePriorityId: 1,
+    MessageInfoTypeId: 1,
+  },
+  {
     // The message of the TST capture of 2026-10-29 (drift wave WP1 Q1): sent by a user (no ProfileIconURL: the sender
     // photo and name come from the user mocks), the generic TST test label as title and body, already read, the date
     // with a 4-character time ("••• •••••••••• •••• ••").

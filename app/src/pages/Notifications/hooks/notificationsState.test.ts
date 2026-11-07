@@ -7,6 +7,7 @@ import {
   app_Notifications_AugmentDateRanges,
   app_Notifications_GetBreakpoints,
   cachedVariablesOf,
+  getSkeletonList_UI_Notification,
   initialNotificationsState,
   notificationsReducer,
   updatedReadCount,
@@ -25,6 +26,7 @@ const item = (id: string, dateTimeCreated: string, isRead = false): Notification
   profileIconURL: '',
   messageTemplateId: '0',
   createdByMemberId: '0',
+  createdByUserId: 0,
 });
 
 describe('Notifications client actions', () => {
@@ -97,24 +99,63 @@ describe('Notifications state', () => {
     expect(restored.items).toEqual([]);
   });
 
-  it('the fetch flow: date ranges with the default filter, then the list and its breakpoints', () => {
-    let state = notificationsReducer(initialNotificationsState(INITIAL_CACHED_VARIABLES), { type: 'loadingStarted' });
+  it('GetSkeletonList_UI_Notification: one Today breakpoint at Position -1 with BadgeCount 10 and the dummy items', () => {
+    const skeleton = getSkeletonList_UI_Notification(10, NOW);
+    expect(skeleton.breakpoints).toEqual([
+      {
+        position: -1,
+        sectionName: 'Today',
+        badgeCount: 10,
+        dateRange: { range: 'Today', from: '2026-10-16', to: '2026-10-16' },
+      },
+    ]);
+    expect(skeleton.items).toHaveLength(10);
+    expect(skeleton.items[0]).toEqual({
+      id: '0',
+      title: 'Example & Example',
+      dateTimeCreated: '2026-10-16T09:30:00',
+      isRead: false,
+      profileIconURL: '',
+      messageTemplateId: '0',
+      createdByMemberId: '',
+      createdByUserId: 0,
+    });
+  });
+
+  it('the fetch flow (live TST 2026-11-07): the skeleton, the date ranges, then the list and its breakpoints once', () => {
+    let state = notificationsReducer(initialNotificationsState(INITIAL_CACHED_VARIABLES), { type: 'skeletonSet' });
+    expect(state).toMatchObject({ isLoading: true, breakpoints: [{ position: -1, sectionName: 'Today' }] });
+    expect(state.screenItems).toHaveLength(10);
     state = notificationsReducer(state, { type: 'dateRangesAugmented', dateRanges: RANGES });
     expect(state.dateRanges).toBe(RANGES);
     expect(state.filter_Updates).toMatchObject({ dateFrom: '2026-04-16', dateTo: '2026-10-16' });
     const items = [item('1', '2026-10-16T08:00:00')];
     state = notificationsReducer(state, { type: 'notificationsFetched', items, unreadNotificationsCount: 1 });
     expect(state).toMatchObject({ items, unreadNotificationsCount: 1, isDataFetched: true, isLoading: true });
+    expect(state.screenItems).toHaveLength(10);
     const breakpoints = app_Notifications_GetBreakpoints(items, RANGES);
-    state = notificationsReducer(state, { type: 'breakpointsSet', breakpoints });
+    state = notificationsReducer(state, { type: 'afterFetch' });
     expect(state).toMatchObject({
       breakpoints,
       currentBreakpoint: breakpoints[0],
       showMarkAll: true,
+      maxRecords: 1,
+      screenItems: items,
+      readCount: 1,
       isLoading: false,
     });
-    state = notificationsReducer(state, { type: 'breakpointsSet', breakpoints: [] });
-    expect(state.currentBreakpoint).toEqual(EMPTY_BREAKPOINT);
+    // A later fetch keeps the breakpoints (Breakpoints[0].Position is no longer -1).
+    state = notificationsReducer(state, { type: 'notificationsReset' });
+    expect(state).toMatchObject({ startIndex: 0, pageNumber: 1, screenItems: [] });
+    state = notificationsReducer(state, { type: 'notificationsFetched', items: [], unreadNotificationsCount: 0 });
+    state = notificationsReducer(state, { type: 'afterFetch' });
+    expect(state).toMatchObject({ breakpoints, screenItems: [], maxRecords: 0, showMarkAll: false });
+    // No breakpoint from the first fetch: CurrentBreakpoint is the empty breakpoint.
+    let empty = notificationsReducer(initialNotificationsState(INITIAL_CACHED_VARIABLES), { type: 'skeletonSet' });
+    empty = notificationsReducer(empty, { type: 'notificationsFetched', items: [], unreadNotificationsCount: 0 });
+    empty = notificationsReducer(empty, { type: 'afterFetch' });
+    expect(empty.breakpoints).toEqual([]);
+    expect(empty.currentBreakpoint).toEqual(EMPTY_BREAKPOINT);
     expect(notificationsReducer(state, { type: 'loadingEnded' }).isLoading).toBe(false);
   });
 
@@ -148,13 +189,16 @@ describe('Notifications state', () => {
     expect(updatedReadCount(2, false, true)).toBe(2);
     const s0 = initialNotificationsState(INITIAL_CACHED_VARIABLES);
     expect(s0.readCount).toBe(0);
-    const fetched = notificationsReducer(s0, { type: 'notificationsFetched', items: [], unreadNotificationsCount: 2 });
-    const withBreakpoints = notificationsReducer(fetched, {
-      type: 'breakpointsSet',
-      breakpoints: [
-        { position: 0, sectionName: 'Older', badgeCount: 2, dateRange: { range: 'Older', from: '', to: '' } },
-      ],
-    });
+    const fetched = notificationsReducer(
+      {
+        ...s0,
+        breakpoints: [
+          { position: 0, sectionName: 'Older', badgeCount: 2, dateRange: { range: 'Older', from: '', to: '' } },
+        ],
+      },
+      { type: 'notificationsFetched', items: [], unreadNotificationsCount: 2 },
+    );
+    const withBreakpoints = notificationsReducer(fetched, { type: 'afterFetch' });
     expect(withBreakpoints.readCount).toBe(2);
     const read = notificationsReducer(withBreakpoints, { type: 'readCountUpdated', addToCount: false, isRead: false });
     expect(read.readCount).toBe(1);

@@ -1,7 +1,7 @@
 // Generated from captured response shapes. Long Integer / Decimal travel as strings.
 
 export interface DisplayOptions {
-  IsHidden: boolean;
+  IsAwayHousehold: boolean;
   IsDeceased: boolean;
   IsAncestry: boolean;
 }
@@ -120,16 +120,6 @@ export interface GetHouseholdResponse {
   isVisible: boolean;
 }
 
-export interface HouseholdCoordinates {
-  Longitude: string /* Decimal as string */;
-  Latitude: string /* Decimal as string */;
-  UseCoordinates: boolean;
-}
-
-export interface GetHousehold_CoordinatesResponse {
-  HouseholdCoordinates: HouseholdCoordinates;
-}
-
 export interface ContactPopupData {
   ImageURL: string /* "" in capture */;
   EntityTypeId: string;
@@ -164,6 +154,27 @@ export interface FetchContactDetailsResponse {
   EntityName: string;
 }
 
+export interface Out_ImageDetailsItem {
+  Id: string /* Long Integer as string */;
+  SignedUrl: string;
+  isDeceased: boolean;
+  IsHidden: boolean;
+}
+
+export interface GetHouseHold_GalleryResponse {
+  Out_ImageDetails: Out_ImageDetailsItem[] /* wire: { List: [...] } */;
+}
+
+export interface HouseholdCoordinates {
+  Longitude: string /* Decimal as string */;
+  Latitude: string /* Decimal as string */;
+  UseCoordinates: boolean;
+}
+
+export interface GetHousehold_CoordinatesResponse {
+  HouseholdCoordinates: HouseholdCoordinates;
+}
+
 export interface Note_Item_List {
   List: unknown[] /* empty in capture */;
   EmptyListItem: EmptyListItem;
@@ -182,7 +193,7 @@ export interface ResultsItem {
   Id: string /* Long Integer as string */;
   Type: string;
   Size: string;
-  SignedURL: string /* "" in capture */;
+  SignedURL: string;
   Error: string /* "" in capture */;
 }
 

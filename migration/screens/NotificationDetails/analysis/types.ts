@@ -289,20 +289,24 @@ export interface OrbitStaticEntities {
   HelperRoles: HelperRolesItem[] /* wire: { List: [...] } */;
 }
 
+export interface LocalBookmarkItem {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  ObjectType: string;
+  ObjectId: string /* Long Integer as string */;
+  Group: string;
+  DateCreatedUtc: string /* ISO DateTime */;
+  Note: string /* "" in capture */;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
   BookmarkId: string /* Long Integer as string */;
-  ObjectType: string /* "" in capture */;
-  ObjectId: string /* Long Integer as string */;
-  Group: string /* "" in capture */;
-  DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  Note: string /* "" in capture */;
-}
-
-export interface LocalBookmark {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+  BookmarkCategoryId: string /* "" in capture */;
+  ItemId: string /* "" in capture */;
+  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
 }
 
 export interface LocalBookmarksC2 {
@@ -316,7 +320,7 @@ export interface LocalNotes {
 }
 
 export interface LocalEntities_App {
-  LocalBookmark: LocalBookmark;
+  LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
   LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
@@ -372,10 +376,10 @@ export interface Directory_UserCurrent_Subscription {
 }
 
 export interface Photo {
-  Bucket: string /* "" in capture */;
-  Path: string /* "" in capture */;
-  Type: string /* "" in capture */;
-  SignedURL: string /* "" in capture */;
+  Bucket: string;
+  Path: string;
+  Type: string;
+  SignedURL: string;
 }
 
 export interface AddressItemsListItem {
@@ -408,15 +412,15 @@ export interface Directory_UserCurrent_Member {
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string /* "" in capture */;
+  Email: string;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
+  HomeNumber: string;
+  MobileNumber: string;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
@@ -507,6 +511,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -543,6 +548,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -586,6 +592,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -599,6 +606,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {

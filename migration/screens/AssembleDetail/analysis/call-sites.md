@@ -11,6 +11,12 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `AssembleEventDetail.OnReady` → `AssembleEventDetail.onReady` → `AssembleEventDetail.DataActionGetAssembleEvent`
 - `AssembleEventDetail fetch at start` → `AssembleEventDetail.DataActionGetAssembleEvent`
 
+### `Connect2_LegacyShared/ActionGetMemberContactByCacheKey`
+- `Connect2_LegacyShared.getMemberContactList` → `server GetMemberContactByCacheKey`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
+### `Connect2_LegacyShared/ActionGetSignedPhotosInBulk`
+- `Connect2_LegacyShared.getBulkSignedPhotosURL` → `server GetSignedPhotosInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
 ## Declared and reachable from the rendered blocks, not observed
 
 ### `UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIUpdateNote`
@@ -48,5 +54,5 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
-- `event navigateTo_ShareObject of AssembleEventDetail` → `event navigateTo_ShareObject of ScreenBlock_AssembleDetail` → `AssembleDetail.handler_NavigateTo_ShareObject` → `UBTConnect_Utils.shareEntity_ByURL` → `Connect2_LegacyShared.auditShareEvent` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`
+- `NC_Result_Item__Image.onClick_Result_Item` → `event onClick_Item of NC_Result_Item__Image` → `AssembleEventDetail_Contact.handler_OnClickHostContact` → `Connect2_Assemble_MUI.hasAccessToRegion` → `Connect2_Assemble_MUI.auditSubscriptionEvent` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 

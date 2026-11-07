@@ -66,7 +66,7 @@ sequenceDiagram
     S->>S: TODO keep cached data?
   end
   S->>API: DataActionGet_AdminEventsList
-  API-->>S: Response
+  API-->>S: Response, YearFilter
   S->>S: onAfterFetch_Get_AdminEventsList
   S->>API: ServiceAPIFetchData_CacheableMapEntities
   Note over S,API: observed in capture, trigger unverified (TODO)

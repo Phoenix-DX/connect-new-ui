@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 10 call(s)
-- Masked text nodes: 10, user images removed: 0
+- Masked text nodes: 12, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -17,8 +17,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `CacheControl.CacheControl_AllLocalities`
 - [ ] `CacheControl.CacheControl_Policies`
 - [ ] `ConnectPatterns.AddNote`
-- [ ] `ConnectPatterns.EmptyList`
+- [ ] `ConnectPatterns.EmptyListBorderless`
 - [ ] `ConnectPatterns.HighlightSearch`
+- [ ] `ConnectPatterns.IconSVG`
 - [ ] `ConnectPatterns.LazyImage`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `NavigationHandler.PreventBackNavigation`
@@ -29,20 +30,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `img/Connect2_LegacyShared.User_rectangle.png`
 - [ ] `img/UBTConnect.ConnectLogo.svg`
 - [ ] `img/UBTConnect.ConnectLogoWhite.svg`
-- [ ] `img/UBTConnectLibrary.CommunityCountries.svg`
-- [ ] `img/UBTConnectLibrary.CommunityHouseholds.svg`
-- [ ] `img/UBTConnectLibrary.CommunityLocalities.svg`
-- [ ] `img/UBTConnectLibrary.CommunityMembers.svg`
-- [ ] `img/UBTConnectLibrary.CommunityTradelink.svg`
-- [ ] `img/UBTConnectLibrary.ElGusto.svg`
-- [ ] `img/UBTConnectLibrary.HR100.svg`
-- [x] `img/UBTConnectLibrary.OneSchoolGlobal.svg`
-- [ ] `img/UBTConnectLibrary.Pin_Country.svg`
-- [ ] `img/UBTConnectLibrary.Pin_House.svg`
-- [ ] `img/UBTConnectLibrary.Pin_Locality.svg`
-- [ ] `img/UBTConnectLibrary.Pin_Lock.svg`
-- [ ] `img/UBTConnectLibrary.Pin_Member.svg`
-- [ ] `img/UBTConnectLibrary.Pin_OneSchool.svg`
 - [ ] `img/UBTConnectLibrary.ar.png`
 - [ ] `img/UBT_CW.UK.png`
 - [ ] `img/UBT_CW.au.png`
@@ -66,20 +53,19 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 
 ## Data/server actions declared in the screen and its blocks
 - [x] `DataActionGetBookmarks` (UBTConnect.Bookmarks.Bookmarks.mvc.js)
+- [ ] `GetAllVisibleBookmarksByType` (UBTConnect.Bookmarks.Bookmarks.mvc.js)
 - [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

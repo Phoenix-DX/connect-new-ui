@@ -206,6 +206,8 @@ The screen uses these strings: "Directory", "Search for households or members", 
 - The mock serves the recorded Get_LocalityDetails fixture for every input (the mock remaps LocalityId).
 - The route renders the UBT_LazyImage_List "+N" counter (AvatarImage) as NotCaptured, because the capture never shows it.
 - The route adds these exemptions (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS, TIME-LABEL-LOCALITYDETAILS.
+- Sync 2026-11-07, user accepts: the masked-image exemptions CAPTURE-MASKED-IMAGE-LOCALITYDETAILS and CAPTURE-MASKED-AVATAR-LOCALITYDETAILS change their path from `l1-111_\d+` to `l1-\d+_`. Reason: TST numbers the household-card list with a new value at each render (`83_`, `103_`, `106_` in three states). The fresh capture shows `106_` in the default state, and the old path fired on 0 of 253 differences [`parity/default.json`; `migration/parity-exemptions.json:496,509`].
+- Sync 2026-11-07: the OneSchool Global card of the mock has the id 132 (before 1430/1431). TST opens `OneSchoolGlobalDetails?In_OneSchoolGlobalId=132` [route_discovery.cjs run, 2026-11-07, in `dev.md`]. The name keeps the captured word lengths 9 5 6. The capture itself shows no card id (`tag-oneschoolglobal.raw.html`).
 
 ## 17. Patterns used
 - P-PARAMS: the route reads the inputs. Navigation uses the original parameter names.
@@ -220,3 +222,14 @@ The screen uses these strings: "Directory", "Search for households or members", 
 - The own blocks are in app/src/screens/Locality_Details/components/:
   - SubHeader_MainPages, Locality_DateTimeLabel, Timer, Locality_Households, Locality_Households_HouseholdList, Household_Card, UBT_LazyImage_List.
   - F1: Locality_Subdivisions, Locality_Interchange, Directory_Interchange_StatisticsList, Locality_OneSchoolGlobal, OneSchoolGlobal_List, StopPropagationHelper.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files changed: `UBTConnect.Directory_Locality.Locality_Details.mvc.js` (86427 to 88309 bytes), `UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js` (21178 to 23170 bytes) [tst-drift-2026-11-07.md:19,46].
+- Fresh capture: the loading and offline states show the Locality_Households block, and `calls.json` shows GetLocalityHouseholds at load [`analysis/dom/loading.html`, `analysis/dom/offline.html`]. The household list has the class `list-error` in the offline state. The OneSchool Global tag shows one card (`l1-146382_3`).
+- Fresh capture, more: the Interchange subtitle is "Argentina". Cards 12 and 13 show the fallback person icon for the second avatar.
+- Compiled code: ScreenEvent_OnInitialize now calls SetTags when TagsList is empty, so Households is selected from the start [`migration/sources/raw/UBTConnect.Directory_Locality.Locality_Details.mvc@19df1b49.js:1274`; Action_InitializeScreen also calls it, line 1437]. Interchange needs a LocalityId that is not NullIdentifier(). HorizontalTagList has a new OnParametersChanged (CurrentListIndex = ListIndexOf(IsSelected)) [`...HorizontalTagList.mvc@a4be8ed9.js:452`].
+- React now: `initialLocalityDetailsState` runs SetTags at start (`hooks/localityDetailsState.ts`). The page shows Interchange only when `localityId !== '0'` (`Locality_DetailsPage.tsx`). The household list keeps the fetch error and sets `list-error` (`useLocalityHouseholdList.ts`).
+- React now, calls: `useHouseholdCardMembers.ts` sends one GetMembers per card (23 cards, before 46 calls from the doubled dev effect). HorizontalTagList has no change: OnParametersChanged was already ported.
+- Calls: 38 at load against 39 expected. The one missing is a GetSignedImagesInBulk batch (6 against 7), allowed by CALL-COUNT-SIGNED-IMAGES-BATCH. Order: SetTags, then GetLocalityHouseholds, then GetMembers per card [`migration/route-check/routes/Locality_Details.md`, `dev.md`].
+- Evidence: parity of the 6 states has 0 differences after the exemption change. The consistency check is OK. The sweep of HouseholdDetails, Search and Profile has 0 differences [`test.md`].

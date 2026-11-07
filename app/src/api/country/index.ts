@@ -9,11 +9,9 @@ export {
   fetchAllCountries,
   fetchBrowseCountriesStatistics,
   fetchCountryInfo,
-  fetchCountryListCommunityStatistics,
   fetchCountryListStatistics,
   fetchCountryLocalities,
   fetchCountryLocalityStatistics,
-  fetchHomeFeedCommunityStatistics,
   fetchRegionSubscribedCountries,
 } from './repository';
 export type * from './types';

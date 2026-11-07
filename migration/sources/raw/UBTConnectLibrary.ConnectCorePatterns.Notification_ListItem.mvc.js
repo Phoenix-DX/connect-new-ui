@@ -47,6 +47,12 @@ return OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImage
 }, false, UBTConnectLibraryModel.AvatarImageRec), 
 this.attr("_in_AvatarImage_RightInDataFetchStatus", "_in_AvatarImage_RightInDataFetchStatus", "_in_AvatarImage_RightInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
 return /*Fetched*/ 1;
+}, false), 
+this.attr("IsIconURLDefined", "isIconURLDefinedIn", "IsIconURLDefined", true, false, OS.DataTypes.DataTypes.Boolean, function () {
+return false;
+}, false), 
+this.attr("_isIconURLDefinedInDataFetchStatus", "_isIconURLDefinedInDataFetchStatus", "_isIconURLDefinedInDataFetchStatus", true, false, OS.DataTypes.DataTypes.Integer, function () {
+return /*Fetched*/ 1;
 }, false)
 ].concat(_super.attributesToDeclare.call(this));
 };
@@ -133,6 +139,14 @@ if("In_AvatarImage_Right" in inputs) {
 this.variables.in_AvatarImage_RightIn = inputs.In_AvatarImage_Right;
 if("_in_AvatarImage_RightInDataFetchStatus" in inputs) {
 this.variables._in_AvatarImage_RightInDataFetchStatus = inputs._in_AvatarImage_RightInDataFetchStatus;
+}
+
+}
+
+if("IsIconURLDefined" in inputs) {
+this.variables.isIconURLDefinedIn = inputs.IsIconURLDefined;
+if("_isIconURLDefinedInDataFetchStatus" in inputs) {
+this.variables._isIconURLDefinedInDataFetchStatus = inputs._isIconURLDefinedInDataFetchStatus;
 }
 
 }
@@ -293,7 +307,8 @@ service: idService,
 name: "Notification_Visual"
 },
 _widgetRecordProvider: widgetsRecordProvider
-}, $if(model.variables.in_IsDoubleAvatarIn, false, this, function () {
+}), $if(model.variables.isIconURLDefinedIn, false, this, function () {
+return [$if(model.variables.in_IsDoubleAvatarIn, false, this, function () {
 return [React.createElement(UBTConnectLibrary_ConnectPatterns_AvatarDouble_mvc_view, {
 inputs: {
 In_SizeId: UBTConnectLibraryModel.staticEntities.uBT_AvatarSize.base_52,
@@ -341,7 +356,18 @@ alias: "4"
 _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 })];
-}))];
+})];
+}, function () {
+return [React.createElement(OSWidgets.Placeholder, {
+align: /*Default*/ 0,
+content: _this.props.placeholders.fetchingImage,
+_idProps: {
+service: idService,
+name: "FetchingImage"
+},
+_widgetRecordProvider: widgetsRecordProvider
+})];
+})];
 }),
 middle: new PlaceholderContent(function () {
 return [React.createElement(OSWidgets.Container, {
@@ -377,7 +403,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "6",
+uuid: "7",
 alias: "5"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -399,7 +425,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "7",
+uuid: "8",
 alias: "6"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -441,7 +467,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "9",
+uuid: "10",
 alias: "7"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -477,7 +503,7 @@ validationService: validationService
 },
 _idProps: {
 service: idService,
-uuid: "10",
+uuid: "11",
 alias: "8"
 },
 _widgetRecordProvider: widgetsRecordProvider,
@@ -502,7 +528,7 @@ style: "notification-unread-dot",
 visible: true,
 _idProps: {
 service: idService,
-uuid: "11"
+uuid: "12"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }, React.createElement(OSWidgets.Image, {
@@ -510,18 +536,16 @@ image: OS.Navigation.VersionedURL.getVersionedUrl("img/UBTConnectLibrary.Notific
 type: /*Static*/ 0,
 _idProps: {
 service: idService,
-uuid: "12"
+uuid: "13"
 },
 _widgetRecordProvider: widgetsRecordProvider
 }))];
 })];
 })
-},
-_dependencies: [asPrimitiveValue(model.variables.in_IsReadIn), asPrimitiveValue(model.variables.in_NotificationDateIn), asPrimitiveValue(model.variables.in_DescriptionIn), asPrimitiveValue(model.variables.in_AvatarImage_RightIn), asPrimitiveValue(model.variables.in_AvatarImage_LeftIn), asPrimitiveValue(model.variables._in_IsReadInDataFetchStatus), asPrimitiveValue(model.variables._in_NotificationDateInDataFetchStatus), asPrimitiveValue(model.variables._in_DescriptionInDataFetchStatus), asPrimitiveValue(model.variables._in_AvatarImage_RightInDataFetchStatus), asPrimitiveValue(model.variables._in_AvatarImage_LeftInDataFetchStatus), asPrimitiveValue(model.variables._in_IsDoubleAvatarInDataFetchStatus), asPrimitiveValue(model.variables.in_IsDoubleAvatarIn)]
+}
 })];
 })
-},
-_dependencies: [asPrimitiveValue(model.variables.in_IsReadIn), asPrimitiveValue(model.variables.in_NotificationDateIn), asPrimitiveValue(model.variables.in_DescriptionIn), asPrimitiveValue(model.variables.in_AvatarImage_RightIn), asPrimitiveValue(model.variables.in_AvatarImage_LeftIn), asPrimitiveValue(model.variables._in_IsReadInDataFetchStatus), asPrimitiveValue(model.variables._in_NotificationDateInDataFetchStatus), asPrimitiveValue(model.variables._in_DescriptionInDataFetchStatus), asPrimitiveValue(model.variables._in_AvatarImage_RightInDataFetchStatus), asPrimitiveValue(model.variables._in_AvatarImage_LeftInDataFetchStatus), asPrimitiveValue(model.variables._in_IsDoubleAvatarInDataFetchStatus), asPrimitiveValue(model.variables.in_IsDoubleAvatarIn)]
+}
 }));
         };
         return View;
@@ -547,20 +571,63 @@ this.shouldSendClientVarsToDataSources = false;
 
 Controller.prototype.dataFetchActionNames = [];
 // Client Actions
+Controller.prototype._onReady$Action = function (callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("OnReady");
+callContext = controller.callContext(callContext);
+varBag.callContext = callContext;
+try {OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:VZuXlU0Nsk6lEJXYek0hGg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg/NodesShownInESpaceTree.tibjY8yxRkeZi774q2ldYQ/ClientActions.VZuXlU0Nsk6lEJXYek0hGg:bRElo+cf7Y4csVoG63mDtQ", "UBTConnectLibrary", "OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:J1xYskva20yqhYsNzF608A", callContext.id);
+OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:34nUgi_SDkOT9WWah_VAXg", callContext.id);
+} catch (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+throw ex;
+} finally {
+OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:VZuXlU0Nsk6lEJXYek0hGg", callContext.id);
+}
 
+};
+
+Controller.prototype.onReady$Action = function (callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._onReady$Action, callContext);
+
+};
 
 // Event Handler Actions
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:7WP6eMpZLUWcKuZ3c_pmbg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg:oyDD4nRcBfstlKKpUR3Bug", "UBTConnectLibrary", "ConnectCorePatterns", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:tibjY8yxRkeZi774q2ldYQ:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg/NodesShownInESpaceTree.tibjY8yxRkeZi774q2ldYQ:K_Pp7DkHZwhmpVKyzlYMXg", "UBTConnectLibrary", "Notification_ListItem", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:7WP6eMpZLUWcKuZ3c_pmbg:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg:uEnprJggl2Lm7ZjLSNznXw", "UBTConnectLibrary", "ConnectCorePatterns", "NRFlows.WebFlow", callContext.id, varBag);
+OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:tibjY8yxRkeZi774q2ldYQ:/NRWebFlows.7WP6eMpZLUWcKuZ3c_pmbg/NodesShownInESpaceTree.tibjY8yxRkeZi774q2ldYQ:+7oJ9x+Mna+roF0wF_w_yA", "UBTConnectLibrary", "Notification_ListItem", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:tibjY8yxRkeZi774q2ldYQ", callContext.id);
 OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:7WP6eMpZLUWcKuZ3c_pmbg", callContext.id);
 };
 Controller.prototype.onInitializeEventHandler = null;
-Controller.prototype.onReadyEventHandler = null;
+Controller.prototype.onReadyEventHandler = function (callContext) {
+var controller = this.controller;
+var model = this.model;
+var idService = this.idService;
+
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(callContext);
+
+OutSystemsDebugger.setThreadStartName(callContext.id, "ConnectCorePatterns/Notification_ListItem On Ready");
+return controller.onReady$Action(callContext);
+
+}, function () {
+controller.popDebuggerContext(callContext);
+
+});
+
+};
 Controller.prototype.onRenderEventHandler = null;
 Controller.prototype.onDestroyEventHandler = null;
 Controller.prototype.onParametersChangedEventHandler = null;
@@ -620,6 +687,12 @@ getter: function (varBag, idService) {
 return varBag.model.variables.in_AvatarImage_RightIn;
 }
 },
+"nS1w+uTNqkiNz76RCTZj3g": {
+getter: function (varBag, idService) {
+return varBag.model.variables.isIconURLDefinedIn;
+},
+dataType: OS.DataTypes.DataTypes.Boolean
+},
 "xWVHbCJf6UmgblY9mk8pnQ": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
@@ -641,10 +714,17 @@ return model.widgets.get(idService.getId("Notification_Visual"));
 })(varBag.model, idService);
 }
 },
-"OJkSIt9+kEibwyVuOONTQg": {
+"f0znKn+NWkW2k+x7Q0y81Q": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("DoubleImage"));
+})(varBag.model, idService);
+}
+},
+"T+ZPpz2240Wuup27bwU0hw": {
+getter: function (varBag, idService) {
+return (function (model, idService) {
+return model.widgets.get(idService.getId("FetchingImage"));
 })(varBag.model, idService);
 }
 },

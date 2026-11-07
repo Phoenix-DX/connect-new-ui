@@ -1,9 +1,10 @@
 import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import {
+  ASSEMBLE_COUNTRIES,
   ASSEMBLE_EVENT_TYPES,
   ASSEMBLE_MEETINGS,
-  countriesBySubscriptionOutput,
+  countryWithMapPositionWire,
   hallName,
   USER_HALL_ID,
 } from '@/mocks/fictional/assemble';
@@ -17,6 +18,23 @@ import { wireList } from '@/lib/os-wire';
    first. */
 
 const PAST_MEETINGS = 'Past Meetings';
+
+/* The fresh TST capture of 2026-11-07 shows one fewer than the shared fictional world for three counts: Saint Vincent
+   and Trinidad 73 members (not 74) and United States 28 localities (not 29). The shared world stays as it is. */
+const CAPTURED_MEMBERS: Record<string, number> = { VC: 73, TT: 73 };
+const CAPTURED_LOCALITIES: Record<string, number> = { US: 28 };
+
+const capturedCountries = () => ({
+  Countries: wireList(
+    ASSEMBLE_COUNTRIES.map((c) =>
+      countryWithMapPositionWire({
+        ...c,
+        members: CAPTURED_MEMBERS[c.code] ?? c.members,
+        localities: CAPTURED_LOCALITIES[c.code] ?? c.localities,
+      }),
+    ),
+  ),
+});
 
 export const handlers: RequestHandler[] = [
   contractHandler('Connect2_Assemble_MUI', 'AssembleSummary_List/DataActionGetAssembleEventTypes', () => ({
@@ -48,5 +66,5 @@ export const handlers: RequestHandler[] = [
   contractHandler('Connect2_Assemble_MUI', 'ScreenBlock_AssembleEvents/DataActionGetSubdivisionName', (vars) => ({
     SelectedSubdivisionName: hallName(vars.SubdivisionId ?? ''),
   })),
-  contractHandler('Connect2_LegacyShared', 'ActionGetCountriesBySubscription', () => countriesBySubscriptionOutput()),
+  contractHandler('Connect2_LegacyShared', 'ActionGetCountriesBySubscription', () => capturedCountries()),
 ];

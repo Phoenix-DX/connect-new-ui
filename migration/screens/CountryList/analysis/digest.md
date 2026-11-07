@@ -55,13 +55,30 @@ Layouts.Layout_MainPages
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
     BasePatterns.CustomContainer
-      Home.FeedBlock_CommunityPopulation
-        BasePatterns.CustomContainer
-          BasePatterns.CustomText
-            ConnectPatterns.IconInline_Internal
-          ConnectPatterns.SkeletonSection
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
+      Directory_CommonBlocks.Directory_CommunityNumbers
+        ConnectPatterns.SkeletonSection
+          BasePatterns.CustomContainer
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          ConnectPatterns.Icon
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
+          Directory_CommonBlocks.Directory_CommunityNumbers__Number
+            ConnectPatterns.Icon
+              ConnectPatterns.IconSVG
+            BasePatterns.CustomContainer
+            BasePatterns.CustomContainer
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
         Adaptive.Columns2
@@ -1194,15 +1211,31 @@ Directory_Locality.Directory_LegendBottomSheet
 |---|---|---|---|
 | InlineIcon | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())` |
 
-## `UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js`
+## `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| UI_MembersStatistics | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_MembersStatisticsRec())` |
-| FetchCount | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchCountDataActRec())` |
-- Data actions: `DataActionFetchCount` → `screenservices/UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount`
-- Client actions / event handlers: `onClick_Block`
-- Navigation: `/UBTConnect/Updates_SingleList`()
-- Static entities / flags: `uBT_Color.primaryGradientRadial`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Shape.medium`, `uBT_Color.neutral0`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_FontSize.heading2`
+| Local_CommunityStatistics | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
+| In_IsLoading | input | Boolean | `false` |
+| In_CommunityStatistics | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `onParametersChanged`
+- Static entities / flags: `uBT_Color.peachDark`, `uBT_FontSize.extraSmall`, `uBT_Icons2.sVG_CommunityMembers`, `uBT_IconsSize.nonStandard_40`, `uBT_Color.cyanDarker`, `uBT_FontSize.heading1`, `uBT_FontWeight.semiBold`, `uBT_IconsSize.extraSmall_10`, `uBT_Color.greenDark`, `uBT_Icons2.arrowUp`, `uBT_Color.redDark`, `uBT_Icons2.arrowDown`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.neutral7`, `uBT_Icons2.sVG_CommunityHouseholds`, `uBT_Icons2.sVG_CommunityLocalities`, `uBT_Icons2.sVG_CommunityCountries`
+
+## `UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_IconId | input | Text | `""` |
+- Static entities / flags: `uBT_Icons.sVG_OneSchoolGlobal`, `uBT_Icons.sVG_PinLock`, `uBT_Icons.sVG_PinHouse`, `uBT_Icons.sVG_PinMember`, `uBT_Icons.sVG_PinOneSchool`, `uBT_Icons.sVG_HR100`, `uBT_Icons.sVG_ElGusto`, `uBT_Icons.sVG_CommunityTradelink`, `uBT_Icons.sVG_PinLocality`, `uBT_Icons.sVG_PinCountry`, `uBT_Icons.sVG_CommunityHouseholds`, `uBT_Icons.sVG_CommunityLocalities`, `uBT_Icons.sVG_CommunityCountries`, `uBT_Icons.sVG_CommunityMembers`
+- Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`, `img/UBTConnectLibrary.Pin_Lock.svg`, `img/UBTConnectLibrary.Pin_House.svg`, `img/UBTConnectLibrary.Pin_Member.svg`, `img/UBTConnectLibrary.Pin_OneSchool.svg`, `img/UBTConnectLibrary.HR100.svg`, `img/UBTConnectLibrary.ElGusto.svg`, `img/UBTConnectLibrary.CommunityTradelink.svg`, `img/UBTConnectLibrary.Pin_Locality.svg`, `img/UBTConnectLibrary.Pin_Country.svg`, `img/UBTConnectLibrary.CommunityHouseholds.svg`, `img/UBTConnectLibrary.CommunityLocalities.svg`, `img/UBTConnectLibrary.CommunityCountries.svg`, `img/UBTConnectLibrary.CommunityMembers.svg`
+
+## `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers__Number.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Number | input | Integer | `0` |
+| In_Label | input | Text | `""` |
+| In_Icon | input | Text | `""` |
+| In_HideBorder | input | Boolean | `false` |
+- Static entities / flags: `uBT_IconsSize.base_24`, `uBT_Color.cyanDarker`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`
 
 ## `UBTConnect.Directory_Locality.Statistics_TypedItem.mvc.js`
 | variable | kind | type | default |
@@ -1552,23 +1585,21 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3756 ms
-- 2. `DataActionGetCommunityStatistics` (200) at 5054 ms
-- 3. `DataActionFetchCount` (200) at 5090 ms
-- 4. `DataActionGetCountriesStatistics` (200) at 5141 ms
-- 5. `DataActionGetCacheInfo` (200) at 5155 ms
-- 6. `ActionAppManager_AfterInitialize` (200) at 6722 ms
-- 7. `ActionSync_Info_GetMain` (200) at 7179 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7494 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9780 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12007 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2453 ms
+- 2. `DataActionGetCountriesStatistics` (200) at 3400 ms
+- 3. `DataActionGetCommunityStatistics` (200) at 3521 ms
+- 4. `DataActionGetCacheInfo` (200) at 3548 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 4960 ms
+- 6. `ActionSync_Info_GetMain` (200) at 5354 ms
+- 7. `ActionGetNumberUnreadMessages` (200) at 5619 ms
+- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8439 ms
+- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11191 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_Policies.Policy_Checker`
 - `CacheControl.CacheControl_Policies`
 - `ConnectPatterns.HighlightSearch`
-- `ConnectPatterns.IconSVG`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`
 - `PIN.PinCode`

@@ -13,7 +13,6 @@ import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
   INITIAL_CACHED_VARIABLES,
   app_Notifications_AugmentDateRanges,
-  app_Notifications_GetBreakpoints,
   cachedVariablesOf,
   initialNotificationsState,
   notificationsReducer,
@@ -115,9 +114,11 @@ export function useNotifications(): NotificationsFlows {
     throw new UserException(exceptionMessage(error), 'UBTConnect.BubbleGenericException');
   };
 
-  /* RefreshNotifications → FetchNotifications, then OnAfterFetch_FetchNotifications: Breakpoints, CurrentBreakpoint,
-     ShowMarkAll, isLoading False, the scroll listener (no element: nothing) and the bottom bar count. */
-  const refreshNotifications = async () => {
+  /* FetchNotifications (the data action refresh), then OnAfterFetch_FetchNotifications (live TST 2026-11-07,
+     Notifications.mvc.js:2117-2232): the breakpoints while the skeleton breakpoint is in place, ShowMarkAll, MaxRecords
+     and Screen_NotificationItemList, ReadCount, isLoading False, DestroyEventListener (no listener: nothing) and the
+     bottom bar count. */
+  const loadAndAfterFetch = async () => {
     const list = await flow.fetch(fetchNotifications(latest.current)); // R1
     dispatch({
       type: 'notificationsFetched',
@@ -125,21 +126,27 @@ export function useNotifications(): NotificationsFlows {
       unreadNotificationsCount: list.unreadNotificationsCount,
     });
     try {
-      const breakpoints = app_Notifications_GetBreakpoints(list.items, latest.current.dateRanges);
-      dispatch({ type: 'breakpointsSet', breakpoints });
+      dispatch({ type: 'afterFetch' });
       await directory_Updates_RefreshBottomBarCount(true);
     } catch (error) {
       bubbleGenericException(error);
     }
   };
 
-  /* ScreenEvent_OnReady: isLoading, the skeleton list (not shown: no breakpoint yet), GetDateRanges, then
-     OnAfterFetch_GetDateRanges: AugmentDateRanges, SetDefaultFilters, RefreshNotifications. The scroll threshold and
-     scroll end scripts target the floating header, which is in a Container with Visible False, so they find no element
-     and do nothing. SetStickyHeaderHeight runs before any `.updates-list__header` exists (nothing), and FocusCursor
-     focuses the wrapper of the Input block (nothing). */
-  const onReady = async () => {
+  /* RefreshNotifications (:2042-2075): isLoading True, then FetchNotifications. */
+  const refreshNotifications = async () => {
     dispatch({ type: 'loadingStarted' });
+    await loadAndAfterFetch();
+  };
+
+  /* ScreenEvent_OnReady (live TST 2026-11-07, :1842-1889): isLoading, the skeleton list and its breakpoint
+     (GetSkeletonList_UI_Notification(10), shown until the fetch answers), GetDateRanges, then
+     OnAfterFetch_GetDateRanges: AugmentDateRanges, SetDefaultFilters, RefreshNotifications. FocusCursor focuses the
+     wrapper of the Input block (nothing). The SetupScrollListener of NotificationsListBreakpoints looks for the
+     screen's widget "Notifications_ListHeader", which the screen no longer has (the headers are inside the block), so
+     it finds no element and does nothing. */
+  const onReady = async () => {
+    dispatch({ type: 'skeletonSet' });
     const ranges = await flow.fetch(fetchNotificationDateRanges(latest.current)); // R1
     try {
       const dateRanges = app_Notifications_AugmentDateRanges(ranges.map((r) => r.id));
@@ -160,10 +167,11 @@ export function useNotifications(): NotificationsFlows {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /* Handler_FilterSearchText after its assignments: ScrollTop, isLoading, then RefreshNotifications. */
+  /* Handler_FilterSearchText after its assignments (live TST 2026-11-07, :1243-1309): ScrollTop, ResetNotifications,
+     then RefreshNotifications (isLoading True in it). */
   const scrollTopAndRefresh = () => {
     scrollTop('.active-screen', 'instant');
-    dispatch({ type: 'loadingStarted' });
+    dispatch({ type: 'notificationsReset' });
     flow.run(refreshNotifications);
   };
 
@@ -194,10 +202,13 @@ export function useNotifications(): NotificationsFlows {
     flow.run(refreshNotifications);
   };
 
-  // Handler_OnlyShowUnread (:1604-1630): Local_OnlyShowUnread, then FetchNotifications again (no isLoading).
+  /* Handler_OnlyShowUnread (live TST 2026-11-07, :1416-1468): Local_OnlyShowUnread, isLoading True,
+     ResetNotifications, then FetchNotifications. */
   const onOnlyShowUnread = (onlyShowUnread: boolean) => {
     dispatch({ type: 'onlyShowUnreadSet', onlyShowUnread });
-    flow.run(refreshNotifications);
+    dispatch({ type: 'loadingStarted' });
+    dispatch({ type: 'notificationsReset' });
+    flow.run(loadAndAfterFetch);
   };
 
   const onUpdateReadCount = (addToCount: boolean, _isDelete: boolean, isRead: boolean) => {

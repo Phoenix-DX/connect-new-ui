@@ -36,18 +36,18 @@ export function ProfileFooter({
 }: ProfileFooterProps) {
   return (
     <FixedFooter
-      id="$b49"
+      id="$b51"
       contentContainerId={contentContainerId}
       useBottomBar={false}
       expectedFooterHeight="calc(2 * var(--space-base) + var(--ubt-button-height-m))"
     >
-      <CustomContainer id="$b50" options={FOOTER_OPTIONS}>
+      <CustomContainer id="$b52" options={FOOTER_OPTIONS}>
         <ColumnsTwo
-          id="$b51"
+          id="$b53"
           columnOptions={{ SpacingSize: UBT_Size.Small }}
           left={
             <ActionButton
-              id="$b52"
+              id="$b54"
               isDisabled={isLoadingSubmit}
               buttonOptions={{ UBT_ButtonTypeId: UBT_ButtonType.Secondary }}
               buttonText="Close"
@@ -55,9 +55,9 @@ export function ProfileFooter({
             />
           }
           right={
-            <ButtonLoading id="$b53" isLoading={isLoadingSubmit}>
+            <ButtonLoading id="$b55" isLoading={isLoadingSubmit}>
               <ActionButton
-                id="$b54"
+                id="$b56"
                 isDisabled={!hasChanges || isLoadingSubmit}
                 buttonOptions={{ UBT_ButtonTypeId: UBT_ButtonType.Primary }}
                 buttonText="Save"

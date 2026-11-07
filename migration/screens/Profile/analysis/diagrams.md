@@ -41,19 +41,20 @@ flowchart TB
     direction LR
     S0["DataActionGetCacheInfo<br/>data action / aggregate, observed"]
     S1["DataActionGetHousehold_Coordinates<br/>data action / aggregate, observed"]
-    S2["DataActionGetHousehold<br/>data action / aggregate, observed"]
-    S3["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
-    S4["DataActionFetchNotes<br/>data action / aggregate, observed"]
-    S5["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
-    S6["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
-    S7["DataActionGetCountryInfo<br/>data action / aggregate, observed"]
-    S8["ActionAppManager_SynchAppContext<br/>observed"]
-    S9["ActionAppManager_AfterInitialize<br/>observed"]
-    S10["ActionGetSignedImagesInBulk<br/>observed"]
+    S2["DataActionGetHouseHold_Gallery<br/>data action / aggregate, observed"]
+    S3["DataActionGetHousehold<br/>data action / aggregate, observed"]
+    S4["DataActionFetchContactDetails<br/>data action / aggregate, observed"]
+    S5["DataActionFetchNotes<br/>data action / aggregate, observed"]
+    S6["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
+    S7["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
+    S8["DataActionGetCountryInfo<br/>data action / aggregate, observed"]
+    S9["ActionAppManager_SynchAppContext<br/>observed"]
+    S10["ActionAppManager_AfterInitialize<br/>observed"]
     S11["ActionSync_Info_GetMain<br/>observed"]
-    S12["ActionGetNumberUnreadMessages<br/>observed"]
-    S13["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
-    S14["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
+    S12["ActionGetSignedImagesInBulk<br/>observed"]
+    S13["ActionGetNumberUnreadMessages<br/>observed"]
+    S14["ServiceAPIFetchData_CacheableMapEntities<br/>observed"]
+    S15["ServiceAPIFetchData_CacheableHouseholds<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
@@ -61,19 +62,20 @@ flowchart TB
   Content --> S2
   Content --> S3
   Content --> S4
-  Content -.-> S5
+  Content --> S5
   Content -.-> S6
-  Content --> S7
-  Content -.-> S8
+  Content -.-> S7
+  Content --> S8
   Content -.-> S9
   Content -.-> S10
   Content -.-> S11
   Content -.-> S12
   Content -.-> S13
   Content -.-> S14
+  Content -.-> S15
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
-  class S5,S6,Backend unknown;
+  class S6,S7,Backend unknown;
 ```
 
 ## Sequence: enter the screen (draft)
@@ -94,9 +96,11 @@ sequenceDiagram
   API-->>S: CacheControl_Response, TTL
   S->>API: DataActionGetHousehold_Coordinates
   API-->>S: HouseholdCoordinates
+  S->>API: DataActionGetHouseHold_Gallery
+  API-->>S: Out_ImageDetails
   S->>API: DataActionGetHousehold
   API-->>S: Household, Out_HouseholdMembers, Out_NonHouseholdMembers, isVisible
-  S->>S: onAfterFetch_GetHouseholdDetail
+  S->>S: onAfterFetch_GetHousehold
   S->>API: DataActionFetchContactDetails
   API-->>S: ContactPopupData, Phone, MobilePhone, HomePhone, WorkPhone
   S->>S: onAfterFetch_FetchContactDetails
@@ -165,25 +169,6 @@ sequenceDiagram
   end
 ```
 
-### Action: ActionGetSignedImagesInBulk
-```mermaid
-%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
-sequenceDiagram
-  actor U as User
-  participant S as Layouts.Layout_HomePage
-  participant API as screenservices
-  U->>S: TODO user event
-  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
-  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
-  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
-  API-->>S: TODO outputs
-  alt TODO branch
-    S-->>U: TODO
-  else TODO branch
-    S-->>U: TODO
-  end
-```
-
 ### Action: ActionSync_Info_GetMain
 ```mermaid
 %% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
@@ -196,6 +181,25 @@ sequenceDiagram
   Note over S: via UBTConnect.onApplicationReady → UBTConnect.connect_SetLoggedContext → UBTConnect.sync_Info_Main → server Sync_Info_GetMain
   Note over S: 1 other caller chain(s) in call-sites.md
   S->>API: ActionSync_Info_GetMain(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedImagesInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as Layouts.Layout_HomePage
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at UBTConnect_Utils.cache_SignedImageURL_GetCallback (see call-sites.md)
+  Note over S: via UBTConnect_Utils.cache_SignedImageURL_GetCallback → server GetSignedImagesInBulk
+  S->>API: ActionGetSignedImagesInBulk(TODO inputs)
   API-->>S: TODO outputs
   alt TODO branch
     S-->>U: TODO

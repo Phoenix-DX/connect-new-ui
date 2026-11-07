@@ -22,7 +22,7 @@ const PATH = '/UBTConnect/Household_Relations';
 const HOME = '/UBTConnect/HomeFeed';
 const OTHER = '/UBTConnect/Search';
 const MEMBER_DETAILS = 'HouseholdRelations_Block/DataActionGet_MemberDetails';
-const SIBLINGS = 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails';
+const SIBLINGS = 'HouseholdRelations_Block/DataActionGet_SibllingsRelations';
 const QUERY = `?HouseholdId=${VITALE.id}&MemberId=7100`;
 const routes = {
   [HOME]: <p>HomeFeed screen</p>,

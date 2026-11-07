@@ -2,7 +2,8 @@ import { act, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchCountryListCommunityStatistics, fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCommunityStatistics, type CommunityStatistics } from '@/api/member';
 import { CommunicationException, NotRegisteredException, UserException } from '@/legacy/os/exceptions';
 import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -20,7 +21,18 @@ vi.mock('./countryListState', async (importOriginal) => {
 vi.mock('@/api/country', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/country')>()),
   fetchCountryListStatistics: vi.fn(),
-  fetchCountryListCommunityStatistics: vi.fn(() => Promise.resolve()),
+}));
+/** Fictional community counts (aggregate numbers, no person data). */
+const COMMUNITY: CommunityStatistics = {
+  In_Change: 3,
+  In_CountriesCount: 12,
+  In_HouseholdCount: 9120,
+  In_LocalitiesCount: 240,
+  In_MembersCount: 25730,
+};
+vi.mock('@/api/member', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/member')>()),
+  fetchCommunityStatistics: vi.fn(() => Promise.resolve(COMMUNITY)),
 }));
 /* useFlowState sends a rejected OnReady to this flow handler. */
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
@@ -94,20 +106,30 @@ afterEach(() => {
 });
 
 describe('useCountryList', () => {
-  it('OnReady starts GetCommunityStatistics once without waiting for it, and GetCountriesStatistics (live TST)', async () => {
-    vi.mocked(fetchCountryListCommunityStatistics).mockReturnValueOnce(new Promise(() => undefined));
+  it('OnReady starts GetCommunityStatistics of CountryList once without waiting for it, and GetCountriesStatistics', async () => {
+    vi.mocked(fetchCommunityStatistics).mockReturnValueOnce(new Promise(() => undefined));
     const { result } = renderHook(() => useCountryList(), { wrapper: strictWrapper });
     await settle();
-    expect(fetchCountryListCommunityStatistics).toHaveBeenCalledTimes(1);
+    expect(fetchCommunityStatistics).toHaveBeenCalledTimes(1);
+    expect(fetchCommunityStatistics).toHaveBeenCalledWith('CountryList');
     expect(fetchCountryListStatistics).toHaveBeenCalledTimes(1);
     expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.communityStatistics.isDataFetched).toBe(false);
   });
 
-  it('a failed GetCommunityStatistics goes to the flow handler; the countries still come', async () => {
-    vi.mocked(fetchCountryListCommunityStatistics).mockRejectedValueOnce(new CommunicationException('offline'));
+  it('the answer of GetCommunityStatistics is fetched and kept for Directory_CommunityNumbers', async () => {
+    const { result } = renderHook(() => useCountryList(), { wrapper });
+    expect(result.current.state.communityStatistics.isDataFetched).toBe(false);
+    await settle();
+    expect(result.current.state.communityStatistics).toEqual({ isDataFetched: true, out: COMMUNITY });
+  });
+
+  it('a failed GetCommunityStatistics goes to the flow handler and stays not fetched; the countries still come', async () => {
+    vi.mocked(fetchCommunityStatistics).mockRejectedValueOnce(new CommunicationException('offline'));
     const { result } = renderHook(() => useCountryList(), { wrapper });
     await settle();
     expect(raised()).toEqual([expect.objectContaining({ message: 'offline' })]);
+    expect(result.current.state.communityStatistics.isDataFetched).toBe(false);
     expect(result.current.state.countries).toHaveLength(2);
   });
 

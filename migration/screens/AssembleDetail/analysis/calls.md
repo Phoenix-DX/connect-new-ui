@@ -2,8 +2,10 @@
 
 | # | t (ms) | call | status | scope | path |
 |---|---|---|---|---|---|
-| 1 | 1994 | `DataActionGetAssembleNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` |
-| 2 | 3133 | `DataActionGetAssembleEvent` | 200 | this screen | `/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` |
+| 1 | 2731 | `DataActionGetAssembleNotes` | 200 | this screen | `/UBTConnect/screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes` |
+| 2 | 4005 | `DataActionGetAssembleEvent` | 200 | this screen | `/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent` |
+| 3 | 4490 | `ActionGetMemberContactByCacheKey` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey` |
+| 4 | 4809 | `ActionGetSignedPhotosInBulk` | 200 | this screen | `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk` |
 
 ## DataActionGetAssembleNotes
 - Scope: this screen
@@ -75,10 +77,10 @@
     "BrothersCount": "numeric string",
     "SistersCount": "numeric string",
     "IsVirtual": "boolean",
-    "Notes": "string (EMPTY)",
+    "Notes": "string",
     "LocalityName": "string",
     "CountryName": "string",
-    "VirtualMeetingTypeLabel": "string",
+    "VirtualMeetingTypeLabel": "string (EMPTY)",
     "VirtualMeetingLink": "string (EMPTY)",
     "VirtualMeetingId": "string (EMPTY)",
     "VirtualMeetingPassword": "string (EMPTY)",
@@ -128,46 +130,44 @@
    },
    "AssembleSpecialAttendeeSubdivisionList": {
     "List": [
-     "(empty array)"
-    ],
-    "EmptyListItem": {
-     "LocalityId": "numeric string",
-     "LocalityName": "string (EMPTY)",
-     "AssembleAttendeeSubdivisionList": {
-      "List": [
-       "(empty array)"
-      ],
-      "EmptyListItem": {
-       "Id": "numeric string",
-       "Name": "string (EMPTY)",
-       "HouseholdCount": "numeric string",
-       "LocalityId": "numeric string",
-       "SubdivisionHouseholdList": {
-        "List": [
-         "(empty array)"
-        ],
-        "EmptyListItem": {
+     {
+      "LocalityId": "numeric string",
+      "LocalityName": "string",
+      "AssembleAttendeeSubdivisionList": {
+       "List": [
+        {
          "Id": "numeric string",
-         "Name": "string (EMPTY)",
-         "FamilyNames": "string (EMPTY)",
-         "Location": "string (EMPTY)",
-         "IsDisabled": "boolean",
-         "IsBookmarked": "boolean",
-         "AvatarURL": {
-          "Bucket": "string (EMPTY)",
-          "Path": "string (EMPTY)",
-          "Type": "string (EMPTY)",
-          "CropX": "numeric string",
-          "CropY": "numeric string",
-          "CropW": "numeric string",
-          "CropH": "numeric string",
-          "SignedURL": "string (EMPTY)"
+         "Name": "string",
+         "HouseholdCount": "numeric string",
+         "LocalityId": "numeric string",
+         "SubdivisionHouseholdList": {
+          "List": [
+           "(empty array)"
+          ],
+          "EmptyListItem": {
+           "Id": "numeric string",
+           "Name": "string (EMPTY)",
+           "FamilyNames": "string (EMPTY)",
+           "Location": "string (EMPTY)",
+           "IsDisabled": "boolean",
+           "IsBookmarked": "boolean",
+           "AvatarURL": {
+            "Bucket": "string (EMPTY)",
+            "Path": "string (EMPTY)",
+            "Type": "string (EMPTY)",
+            "CropX": "numeric string",
+            "CropY": "numeric string",
+            "CropW": "numeric string",
+            "CropH": "numeric string",
+            "SignedURL": "string (EMPTY)"
+           }
+          }
          }
         }
-       }
+       ]
       }
      }
-    }
+    ]
    },
    "AssembleAttendeeSpecialGuestList": {
     "List": [
@@ -194,7 +194,7 @@
    },
    "GSMContactList": {
     "List": [
-     "(empty array)"
+     "number"
     ],
     "EmptyListItem": "number (0)"
    }
@@ -204,66 +204,149 @@
 }
 ```
 
+## ActionGetMemberContactByCacheKey
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey`
+- Server action input parameters: `CacheKey`
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): (none)
+- Other request keys: (none)
+- Response type: `GetMemberContactByCacheKeyResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "MemberContactList": {
+   "List": [
+    {
+     "MobilePhoneNumber": "string",
+     "HomePhoneNumber": "string",
+     "WorkPhoneNumber": "string (EMPTY)",
+     "Email": "string",
+     "CountryCode": "string",
+     "LocalityId": "numeric string",
+     "HouseholdId": "numeric string",
+     "Timezone": {
+      "TimezoneLabel": "string",
+      "OffsetSeconds": "numeric string"
+     },
+     "ContactDetails": {
+      "Id": "numeric string",
+      "Name": "string",
+      "Location": "string",
+      "IsDisabled": "boolean",
+      "IsBookmarked": "boolean",
+      "AvatarURL": {
+       "Bucket": "string",
+       "Path": "string",
+       "Type": "string",
+       "CropX": "numeric string",
+       "CropY": "numeric string",
+       "CropW": "numeric string",
+       "CropH": "numeric string",
+       "SignedURL": "string (EMPTY)"
+      }
+     },
+     "LocalityName": "string",
+     "CountryName": "string"
+    }
+   ]
+  }
+ }
+}
+```
+
+## ActionGetSignedPhotosInBulk
+- Scope: this screen
+- Path: `/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk`
+- Server action input parameters: `Parameters`
+- Screen variables sent with the call (OutSystems sends these automatically; React does not need to): (none)
+- Other request keys: (none)
+- Response type: `GetSignedPhotosInBulkResponse` (see types.ts)
+```json
+{
+ "versionInfo": {
+  "hasModuleVersionChanged": false,
+  "hasApiVersionChanged": false
+ },
+ "data": {
+  "Results": {
+   "List": [
+    {
+     "Bucket": "string",
+     "Path": "string",
+     "Type": "string",
+     "SignedURL": "string",
+     "Error": "string (EMPTY)"
+    }
+   ]
+  }
+ }
+}
+```
+
 ## Other requests during capture (no bodies)
 | request | count |
 |---|---|
 | `fetch /UBTConnect/AssembleEvents` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/SocialSharingPlugin.controller.js` | 1 |
-| `script /UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect_Notes_CS.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js` | 1 |
+| `script /UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js` | 1 |
 | `script /UBTConnect/scripts/SocialSharingPlugin.model.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js` | 1 |
 | `script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Search_CS.model.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.EmptyList.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet_Section.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_CS.referencesHealth.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitiesList.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Skeleton.NC_Result_Item__Image__Skeleton.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Search_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_CS.referencesHealth.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_Sharing_CS.model.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Tag.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.Share.ContextMenu.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect2_LegacyShared.Widgets.PopupMenu.mvc.js` | 1 |
-| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js` | 1 |
+| `script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.PopupMenu.mvc.js` | 1 |
@@ -271,8 +354,10 @@
 | `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css` | 1 |
 | `link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css` | 1 |
 | `xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track` | 2 |
-| `img /UBTConnect/img/Connect2_LegacyShared.VirtualMeeting.svg` | 3 |
+| `img https://cbcdn.ubtconnect.com/1/uk/123/602/hall_212_720.jpg` | 2 |
+| `img /UBTConnect/img/Connect2_LegacyShared.User_rectangle.png` | 1 |
 | `xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo` | 1 |
+| `img https://cbcdn.ubtconnect.com/8/uk/123/601/15071/122976_f_15072.jpg` | 2 |
 | `fetch /UBTConnect/AssembleDetail` | 1 |
 | `fetch /UBTConnect/moduleservices/moduleinfo` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js` | 1 |
@@ -289,6 +374,7 @@
 | `fetch /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBT_AppManager.PIN.InactivityTimer.mvc.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js` | 1 |
@@ -298,7 +384,6 @@
 | `fetch /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.Layout.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 2 |
 | `fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js` | 1 |
@@ -309,7 +394,6 @@
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js` | 1 |
-| `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
@@ -326,6 +410,14 @@
 | `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js` | 1 |
+| `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.BottomBarMenu.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js` | 1 |
@@ -492,4 +584,3 @@
 | `fetch /UBTConnect/wallet.ttf` | 1 |
 | `fetch /UBTConnect/wallet.woff` | 1 |
 | `fetch /UBTConnect/wallet.svg` | 1 |
-| `fetch /UBTConnect/img/Connect2_LegacyShared.VirtualMeeting.svg` | 1 |

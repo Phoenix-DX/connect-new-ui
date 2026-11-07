@@ -39,19 +39,26 @@ describe('Updates_SingleList mock: GetUpdateItems', () => {
 
   it('the status: None all, No unread, Yes read, another value no row (BR-C2SVC-327)', () => {
     expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: '' })).toHaveLength(88);
-    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.No })).toHaveLength(85);
-    const read = getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
+    // The capture of 2026-11-07 shows every update unread.
+    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.No })).toHaveLength(88);
+    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.Yes })).toEqual([]);
+    const marked = rows().map((r, i) => (i < 3 ? { ...r, IsRead: true } : r));
+    const read = getUpdateItems(marked, { ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
     expect(read).toHaveLength(3);
     expect(read.every((r) => r.IsRead)).toBe(true);
+    expect(getUpdateItems(marked, { ...NO_FILTER, Filter_ReadOnly: Choice.No })).toHaveLength(85);
     expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: 'Other' })).toEqual([]);
   });
 
   it('the search words: "&" is a space, no case, every word in the title (BR-C2SVC-325, 332)', () => {
-    const list = getUpdateItems(rows(), { ...NO_FILTER, Filter_SearchText: '  hargreaves & JAMES ' });
-    expect(list.map((r) => r.Name)).toEqual(['James Hargreaves']);
+    const list = getUpdateItems(rows(), { ...NO_FILTER, Filter_SearchText: '  hargreaves & JOSEPH ' });
+    expect(list.map((r) => r.Name)).toEqual(['Joseph Hargreaves']);
     // The fourth word is overwritten by the fifth: "Nowhere" is not searched
-    const five = getUpdateItems(rows(), { ...NO_FILTER, Filter_SearchText: 'James Hargreaves James Nowhere James' });
-    expect(five.map((r) => r.Name)).toEqual(['James Hargreaves']);
+    const five = getUpdateItems(rows(), {
+      ...NO_FILTER,
+      Filter_SearchText: 'Joseph Hargreaves Joseph Nowhere Joseph',
+    });
+    expect(five.map((r) => r.Name)).toEqual(['Joseph Hargreaves']);
     expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_SearchText: 'Nowhere' })).toEqual([]);
   });
 
@@ -82,8 +89,11 @@ describe('Updates_SingleList mock: DataActionFetchUpdates', () => {
       });
       return ((await response.json()) as { data: { UI_UpdateItemList: { List: Rows }; UnreadCount: number } }).data;
     };
+    const all = await call(NO_FILTER);
+    expect(all.UI_UpdateItemList.List).toHaveLength(88);
+    expect(all.UnreadCount).toBe(88);
     const read = await call({ ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
-    expect(read.UI_UpdateItemList.List).toHaveLength(3);
+    expect(read.UI_UpdateItemList.List).toHaveLength(0);
     expect(read.UnreadCount).toBe(0);
     const unread = await call({ ...NO_FILTER, Filter_UpdateTypeId: 'Birth', Filter_ReadOnly: Choice.No });
     expect(unread.UnreadCount).toBe(unread.UI_UpdateItemList.List.length);

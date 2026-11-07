@@ -2,7 +2,7 @@
  "screen": "Bookmarks",
  "env": {
   "path": "/UBTConnect/Bookmarks",
-  "collectedAt": "2026-10-29T02:55:39.714Z",
+  "collectedAt": "2026-11-07T01:02:27.644Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -12,7 +12,7 @@
   "htmlClass": "",
   "bodyClass": "phone portrait osx is-ltr",
   "htmlStyle": "",
-  "bodyStyle": "--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;",
   "title": "Bookmarks",
   "manifestLink": "/UBTConnect/moduleservices/pwa/manifest",
   "serviceWorkers": [],
@@ -465,13 +465,11 @@
     "x-content-type-options": "nosniff",
     "cache-control": "no-cache"
    },
-   "thirdPartyHosts": [
-    "www.googleapis.com"
-   ]
+   "thirdPartyHosts": []
   }
  },
  "report": {
-  "maskedTexts": 10,
+  "maskedTexts": 12,
   "keptTexts": 33,
   "removedUserImages": 0,
   "failed": []
@@ -504,7 +502,6 @@
   "App_Common_Blocks.ItemCardActions",
   "ConnectCorePatterns.ItemCard_ActionBar",
   "CW_Notes.NotesSheet",
-  "ConnectPatterns.IconSVG",
   "App_Common.BottomBarMenu",
   "App_Common.BottomBarContent",
   "Navigation.BottomBarItem",
@@ -599,12 +596,6 @@
      "default": "false"
     },
     {
-     "name": "Filter_BookmarksDefaultState",
-     "kind": "local",
-     "type": "Record",
-     "default": "OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.Bookmark_FilterRec())"
-    },
-    {
      "name": "Years",
      "kind": "local",
      "type": "RecordList",
@@ -653,6 +644,12 @@
      "default": "false"
     },
     {
+     "name": "IsSearching",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
      "name": "GetBookmarks",
      "kind": "attribute",
      "type": "Record",
@@ -666,8 +663,20 @@
     }
    ],
    "aggregates": [],
-   "serverActions": [],
+   "serverActions": [
+    {
+     "name": "GetAllVisibleBookmarksByType",
+     "url": "screenservices/UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType"
+    }
+   ],
    "navigation": [
+    {
+     "to": "/UBTConnect/Household_Relations",
+     "params": [
+      "HouseholdId",
+      "MemberId"
+     ]
+    },
     {
      "to": "/UBTConnect/OneSchoolGlobalCarousel",
      "params": [
@@ -690,15 +699,18 @@
    "navigateBack": 0,
    "clientActions": [
     "getBookmarksOnAfterFetch",
+    "handler_OnClickUnauthorizedObject",
     "skeletonLoader_Pills",
     "handler_SearchOnClear",
     "handler_SearchOnChange",
     "handler_OnHeaderScrolled",
+    "handler_ToggleSearch",
     "handler_ApplyFilters",
     "handler_OnClickBookmarkCardItem",
     "handler_SearchOnSubmit",
     "handler_FilterSheetSheetInilialized",
-    "iconClick_SearchIcon",
+    "handler_OnClickSearchIcon",
+    "handler_OnNotesChanged",
     "handler_ItemUnbookmarked",
     "reset_PillsValues",
     "handler_FilterSheetLoaded",
@@ -715,10 +727,10 @@
    ],
    "referencedBlocks": [
     "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle",
-    "UBTConnectLibrary.ConnectPatterns.Icon",
-    "UBTConnect.App_Common_Blocks.App_NotificationIcon",
-    "UBTConnectLibrary.ConnectPatterns.Input",
     "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.Icon",
+    "UBTConnectLibrary.ConnectPatterns.Input",
+    "UBTConnect.App_Common_Blocks.App_NotificationIcon",
     "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList",
     "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label",
     "UBTConnect.Bookmarks.Bookmarks_Card_List",
@@ -738,15 +750,22 @@
    "feedbackMessages": [],
    "exceptions": [],
    "jsNodes": [
+    "UBTConnect.Bookmarks.Bookmarks.mvc$controller.Handler_OnClickSearchIcon.JavaScript2JS",
     "UBTConnect.Bookmarks.Bookmarks.mvc$controller.ScreenEvent_OnInitialize.CheckRestoredJS"
    ],
    "staticEntities": [
-    "uBT_Icons2.search",
+    "uBT_Display.flex",
+    "uBT_AlignItems.center",
+    "uBT_FlexDirection.row",
+    "uBT_Icons2.arrowLeftAlt",
+    "uBT_IconsSize.base_24",
     "uBT_Color.neutral0",
     "shape.rounded",
+    "uBT_Icons2.search",
     "uBT_Size.extraSmall",
     "uBT_Size.base",
     "connect_BottomBar_Items.bookmarks",
+    "uBT_MessageType.info",
     "bookmarkCategory.feedItem",
     "bookmarkCategory.assembleEvent",
     "bookmarkCategory.interchange",
@@ -1656,10 +1675,16 @@
    "navigation": [],
    "navigateBack": 0,
    "clientActions": [
+    "scrollToSelectedPill",
+    "onParametersChanged",
     "tagToggleToggle",
+    "onReady",
     "changed"
    ],
-   "lifecycle": [],
+   "lifecycle": [
+    "Ready",
+    "ParametersChanged"
+   ],
    "referencedBlocks": [
     "UBTConnectLibrary.BasePatterns.CustomContainer",
     "UBTConnectLibrary.ConnectPatterns.SkeletonSection",
@@ -1671,7 +1696,9 @@
    "images": [],
    "feedbackMessages": [],
    "exceptions": [],
-   "jsNodes": [],
+   "jsNodes": [
+    "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS"
+   ],
    "staticEntities": [
     "uBT_Size.extraSmall"
    ],
@@ -1732,9 +1759,9 @@
    "exceptions": [],
    "jsNodes": [],
    "staticEntities": [
-    "uBT_Color.red",
+    "uBT_Color.teal",
     "uBT_IconsSize.nonStandard_14",
-    "uBT_Icons2.errorFill",
+    "uBT_Icons2.circle_Fill",
     "uBT_Size.extraSmall",
     "uBT_Display.inlineFlex",
     "uBT_AlignItems.center",
@@ -1978,9 +2005,11 @@
    "clientActions": [
     "bookmarksCardList_OnScrollEnding",
     "onReady",
+    "handler_OnCardNotesChanged",
     "onInitialize",
     "item_Unbookmarked",
     "onClick_BookmarkCardItem",
+    "on_NotesChanged",
     "onLoadMore"
    ],
    "lifecycle": [
@@ -1990,7 +2019,7 @@
    "referencedBlocks": [
     "UBTConnectLibrary.BasePatterns.CustomContainer",
     "UBTConnectLibrary.ConnectPatterns.SkeletonSection",
-    "UBTConnectLibrary.ConnectPatterns.EmptyList",
+    "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless",
     "UBTConnectLibrary.BasePatterns.CustomText",
     "UBTConnect.Bookmarks.Bookmarks_Card_Item"
    ],
@@ -2050,7 +2079,8 @@
     "handler_OnNotesChanged",
     "openNoteSheet",
     "onClickCardItem",
-    "item_Unbookmarked"
+    "item_Unbookmarked",
+    "on_NotesChanged"
    ],
    "lifecycle": [],
    "referencedBlocks": [
@@ -2129,18 +2159,6 @@
      "kind": "input",
      "type": "DateTime",
      "default": "OS.DataTypes.DateTime.defaultValue"
-    },
-    {
-     "name": "In_EventStartDateTime",
-     "kind": "input",
-     "type": "DateTime",
-     "default": "OS.DataTypes.DateTime.defaultValue"
-    },
-    {
-     "name": "In_EventEndDateTime",
-     "kind": "input",
-     "type": "DateTime",
-     "default": "OS.DataTypes.DateTime.defaultValue"
     }
    ],
    "dataActions": [],
@@ -2200,9 +2218,7 @@
     "uBT_VerticalAlign.center",
     "uBT_ImageSize.base_52",
     "uBT_ImageSize.fullHeight_100_Percent",
-    "uBT_FontSize.small",
-    "uBT_Icons.clock",
-    "uBT_IconSize.extraSmall_10"
+    "uBT_FontSize.small"
    ],
    "clientVariables": [],
    "candidateStrings": []
@@ -2586,68 +2602,6 @@
    "candidateStrings": [
     "Action_SetBottomSheetOpen"
    ]
-  },
-  "UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js": {
-   "file": "UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
-   "displayName": [
-    "ConnectPatterns.IconSVG"
-   ],
-   "variables": [
-    {
-     "name": "In_IconId",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [],
-   "lifecycle": [],
-   "referencedBlocks": [],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [
-    "img/UBTConnectLibrary.OneSchoolGlobal.svg",
-    "img/UBTConnectLibrary.Pin_Lock.svg",
-    "img/UBTConnectLibrary.Pin_House.svg",
-    "img/UBTConnectLibrary.Pin_Member.svg",
-    "img/UBTConnectLibrary.Pin_OneSchool.svg",
-    "img/UBTConnectLibrary.HR100.svg",
-    "img/UBTConnectLibrary.ElGusto.svg",
-    "img/UBTConnectLibrary.CommunityTradelink.svg",
-    "img/UBTConnectLibrary.Pin_Locality.svg",
-    "img/UBTConnectLibrary.Pin_Country.svg",
-    "img/UBTConnectLibrary.CommunityHouseholds.svg",
-    "img/UBTConnectLibrary.CommunityLocalities.svg",
-    "img/UBTConnectLibrary.CommunityCountries.svg",
-    "img/UBTConnectLibrary.CommunityMembers.svg"
-   ],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [],
-   "staticEntities": [
-    "uBT_Icons.sVG_OneSchoolGlobal",
-    "uBT_Icons.sVG_PinLock",
-    "uBT_Icons.sVG_PinHouse",
-    "uBT_Icons.sVG_PinMember",
-    "uBT_Icons.sVG_PinOneSchool",
-    "uBT_Icons.sVG_HR100",
-    "uBT_Icons.sVG_ElGusto",
-    "uBT_Icons.sVG_CommunityTradelink",
-    "uBT_Icons.sVG_PinLocality",
-    "uBT_Icons.sVG_PinCountry",
-    "uBT_Icons.sVG_CommunityHouseholds",
-    "uBT_Icons.sVG_CommunityLocalities",
-    "uBT_Icons.sVG_CommunityCountries",
-    "uBT_Icons.sVG_CommunityMembers"
-   ],
-   "clientVariables": [],
-   "candidateStrings": []
   },
   "UBTConnect.App_Common.BottomBarMenu.mvc.js": {
    "file": "UBTConnect.App_Common.BottomBarMenu.mvc.js",
@@ -4903,22 +4857,6 @@
    "aggregates": [],
    "serverActions": [
     {
-     "name": "AddBookmark",
-     "url": "screenservices/UBTConnect/ActionAddBookmark"
-    },
-    {
-     "name": "AddBookmark2",
-     "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2"
-    },
-    {
-     "name": "DeleteBookmarkByBookmarkId",
-     "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId"
-    },
-    {
-     "name": "DeleteBookmarkByBookmarkId2",
-     "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2"
-    },
-    {
      "name": "FetchData_CacheableHouseholds",
      "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
     },
@@ -4952,8 +4890,7 @@
    "images": [],
    "feedbackMessages": [
     "\"Incorrect year value\", /*Info*/ 0)",
-    "\"Incorrect date value\", /*Info*/ 0)",
-    "\"Bookmark could not be removed. Please try again later.\", /*Info*/ 0)"
+    "\"Incorrect date value\", /*Info*/ 0)"
    ],
    "exceptions": [
     "UserException",
@@ -5877,8 +5814,16 @@
    "aggregates": [],
    "serverActions": [
     {
+     "name": "AddBookmark2",
+     "url": "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2"
+    },
+    {
      "name": "CS_CreateShareProfileLink",
      "url": "screenservices/UBTConnect_Utils/ActionCS_CreateShareProfileLink"
+    },
+    {
+     "name": "DeleteBookmarkByBookmarkId2",
+     "url": "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2"
     },
     {
      "name": "Get_RuntimeVersion",
@@ -6032,6 +5977,9 @@
     "connect_SearchCategories.households",
     "connect_SearchCategories.people",
     "connect_SearchCategories.places",
+    "type_SearchTarget.map",
+    "connect_SearchCategories.events",
+    "connect_SearchCategories.schools",
     "uBT_MessageType.info"
    ],
    "clientVariables": [
@@ -6549,7 +6497,6 @@
   "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js",
   "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
   "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-  "UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
   "UBTConnect.App_Common.BottomBarMenu.mvc.js",
   "UBTConnect.App_Common.BottomBarContent.mvc.js",
   "OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
@@ -6594,8 +6541,9 @@
   "CacheControl.CacheControl_AllLocalities",
   "CacheControl.CacheControl_Policies",
   "ConnectPatterns.AddNote",
-  "ConnectPatterns.EmptyList",
+  "ConnectPatterns.EmptyListBorderless",
   "ConnectPatterns.HighlightSearch",
+  "ConnectPatterns.IconSVG",
   "ConnectPatterns.LazyImage",
   "Fingerprint.FingerprintScanner",
   "NavigationHandler.PreventBackNavigation",
@@ -6613,62 +6561,6 @@
   },
   {
    "ref": "img/UBTConnect.ConnectLogoWhite.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.CommunityCountries.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.CommunityHouseholds.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.CommunityLocalities.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.CommunityMembers.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.CommunityTradelink.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.ElGusto.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.HR100.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.OneSchoolGlobal.svg",
-   "captured": true
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_Country.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_House.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_Locality.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_Lock.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_Member.svg",
-   "captured": false
-  },
-  {
-   "ref": "img/UBTConnectLibrary.Pin_OneSchool.svg",
    "captured": false
   },
   {
@@ -6770,7 +6662,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 3041,
+   "t": 2980,
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "status": 200,
@@ -6778,7 +6670,7 @@
   },
   {
    "order": 2,
-   "t": 4884,
+   "t": 4511,
    "action": "ActionGet_BookmarkPills_ByBookmarkCategoryIds",
    "path": "/UBTConnect/screenservices/UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds",
    "status": 200,
@@ -6786,7 +6678,7 @@
   },
   {
    "order": 3,
-   "t": 5285,
+   "t": 4896,
    "action": "DataActionGetBookmarks",
    "path": "/UBTConnect/screenservices/UBTConnect/Bookmarks/Bookmarks/DataActionGetBookmarks",
    "status": 200,
@@ -6794,7 +6686,7 @@
   },
   {
    "order": 4,
-   "t": 5544,
+   "t": 5150,
    "action": "ActionGet_BookmarkPills_ByBookmarkCategoryIds",
    "path": "/UBTConnect/screenservices/UBTConnect_Bookmarks_MCS/ActionGet_BookmarkPills_ByBookmarkCategoryIds",
    "status": 200,
@@ -6802,7 +6694,7 @@
   },
   {
    "order": 5,
-   "t": 6457,
+   "t": 5702,
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "status": 200,
@@ -6810,7 +6702,7 @@
   },
   {
    "order": 6,
-   "t": 6935,
+   "t": 6165,
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "status": 200,
@@ -6818,7 +6710,7 @@
   },
   {
    "order": 7,
-   "t": 7259,
+   "t": 6511,
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
    "status": 200,
@@ -6826,7 +6718,7 @@
   },
   {
    "order": 8,
-   "t": 7540,
+   "t": 6796,
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "status": 200,
@@ -6834,7 +6726,7 @@
   },
   {
    "order": 9,
-   "t": 9314,
+   "t": 9248,
    "action": "ServiceAPIFetchData_CacheableMapEntities",
    "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "status": 200,
@@ -6842,7 +6734,7 @@
   },
   {
    "order": 10,
-   "t": 11855,
+   "t": 11491,
    "action": "ServiceAPIFetchData_CacheableHouseholds",
    "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
    "status": 200,
@@ -6851,11 +6743,7 @@
  ],
  "otherRequests": [
   {
-   "request": "script /UBTConnect/scripts/OutSystemsManifestLoader.js",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/_Basic.css",
+   "request": "script /UBTConnect/scripts/Debugger.js",
    "count": 1
   },
   {
@@ -6863,15 +6751,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnect.appDefinition.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/_Basic.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsManifestLoader.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/cordova.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.index.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Debugger.js",
    "count": 1
   },
   {
@@ -6879,15 +6771,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.appDefinition.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystems.js",
-   "count": 1
-  },
-  {
-   "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
+   "request": "script /UBTConnect/scripts/UBTConnect.index.js",
    "count": 1
   },
   {
@@ -6895,11 +6779,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.entities.js",
+   "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.entities.js",
+   "request": "script /UBTConnect/scripts/OutSystems.js",
    "count": 1
   },
   {
@@ -6907,19 +6791,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.entities.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.entities.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.controller.js",
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.entities.js",
    "count": 1
   },
   {
@@ -6927,7 +6799,27 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks.mvc.js",
    "count": 1
   },
   {
@@ -6935,23 +6827,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarMenu.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/NavigationHandler.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.model.js",
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.model.js",
    "count": 1
   },
   {
@@ -6959,11 +6835,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.controller.js",
    "count": 1
   },
   {
@@ -6971,15 +6847,43 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.referencesHealth.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NavigationHandler.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks_Card_List.mvc.js",
    "count": 1
   },
   {
@@ -6991,15 +6895,19 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarMenu.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks_FilterSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.controller.js",
    "count": 1
   },
   {
@@ -7007,7 +6915,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.CommonUI_InsideLayout.mvc.js",
    "count": 1
   },
   {
@@ -7015,39 +6923,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Policies.Policy_Checker.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.model.js",
    "count": 1
   },
   {
@@ -7055,7 +6935,35 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_IconBadge.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.PullToRefresh.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_NotificationRefresh.mvc.js",
    "count": 1
   },
   {
@@ -7063,19 +6971,31 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js",
+   "request": "script /UBTConnect/scripts/UBT_AppManager.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.EmptyList.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js",
+   "request": "script /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Navigation.BottomBarItem.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js",
    "count": 1
   },
   {
@@ -7087,27 +7007,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.App_NotificationRefresh.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.PullToRefresh.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.BottomBarContent.mvc.js",
    "count": 1
   },
   {
@@ -7115,275 +7019,27 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.controller.js",
+   "request": "script /UBTConnect/scripts/NavigationHandler.NavigationHandler.PreventBackNavigation.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.controller.js",
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Policies.Policy_Checker.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Wrapper.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_AllLocalities.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Button.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_AllCountries.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.clientVariables.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/CommonPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/MemoryClientCache.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Browser.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Native.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_WebView.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/APIDomain_Directory_IS.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.clientVariables.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.OfflineDataSyncEvents.mvc.js",
    "count": 1
   },
   {
@@ -7391,15 +7047,191 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/CommonPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/NavigationHandler.NavigationHandler.BackNavigationHandler.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/AppVersionPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_BL.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/CommonPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/APIDomain_Directory_IS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Map_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Leaflet.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/MemoryClientCache.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/MemoryClientCache.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.referencesHealth.js",
    "count": 1
   },
   {
@@ -7407,15 +7239,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/CommonPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/TouchIdPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/AppVersionPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.referencesHealth.js",
    "count": 1
   },
   {
@@ -7427,71 +7259,111 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js",
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.clientVariables.js",
+   "request": "script /UBTConnect/scripts/TouchIdPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.model.js",
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.referencesHealth.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect_Map_CS.referencesHealth.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js",
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.clientVariables.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.OutSystemsUIOverrides.Badge.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.AddNote.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NetworkDetection.model.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/AppVersionPlugin.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.LazyImage.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Notes_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.clientVariables.js",
    "count": 1
   },
   {
@@ -7499,11 +7371,35 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.model.js",
+   "request": "script /UBTConnect/scripts/AppVersionPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NetworkDetection.clientVariables.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NetworkDetection.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ContentProviderPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.model.js",
    "count": 1
   },
   {
@@ -7519,91 +7415,143 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NetworkDetection.clientVariables.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.InlineSVG.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/ContentProviderPlugin.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.controller.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_BL.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Button.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/KeyboardPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_AllCountries.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.clientVariables.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Firebase.model.js",
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Firebase.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Wrapper.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.model.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.clientVariables.js",
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.EventfulDeeplinksPlugin.DeeplinkHandlerCentral.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/MemoryClientCache.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_AllLocalities.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.model.js",
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.AndroidAppLinks.AndroidAppLinkOnResumeHandler.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.controller.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_LoginFlow.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Leaflet.model.js",
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.model.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.OfflineDataSyncCore.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect_Map_CS.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CacheControl.CacheControl_Policies.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Common.Button.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Native.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_Browser.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion_WebView.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Private.NetworkStatusChanged.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationPolicies_CW.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.PIN.Pincode_Unlock.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.UnsupportedVersion.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js",
    "count": 1
   },
   {
@@ -7611,83 +7559,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.WelcomeToConnect.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBT_AppManager.PIN.InactivityTimer.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/KeyboardPlugin.referencesHealth.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Common.Button.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/KeyboardPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.clientVariables.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect_Map_CS.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_CS.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.clientVariables.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.clientVariables.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.languageResources.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.languageResources.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.WelcomeToConnect.mvc.js",
    "count": 1
   },
   {
@@ -7695,15 +7575,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.languageResources.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.languageResources.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
    "count": 1
   },
   {
@@ -7719,11 +7591,19 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.mvc.js",
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.languageResources.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager.languageResources.js",
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.languageResources.js",
    "count": 1
   },
   {
@@ -7731,11 +7611,27 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.languageResources.js",
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.languageResources.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/Connect2_LegacyShared.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js",
    "count": 1
   },
   {
@@ -7744,10 +7640,6 @@
   },
   {
    "request": "script /UBTConnect/scripts/Firebase.FirebaseApp.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.mvc.js",
    "count": 1
   },
   {
@@ -7767,43 +7659,7 @@
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/OutSystemsReactWidgets.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/CommonPlugin.PluginManager.js",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBT_AppManager.PIN.PinCode.css",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.PullToRefresh.js",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css",
-   "count": 1
-  },
-  {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css",
+   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
    "count": 1
   },
   {
@@ -7811,7 +7667,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.OfflineDataSync.js",
+   "request": "link /UBTConnect/css/OutSystemsReactWidgets.css",
    "count": 1
   },
   {
@@ -7819,11 +7675,43 @@
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css",
+   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css",
    "count": 1
   },
   {
-   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
+   "request": "link /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/CommonPlugin.PluginManager.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.PullToRefresh.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.OfflineDataSync.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBT_AppManager.PIN.PinCode.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css",
    "count": 1
   },
   {
@@ -7835,7 +7723,15 @@
    "count": 1
   },
   {
+   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.MWO.js",
+   "count": 1
+  },
+  {
+   "request": "css /UBTConnect/fonts/connect-icon.ttf",
    "count": 1
   },
   {
@@ -7847,16 +7743,8 @@
    "count": 2
   },
   {
-   "request": "css /UBTConnect/fonts/connect-icon.ttf",
-   "count": 1
-  },
-  {
    "request": "xmlhttprequest https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken",
    "count": 1
-  },
-  {
-   "request": "img /UBTConnect/img/UBTConnectLibrary.OneSchoolGlobal.svg",
-   "count": 3
   },
   {
    "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.AppInsights_v3_4_nightly.js",
@@ -7873,6 +7761,10 @@
   {
    "request": "fetch /UBTConnect/moduleservices/moduleinfo",
    "count": 1
+  },
+  {
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 2
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect.Bookmarks.Bookmarks.mvc.js",
@@ -7979,19 +7871,11 @@
    "count": 1
   },
   {
-   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
-   "count": 2
-  },
-  {
    "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js",
    "count": 1
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
    "count": 1
   },
   {
@@ -8313,10 +8197,6 @@
   {
    "request": "fetch /UBTConnect/fonts/connect-icon.woff",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/img/UBTConnectLibrary.OneSchoolGlobal.svg",
-   "count": 1
   }
  ],
  "declaredCalls": [
@@ -8327,33 +8207,15 @@
    "observed": true
   },
   {
+   "file": "UBTConnect.Bookmarks.Bookmarks.mvc.js",
+   "name": "GetAllVisibleBookmarksByType",
+   "url": "screenservices/UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType",
+   "observed": false
+  },
+  {
    "file": "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
    "name": "AddNote",
    "url": "screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "AddBookmark",
-   "url": "screenservices/UBTConnect/ActionAddBookmark",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "AddBookmark2",
-   "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "DeleteBookmarkByBookmarkId",
-   "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId",
-   "observed": false
-  },
-  {
-   "file": "UBTConnect.controller.js",
-   "name": "DeleteBookmarkByBookmarkId2",
-   "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2",
    "observed": false
   },
   {
@@ -8394,8 +8256,20 @@
   },
   {
    "file": "UBTConnect_Utils.controller.js",
+   "name": "AddBookmark2",
+   "url": "screenservices/UBTConnect_Utils/ServiceAPIAddBookmark2",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect_Utils.controller.js",
    "name": "CS_CreateShareProfileLink",
    "url": "screenservices/UBTConnect_Utils/ActionCS_CreateShareProfileLink",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect_Utils.controller.js",
+   "name": "DeleteBookmarkByBookmarkId2",
+   "url": "screenservices/UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2",
    "observed": false
   },
   {
@@ -8743,6 +8617,37 @@
     "UBTConnect.get_Cacheable_MapHouseholds"
    ]
   },
+  "UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType": {
+   "observed": false,
+   "defined": true,
+   "chains": [
+    [
+     "onClick in CustomContainer",
+     "event clicked of CustomContainer",
+     "event onClickItemCard of ItemCard_WithNotes",
+     "event onClickCardItem of Bookmarks_Card_Item",
+     "event onClick_BookmarkCardItem of Bookmarks_Card_List",
+     "Bookmarks.handler_OnClickBookmarkCardItem",
+     "server GetAllVisibleBookmarksByType"
+    ],
+    [
+     "onClick in CustomText",
+     "event clicked of CustomText",
+     "event onClickItemCard of ItemCard_WithNotes",
+     "event onClickCardItem of Bookmarks_Card_Item",
+     "event onClick_BookmarkCardItem of Bookmarks_Card_List",
+     "Bookmarks.handler_OnClickBookmarkCardItem",
+     "server GetAllVisibleBookmarksByType"
+    ]
+   ],
+   "rootKinds": [
+    "ui event"
+   ],
+   "rootLabels": [
+    "onClick in CustomContainer",
+    "onClick in CustomText"
+   ]
+  },
   "UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote": {
    "observed": false,
    "defined": true,
@@ -8757,46 +8662,6 @@
    ],
    "rootLabels": [
     "NotesSheet.handler_OnSubmitNote"
-   ]
-  },
-  "UBTConnect/ServiceAPIAddBookmark2": {
-   "observed": false,
-   "defined": true,
-   "chains": [
-    [
-     "onClick in IconText",
-     "event clicked of IconText",
-     "event onClickUnbookmark of ItemCard_ActionBar",
-     "ItemCardActions.handler_OnClickUnmark",
-     "UBTConnect.toggleBookmarkItem_C2",
-     "server AddBookmark2"
-    ]
-   ],
-   "rootKinds": [
-    "ui event"
-   ],
-   "rootLabels": [
-    "onClick in IconText"
-   ]
-  },
-  "UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2": {
-   "observed": false,
-   "defined": true,
-   "chains": [
-    [
-     "onClick in IconText",
-     "event clicked of IconText",
-     "event onClickUnbookmark of ItemCard_ActionBar",
-     "ItemCardActions.handler_OnClickUnmark",
-     "UBTConnect.toggleBookmarkItem_C2",
-     "server DeleteBookmarkByBookmarkId2"
-    ]
-   ],
-   "rootKinds": [
-    "ui event"
-   ],
-   "rootLabels": [
-    "onClick in IconText"
    ]
   },
   "UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All": {
@@ -8815,6 +8680,46 @@
    ],
    "rootLabels": [
     "BottomBarMenu.OnReady"
+   ]
+  },
+  "UBTConnect_Utils/ServiceAPIAddBookmark2": {
+   "observed": false,
+   "defined": true,
+   "chains": [
+    [
+     "onClick in IconText",
+     "event clicked of IconText",
+     "event onClickUnbookmark of ItemCard_ActionBar",
+     "ItemCardActions.handler_OnClickUnmark",
+     "UBTConnect_Utils.toggleBookmarkItem_C2",
+     "server AddBookmark2"
+    ]
+   ],
+   "rootKinds": [
+    "ui event"
+   ],
+   "rootLabels": [
+    "onClick in IconText"
+   ]
+  },
+  "UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2": {
+   "observed": false,
+   "defined": true,
+   "chains": [
+    [
+     "onClick in IconText",
+     "event clicked of IconText",
+     "event onClickUnbookmark of ItemCard_ActionBar",
+     "ItemCardActions.handler_OnClickUnmark",
+     "UBTConnect_Utils.toggleBookmarkItem_C2",
+     "server DeleteBookmarkByBookmarkId2"
+    ]
+   ],
+   "rootKinds": [
+    "ui event"
+   ],
+   "rootLabels": [
+    "onClick in IconText"
    ]
   },
   "Connect2_LegacyShared/ActionGetAllApplicationEvents": {
@@ -8899,7 +8804,6 @@
   "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
-  "UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.Input.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js",
@@ -8931,7 +8835,7 @@
   "UBT_AppManager_Mobile.model.js"
  ],
  "diagrams": {
-  "architectureNodes": 26,
+  "architectureNodes": 27,
   "serverNodes": 8,
   "actionSequences": 5
  },
@@ -9308,9 +9212,7 @@
    "x-content-type-options": "nosniff",
    "cache-control": "no-cache"
   },
-  "thirdPartyHosts": [
-   "www.googleapis.com"
-  ],
+  "thirdPartyHosts": [],
   "sensitiveWrites": [
    [
     "App_SubscriptionPopUp",

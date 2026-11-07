@@ -1,6 +1,6 @@
 import type { CountrySummary } from '@/api/country';
 import { StatisticsTypedItem } from '@/components/directory/StatisticsTypedItem';
-import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
+import { CommunityNumbers } from '@/components/feed/CommunityPopulation';
 import { OSList } from '@/components/ui/os/OSList';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
@@ -21,7 +21,12 @@ import {
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { countText, type CountriesFetchStatus, type UserGeography } from '@/pages/CountryList/hooks/countryListState';
+import {
+  countText,
+  type CountriesFetchStatus,
+  type CountryListCommunityStatistics,
+  type UserGeography,
+} from '@/pages/CountryList/hooks/countryListState';
 import { UBT_Icons2_CountryList } from './staticEntities';
 
 export interface CountryListContentProps {
@@ -32,16 +37,12 @@ export interface CountryListContentProps {
   fetchStatus: CountriesFetchStatus;
   /** The skeleton of the country list: neither IsDataFetched nor HasFetchError. */
   isListLoading: boolean;
-  /** FeedBlock_CommunityPopulation: FetchCount is pending. */
-  isCommunityPopulationLoading: boolean;
-  /** FeedBlock_CommunityPopulation: the count of the community. */
-  communityPopulationTotal: string;
+  /** GetCommunityStatistics: Directory_CommunityNumbers shows it (a skeleton until IsDataFetched). */
+  communityStatistics: CountryListCommunityStatistics;
   /** OnClick_MyLocality. */
   onMyLocalityClicked: () => void;
   /** OnClick_MyCountry. */
   onMyCountryClicked: () => void;
-  /** OnClick_Block of FeedBlock_CommunityPopulation. */
-  onCommunityPopulationClicked: () => void;
   /** OnClick_LegendInfo. */
   onLegendInfoClicked: () => void;
   /** Handler_StatisticsList_Clicked(Event_Id): a country row, with its country code. */
@@ -76,20 +77,18 @@ const NULL_ID = '0';
 const LIST_KEY = '66';
 
 /** The Content placeholder of the screen: the "MY LOCALITY" and "MY COUNTRY" cards (a skeleton until the user
-    information answers), FeedBlock_CommunityPopulation, the "Browse by Country" title with the legend info icon, and
-    the List of countries (`list-loading` until GetCountriesStatistics answers, `list-error` after it fails), one
-    Statistics_TypedItem per country.
+    information answers), Directory_CommunityNumbers (no events), the "Browse by Country" title with the legend info
+    icon, and the List of countries (`list-loading` until GetCountriesStatistics answers, `list-error` after it fails),
+    one Statistics_TypedItem per country.
     @origin UBTConnect.Directory_Locality.CountryList */
 export function CountryListContent({
   user,
   countries,
   fetchStatus,
   isListLoading,
-  isCommunityPopulationLoading,
-  communityPopulationTotal,
+  communityStatistics,
   onMyLocalityClicked,
   onMyCountryClicked,
-  onCommunityPopulationClicked,
   onLegendInfoClicked,
   onCountryClicked,
 }: CountryListContentProps) {
@@ -146,12 +145,13 @@ export function CountryListContent({
           }
         />
       </Skeleton>
-      <CustomContainer id="Population" options={{ PaddingSize: { TopSizeId: UBT_Size.Base } }}>
-        <CommunityPopulation
+      {/* CustomContainer $b17 (MarginSize.TopSizeId Base) and Directory_CommunityNumbers $b18
+          (CountryList.mvc.js:744-790): In_IsLoading = not GetCommunityStatistics.IsDataFetched. */}
+      <CustomContainer id="$b17" options={{ MarginSize: { TopSizeId: UBT_Size.Base } }}>
+        <CommunityNumbers
           id="$b18"
-          isLoading={isCommunityPopulationLoading}
-          total={communityPopulationTotal}
-          onClick={onCommunityPopulationClicked}
+          isLoading={!communityStatistics.isDataFetched}
+          communityStatistics={communityStatistics.out}
         />
       </CustomContainer>
       <CustomContainer id="Legend" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Base } }}>

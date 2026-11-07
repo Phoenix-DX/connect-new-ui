@@ -13,3 +13,9 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-16T11:17:28): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q3 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered A, user 2026-10-16) [questions.md Q1]:; The mock of SendContactLDMCoordinatorEmail uses the collection `UBTConnect.sentContactLDMCoordinatorEmails`.; The screen's data comes from its inputs.; LDM_EventDetail_V2 passes the coordinator of the shared LDM world. The avatar is the LDM logo.; Telemetry (AddAuditEventDetailEvent, zOnApplicationEvent_Wrapper) goes to the log without personal fields (decision; An empty In_AvatarURL renders the image without a source (the If(False) branch always shows it).; Two parity differences of the capture path, not of the markup (Unclear points, 2026-11-06). The user decides whether
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-07T00:55:42): confirm (user, 2026-11-07: tôi đồng ý all)

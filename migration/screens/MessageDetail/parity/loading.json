@@ -1,11 +1,11 @@
 {
  "state": "loading",
- "route": "/UBTConnect/MessageDetail?MessageInstanceId=5982748&mocksession=unlocked",
+ "route": "/UBTConnect/MessageDetail?MessageInstanceId=5981096&mocksession=unlocked",
  "mock": "loading",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "388811909a61b77b0cac",
+ "fingerprint": "942ccb99b5fe8447b399",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:33:37.654Z",
+ "at": "2026-11-07T10:00:07.010Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1

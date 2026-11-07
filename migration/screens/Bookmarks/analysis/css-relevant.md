@@ -502,6 +502,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .connect-icon-border_color:before { content: "\f091"; }
 ```
+### .connect-icon-calendar_fill  (1 rule)
+```css
+.connect-icon-calendar_fill:before { content: "\f08d"; }
+```
 ### .connect-icon-check  (1 rule)
 ```css
 .connect-icon-check:before { content: "\f087"; }
@@ -1228,7 +1232,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 .osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { pointer-events: auto; }
 .ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay { opacity: 0; }
 ```
-### .osui-bottom-sheet__content  (13 rules)
+### .osui-bottom-sheet__content  (12 rules)
 ```css
 .osui-bottom-sheet .osui-bottom-sheet__content:empty, .osui-bottom-sheet .osui-bottom-sheet__header__top-bar:empty {  }
 .osui-bottom-sheet__content { max-height:var(--bottom-sheet-max-height); overflow-y:scroll; padding:var(--space-base); padding-bottom:calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom)); }
@@ -1240,8 +1244,7 @@ ottom-sheet--is-active .osui-bottom-sheet__content .osui-datepicker, .osui-botto
 .landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content { padding-right: calc(var(--space-s) + var(--os-safe-area-right)); padding-left: calc(var(--space-s) + var(--os-safe-area-left)); padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom)); }
 .connect-share-sheet .osui-bottom-sheet__content { padding: 0; display: flex; flex-direction: column; flex: 1; gap: var(--share-sheet-gap, var(--space-s)); }
 .connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content { margin: 0; flex: 1; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__results) { display: flex; flex-direction: column; min-height: 0; }
-.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) { flex: 1; }
+.osui-bottom-sheet__content *:has(.connect-share-sheet__content__search-list), .connect-share-sheet__content__search-list { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results { flex: 1 1 auto; min-height: 0; overflow-y: auto; }
 ```
 ### .osui-bottom-sheet__header  (10 rules)

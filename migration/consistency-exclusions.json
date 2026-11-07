@@ -1,0 +1,102 @@
+{
+ "_comment": "Consistency exclusions: each entry names the compiled TST source whose style attributes carry the declarations; consistency_check.py verifies that before it excludes anything (user 2026-11-07).",
+ "exclusions": [
+  {
+   "id": "INLINE-MESSAGELIST-MESSAGELISTITEM-L124",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "MessageList",
+   "file": "components/MessageListItem.tsx",
+   "line": 124,
+   "declarations": [
+    "text-align:center",
+    "margin-bottom:5px"
+   ],
+   "source": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.MessageListItem.mvc@13d3de70.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  },
+  {
+   "id": "INLINE-MESSAGELIST-MESSAGELISTITEM-L129",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "MessageList",
+   "file": "components/MessageListItem.tsx",
+   "line": 129,
+   "declarations": [
+    "background-color:rgb(255,255,255)",
+    "border-radius:50px",
+    "border-style:solid",
+    "border-width:2px",
+    "color:rgb(252,0,0)",
+    "font-size:12px",
+    "height:20px",
+    "padding:3px 0px 0px",
+    "width:20px"
+   ],
+   "source": "migration/sources/pretty/Connect2_LegacyShared.MyNotifications.MessageListItem.mvc@13d3de70.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  },
+  {
+   "id": "INLINE-MESSAGEDETAIL-NOTIFICATIONDETAILBLOCK-L164",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "MessageDetail",
+   "file": "components/NotificationDetailBlock.tsx",
+   "line": 164,
+   "declarations": [
+    "color:#605f5f",
+    "font-size:14px"
+   ],
+   "source": "migration/sources/pretty/Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  },
+  {
+   "id": "INLINE-MESSAGEDETAIL-NOTIFICATIONDETAILBLOCK-L178",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "MessageDetail",
+   "file": "components/NotificationDetailBlock.tsx",
+   "line": 178,
+   "declarations": [
+    "margin-bottom:5px",
+    "text-align:center"
+   ],
+   "source": "migration/sources/pretty/Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  },
+  {
+   "id": "INLINE-MESSAGEDETAIL-NOTIFICATIONDETAILBLOCK-L183",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "MessageDetail",
+   "file": "components/NotificationDetailBlock.tsx",
+   "line": 183,
+   "declarations": [
+    "background-color:rgb(255,255,255)",
+    "border-radius:50px",
+    "border-style:solid",
+    "border-width:2px",
+    "color:rgb(252,0,0)",
+    "font-size:12px",
+    "height:20px",
+    "padding:3px 0px 0px",
+    "width:20px"
+   ],
+   "source": "migration/sources/pretty/Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  },
+  {
+   "id": "INLINE-NOTIFICATIONS-NOTIFICATIONS_CONFIRMDIALOG-L119",
+   "rule": "NO-INLINE-COLOR",
+   "screen": "Notifications",
+   "file": "components/Notifications_ConfirmDialog.tsx",
+   "line": 119,
+   "declarations": [
+    "color:#fff"
+   ],
+   "source": "migration/sources/survey/UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js",
+   "reason": "Inline style of a branch that no capture shows (no test account has the data), ported from the compiled TST block; the source file carries the same declarations in a style attribute.",
+   "decided": "user 2026-11-07 (\"ok all\", decision review Q2/Q3 a)"
+  }
+ ]
+}

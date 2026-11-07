@@ -45,23 +45,21 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
 
 ## Data/server actions declared in the screen and its blocks
-- [x] `DataActionGet_ParentHouseholdDetails` (UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js)
+- [x] `DataActionGet_SibllingsRelations` (UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js)
 - [ ] `DataActionFetchNotes` (UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js)
 - [x] `DataActionGet_MemberDetails` (UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js)
 - [ ] `AddNote` (UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

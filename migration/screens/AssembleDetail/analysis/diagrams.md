@@ -22,12 +22,11 @@ flowchart TB
       B8["App_PIN.Block_PINUnlock_ContentWrapper<br/>UBTConnect<br/>navigation, lifecycle"]
       B9["PIN.Pincode_Unlock<br/>UBT_AppManager<br/>lifecycle"]
       B10["PIN.InactivityTimer<br/>UBT_AppManager<br/>lifecycle"]
-      B11["CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction<br/>UBTConnect_Utils<br/>lifecycle"]
-      B12["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
-      B13["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
-      B14["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
+      B11["AndroidAppLinks.AndroidAppLinkOnResumeHandler<br/>Connect2_AndroidAppLinksPlugin<br/>lifecycle"]
+      B12["EventfulDeeplinksPlugin.DeeplinkHandlerCentral<br/>EventfulDeeplinksPlugin<br/>lifecycle"]
+      B13["Utility.HandleImageLoadError<br/>Connect2_LegacyShared<br/>lifecycle"]
     end
-    Infra["App infrastructure blocks (41)<br/>render nothing visible"]
+    Infra["App infrastructure blocks (49)<br/>render nothing visible"]
     Cache["View cache / preload<br/>IsRestoredFromCacheJS, WasCurrentViewRestoredFromCacheJS"]
     Vars["Client variables read<br/>App_PIN_BiometricEnabled, App_Policies_HasPolicyToAccept, Directory_Updates_UnreadCount, IsNavigateToHomeOnBack, PIN_IsLocked …"]
     Shell --> Content
@@ -38,12 +37,16 @@ flowchart TB
     S1["DataActionGetAvailableMembers<br/>data action / aggregate, declared, not observed"]
     S2["DataActionGetRecentlyShared<br/>data action / aggregate, declared, not observed"]
     S3["DataActionGetAssembleNotes<br/>data action / aggregate, observed"]
+    S4["ActionGetMemberContactByCacheKey<br/>observed"]
+    S5["ActionGetSignedPhotosInBulk<br/>observed"]
   end
   Backend["Backend<br/>not visible from the browser"]
   Content --> S0
   Content -.-> S1
   Content -.-> S2
   Content --> S3
+  Content -.-> S4
+  Content -.-> S5
   S0 -.-> Backend
   classDef unknown stroke-dasharray: 5 4;
   class S1,S2,Backend unknown;
@@ -78,5 +81,43 @@ sequenceDiagram
     S-->>U: TODO render states (spec section 8)
   else NotRegisteredException / SecurityException
     S-->>U: TODO error UI and messages (spec section 11)
+  end
+```
+
+### Action: ActionGetMemberContactByCacheKey
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as App_Common.CommonUI_InsideLayout
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at Connect2_LegacyShared.getMemberContactList (see call-sites.md)
+  Note over S: via Connect2_LegacyShared.getMemberContactList → server GetMemberContactByCacheKey
+  S->>API: ActionGetMemberContactByCacheKey(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
+  end
+```
+
+### Action: ActionGetSignedPhotosInBulk
+```mermaid
+%% DRAFT: trigger from call-sites.md; replace TODOs with the result handling of the calling action
+sequenceDiagram
+  actor U as User
+  participant S as App_Common.CommonUI_InsideLayout
+  participant API as screenservices
+  U->>S: TODO user event
+  Note over S: chain stops at Connect2_LegacyShared.getBulkSignedPhotosURL (see call-sites.md)
+  Note over S: via Connect2_LegacyShared.getBulkSignedPhotosURL → server GetSignedPhotosInBulk
+  S->>API: ActionGetSignedPhotosInBulk(TODO inputs)
+  API-->>S: TODO outputs
+  alt TODO branch
+    S-->>U: TODO
+  else TODO branch
+    S-->>U: TODO
   end
 ```

@@ -394,8 +394,8 @@ body{
 
 @font-face {
     font-family: "connect-icon";
-    src: url("../fonts/connect-icon.ttf?SMRPKWPqHEtjS_bc9N4v8w") format("truetype"),
-        url("../fonts/connect-icon.woff?tgOo1xQsEOpFtJRfAYtZYA") format("woff");
+    src: url("../fonts/connect-icon.ttf?yN9Cdghgi0x9gXrJwQKlTw") format("truetype"),
+        url("../fonts/connect-icon.woff?VpDo7N8vik_MRd8Wdg3VRg") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -417,6 +417,7 @@ body{
     -moz-osx-font-smoothing: grayscale;
 }
 
+.connect-icon-circle_fill:before {content: "\f0c3";}
 .connect-icon-link:before {content: "\f0be";}
 .connect-icon-fork_spoon:before {content: "\f0bd";}
 .connect-icon-boy:before {content: "\f0bc";}

@@ -1,6 +1,6 @@
 # NotificationDetails: OutSystems (TST) and React
 
-The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/NotificationDetails`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/NotificationDetails/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
@@ -16,7 +16,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/NotificationDetails/parity`](../../screens/NotificationDetails/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 28 app shell files. React: 154 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 10 shared blocks, 28 app shell files. React: 155 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -24,12 +24,12 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 |---|---|
 | Server calls of the route on TST | 5: React makes 4, **0 missing**, 1 not a gap of the web app |
 | Differences found | **0** (+ 1 not a gap of the web app) (see [section 3](#3-differences-found)) |
-| Questions | 1 (see [section 4](#4-questions)) |
+| Questions | 1 (+ 1 declared on TST outside the call graph) (see [section 4](#4-questions)) |
 | React calls reached only through shared code | 0: see the last section |
-| User actions of the route (own code) | OutSystems: 1. React: 1 |
+| User actions of the route (own code) | OutSystems: 1. React: 2 |
 | Screen and blocks of the UI flow with a React port | 1 of 1 |
 | Navigation targets found in React | 8 of 8 |
-| Shared blocks and components on the route | OutSystems 11, React 2 with user actions: see the last section |
+| Shared blocks and components on the route | OutSystems 10, React 2 with user actions: see the last section |
 | App shell on this route | 8 calls: see [APP_SHELL.md](../APP_SHELL.md) |
 
 ## 3. Differences found
@@ -66,6 +66,14 @@ Missing TST calls that a rule of `route-check/config.json` (`notApplicable`, use
 
 1. React calls `/api/UBTConnect_Utils/ActionGetSignedImagesInBulk` from `cache_SignedImageURL_GetCallback()` [`lib/ubtConnectUtils/actions.ts:131`](../../../app/src/lib/ubtConnectUtils/actions.ts#L131) (page). TST NotificationDetails has no chain to this call. Does the call belong to this route?
 
+### Calls that TST declares outside the static call graph
+
+React calls of the screen without a TST chain in the code of the route. TST makes them: the contract (`x-os-screens`, from the compiled closure) or `migration/contract/extra-actions.json` records each. The reasons: a block that the capture did not render, a module client action, a JavaScript callback. Not questions (user 2026-11-05).
+
+| Call | React action | How TST declares it | Evidence |
+|---|---|---|---|
+| `/api/UBTConnect/ActionStoreAdaptiveCardResponses` | `storeNotificationAdaptiveCardResponse()` [`api/notification/notificationDetail.ts:25`](../../../app/src/api/notification/notificationDetail.ts#L25) | contract | x-os-screens of the operation in app/src/api/openapi.yaml (the compiled closure of the screen, tools/generate/contract_gen.py) |
+
 ## 5. Server calls
 
 All columns come from the code, without interpretation:
@@ -80,7 +88,7 @@ All columns come from the code, without interpretation:
 
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | `markNotificationDetailsOpened()` [`api/notification/notificationDetail.ts:20`](../../../app/src/api/notification/notificationDetail.ts#L20) (page) | `NotificationDetails → useNotificationDetail → markNotificationDetailsOpened`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
+| 1 | `UBTConnect/App_Notifications/NotificationDetails/ActionWrapper_NotificationOpened` | server action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → server Wrapper_NotificationOpened | no | `markNotificationDetailsOpened()` [`api/notification/notificationDetail.ts:31`](../../../app/src/api/notification/notificationDetail.ts#L31) (page) | `NotificationDetails → useNotificationDetail → markNotificationDetailsOpened`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
 | 2 | `UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionFetchMessageInstance | no | – | – | not applicable (noCaller) |
 | 3 | `UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance` | data action | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance | yes | `fetchNotificationMessageInstance()` [`api/message/repository.ts:215`](../../../app/src/api/message/repository.ts#L215) (page) | `NotificationDetails → useNotificationDetail → fetchNotificationMessageInstance`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
 | 4 | `UBTConnect/App_Notifications/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | `NotificationDetails` | NotificationDetails fetch at start → NotificationDetails.DataActionGetMessageInstance → NotificationDetails.getMessageInstanceByIdOnAfterFetch → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId<br>NotificationDetails fetch at start → NotificationDetails.ScreenDataSetGetMessageTemplateParametersByMessageTemplateId | no | `fetchNotificationTemplateParameters()` [`api/message/repository.ts:225`](../../../app/src/api/message/repository.ts#L225) (page) | `NotificationDetails → useNotificationDetail → fetchNotificationTemplateParameters`<br>[`pages/NotificationDetails/NotificationDetailsPage.tsx`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx) | implemented |
@@ -100,7 +108,72 @@ Two independent lists: the event bindings of the TST views, and the JSX event bi
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| 1 | [`pages/NotificationDetails/NotificationDetailsPage.tsx:113`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L113) | `<MainPagesUpgradeLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+| [1](#621-adaptivecardviewer-onexecuteaction-send_email) | [`pages/NotificationDetails/NotificationDetailsPage.tsx:119`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L119) | `<AdaptiveCardViewer>` | `onExecuteAction` | `adaptiveCardViewerOnExecuteAction` | `send_email` | goes to LDM_Email_V2, LDM_Email; shows a message |
+| [2](#622-adaptivecardviewer-onexecuteaction-view_event) | [`pages/NotificationDetails/NotificationDetailsPage.tsx:119`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L119) | `<AdaptiveCardViewer>` | `onExecuteAction` | `adaptiveCardViewerOnExecuteAction` | `view_event` | goes to LDM_EventDetail_V2, LDM_EventDetail; shows a message |
+| [3](#623-adaptivecardviewer-onexecuteaction-other) | [`pages/NotificationDetails/NotificationDetailsPage.tsx:119`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L119) | `<AdaptiveCardViewer>` | `onExecuteAction` | `adaptiveCardViewerOnExecuteAction` | `other` | calls ActionStoreAdaptiveCardResponses, DataActionGetMessageInstance; shows a message |
+| 4 | [`pages/NotificationDetails/NotificationDetailsPage.tsx:145`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L145) | `<MainPagesUpgradeLayout>` | `onBack` | `navigateBack` | – | goes to previous screen |
+
+<details><summary>3 diagrams (handlers with two or more effects)</summary>
+
+#### 6.2.1 AdaptiveCardViewer: onExecuteAction (send_email)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AdaptiveCardViewer · NotificationDetailsPage.tsx
+  participant N as Navigation
+  U->>H: onExecuteAction → adaptiveCardViewerOnExecuteAction (send_email)
+  Note over H: via onExecuteAction()
+  Note over H: message MESSAGE_CHECK_CONNECTION
+  Note over H: via addAuditAndNavigateToEventEmail()
+  H->>N: go to LDM_Email_V2
+  H->>N: go to LDM_Email
+  Note over H: via addAuditAndNavigateToEventEmail()
+  H->>N: go to LDM_Email_V2
+  H->>N: go to LDM_Email
+```
+
+#### 6.2.2 AdaptiveCardViewer: onExecuteAction (view_event)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AdaptiveCardViewer · NotificationDetailsPage.tsx
+  participant N as Navigation
+  U->>H: onExecuteAction → adaptiveCardViewerOnExecuteAction (view_event)
+  Note over H: via onExecuteAction()
+  Note over H: message MESSAGE_CHECK_CONNECTION
+  Note over H: message MESSAGE_EVENT_NOT_ACCESSIBLE
+  Note over H: via addAuditAndNavigateToEventDetail()
+  H->>N: go to LDM_EventDetail_V2
+  H->>N: go to LDM_EventDetail
+```
+
+#### 6.2.3 AdaptiveCardViewer: onExecuteAction (other)
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant H as AdaptiveCardViewer · NotificationDetailsPage.tsx
+  participant A as Server (React api)
+  U->>H: onExecuteAction → adaptiveCardViewerOnExecuteAction (other)
+  Note over H: via onExecuteAction()
+  Note over H: message MESSAGE_CHECK_CONNECTION
+  Note over H: via storeNotificationAdaptiveCardResponse()
+  H->>A: ActionStoreAdaptiveCardResponses()
+  A-->>H: outputs
+  Note over H: via fetchNotificationMessageInstance()
+  H->>A: DataActionGetMessageInstance(FeedItemId, HardwareId, IsLoading, …)
+  A-->>H: IsCleared, IsRetracted, Message, …
+  Note over H: message MESSAGE_FORM_THANKS
+```
+
+
+</details>
+
 
 ## 7. Screen inputs and navigation parameters
 
@@ -123,9 +196,13 @@ Declared inputs of the route: `MessageInstanceId: LongInteger` (`app/src/app/rou
 
 | Hook | Keys read | Place |
 |---|---|---|
-| `useSearchParams` | none | [`pages/NotificationDetails/NotificationDetailsPage.tsx:69`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L69) |
+| `useSearchParams` | none | [`pages/NotificationDetails/NotificationDetailsPage.tsx:101`](../../../app/src/pages/NotificationDetails/NotificationDetailsPage.tsx#L101) |
 
-Navigations with parameters: none.
+| File | Target | Parameters | Place |
+|---|---|---|---|
+| `useNotificationDetail.ts` | `LDM_Email_V2` | `EventHostId` = `eventHostId`<br>`In_IsContactOrganiser` = `false`<br>`In_IsMessageGuest` = `true`<br>`In_EventId` = `eventId` | [`pages/NotificationDetails/hooks/useNotificationDetail.ts:127`](../../../app/src/pages/NotificationDetails/hooks/useNotificationDetail.ts#L127) |
+| `useNotificationDetail.ts` | `LDM_Email` | `In_IsContactOrganiser` = `false`<br>`EventHostId` = `eventHostId`<br>`In_EventId` = `eventId`<br>`In_IsMessageGuest` = `true` | [`pages/NotificationDetails/hooks/useNotificationDetail.ts:134`](../../../app/src/pages/NotificationDetails/hooks/useNotificationDetail.ts#L134) |
+| `useNotificationDetail.ts` | `LDM_EventDetail_V2`, `LDM_EventDetail` | `EventHostId` = `eventHostId`<br>`EventId` = `eventId` | [`pages/NotificationDetails/hooks/useNotificationDetail.ts:147`](../../../app/src/pages/NotificationDetails/hooks/useNotificationDetail.ts#L147) |
 
 ## 8. Lifecycle
 
@@ -165,7 +242,9 @@ None.
 
 ### 9.2 React
 
-None.
+| File | Operation | Variable or key | Place |
+|---|---|---|---|
+| `useNotificationDetail.ts` | `clientVar.get` | `UBT_AppManager.DeviceInfo_UUID` | [`pages/NotificationDetails/hooks/useNotificationDetail.ts:165`](../../../app/src/pages/NotificationDetails/hooks/useNotificationDetail.ts#L165) |
 
 ## 10. Access
 
@@ -194,7 +273,9 @@ An error without a handler goes to the `OnException` of the UI flow (`handleErro
 
 ### 11.2 React
 
-None.
+| File | Kind | Function | Effects | Place |
+|---|---|---|---|---|
+| `useNotificationDetail.ts` | try/catch | `onExecuteAction` | message `MESSAGE_CHECK_CONNECTION` | [`pages/NotificationDetails/hooks/useNotificationDetail.ts:197`](../../../app/src/pages/NotificationDetails/hooks/useNotificationDetail.ts#L197) |
 
 `flow handler`: `raiseToFlowHandler` gives the error to the flow handler of the screen (`app/src/platform/feedback/flowErrors.ts`). The tool lists `.catch`, `try/catch` and `onError` that do not give the error to it.
 
@@ -209,7 +290,6 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `Layout_MainPages_Upgrade` | `UBTConnectLibrary` | [`components/layout/MainPagesUpgradeLayout/MainPagesUpgradeLayout.tsx`](../../../app/src/components/layout/MainPagesUpgradeLayout/MainPagesUpgradeLayout.tsx) | 1 |
 | `IconText` | `UBTConnectLibrary` | [`components/ui/IconText/IconText.tsx`](../../../app/src/components/ui/IconText/IconText.tsx) | 0 |
 | `CircleButton` | `UBTConnectLibrary` | [`components/ui/CircleButton/CircleButton.tsx`](../../../app/src/components/ui/CircleButton/CircleButton.tsx) | 0 |
-| `SectionSeparator` | `UBTConnect` | [`components/ui/SectionSeparator/SectionSeparator.tsx`](../../../app/src/components/ui/SectionSeparator/SectionSeparator.tsx) | 0 |
 | `AdaptiveCardViewer` | `Connect2_LegacyShared` | [`components/widgets/AdaptiveCardViewer/AdaptiveCardViewer.tsx`](../../../app/src/components/widgets/AdaptiveCardViewer/AdaptiveCardViewer.tsx) | 0 |
 | `BottomBarMenu` | `UBTConnect` | [`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | 1 |
 | `BottomBarContent` | `UBTConnect` | [`components/layout/BottomBarContent/BottomBarContent.tsx`](../../../app/src/components/layout/BottomBarContent/BottomBarContent.tsx) | 0 |

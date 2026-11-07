@@ -32,9 +32,7 @@ Assemble.ScreenBlock_AssembleDetail
               Assemble.AssembleSummary_Card_Row
               Assemble.AssembleSummary_Card_Row
               Assemble.AssembleSummary_Card_Row
-              Assemble.AssembleCommon_VirtualMeetingURL
-                Assemble.AssembleSummary_Card_Row
-                ConfirmationDialogs.ActionConfirmationDialog
+              Assemble.AssembleSummary_Card_Row
           CW_Notes.NoteListActions
             ConnectPatterns.Note_Item_List
               BasePatterns.CustomContainer
@@ -55,7 +53,23 @@ Assemble.ScreenBlock_AssembleDetail
               Assemble.AssembleEventDetail_LocalitySubdivisionList
                 NewConnect_Utilities.NC_Result_Item__Image
                   NewConnect_Utilities.NC_Result_Item_Badge
+            Assemble.AssembleEventDetail_LocalitiesList
+              Assemble.AssembleEventDetail_LocalitySubdivisionList
+                NewConnect_Utilities.NC_Result_Item__Image
+                  NewConnect_Utilities.NC_Result_Item_Badge
           Assemble.AssembleEventDetail_Section
+            Assemble.AssembleEventDetail_ContactList
+              Assemble.AssembleEventDetail_Contact
+                NewConnect_Utilities.NC_Result_Item__Image
+                  Reusable.Person_Contact_Options
+                CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
+                  CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
+                    ConfirmationDialogs.ActionConfirmationDialog
+                CW_CTA_PopUps.ContactPopup_ByPhone
+                  CW_CTA_PopUps.ContactPopup
+                CW_CTA_PopUps.ContactByMessage_Wrapper
+                  CW_CTA_PopUps.ContactPopup_ByMessage
+                    CW_CTA_PopUps.ContactPopup
         ScrollAnchors.FocusScrollAnchorOnBack
           NavigationHandler.BackNavigationHandler
       App_Common.BottomBarMenu

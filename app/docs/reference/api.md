@@ -95,11 +95,14 @@ One endpoint per OutSystems action (`POST /api/<Module>/<Action>`). Source: `src
 | `/api/OrbitPassportScanC2/ScreenBlock_PassportScan/DataActionGetConfigs` | dataAction | fictional | false |
 | `/api/UBTConnect/ActionAcceptPolicies` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionGetMilestoneScanFF` | serverAction | fictional | false |
+| `/api/UBTConnect/ActionGet_OrbitHostSurveyNotificationParameters` | serverAction | fictional | false |
+| `/api/UBTConnect/ActionGet_OrbitNotificationParameters` | serverAction | fictional | false |
 | `/api/UBTConnect/ActionGet_ShareDetails` | clientWrapper | fictional | false |
 | `/api/UBTConnect/ActionMarkAllAsReadNotifications` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionMarkAsRead` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionRequestPhotoUpdate` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionSendContactEmail` | serverAction | fictional | true |
+| `/api/UBTConnect/ActionStoreAdaptiveCardResponses` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionSync_Info_GetMain` | clientWrapper | fictional | true |
 | `/api/UBTConnect/ActionToggleRead` | serverAction | fictional | true |
 | `/api/UBTConnect/ActionUpdateItem_MarkAsRead` | clientWrapper | fictional | true |
@@ -115,7 +118,6 @@ One endpoint per OutSystems action (`POST /api/<Module>/<Action>`). Source: `src
 | `/api/UBTConnect/CountryList/DataActionGetCountriesStatistics` | dataAction | recorded | false |
 | `/api/UBTConnect/Directory_EntityDetailsActions/DataActionFetchContactDetails` | dataAction | fictional | false |
 | `/api/UBTConnect/Directory_EntityDetailsActions/DataActionFetchNotes` | dataAction | fictional | false |
-| `/api/UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount` | dataAction | recorded | false |
 | `/api/UBTConnect/FeedBlock_Services/DataActionGetServices` | dataAction | recorded | false |
 | `/api/UBTConnect/FeedBlock_Updates/DataActionFetchUpdates` | dataAction | fictional | false |
 | `/api/UBTConnect/HomeFeed/DataActionGetCommunityStatistics` | dataAction | fictional | false |
@@ -124,7 +126,7 @@ One endpoint per OutSystems action (`POST /api/<Module>/<Action>`). Source: `src
 | `/api/UBTConnect/HouseholdDetails_Block/DataActionGetHousehold_Coordinates` | dataAction | fictional | false |
 | `/api/UBTConnect/HouseholdRelations_Block/DataActionFetchNotes` | dataAction | fictional | false |
 | `/api/UBTConnect/HouseholdRelations_Block/DataActionGet_MemberDetails` | dataAction | fictional | false |
-| `/api/UBTConnect/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | dataAction | fictional | false |
+| `/api/UBTConnect/HouseholdRelations_Block/DataActionGet_SibllingsRelations` | dataAction | fictional | false |
 | `/api/UBTConnect/Household_Card/DataActionGetMembers` | dataAction | fictional | false |
 | `/api/UBTConnect/Locality_Details/DataActionGet_LocalityDetails` | dataAction | recorded | false |
 | `/api/UBTConnect/Locality_Households_HouseholdList/DataActionGetLocalityHouseholds` | dataAction | fictional | false |
@@ -133,7 +135,6 @@ One endpoint per OutSystems action (`POST /api/<Module>/<Action>`). Source: `src
 | `/api/UBTConnect/Locality_OneSchoolGlobal/DataActionGet_OneSchoolGlobal_List` | dataAction | fictional | false |
 | `/api/UBTConnect/Locality_Subdivisions/DataActionGet_Subdivision_List` | dataAction | fictional | false |
 | `/api/UBTConnect/Notes/DataActionGetNotes` | dataAction | fictional | false |
-| `/api/UBTConnect/NotificationDetails/DataActionFetchMessageInstance` | dataAction | fictional | false |
 | `/api/UBTConnect/NotificationDetails/DataActionGetMessageInstance` | dataAction | fictional | false |
 | `/api/UBTConnect/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId` | aggregate | fictional | false |
 | `/api/UBTConnect/Notifications/DataActionFetchNotifications` | dataAction | fictional | false |
@@ -152,6 +153,7 @@ One endpoint per OutSystems action (`POST /api/<Module>/<Action>`). Source: `src
 | `/api/UBTConnect/ServiceAPIDelete_Notifications` | serviceAPI | fictional | true |
 | `/api/UBTConnect/ServiceAPIFetchData_CacheableHouseholds` | serviceAPI | fictional | false |
 | `/api/UBTConnect/ServiceAPIFetchData_CacheableMapEntities` | serviceAPI | fictional | false |
+| `/api/UBTConnect/ServiceAPIGetAllVisibleBookmarksByType` | serviceAPI | fictional | true |
 | `/api/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | serviceAPI | recorded | false |
 | `/api/UBTConnect/ServiceAPIMember_EditDetails_Service` | serviceAPI | fictional | true |
 | `/api/UBTConnect/ServiceAPISendContactLDMCoordinatorEmail` | serviceAPI | fictional | true |

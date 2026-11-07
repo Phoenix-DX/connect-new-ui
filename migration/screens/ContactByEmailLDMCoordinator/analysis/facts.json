@@ -2,7 +2,7 @@
  "screen": "ContactByEmailLDMCoordinator",
  "env": {
   "path": "/UBTConnect/ContactByEmailLDMCoordinator",
-  "collectedAt": "2026-11-06T14:06:02.261Z",
+  "collectedAt": "2026-11-06T19:47:10.086Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -2942,19 +2942,19 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js",
    "count": 1
   },
   {
@@ -3014,10 +3014,6 @@
    "count": 1
   },
   {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 1
-  },
-  {
    "request": "fetch /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js",
    "count": 1
   },
@@ -3035,6 +3031,10 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
    "count": 1
   },
   {

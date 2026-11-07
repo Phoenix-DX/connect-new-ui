@@ -11,7 +11,8 @@ Load order of stylesheets (keep this order in the build):
 7. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
 8. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
 9. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+10. `/UBTConnect/css/UBTConnect.App_Notifications.NotificationDetails.css`
+11. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -255,6 +256,16 @@ bt-layout-main.layout-native .header-top-title, .phone .ubt-layout-main.layout-n
 .mainpage-upgrade-container .ubt-layout-main__search { width: 100%; margin-top: 0; }
 .mainpage-upgrade-container .header-top-content { width: 100%; }
 ```
+### .padding-left-m  (2 rules)
+```css
+.padding-left-m { padding-left:var(--space-m); }
+.is-rtl .padding-left-m { padding-left:var(--space-none); padding-right:var(--space-m); }
+```
+### .padding-right-m  (2 rules)
+```css
+.padding-right-m { padding-right:var(--space-m); }
+.is-rtl .padding-right-m { padding-left:var(--space-m); padding-right:var(--space-none); }
+```
 ### .ph  (2 rules)
 ```css
 .ph:empty, .placeholder-empty:empty { display:none; }
@@ -389,6 +400,28 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 .directory-locality.ubt-icon { --ubt-icon-size: 18px; }
 ```
+## BasePatterns.CustomText
+
+### .font-light  (1 rule)
+```css
+.font-light { font-weight:var(--font-light); }
+```
+### .font-semi-bold  (1 rule)
+```css
+.font-semi-bold { font-weight:var(--font-semi-bold); }
+```
+### .font-size-s  (1 rule)
+```css
+.font-size-s { font-size:var(--font-size-s); }
+```
+### .font-size-xs  (1 rule)
+```css
+.font-size-xs { font-size:var(--font-size-xs); }
+```
+### .text-neutral-5  (1 rule)
+```css
+.text-neutral-5 { color:var(--text-color-neutral-5, var(--color-neutral-5)); }
+```
 ## BasePatterns.CustomContainer
 
 ### .background-neutral-0  (4 rules)
@@ -398,13 +431,9 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 .badge.background-neutral-0 { color:var(--text-color-primary, var(--color-primary)); }
 .background-neutral-0 { background-color:var(--background-color-neutral-0, var(--color-neutral-0)); }
 ```
-### .background-neutral-4  (5 rules)
+### .border-bottom-neutral  (1 rule)
 ```css
-.tag.background-neutral-1, .tag.background-neutral-2, .tag.background-neutral-3, .tag.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.avatar.background-neutral-1, .avatar.background-neutral-2, .avatar.background-neutral-3, .avatar.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.badge.background-neutral-1, .badge.background-neutral-2, .badge.background-neutral-3, .badge.background-neutral-4 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
-.background-neutral-4 { background-color:var(--background-color-neutral-4, var(--color-neutral-4)); }
-.layout-native .content.background-neutral-4 { background-color: var(--color-neutral-4); }
+.border-bottom-neutral { border-bottom: 1px solid var(--color-neutral-4); }
 ```
 ### .border-color-neutral-6  (1 rule)
 ```css
@@ -418,17 +447,9 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .border-size-s, .border-s { border: var(--border-size-s) solid var(--border-color, currentColor); }
 ```
-### .margin-top-base  (1 rule)
-```css
-.margin-top-base { margin-top:var(--space-base); }
-```
 ### .padding-s  (1 rule)
 ```css
 .padding-s { padding:var(--space-s); }
-```
-### .padding-top-xs  (1 rule)
-```css
-.padding-top-xs { padding-top:var(--space-xs); }
 ```
 ### .text-cyan-darker  (1 rule)
 ```css
@@ -511,34 +532,17 @@ only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-bre
 .ubt-tag-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
 .Household_GalleryCard-list .OSBlockWidget:has(> .inline-block) { width: max-content; }
 ```
+### .margin-right-s  (2 rules)
+```css
+.margin-right-s { margin-right:var(--space-s); }
+.is-rtl .margin-right-s { margin-left:var(--space-s); margin-right:var(--space-none); }
+```
 ### .ubt-icon-button  (4 rules)
 ```css
 .ubt-icon-button { display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; width: fit-content; /* Ensures width only grows as needed by content */ }
 .ubt-icon-button > [data-block]:has(.ubt-icon-button__text-container:empty) { display: none; }
 .ubt-actions-menu > div .ubt-icon-button { width: var(--ubt-actions-menu-width); }
 .connect-share-sheet__content .connect-share-sheet__horizontal-list .ubt-icon-button { width: min-content; }
-```
-## BasePatterns.CustomText
-
-### .font-semi-bold  (1 rule)
-```css
-.font-semi-bold { font-weight:var(--font-semi-bold); }
-```
-### .font-size-s  (1 rule)
-```css
-.font-size-s { font-size:var(--font-size-s); }
-```
-### .font-size-xs  (1 rule)
-```css
-.font-size-xs { font-size:var(--font-size-xs); }
-```
-### .text-neutral-10  (1 rule)
-```css
-.text-neutral-10 { color:var(--text-color-neutral-10, var(--color-neutral-10)); }
-```
-### .text-neutral-5  (1 rule)
-```css
-.text-neutral-5 { color:var(--text-color-neutral-5, var(--color-neutral-5)); }
 ```
 ## Widgets.AdaptiveCardViewer
 
@@ -902,6 +906,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--connect-event-form-item-border`: `var(--border-size-s) solid var(--color-neutral-3)` (in `.connect-event-form`)
 - `--current-svg-height`: `100vh` (in `:root`)
 - `--dx-screen-transition-duration`: `300ms` (in `:root`)
+- `--font-light`: `300` (in `@charset "UTF-8";    :root`)
 - `--font-regular`: `400` (in `@charset "UTF-8";    :root`)
 - `--font-semi-bold`: `600` (in `@charset "UTF-8";    :root`)
 - `--font-size-base`: `16px` (in `@charset "UTF-8";    :root`); `1rem` (in `:root, .connect-legacy-compatibily-containter`)

@@ -1,8 +1,8 @@
 # Coverage for Notifications
 
 - UI states captured: default, loading, offline
-- Runtime captures: 1 file(s), 10 call(s)
-- Masked text nodes: 54, user images removed: 0
+- Runtime captures: 1 file(s), 11 call(s)
+- Masked text nodes: 17, user images removed: 12
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -53,7 +53,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 ## Data/server actions declared in the screen and its blocks
 - [x] `DataActionGetDateRanges` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [x] `DataActionFetchNotifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
-- [ ] `Action_UI_UpdateItem_MarkAllAsRead` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [ ] `MarkAllAsReadNotifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [ ] `Delete_Notifications` (UBTConnect.App_Notifications.Notifications.mvc.js)
 - [ ] `MarkAsRead` (UBTConnect.App_Notifications.Notifications.mvc.js)
@@ -61,25 +60,12 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `Delete_Notifications` (UBTConnect.App_Notifications.NotificationsList.mvc.js)
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
 - [x] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
 - [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
 - [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
-- [x] `AppManager_AfterInitialize` (UBT_AppManager.controller.js)
-- [ ] `AppManager_ChangeDevice` (UBT_AppManager.controller.js)
-- [ ] `AppManager_Login` (UBT_AppManager.controller.js)
-- [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
-- [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
-- [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
-- [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
-- [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
-- [x] `GetUserInformation` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (Connect2_LegacyShared.controller.js)
 - [ ] `GetAllApplicationEvents` (Connect2_LegacyShared.controller.js)
 - [ ] `GetBulkSubdivisions_V2` (Connect2_LegacyShared.controller.js)
@@ -92,3 +78,14 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `GetTimezoneInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserInformation` (Connect2_LegacyShared.controller.js)
 - [ ] `GetUserLocalitiesForCountryCodeWithGPS` (Connect2_LegacyShared.controller.js)
+- [x] `AppManager_AfterInitialize` (UBT_AppManager.controller.js)
+- [ ] `AppManager_ChangeDevice` (UBT_AppManager.controller.js)
+- [ ] `AppManager_Login` (UBT_AppManager.controller.js)
+- [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
+- [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
+- [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
+- [ ] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
+- [x] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
+- [x] `GetUserInformation` (UBTConnect_Utils.controller.js)

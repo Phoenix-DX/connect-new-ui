@@ -1,12 +1,18 @@
 {
- "finishedAt": "2026-10-16T14:33:11",
+ "finishedAt": "2026-11-07T16:34:01",
  "files": {
-  "src/screens/OrbitAdminLanding/api.ts": "1889dc2bd95a02d8",
-  "src/screens/OrbitAdminLanding/components/ScreenBlock_AdminLanding.tsx": "86f8b61934b2324d",
-  "src/screens/OrbitAdminLanding/components/actions.ts": "be25c0fa38bfb760",
-  "src/screens/OrbitAdminLanding/components/staticEntities.ts": "3bca7185911f2ce9",
-  "src/screens/OrbitAdminLanding/index.tsx": "ffb4aaa908dc1588",
-  "src/screens/OrbitAdminLanding/mocks.ts": "5f242f334ccca4c0",
-  "src/screens/OrbitAdminLanding/types.ts": "10f6713282af7026"
+  "src/pages/OrbitAdminLanding/OrbitAdminLanding.test.tsx": "5d6d1373f2e69c19",
+  "src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx": "76598a197fceaa40",
+  "src/pages/OrbitAdminLanding/components/AdminLandingView.test.tsx": "4b10cd5b5c710c05",
+  "src/pages/OrbitAdminLanding/components/AdminLandingView.tsx": "ec56d3602d601042",
+  "src/pages/OrbitAdminLanding/hooks/adminLandingState.test.ts": "5538f229df9371ac",
+  "src/pages/OrbitAdminLanding/hooks/adminLandingState.ts": "44f77850a1e5c4eb",
+  "src/pages/OrbitAdminLanding/hooks/applicationEvents.ts": "393bb18fc223ff9d",
+  "src/pages/OrbitAdminLanding/hooks/useAdminLanding.test.tsx": "dc907f94b8e648fb",
+  "src/pages/OrbitAdminLanding/hooks/useAdminLanding.ts": "c189e9fe7f6b731e",
+  "src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.test.tsx": "2b9c800c946d67ca",
+  "src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts": "489a650364760768",
+  "src/pages/OrbitAdminLanding/mocks.ts": "ddd82c907f761777",
+  "src/pages/OrbitAdminLanding/staticEntities.ts": "12975fb86671eac2"
  }
 }

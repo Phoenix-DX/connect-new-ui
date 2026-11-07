@@ -59,102 +59,19 @@ export interface GetDateRangesResponse {
   DateRangesList: DateRangesListItem[] /* wire: { List: [...] } */;
 }
 
-export interface Directory_UserCurrent_Visibility {
-  DisplayWorkPhone: boolean;
-  DisplayMobilePhone: boolean;
-  DisplayAge: boolean;
-}
-
-export interface Directory_UserCurrent_Geography {
-  Subdivision_Id: string /* Long Integer as string */;
-  Subdivision_Name: string;
-  Locality_Id: string /* Long Integer as string */;
-  Locality_Name: string;
-  Locality_SubdivisionCount: string /* Long Integer as string */;
-  Country_Code: string;
-  Country_Name: string;
-  Country_Email: string;
-  Country_Phone: string;
-  Country_LocalityCount: string /* Long Integer as string */;
-  MainHall_Latitude: string /* Decimal as string */;
-  MainHall_Longitude: string /* Decimal as string */;
-}
-
-export interface SubscribedCountriesItem {
-  Code: string;
-  Name: string;
-  RegionId: string /* Long Integer as string */;
-}
-
-export interface Directory_UserCurrent_Subscription {
-  SubscriptionID: string;
-  SubscriptionType: string;
-  SubscriptionRegionId: string;
-  SubscriptionRegion: string;
-  SubscriptionManageLink: string;
-  SubscriptionActive: boolean;
-  SubscribedCountries: SubscribedCountriesItem[] /* wire: { List: [...] } */;
-}
-
-export interface Photo {
-  Bucket: string;
-  Path: string;
-  Type: string;
-  SignedURL: string;
-}
-
-export interface AddressItemsListItem {
-  Label: string;
-  Visible: boolean;
-  Required: boolean;
-  Value: string /* "" in capture */;
-  NumberRef: number;
-  IsValid: boolean;
-}
-
-export interface Address {
-  AddressItemsList: AddressItemsListItem[] /* wire: { List: [...] } */;
-  FormattedAddress: string;
-  Lat: string /* Decimal as string */;
-  Long: string /* Decimal as string */;
-}
-
-export interface Directory_UserCurrent_Member {
-  HouseholderId: string /* Long Integer as string */;
-  isHouseholder: boolean;
-  SpouseId: string /* Long Integer as string */;
-  SpouseIsHouseholder: boolean;
-  Photo: Photo;
-  Address: Address;
-}
-
-export interface Directory_UserCurrent {
-  Id: string;
-  UserName: string;
-  Email: string /* "" in capture */;
-  AccountEmail: string;
-  FirstName: string;
-  LastName: string;
-  FullName: string;
-  MemberID: string /* Long Integer as string */;
-  AccountNumber: string;
-  HomeNumber: string /* "" in capture */;
-  MobileNumber: string /* "" in capture */;
-  WorkNumber: string /* "" in capture */;
-  Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
-  Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;
-  Directory_UserCurrent_Subscription: Directory_UserCurrent_Subscription;
-  Directory_UserCurrent_Member: Directory_UserCurrent_Member;
+export interface CountryListItem {
+  CountryName: string;
+  CountryCode: string;
+  Latitude: string /* Decimal as string */;
+  Longitude: string /* Decimal as string */;
 }
 
 export interface CacheControl_Response {
-  Directory_UserCurrent: Directory_UserCurrent;
-  HasPoliciesToAccept: boolean;
+  CountryList: CountryListItem[] /* wire: { List: [...] } */;
 }
 
 export interface GetCacheInfoResponse {
   CacheControl_Response: CacheControl_Response;
-  TTL: number;
 }
 
 export interface UI_UpdateItemListItem {
@@ -317,24 +234,18 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2Item {
-  Id: string /* Long Integer as string */;
-  UserId: number;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string;
-  ItemId: string /* Long Integer as string */;
-  CreatedAtDateUtc: string /* ISO DateTime */;
-}
-
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  NoteId: string /* Long Integer as string */;
-  NoteCategoryId: string /* "" in capture */;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string /* "" in capture */;
   ItemId: string /* "" in capture */;
-  DateCreatedUtc: string /* "1900-01-01..." = no value */;
-  DateEditedUtc: string /* "1900-01-01..." = no value */;
-  NotesTotalCount: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
+}
+
+export interface LocalBookmarksC2 {
+  List: unknown[] /* empty in capture */;
+  EmptyListItem: EmptyListItem;
 }
 
 export interface LocalNotes {
@@ -344,7 +255,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
+  LocalBookmarksC2: LocalBookmarksC2;
   LocalNotes: LocalNotes;
 }
 
@@ -435,6 +346,7 @@ export interface Marker {
   ExtraData: string;
   Latlng: Latlng;
   Options: Options;
+  Bookmarked: boolean;
 }
 
 export interface Tooltip {
@@ -471,6 +383,7 @@ export interface MarkerWithWindow {
 export interface Localities_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface Localities_GeoJSON {
@@ -514,6 +427,7 @@ export interface Countries_GeoJSONItem {
 export interface Countries_MarkersItem {
   MarkerWithWindow: MarkerWithWindow;
   IsLocked: boolean;
+  Bookmarked: boolean;
 }
 
 export interface MapExploreItem {
@@ -527,6 +441,7 @@ export interface MapExploreItem {
   Id: string /* Long Integer as string */;
   DisplayHouseholdName: boolean;
   DisplayAddress: boolean;
+  Bookmarked: boolean;
 }
 
 export interface GlobalLocations_MarkersItem {

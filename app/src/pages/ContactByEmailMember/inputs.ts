@@ -2,6 +2,8 @@
     defaults. Long Integers stay strings ("0" by default); In_LDMEventDate is "" for the null date. The screen has no
     data action: its only server action is SendContactMemberEmail (`@/api/message`), on Send.
     @origin UBTConnect.ContactFlow.ContactByEmailMember */
+import { osDate } from '@/lib/os-wire';
+
 export interface ContactByEmailMemberInputs {
   In_AvatarURL: string;
   In_ContactName: string;
@@ -26,8 +28,7 @@ const osBoolean = (value: string | null): boolean => value?.toLowerCase() === 't
 /** Long Integer input: default 0, kept as a string. */
 const osLongInput = (value: string | null): string => (value === null || value === '' ? '0' : value);
 /** Date input: "" for an absent value or the OutSystems null date 1900-01-01. */
-const osDateInput = (value: string | null): string =>
-  value === null || value === '' || value.startsWith('1900-01-01') ? '' : value;
+const osDateInput = (value: string | null): string => osDate(value) ?? '';
 
 /** Screen inputs from the query string with the original names. */
 export function readContactByEmailMemberInputs(params: URLSearchParams): ContactByEmailMemberInputs {

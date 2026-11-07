@@ -15,3 +15,5 @@ system/auth screen: check scope
 - 2026-10-16T15:01:58 finished: user confirmed, all gates passed
 - 2026-10-21T11:04:42 spec-done (3 answer(s) covered)
 - 2026-10-21T11:14:42 spec-done (3 answer(s) covered)
+- 2026-11-07T09:19:35 spec-done (3 answer(s) covered)
+- 2026-11-07T16:41:31 finished: user confirmed, all gates passed

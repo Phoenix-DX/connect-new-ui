@@ -63,6 +63,8 @@ export interface HouseholdMember {
   CountryName?: string;
   /** "Locality, Country": the relations of a member show it (HouseholdRelations_Block). */
   FormattedLocality?: string;
+  /** The relation text of a parent in the relations of a member ("Father", "Mother"; HouseholdRelations_Block). */
+  Description?: string;
   MarriageText?: string;
   MarriageHighlightText?: string;
   MarriagePartnerTakenText?: string;
@@ -154,7 +156,7 @@ export type MemberRelationsCallInputs = {
   ShowNotesSheet: boolean;
 };
 
-/** A member with his parents and previous spouses: the outputs of DataActionGet_MemberDetails, with the list
+/** A member with his parents and previous spouses: the outputs of DataActionGet_MemberDetails, with the lists
     unwrapped. */
 export interface MemberRelations {
   MemberName: string;
@@ -164,9 +166,23 @@ export interface MemberRelations {
   Mother: HouseholdMember;
   FormerSpouses: HouseholdMember[];
   ParentHouseholdId: string;
+  /** The parents of the member as one row (Connect_Household_CS UI_HouseholdRelations_AwayParents): shown instead of
+      the father and the mother when its HouseholdId is not "0". */
+  AwayParents: AwayParents;
+  /** The siblings that the household of the parents does not list (a second "Household" list). */
+  NoDisplaySiblings: HouseholdMember[];
 }
 
-/** The siblings of a member: the outputs of DataActionGet_ParentHouseholdDetails, with the list unwrapped. */
+/** Connect_Household_CS UI_HouseholdRelations_AwayParents: Title, HouseholdId (Long Integer as text), LocalityName and
+    CountryName. */
+export interface AwayParents {
+  Title: string;
+  HouseholdId: string;
+  LocalityName: string;
+  CountryName: string;
+}
+
+/** The siblings of a member: the outputs of DataActionGet_SibllingsRelations, with the list unwrapped. */
 export interface SiblingRelations {
   Out_siblingRelations: HouseholdMember[];
 }

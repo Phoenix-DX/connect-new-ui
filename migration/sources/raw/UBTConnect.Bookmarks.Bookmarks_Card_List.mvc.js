@@ -1,4 +1,4 @@
-define("UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Bookmarks_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc$model", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS", "UBTConnect.model$UI_Bookmark_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_ContentRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, Connect_Bookmarks_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvcModel) {
+define("UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "Connect_Bookmarks_CS.model", "UBTConnectLibrary.model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc$model", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS", "UBTConnect.model$UI_Bookmark_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_ContentRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, Connect_Bookmarks_CSModel, UBTConnectLibraryModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvcModel) {
 var OS = OutSystems.Internal;
 
 
@@ -60,7 +60,7 @@ enumerable: true,
 configurable: true,
 get: function () {
 if((Model._hasValidationWidgetsValue === undefined)) {
-Model._hasValidationWidgetsValue = ((((UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyList_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnect_Bookmarks_Bookmarks_Card_Item_mvcModel.hasValidationWidgets);
+Model._hasValidationWidgetsValue = ((((UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel.hasValidationWidgets || UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel.hasValidationWidgets) || UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvcModel.hasValidationWidgets) || UBTConnectLibrary_BasePatterns_CustomText_mvcModel.hasValidationWidgets) || UBTConnect_Bookmarks_Bookmarks_Card_Item_mvcModel.hasValidationWidgets);
 }
 
 return Model._hasValidationWidgetsValue;
@@ -97,7 +97,7 @@ return Model;
 })(OS.Model.BaseViewModel);
 return new OS.Model.ModelFactory(Model, "Bookmarks.Bookmarks_Card_List");
 });
-define("UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Bookmarks_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$model", "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyList.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc$view", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS", "UBTConnect.model$UI_Bookmark_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_ContentRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Bookmarks_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_Bookmarks_Bookmarks_Card_List_mvc_model, UBTConnect_Bookmarks_Bookmarks_Card_List_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvc_view) {
+define("UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "Connect_Bookmarks_CS.model", "UBTConnectLibrary.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$model", "UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$controller", "UBTConnect.clientVariables", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc$view", "Connect_Bookmarks_CS.model$UI_Bookmark_CardItemRec", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$Connect_Bookmarks_CS", "UBTConnect.model$UI_Bookmark_CardItemList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$InlineIconRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_ContentRec", "Connect_Bookmarks_CS.model$UI_Bookmark_Card_SourceHeaderRec", "UBTConnectLibrary.model$NotesRec", "UBTConnectLibrary.model$Note_ItemRec", "UBTConnect.model$Note_ItemList"], function (OutSystems, UBTConnectModel, UBTConnectController, Connect_Bookmarks_CSModel, UBTConnectLibraryModel, React, OSView, UBTConnect_Bookmarks_Bookmarks_Card_List_mvc_model, UBTConnect_Bookmarks_Bookmarks_Card_List_mvc_controller, UBTConnectClientVariables, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvc_view) {
     var OS = OutSystems.Internal;
 var PlaceholderContent = OSView.Widget.PlaceholderContent;
 var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -129,7 +129,7 @@ var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
             return [];
         };
         View.getBlocks = function() {
-            return [UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvc_view];
+            return [UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Bookmarks_Bookmarks_Card_Item_mvc_view];
         };
         Object.defineProperty(View.prototype, "modelFactory", {
             get: function () {
@@ -181,9 +181,17 @@ rec.horizontalSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
 rec.topSizeIdAttr = UBTConnectModel.staticEntities.uBT_Size.base;
 return rec;
 }();
+rec.heightOptionsAttr = function () {
+var rec = new UBTConnectLibraryModel.SizeOptionsRec();
+rec.mainAttr = ((model.variables.in_BookmarksIn.isEmpty) ? ("100%") : (""));
 return rec;
 }();
-})
+return rec;
+}();
+}, function () {
+return model.variables.in_BookmarksIn.isEmpty;
+}),
+_optionsInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_BookmarksInDataFetchStatus)
 },
 events: {
 _handleError: function (ex) {
@@ -223,7 +231,7 @@ _widgetRecordProvider: widgetsRecordProvider,
 placeholders: {
 placeholder_LoadingSection: new PlaceholderContent(function () {
 return [$if(model.variables.in_BookmarksIn.isEmpty, false, this, function () {
-return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyList_mvc_view, {
+return [React.createElement(UBTConnectLibrary_ConnectPatterns_EmptyListBorderless_mvc_view, {
 inputs: {
 IconId: UBTConnectModel.staticEntities.uBT_Icons2.bookmark
 },
@@ -245,7 +253,8 @@ placeholders: {
 titlePlaceholder: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_TextOptions: model.getCachedValue(idService.getId("csnQzx9rbEGfY0pgdGEKjg.In_TextOptions"), function () {
+In_Text: "No Bookmarks found",
+In_TextOptions: model.getCachedValue(idService.getId("3lUDb3mVbkqoCsZR44vYTA.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral9;
@@ -253,8 +262,7 @@ rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.base;
 rec.fontWeightAttr = UBTConnectModel.staticEntities.uBT_FontWeight.semiBold;
 return rec;
 }();
-}),
-In_Text: "No Bookmarks found"
+})
 },
 events: {
 _handleError: function (ex) {
@@ -277,7 +285,7 @@ textPlaceholder: new PlaceholderContent(function () {
 return [React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
 In_Text: "We were unable to find any Bookmarks to",
-In_TextOptions: model.getCachedValue(idService.getId("GSd81jyzh0G9OeWZirOZ9w.In_TextOptions"), function () {
+In_TextOptions: model.getCachedValue(idService.getId("hbjfPvldiEOICxLLf1xeVA.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral10;
@@ -303,15 +311,15 @@ _widgetRecordProvider: widgetsRecordProvider,
 _dependencies: []
 }), React.createElement(UBTConnectLibrary_BasePatterns_CustomText_mvc_view, {
 inputs: {
-In_Text: "display.",
-In_TextOptions: model.getCachedValue(idService.getId("9VKoNtPMZUWS9KcP7OUcyA.In_TextOptions"), function () {
+In_TextOptions: model.getCachedValue(idService.getId("VWc1PucE3E6kwshCxk7jqw.In_TextOptions"), function () {
 return function () {
 var rec = new UBTConnectLibraryModel.TextOptionsRec();
 rec.colorAttr = UBTConnectModel.staticEntities.uBT_Color.neutral10;
 rec.fontSizeAttr = UBTConnectModel.staticEntities.uBT_FontSize.small;
 return rec;
 }();
-})
+}),
+In_Text: "display."
 },
 events: {
 _handleError: function (ex) {
@@ -398,11 +406,26 @@ var varBag = {};
 controller.pushDebuggerContext(eventHandlerContext);
 
 OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Bookmarks/Bookmarks_Card_Item OnClickCardItem");
-controller.onClick_BookmarkCardItem$Action(OS.BuiltinFunctions.longIntegerToText(model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).itemIdAttr), model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).bookmarkCategoryIdAttr, controller.callContext(eventHandlerContext));
+controller.onClick_BookmarkCardItem$Action(model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).itemIdAttr, model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).itemId2Attr, model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).bookmarkCategoryIdAttr, model.variables.in_BookmarksIn.getCurrent(callContext.iterationContext).hasDetailAccessAttr, controller.callContext(eventHandlerContext));
 }, function () {
 controller.popDebuggerContext(eventHandlerContext);
 });
 
+;
+},
+on_NotesChanged$Action: function (new_NotesIn, itemIdIn) {
+return Promise.resolve().then(function () {
+var eventHandlerContext = callContext.clone();
+return OS.Flow.tryFinally(function () {
+var varBag = {};
+controller.pushDebuggerContext(eventHandlerContext);
+
+OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Bookmarks/Bookmarks_Card_Item On_NotesChanged");
+return controller.handler_OnCardNotesChanged$Action(new_NotesIn, itemIdIn, controller.callContext(eventHandlerContext));
+}, function () {
+controller.popDebuggerContext(eventHandlerContext);
+});
+});
 ;
 }
 },
@@ -504,6 +527,71 @@ OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:0C4LXAE_4ECz+d2uU6LPvA", callCont
 }
 
 };
+Controller.prototype._handler_OnCardNotesChanged$Action = function (new_NotesIn, in_ItemIdIn, callContext) {
+var varBag = {};
+var model = this.model;
+var controller = this.controller;
+var idService = this.idService;
+varBag.model = model;
+varBag.idService = idService;
+controller.ensureControllerAlive("Handler_OnCardNotesChanged");
+callContext = controller.callContext(callContext);
+var vars = new OS.DataTypes.VariableHolder(new (controller.constructor.getVariableGroupType("UBTConnect.Bookmarks.Bookmarks_Card_List.Handler_OnCardNotesChanged$vars"))());
+vars.value.new_NotesInLocal = new_NotesIn.clone();
+vars.value.in_ItemIdInLocal = in_ItemIdIn;
+var listIndexOfVar = new OS.DataTypes.VariableHolder();
+varBag.callContext = callContext;
+varBag.vars = vars;
+varBag.listIndexOfVar = listIndexOfVar;
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:av3xd8Jwo0eD0C1RsfN6dA:/NRWebFlows.kStR2ohBzUir2kDhfuOSLg/NodesShownInESpaceTree._L5cuheRa0e0+Mi_QpRM3w/ClientActions.av3xd8Jwo0eD0C1RsfN6dA:uE+SwuOzQM2DfbUShHlN4A", "UBTConnect", "Handler_OnCardNotesChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:0WVx+Qf0Z0ewM7KqOyaYRA", callContext.id);
+return OS.Flow.executeAsyncFlow(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:PzJvpmdflUiYv_nN9fG7dQ", callContext.id);
+// Execute Action: ListIndexOf
+listIndexOfVar.value = OS.SystemActions.listIndexOf(model.variables.in_BookmarksIn, function (p) {
+return (p.itemIdAttr === vars.value.in_ItemIdInLocal);
+}, callContext);
+
+if((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uyyuXagbOUqSkzz9dYsEmw", callContext.id) && ((listIndexOfVar.value.positionOut) !== (-1)))) {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:_7ARoW2W+EKNFjY80dH+lg", callContext.id);
+// In_Bookmarks[ListIndexOf.Position].Bookmark_Card_Content.Notes = New_Notes
+model.variables.in_BookmarksIn.getItem(listIndexOfVar.value.positionOut).bookmark_Card_ContentAttr.notesAttr = vars.value.new_NotesInLocal;
+}
+
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:++LmDs_fwkeQJQ528plQzg", callContext.id);
+// Trigger Event: On_NotesChanged
+return controller.on_NotesChanged$Action(vars.value.new_NotesInLocal, vars.value.in_ItemIdInLocal, callContext).then(function () {
+OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GBBkOdOxe0uHT2BxW+dDyQ", callContext.id);
+});
+}).then(function (res) {
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:av3xd8Jwo0eD0C1RsfN6dA", callContext.id);
+return res;
+
+}).catch(function (ex) {
+OutSystemsDebugger.handleException(ex, callContext.id);
+OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:av3xd8Jwo0eD0C1RsfN6dA", callContext.id);
+throw ex;
+
+});
+};
+Controller.registerVariableGroupType("UBTConnect.Bookmarks.Bookmarks_Card_List.Handler_OnCardNotesChanged$vars", [{
+name: "New_Notes",
+attrName: "new_NotesInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Record,
+defaultValue: function () {
+return new UBTConnectLibraryModel.NotesRec();
+},
+complexType: UBTConnectLibraryModel.NotesRec
+}, {
+name: "In_ItemId",
+attrName: "in_ItemIdInLocal",
+mandatory: true,
+dataType: OS.DataTypes.DataTypes.Text,
+defaultValue: function () {
+return "";
+}
+}]);
 Controller.prototype._onInitialize$Action = function (callContext) {
 var varBag = {};
 var model = this.model;
@@ -537,6 +625,11 @@ var controller = this.controller;
 return controller.safeExecuteClientAction(controller._onReady$Action, callContext);
 
 };
+Controller.prototype.handler_OnCardNotesChanged$Action = function (new_NotesIn, in_ItemIdIn, callContext) {
+var controller = this.controller;
+return controller.safeExecuteClientAction(controller._handler_OnCardNotesChanged$Action, callContext, new_NotesIn, in_ItemIdIn);
+
+};
 Controller.prototype.onInitialize$Action = function (callContext) {
 var controller = this.controller;
 return controller.safeExecuteClientAction(controller._onInitialize$Action, callContext);
@@ -548,6 +641,9 @@ return Promise.resolve();
 Controller.prototype.onClick_BookmarkCardItem$Action = function () {
 return Promise.resolve();
 };
+Controller.prototype.on_NotesChanged$Action = function () {
+return Promise.resolve();
+};
 Controller.prototype.onLoadMore$Action = function () {
 return Promise.resolve();
 };
@@ -556,7 +652,7 @@ return Promise.resolve();
 Controller.prototype.pushDebuggerContext = function (callContext) {
 var varBag = {};
 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:kStR2ohBzUir2kDhfuOSLg:/NRWebFlows.kStR2ohBzUir2kDhfuOSLg:JSKfj0CjfVbkU+WuEIFgoA", "UBTConnect", "Bookmarks", "NRFlows.WebFlow", callContext.id, varBag);
-OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_L5cuheRa0e0+Mi_QpRM3w:/NRWebFlows.kStR2ohBzUir2kDhfuOSLg/NodesShownInESpaceTree._L5cuheRa0e0+Mi_QpRM3w:6GxgE2o71AvYG5R2oUbEqg", "UBTConnect", "Bookmarks_Card_List", "NRNodes.WebBlock", callContext.id, varBag);
+OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:_L5cuheRa0e0+Mi_QpRM3w:/NRWebFlows.kStR2ohBzUir2kDhfuOSLg/NodesShownInESpaceTree._L5cuheRa0e0+Mi_QpRM3w:oZ4Sybcu0B4ql_bLuQO4tA", "UBTConnect", "Bookmarks_Card_List", "NRNodes.WebBlock", callContext.id, varBag);
 };
 Controller.prototype.popDebuggerContext = function (callContext) {
 OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:_L5cuheRa0e0+Mi_QpRM3w", callContext.id);
@@ -617,6 +713,22 @@ return new OS.Controller.ControllerFactory(Controller, UBTConnectLanguageResourc
 define("UBTConnect.Bookmarks.Bookmarks_Card_List.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function (exports, Debugger, OutSystems) {
 var OS = OutSystems.Internal;
 var metaInfo = {
+"c6CGfRZRx0uv0LhZr5EPnw": {
+getter: function (varBag, idService) {
+return varBag.vars.value.new_NotesInLocal;
+}
+},
+"sAtNAZ52A0mNF2y3yqlljQ": {
+getter: function (varBag, idService) {
+return varBag.vars.value.in_ItemIdInLocal;
+},
+dataType: OS.DataTypes.DataTypes.Text
+},
+"PzJvpmdflUiYv_nN9fG7dQ": {
+getter: function (varBag, idService) {
+return varBag.listIndexOfVar.value;
+}
+},
 "LhuoqmnDk0aUPEsX1Zs2Lw": {
 getter: function (varBag, idService) {
 return varBag.model.variables.in_BookmarksIn;
@@ -655,14 +767,14 @@ return model.widgets.get(idService.getId("Empty"));
 })(varBag.model, idService);
 }
 },
-"FOWiXpdlUEGoavMXCMsjiQ": {
+"9rIZKzpo_kqY0_GJtLTnfg": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("TitlePlaceholder"));
 })(varBag.model, idService);
 }
 },
-"v7XYBMlOsUeRT1z86uGfVg": {
+"+2OsPKOVqE2GvuQAm8xAsA": {
 getter: function (varBag, idService) {
 return (function (model, idService) {
 return model.widgets.get(idService.getId("TextPlaceholder"));

@@ -6,7 +6,7 @@
    "action": "DataActionGetGuestArrangements",
    "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements",
    "phase": "load",
-   "ts": 540,
+   "ts": 619,
    "status": 200,
    "kind": "data",
    "inputNames": null,

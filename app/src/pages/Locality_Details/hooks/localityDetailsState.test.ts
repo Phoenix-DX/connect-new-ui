@@ -24,7 +24,7 @@ const DETAILS: LocalityDetails = {
 };
 
 describe('initialLocalityDetailsState', () => {
-  it('starts with the inputs, the preloaded label and the tags of the user locality', () => {
+  it('starts with the inputs, the preloaded label and the tags of the user locality, Households selected (SetTags)', () => {
     const state = initialLocalityDetailsState(inputs);
     expect(state).toMatchObject({
       localityId: '252',
@@ -32,7 +32,7 @@ describe('initialLocalityDetailsState', () => {
       preloadedLocalityLabel: 'Bahia Blanca, Argentina',
       isUserLocality: true,
       isScreenInitialized: false,
-      tagsList_SelectedTag: '',
+      tagsList_SelectedTag: 'Households',
       logged_User: { householdId: '0', localityId: '0' },
       get_LocalityDetails: { isDataFetched: false, hasFetchError: false, localityDetails: NO_LOCALITY_DETAILS },
     });

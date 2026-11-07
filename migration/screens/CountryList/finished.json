@@ -1,11 +1,15 @@
 {
- "finishedAt": "2026-10-15T17:37:29",
+ "finishedAt": "2026-11-07T16:32:40",
  "files": {
-  "src/screens/CountryList/api.ts": "5d99e6f5cc3f30aa",
-  "src/screens/CountryList/components/actions.ts": "b3ca59450bba3f6b",
-  "src/screens/CountryList/components/staticEntities.ts": "0b8a5589ca5c989b",
-  "src/screens/CountryList/index.tsx": "8e217c4687e4a460",
-  "src/screens/CountryList/mocks.ts": "14d2002a545dbe37",
-  "src/screens/CountryList/types.ts": "1bc83625ecd37730"
+  "src/pages/CountryList/CountryList.test.tsx": "a47045d0f7896190",
+  "src/pages/CountryList/CountryListPage.tsx": "24431500b1782c13",
+  "src/pages/CountryList/components/CountryListContent.test.tsx": "11386461611e1f16",
+  "src/pages/CountryList/components/CountryListContent.tsx": "bd9a42d1c01d5ee7",
+  "src/pages/CountryList/components/staticEntities.ts": "0b8a5589ca5c989b",
+  "src/pages/CountryList/hooks/countryListState.test.ts": "7802590c7f9548bb",
+  "src/pages/CountryList/hooks/countryListState.ts": "2944e6285805a889",
+  "src/pages/CountryList/hooks/useCountryList.test.tsx": "90afc101fe68aee7",
+  "src/pages/CountryList/hooks/useCountryList.ts": "a445a0d0b885cab4",
+  "src/pages/CountryList/mocks.ts": "f214b87ac3f6707c"
  }
 }

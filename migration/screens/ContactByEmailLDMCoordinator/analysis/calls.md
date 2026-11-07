@@ -10,10 +10,10 @@
 | `script /UBTConnect/scripts/UBTConnect.ContactFlow.controller.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js` | 1 |
 | `script /UBTConnect/scripts/Connect_Communication_CS.model.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js` | 1 |
-| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js` | 1 |
+| `script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.mvc.js` | 1 |
 | `script /UBTConnect/scripts/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.mvc.js` | 1 |
 | `script /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.ButtonLoading.mvc.js` | 1 |
 | `script /UBTConnect/scripts/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.mvc.js` | 1 |
@@ -28,12 +28,12 @@
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js` | 1 |
-| `fetch /UBTConnect/status/network-ping.txt` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect.ContactFlow.ContactByEmailForm.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.FixedFooter.mvc.js` | 1 |
+| `fetch /UBTConnect/status/network-ping.txt` | 1 |
 | `fetch /UBTConnect/scripts/OutSystemsUI_2_23.Utilities.ButtonLoading.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnect_Utils.CW_Common.Button.mvc.js` | 1 |
 | `fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Button.mvc.js` | 1 |

@@ -11,7 +11,8 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "real",
@@ -33,7 +34,8 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "loading",
@@ -55,7 +57,8 @@
     "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
    ],
    "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
-   "nth": 0
+   "nth": 0,
+   "settleMs": 6000
   },
   "steps": [],
   "scenario": "error",

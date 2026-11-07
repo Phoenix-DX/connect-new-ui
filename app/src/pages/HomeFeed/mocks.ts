@@ -9,31 +9,20 @@ type UpdateItemWire = ActionOutputs<
   PathOf<'UBTConnect', 'FeedBlock_Updates/DataActionFetchUpdates'>
 >['UI_UpdateItemList']['List'][number];
 
-/* HomeFeed own blocks (FeedBlock_CommunityPopulation, Embedded_FeedCMS, App_NotificationIcon, the bottom bar and the
-   app start calls are mocked by their shared / shell owners).
+/* HomeFeed own blocks (Embedded_FeedCMS, App_NotificationIcon, the bottom bar and the app start calls are mocked by
+   their shared / shell owners).
    - DataActionGetServices: the recorded TST answer (service labels, links and packages, no person data). Its Id and
      IconId were anonymized by the converter (Q1, open).
    - DataActionFetchUpdates: person data, never recorded (mock-fixtures.md): the three fictional unread items of the
      update items collection (src/mocks/modules/UBTConnect/Directory_Updates/mocks.ts).
    - MarkAsRead / MarkAsUnread: writes, never recorded; they change IsRead in the collection (P-MUTATION), so the next
      fetch (and Updates screens reading this collection) show it.
-   - DataActionGetCommunityStatistics (live TST of 2026-10-27; OnReady, useHomeFeedReady): the captured answer, every
-     count 0 (HomeFeed analysis/calls.md). No widget reads it.
+   - DataActionGetCommunityStatistics (OnReady, useHomeFeedReady; read by Directory_CommunityNumbers): the fictional
+     counts of components/feed/CommunityPopulation/mocks.ts.
    Scenarios: real, empty (FetchUpdates empty → Section_Updates hidden), error, loading. */
-
-const NO_COMMUNITY_STATISTICS = {
-  Out_CommunityStatistics: {
-    In_HouseholdCount: 0,
-    In_LocalitiesCount: 0,
-    In_CountriesCount: 0,
-    In_MembersCount: 0,
-    In_Change: 0,
-  },
-};
 
 export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'FeedBlock_Services/DataActionGetServices'),
-  contractHandler('UBTConnect', 'HomeFeed/DataActionGetCommunityStatistics', () => NO_COMMUNITY_STATISTICS),
   contractHandler('UBTConnect', 'FeedBlock_Updates/DataActionFetchUpdates', () => ({
     UI_UpdateItemList: { List: updateItems.all() as unknown as UpdateItemWire[] },
   })),

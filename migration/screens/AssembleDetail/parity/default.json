@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "6fd6051cf76b8d8d2b8e",
+ "fingerprint": "1e35622dedbe746b0caf",
  "options": {
   "text": true,
   "style": true,
@@ -19,29 +19,29 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 287,
-  "texts": 27,
+  "elements": 350,
+  "texts": 32,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:27:35.558Z",
+ "at": "2026-11-07T09:54:21.693Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1,
-  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-ROW-MARGIN": 3,
-  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-DESCRIPTION-WIDTH": 1,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-ROW-MARGIN": 4,
+  "CAPTURE-2026-11-06-ASSEMBLEDETAIL-MASKED-DESCRIPTION-WIDTH": 2,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00006,
+  "ratio": 0.00008,
   "maxCell": 0.0069,
   "maxCellRatio": 0.03,
   "diffPixels": 20,
-  "comparedPixels": 312032,
+  "comparedPixels": 236699,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,7 +52,7 @@
    390,
    844
   ],
-  "masks": 8,
+  "masks": 12,
   "hotspots": [
    "200,800 (11px)",
    "200,760 (9px)"
@@ -63,8 +63,8 @@
   "phases": [
    "load"
   ],
-  "expected": 2,
-  "actual": 9,
+  "expected": 4,
+  "actual": 11,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
    "ActionAppManager_SynchAppContext",

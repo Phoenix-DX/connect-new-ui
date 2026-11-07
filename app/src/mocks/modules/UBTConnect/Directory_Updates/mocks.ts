@@ -35,11 +35,13 @@ const item = (
 });
 
 /* The update items that HomeFeed's FetchUpdates reads (HomeFeed.updateItems). Person data, never recorded
-   (mock-fixtures.md): three fictional unread items with the types, genders and days of the TST capture of 2026-10-29
-   (HomeFeed dom/default.html: Birth of a girl, Taken, Marriage), HasAccess True; meaningful fictional names, real
-   places and the birth's parents, with the captured word lengths (the first rows of the Updates_SingleList mock;
-   mock-fixtures.md). HomeFeed's MarkAsRead / MarkAsUnread and the handler below change
-   IsRead (P-MUTATION). The collection lives here, not in the HomeFeed mocks, because shared code does not import
+   (mock-fixtures.md): three fictional unread items with the types and genders of the fresh TST capture of 2026-11-07
+   (HomeFeed dom/default.html: three births, a girl and two boys), HasAccess True; meaningful fictional names, places
+   and parents; items 2 and 3 have the captured word lengths of the name. Their locations are short ("Town, Country",
+   as item 1): the captured location texts (44 and 46 masked characters) show on one line in TST, but fictional texts
+   of these lengths wrap to two lines in the app and move the location icon (parity position 0,2 → 0,9). Item 1 keeps
+   the names of the capture of 2026-10-29, the first rows of the Updates_SingleList mock; mock-fixtures.md. HomeFeed's MarkAsRead / MarkAsUnread and the handler
+   below change IsRead (P-MUTATION). The collection lives here, not in the HomeFeed mocks, because shared code does not import
    screens (P3-1). */
 export const updateItems = collection(
   'HomeFeed.updateItems',
@@ -55,16 +57,27 @@ export const updateItems = collection(
       '7101',
       'Jonathan & Clara Ashworth',
     ),
-    item('9102', 'Taken', 'Gender.MALE', 'Peter Graham', '2026-10-28', 'Bulawayo, Zimbabwe', '8102', '7102'),
+    item(
+      '9102',
+      'Birth',
+      'Gender.MALE',
+      'Samuel Hartley',
+      '2026-10-28',
+      'Lismore, Australia',
+      '8102',
+      '7102',
+      'Daniel & Ruth Hartley',
+    ),
     item(
       '9103',
-      'Marriage',
+      'Birth',
       'Gender.MALE',
-      'Joshua & Emily Caldwell',
+      'Florence Bishop',
       '2026-10-27',
-      'Warwick, Australia',
+      'Leichhardt, Australia',
       '8103',
       '7103',
+      'Matthew & Leah Bishop',
     ),
   ],
   'UpdateItemId',

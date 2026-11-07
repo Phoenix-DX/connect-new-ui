@@ -1,0 +1,428 @@
+import { act, renderHook } from '@testing-library/react';
+import { StrictMode, type ReactNode } from 'react';
+import { MemoryRouter } from 'react-router';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { fetchAdminEvents, type AdminEventItem, type AdminEventsResult, type YearItem } from '@/api/event';
+import { CommunicationException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { OrbitLandingFilter } from '@/pages/OrbitAdminLanding/staticEntities';
+import { adminLandingReducer } from './adminLandingState';
+import { onApplicationEvent_ClickEvent } from './applicationEvents';
+import { useAdminLanding, type AdminLandingEvents } from './useAdminLanding';
+
+/** The reducer as a spy, so a test sees every state write. */
+vi.mock('./adminLandingState', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('./adminLandingState')>();
+  return { ...actual, adminLandingReducer: vi.fn(actual.adminLandingReducer) };
+});
+vi.mock('./applicationEvents', () => ({ onApplicationEvent_ClickEvent: vi.fn() }));
+vi.mock('@/api/event', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/event')>()),
+  fetchAdminEvents: vi.fn(),
+}));
+vi.mock('@/platform/session/cachedUserInfo', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/session/cachedUserInfo')>()),
+  appManager_GetCachedUserInfo: vi.fn(),
+}));
+/* useFlowState and the card click send a rejected flow to this flow handler. */
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
+/** A back navigation that the view cache restores, with the saved block variables, read by useFlowState. */
+const viewCache = vi.hoisted(() => {
+  const cache: { restored: boolean; saved: unknown } = { restored: false, saved: undefined };
+  return cache;
+});
+vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation/hooks')>();
+  const { useState } = await import('react');
+  return {
+    ...actual,
+    useWasRestoredFromCache: () => viewCache.restored,
+    useViewState: <T,>(_name: string, initial: T) => useState<T>(() => (viewCache.saved as T | undefined) ?? initial),
+  };
+});
+
+/* The flows of ScreenBlock_AdminLanding, with Get_AdminEventsList, the cached user, the audit event and the flow
+   handler replaced by spies. The admin and the events are fictional. */
+const EVENTS: AdminEventItem[] = [
+  {
+    event: {
+      EventId: '7301',
+      Type: 'Admin',
+      Title: 'Weekend Bible Conferences',
+      EventInfo: {
+        StartEventDate: '2099-11-07T09:00:00Z',
+        EndEventDate: '2099-11-08T17:00:00Z',
+        EventLocation: 'Bahia Blanca Main Hall',
+      },
+    },
+    typeFriendly: 'Weekend Conference Program',
+    dateTime: '2099-11-07T09:00:00Z',
+  },
+  {
+    event: {
+      EventId: '7302',
+      Type: 'Admin',
+      Title: 'Youth Day',
+      EventInfo: { EndEventDate: '2099-12-05T21:00:00Z', EventLocation: 'Azul Hall' },
+    },
+    typeFriendly: 'Youth Day',
+    dateTime: '2099-12-05T13:00:00Z',
+  },
+];
+/** The Get_AdminEventsList answer: the events and an empty YearFilter (as captured). */
+const answerOf = (events: AdminEventItem[], yearFilter: YearItem[] = []): AdminEventsResult => ({ events, yearFilter });
+/** The block variables that Get_AdminEventsList sends after ResetFiltersAndSort (no header or footer in the test DOM:
+    PopupMeasurements 0). */
+const sentInputs = (userFirstName: string, userMemberId: string) => ({
+  IsFetchingData: true,
+  UserFirstName: userFirstName,
+  UserMemberId: userMemberId,
+  EventFilter: OrbitLandingFilter.UpcomingEvents,
+  SortEventsASC: true,
+  YearsSelection: [],
+  Popup_SortByOpened: false,
+  Popup_FiltersOpened: false,
+  PopupMeasurements: { Top: 0, Left: 0, Bottom: 0 },
+});
+
+const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
+const strictWrapper = ({ children }: { children: ReactNode }) => (
+  <StrictMode>
+    <MemoryRouter>{children}</MemoryRouter>
+  </StrictMode>
+);
+const settle = () =>
+  act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+/** A Get_AdminEventsList answer that the test gives later. */
+function pendingEvents() {
+  let resolveAnswer: (answer: AdminEventsResult) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  vi.mocked(fetchAdminEvents).mockReturnValueOnce(
+    new Promise((res, rej) => {
+      resolveAnswer = res;
+      reject = rej;
+    }),
+  );
+  const resolve = (rows: AdminEventItem[]) => {
+    resolveAnswer(answerOf(rows));
+  };
+  return { resolve, reject };
+}
+/** A NavigateTo_EventDetail handler that the test ends later. */
+function pendingNavigation() {
+  let resolve: () => void = () => undefined;
+  const events: AdminLandingEvents = {
+    onNavigateToEventDetail: vi.fn(
+      () =>
+        new Promise<void>((res) => {
+          resolve = res;
+        }),
+    ),
+  };
+  return {
+    events,
+    resolve: () => {
+      resolve();
+    },
+  };
+}
+const noEvents = (): AdminLandingEvents => ({ onNavigateToEventDetail: vi.fn() });
+const raised = () => vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error);
+
+function cachedUser(firstName: string, memberId: string) {
+  const empty = { FirstName: '', MemberId: '' } as ReturnType<typeof appManager_GetCachedUserInfo>;
+  vi.mocked(appManager_GetCachedUserInfo).mockReturnValue({ ...empty, FirstName: firstName, MemberId: memberId });
+}
+
+beforeEach(() => {
+  viewCache.restored = false;
+  viewCache.saved = undefined;
+  vi.mocked(fetchAdminEvents).mockResolvedValue(answerOf(EVENTS));
+  cachedUser('Matías', '20517');
+});
+afterEach(() => {
+  vi.clearAllMocks();
+});
+
+describe('useAdminLanding', () => {
+  it('OnReady: the skeleton with the cached first name, then the admin events', async () => {
+    const answer = pendingEvents();
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state).toEqual({
+      isFetchingData: true,
+      eventsSummary: [],
+      userFirstName: 'Matías',
+      userMemberId: '20517',
+      isDataFetched: false,
+      // ResetFiltersAndSort before Get_AdminEventsList
+      eventFilter: OrbitLandingFilter.UpcomingEvents,
+      sortEventsASC: true,
+      yearsSelection: [],
+      popupFiltersOpened: false,
+      popupSortByOpened: false,
+      popupMeasurements: { Top: 0, Left: 0, Bottom: 0 },
+    });
+    // Get_AdminEventsList sends the block variables as they are when it starts.
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('Matías', '20517'));
+    answer.resolve(EVENTS);
+    await settle();
+    expect(result.current.state).toMatchObject({ isFetchingData: false, isDataFetched: true, eventsSummary: EVENTS });
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('OnAfterFetch: FilterEvents keeps the upcoming events; one that ended more than 22 days ago is not shown', async () => {
+    const ended: AdminEventItem = {
+      event: {
+        EventId: '7288',
+        Type: 'Admin',
+        Title: 'Gospel Meeting',
+        EventInfo: { EndEventDate: '2020-03-14T20:00:00Z', EventLocation: 'Azul Hall' },
+      },
+      typeFriendly: 'Gospel Meeting',
+      dateTime: '2020-03-14T18:00:00Z',
+    };
+    vi.mocked(fetchAdminEvents).mockResolvedValueOnce(answerOf([ended, ...EVENTS]));
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state.eventsSummary).toEqual(EVENTS);
+    expect(result.current.state.eventFilter).toBe(OrbitLandingFilter.UpcomingEvents);
+  });
+
+  it('OnAfterFetch: YearsSelection = Get_AdminEventsList.YearFilter', async () => {
+    const years: YearItem[] = [
+      { year: '2026', isSelected: false, count: 2 },
+      { year: '2025', isSelected: false, count: 4 },
+    ];
+    vi.mocked(fetchAdminEvents).mockResolvedValueOnce(answerOf(EVENTS, years));
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state.yearsSelection).toEqual(years);
+  });
+
+  it('GetPopupMeasurements: the header and footer sizes go with the block variables', async () => {
+    const header = document.createElement('header');
+    header.className = 'header';
+    const footer = document.createElement('div');
+    footer.className = 'footer';
+    Object.defineProperty(header, 'offsetHeight', { value: 86 });
+    Object.defineProperty(header, 'offsetWidth', { value: 390 });
+    Object.defineProperty(footer, 'offsetHeight', { value: 56 });
+    document.body.append(header, footer);
+    try {
+      const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+      await settle();
+      expect(result.current.state.popupMeasurements).toEqual({ Top: 86, Left: 185, Bottom: 56 });
+      expect(fetchAdminEvents).toHaveBeenCalledWith({
+        ...sentInputs('Matías', '20517'),
+        PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
+      });
+    } finally {
+      header.remove();
+      footer.remove();
+    }
+  });
+
+  it('the header clicks toggle the popups, only when no fetch runs', async () => {
+    const answer = pendingEvents();
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onToggleFilterPopup();
+      result.current.onToggleSortPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: false, popupSortByOpened: false });
+    answer.resolve(EVENTS);
+    await settle();
+    act(() => {
+      result.current.onToggleFilterPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: true, popupSortByOpened: false });
+    act(() => {
+      result.current.onToggleSortPopup();
+      result.current.onToggleFilterPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: false, popupSortByOpened: true });
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+  });
+
+  it('a MemberId that is not a whole number sends the null identifier', async () => {
+    cachedUser('', 'not-a-number');
+    renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('', '0'));
+  });
+
+  it('StrictMode: OnReady runs once and the events come', async () => {
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+    expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.eventsSummary).toHaveLength(2);
+  });
+
+  it('a failed Get_AdminEventsList goes to the flow handler, once; the skeleton stays', async () => {
+    const error = new CommunicationException('offline');
+    vi.mocked(fetchAdminEvents).mockRejectedValueOnce(error);
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper: strictWrapper });
+    await settle();
+    expect(raised()).toEqual([error]);
+    expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false, eventsSummary: [] });
+  });
+
+  it('F40: a view left before the answer and restored runs OnReady again: one call, the skeleton clears', async () => {
+    pendingEvents();
+    const forward = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    const saved = forward.result.current.state;
+    expect(saved).toMatchObject({ isFetchingData: true, isDataFetched: false });
+    forward.unmount();
+    vi.mocked(fetchAdminEvents).mockClear();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    expect(result.current.state.isFetchingData).toBe(true);
+    await settle();
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('Matías', '20517'));
+    expect(result.current.state).toMatchObject({ isFetchingData: false, isDataFetched: true, eventsSummary: EVENTS });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a view restored with the events keeps them and makes no call', async () => {
+    const saved = {
+      isFetchingData: false,
+      eventsSummary: EVENTS,
+      userFirstName: 'Matías',
+      userMemberId: '20517',
+      isDataFetched: true,
+    };
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state).toEqual(saved);
+    expect(fetchAdminEvents).not.toHaveBeenCalled();
+    expect(appManager_GetCachedUserInfo).not.toHaveBeenCalled();
+  });
+
+  it('a card click: NavigateTo_EventDetail with the TypeFriendly of the row, then the audit event', async () => {
+    const navigation = pendingNavigation();
+    const { result } = renderHook(() => useAdminLanding(navigation.events), { wrapper });
+    await settle();
+    const [first] = EVENTS;
+    if (!first) throw new Error('no event');
+    act(() => {
+      result.current.onEventCardClicked(first.event, first.typeFriendly);
+    });
+    expect(navigation.events.onNavigateToEventDetail).toHaveBeenCalledWith({
+      eventId: '7301',
+      eventName: 'Weekend Bible Conferences',
+      eventStartDate: '2099-11-07T09:00:00Z',
+      eventEndDate: '2099-11-08T17:00:00Z',
+      eventLocation: 'Bahia Blanca Main Hall',
+      eventTypeFriendly: 'Weekend Conference Program',
+    });
+    // OnApplicationEvent_ClickEvent comes after the event handler ends.
+    expect(onApplicationEvent_ClickEvent).not.toHaveBeenCalled();
+    navigation.resolve();
+    await settle();
+    expect(onApplicationEvent_ClickEvent).toHaveBeenCalledTimes(1);
+    expect(onApplicationEvent_ClickEvent).toHaveBeenCalledWith({
+      EventId: '7301',
+      EventTitle: 'Weekend Bible Conferences',
+      EventLocation: 'Bahia Blanca Main Hall',
+      EventStartDate: '2099-11-07T09:00:00Z',
+      EventEndDate: '2099-11-08T17:00:00Z',
+    });
+  });
+
+  it('a card click whose handler fails goes to the flow handler, without the audit event', async () => {
+    const error = new CommunicationException('offline');
+    const events: AdminLandingEvents = { onNavigateToEventDetail: vi.fn(() => Promise.reject(error)) };
+    const { result } = renderHook(() => useAdminLanding(events), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onEventCardClicked({ EventId: '7302' }, 'Youth Day');
+    });
+    await settle();
+    expect(raised()).toEqual([error]);
+    expect(onApplicationEvent_ClickEvent).not.toHaveBeenCalled();
+  });
+
+  it('a card click sends its failure to the flow handler with the flow scope', async () => {
+    const error = new CommunicationException('offline');
+    const events: AdminLandingEvents = { onNavigateToEventDetail: vi.fn(() => Promise.reject(error)) };
+    const { result } = renderHook(() => useAdminLanding(events), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onEventCardClicked({ EventId: '7302' }, 'Youth Day');
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+  });
+});
+
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () => raised().filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useAdminLanding after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while Get_AdminEventsList is pending: the answer writes no state and raises nothing', async () => {
+    const answer = pendingEvents();
+    let renders = 0;
+    const { unmount } = renderHook(
+      () => {
+        renders += 1;
+        return useAdminLanding(noEvents());
+      },
+      { wrapper: strictWrapper },
+    );
+    await settle();
+    unmount();
+    const rendersAtUnmount = renders;
+    vi.mocked(adminLandingReducer).mockClear();
+    answer.resolve(EVENTS);
+    await settle();
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+    expect(adminLandingReducer).not.toHaveBeenCalled();
+    expect(renders).toBe(rendersAtUnmount);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while Get_AdminEventsList is pending: its failure reaches no handler and writes no state', async () => {
+    const answer = pendingEvents();
+    const { unmount } = renderHook(() => useAdminLanding(noEvents()), { wrapper: strictWrapper });
+    await settle();
+    unmount();
+    vi.mocked(adminLandingReducer).mockClear();
+    answer.reject(new CommunicationException('offline'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+    expect(adminLandingReducer).not.toHaveBeenCalled();
+  });
+
+  it('R2: a card click whose event ends after the unmount still records OnApplicationEvent_ClickEvent (module action), once', async () => {
+    const navigation = pendingNavigation();
+    const { result, unmount } = renderHook(() => useAdminLanding(navigation.events), { wrapper: strictWrapper });
+    await settle();
+    act(() => {
+      result.current.onEventCardClicked({ EventId: '7302', Title: 'Youth Day' }, 'Youth Day');
+    });
+    unmount();
+    vi.mocked(adminLandingReducer).mockClear();
+    navigation.resolve();
+    await settle();
+    expect(navigation.events.onNavigateToEventDetail).toHaveBeenCalledTimes(1);
+    expect(onApplicationEvent_ClickEvent).toHaveBeenCalledTimes(1);
+    expect(adminLandingReducer).not.toHaveBeenCalled();
+  });
+});

@@ -77,7 +77,15 @@ In_IsInScreenSearch = False, In_IsEventNavigation = False, In_SearchTargetId = "
 - Q5 (extra GetUserInformation): answered by the user (2026-10-15) — CR-Search-3 applied in the shell; no extra call.
 - SearchResults_Recent.mvc.js (survey sources) is a separate block that ScreenBlock_Search does not use. The recent UI is inline in the view of ScreenBlock_Search (:502-1119), and the React app builds it from there.
 
+## Changes 2026-11-07 (TST sync)
+- TST files that changed (brief): `UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`, `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`, `UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js`, `UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`.
+- Fresh capture: 2 text diffs each in the default and offline states (filter sheet button labels). Evidence: `migration/screens/Search/analysis/dom/default.html`, `offline.html`.
+- React code: no change in the Search item. The shared FilterSheet label fix of the CountryDetails item ("Clear", "Apply") removes the diffs.
+- Parity (`route.py parity Search`, 2026-11-07): default, loading and offline have 0 unexempted differences; calls 10 of 10; pixels 0.11 %, worst tile 2.5 %. Evidence: `migration/screens/Search/parity/*.json`.
+- No captured state shows `SearchResult_Item`, so parity does not check it.
+
 ## Decisions to confirm
+- TST sync 2026-11-07: Search needed no code change; the FilterSheet label fix of the CountryDetails item made it clean. The shared-block sweep shows diffs in Bookmarks, HouseholdCarousel, Notes and Updates_SingleList; they belong to their own sync items.
 - FetchSearchResults is not recorded: fictional contract mock (2 households, 3 members, 1 place, any term; `empty` = none).
 - No captured state shows the recent search, the result sections, the birthday options and the no-results texts. The React app builds them from the compiled views (review by hand: type a term, submit, open a result, come back).
 - Named widget ids (`b1-RecentSearch`, `b1-Recent_SearchResults`, `b1-Recent_SearchTerms`, `b1-Padding`, `b1-PlacesSection`, …) follow the OutSystems naming but are not captured.

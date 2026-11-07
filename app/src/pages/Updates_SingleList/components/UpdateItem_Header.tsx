@@ -1,6 +1,5 @@
 // @os-block UBTConnect.Directory_Updates.UpdateItem_Header
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Badge } from '@/components/ui/Badge';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -13,7 +12,6 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
-import { UBT_Color_RedDark } from './staticEntities';
 
 export interface UpdateItem_HeaderProps {
   /** Instance id (`ListHeader`, or `<row>-b15-ListSectionHeader` inside SectionHeader). */
@@ -22,6 +20,8 @@ export interface UpdateItem_HeaderProps {
   scope: string;
   title?: string;
   isLoading?: boolean;
+  /** Input BadgeNumber: still given by the callers, no longer shown (TST 2026-11-07: the IconText icon placeholder is
+      empty, UpdateItem_Header.mvc@83c85bd4.js:314-316). */
   badgeNumber?: number;
   showMarkAll?: boolean;
   /** Event Click_MarkAll. */
@@ -30,15 +30,14 @@ export interface UpdateItem_HeaderProps {
 
 /** UBTConnect.Directory_Updates.UpdateItem_Header (p:…UpdateItem_Header.mvc.js view): CustomContainer
     "updates-list__header" (neutral-0, padding y xs / x base, top border l neutral-4) with Columns_Two (reduce last):
-    left SkeletonSection > IconText (icon on the right, xs spacing, neutral-7 xs semi-bold Title) whose icon is the
-    red-dark xs Badge (max 9) when BadgeNumber > 0; right "Mark All as Read" (primary xs semi-bold) when ShowMarkAll.
-    Captured dom/default.html:177-252. */
+    left SkeletonSection > IconText (icon on the right, xs spacing, neutral-7 xs semi-bold Title, empty icon
+    placeholder); right "Mark All as Read" (primary xs semi-bold) when ShowMarkAll. TST 2026-11-07 removed the badge of
+    BadgeNumber. Captured dom/default.html:213-280. */
 export function UpdateItem_Header({
   id,
   scope,
   title = '',
   isLoading = false,
-  badgeNumber = 0,
   showMarkAll = false,
   onClickMarkAll,
 }: UpdateItem_HeaderProps) {
@@ -69,24 +68,14 @@ export function UpdateItem_Header({
                   FontSize: UBT_FontSize.ExtraSmall,
                   FontWeight: UBT_FontWeight.SemiBold,
                 }}
-              >
-                {badgeNumber > 0 && (
-                  <Badge
-                    id={`${scope}-$b5`}
-                    number={String(badgeNumber)}
-                    color={UBT_Color_RedDark}
-                    size={UBT_Size.ExtraSmall}
-                    maxNumber={9}
-                  />
-                )}
-              </IconText>
+              />
             </Skeleton>
           }
           right={
             showMarkAll && (
               <div data-container="" style={{ textAlign: 'right' }}>
                 <CustomText
-                  id={`${scope}-$b6`}
+                  id={`${scope}-$b5`}
                   inText="Mark All as Read"
                   inTextOptions={{
                     Color: UBT_Color.Primary,

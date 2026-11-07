@@ -337,7 +337,7 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", [
                                         },
                                         mode: /*Default*/ 0,
                                         source: model.variables.in_TagToggleListIn,
-                                        style: model.getCachedValue(idService.getId("kL5fqGW4oESuMsqWYv_Ysw.Style"), function() {
+                                        style: model.getCachedValue(idService.getId("TagList.Style"), function() {
                                             return (OutSystemsDebugger.handleFunctionCall(function() {
                                                 return UBTConnectLibraryController.default.formatClasses$Action(OutSystemsDebugger.handleFunctionCall(function() {
                                                     return UBTConnectLibraryController.default.formatClasses$Action("list list-group list-horizontal--gap-xs horizontal-tabs-list", model.variables.mainContainerClassVar, callContext).classesOutOut;
@@ -353,7 +353,7 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", [
                                         tag: "div",
                                         _idProps: {
                                             service: idService,
-                                            uuid: "4"
+                                            name: "TagList"
                                         },
                                         _widgetRecordProvider: widgetsRecordProvider,
                                         source_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables._in_TagToggleListInDataFetchStatus),
@@ -414,7 +414,7 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$view", [
 
     return View;
 });
-define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.languageResources", "UBTConnectLibrary.clientVariables", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$debugger", "UBTConnectLibrary.controller$FormatClasses", "UBTConnectLibrary.model$TagList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$TagRec"], function(OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryLanguageResources, UBTConnectLibraryClientVariables, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_Debugger) {
+define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnectLibrary.model", "UBTConnectLibrary.controller", "UBTConnectLibrary.languageResources", "UBTConnectLibrary.clientVariables", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$debugger", "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS", "UBTConnectLibrary.controller$FormatClasses", "UBTConnectLibrary.model$TagList", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "UBTConnectLibrary.model$TagRec"], function(OutSystems, UBTConnectLibraryModel, UBTConnectLibraryController, UBTConnectLibraryLanguageResources, UBTConnectLibraryClientVariables, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_Debugger, UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_controller_ScrollToSelectedPill_JavaScript1JS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -433,6 +433,70 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
 
         Controller.prototype.dataFetchActionNames = [];
         // Client Actions
+        Controller.prototype._scrollToSelectedPill$Action = function(is_AnimateIn, callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("ScrollToSelectedPill");
+            callContext = controller.callContext(callContext);
+            var vars = new OS.DataTypes.VariableHolder(new(controller.constructor.getVariableGroupType("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.ScrollToSelectedPill$vars"))());
+            vars.value.is_AnimateInLocal = is_AnimateIn;
+            varBag.callContext = callContext;
+            varBag.vars = vars;
+            try {
+                OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:ojp5LEcEp0GnacwDBt1RmQ:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA/ClientActions.ojp5LEcEp0GnacwDBt1RmQ:T_kWM65ndg6jEJ8_FZ_djQ", "UBTConnectLibrary", "ScrollToSelectedPill", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:s5tO7AUXR06KuQsjL1OL9A", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:S3Z2UBcxK0uNxlJL7KeiJg", callContext.id);
+                controller.safeExecuteJSNode(UBTConnectLibrary_ConnectPatterns_Horizontal_Filter_TagList_mvc_controller_ScrollToSelectedPill_JavaScript1JS, "JavaScript1", "ScrollToSelectedPill", {
+                    Animate: OS.DataConversion.JSNodeParamConverter.to(vars.value.is_AnimateInLocal, OS.DataTypes.DataTypes.Boolean),
+                    ListId: OS.DataConversion.JSNodeParamConverter.to(idService.getId("TagList"), OS.DataTypes.DataTypes.Text)
+                }, function($parameters) {}, {}, {});
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:mma7gyWai0KSyZjfKKcoFQ", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:ojp5LEcEp0GnacwDBt1RmQ", callContext.id);
+            }
+
+        };
+        Controller.registerVariableGroupType("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.ScrollToSelectedPill$vars", [{
+            name: "Is_Animate",
+            attrName: "is_AnimateInLocal",
+            mandatory: true,
+            dataType: OS.DataTypes.DataTypes.Boolean,
+            defaultValue: function() {
+                return false;
+            }
+        }]);
+        Controller.prototype._onParametersChanged$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("OnParametersChanged");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:FfqrM0RTyU6AbLJt0IVXDw:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA/ClientActions.FfqrM0RTyU6AbLJt0IVXDw:Y_R7+g_XSc5Ct23Jwjsn3Q", "UBTConnectLibrary", "OnParametersChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:piKr892YFUOPYlSqRL+C1A", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:WhxiGLX6r06UfuPlZm9uvQ", callContext.id);
+                // Execute Action: ScrollToSelectedPill
+                controller._scrollToSelectedPill$Action(false, callContext);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:PpetXAcEE0e4O3MPg1rr1w", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:FfqrM0RTyU6AbLJt0IVXDw", callContext.id);
+            }
+
+        };
         Controller.prototype._tagToggleToggle$Action = function(isSelectedIn, listIndexIn, isTagEnabledIn, callContext) {
             var varBag = {};
             var model = this.model;
@@ -450,7 +514,7 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
             varBag.callContext = callContext;
             varBag.vars = vars;
             varBag.listFilter_SelectedVar = listFilter_SelectedVar;
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:3xfCSylswUOt7smX596+Xg:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA/ClientActions.3xfCSylswUOt7smX596+Xg:JIe1WbVj69du8CyqNkxXWA", "UBTConnectLibrary", "TagToggleToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:3xfCSylswUOt7smX596+Xg:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA/ClientActions.3xfCSylswUOt7smX596+Xg:ec_VmTiIrogEgV7csQEAMQ", "UBTConnectLibrary", "TagToggleToggle", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:TtW3MSkbDkSxVnyQVbS1Zg", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 return OS.Flow.executeSequence(function() {
@@ -515,6 +579,9 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
                                 OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:3T4+Qu7qjUSqT6Muw_oe5w", callContext.id);
                                 // Trigger Event: Changed
                                 return controller.changed$Action(model.variables.in_TagToggleListIn, callContext).then(function() {
+                                    OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:ktoK+kqx_E6Pubc+LByKtg", callContext.id);
+                                    // Execute Action: ScrollToSelectedPill
+                                    controller._scrollToSelectedPill$Action(true, callContext);
                                     OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:JuKbqqFM9E22SEgE7Ds58g", callContext.id);
                                 });
                             } else {
@@ -561,10 +628,50 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
                 return false;
             }
         }]);
+        Controller.prototype._onReady$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("OnReady");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:oymXxmezRkagTrGQgxNIxQ:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA/ClientActions.oymXxmezRkagTrGQgxNIxQ:kUpI8VBYGNDjnI5YDLmNAg", "UBTConnectLibrary", "OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:xsMz82XSwUOoQUVj0G41oQ", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:Y5sAh0I9B0aAfzUU+8Ss4g", callContext.id);
+                // Execute Action: ScrollToSelectedPill
+                controller._scrollToSelectedPill$Action(false, callContext);
+                OutSystemsDebugger.handleBreakpoint("lAQ0zS6tEEyl6BBIK9yo1A:vNO6uoSXjEqyPBGopNv1FA", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:oymXxmezRkagTrGQgxNIxQ", callContext.id);
+            }
 
+        };
+
+        Controller.prototype.scrollToSelectedPill$Action = function(is_AnimateIn, callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._scrollToSelectedPill$Action, callContext, is_AnimateIn);
+
+        };
+        Controller.prototype.onParametersChanged$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._onParametersChanged$Action, callContext);
+
+        };
         Controller.prototype.tagToggleToggle$Action = function(isSelectedIn, listIndexIn, isTagEnabledIn, callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._tagToggleToggle$Action, callContext, isSelectedIn, listIndexIn, isTagEnabledIn);
+
+        };
+        Controller.prototype.onReady$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._onReady$Action, callContext);
 
         };
         Controller.prototype.changed$Action = function() {
@@ -574,18 +681,52 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
         // Event Handler Actions
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:Y06DhYqVkffzqTnycnKUGw", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:2Xb5i3ZENEqPz+9FJSmdVA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA:FwpnxKvUTQoOvhOqIk1uLg", "UBTConnectLibrary", "Horizontal_Filter_TagList", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g:th6DJx0oI5mDufaOXUgceQ", "UBTConnectLibrary", "ConnectPatterns", "NRFlows.WebFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("lAQ0zS6tEEyl6BBIK9yo1A:2Xb5i3ZENEqPz+9FJSmdVA:/NRWebFlows.GRnUlqBGNE26Hxr_Ah3_7g/NodesShownInESpaceTree.2Xb5i3ZENEqPz+9FJSmdVA:dSb_lSGFzeVaKdDIJVRaFQ", "UBTConnectLibrary", "Horizontal_Filter_TagList", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:2Xb5i3ZENEqPz+9FJSmdVA", callContext.id);
             OutSystemsDebugger.pop("lAQ0zS6tEEyl6BBIK9yo1A:GRnUlqBGNE26Hxr_Ah3_7g", callContext.id);
         };
         Controller.prototype.onInitializeEventHandler = null;
-        Controller.prototype.onReadyEventHandler = null;
+        Controller.prototype.onReadyEventHandler = function(callContext) {
+            var controller = this.controller;
+            var model = this.model;
+            var idService = this.idService;
+
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.setThreadStartName(callContext.id, "ConnectPatterns/Horizontal_Filter_TagList On Ready");
+                return controller.onReady$Action(callContext);
+
+            }, function() {
+                controller.popDebuggerContext(callContext);
+
+            });
+
+        };
         Controller.prototype.onRenderEventHandler = null;
         Controller.prototype.onDestroyEventHandler = null;
-        Controller.prototype.onParametersChangedEventHandler = null;
+        Controller.prototype.onParametersChangedEventHandler = function(callContext) {
+            var controller = this.controller;
+            var model = this.model;
+            var idService = this.idService;
+
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.setThreadStartName(callContext.id, "ConnectPatterns/Horizontal_Filter_TagList On Parameters Changed");
+                return controller.onParametersChanged$Action(callContext);
+
+            }, function() {
+                controller.popDebuggerContext(callContext);
+
+            });
+
+        };
         Controller.prototype.handleError = function(ex) {
             return controller.handleError(ex);
         };
@@ -597,10 +738,74 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controll
     })(OS.Controller.BaseViewController);
     return new OS.Controller.ControllerFactory(Controller, UBTConnectLibraryLanguageResources);
 });
+define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$controller.ScrollToSelectedPill.JavaScript1JS", [], function() {
+    return function($parameters, $actions, $roles, $public) {
+        setTimeout(function() {
+            var container = document.getElementById($parameters.ListId);
+            if (!container) {
+                return;
+            }
+            var selected = container.querySelector('.ubt-tag-toggle.background-primary');
+            if (!selected) {
+                return;
+            }
+
+            var wrapper = container.closest('.horizontal-tabs-filter-container');
+            var filter = wrapper ? wrapper.firstElementChild : null;
+
+            var gap = 8;
+            var pillLeft = selected.getBoundingClientRect().left;
+            var leftLimit = (filter ? filter.getBoundingClientRect().right :
+                container.getBoundingClientRect().left) + gap;
+
+            var start = container.scrollLeft;
+            var distance = pillLeft - leftLimit;
+            if (Math.abs(distance) < 1) {
+                return;
+            }
+
+            // Back navigation / loading: jump straight to the position
+            if (!$parameters.Animate) {
+                container.scrollLeft = start + distance;
+                return;
+            }
+
+            // Tapping a pill: glide gently
+            var duration = 400; // milliseconds: increase to slow it down
+            var startTime = null;
+
+            function step(timestamp) {
+                if (!startTime) {
+                    startTime = timestamp;
+                }
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                var eased = progress < 0.5 ?
+                    2 * progress * progress :
+                    1 - Math.pow(-2 * progress + 2, 2) / 2;
+                container.scrollLeft = start + distance * eased;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            }
+            requestAnimationFrame(step);
+        }, 100);
+    };
+});
 
 define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$debugger", ["exports", "OutSystems/ClientRuntime/Debugger", "OutSystems/ClientRuntime/Main"], function(exports, Debugger, OutSystems) {
     var OS = OutSystems.Internal;
     var metaInfo = {
+        "Ze5Pm58HRU6bBLEy+SpDUg": {
+            getter: function(varBag, idService) {
+                return varBag.vars.value.is_AnimateInLocal;
+            },
+            dataType: OS.DataTypes.DataTypes.Boolean
+        },
+        "S3Z2UBcxK0uNxlJL7KeiJg": {
+            getter: function(varBag, idService) {
+                return varBag.javaScript1JSResult.value;
+            }
+        },
         "qBjxbJfsI020rpcKFt9vEQ": {
             getter: function(varBag, idService) {
                 return varBag.vars.value.isSelectedInLocal;
@@ -708,6 +913,13 @@ define("UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc$debugger
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("Placeholder_LoadingSection"));
+                })(varBag.model, idService);
+            }
+        },
+        "kL5fqGW4oESuMsqWYv_Ysw": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("TagList"));
                 })(varBag.model, idService);
             }
         }

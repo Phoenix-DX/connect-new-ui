@@ -19,7 +19,7 @@ export function useUserServicesQuery() {
 }
 
 /** DataActionGetServices of FeedBlock_Services as a query. The block fetches at its start every time (Home Q1 (a), user
-    2026-10-27), as useCommunityPopulationQuery of the same screen:
+    2026-10-27), as fetchCommunityStatistics (api/member, through flow.fetch) of the same screen:
     - It fetches when the block mounts (staleTime 0, the library default).
     - No cache (gcTime 0): the services go when HomeFeed closes, so a new visit shows the skeleton page until the answer.
       The view cache still restores a back navigation.

@@ -101,6 +101,15 @@ Calls #1, #5, #7, #9-#11 are the shell's app start [calls.json].
     The masked counts ('•' is narrower than digits) make the reference rows narrower.
     When the React app uses the captured masked counts, it gives exactly the reference widths and offsets.
 
+## Changes 2026-11-07 (TST sync)
+- No TST file changed for this route (brief.md). The class is B: mock data drift.
+- The fresh capture shows the country statistics one lower than the old capture. Saint Vincent and Trinidad show 73 members (old 74). United States shows 28 localities (old 29). Evidence: `analysis/dom/default.html:952`, `:1060` (73) and `:1146` (28); the old capture shows 74, 74 and 29 (git diff 2fe9efaf).
+- The call to ActionGetCountriesBySubscription is unchanged: 11 calls expected and 11 actual (parity of the capture). No new call, no markup change.
+- The React mock now answers these counts for the codes VC, TT (members) and US (localities) (`app/src/pages/AssembleEvents/mocks.ts`). The shared fictional world (`src/mocks/fictional/assemble.ts`) is not changed. Parity is clean in the three states (test.md).
+
+## Decisions to confirm (TST sync)
+- The page mock patches three counts on top of the shared fictional world, so the other pages that use it keep their counts. Confirm that this is acceptable, or ask for one change of the shared world.
+
 ## Change requests
 - CR-Assemble_BrowseByCountry-1: shell mock user SubscriptionRegionId non-empty (open; blocks the sheet's country list).
 - CR-AssembleEvents-1: shell memory cache shares an in-flight miss (applied by foundation F13) [questions.md Q3].

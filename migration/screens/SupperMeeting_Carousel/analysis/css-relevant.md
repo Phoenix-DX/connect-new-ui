@@ -7,14 +7,15 @@ Load order of stylesheets (keep this order in the build):
 3. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css`
 4. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Note_Item.css`
 5. `/UBTConnect/css/UBTConnect_Utils.CW_Notes.NotesSheet.css`
-6. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
-7. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
-8. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
-9. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
-10. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
-11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
-12. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
-13. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
+6. `/UBTConnect/css/UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css`
+7. `/UBTConnect/css/UBTConnect.Directory_Caroussel.EntitiesCarousel.css`
+8. `/UBTConnect/css/UBT_AppManager.PIN.PinCode.css`
+9. `/UBTConnect/css/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css`
+10. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css`
+11. `/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css`
+12. `/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css`
+13. `/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css`
+14. `/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css`
 
 Rules below are those whose selector contains a class used on the captured page, grouped by the block that owns the element. Full source: `styles/bundle.css`.
 
@@ -600,7 +601,7 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ```
 ### .ubt-entities-carousel  (5 rules)
 ```css
-.ubt-entities-carousel { --carousel-container-height: var(--bottom-bar-size); }
+ubt-household-image-card__background-image ubt-background-image--xs  .ubt-entities-carousel { --carousel-container-height: var(--bottom-bar-size); }
 .layout:has(.footer:empty) .ubt-entities-carousel { --carousel-container-height: 0px; }
 .ubt-entities-carousel .splide__slide { --carousel-slide-custom-height: calc(100vh - var(--carousel-container-height) - var(--header-size)); overflow-y: scroll; }
 .layout:has(.ubt-entities-carousel) footer::before, .layout:has(.ubt-entities-carousel) header::after { display: none !important; }
@@ -612,22 +613,6 @@ rea-content.horizontal-scroll .osui-carousel .list.list-group, .scrollable-area-
 ```css
 .directory-detail-screen { display: flex; flex-direction: column; gap: var(--space-xs); background-color: var(--color-neutral-4); }
 .directory-detail-screen > div:empty { display: none; }
-```
-## ConnectPatterns.SkeletonSection
-
-### .ubt-skeleton-section  (11 rules)
-```css
-.ubt-skeleton-section * { text-decoration: none; }
-.ubt-skeleton-section *:has(>span:only-child) { /* padding: 0;*/ min-height: 1lh; display: flex; align-items: center; background: unset; }
-.ubt-skeleton-section span { color: transparent; }
-.ubt-skeleton-section .ubt-icon:not(.ignore-loading) { border-radius: var(--border-radius-medium); color: transparent; }
-.ubt-skeleton-section span, .ubt-skeleton-section .osui-dropdown-search { height: 1.2em; align-items: center; border-radius: var(--border-radius-medium); }
-.ubt-skeleton-section .ubt-skeleton-section__element span { height: unset; }
-.ubt-skeleton-section span:empty { --skeleton-span-length: 12ch; width: var(--_skeleton-span-legth,var(--skeleton-span-length)) }
-.ubt-skeleton-section .ubt-skeleton-section__multi-line { display: block; height: 1lh; }
-.ubt-skeleton-section .ubt-skeleton-section__multi-line span { width: 100%; display: block; }
-an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section .ubt-icon:not(.ignore-loading), .ubt-skeleton-section .form > div, .ubt-skeleton-section .osui-dropdown-search, .ubt-skeleton-section .badge { background: var(--ubt-background-skeleton-light); animation: var(--ubt-skeleton-animation); border-color: var(--ubt-background-skeleton-light) }
-keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section *::after, .ubt-skeleton-section input, .ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper, .ubt-skeleton-section .ubt-icon img { visibility: hidden; transition-property: visibility; transition-duration: 0ms; }
 ```
 ## BasePatterns.CustomContainer
 
@@ -1214,7 +1199,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--border-size-none`: `0` (in `@charset "UTF-8";    :root`)
 - `--border-size-s`: `1px` (in `@charset "UTF-8";    :root`)
 - `--bottom-bar-size`: `56px` (in `@charset "UTF-8";    :root`)
-- `--carousel-container-height`: `var(--bottom-bar-size)` (in `.ubt-entities-carousel`); `0px` (in `.layout:has(.footer:empty) .ubt-entities-carousel`)
+- `--carousel-container-height`: `var(--bottom-bar-size)` (in `ld-image-card__background-image ubt-background-image--xs  .ubt-entities-carousel`); `0px` (in `.layout:has(.footer:empty) .ubt-entities-carousel`)
 - `--color-background-body`: `#f3f6f8` (in `@charset "UTF-8";    :root`); `var(--color-neutral-0)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-dark`: `#1667ad` (in `@charset "UTF-8";    :root`); `#112CBA` (in `:root, .connect-legacy-compatibily-containter`)
 - `--color-blue-lightest`: `#e8f2fa` (in `@charset "UTF-8";    :root`); `#E1E5FF` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1304,7 +1289,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--shadow-xl`: `0 8px 10px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0px 8px 10px 0px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--shadow-xs`: `0 1px 2px rgba(0, 0, 0, 0.1)` (in `@charset "UTF-8";    :root`); `0 1px 2px rgba(0, 0, 0, 0.1)` (in `:root, .connect-legacy-compatibily-containter`)
 - `--side-menu-size`: `300px` (in `@charset "UTF-8";    :root`); `264px` (in `e, .tablet .layout-native.aside-visible, .tablet .layout-native.aside-expandable`)
-- `--skeleton-span-length`: `12ch` (in `.ubt-skeleton-section span:empty`)
 - `--space-base`: `16px` (in `@charset "UTF-8";    :root`); `16px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-l`: `32px` (in `@charset "UTF-8";    :root`); `32px` (in `:root, .connect-legacy-compatibily-containter--spacing`)
 - `--space-m`: `24px` (in `@charset "UTF-8";    :root`); `24px` (in `:root, .connect-legacy-compatibily-containter--spacing`)

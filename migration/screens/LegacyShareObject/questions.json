@@ -155,5 +155,79 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T06:59:45"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered) [questions.md Q1]: other share types answer Label = identifier in the mock.; Q2 (fact, answered: mock with no source; confirmed for the demo (user, 2026-10-21)) [questions.md Q2]: fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).; Q5 → A (answered) [questions.md Q5]: the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).; Q3 → A (answered) [questions.md Q3]: ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.; Q4 → A (answered) [questions.md Q4]: Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.; GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.; Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`):; masked household photo (default);; loading-item shimmer phase (loading, offline);; loading fetch timeout of GetAvailableUsers and of the household image (loading);; GetHouseholdDetails among the app-start calls (default).; Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).; No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).; ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList.; Sync 2026-11-07 (user, Q4-old b): the analysis of the capture of 2026-10-14 (commit 2fe9efaf) stays the reference. The fresh capture had an empty share list (data of the capture account); no TST code changed. Confirm that the 49-item list stays. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T09:19:35",
+  "items": [
+   "Q1 → A (answered) [questions.md Q1]: other share types answer Label = identifier in the mock.",
+   "Q2 (fact, answered: mock with no source; confirmed for the demo (user, 2026-10-21)) [questions.md Q2]: fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).",
+   "Q5 → A (answered) [questions.md Q5]: the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).",
+   "Q3 → A (answered) [questions.md Q3]: ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.",
+   "Q4 → A (answered) [questions.md Q4]: Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.",
+   "GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.",
+   "Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`):",
+   "masked household photo (default);",
+   "loading-item shimmer phase (loading, offline);",
+   "loading fetch timeout of GetAvailableUsers and of the household image (loading);",
+   "GetHouseholdDetails among the app-start calls (default).",
+   "Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).",
+   "No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).",
+   "ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList.",
+   "Sync 2026-11-07 (user, Q4-old b): the analysis of the capture of 2026-10-14 (commit 2fe9efaf) stays the reference. The fresh capture had an empty share list (data of the capture account); no TST code changed. Confirm that the 49-item list stays."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:41:44"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered) [questions.md Q1]: other share types answer Label = identifier in the mock.; Q2 (fact, answered: mock with no source; confirmed for the demo (user, 2026-10-21)) [questions.md Q2]: fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).; Q5 → A (answered) [questions.md Q5]: the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).; Q3 → A (answered) [questions.md Q3]: ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.; Q4 → A (answered) [questions.md Q4]: Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.; GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.; Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`):; masked household photo (default);; loading-item shimmer phase (loading, offline);; loading fetch timeout of GetAvailableUsers and of the household image (loading);; GetHouseholdDetails among the app-start calls (default).; Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).; No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).; ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList.; Sync 2026-11-07 (user, Q4-old b): the analysis of the capture of 2026-10-14 (commit 2fe9efaf) stays the reference. The fresh capture had an empty share list (data of the capture account); no TST code changed. Confirm that the 49-item list stays. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:41:44",
+  "items": [
+   "Q1 → A (answered) [questions.md Q1]: other share types answer Label = identifier in the mock.",
+   "Q2 (fact, answered: mock with no source; confirmed for the demo (user, 2026-10-21)) [questions.md Q2]: fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).",
+   "Q5 → A (answered) [questions.md Q5]: the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).",
+   "Q3 → A (answered) [questions.md Q3]: ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.",
+   "Q4 → A (answered) [questions.md Q4]: Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.",
+   "GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.",
+   "Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`):",
+   "masked household photo (default);",
+   "loading-item shimmer phase (loading, offline);",
+   "loading fetch timeout of GetAvailableUsers and of the household image (loading);",
+   "GetHouseholdDetails among the app-start calls (default).",
+   "Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).",
+   "No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).",
+   "ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList.",
+   "Sync 2026-11-07 (user, Q4-old b): the analysis of the capture of 2026-10-14 (commit 2fe9efaf) stays the reference. The fresh capture had an empty share list (data of the capture account); no TST code changed. Confirm that the 49-item list stays."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:41:45"
  }
 ]

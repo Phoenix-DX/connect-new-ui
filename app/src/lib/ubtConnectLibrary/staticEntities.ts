@@ -132,6 +132,12 @@ export const UBT_Icons = {
   SVG_CommunityTradelink: 'SVG_CommunityTradelink',
   SVG_PinLocality: 'SVG_PinLocality',
   SVG_PinCountry: 'SVG_PinCountry',
+  /* TST values (static-entities-tst.json UBTConnectLibrary.uBT_Icons; IconSVG.mvc@b644f388.js:259-305): the icons of
+     Directory_CommunityNumbers (HomeFeed dom, fresh capture of 2026-11-07). */
+  SVG_CommunityHouseholds: 'SVG_CommunityHouseholds',
+  SVG_CommunityLocalities: 'SVG_CommunityLocalities',
+  SVG_CommunityCountries: 'SVG_CommunityCountries',
+  SVG_CommunityMembers: 'SVG_CommunityMembers',
   /* Wave 2B font icons (Id = icon class): captured `connect-icon-more_vertical` (ContextMenu, HomeFeed dom),
      `connect-icon-search` (StaticInput, CountryList dom). Not captured (ContextMenu items never opened): the original CSS
      has `.connect-icon-gift`, `-letter`, `-edit`, `-share`, `-delete` (same record-name pattern). Gift =

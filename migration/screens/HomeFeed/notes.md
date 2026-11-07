@@ -17,3 +17,5 @@
 - 2026-10-17 2026-10-17 (user): Trove > Continue to Trove keeps the original web toast 'Not available - Sorry, this app is not available in the platform you are using.' (1:1, info type), in the dev server, the demo and production. A softer demo-only text was offered and declined.
 - 2026-10-21T10:45:25 spec-done (3 answer(s) covered)
 - 2026-10-21T11:14:34 spec-done (3 answer(s) covered)
+- 2026-11-07T08:04:31 spec-done (3 answer(s) covered)
+- 2026-11-07T16:32:15 finished: user confirmed, all gates passed

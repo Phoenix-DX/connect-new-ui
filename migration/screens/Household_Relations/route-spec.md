@@ -79,7 +79,7 @@ flowchart TB
   end
   subgraph Server["OutSystems server · screenservices"]
     MD["DataActionGet_MemberDetails<br/>on ready"]
-    PHD["DataActionGet_ParentHouseholdDetails<br/>after member details"]
+    PHD["DataActionGet_SibllingsRelations<br/>after member details"]
     FN["DataActionFetchNotes<br/>declared, never refreshed"]
   end
   Backend["Backend<br/>not visible from the browser"]
@@ -107,7 +107,7 @@ Original CSS only (routes add none). Captured: avatar xl (98×98) for the member
 
 ## 5. Data model
 - `Get_MemberDetails`: MemberName, FamilyName, Father, Mother (UI_HouseholdMember), FormerSpouses (list),
-  ParentHouseholdId [types.ts, calls.md]. `Get_ParentHouseholdDetails`: Out_siblingRelations (list of UI_HouseholdMember).
+  ParentHouseholdId [types.ts, calls.md]. `Get_SibllingsRelations`: Out_siblingRelations (list of UI_HouseholdMember).
 - UI_HouseholdMember defaults: HouseholdId `'0'`, HasNavigation **True**, HasCTAs False, texts `""`
   [migration/sources/contract/Connect_Household_CS.model.js:250-315].
 - Block variables: UserAge_Visibility False, isLoading **True**, ShowNotesSheet False [B:86-94]; screen PageTitle "" [S:13].
@@ -123,7 +123,7 @@ Original CSS only (routes add none). Captured: avatar xl (98×98) for the member
 | # | Old call | Kind | Trigger | Inputs | Output used | Server side | React |
 |---|---|---|---|---|---|---|---|
 | 1 | `…/HouseholdRelations_Block/DataActionGet_MemberDetails` | Data action (on demand) | OnReady → Action_Refresh_Get_MemberDetails [B:2111-2182, 2077-2110] | screen vars HouseholdId, MemberId, UserAge_Visibility, isLoading, ShowNotesSheet | all outputs | unknown (no MCP) | `callAction('UBTConnect','HouseholdRelations_Block/DataActionGet_MemberDetails')` |
-| 2 | `…/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` | Data action (on demand) | OnAfterFetch_Get_MemberDetails [B:1688-1725] | same | Out_siblingRelations | unknown; OutSystems also sends the Get_MemberDetails record (calls.md "Screen variables"), likely for ParentHouseholdId | same pattern |
+| 2 | `…/HouseholdRelations_Block/DataActionGet_SibllingsRelations` | Data action (on demand) | OnAfterFetch_Get_MemberDetails [B:1688-1725] | same | Out_siblingRelations | unknown; OutSystems also sends the Get_MemberDetails record (calls.md "Screen variables"), likely for ParentHouseholdId | same pattern |
 | 3 | `…/HouseholdRelations_Block/DataActionFetchNotes` | Data action (on demand) | never refreshed in B (not in capture) | — | — | — | not called |
 | — | GetSignedImagesInBulk, GetUserInformation, bottom bar and app-start calls | shared/shell | — | — | — | — | shared mocks |
 Observed: #1 and #2 once each (calls.md #4, #5). All three data actions are on demand (`dataFetchDependenciesOriginal`
@@ -136,14 +136,14 @@ Observed: #1 and #2 once each (calls.md #4, #5). All three data actions are on d
 | isLoading | True | Actions_DefineLoading [B:1726-1770] | second SkeletonSection, Relations condition |
 | UserAge_Visibility | False | OnReady [B:2160] | data action inputs |
 | ShowNotesSheet | False | Handler_AddNotes / Handler_OnNotesSheetClosed [B:1917-1966] | NotesSheet In_IsOpen |
-| Get_MemberDetails, Get_ParentHouseholdDetails, FetchNotes | record defaults, status Fetching | data actions, OnInitialize, note handlers | view |
+| Get_MemberDetails, Get_SibllingsRelations, FetchNotes | record defaults, status Fetching | data actions, OnInitialize, note handlers | view |
 
 - OnInitialize [B:1793-1878]:
   - Nothing happens when the view was restored from cache, or when either data action is already fetched.
   - Otherwise: Father/Mother.Title "Loading", Id -1, HouseholdId -1, and two sibling rows {FirstName "Loading", MemberRole ""}.
 - OnReady [B:2111-2182]: GetUserInformation_Wrapper; if restored from cache and DisplayAge unchanged → stop;
   UserAge_Visibility = DisplayAge; Action_Refresh_Get_MemberDetails: isLoading = True, refresh Get_MemberDetails →
-  OnAfterFetch: RelationsDetails_Fetched(FamilyName) → screen PageTitle; refresh Get_ParentHouseholdDetails;
+  OnAfterFetch: RelationsDetails_Fetched(FamilyName) → screen PageTitle; refresh Get_SibllingsRelations;
   Actions_DefineLoading(False): isLoading = not fetched/no error on both [B:1750].
 - View cache (P-BACK): variables kept through `useViewState`; restored view uses `useWasRestoredFromCache`.
 
@@ -157,6 +157,21 @@ if Father.HouseholdId<>0 or Mother.HouseholdId<>0 or FormerSpouses not empty or 
    Household section if siblings not empty [B:1239]; sibling chevron if HasNavigation [B:1389]
 else "No relation or household information avaialble." [B:1496-1503] (not captured)
 NotesSheet always rendered ($if(false) else branch) [B:1508-1511]
+```
+Live TST 2026-11-07 (migration/sources/pretty/UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js, "L:"):
+```
+SkeletonSection 2 condition adds "or NoDisplaySiblings not empty"                        [L:636]
+Relations section only if Get_MemberDetails.ParentHouseholdId <> ""                     [L:637]
+   if AwayParents.HouseholdId<>0: one MemberRelation_ListItem (Title only, empty 52px placeholder,
+      click → OnClick_Member(AwayParents...), chevron if Father.HasNavigation → OnClick_Member(Father...)) [L:690-861]
+   else Father / Mother rows as before; In_Relation = Father/Mother.Description                 [L:875, 1052]
+Household section if Get_SibllingsRelations not empty or NoDisplaySiblings not empty    [L:1433-1436]
+   list of Get_SibllingsRelations if not empty; list of NoDisplaySiblings if not empty; a NoDisplaySiblings row
+   reads its photo, chevron condition and chevron click from Get_SibllingsRelations.Current      [L:1678-1880]
+else "No relation or household information available." (typo fixed)                   [L:1891]
+MemberRelation_ListItem: the Relation container is visible only when In_Relation <> ""
+   (UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js:344)
+OnAfterFetch_Get_MemberDetails: refresh Get_SibllingsRelations only if ParentHouseholdId <> "0"  [L:2093-2099]
 ```
 Captured: default (data), loading and offline (= OnInitialize skeleton: "Loading" father/mother, 2 empty sibling rows).
 
@@ -186,7 +201,7 @@ sequenceDiagram
   alt success
     API-->>B: MemberName, FamilyName, Father, Mother, FormerSpouses
     B-->>S: RelationsDetails_Fetched(FamilyName) → PageTitle
-    B->>API: DataActionGet_ParentHouseholdDetails
+    B->>API: DataActionGet_SibllingsRelations
     API-->>B: Out_siblingRelations
     B->>B: isLoading = False
   else CommunicationException
@@ -221,7 +236,7 @@ localities, married captions.
 
 ## 13. Accessibility, platform and security notes
 No native branch in this route. Data actions return person data; server-side authorization of Get_MemberDetails /
-Get_ParentHouseholdDetails is not visible from the browser (backend phase). HasAccessToRegion is a client check only.
+Get_SibllingsRelations is not visible from the browser (backend phase). HasAccessToRegion is a client check only.
 
 ## 13a. Feature flags
 Shared children (BottomBarMenu, NotesSheet, layout) read the 6 flags in pack.md. The user decided all of them on
@@ -236,7 +251,7 @@ Shared children (BottomBarMenu, NotesSheet, layout) read the 6 flags in pack.md.
 
 ## 15. Acceptance criteria
 1. default/loading/offline match the capture (sections 3, 8).
-2. Calls: Get_MemberDetails then Get_ParentHouseholdDetails on load, once each; FetchNotes never (section 6).
+2. Calls: Get_MemberDetails then Get_SibllingsRelations on load, once each; FetchNotes never (section 6).
 3. Header title = FamilyName after the fetch (section 7).
 4. Relation click → HouseholdDetails?HouseholdId=… or upgrade dialog (section 9).
 
@@ -249,13 +264,30 @@ Shared children (BottomBarMenu, NotesSheet, layout) read the 6 flags in pack.md.
   uBT_IconSize nonStandard_14) are route constants in `components/staticEntities.ts` with their TST values.
 - Data actions send the block variables HouseholdId, MemberId, UserAge_Visibility, isLoading, ShowNotesSheet (contract
   inputs). OutSystems also sends the Get_MemberDetails record as screen data (calls.md). The React app does not send it.
-  The backend phase decides how Get_ParentHouseholdDetails finds the parent household.
+  The backend phase decides how Get_ParentHouseholdDetails finds the parent household. Since the live TST of
+  2026-11-07 the sibling call is DataActionGet_SibllingsRelations (same inputs; sync item, user option a).
+- AwayParents branch (live TST 2026-11-07, no capture): mock scenario `awayParents` sends fictional AwayParents
+  "Hugo & María Vitale". The default scenario keeps HouseholdId 0, as the capture shows the father and the mother.
+- NoDisplaySiblings branch (live TST 2026-11-07, no capture): mock scenario `noDisplaySiblings` sends one fictional
+  sibling (Martina Vitale, married). Its photo and chevron use row 0 of Get_SibllingsRelations.
+  RecordList.getCurrent outside its own list gives the iterator row, or 0 when there is none.
+  The row after an iteration is not verified.
 - Q1 → A (answered by the user, auto-accepted 2026-10-15; the 3 exemptions are merged into `migration/parity-exemptions.json`) [questions.md Q1]: add the 3 capture-artifact exemptions drafted in
   `proposed-exemptions.json`. Parity before the exemptions: default position 1 + pixel 1, loading class 3, offline clean; nothing else.
 - Shared CRs (CR-HouseholdDetails-1, CR-SupperMeeting_Details-1; both applied [CR-HouseholdDetails-1.md, CR-SupperMeeting_Details-1.md]): no parity difference of this route comes
   from them. The father/mother avatars change EntityId (-1 → id) after the fetch. So the UBT_LazyImage fix of
   CR-SupperMeeting_Details-1 §1 may add one GetSignedImagesInBulk call. Today the route makes 11 calls vs 12 captured
   (covered by CALL-COUNT-SIGNED-IMAGES-BATCH). No work-around in the route.
+
+- TST sync 2026-11-07: the away-parents row and the NoDisplaySiblings list have no capture; mock data is fictional. Confirm this is enough.
+- TST sync 2026-11-07: a NoDisplaySiblings row reads its photo and chevron from row 0 of Get_SibllingsRelations (compiled code only). Confirm this behaviour.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files changed: `UBTConnect.Directory_Household.HouseholdRelations_Block.mvc.js`, `UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem.mvc.js`.
+- Fresh capture (analysis/calls.json, parity default): the call `DataActionGet_SibllingsRelations` replaces `DataActionGet_ParentHouseholdDetails`. The offline skeleton now shows the fixed text "Household" and no Relation line.
+- React code now: the sibling call runs after Get_MemberDetails only when ParentHouseholdId is not "0"; Get_MemberDetails maps AwayParents, NoDisplaySiblings and Description. The view has the away-parents row, the NoDisplaySiblings list and the parent relation text from Description. It hides an empty Relation line.
+- Evidence: HouseholdRelations_Block.mvc.js lines 636, 637, 690-861, 1433-1436, 1678-1880, 2093-2099; MemberRelation_ListItem.mvc.js line 344. Parity of default, loading and offline: 0 differences, call 0.
 
 ## Change requests
 None: every block the route composes exists; no `<NotCaptured>` in the route.

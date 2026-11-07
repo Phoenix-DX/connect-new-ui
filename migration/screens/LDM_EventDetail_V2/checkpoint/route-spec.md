@@ -162,6 +162,14 @@ shared blocks only (connect_LaunchDarkly_PermissionCheck, App_PIN_BiometricEnabl
 - With the Q2 cloneQuery, the diagnostic parity is default style 6 + position 1 (both covered). Loading and offline
   are clean.
 - Without the Q2 cloneQuery, default shows "No event information." (EventId 0).
+- 2026-11-07 sync: exemption `DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2` (user, 2026-11-07, "ok all").
+  The photo `background-image` of the host and the four guests keeps the TST signed URLs. The mock uses the neutral placeholder.
+- 2026-11-07 sync: exemption `DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2-PIXEL` (user, 2026-11-07).
+  The pixel difference of the default state is only at these five photos (5 to 11.99 % of the page).
+- 2026-11-07 sync: exemption `CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-HOSTNAME-WIDTH` (user, 2026-11-07).
+  The capture masks the host name. The title span width differs (82 px in TST, 110 to 161 px in the build). Width only.
+- Follow-up: the page mocks override the shared alias in `app/src/mocks/fictional/ldm.ts` (88271 to the pending meal
+  70415) with the published meal 70296 for event 88271. The shared file is outside the route scope and is unchanged.
 
 ## 17. Patterns used
 P-PARAMS, P-STATES, P-DATA, P-MOCKS, P-CALLS, P-BACK, P-LIST, P-FLAGS, P-DIALOG.
@@ -171,3 +179,15 @@ Route files: `app/src/screens/LDM_EventDetail_V2/{index.tsx,types.ts,api.ts,mock
 (ScreenBlock_EventDetail_V2, EventsDetail_Content, EventDetail_Banner, EventDetail_HostCard, EventDetail_Section,
 EventDetail_ListItem, EventDetail_SpecialNeeds_ListItem, actions.ts). Shared mock module extended:
 `app/src/mocks/fictional/ldm.ts` (eventCalendarDetail, coordinatorDetails, householdCoordinates, ldmEventById).
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files that changed: none (brief: "Changed TST files: -"). The data of the captured event changed.
+- Fresh capture (2026-11-06, EventId 88271): the event is now a published guest meal. The host card shows a host photo
+  (`div.event-detail-photo`), a three-line address and the "Directions" button. The page shows four guest households.
+  Evidence: `analysis/dom/default.html` (`event-detail-hostcard-address`, `b1-List_Guests`).
+- React code: the markup was already correct (0 structure and class differences). The page mocks now answer EventId
+  88271 with a published meal (host name, address, four guests of the captured lengths). Evidence:
+  `app/src/pages/LDM_EventDetail_V2/mocks.ts` (`CAPTURED_EVENT_ID`, `asCaptured`),
+  `app/src/pages/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx:150`.
+- Parity after the change: default, loading and offline have 0 unexempted differences (`test.md`).

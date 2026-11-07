@@ -1,13 +1,23 @@
 {
- "finishedAt": "2026-10-16T06:56:24",
+ "finishedAt": "2026-11-07T16:34:34",
  "files": {
-  "src/screens/MessageDetail/api.ts": "d63f939b9ec64801",
-  "src/screens/MessageDetail/components/NotificationDetailBlock.tsx": "7d533dbe1424033b",
-  "src/screens/MessageDetail/components/ScreenBlock_MessageDetail.tsx": "bc95a5da923cd269",
-  "src/screens/MessageDetail/components/actions.ts": "c6097cbcd3a89367",
-  "src/screens/MessageDetail/components/staticEntities.ts": "9b5b23c672e58daa",
-  "src/screens/MessageDetail/index.tsx": "e99ccca4ef846912",
-  "src/screens/MessageDetail/mocks.ts": "20938eb8caf4e2b3",
-  "src/screens/MessageDetail/types.ts": "495f8d5357f6ba4f"
+  "src/pages/MessageDetail/MessageDetail.test.tsx": "09a94a39e523db7a",
+  "src/pages/MessageDetail/MessageDetailPage.tsx": "3a237d48232f37af",
+  "src/pages/MessageDetail/actions.test.ts": "eaa79e945e491ec7",
+  "src/pages/MessageDetail/actions.ts": "25b52f83d010be6c",
+  "src/pages/MessageDetail/components/EmptyShareDetailCard_ExtendedFlow.tsx": "06a19dd69b85f463",
+  "src/pages/MessageDetail/components/MessageDetailView.test.tsx": "fa72487759e0c6c8",
+  "src/pages/MessageDetail/components/MessageDetailView.tsx": "ad2bd08eb0f2e92c",
+  "src/pages/MessageDetail/components/NotificationDetailBlock.test.tsx": "33fc812b6f52cfb5",
+  "src/pages/MessageDetail/components/NotificationDetailBlock.tsx": "fa10c75bbfec4d2c",
+  "src/pages/MessageDetail/components/ShareObjectDetail_ExtendedShare.test.tsx": "f850d8909a5857c4",
+  "src/pages/MessageDetail/components/ShareObjectDetail_ExtendedShare.tsx": "879f0d17c99396c9",
+  "src/pages/MessageDetail/hooks/shareObjectDetailState.ts": "21b229fc354dc04f",
+  "src/pages/MessageDetail/hooks/useMessageDetail.test.tsx": "50e7d3784c0d08ca",
+  "src/pages/MessageDetail/hooks/useMessageDetail.ts": "cd9b74fd5167296d",
+  "src/pages/MessageDetail/hooks/useShareObjectDetail.test.tsx": "4ba43ecb7e27af18",
+  "src/pages/MessageDetail/hooks/useShareObjectDetail.ts": "07021880bbc2fc69",
+  "src/pages/MessageDetail/inputs.ts": "2226cd6cbac8a836",
+  "src/pages/MessageDetail/mocks.ts": "0174d30b966b1954"
  }
 }

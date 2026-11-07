@@ -147,9 +147,9 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 3. `ActionSync_Info_GetMain` (200) at 5569 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7937 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10681 ms
+- 3. `ActionSync_Info_GetMain` (200) at 5889 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9029 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11288 ms
 - plus 4 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

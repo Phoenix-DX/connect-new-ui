@@ -1,0 +1,539 @@
+import { act, render, renderHook } from '@testing-library/react';
+import { StrictMode, type ReactNode } from 'react';
+import { MemoryRouter } from 'react-router';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  fetchHouseholdRelationNotes,
+  fetchMemberRelations,
+  fetchSiblingRelations,
+  type HouseholdMember,
+  type MemberRelations,
+  type SiblingRelations,
+} from '@/api/household';
+import { addC2Bookmark } from '@/api/bookmark';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
+import {
+  CommunicationException,
+  ControllerDisposedException,
+  IgnorableSystemException,
+  OutOfContextException,
+  ViewHasChangedException,
+} from '@/legacy/os/os-exceptions';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
+import { getUserInformation } from '@/platform/session/userInfo';
+import { getLocal_Bookmark_C2, hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import { toggleBookmarkItem_C2 } from '@/lib/ubtConnectUtils/actions';
+import { householdRelationsReducer, MEMBER_DEFAULTS } from './householdRelationsState';
+import { useHouseholdRelations, type HouseholdRelationsFlows } from './useHouseholdRelations';
+
+/** The reducer as a spy, so a test sees every state write. */
+vi.mock('./householdRelationsState', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('./householdRelationsState')>();
+  return { ...actual, householdRelationsReducer: vi.fn(actual.householdRelationsReducer) };
+});
+vi.mock('@/api/household', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/household')>()),
+  fetchHouseholdRelationNotes: vi.fn(),
+  fetchMemberRelations: vi.fn(),
+  fetchSiblingRelations: vi.fn(),
+}));
+vi.mock('@/api/bookmark', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/bookmark')>()),
+  addC2Bookmark: vi.fn(),
+}));
+vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
+  getUserInformation: vi.fn(),
+}));
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
+  hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
+  getLocal_Bookmark_C2: vi.fn(() => Promise.resolve(false)),
+}));
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
+  toggleBookmarkItem_C2: vi.fn(() => Promise.resolve()),
+}));
+vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/dialogs')>()),
+  showUpgradePopUp: vi.fn(() => Promise.resolve()),
+}));
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
+const navigate = vi.hoisted(() => vi.fn());
+/** On: the hook gets the platform navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    useOsNavigate: () => {
+      const platform = actual.useOsNavigate();
+      return platformNavigation.on ? platform : navigate;
+    },
+  };
+});
+/** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), read by useFlowState. */
+const viewCache = vi.hoisted(() => ({ restored: false }));
+vi.mock('@/platform/navigation/hooks', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/navigation/hooks')>()),
+  useWasRestoredFromCache: () => viewCache.restored,
+}));
+
+/* The flows of HouseholdRelations_Block, with the calls, the user information, the access check and the navigation
+   replaced by spies. Fictional relatives. */
+const inputs = { householdId: '6100', memberId: '6101' };
+const relative = (patch: Partial<HouseholdMember>): HouseholdMember => ({
+  ...MEMBER_DEFAULTS,
+  HouseholdId: '6200',
+  LocalityName: 'Valdivia',
+  CountryName: 'Chile',
+  ...patch,
+});
+const memberRelations: MemberRelations = {
+  MemberName: 'Matías Fuentes',
+  FamilyName: 'The Fuentes',
+  Father: relative({ Id: '6201', Title: 'Óscar Fuentes' }),
+  Mother: relative({ Id: '6202', Title: 'Carmen Rojas' }),
+  FormerSpouses: [],
+  ParentHouseholdId: '6200',
+  AwayParents: { Title: '', HouseholdId: '0', LocalityName: '', CountryName: '' },
+  NoDisplaySiblings: [],
+};
+const siblingRelations: SiblingRelations = {
+  Out_siblingRelations: [relative({ Id: '6203', Title: 'Isabel' }), relative({ Id: '6204', Title: 'Joaquín' })],
+};
+
+/** The user information with DisplayAge. */
+function userWithDisplayAge(displayAge: boolean) {
+  const user = mockUserInformation();
+  return {
+    ...user,
+    Directory_UserCurrent: {
+      ...user.Directory_UserCurrent,
+      Directory_UserCurrent_Visibility: {
+        ...user.Directory_UserCurrent.Directory_UserCurrent_Visibility,
+        DisplayAge: displayAge,
+      },
+    },
+  };
+}
+
+/** A promise that the test resolves or rejects. */
+function pending<T>() {
+  let resolve: (value: T) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  const promise = new Promise<T>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { promise, resolve, reject };
+}
+
+const events = { onRelationsDetailsFetched: vi.fn() };
+const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
+const renderFlows = () => renderHook(() => useHouseholdRelations(inputs, events), { wrapper });
+/** The hook as the dev server renders it: StrictMode runs the mount effects twice. Returns the newest result. */
+function renderStrict() {
+  const latestResult: { current: HouseholdRelationsFlows | null } = { current: null };
+  function Probe() {
+    latestResult.current = useHouseholdRelations(inputs, events);
+    return null;
+  }
+  render(
+    <StrictMode>
+      <MemoryRouter>
+        <Probe />
+      </MemoryRouter>
+    </StrictMode>,
+  );
+  return latestResult;
+}
+/** Lets the flows that started finish (their awaits resolve before the next task). */
+const settle = () => act(() => new Promise((resolve) => setTimeout(resolve, 0)));
+
+beforeEach(() => {
+  vi.clearAllMocks();
+  viewCache.restored = false;
+  setSignedInUser(MOCK_USER_ID);
+  vi.mocked(getUserInformation).mockResolvedValue(userWithDisplayAge(true));
+  vi.mocked(fetchMemberRelations).mockResolvedValue(memberRelations);
+  vi.mocked(fetchSiblingRelations).mockResolvedValue(siblingRelations);
+});
+afterEach(() => {
+  setSignedInUser(null);
+});
+
+describe('useHouseholdRelations', () => {
+  it('shows the skeleton records before the first answer (OnInitialize)', () => {
+    vi.mocked(getUserInformation).mockReturnValue(new Promise(() => undefined));
+    const { result } = renderFlows();
+    expect(result.current.isMemberDetailsLoading).toBe(true);
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.father).toMatchObject({ Title: 'Loading', Id: '-1', HouseholdId: '-1' });
+    expect(result.current.mother).toMatchObject({ Title: 'Loading', Id: '-1', HouseholdId: '-1' });
+    expect(result.current.siblings).toHaveLength(2);
+    expect(result.current.formerSpousesFetchStatus).toBe(DataFetchStatus.Fetching);
+  });
+
+  it('does not refresh Get_SibllingsRelations when ParentHouseholdId is "0" (live TST), and ends the loading', async () => {
+    vi.mocked(fetchMemberRelations).mockResolvedValue({ ...memberRelations, ParentHouseholdId: '0' });
+    const { result } = renderFlows();
+    await settle();
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    expect(fetchSiblingRelations).not.toHaveBeenCalled();
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  it('gives the away parents and the NoDisplaySiblings of Get_MemberDetails to the view', async () => {
+    const awayParents = {
+      Title: 'Óscar & Carmen Fuentes',
+      HouseholdId: '6210',
+      LocalityName: 'Valdivia',
+      CountryName: 'Chile',
+    };
+    const extra = relative({ Id: '6205', Title: 'Valeria' });
+    vi.mocked(fetchMemberRelations).mockResolvedValue({
+      ...memberRelations,
+      AwayParents: awayParents,
+      NoDisplaySiblings: [extra],
+    });
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.awayParents).toEqual(awayParents);
+    expect(result.current.noDisplaySiblings).toEqual([extra]);
+  });
+
+  it('loads the member, raises RelationsDetails_Fetched, then loads the siblings and ends the loading', async () => {
+    const { result } = renderFlows();
+    await settle();
+    const sent = {
+      HouseholdId: '6100',
+      MemberId: '6101',
+      UserAge_Visibility: true,
+      isLoading: true,
+      ShowNotesSheet: false,
+    };
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    expect(fetchMemberRelations).toHaveBeenCalledWith(sent);
+    expect(fetchSiblingRelations).toHaveBeenCalledTimes(1);
+    expect(fetchSiblingRelations).toHaveBeenCalledWith(sent);
+    expect(vi.mocked(fetchMemberRelations).mock.invocationCallOrder[0]).toBeLessThan(
+      vi.mocked(events.onRelationsDetailsFetched).mock.invocationCallOrder[0] ?? 0,
+    );
+    expect(vi.mocked(events.onRelationsDetailsFetched).mock.invocationCallOrder[0]).toBeLessThan(
+      vi.mocked(fetchSiblingRelations).mock.invocationCallOrder[0] ?? 0,
+    );
+    expect(events.onRelationsDetailsFetched).toHaveBeenCalledWith('The Fuentes');
+    expect(result.current).toMatchObject({
+      isMemberDetailsLoading: false,
+      isLoading: false,
+      memberName: 'Matías Fuentes',
+      father: memberRelations.Father,
+      mother: memberRelations.Mother,
+      formerSpouses: [],
+      formerSpousesFetchStatus: DataFetchStatus.Fetched,
+      siblings: siblingRelations.Out_siblingRelations,
+      siblingsFetchStatus: DataFetchStatus.Fetched,
+    });
+  });
+
+  it('a restored view with the same age visibility fetches nothing', async () => {
+    viewCache.restored = true;
+    vi.mocked(getUserInformation).mockResolvedValue(userWithDisplayAge(false));
+    const { result } = renderFlows();
+    await settle();
+    expect(getUserInformation).toHaveBeenCalledTimes(1);
+    expect(fetchMemberRelations).not.toHaveBeenCalled();
+    // No skeleton on a restored view: the saved record (here the defaults) stays.
+    expect(result.current.siblings).toEqual([]);
+    // OnInitialize reads no bookmark on a restored view (live mvc.js:2226-2228): IsBookmarked keeps the saved value.
+    expect(getLocal_Bookmark_C2).not.toHaveBeenCalled();
+    expect(result.current.isBookmarked).toBe(false);
+  });
+
+  it('a restored view with another age visibility fetches again', async () => {
+    viewCache.restored = true;
+    const { result } = renderFlows();
+    await settle();
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    expect(fetchSiblingRelations).toHaveBeenCalledTimes(1);
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  it('a failed Get_MemberDetails sets its status to Error and goes to the flow handler', async () => {
+    const error = new CommunicationException('The connection has timed out');
+    vi.mocked(fetchMemberRelations).mockRejectedValue(error);
+    const { result } = renderFlows();
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(result.current.isMemberDetailsLoading).toBe(false);
+    expect(result.current.formerSpousesFetchStatus).toBe(DataFetchStatus.Error);
+    expect(result.current.isLoading).toBe(true);
+    expect(fetchSiblingRelations).not.toHaveBeenCalled();
+    expect(events.onRelationsDetailsFetched).not.toHaveBeenCalled();
+  });
+
+  it('a ViewHasChangedException keeps the status Fetching', async () => {
+    vi.mocked(fetchMemberRelations).mockRejectedValue(new ViewHasChangedException());
+    const { result } = renderFlows();
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(result.current.isMemberDetailsLoading).toBe(true);
+  });
+
+  it('a failed Get_SibllingsRelations sets its status to Error and keeps the loading', async () => {
+    vi.mocked(fetchSiblingRelations).mockRejectedValue(new CommunicationException('The connection has timed out'));
+    const { result } = renderFlows();
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(result.current.siblingsFetchStatus).toBe(DataFetchStatus.Error);
+    expect(result.current.memberName).toBe('Matías Fuentes');
+    expect(result.current.isLoading).toBe(true);
+  });
+
+  it('OnInitialize reads the bookmark of the member (GetLocal_Bookmark_C2) before Get_MemberDetails', async () => {
+    vi.mocked(getLocal_Bookmark_C2).mockResolvedValueOnce(true);
+    const { result } = renderFlows();
+    await settle();
+    expect(getLocal_Bookmark_C2).toHaveBeenCalledTimes(1);
+    expect(getLocal_Bookmark_C2).toHaveBeenCalledWith('Member', '6101');
+    expect(vi.mocked(getLocal_Bookmark_C2).mock.invocationCallOrder[0]).toBeLessThan(
+      vi.mocked(fetchMemberRelations).mock.invocationCallOrder[0] ?? 0,
+    );
+    expect(result.current.isBookmarked).toBe(true);
+  });
+
+  it('OnClick_Bookmark: ToggleBookmarkItem_C2 with IsBookmarked, then IsBookmarked flips', async () => {
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledTimes(1);
+    expect(toggleBookmarkItem_C2).toHaveBeenCalledWith('6101', 'Member', false, expect.anything());
+    expect(result.current.isBookmarked).toBe(true);
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(toggleBookmarkItem_C2).toHaveBeenLastCalledWith('6101', 'Member', true, expect.anything());
+    expect(result.current.isBookmarked).toBe(false);
+  });
+
+  it('OnClick_Bookmark: IsBookmarked flips also when AddBookmark2 answers Success False', async () => {
+    const actual = await vi.importActual<typeof import('@/lib/ubtConnectUtils/actions')>(
+      '@/lib/ubtConnectUtils/actions',
+    );
+    vi.mocked(toggleBookmarkItem_C2).mockImplementationOnce(actual.toggleBookmarkItem_C2);
+    vi.mocked(addC2Bookmark).mockResolvedValueOnce({ Success: false, Bookmark_Added: { Id: '0', DateCreatedUtc: '' } });
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickBookmark();
+    });
+    await settle();
+    expect(addC2Bookmark).toHaveBeenCalledWith('Member', '6101');
+    expect(result.current.isBookmarked).toBe(true);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('OnClick_Member opens the household of the relative, or the upgrade popup without access', async () => {
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onClickMember(memberRelations.Father);
+    });
+    await settle();
+    expect(hasAccessToRegion).toHaveBeenCalledWith('Valdivia', 'Chile');
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '6200' });
+
+    vi.mocked(hasAccessToRegion).mockResolvedValueOnce(false);
+    act(() => {
+      result.current.onClickMember(memberRelations.Mother);
+    });
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(navigate).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      result.current.onClickMember({ ...memberRelations.Mother, CountryName: '' });
+    });
+    await settle();
+    expect(hasAccessToRegion).toHaveBeenCalledTimes(2);
+  });
+
+  it('Handler_AddNotes fetches the notes, then opens the sheet; the sheet keeps the notes that it changes', async () => {
+    const { result } = renderFlows();
+    await settle();
+    vi.mocked(fetchHouseholdRelationNotes).mockResolvedValueOnce({ Total: 1, Note_Item_List: [{ Id: '40' }] });
+    act(() => {
+      result.current.onAddNotes();
+    });
+    expect(result.current.isNotesSheetOpen).toBe(false);
+    await settle();
+    expect(fetchHouseholdRelationNotes).toHaveBeenCalledTimes(1);
+    expect(result.current.notes).toEqual({ Total: 1, Note_Item_List: [{ Id: '40' }] });
+    expect(result.current.isNotesSheetOpen).toBe(true);
+    act(() => {
+      result.current.onNotesChanged({ Total: 2, Note_Item_List: [{ Id: '41' }, { Id: '42' }] });
+    });
+    act(() => {
+      result.current.onNoteDeleted('41');
+    });
+    expect(result.current.notes).toEqual({ Total: 1, Note_Item_List: [{ Id: '42' }] });
+    act(() => {
+      result.current.onNotesSheetClosed();
+    });
+    expect(result.current.isNotesSheetOpen).toBe(false);
+  });
+});
+
+describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, item 8)', () => {
+  /* The data actions Get_MemberDetails and Get_SibllingsRelations are R1 (flow.fetch): after the unmount their
+     answer and their failure are dropped, and the OnAfterFetch steps (the event, the sibling refresh,
+     Actions_DefineLoading) do not run. Action_Refresh_Get_MemberDetails after GetUserInformation_Wrapper is an own
+     action of the block (R3). */
+  const raisedErrors = () =>
+    vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error]) => error)
+      .filter((error) => !(error instanceof IgnorableSystemException));
+  afterEach(() => {
+    platformNavigation.on = false;
+    resetNavigation();
+  });
+
+  it('R3: after an unmount during GetUserInformation_Wrapper, Action_Refresh_Get_MemberDetails (flow.own) stops: no call, no state write', async () => {
+    const user = pending<ReturnType<typeof userWithDisplayAge>>();
+    vi.mocked(getUserInformation).mockReturnValue(user.promise);
+    const { unmount } = renderFlows();
+    unmount();
+    vi.mocked(householdRelationsReducer).mockClear();
+    user.resolve(userWithDisplayAge(true));
+    await settle();
+    expect(fetchMemberRelations).not.toHaveBeenCalled();
+    expect(householdRelationsReducer).not.toHaveBeenCalled();
+    // The own action throws ControllerDisposedException (ensureControllerAlive); the handler ignores it.
+    const isFlowScope = (scope: unknown) => typeof (scope as { alive?: unknown } | undefined)?.alive === 'function';
+    const raised = vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error, scope]) => [error instanceof ControllerDisposedException, isFlowScope(scope)]);
+    expect(raised).toEqual([[true, true]]);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: OnClick_Bookmark (flow.own) after the unmount does not toggle: ControllerDisposedException only', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const { onClickBookmark } = result.current;
+    unmount();
+    onClickBookmark();
+    await settle();
+    expect(toggleBookmarkItem_C2).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('after an unmount during Get_MemberDetails: no event, no sibling call, no state write', async () => {
+    const answer = pending<MemberRelations>();
+    vi.mocked(fetchMemberRelations).mockReturnValue(answer.promise);
+    const { unmount } = renderFlows();
+    await settle();
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(householdRelationsReducer).mockClear();
+    answer.resolve(memberRelations);
+    await settle();
+    expect(events.onRelationsDetailsFetched).not.toHaveBeenCalled();
+    expect(fetchSiblingRelations).not.toHaveBeenCalled();
+    expect(householdRelationsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: after an unmount during Get_MemberDetails, its failure reaches no handler and writes no state', async () => {
+    const answer = pending<MemberRelations>();
+    vi.mocked(fetchMemberRelations).mockReturnValue(answer.promise);
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    vi.mocked(householdRelationsReducer).mockClear();
+    answer.reject(new CommunicationException('The connection has timed out'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+    expect(householdRelationsReducer).not.toHaveBeenCalled();
+  });
+
+  it('R1: after an unmount during Get_SibllingsRelations: no state write; a failure reaches no handler', async () => {
+    const answer = pending<SiblingRelations>();
+    vi.mocked(fetchSiblingRelations).mockReturnValue(answer.promise);
+    const { unmount } = renderFlows();
+    await settle();
+    expect(events.onRelationsDetailsFetched).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(householdRelationsReducer).mockClear();
+    answer.reject(new CommunicationException('The connection has timed out'));
+    await settle();
+    expect(householdRelationsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2: HasAccessToRegion (a module action) answers after the unmount: the upgrade popup still shows', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const access = pending<boolean>();
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(access.promise);
+    act(() => {
+      result.current.onClickMember(memberRelations.Mother);
+    });
+    unmount();
+    access.resolve(false);
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R4: OnClick_Member whose HasAccessToRegion answers after the user left: no navigation, the flow stops', async () => {
+    platformNavigation.on = true;
+    const screen: { current: HouseholdRelationsFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useHouseholdRelations(inputs, events);
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/Household_Relations': <Screen />, '/UBTConnect/Updates': <p>Updates</p> },
+      '/UBTConnect/Household_Relations',
+    );
+    await settle();
+    const access = pending<boolean>();
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(access.promise);
+    act(() => {
+      screen.current?.onClickMember(memberRelations.Father);
+    });
+    await act(() => router.navigate('/UBTConnect/Updates'));
+    access.resolve(true);
+    await settle();
+    expect(at()).toBe('/UBTConnect/Updates');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('in StrictMode: one Get_MemberDetails, one Get_SibllingsRelations and one event', async () => {
+    const result = renderStrict();
+    await settle();
+    // useFlowState runs OnReady once in StrictMode (item 8, flow scope).
+    expect(getUserInformation).toHaveBeenCalledTimes(1);
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    expect(fetchSiblingRelations).toHaveBeenCalledTimes(1);
+    expect(events.onRelationsDetailsFetched).toHaveBeenCalledTimes(1);
+    expect(result.current?.isLoading).toBe(false);
+    expect(result.current?.siblings).toEqual(siblingRelations.Out_siblingRelations);
+  });
+});

@@ -34,6 +34,8 @@ export const appendRows = <T>(rows: ListRow<T>[], nextKey: number, cards: T[]) =
 /** GetLocalityHouseholds as the view reads it. */
 export interface LocalityHouseholdListState {
   isDataFetched: boolean;
+  /** GetLocalityHouseholds failed: its DataFetchStatus is Error (the List shows `list-error`, dom/offline.html). */
+  hasFetchError: boolean;
   list: LocalityHousehold[];
 }
 
@@ -50,16 +52,23 @@ const householdSkeleton = (): LocalityHousehold => ({
 /** ScreenEvent_OnInitialize: an empty list gets three skeleton records. */
 export const INITIAL_LOCALITY_HOUSEHOLD_LIST: LocalityHouseholdListState = {
   isDataFetched: false,
+  hasFetchError: false,
   list: [householdSkeleton(), householdSkeleton(), householdSkeleton()],
 };
 
-/** GetLocalityHouseholds answered, or OnAfterFetch_GetLocalityHouseholds_Bookmarks set the bookmarks of its rows. */
-type LocalityHouseholdListAction = { type: 'householdsFetched'; list: LocalityHousehold[] };
+type LocalityHouseholdListAction =
+  /** GetLocalityHouseholds answered, or OnAfterFetch_GetLocalityHouseholds_Bookmarks set the bookmarks of its rows. */
+  | { type: 'householdsFetched'; list: LocalityHousehold[] }
+  /** GetLocalityHouseholds failed: the list keeps its rows. */
+  | { type: 'householdsFailed' };
 
 export const localityHouseholdListReducer = (
-  _state: LocalityHouseholdListState,
+  state: LocalityHouseholdListState,
   action: LocalityHouseholdListAction,
-): LocalityHouseholdListState => ({ isDataFetched: true, list: action.list });
+): LocalityHouseholdListState =>
+  action.type === 'householdsFailed'
+    ? { ...state, hasFetchError: true }
+    : { isDataFetched: true, hasFetchError: false, list: action.list };
 
 /** IsBookmarked of a row from GetLocal_Bookmark: the same record when the value does not change. */
 export const withBookmark = (household: LocalityHousehold, isBookmarked: boolean): LocalityHousehold =>

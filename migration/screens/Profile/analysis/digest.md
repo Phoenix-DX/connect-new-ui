@@ -56,8 +56,11 @@ Layouts.Layout_HomePage
         ConnectPatterns.IconInline_Internal
       BasePatterns.CustomText
         ConnectPatterns.IconInline_Internal
-      BasePatterns.CustomText
-        ConnectPatterns.IconInline_Internal
+      BasePatterns.CustomContainer
+        BasePatterns.Columns_Two
+          Adaptive.Columns2
+            BasePatterns.CustomText
+              ConnectPatterns.IconInline_Internal
       BasePatterns.CustomText
         ConnectPatterns.IconInline_Internal
       BasePatterns.Columns_Two
@@ -78,11 +81,15 @@ Layouts.Layout_HomePage
           Adaptive.Columns2
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
+      BasePatterns.CustomText
+        ConnectPatterns.IconInline_Internal
       BasePatterns.CustomContainer
         BasePatterns.Columns_Two
           Adaptive.Columns2
             BasePatterns.CustomText
               ConnectPatterns.IconInline_Internal
+      BasePatterns.CustomText
+        ConnectPatterns.IconInline_Internal
   ConnectPatterns.FixedFooter
     BasePatterns.CustomContainer
       BasePatterns.Columns_Two
@@ -346,32 +353,23 @@ App_Profile.Profile_HouseholdPreview
                               BasePatterns.CustomText
                                 ConnectPatterns.IconInline_Internal
                               BasePatterns.CustomContainer
-                        ConnectCorePatterns.Member_ListItem
-                          BasePatterns.Columns_Three
-                            Adaptive.Columns3
-                              CW_Image.UBT_LazyImage
-                                ConnectPatterns.SkeletonSection
-                                  ConnectPatterns.LazyImage
-                                    ConnectPatterns.SkeletonSection
+                                Directory_CommonBlocks.Directory_EntityDetailsActions
+                                  ConnectPatterns.SkeletonSection
+                                    ConnectCorePatterns.ActionsMenu
                                       BasePatterns.CustomContainer
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                              BasePatterns.CustomContainer
-                        ConnectCorePatterns.Member_ListItem
-                          BasePatterns.Columns_Three
-                            Adaptive.Columns3
-                              CW_Image.UBT_LazyImage
-                                ConnectPatterns.SkeletonSection
-                                  ConnectPatterns.LazyImage
-                                    ConnectPatterns.SkeletonSection
-                                      BasePatterns.CustomContainer
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                              BasePatterns.CustomText
-                                ConnectPatterns.IconInline_Internal
-                              BasePatterns.CustomContainer
+                                        ConnectPatterns.CircleButton_IconPrimary
+                                          ConnectPatterns.CircleButton_WithLabel
+                                            ConnectPatterns.CircleButton
+                                              BasePatterns.CustomContainer
+                                                ConnectPatterns.Icon
+                                            BasePatterns.CustomContainer
+                                  CW_CTA_PopUps.ContactByMessage_Wrapper
+                                    CW_CTA_PopUps.ContactPopup_ByMessage
+                                      CW_CTA_PopUps.ContactPopup
+                                  CW_CTA_PopUps.ContactPopup_ByPhone
+                                    CW_CTA_PopUps.ContactPopup
+                                  CW_CTA_PopUps.SharePopup
+                                    CW_CTA_PopUps.ContactPopup
               SubLayout.SubLayout_DirectoryDetailScreen_Section
                 BasePatterns.CustomContainer
                   Layouts.SubLayout_Section
@@ -381,6 +379,7 @@ App_Common_Blocks_PopupDialogs.Dialog_CustomChoice
   ConfirmationDialogs.ActionConfirmationDialog
 CW_Notes.NotesSheet
 CW_Share.ShareSheet
+CW_Notes.NotesSheet
 CW_Notes.NotesSheet
 CW_Notes.NotesSheet
 ```
@@ -415,7 +414,7 @@ CW_Notes.NotesSheet
 - Client actions / event handlers: `onChange_SubdivionDropdown`, `action_RefreshSubdivionList`, `event_AgeConfirmation_Confirm`, `cacheControl_AllLocalitiesResult`, `onClick_ViewPreview`, `event_HouseholdPreview_OnInitialized`, `onClick_Back`, `cacheControl_AllSubdivisionsResult`, `onClick_UBTAccountNumber`, `onChange_LocalityDropdown`, `event_Layout_OnReadyEvent`, `cacheControl_UserInfo_WrapperResult`, `onClick_Save`, `action_FormatAddress`, `onChange_Fields`, `onChange_ShowAgeSwitch`, `event_OnBackNavigation_ConfirmDiscard`, `onAfterFetch_GetCountryInfo`, `screenEvent_OnReady`
 - navigateBack calls: 1
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
-- Static entities / flags: `uBT_Color.neutral0`, `uBT_FontSize.small`, `uBT_FontWeight.regular`, `uBT_Icons2.arrowLeftAlt`, `uBT_Size.base`, `uBT_Size.medium`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.column`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_ImageSize.square`, `connect_Entity.member`, `uBT_Color.neutral8`, `uBT_FontSize.heading2`, `uBT_FontWeight.semiBold`, `uBT_Size.small`, `uBT_Color.primary`, `uBT_FontSize.base`, `uBT_IconsSize.medium_20`, `uBT_Icons2.idCard`, `uBT_Color.neutral10`, `uBT_FontSize.heading6`, `uBT_Icons2.contentCopy`, `uBT_Color.neutral7`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontSize.extraSmall`, `uBT_Size.extraSmall`, `uBT_Shadow.extraSmallTop`, `uBT_ButtonSize.medium`
+- Static entities / flags: `uBT_Color.neutral0`, `uBT_FontSize.small`, `uBT_FontWeight.regular`, `uBT_Icons2.arrowLeftAlt`, `uBT_Size.base`, `uBT_Size.medium`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_FlexDirection.column`, `uBT_ImageSize.doubleExtraLarge_176`, `uBT_ImageSize.square`, `connect_Entity.member`, `uBT_Color.neutral8`, `uBT_FontSize.heading2`, `uBT_FontWeight.semiBold`, `uBT_Size.small`, `uBT_Color.primary`, `uBT_FontSize.base`, `uBT_IconsSize.medium_20`, `uBT_Icons2.idCard`, `uBT_Color.neutral10`, `uBT_FontSize.heading6`, `uBT_Icons2.contentCopy`, `uBT_Color.neutral7`, `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FontSize.extraSmall`, `uBT_Shadow.extraSmallTop`, `uBT_ButtonSize.medium`
 
 ## `UBTConnectLibrary.Layouts.Layout_HomePage.mvc.js`
 | variable | kind | type | default |
@@ -921,6 +920,7 @@ CW_Notes.NotesSheet
 | variable | kind | type | default |
 |---|---|---|---|
 | HouseholdCoordinates | output | Record | `OS.DataTypes.ImmutableBase.getData(new APIDomain_Directory_ISModel.Directory_CoordinatesRec())` |
+| Out_ImageDetails | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Directory_ImageDetailsList())` |
 | Household | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Household_CSModel.UI_Screen_HouseholdDetailsRec())` |
 | Out_HouseholdMembers | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList())` |
 | Out_NonHouseholdMembers | output | RecordList | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_HouseholdMemberList())` |
@@ -943,15 +943,16 @@ CW_Notes.NotesSheet
 | In_IsSkeletonOnly | input | Boolean | `false` |
 | In_HideActions | input | Boolean | `false` |
 | GetHousehold_Coordinates | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetHousehold_CoordinatesDataActRec())` |
+| GetHouseHold_Gallery | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetHouseHold_GalleryDataActRec())` |
 | GetHousehold | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new GetHouseholdDataActRec())` |
-- Data actions: `DataActionGetHousehold_Coordinates` → `screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates`, `DataActionGetHousehold` → `screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold`
+- Data actions: `DataActionGetHousehold_Coordinates` → `screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates`, `DataActionGetHouseHold_Gallery` → `screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery`, `DataActionGetHousehold` → `screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold`
 - Lifecycle handlers: Initialize, ParametersChanged
-- Client actions / event handlers: `handler_OnClickMember`, `directory_EntityDetailsActionsOnChange_Bookmark`, `handler_OnShare`, `action_HandlePreviewData`, `screenEvent_OnInitialize`, `handler_OnClickPhotobook`, `handler_OnClickNavigateTomarriedChildren_Household`, `refresh_GetHouseholdDetail`, `handler_OnMenuEdit`, `onChangeTag`, `onClick_NavigateToSupperMeeting`, `onAfterFetch_GetHouseholdDetail`, `refresh_GetHouseholdCoordinates`, `checkUserAccessToHousehold`, `action_SetHideActionsPhotobook`, `onClick_NavigateToLocality`, `checUserAwayHouseholdAccess`, `handler_CloseShareSheet`, `screenEvent_OnReady`, `screenEvent_OnParametersChanged`, `handler_TimelinePhotoSelected`, `householdDataFetched`
+- Client actions / event handlers: `handler_OnClickMember`, `directory_EntityDetailsActionsOnChange_Bookmark`, `handler_OnShare`, `action_HandlePreviewData`, `screenEvent_OnInitialize`, `handler_OnClickPhotobook`, `handler_OnClickNavigateTomarriedChildren_Household`, `refresh_GetHouseholdDetail`, `handler_OnMenuEdit`, `onChangeTag`, `refresh_GetHouseHold_Gallery`, `onClick_NavigateToSupperMeeting`, `onAfterFetch_GetHousehold`, `getHouseHold_GalleryOnAfterFetch`, `refresh_GetHouseholdCoordinates`, `checkUserAccessToHousehold`, `action_SetHideActionsPhotobook`, `onClick_NavigateToLocality`, `checUserAwayHouseholdAccess`, `handler_CloseShareSheet`, `screenEvent_OnReady`, `screenEvent_OnParametersChanged`, `handler_TimelinePhotoSelected`, `householdDataFetched`
 - Navigation: `/UBTConnect/Household_Relations`(HouseholdId, MemberId); `/UBTConnect/Photobook`(In_HouseholdId, In_LocalityId); `/UBTConnect/HouseholdDetails`(HouseholdId); `/UBTConnect/Profile`(); `/UBTConnect/SupperMeeting_Details`(In_SubdivsionId); `/UBTConnect/Locality_Details`(PreloadedLocalityLabel, LocalityId)
 - JavaScript nodes: `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.RefreshesJS`, `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.CheckRestoredJS`, `UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnParametersChanged.RefreshesJS`
 - Feedback messages: `"Photobook is currently unavailable for this household. Please try again later.", /*Info*/ 0)`
 - Static entities / flags: `uBT_ImageCardType.detail`, `uBT_ImageSize.maxWidth_100vw`, `connect_Entity.household`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.spaceBetween`, `uBT_FlexDirection.row`, `uBT_Size.small`, `uBT_Size.extraSmall`, `uBT_Color.info`, `uBT_FontSize.small`, `uBT_FontWeight.regular`, `uBT_Icons2.lock`, `uBT_IconsSize.nonStandard_16`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_Color.neutral10`, `uBT_Color.neutral8`, `uBT_Icons2.homePIn`, `uBT_Color.primary`, `uBT_Icons2.cottage`, `launchDarkly_FF.mobileDirectoryHouseholdGallery`, `uBT_Color.neutral3`, `uBT_Shape.large`, `uBT_Color.neutral7`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Color.neutral9`, `uBT_ColumnBehaviour.reduceLast`
-- Candidate static strings: `Refresh_GetHouseholdDetail` | `Refresh_GetHouseholdCoordinates`
+- Candidate static strings: `Refresh_GetHouseholdDetail` | `Refresh_GetHouseholdCoordinates` | `Refresh_GetHouseHold_Gallery`
 
 ## `UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc.js`
 | variable | kind | type | default |
@@ -996,7 +997,8 @@ CW_Notes.NotesSheet
 | In_HorizontalPadding | input | Text | `""` |
 | ExtendedClasses | input | Text | `""` |
 | isEnabled | input | Boolean | `true` |
-- Client actions / event handlers: `tagToggleToggle`, `changed`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `tagToggleToggle`, `onParametersChanged`, `changed`
 
 ## `UBTConnectLibrary.ConnectPatterns.TagToggle.mvc.js`
 | variable | kind | type | default |
@@ -1166,6 +1168,7 @@ CW_Notes.NotesSheet
 | NoteCategoryId | local | Text | `""` |
 | EntityNotes | local | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
 | FetchNoteId | local | Text | `""` |
+| PendingOpen | local | Boolean | `false` |
 | IsEnabled | input | Boolean | `true` |
 | EntityType | input | Text | `""` |
 | EntityId | input | LongInteger | `OS.DataTypes.LongInteger.defaultValue` |
@@ -1177,14 +1180,14 @@ CW_Notes.NotesSheet
 | FetchNotes | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchNotesDataActRec())` |
 - Data actions: `DataActionFetchContactDetails` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails`, `DataActionFetchNotes` → `screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchNotes`
 - Lifecycle handlers: Ready, ParametersChanged
-- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
+- Client actions / event handlers: `handler_OnNotesSheetClosed`, `handler_OpenNotesSheetDeferred`, `handleFetchError`, `onParametersChanged`, `action_AsyncRefresh_ContactDetails`, `handler_OnSheetNotesChanged`, `handle_Share_Others`, `handler_AddNotesOnClick`, `handle_Bookmark`, `action_ApplyPopUpOverrides`, `handler_OnNoteDeleted`, `handle_Mail_Page`, `onReady`, `action_UpdateContactDetails`, `handle_Mail`, `handle_Share`, `onAfterFetch_FetchNotes`, `action_UpdateBookmarksAndNotes`, `handle_Call`, `handle_Share_Connect`, `action_RefreshFetchNotes`, `handle_ClosedShareSheet`, `onAfterFetch_FetchContactDetails`, `viewDetails_OnClick`, `onChange_Bookmark`, `event_MenuEdit`
 - Navigation: `/UBTConnect/ContactByEmailMember`(In_ContactName, In_ContactSurname, In_EmailTo, In_ContactLocality, In_EntityType, In_EntityId, In_ContactCountry, In_AvatarURL); `/UBTConnect/ContactByEmailOneSchoolGlobal`(In_ContactName, In_EmailTo); `/UBTConnect/LegacyShareObject`(In_ShareObjectTypeId, In_ObjectId)
-- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
+- JavaScript nodes: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handler_OnNotesSheetClosed.JavaScript1JS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Mail_Page.YieldJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.OnReady.CheckRestoredJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Action_UpdateContactDetails.AsynRefreshJS`, `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$controller.Handle_Share_Connect.YieldJS`
 - Exceptions handled: NotRegisteredException, CommunicationException, UserException
 - Static entities / flags: `connect_Entity.interchange`, `uBT_SystemExceptionTypes.notRegisteredException`, `connect_Entity.oneSchoolGlobal`, `connect_Entity.member`, `connect_Entity.locality`, `connect_Entity.household`, `connect_Entity.supperMeetings_aka_Subdivisions`
 - Client variables: getBookmarks_IsSynched, getNotes_IsSynched
 - Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`
-- Candidate static strings: `Action_AsyncRefresh_ContactDetails`
+- Candidate static strings: `Handler_OpenNotesSheetDeferred` | `Action_AsyncRefresh_ContactDetails`
 
 ## `UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.mvc.js`
 | variable | kind | type | default |
@@ -1355,30 +1358,34 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3279 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 6851 ms
-- 3. `DataActionGetCacheInfo` (200) at 6902 ms
-- 4. `DataActionGetHousehold` (200) at 7258 ms
-- 5. `ActionGetSignedImagesInBulk` (200) at 7260 ms
-- 6. `DataActionGetHousehold_Coordinates` (200) at 7284 ms
-- 7. `DataActionFetchContactDetails` (200) at 7333 ms
-- 8. `DataActionGetCountryInfo` (200) at 7341 ms
-- 9. `ActionSync_Info_GetMain` (200) at 7342 ms
-- 10. `DataActionFetchNotes` (200) at 7523 ms
-- 11. `DataActionFetchContactDetails` (200) at 7559 ms
-- 12. `ActionGetSignedImagesInBulk` (200) at 7574 ms
-- 13. `DataActionFetchContactDetails` (200) at 7611 ms
-- 14. `DataActionFetchContactDetails` (200) at 7618 ms
-- 15. `DataActionGetHousehold` (200) at 7664 ms
-- 16. `DataActionFetchContactDetails` (200) at 7665 ms
-- 17. `DataActionFetchContactDetails` (200) at 7706 ms
-- 18. `DataActionFetchContactDetails` (200) at 7708 ms
-- 19. `ActionGetNumberUnreadMessages` (200) at 7976 ms
-- 20. `DataActionFetchContactDetails` (200) at 8061 ms
-- 21. `DataActionFetchContactDetails` (200) at 8080 ms
-- 22. `DataActionFetchContactDetails` (200) at 8082 ms
-- 23. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10888 ms
-- 24. `ServiceAPIFetchData_CacheableHouseholds` (200) at 14290 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2059 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 4657 ms
+- 3. `DataActionGetCacheInfo` (200) at 4758 ms
+- 4. `DataActionGetHousehold_Coordinates` (200) at 5049 ms
+- 5. `DataActionGetHousehold` (200) at 5071 ms
+- 6. `DataActionFetchContactDetails` (200) at 5076 ms
+- 7. `DataActionGetCountryInfo` (200) at 5096 ms
+- 8. `DataActionGetHouseHold_Gallery` (200) at 5117 ms
+- 9. `ActionSync_Info_GetMain` (200) at 5144 ms
+- 10. `DataActionFetchNotes` (200) at 5317 ms
+- 11. `ActionGetSignedImagesInBulk` (200) at 5397 ms
+- 12. `ActionGetSignedImagesInBulk` (200) at 5400 ms
+- 13. `DataActionGetHousehold` (200) at 5422 ms
+- 14. `DataActionFetchContactDetails` (200) at 5423 ms
+- 15. `DataActionFetchContactDetails` (200) at 5430 ms
+- 16. `ActionGetNumberUnreadMessages` (200) at 5438 ms
+- 17. `DataActionFetchContactDetails` (200) at 5471 ms
+- 18. `DataActionFetchContactDetails` (200) at 5477 ms
+- 19. `DataActionFetchContactDetails` (200) at 5489 ms
+- 20. `DataActionFetchContactDetails` (200) at 5514 ms
+- 21. `DataActionFetchContactDetails` (200) at 5540 ms
+- 22. `DataActionFetchContactDetails` (200) at 5733 ms
+- 23. `DataActionFetchContactDetails` (200) at 5896 ms
+- 24. `DataActionFetchContactDetails` (200) at 5897 ms
+- 25. `DataActionFetchContactDetails` (200) at 5923 ms
+- 26. `DataActionFetchContactDetails` (200) at 6104 ms
+- 27. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7223 ms
+- 28. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9909 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

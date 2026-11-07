@@ -1,4 +1,5 @@
 import type { CountrySummary } from '@/api/country';
+import type { CommunityStatistics } from '@/api/member';
 import type { Directory_UserCurrent } from '@/lib/ubtConnectUtils/structures';
 
 /** The variables of the screen CountryList, the reducer and the client actions. Pure; the flows are in
@@ -21,8 +22,23 @@ export interface UserGeography {
   countryLocalityCount: string;
 }
 
+/** The screen data action GetCommunityStatistics (refresh only): IsDataFetched and Out_CommunityStatistics, read by
+    Directory_CommunityNumbers $b18 (fresh TST capture of 2026-11-07, CountryList.mvc.js:774-778). */
+export interface CountryListCommunityStatistics {
+  isDataFetched: boolean;
+  out: CommunityStatistics;
+}
+
+/** GetCommunityStatistics before its first answer: not fetched, the empty UI_CommunityStatistics record. */
+export const NO_COMMUNITY_STATISTICS: CountryListCommunityStatistics = {
+  isDataFetched: false,
+  out: { In_Change: 0, In_CountriesCount: 0, In_HouseholdCount: 0, In_LocalitiesCount: 0, In_MembersCount: 0 },
+};
+
 /** The variables of the screen. */
 export interface CountryListState {
+  /** GetCommunityStatistics. */
+  communityStatistics: CountryListCommunityStatistics;
   /** GetCountriesStatistics.Out_CountriesStatistics (the skeleton rows while loading). */
   countries: CountrySummary[];
   fetchStatus: CountriesFetchStatus;
@@ -50,6 +66,7 @@ export const NO_USER_GEOGRAPHY: UserGeography = {
 
 /** The variables after OnInitialize (the screen has no OnInitialize: the defaults). */
 export const INITIAL_COUNTRY_LIST_STATE: CountryListState = {
+  communityStatistics: NO_COMMUNITY_STATISTICS,
   countries: [],
   fetchStatus: 'notFetched',
   isDataFetched: false,

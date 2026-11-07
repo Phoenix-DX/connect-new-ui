@@ -1,30 +1,35 @@
-# FeedBlock_CommunityPopulation
+# Community numbers (Directory_CommunityNumbers)
 
-OutSystems: `UBTConnect.Home.FeedBlock_CommunityPopulation` · pack
-`migration/blocks/UBTConnect.Home.FeedBlock_CommunityPopulation.md`
+## Directory_CommunityNumbers (`CommunityNumbers.tsx`)
 
-Inputs, events, placeholders: none. Click (OnClick_Block) → `/UBTConnect/Updates_SingleList`.
+OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers` and its child block
+`Directory_CommunityNumbers__Number` (fresh TST capture of 2026-11-07; compiled code
+`migration/sources/pretty/UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers*.mvc.js`). TST replaced
+FeedBlock_CommunityPopulation with this block (the "COMMUNITY BY THE NUMBERS" card) on HomeFeed and on CountryList.
 
-The component renders from props only:
+| Prop                  | Input                  | What it is                                                                  |
+| --------------------- | ---------------------- | --------------------------------------------------------------------------- |
+| `isLoading`           | In_IsLoading           | The owner data action has not answered (not IsDataFetched): SkeletonSection |
+| `communityStatistics` | In_CommunityStatistics | UI_CommunityStatistics: members, change, households, localities, countries  |
 
-| Prop        | What it is                                                                          |
-| ----------- | ----------------------------------------------------------------------------------- |
-| `isLoading` | DataActionFetchCount has not answered yet: `00000` inside a loading SkeletonSection |
-| `total`     | TotalNumberOfMembers (text); `0` after an error                                     |
-| `onClick`   | OnClick_Block: the caller opens Updates_SingleList                                  |
+No events. The owner screen runs `DataActionGetCommunityStatistics` in OnReady and gives its answer (HomeFeed:
+`useHomeFeedReady`; CountryList: `useCountryList`, Action_RefreshData_CommunityStatistics). Local_CommunityStatistics
+as compiled: OnReady sets every count to 1000 while loading (the skeleton shows "1,000" and "+1,000");
+OnParametersChanged copies the input when not loading. The change shows an up arrow and "+n" in green (n > 0), a down
+arrow and "-" + FormatCurrency(n) in red (n < 0), nothing and "No change today" (n = 0). FormatCurrency(…, "", 0, "",
+","): "," between groups of three digits.
 
-Data: `DataActionFetchCount` (contract `UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount`, recorded). The
-callers (HomeFeed, CountryList) fetch it with `useCommunityPopulationQuery` of `api/member` (no cache, no retry; a
-failure logs "DataActionFetchCount failed"). Mock (`mocks.ts`): the recorded fixture (aggregate count, no person data).
-FormatDecimal(…, 0, "", ","): no group separator.
+Mock (`mocks.ts`): `HomeFeed/DataActionGetCommunityStatistics`, fictional counts with the captured lengths (the
+answer is not recorded); countries 17 as captured. `pages/CountryList/mocks.ts` answers
+`CountryList/DataActionGetCommunityStatistics` with the same counts (`fictionalCommunityStatistics`; the CountryList
+capture has the same lengths).
 
-## Captured variants (2 tested)
+Captures: `__captures__/numbers-default.html` (HomeFeed/default, story `Loaded`), `numbers-loading.html`
+(HomeFeed/loading and offline, story `Loading`). CountryList/default, loading and offline show the same markup. Not
+captured: the negative and zero change (stories `ChangeDown`, `NoChange`, compiled code only).
 
-| Capture | Source                               | What it shows                         |
-| ------- | ------------------------------------ | ------------------------------------- |
-| v1      | pack variant 1, CountryList/default  | wrapper only (nested block collapsed) |
-| v2      | `HomeFeed/analysis/dom/default.html` | full card, count loaded (masked text) |
+Icons: the four `SVG_Community*` icons of the shared IconSvg (`img/UBTConnectLibrary.Community*.svg`, fetched
+read-only from TST). Members 40 px (`icon-non-standard-40`), the other three 24 px (`icon-base`).
 
-## Not captured / not settled
-
-- The loading state (skeleton, story `Loading`) and the error state: from the compiled code only, tested.
+FeedBlock_CommunityPopulation (`CommunityPopulation.tsx`, its DataActionFetchCount) is gone from TST: removed from this
+folder on 2026-11-07, when CountryList, its last user, moved to this block.

@@ -1156,3 +1156,138 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-06,AssembleDetail,fix,165000,sub-assemble,,"first real capture 2026-11-06: id aliases, menu placeholder empty, ids as captured; shared ResultItemBadge px size and NoteList 44px"
 2026-11-06,ContactByEmailLDMCoordinator,fix,95000,sub-ldmcoord,,first real capture 2026-11-06 (via LDM_EventDetail_V2): markup already 1:1; two capture artefacts
 2026-11-06,GuestArrangements,fix,210000,sub-guestarr,,"first real capture 2026-11-06 (via MilestoneDetail): TST id alias, Herrera arrangements reshaped; shared SectionExpandable StrictMode fix"
+2026-11-07,sync,other,131886,explore-pipeline,sonnet,sync wave plan 2026-11-06
+2026-11-07,sync,other,131886,explore-arch-gates,sonnet,sync wave plan 2026-11-06
+2026-11-07,sync,other,153266,explore-agent-team,sonnet,sync wave plan 2026-11-06
+2026-11-07,sync,other,135094,plan-review,fable,sync wave plan 2026-11-06
+2026-11-07,sync,analyze,100792,triage-reader-3,sonnet,"triage 2026-11-07, 10 routes, 15 calls"
+2026-11-07,sync,analyze,92178,triage-reader-2,sonnet,"triage 2026-11-07, 10 routes, 16 calls"
+2026-11-07,sync,analyze,107807,triage-reader-1,sonnet,"triage 2026-11-07, 10 routes, 21 calls"
+2026-11-07,sync,analyze,114103,triage-judge,opus,"triage 2026-11-07, 30 routes, 19 calls"
+2026-11-07,MessageDetail,fix,43411,sync-dev,sonnet,sync MessageDetail
+2026-11-07,Menu,fix,49588,sync-dev,sonnet,sync Menu
+2026-11-07,MessageList,fix,38722,sync-dev,sonnet,sync MessageList
+2026-11-07,Menu,fix,54590,sync-dev,sonnet,sync Menu
+2026-11-07,MessageDetail,fix,48487,sync-dev,sonnet,sync MessageDetail
+2026-11-07,MessageList,verify,33093,sync-test,sonnet,sync MessageList
+2026-11-07,MessageDetail,fix,49226,sync-dev,sonnet,sync MessageDetail
+2026-11-07,ContactByEmailMember,fix,49641,sync-dev,opus,sync ContactByEmailMember
+2026-11-07,Menu,verify,29855,sync-test,sonnet,sync Menu
+2026-11-07,LDM_EventDetail_V2,fix,72534,sync-dev,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,verify,28848,sync-test,sonnet,sync MessageDetail
+2026-11-07,ContactByEmailMember,verify,34785,sync-test,sonnet,sync ContactByEmailMember
+2026-11-07,Menu,verify,27952,sync-test,sonnet,sync Menu
+2026-11-07,Household_Relations,fix,144917,sync-dev,opus,sync Household_Relations
+2026-11-07,LDM_MyEvents_V2,fix,120190,sync-dev,opus,sync LDM_MyEvents_V2
+2026-11-07,Menu,other,36534,sync-docs,sonnet,sync Menu
+2026-11-07,ContactByEmailMember,fix,24441,sync-dev,opus,sync ContactByEmailMember loop 1
+2026-11-07,OrbitAdminLanding,fix,167567,sync-dev,opus,sync OrbitAdminLanding
+2026-11-07,ContactByEmailMember,verify,33005,sync-test,sonnet,sync ContactByEmailMember loop 1
+2026-11-07,ContactByEmailMember,other,30155,sync-docs,sonnet,sync ContactByEmailMember loop 1
+2026-11-07,Profile,fix,124747,sync-dev,opus,sync Profile
+2026-11-07,NotificationDetails,fix,125355,sync-dev,opus,sync NotificationDetails
+2026-11-07,BrowseCountries,fix,89414,sync-dev,sonnet,sync BrowseCountries
+2026-11-07,Profile,fix,136459,sync-dev,opus,sync Profile
+2026-11-07,BrowseCountries,verify,36171,sync-test,sonnet,sync BrowseCountries
+2026-11-07,Profile,verify,36152,sync-test,sonnet,sync Profile
+2026-11-07,Household_Relations,fix,77822,sync-dev,opus,sync Household_Relations
+2026-11-07,OrbitAdminLanding,fix,73177,sync-dev,opus,sync OrbitAdminLanding
+2026-11-07,BrowseCountries,other,35264,sync-docs,sonnet,sync BrowseCountries
+2026-11-07,Profile,other,34342,sync-docs,sonnet,sync Profile
+2026-11-07,Assemble_BrowseByCountry,fix,28474,sync-dev,sonnet,sync Assemble_BrowseByCountry
+2026-11-07,AssembleEvents,fix,33678,sync-dev,sonnet,sync AssembleEvents
+2026-11-07,Assemble_BrowseByCountry,verify,25905,sync-test,sonnet,sync Assemble_BrowseByCountry
+2026-11-07,AssembleEvents,verify,28328,sync-test,sonnet,sync AssembleEvents
+2026-11-07,Assemble_BrowseByCountry,other,28038,sync-docs,sonnet,sync Assemble_BrowseByCountry
+2026-11-07,AssembleEvents,other,30299,sync-docs,sonnet,sync AssembleEvents
+2026-11-07,Household_Relations,verify,32703,sync-test,sonnet,sync Household_Relations
+2026-11-07,OrbitAdminLanding,verify,39511,sync-test,sonnet,sync OrbitAdminLanding
+2026-11-07,OrbitAdminLanding,other,42217,sync-docs,sonnet,sync OrbitAdminLanding
+2026-11-07,Household_Relations,other,40779,sync-docs,sonnet,sync Household_Relations
+2026-11-07,NotificationDetails,fix,88067,sync-dev,opus,sync NotificationDetails
+2026-11-07,NotificationDetails,fix,4482,sync-dev,opus,sync NotificationDetails
+2026-11-07,HomeFeed,fix,206208,sync-dev,opus,sync HomeFeed
+2026-11-07,NotificationDetails,verify,39484,sync-test,sonnet,sync NotificationDetails
+2026-11-07,NotificationDetails,other,30781,sync-docs,sonnet,sync NotificationDetails
+2026-11-07,HomeFeed,fix,32060,sync-dev,opus,sync HomeFeed
+2026-11-07,HomeFeed,verify,34661,sync-test,sonnet,sync HomeFeed
+2026-11-07,HomeFeed,other,45570,sync-docs,sonnet,sync HomeFeed
+2026-11-07,CountryDetails,fix,52304,sync-dev,opus,sync CountryDetails
+2026-11-07,SupperMeeting_Carousel,fix,59092,sync-dev,opus,sync SupperMeeting_Carousel
+2026-11-07,OneSchoolGlobalDetails,fix,122958,sync-dev,opus,sync OneSchoolGlobalDetails
+2026-11-07,SupperMeeting_Carousel,fix,4970,sync-dev,opus,sync SupperMeeting_Carousel
+2026-11-07,SupperMeeting_Carousel,verify,34782,sync-test,sonnet,sync SupperMeeting_Carousel
+2026-11-07,SupperMeeting_Carousel,other,31324,sync-docs,sonnet,sync SupperMeeting_Carousel
+2026-11-07,CountryDetails,verify,34419,sync-test,sonnet,sync CountryDetails
+2026-11-07,OneSchoolGlobalDetails,fix,22753,sync-dev,opus,sync OneSchoolGlobalDetails
+2026-11-07,CountryDetails,other,37058,sync-docs,sonnet,sync CountryDetails
+2026-11-07,OneSchoolGlobalDetails,verify,0,sync-test,sonnet,sync OneSchoolGlobalDetails
+2026-11-07,OneSchoolGlobalDetails,verify,39614,sync-test,sonnet,sync OneSchoolGlobalDetails
+2026-11-07,Locality_Details,fix,223589,sync-dev,opus,sync Locality_Details
+2026-11-07,Search,fix,29587,sync-dev,opus,sync Search
+2026-11-07,OneSchoolGlobalDetails,other,31608,sync-docs,sonnet,sync OneSchoolGlobalDetails
+2026-11-07,CountryList,fix,145428,sync-dev,opus,sync CountryList
+2026-11-07,Locality_Details,fix,3438,sync-dev,opus,sync Locality_Details
+2026-11-07,Locality_Details,fix,6082,sync-dev,opus,sync Locality_Details
+2026-11-07,Search,verify,40612,sync-test,sonnet,sync Search
+2026-11-07,CountryList,fix,37700,sync-dev,opus,sync CountryList
+2026-11-07,Locality_Details,verify,34354,sync-test,sonnet,sync Locality_Details
+2026-11-07,Notifications,fix,334076,sync-dev,opus,sync Notifications
+2026-11-07,Search,other,33367,sync-docs,sonnet,sync Search
+2026-11-07,Locality_Details,other,39395,sync-docs,sonnet,sync Locality_Details
+2026-11-07,OrbitLanding,verify,26287,sync-test,sonnet,sync OrbitLanding
+2026-11-07,CountryList,verify,36113,sync-test,sonnet,sync CountryList
+2026-11-07,OrbitLanding,other,30510,sync-docs,sonnet,sync OrbitLanding
+2026-11-07,CountryList,other,28294,sync-docs,sonnet,sync CountryList
+2026-11-07,Notifications,fix,72137,sync-dev,opus,sync Notifications
+2026-11-07,Updates_SingleList,fix,0,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Updates_SingleList,fix,202905,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Notes,fix,44406,sync-dev,opus,sync Notes
+2026-11-07,Notes,verify,34988,sync-test,sonnet,sync Notes loop 1
+2026-11-07,HouseholdCarousel,fix,99681,sync-dev,opus,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,fix,3261,sync-dev,opus,sync HouseholdCarousel
+2026-11-07,Bookmarks,fix,88970,sync-dev,opus,sync Bookmarks
+2026-11-07,Notes,fix,24572,sync-dev,opus,sync Notes loop 1
+2026-11-07,HouseholdCarousel,verify,33671,sync-test,sonnet,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,other,0,sync-docs,sonnet,sync HouseholdCarousel
+2026-11-07,HouseholdCarousel,other,28572,sync-docs,sonnet,sync HouseholdCarousel
+2026-11-07,Notes,verify,0,sync-test,sonnet,sync Notes loop 1
+2026-11-07,Notes,verify,32158,sync-test,sonnet,sync Notes loop 1
+2026-11-07,Bookmarks,verify,34406,sync-test,sonnet,sync Bookmarks
+2026-11-07,Notes,other,0,sync-docs,sonnet,sync Notes loop 1
+2026-11-07,Notes,other,33361,sync-docs,sonnet,sync Notes loop 1
+2026-11-07,Bookmarks,other,0,sync-docs,sonnet,sync Bookmarks
+2026-11-07,Bookmarks,other,45262,sync-docs,sonnet,sync Bookmarks
+2026-11-07,sync,other,85458,opus-decision-review,opus,review of the 9 open decisions 2026-11-07
+2026-11-07,Updates_SingleList,fix,10648,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Updates_SingleList,fix,3293,sync-dev,opus,sync Updates_SingleList
+2026-11-07,LegacyShareObject,verify,24823,sync-test,sonnet,sync LegacyShareObject
+2026-11-07,PINUnlock,verify,26697,sync-test,sonnet,sync PINUnlock
+2026-11-07,Updates_SingleList,verify,29992,sync-test,sonnet,sync Updates_SingleList
+2026-11-07,LegacyShareObject,other,27168,sync-docs,sonnet,sync LegacyShareObject
+2026-11-07,PINUnlock,other,22770,sync-docs,sonnet,sync PINUnlock
+2026-11-07,Updates_SingleList,other,0,sync-docs,sonnet,sync Updates_SingleList
+2026-11-07,Updates_SingleList,other,31567,sync-docs,sonnet,sync Updates_SingleList
+2026-11-07,LDM_EventDetail_V2,verify,28083,sync-test,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,verify,28508,sync-test,sonnet,sync MessageDetail
+2026-11-07,MessageList,verify,30407,sync-test,sonnet,sync MessageList
+2026-11-07,LDM_MyEvents_V2,verify,33368,sync-test,sonnet,sync LDM_MyEvents_V2
+2026-11-07,Notifications,verify,35616,sync-test,sonnet,sync Notifications
+2026-11-07,MessageList,other,34108,sync-docs,sonnet,sync MessageList
+2026-11-07,LDM_EventDetail_V2,other,34460,sync-docs,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,other,34097,sync-docs,sonnet,sync MessageDetail
+2026-11-07,Notifications,other,35995,sync-docs,sonnet,sync Notifications
+2026-11-07,LDM_MyEvents_V2,fix,26545,sync-dev,opus,sync LDM_MyEvents_V2 loop 1
+2026-11-07,Updates_SingleList,fix,2417,sync-dev,opus,sync Updates_SingleList
+2026-11-07,LDM_MyEvents_V2,verify,0,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,verify,31214,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,other,0,sync-docs,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,other,35488,sync-docs,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,AssembleDetail,fix,0,sync-dev,opus,sync AssembleDetail
+2026-11-07,AssembleDetail,fix,161539,sync-dev,opus,sync AssembleDetail
+2026-11-07,AssembleDetail,verify,0,sync-test,sonnet,sync AssembleDetail
+2026-11-07,AssembleDetail,verify,29091,sync-test,sonnet,sync AssembleDetail
+2026-11-07,AssembleDetail,other,0,sync-docs,sonnet,sync AssembleDetail
+2026-11-07,AssembleDetail,other,35726,sync-docs,sonnet,sync AssembleDetail
+2026-11-07,HomeFeed,fix,160000,master,fable,"2026-11-07 review feedback F2: stylesheet audit of all 55 captures, 5 live CSS files, css_sets re-run, SanitizedHtml id, full sweep"
+2026-11-07,_wave,other,120000,master,fable,"2026-11-07 sync wave close: confirm of 29 routes (restamp + 29 commits), exemption review (46 rules removed), CI, final sweep, docs"

@@ -2,7 +2,7 @@
  "screen": "AssembleDetail",
  "env": {
   "path": "/UBTConnect/AssembleDetail",
-  "collectedAt": "2026-11-06T09:04:52.252Z",
+  "collectedAt": "2026-11-06T19:52:12.905Z",
   "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
   "viewport": {
    "width": 390,
@@ -469,9 +469,9 @@
   }
  },
  "report": {
-  "maskedTexts": 7,
-  "keptTexts": 10,
-  "removedUserImages": 0,
+  "maskedTexts": 9,
+  "keptTexts": 13,
+  "removedUserImages": 2,
   "failed": []
  },
  "blocksOnPage": [
@@ -507,7 +507,6 @@
   "NewConnect_Utilities.NC_Card_Item_Visual",
   "Assemble.AssembleSummaryCard__Header",
   "Assemble.AssembleSummary_Card_Row",
-  "Assemble.AssembleCommon_VirtualMeetingURL",
   "CW_Notes.NoteListActions",
   "ConnectPatterns.Note_Item_List",
   "BasePatterns.CustomContainer",
@@ -524,6 +523,14 @@
   "Assemble.AssembleEventDetail_LocalitySubdivisionList",
   "NewConnect_Utilities.NC_Result_Item__Image",
   "NewConnect_Utilities.NC_Result_Item_Badge",
+  "Assemble.AssembleEventDetail_ContactList",
+  "Assemble.AssembleEventDetail_Contact",
+  "Reusable.Person_Contact_Options",
+  "CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy",
+  "CW_CTA_PopUps.ContactPopup_ByPhone",
+  "CW_CTA_PopUps.ContactPopup",
+  "CW_CTA_PopUps.ContactByMessage_Wrapper",
+  "CW_CTA_PopUps.ContactPopup_ByMessage",
   "ScrollAnchors.FocusScrollAnchorOnBack",
   "App_Common.BottomBarMenu",
   "App_Common.BottomBarContent",
@@ -2673,63 +2680,6 @@
    "clientVariables": [],
    "candidateStrings": []
   },
-  "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js": {
-   "file": "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js",
-   "displayName": [
-    "Assemble.AssembleCommon_VirtualMeetingURL"
-   ],
-   "variables": [
-    {
-     "name": "VirtualMeetingPlatform",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "VirtualMeetingURL",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "VirtualMeetingId",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    },
-    {
-     "name": "VirtualMeetingPassword",
-     "kind": "input",
-     "type": "Text",
-     "default": "\"\""
-    }
-   ],
-   "dataActions": [],
-   "aggregates": [],
-   "serverActions": [],
-   "navigation": [],
-   "navigateBack": 0,
-   "clientActions": [
-    "meetingInfo_Toggle",
-    "linkVirtualAddressOnClick"
-   ],
-   "lifecycle": [],
-   "referencedBlocks": [
-    "Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row",
-    "NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog",
-    "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails"
-   ],
-   "cssDependencies": [
-    "css/OutSystemsReactWidgets.css"
-   ],
-   "images": [],
-   "feedbackMessages": [],
-   "exceptions": [],
-   "jsNodes": [],
-   "staticEntities": [],
-   "clientVariables": [],
-   "candidateStrings": []
-  },
   "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js": {
    "file": "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
    "displayName": [
@@ -3826,6 +3776,516 @@
    "exceptions": [],
    "jsNodes": [],
    "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js": {
+   "file": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
+   "displayName": [
+    "Assemble.AssembleEventDetail_ContactList"
+   ],
+   "variables": [
+    {
+     "name": "AssembleEventContactList",
+     "kind": "local",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new Connect2_Assemble_MUIModel.AssembleEventContactList())"
+    },
+    {
+     "name": "IsDataFetched",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "AssembleEventContactIdList",
+     "kind": "input",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new OS.DataTypes.LongIntegerList())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady",
+    "emailContact",
+    "navigateTo_Household"
+   ],
+   "lifecycle": [
+    "Ready"
+   ],
+   "referencedBlocks": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc$controller.OnReady.WasCurrentViewRestoredFromCacheJS"
+   ],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js": {
+   "file": "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
+   "displayName": [
+    "Assemble.AssembleEventDetail_Contact"
+   ],
+   "variables": [
+    {
+     "name": "UnavailableContactValue",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"Unavailable\""
+    },
+    {
+     "name": "CallPopup",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByPhonePopupDataRec())"
+    },
+    {
+     "name": "ContactPopupData",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())"
+    },
+    {
+     "name": "IsDataFetched",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "AssembleEventContact",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new Connect2_Assemble_CSModel.AssembleEventContactRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "handler_ContactByMessage",
+    "handler_ContactByEmail",
+    "handler_ContactByMessage_Cancel",
+    "handler_OnClickHostContact",
+    "contactByPhonePopupEvent_Cancel",
+    "handler_OptionsCall",
+    "navigateTo_EmailContact",
+    "navigateTo_Household"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image",
+    "Connect2_LegacyShared.Reusable.Person_Contact_Options",
+    "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone",
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [
+    "\"Unfortunately, Email is not available\", /*Info*/ 0)",
+    "\"Unfortunately, Phone Number is not available\", /*Info*/ 0)"
+   ],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js": {
+   "file": "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+   "displayName": [
+    "Reusable.Person_Contact_Options"
+   ],
+   "variables": [
+    {
+     "name": "Phone",
+     "kind": "input",
+     "type": "PhoneNumber",
+     "default": "\"\""
+    },
+    {
+     "name": "MobilePhone",
+     "kind": "input",
+     "type": "PhoneNumber",
+     "default": "\"\""
+    },
+    {
+     "name": "WorkPhone",
+     "kind": "input",
+     "type": "PhoneNumber",
+     "default": "\"\""
+    },
+    {
+     "name": "EmailAddress",
+     "kind": "input",
+     "type": "Email",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "callClicked",
+    "emailClicked"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js": {
+   "file": "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js",
+   "displayName": [
+    "CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy"
+   ],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js": {
+   "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
+   "displayName": [
+    "CW_CTA_PopUps.ContactPopup_ByPhone"
+   ],
+   "variables": [
+    {
+     "name": "ContactPopupButtons",
+     "kind": "local",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonTextRecordList())"
+    },
+    {
+     "name": "In_CallPopupData",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByPhonePopupDataRec())"
+    },
+    {
+     "name": "In_ImageSizeId",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onInitialize",
+    "action_SetContactPopupButtons",
+    "onClick_CallButton",
+    "onParametersChanged",
+    "event_Call",
+    "event_Cancel"
+   ],
+   "lifecycle": [
+    "Initialize",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_ImageSize.extraLarge_100",
+    "uBT_Icons.callFill",
+    "uBT_Icons.homeFill",
+    "uBT_Icons.enterprise"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js": {
+   "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
+   "displayName": [
+    "CW_CTA_PopUps.ContactPopup"
+   ],
+   "variables": [
+    {
+     "name": "SkeletonButtonList",
+     "kind": "local",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonList())"
+    },
+    {
+     "name": "TargetTimeLabel",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ContactPopupData",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupDataRec())"
+    },
+    {
+     "name": "In_ContactPopupButtons",
+     "kind": "input",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonList())"
+    },
+    {
+     "name": "In_ImageSizeId",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "action_UpdateTargetTimeLabel",
+    "screenEvent_OnParametersChanged",
+    "screenEvent_OnInitialize",
+    "event_Clicked",
+    "event_Cancel"
+   ],
+   "lifecycle": [
+    "Initialize",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.SkeletonSection",
+    "UBTConnect_Utils.CW_Image.UBT_LazyImage",
+    "UBTConnectLibrary.ConnectPatterns.LazyImage",
+    "UBTConnectLibrary.ConnectPatterns.Button",
+    "UBTConnectLibrary.ConnectPatterns.IconText",
+    "UBTConnectLibrary.ConnectPatterns.Icon",
+    "NavigationHandler.NavigationHandler.PreventBackNavigation"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_ImageSize.extraLarge_100",
+    "uBT_Size.small",
+    "uBT_Size.base",
+    "uBT_Color.neutral10",
+    "uBT_FontSize.heading6",
+    "uBT_FontWeight.semiBold",
+    "uBT_Color.neutral7",
+    "uBT_FontSize.doubleExtraSmall",
+    "uBT_ImageSize.square",
+    "uBT_Shape.circle",
+    "uBT_Icons.imageGallery",
+    "uBT_Shape.none",
+    "uBT_Size.medium",
+    "uBT_ButtonSize.medium",
+    "uBT_ButtonType.primary",
+    "uBT_ButtonType.scondary",
+    "uBT_FlexBehavior.grow",
+    "uBT_IconSize.medium_20",
+    "uBT_ButtonType.tertiary",
+    "uBT_Icons.callFill"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js": {
+   "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+   "displayName": [
+    "CW_CTA_PopUps.ContactByMessage_Wrapper"
+   ],
+   "variables": [
+    {
+     "name": "IsWhatsAppAvailable",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "IsSignalAvailable",
+     "kind": "local",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "SignalBaseURI",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"sgnl://signal.me/#p/\""
+    },
+    {
+     "name": "WhatsAppBaseURI",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"whatsapp://send?phone=\""
+    },
+    {
+     "name": "ExternalAppPackageName",
+     "kind": "local",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ExternalAppPackageNameRec())"
+    },
+    {
+     "name": "In_ContactPopupData",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.UI_ContactByMessage_WrapperDataRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "screenEvent_OnReady",
+    "handler_SelectedMessageChannel",
+    "action_OpenMessagingApp",
+    "handler_Cancel",
+    "event_Email",
+    "event_MessageChannel",
+    "event_Call",
+    "event_Cancel"
+   ],
+   "lifecycle": [
+    "Ready"
+   ],
+   "referencedBlocks": [
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "type_MessageChannel.email",
+    "type_MessageChannel.whatsApp",
+    "type_MessageChannel.signal",
+    "type_MessageChannel.call"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js": {
+   "file": "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
+   "displayName": [
+    "CW_CTA_PopUps.ContactPopup_ByMessage"
+   ],
+   "variables": [
+    {
+     "name": "ContactPopupButtons",
+     "kind": "local",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactPopupButtonTextRecordList())"
+    },
+    {
+     "name": "In_ContactByMessageData",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnect_UtilsModel.ContactByMessagePopupDataRec())"
+    },
+    {
+     "name": "In_ImageSizeId",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnect_UtilsModel.staticEntities.uBT_ImageSize.extraLarge_100"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "action_SetContactPopupButtons",
+    "onParametersChanged",
+    "onInitialize",
+    "onClick_MessageButton",
+    "event_Cancel",
+    "event_SelectedMessageChannel"
+   ],
+   "lifecycle": [
+    "Initialize",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [
+    "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_ImageSize.extraLarge_100",
+    "type_MessageChannel.email",
+    "uBT_Icons.mailFill",
+    "type_MessageChannel.whatsApp",
+    "uBT_Icons.whatsapp",
+    "type_MessageChannel.signal",
+    "uBT_Icons.signal",
+    "type_MessageChannel.call",
+    "uBT_Icons.callFill"
+   ],
    "clientVariables": [],
    "candidateStrings": []
   },
@@ -6426,7 +6886,6 @@
   "Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js",
-  "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js",
   "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
   "UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
   "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
@@ -6443,6 +6902,14 @@
   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js",
   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js",
   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.mvc.js",
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
+  "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+  "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
   "NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
   "UBTConnect.App_Common.BottomBarMenu.mvc.js",
   "UBTConnect.App_Common.BottomBarContent.mvc.js",
@@ -6458,10 +6925,9 @@
  "blocksReferencedNotRendered": [
   "App_Common.UnsupportedVersion_Wrapper",
   "App_Policies.Policy_Checker",
-  "Assemble.AssembleCommon_VirtualMeetingDetails",
+  "Assemble.AssembleCommon_VirtualMeetingURL",
   "Assemble.AssembleEventDetail_AttendeeSubdivision",
   "Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet",
-  "Assemble.AssembleEventDetail_ContactList",
   "Assemble.AssembleEventDetail__Error",
   "AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton",
   "CW_Common.Button",
@@ -6479,6 +6945,7 @@
   "ConnectPatterns.HighlightSearch",
   "ConnectPatterns.IconSVG",
   "ConnectPatterns.Input",
+  "ConnectPatterns.LazyImage",
   "ConnectPatterns.Note_Item",
   "Fingerprint.FingerprintScanner",
   "NavigationHandler.PreventBackNavigation",
@@ -6502,7 +6969,7 @@
   },
   {
    "ref": "img/Connect2_LegacyShared.VirtualMeeting.svg",
-   "captured": true
+   "captured": false
   },
   {
    "ref": "img/Connect2_LegacyShared.no_division_rectangle.png",
@@ -6625,7 +7092,7 @@
  "calls": [
   {
    "order": 1,
-   "t": 1994,
+   "t": 2731,
    "action": "DataActionGetAssembleNotes",
    "path": "/UBTConnect/screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes",
    "status": 200,
@@ -6633,9 +7100,25 @@
   },
   {
    "order": 2,
-   "t": 3133,
+   "t": 4005,
    "action": "DataActionGetAssembleEvent",
    "path": "/UBTConnect/screenservices/Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 3,
+   "t": 4490,
+   "action": "ActionGetMemberContactByCacheKey",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 4,
+   "t": 4809,
+   "action": "ActionGetSignedPhotosInBulk",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk",
    "status": 200,
    "scope": "this screen"
   }
@@ -6647,6 +7130,10 @@
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
    "count": 1
   },
   {
@@ -6662,27 +7149,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/SocialSharingPlugin.controller.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
    "count": 1
   },
   {
@@ -6694,11 +7165,31 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/SocialSharingPlugin.model.js",
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/SocialSharingPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Search_CS.model.js",
    "count": 1
   },
   {
@@ -6710,7 +7201,43 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_CS.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet.mvc.js",
    "count": 1
   },
   {
@@ -6722,59 +7249,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect_Search_CS.model.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_CS.referencesHealth.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Popup.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Note_Item.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Search.SearchResult_Item.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
    "count": 1
   },
   {
@@ -6790,7 +7265,11 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js",
    "count": 1
   },
   {
@@ -6802,15 +7281,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit.mvc.js",
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
    "count": 1
   },
   {
@@ -6826,15 +7309,15 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect_Bookmarks_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit.mvc.js",
    "count": 1
   },
   {
    "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
    "count": 1
   },
   {
@@ -6846,15 +7329,7 @@
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js",
-   "count": 1
-  },
-  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextEllipsis.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
    "count": 1
   },
   {
@@ -6862,11 +7337,19 @@
    "count": 1
   },
   {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js",
+   "count": 1
+  },
+  {
    "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.mvc.js",
    "count": 1
   },
   {
-   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.InputCounter.mvc.js",
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.Reusable.InputCounter.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.mvc.js",
    "count": 1
   },
   {
@@ -6898,12 +7381,20 @@
    "count": 2
   },
   {
-   "request": "img /UBTConnect/img/Connect2_LegacyShared.VirtualMeeting.svg",
-   "count": 3
+   "request": "img https://cbcdn.ubtconnect.com/1/uk/123/602/hall_212_720.jpg",
+   "count": 2
+  },
+  {
+   "request": "img /UBTConnect/img/Connect2_LegacyShared.User_rectangle.png",
+   "count": 1
   },
   {
    "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
    "count": 1
+  },
+  {
+   "request": "img https://cbcdn.ubtconnect.com/8/uk/123/601/15071/122976_f_15072.jpg",
+   "count": 2
   },
   {
    "request": "fetch /UBTConnect/AssembleDetail",
@@ -6970,6 +7461,10 @@
    "count": 1
   },
   {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 2
+  },
+  {
    "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js",
    "count": 1
   },
@@ -7004,10 +7499,6 @@
   {
    "request": "fetch /UBTConnect/scripts/Connect2_LegacyShared.Layout.Layout.mvc.js",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/status/network-ping.txt",
-   "count": 2
   },
   {
    "request": "fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
@@ -7047,10 +7538,6 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.mvc.js",
-   "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js",
    "count": 1
   },
   {
@@ -7115,6 +7602,38 @@
   },
   {
    "request": "fetch /UBTConnect/scripts/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
    "count": 1
   },
   {
@@ -7780,10 +8299,6 @@
   {
    "request": "fetch /UBTConnect/wallet.svg",
    "count": 1
-  },
-  {
-   "request": "fetch /UBTConnect/img/Connect2_LegacyShared.VirtualMeeting.svg",
-   "count": 1
   }
  ],
  "declaredCalls": [
@@ -7977,7 +8492,7 @@
    "file": "Connect2_LegacyShared.controller.js",
    "name": "GetMemberContactByCacheKey",
    "url": "screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey",
-   "observed": false
+   "observed": true
   },
   {
    "file": "Connect2_LegacyShared.controller.js",
@@ -7995,7 +8510,7 @@
    "file": "Connect2_LegacyShared.controller.js",
    "name": "GetSignedPhotosInBulk",
    "url": "screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk",
-   "observed": false
+   "observed": true
   },
   {
    "file": "Connect2_LegacyShared.controller.js",
@@ -8053,6 +8568,38 @@
    "rootLabels": [
     "AssembleEventDetail.OnReady",
     "AssembleEventDetail fetch at start"
+   ]
+  },
+  "Connect2_LegacyShared/ActionGetMemberContactByCacheKey": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "Connect2_LegacyShared.getMemberContactList",
+     "server GetMemberContactByCacheKey"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "Connect2_LegacyShared.getMemberContactList"
+   ]
+  },
+  "Connect2_LegacyShared/ActionGetSignedPhotosInBulk": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "Connect2_LegacyShared.getBulkSignedPhotosURL",
+     "server GetSignedPhotosInBulk"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "Connect2_LegacyShared.getBulkSignedPhotosURL"
    ]
   },
   "UBTConnect_Utils/CW_Notes/NoteListActions/ServiceAPIUpdateNote": {
@@ -8262,11 +8809,11 @@
      "server GetAllApplicationEvents"
     ],
     [
-     "event navigateTo_ShareObject of AssembleEventDetail",
-     "event navigateTo_ShareObject of ScreenBlock_AssembleDetail",
-     "AssembleDetail.handler_NavigateTo_ShareObject",
-     "UBTConnect_Utils.shareEntity_ByURL",
-     "Connect2_LegacyShared.auditShareEvent",
+     "NC_Result_Item__Image.onClick_Result_Item",
+     "event onClick_Item of NC_Result_Item__Image",
+     "AssembleEventDetail_Contact.handler_OnClickHostContact",
+     "Connect2_Assemble_MUI.hasAccessToRegion",
+     "Connect2_Assemble_MUI.auditSubscriptionEvent",
      "Connect2_LegacyShared.zOnApplicationEvent_Wrapper",
      "Connect2_LegacyShared.getAppEventName",
      "Connect2_LegacyShared.cacheLocalApplicationEvents",
@@ -8274,12 +8821,11 @@
     ]
    ],
    "rootKinds": [
-    "block event",
     "client action"
    ],
    "rootLabels": [
     "HandleImageLoadError.applicationEvent_ImageError",
-    "event navigateTo_ShareObject of AssembleEventDetail"
+    "NC_Result_Item__Image.onClick_Result_Item"
    ]
   }
  },
@@ -8288,8 +8834,9 @@
   "Connect2_AndroidAppLinksPlugin.controller.js",
   "Connect2_AndroidAppLinksPlugin.languageResources.js",
   "Connect2_AndroidAppLinksPlugin.model.js",
-  "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail.mvc.js",
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact.mvc.js",
+  "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitiesList.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js",
   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section.mvc.js",
@@ -8308,6 +8855,7 @@
   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.mvc.js",
   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.mvc.js",
   "Connect2_LegacyShared.Reusable.NewConnectContent.mvc.js",
+  "Connect2_LegacyShared.Reusable.Person_Contact_Options.mvc.js",
   "Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js",
   "Connect2_LegacyShared.controller.js",
   "Connect2_LegacyShared.languageResources.js",
@@ -8362,6 +8910,11 @@
   "UBTConnectLibrary.languageResources.js",
   "UBTConnectLibrary.model.js",
   "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js",
+  "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.mvc.js",
+  "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.mvc.js",
   "UBTConnect_Utils.CW_Notes.NoteListActions.mvc.js",
   "UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js",
   "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
@@ -8379,9 +8932,9 @@
   "UBT_AppManager_Mobile.model.js"
  ],
  "diagrams": {
-  "architectureNodes": 15,
-  "serverNodes": 4,
-  "actionSequences": 0
+  "architectureNodes": 14,
+  "serverNodes": 6,
+  "actionSequences": 2
  },
  "security": {
   "localStorage": [

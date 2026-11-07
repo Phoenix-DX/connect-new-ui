@@ -70,6 +70,15 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
   (`.claude/agents/`). State: `migration/refactor/state.json`; guide: `migration/refactor/README.md`.
 - The refactor does not use `route.py` (D4). Its parity gate is `tools/parity/refactor_parity.py` (built in P0-2).
 
+## TST sync (branch `sync/tst-2026-11`)
+
+- Wave of 2026-11-07: fresh captures of the routes, parity re-check, fixes route by route through the skill
+  **tst-sync**: `/tst-sync status | import <triage> | start | continue | route <Route> | confirm <Route> "confirm …"`.
+  Agents `sync-developer`, `sync-tester`, `sync-documenter` (`.claude/agents/`). State: `migration/sync/state.json`
+  (`tools/sync/sync.py`); guide: `migration/sync/README.md`. Decisions (user, 2026-11-07): all captured routes
+  re-captured; a finished route is re-stamped without `route.py start` (`restamp.py`); a shared-path grant in a brief
+  replaces the change request for that item; the 13 routes without TST data stay out of scope.
+
 ## Environment
 
 - Source of truth is **TST** (captures, survey, compiled code). The OutSystems MCP (Service Studio) is connected to

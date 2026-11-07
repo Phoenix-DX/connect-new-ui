@@ -81,16 +81,31 @@ Layouts.Layout_HomePage
                       BasePatterns.CustomContainer
           CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp
             ConfirmationDialogs.ActionConfirmationDialog
-  Home.Section_FeedWrapper
-    App_Common_Blocks.Section
-      BasePatterns.CustomContainer
-        Home.FeedBlock_CommunityPopulation
+  BasePatterns.CustomContainer
+    Directory_CommonBlocks.Directory_CommunityNumbers
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+        ConnectPatterns.Icon
+          ConnectPatterns.IconSVG
+        BasePatterns.CustomContainer
+        ConnectPatterns.Icon
+        BasePatterns.CustomContainer
+        BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
           BasePatterns.CustomContainer
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            ConnectPatterns.SkeletonSection
-              BasePatterns.CustomText
-                ConnectPatterns.IconInline_Internal
+          BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+        Directory_CommonBlocks.Directory_CommunityNumbers__Number
+          ConnectPatterns.Icon
+            ConnectPatterns.IconSVG
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
   Home.Section_FeedWrapper
     App_Common_Blocks.Section
       BasePatterns.CustomContainer
@@ -553,15 +568,31 @@ CW_Share.ShareSheet
 - JavaScript nodes: `NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc$controller.OnReady.OnShowJS`, `NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog.mvc$controller.Resolve.ResolveJS`
 - Candidate static strings: `Show`
 
-## `UBTConnect.Home.FeedBlock_CommunityPopulation.mvc.js`
+## `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| UI_MembersStatistics | output | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_MembersStatisticsRec())` |
-| FetchCount | attribute | Record | `OS.DataTypes.ImmutableBase.getData(new FetchCountDataActRec())` |
-- Data actions: `DataActionFetchCount` → `screenservices/UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount`
-- Client actions / event handlers: `onClick_Block`
-- Navigation: `/UBTConnect/Updates_SingleList`()
-- Static entities / flags: `uBT_Color.primaryGradientRadial`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Shape.medium`, `uBT_Color.neutral0`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_FontSize.heading2`
+| Local_CommunityStatistics | local | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
+| In_IsLoading | input | Boolean | `false` |
+| In_CommunityStatistics | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Geography_CSModel.UI_CommunityStatisticsRec())` |
+- Lifecycle handlers: Ready, ParametersChanged
+- Client actions / event handlers: `onReady`, `onParametersChanged`
+- Static entities / flags: `uBT_Color.peachDark`, `uBT_FontSize.extraSmall`, `uBT_Icons2.sVG_CommunityMembers`, `uBT_IconsSize.nonStandard_40`, `uBT_Color.cyanDarker`, `uBT_FontSize.heading1`, `uBT_FontWeight.semiBold`, `uBT_IconsSize.extraSmall_10`, `uBT_Color.greenDark`, `uBT_Icons2.arrowUp`, `uBT_Color.redDark`, `uBT_Icons2.arrowDown`, `uBT_FontSize.doubleExtraSmall`, `uBT_Color.neutral7`, `uBT_Icons2.sVG_CommunityHouseholds`, `uBT_Icons2.sVG_CommunityLocalities`, `uBT_Icons2.sVG_CommunityCountries`
+
+## `UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_IconId | input | Text | `""` |
+- Static entities / flags: `uBT_Icons.sVG_OneSchoolGlobal`, `uBT_Icons.sVG_PinLock`, `uBT_Icons.sVG_PinHouse`, `uBT_Icons.sVG_PinMember`, `uBT_Icons.sVG_PinOneSchool`, `uBT_Icons.sVG_HR100`, `uBT_Icons.sVG_ElGusto`, `uBT_Icons.sVG_CommunityTradelink`, `uBT_Icons.sVG_PinLocality`, `uBT_Icons.sVG_PinCountry`, `uBT_Icons.sVG_CommunityHouseholds`, `uBT_Icons.sVG_CommunityLocalities`, `uBT_Icons.sVG_CommunityCountries`, `uBT_Icons.sVG_CommunityMembers`
+- Images: `img/UBTConnectLibrary.OneSchoolGlobal.svg`, `img/UBTConnectLibrary.Pin_Lock.svg`, `img/UBTConnectLibrary.Pin_House.svg`, `img/UBTConnectLibrary.Pin_Member.svg`, `img/UBTConnectLibrary.Pin_OneSchool.svg`, `img/UBTConnectLibrary.HR100.svg`, `img/UBTConnectLibrary.ElGusto.svg`, `img/UBTConnectLibrary.CommunityTradelink.svg`, `img/UBTConnectLibrary.Pin_Locality.svg`, `img/UBTConnectLibrary.Pin_Country.svg`, `img/UBTConnectLibrary.CommunityHouseholds.svg`, `img/UBTConnectLibrary.CommunityLocalities.svg`, `img/UBTConnectLibrary.CommunityCountries.svg`, `img/UBTConnectLibrary.CommunityMembers.svg`
+
+## `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers__Number.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_Number | input | Integer | `0` |
+| In_Label | input | Text | `""` |
+| In_Icon | input | Text | `""` |
+| In_HideBorder | input | Boolean | `false` |
+- Static entities / flags: `uBT_IconsSize.base_24`, `uBT_Color.cyanDarker`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.extraSmall`
 
 ## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
 | variable | kind | type | default |
@@ -622,6 +653,9 @@ CW_Share.ShareSheet
 | ExtendedClasses | input | Text | `""` |
 | BackgroundColorId | input | Text | `""` |
 | TextColorId | input | Text | `""` |
+| In_VerticalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| In_HorizontalPaddingSizeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
+| In_ShapeId | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.rounded` |
 - Client actions / event handlers: `clicked`
 - Static entities / flags: `uBT_Size.extraSmall`, `uBT_Size.small`, `uBT_Shape.rounded`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`
 
@@ -963,18 +997,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3219 ms
-- 2. `DataActionGetFeedConfig` (200) at 4584 ms
-- 3. `DataActionGetCommunityStatistics` (200) at 4585 ms
-- 4. `DataActionFetchUpdates` (200) at 4597 ms
-- 5. `DataActionFetchCount` (200) at 4620 ms
-- 6. `DataActionGetServices` (200) at 4721 ms
-- 7. `ActionAppManager_AfterInitialize` (200) at 6984 ms
-- 8. `ActionSync_Info_GetMain` (200) at 7561 ms
-- 9. `ActionGetUserInformation` (200) at 7960 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 8224 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10010 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 14994 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 3256 ms
+- 2. `DataActionGetFeedConfig` (200) at 4218 ms
+- 3. `DataActionFetchUpdates` (200) at 4239 ms
+- 4. `DataActionGetCommunityStatistics` (200) at 4258 ms
+- 5. `DataActionGetServices` (200) at 4263 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 7963 ms
+- 7. `ActionSync_Info_GetMain` (200) at 8397 ms
+- 8. `ActionGetUserInformation` (200) at 8727 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 8998 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 10887 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 13568 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -995,7 +1028,6 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.ContextMenu_Item`
 - `ConnectPatterns.EmptyList`
 - `ConnectPatterns.HighlightSearch`
-- `ConnectPatterns.IconSVG`
 - `ConnectPatterns.Input`
 - `ConnectPatterns.LazyImage`
 - `Fingerprint.FingerprintScanner`

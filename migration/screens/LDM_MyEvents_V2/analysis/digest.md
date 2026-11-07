@@ -31,6 +31,11 @@ LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2
               LDM_Blocks_V2.EventCard_Info_V2
               LDM_Blocks.EventCard_Guests
                 Widgets.OverlappingImages
+          LDM_Blocks_V2.EventCard_V2
+            LDM_Blocks.EventCard_Box
+              LDM_Blocks_V2.EventCard_Info_V2
+              LDM_Blocks.EventCard_Guests
+                Widgets.OverlappingImages
       CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
         CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
           ConfirmationDialogs.ActionConfirmationDialog
@@ -602,16 +607,17 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2792 ms
-- 2. `DataActionGetEventsForMyTimeline` (200) at 4124 ms
-- 3. `DataActionGetEventLocalitiesForFilter` (200) at 4125 ms
-- 4. `DataActionGetEventLocalitiesForFilter` (200) at 4418 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 5445 ms
-- 6. `ActionSync_Info_GetMain` (200) at 5969 ms
-- 7. `ActionGetUserInformation` (200) at 6317 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 6597 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9040 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11414 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2416 ms
+- 2. `DataActionGetEventLocalitiesForFilter` (200) at 3333 ms
+- 3. `DataActionGetEventsForMyTimeline` (200) at 3407 ms
+- 4. `ActionGetAllApplicationEvents` (200) at 3825 ms
+- 5. `ActionGetAllApplicationEvents` (200) at 3836 ms
+- 6. `ActionAppManager_AfterInitialize` (200) at 4471 ms
+- 7. `ActionSync_Info_GetMain` (200) at 4935 ms
+- 8. `ActionGetUserInformation` (200) at 5273 ms
+- 9. `ActionGetNumberUnreadMessages` (200) at 5522 ms
+- 10. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7640 ms
+- 11. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10125 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`

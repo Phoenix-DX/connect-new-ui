@@ -103,6 +103,8 @@ const memberRelations: MemberRelations = {
   Mother: relative({ Id: '6202', Title: 'Carmen Rojas' }),
   FormerSpouses: [],
   ParentHouseholdId: '6200',
+  AwayParents: { Title: '', HouseholdId: '0', LocalityName: '', CountryName: '' },
+  NoDisplaySiblings: [],
 };
 const siblingRelations: SiblingRelations = {
   Out_siblingRelations: [relative({ Id: '6203', Title: 'Isabel' }), relative({ Id: '6204', Title: 'Joaquín' })],
@@ -178,6 +180,34 @@ describe('useHouseholdRelations', () => {
     expect(result.current.mother).toMatchObject({ Title: 'Loading', Id: '-1', HouseholdId: '-1' });
     expect(result.current.siblings).toHaveLength(2);
     expect(result.current.formerSpousesFetchStatus).toBe(DataFetchStatus.Fetching);
+  });
+
+  it('does not refresh Get_SibllingsRelations when ParentHouseholdId is "0" (live TST), and ends the loading', async () => {
+    vi.mocked(fetchMemberRelations).mockResolvedValue({ ...memberRelations, ParentHouseholdId: '0' });
+    const { result } = renderFlows();
+    await settle();
+    expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
+    expect(fetchSiblingRelations).not.toHaveBeenCalled();
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  it('gives the away parents and the NoDisplaySiblings of Get_MemberDetails to the view', async () => {
+    const awayParents = {
+      Title: 'Óscar & Carmen Fuentes',
+      HouseholdId: '6210',
+      LocalityName: 'Valdivia',
+      CountryName: 'Chile',
+    };
+    const extra = relative({ Id: '6205', Title: 'Valeria' });
+    vi.mocked(fetchMemberRelations).mockResolvedValue({
+      ...memberRelations,
+      AwayParents: awayParents,
+      NoDisplaySiblings: [extra],
+    });
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.awayParents).toEqual(awayParents);
+    expect(result.current.noDisplaySiblings).toEqual([extra]);
   });
 
   it('loads the member, raises RelationsDetails_Fetched, then loads the siblings and ends the loading', async () => {
@@ -259,7 +289,7 @@ describe('useHouseholdRelations', () => {
     expect(result.current.isMemberDetailsLoading).toBe(true);
   });
 
-  it('a failed Get_ParentHouseholdDetails sets its status to Error and keeps the loading', async () => {
+  it('a failed Get_SibllingsRelations sets its status to Error and keeps the loading', async () => {
     vi.mocked(fetchSiblingRelations).mockRejectedValue(new CommunicationException('The connection has timed out'));
     const { result } = renderFlows();
     await settle();
@@ -368,7 +398,7 @@ describe('useHouseholdRelations', () => {
 });
 
 describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, item 8)', () => {
-  /* The data actions Get_MemberDetails and Get_ParentHouseholdDetails are R1 (flow.fetch): after the unmount their
+  /* The data actions Get_MemberDetails and Get_SibllingsRelations are R1 (flow.fetch): after the unmount their
      answer and their failure are dropped, and the OnAfterFetch steps (the event, the sibling refresh,
      Actions_DefineLoading) do not run. Action_Refresh_Get_MemberDetails after GetUserInformation_Wrapper is an own
      action of the block (R3). */
@@ -441,7 +471,7 @@ describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, 
     expect(householdRelationsReducer).not.toHaveBeenCalled();
   });
 
-  it('R1: after an unmount during Get_ParentHouseholdDetails: no state write; a failure reaches no handler', async () => {
+  it('R1: after an unmount during Get_SibllingsRelations: no state write; a failure reaches no handler', async () => {
     const answer = pending<SiblingRelations>();
     vi.mocked(fetchSiblingRelations).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -495,7 +525,7 @@ describe('useHouseholdRelations after an unmount and in StrictMode (flow scope, 
     expect(raisedErrors()).toEqual([]);
   });
 
-  it('in StrictMode: one Get_MemberDetails, one Get_ParentHouseholdDetails and one event', async () => {
+  it('in StrictMode: one Get_MemberDetails, one Get_SibllingsRelations and one event', async () => {
     const result = renderStrict();
     await settle();
     // useFlowState runs OnReady once in StrictMode (item 8, flow scope).

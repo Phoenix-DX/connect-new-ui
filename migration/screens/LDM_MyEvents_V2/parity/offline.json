@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "fa774e47a62a00676db8",
+ "fingerprint": "c85e903652e59ffc3d3b",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T14:32:16.289Z",
+ "at": "2026-11-07T09:58:45.198Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING-POSITION": 1,

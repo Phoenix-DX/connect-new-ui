@@ -42,6 +42,12 @@ describe('MemberRelation_ListItem', () => {
     expect(document.querySelector('.connect-icon-home_pin')).toBeNull();
   });
 
+  it('renders no relation container when the relation is empty (live TST: Relation visible only when not "")', () => {
+    renderItem({ inRelation: '' });
+    expect(document.querySelectorAll('.text-neutral-7.font-size-xs')).toHaveLength(0);
+    expect(screen.getByText('Alicia Benítez')).toBeTruthy();
+  });
+
   it('raises OnClickPerson from the avatar only when enabled, and always from the name', () => {
     const enabled = renderItem();
     fireEvent.click(screen.getByText('avatar'));

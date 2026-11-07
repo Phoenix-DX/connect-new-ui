@@ -1,12 +1,13 @@
 {
- "finishedAt": "2026-10-15T23:37:29",
+ "finishedAt": "2026-11-07T16:33:44",
  "files": {
-  "src/screens/ContactByEmailMember/ContactByEmailMember.test.tsx": "fbe9e123c908f0a3",
-  "src/screens/ContactByEmailMember/api.ts": "782716b3217d2dee",
-  "src/screens/ContactByEmailMember/components/actions.ts": "0e85ccc6b2304caa",
-  "src/screens/ContactByEmailMember/components/staticEntities.ts": "5e05acdc8a27ff6a",
-  "src/screens/ContactByEmailMember/index.tsx": "799dae351603cf4b",
-  "src/screens/ContactByEmailMember/mocks.ts": "613b787d671f0141",
-  "src/screens/ContactByEmailMember/types.ts": "6f90f0f2370da24d"
+  "src/pages/ContactByEmailMember/ContactByEmailMember.test.tsx": "36296f5ccab81eab",
+  "src/pages/ContactByEmailMember/ContactByEmailMemberPage.tsx": "4bce62771182b35b",
+  "src/pages/ContactByEmailMember/actions.ts": "f70a1df7f7439ac0",
+  "src/pages/ContactByEmailMember/config.ts": "2d8f85217470e798",
+  "src/pages/ContactByEmailMember/hooks/useContactByEmailMemberSubmit.ts": "d043ce05df47f493",
+  "src/pages/ContactByEmailMember/inputs.ts": "6d0e6c816d8c39df",
+  "src/pages/ContactByEmailMember/mocks.ts": "8564247d17f43b93",
+  "src/pages/ContactByEmailMember/staticEntities.ts": "f52007c890c3bb2c"
  }
 }

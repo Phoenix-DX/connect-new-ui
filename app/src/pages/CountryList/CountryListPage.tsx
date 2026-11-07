@@ -1,4 +1,3 @@
-import { useCommunityPopulationQuery } from '@/api/member';
 import { DirectoryLegendSheet } from '@/components/directory/DirectoryLegendSheet';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
@@ -14,19 +13,17 @@ import { useCountryList } from './hooks/useCountryList';
 
 /** @origin UBTConnect.Directory_Locality.CountryList
     The Directory tab: the main layout "Directory" with the notification icon and the search input in the header, the
-    user's locality and country cards, the community population, and the countries with their statistics. A country
-    opens CountryDetails when the subscription covers it, else the upgrade pop-up. The flows are in useCountryList.
-    Captured dom/default.html, loading.html and offline.html. */
+    user's locality and country cards, the community numbers (Directory_CommunityNumbers), and the countries with their
+    statistics. A country opens CountryDetails when the subscription covers it, else the upgrade pop-up. The flows are
+    in useCountryList. Captured dom/default.html, loading.html and offline.html (fresh TST capture of 2026-11-07). */
 export default function CountryList() {
-  // The flows of App_NotificationIcon and FeedBlock_CommunityPopulation (DataActionFetchCount).
+  // The flows of App_NotificationIcon.
   const notificationIcon = useNotificationIcon();
-  const communityPopulation = useCommunityPopulationQuery();
   const {
     state,
     onSearchClicked,
     onMyLocalityClicked,
     onMyCountryClicked,
-    onCommunityPopulationClicked,
     onLegendInfoClicked,
     onCountryClicked,
     onUserInfo,
@@ -50,11 +47,9 @@ export default function CountryList() {
             countries={state.countries}
             fetchStatus={state.fetchStatus}
             isListLoading={!(state.isDataFetched || state.hasFetchError)}
-            isCommunityPopulationLoading={communityPopulation.isPending}
-            communityPopulationTotal={communityPopulation.data ?? '0'}
+            communityStatistics={state.communityStatistics}
             onMyLocalityClicked={onMyLocalityClicked}
             onMyCountryClicked={onMyCountryClicked}
-            onCommunityPopulationClicked={onCommunityPopulationClicked}
             onLegendInfoClicked={onLegendInfoClicked}
             onCountryClicked={onCountryClicked}
           />

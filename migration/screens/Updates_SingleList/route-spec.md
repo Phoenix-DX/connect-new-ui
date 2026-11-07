@@ -195,3 +195,20 @@ P-DATA, P-CALLS, P-MOCKS, P-MUTATION, P-LIST, P-STATES, P-FLAGS, P-OSUI, P-PARAM
 
 Copy Notifications' model/reducer structure; Directory_Updates_* module actions ported in
 `components/actions.ts`; static values from static-entities-tst.json.
+
+## Changes 2026-11-07 (TST sync)
+- TST files that changed (brief.md): `UBTConnect.Directory_Updates.Updates_SingleList.mvc.js`, `UBTConnect.Directory_Updates.UpdateItem_Header.mvc.js`, `UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`, `UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js`, `UBTConnectLibrary.ConnectPatterns.TagContent.mvc.js`, `UBTConnect_Utils.CW_Share.ShareSheet.mvc.js`, `UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js`.
+- The fresh capture shows (dom/default.html:124-211) a "Filter" label (FilterSheet_Icon_Label) in the tag row (Horizontal_Filter_TagList). The header has no filter icons. The list header has no badge.
+- React now does the same (dev.md; `Updates_SingleListPage.tsx`, `components/UpdateItem_Header.tsx`). Parity is clean in default, loading and offline (test.md).
+- Evidence in the compiled code (`migration/sources/pretty/UBTConnect.Directory_Updates.Updates_SingleList.mvc@857c68f9.js`): header right :432-492, filter pills :573-723, PillsLoaded :2121, scroll anchor keys :3419-3420 and :3487. UpdateItem_Header: `UpdateItem_Header.mvc@83c85bd4.js:314-316`.
+- The other changed TST files need no change for the captured states. The ShareSheet open state is not captured.
+- The calls of the route do not change: 12 expected and 12 actual in the default state (brief.md).
+
+## Decisions to confirm (TST sync)
+- Scroll position (user decision d, 2026-11-07): `captureScrollPosition` and `scrollFix` keep the keys `scrollAnchorId` and `scrollAnchorDelta` in localStorage, as TST does (`Updates_SingleList.mvc.js:3419-3420`, `:3487`). They go through the shell wrapper `app/src/platform/storage/storage.ts` (`readItem`, `writeItem`, `removeItem`), which namespaces the keys. This changes Q1 of section 16: the route now stores the anchor itself, in addition to the shell view cache.
+- Visible change 1: the two filter icons (Icon_FilterSheet_PreScroll, Icon_FilterSheet_PostScroll) are removed from the header. The right side has only Icon_Search and the notification icon (`:432-492`).
+- Visible change 2: a "Filter" label (FilterSheet_Icon_Label) is in the tag row, in the Filter placeholder of Horizontal_Filter_TagList (`:573-723`).
+- Visible change 3: the new state variable PillsLoaded is True after OnInitialize of a new visit (`:2121`). It controls the tag loading state. A restored view keeps its saved value.
+- Visible change 4: the badge in UpdateItem_Header is removed, as the icon placeholder is empty now (`UpdateItem_Header.mvc@83c85bd4.js:314-316`). The callers still pass BadgeNumber.
+- Visible change 5: the 88 mock rows are rebuilt from the fresh capture. All rows are unread. "Last 7 Days" has 28 rows and "Last 30 Days" has 60 rows. Names and places are fictional text with the captured word lengths.
+- Visible change 6: the "Mark All as Read" id is `$b5` (was `$b6`) in the list header.

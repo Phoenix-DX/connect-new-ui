@@ -89,7 +89,68 @@ def captured_inline_styles(mig_dir, screen):
     return found
 
 
-def inline_style_problems(src, rel, captured):
+EXCLUSIONS = "consistency-exclusions.json"
+
+
+def excluded_inline_styles(mig_dir, screen, rel):
+    """Declarations of migration/consistency-exclusions.json that apply to one file of the route and that the cited
+    compiled TST source really contains (style: "..." strings): an exclusion with a wrong citation excludes nothing.
+    Each entry: {"id", "screen", "file" (relative to the page folder), "source" (a compiled .mvc.js under migration/),
+    "declarations": [...], "decided" (who, date), "reason"}. Returns (set of normalised declarations, [ids])."""
+    path = os.path.join(mig_dir, EXCLUSIONS)
+    if not os.path.exists(path):
+        return set(), []
+    root = os.path.dirname(os.path.abspath(mig_dir))
+    found, ids = set(), []
+    for e in json.load(open(path, encoding="utf-8")).get("exclusions", []):
+        if e.get("rule", "NO-INLINE-COLOR") != "NO-INLINE-COLOR" or e.get("screen") != screen or e.get("file") != rel:
+            continue
+        src_path = os.path.join(root, e["source"])
+        if not os.path.exists(src_path):
+            continue
+        in_source = set()
+        for st in re.findall(r'\bstyle:\s*"([^"]*)"', open(src_path, encoding="utf-8", errors="ignore").read()):
+            for decl in st.split(";"):
+                if ":" in decl:
+                    k, v = decl.split(":", 1)
+                    in_source.add(norm_color(norm_decl(k, v)))
+        in_source = {norm_box(x) for x in in_source}
+        wanted = {norm_box(norm_color(norm_decl(*d.split(":", 1)))) for d in e.get("declarations", []) if ":" in d}
+        hit = wanted & in_source   # each declaration is excluded only when the cited source carries it
+        if hit:
+            found |= hit
+            ids.append(e["id"])
+    return found, ids
+
+
+def norm_box(decl):
+    """`padding:3px 0px 0px` and `padding:3px 0px 0px 0px` are the same box shorthand (also margin, border-width)."""
+    prop, _, val = decl.partition(":")
+    if prop in ("padding", "margin", "border-width", "border-radius"):
+        parts = val.split()
+        if len(parts) == 1:
+            parts = parts * 4
+        elif len(parts) == 2:
+            parts = parts * 2
+        elif len(parts) == 3:
+            parts = parts + [parts[1]]
+        return prop + ":" + " ".join(parts)
+    return decl
+
+
+_HEX = re.compile(r"#([0-9a-f]{3}|[0-9a-f]{6})\b")
+
+
+def norm_color(decl):
+    """`#fff` and `rgb(255,255,255)` are the same colour."""
+    def hex_to_rgb(m):
+        h = m.group(1)
+        h = "".join(c * 2 for c in h) if len(h) == 3 else h
+        return "rgb(%d,%d,%d)" % tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+    return _HEX.sub(hex_to_rgb, decl)
+
+
+def inline_style_problems(src, rel, captured, excluded=frozenset()):
     """NO-INLINE-COLOR: a visual inline style passes only when every declaration is one the capture shows."""
     probs = []
     for m in STYLE_OBJ.finditer(src):
@@ -108,7 +169,7 @@ def inline_style_problems(src, rel, captured):
         if not decls or re.search(r"\$\{", body) or re.search(r"[^\s,]", PAIR.sub("", body)):
             probs.append(f"[NO-INLINE-COLOR] {rel}:{line}: computed inline visual style; fix visual differences in markup")
             continue
-        miss = [x for x in decls if x not in captured]
+        miss = [x for x in decls if x not in captured and norm_box(norm_color(x)) not in excluded]
         if miss:
             probs.append(f"[NO-INLINE-COLOR] {rel}:{line}: inline style not in the captured DOM ({', '.join(miss[:3])}); "
                          "copy the captured style attribute exactly, or fix it in markup")
@@ -161,7 +222,8 @@ def check(screen, app_dir, mig_dir):
             if f["id"] == "NO-INLINE-COLOR":
                 if captured is None:
                     captured = captured_inline_styles(mig_dir, screen)
-                probs += inline_style_problems(src, rel, captured)
+                excluded, _ = excluded_inline_styles(mig_dir, screen, rel)
+                probs += inline_style_problems(src, rel, captured, excluded)
                 continue
             rx = re.compile(f["regex"])
             for n, line in enumerate(lines, 1):

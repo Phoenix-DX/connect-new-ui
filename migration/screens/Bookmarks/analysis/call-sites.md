@@ -39,17 +39,21 @@ For every service call: the chains of code that lead to it, from a root (user ev
 
 ## Declared and reachable from the rendered blocks, not observed
 
+### `UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType`
+- `onClick in CustomContainer` → `event clicked of CustomContainer` → `event onClickItemCard of ItemCard_WithNotes` → `event onClickCardItem of Bookmarks_Card_Item` → `event onClick_BookmarkCardItem of Bookmarks_Card_List` → `Bookmarks.handler_OnClickBookmarkCardItem` → `server GetAllVisibleBookmarksByType`
+- `onClick in CustomText` → `event clicked of CustomText` → `event onClickItemCard of ItemCard_WithNotes` → `event onClickCardItem of Bookmarks_Card_Item` → `event onClick_BookmarkCardItem of Bookmarks_Card_List` → `Bookmarks.handler_OnClickBookmarkCardItem` → `server GetAllVisibleBookmarksByType`
+
 ### `UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
 - `NotesSheet.handler_OnSubmitNote` → `server AddNote`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
-### `UBTConnect/ServiceAPIAddBookmark2`
-- `onClick in IconText` → `event clicked of IconText` → `event onClickUnbookmark of ItemCard_ActionBar` → `ItemCardActions.handler_OnClickUnmark` → `UBTConnect.toggleBookmarkItem_C2` → `server AddBookmark2`
-
-### `UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2`
-- `onClick in IconText` → `event clicked of IconText` → `event onClickUnbookmark of ItemCard_ActionBar` → `ItemCardActions.handler_OnClickUnmark` → `UBTConnect.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
-
 ### `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All`
 - `BottomBarMenu.OnReady` → `BottomBarMenu.onReady` → `UBTConnect.directory_Updates_RefreshBottomBarCount` → `server Get_UI_UpdateItems_UnreadCount_All`
+
+### `UBTConnect_Utils/ServiceAPIAddBookmark2`
+- `onClick in IconText` → `event clicked of IconText` → `event onClickUnbookmark of ItemCard_ActionBar` → `ItemCardActions.handler_OnClickUnmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server AddBookmark2`
+
+### `UBTConnect_Utils/ServiceAPIDeleteBookmarkByBookmarkId2`
+- `onClick in IconText` → `event clicked of IconText` → `event onClickUnbookmark of ItemCard_ActionBar` → `ItemCardActions.handler_OnClickUnmark` → `UBTConnect_Utils.toggleBookmarkItem_C2` → `server DeleteBookmarkByBookmarkId2`
 
 ### `Connect2_LegacyShared/ActionGetAllApplicationEvents`
 - `HandleImageLoadError.applicationEvent_ImageError` → `Connect2_LegacyShared.zOnApplicationEvent_Wrapper` → `Connect2_LegacyShared.getAppEventName` → `Connect2_LegacyShared.cacheLocalApplicationEvents` → `server GetAllApplicationEvents`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

@@ -1,6 +1,6 @@
 # OrbitAdminLanding: OutSystems (TST) and React
 
-The route `/UBTConnect/OrbitAdminLanding`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-06. Facts only, each with its place. The method is in [README.md](../README.md).
+The route `/UBTConnect/OrbitAdminLanding`, read from the TST compiled code and from the React code by `tools/route-check/check_route.py` on 2026-11-07. Facts only, each with its place. The method is in [README.md](../README.md).
 
 Scope of this file: the screen and the blocks of its UI flow (OutSystems), the files of `app/src/pages/OrbitAdminLanding/` (React). The app shell is in [APP_SHELL.md](../APP_SHELL.md). The shared blocks and components that the route uses are in the last section.
 
@@ -16,7 +16,7 @@ Scope of this file: the screen and the blocks of its UI flow (OutSystems), the f
 | React screen | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | `app/src/pages/` |
 | React route rules | access `member`, lock `enforce`, flag redirect none | `app/src/app/routes.ts` |
 | Screenshots | [`migration/screens/OrbitAdminLanding/parity`](../../screens/OrbitAdminLanding/parity) | `route.py parity` |
-| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 25 app shell files. React: 155 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
+| Code read | OutSystems: 1 files of the UI flow, 11 shared blocks, 25 app shell files. React: 157 files in the closure of the page | TST `facts.json`, `react_calls.mjs` |
 
 ## 2. Result
 
@@ -57,7 +57,7 @@ All columns come from the code, without interpretation:
 | # | Call (TST) | Kind | Direct caller (TST) | Chain (TST) | Seen on TST | React action | Used by (React references) | Status |
 |---|---|---|---|---|---|---|---|---|
 | 1 | `UBTConnect/Legacy_OrbitAdminFlow/OrbitAdminLanding/ActionGetMilestoneScanFF` | server action | `OrbitAdminLanding` | ScreenBlock_AdminLanding.onHandle_EventCardClicked → event navigateTo_EventDetail of ScreenBlock_AdminLanding → OrbitAdminLanding.onHandle_NavigateToEventDetail → server GetMilestoneScanFF | no | `getMilestoneScanFF()` [`api/event/adminMilestones.ts:70`](../../../app/src/api/event/adminMilestones.ts#L70) (page) | `OrbitAdminLanding → useNavigateToEventDetail → getMilestoneScanFF`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
-| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList` | data action | `ScreenBlock_AdminLanding` | ScreenBlock_AdminLanding.OnReady → ScreenBlock_AdminLanding.onReady → ScreenBlock_AdminLanding.refresh_GetEventsByMemberId → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList<br>ScreenBlock_AdminLanding fetch at start → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList | yes | `fetchAdminEvents()` [`api/event/repository.ts:283`](../../../app/src/api/event/repository.ts#L283) (page) | `OrbitAdminLanding → useAdminLanding → fetchAdminEvents`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
+| 2 | `Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList` | data action | `ScreenBlock_AdminLanding` | ScreenBlock_AdminLanding.OnReady → ScreenBlock_AdminLanding.onReady → ScreenBlock_AdminLanding.refresh_GetEventsByMemberId → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList<br>ScreenBlock_AdminLanding fetch at start → ScreenBlock_AdminLanding.DataActionGet_AdminEventsList | yes | `fetchAdminEvents()` [`api/event/repository.ts:285`](../../../app/src/api/event/repository.ts#L285) (page) | `OrbitAdminLanding → useAdminLanding → fetchAdminEvents`<br>[`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx) | implemented |
 | 3 | `UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All` | service action | `UBTConnect` | BottomBarMenu.OnReady → BottomBarMenu.onReady → UBTConnect.directory_Updates_RefreshBottomBarCount → server Get_UI_UpdateItems_UnreadCount_All | no | `fetchUnreadUpdateItemsCount()` [`api/update/repository.ts:73`](../../../app/src/api/update/repository.ts#L73) (page) | `BottomBar → directory_Updates_RefreshBottomBarCount → fetchUnreadUpdateItemsCount`<br>[`components/layout/BottomBar/BottomBar.tsx`](../../../app/src/components/layout/BottomBar/BottomBar.tsx) | implemented |
 
 ## 6. User actions
@@ -96,7 +96,7 @@ sequenceDiagram
 
 | # | File | Element | Event prop | Handler | Branch | Effects |
 |---|---|---|---|---|---|---|
-| [1](#621-adminlandingview-oneventcardclicked) | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx:26`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx#L26) | `<AdminLandingView>` | `onEventCardClicked` | `onEventCardClicked` | – | calls ActionGetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
+| [1](#621-adminlandingview-oneventcardclicked) | [`pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx:29`](../../../app/src/pages/OrbitAdminLanding/OrbitAdminLandingPage.tsx#L29) | `<AdminLandingView>` | `onEventCardClicked` | `onEventCardClicked` | – | calls ActionGetMilestoneScanFF; goes to OrbitAdminMilestones, OrbitAdminEventDetail |
 
 <details><summary>1 diagrams (handlers with two or more effects)</summary>
 
@@ -145,8 +145,8 @@ Parameters read (`useSearchParams`, `useParams`): none.
 
 | File | Target | Parameters | Place |
 |---|---|---|---|
-| `useNavigateToEventDetail.ts` | `OrbitAdminMilestones` | `EventId` = `target.eventId` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:19`](../../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L19) |
-| `useNavigateToEventDetail.ts` | `OrbitAdminEventDetail` | `In_EventId` = `target.eventId`<br>`In_EventStartDate` = `wireDateTimeParam(target.eventStartDate)`<br>`In_EventLocation` = `target.eventLocation`<br>`In_EventName` = `target.eventName`<br>`In_EventEndDate` = `wireDateTimeParam(target.eventEndDate)`<br>`In_EventTypeFriendly` = `target.eventTypeFriendly` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:21`](../../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L21) |
+| `useNavigateToEventDetail.ts` | `OrbitAdminMilestones` | `EventId` = `target.eventId` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:21`](../../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L21) |
+| `useNavigateToEventDetail.ts` | `OrbitAdminEventDetail` | `In_EventId` = `target.eventId`<br>`In_EventStartDate` = `wireDateTimeParam(target.eventStartDate)`<br>`In_EventLocation` = `target.eventLocation`<br>`In_EventName` = `target.eventName`<br>`In_EventEndDate` = `wireDateTimeParam(target.eventEndDate)`<br>`In_EventTypeFriendly` = `target.eventTypeFriendly` | [`pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:23`](../../../app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts#L23) |
 
 ## 8. Lifecycle
 
@@ -221,7 +221,7 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 
 | Block | Module | React port | User actions |
 |---|---|---|---|
-| `ScreenBlock_AdminLanding` | `Connect2_OrbitMobile_MUI` | [`pages/OrbitAdminLanding/components/AdminLandingView.tsx`](../../../app/src/pages/OrbitAdminLanding/components/AdminLandingView.tsx), [`pages/OrbitAdminLanding/hooks/adminLandingState.ts`](../../../app/src/pages/OrbitAdminLanding/hooks/adminLandingState.ts), [`pages/OrbitAdminLanding/hooks/useAdminLanding.ts`](../../../app/src/pages/OrbitAdminLanding/hooks/useAdminLanding.ts) | 1 |
+| `ScreenBlock_AdminLanding` | `Connect2_OrbitMobile_MUI` | [`pages/OrbitAdminLanding/components/AdminLandingView.tsx`](../../../app/src/pages/OrbitAdminLanding/components/AdminLandingView.tsx), [`pages/OrbitAdminLanding/hooks/adminLandingState.ts`](../../../app/src/pages/OrbitAdminLanding/hooks/adminLandingState.ts), [`pages/OrbitAdminLanding/hooks/useAdminLanding.ts`](../../../app/src/pages/OrbitAdminLanding/hooks/useAdminLanding.ts) | 3 |
 | `Layout_Orbit` | `Connect2_LegacyShared` | [`components/layout/OrbitLayout/OrbitLayout.tsx`](../../../app/src/components/layout/OrbitLayout/OrbitLayout.tsx) | 0 |
 | `BaseLayout_UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/BaseLayout/BaseLayout.tsx`](../../../app/src/components/layout/BaseLayout/BaseLayout.tsx) | 0 |
 | `MenuIcon__UpdatedOSUI` | `Connect2_LegacyShared` | [`components/layout/MenuIcon/MenuIcon.tsx`](../../../app/src/components/layout/MenuIcon/MenuIcon.tsx) | 1 |
@@ -233,17 +233,19 @@ Blocks of other UI flows and modules (OutSystems), and files outside `app/src/pa
 | `IconBadge` | `UBTConnectLibrary` | [`components/ui/IconBadge/IconBadge.tsx`](../../../app/src/components/ui/IconBadge/IconBadge.tsx) | 0 |
 | `Badge` | `UBTConnectLibrary` | [`components/ui/Badge/Badge.tsx`](../../../app/src/components/ui/Badge/Badge.tsx) | 0 |
 
-<details><summary>User actions of the shared blocks (7)</summary>
+<details><summary>User actions of the shared blocks (9)</summary>
 
 | # | Block (OutSystems) | Event (TST view) | Handler | Branch | Effects |
 |---|---|---|---|---|---|
 | 1 | `MenuIcon__UpdatedOSUI` | `onClick (HTML element)` | `onBack` | – | goes to previous screen |
 | 2 | `ScreenBlock_AdminLanding` | `clickedEvent of Event` | `onHandle_EventCardClicked` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
-| 3 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
-| 4 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
-| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
-| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
-| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
+| 3 | `ScreenBlock_AdminLanding` | `applyFilters of Filters` | `onHandle_ApplyFilters` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 4 | `ScreenBlock_AdminLanding` | `applySort of Sort` | `onHandle_ApplySort` | – | calls GetAllApplicationEvents, AppManager_SynchAppContext |
+| 5 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `home` | goes to HomeFeed |
+| 6 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `directory` | goes to CountryList, Locality_Details |
+| 7 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `updates` | goes to Updates_SingleList |
+| 8 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `bookmarks` | goes to Bookmarks |
+| 9 | `BottomBarMenu` | `onClick (HTML element)`<br>`onClick of IconBadge` | `event_BottomBar_Clicked` | `menu` | goes to Menu |
 
 </details>
 

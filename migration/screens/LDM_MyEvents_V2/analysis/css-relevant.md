@@ -665,6 +665,11 @@ input.OSFillParent.calendar-input { display:none; }
 ```
 ## Widgets.OverlappingImages
 
+### .overlapping-overlay-text  (2 rules)
+```css
+.overlapping-overlay-text { background: rgba(0, 0, 0, 0.7); position: absolute; width: 100%; height: 100%; color: white; display: inline-flex; align-items: center; justify-content: center; }
+:where(.backwards-compatibility) .overlapping-overlay-text { background: rgba(0, 0, 0, 0.7); position: absolute; width: 100%; height: 100%; color: white; display: inline-flex; align-items: center; justify-content: center; }
+```
 ### .overlapping-photo-cropper  (2 rules)
 ```css
 /* /* Overlapping Images -- START -- .overlapping-photo-cropper { position: relative; overflow: hidden; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background-position: center; background-repeat: no-repeat; background-size: cover; }

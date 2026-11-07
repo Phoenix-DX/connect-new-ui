@@ -157,6 +157,11 @@ Earlier default pixel difference (0.29 %, worst tile 6.6 %), found at latency 0 
 - Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;
   `flex-direction-row` is the TST value written as the shared RowReverse class.
 - Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open.
+- TST sync 2026-11-07, exemption (user, 2026-11-07, option a): CAPTURE-MASKED-IMAGE-NOTIFICATIONS and CAPTURE-MASKED-IMAGE-NOTIFICATIONS-PIXEL (`migration/parity-exemptions.json:1869,1881`). The capture masks the 12 sender photos (`data-masked-src="user-image"`, no src), so the reference has a broken image 5 px shorter (`analysis/dom/default.html:249-262`). Same artifact as the accepted CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS, -LOCALITYDETAILS and -SUPPERMEETING.
+- TST sync 2026-11-07, consistency exclusion INLINE-NOTIFICATIONS-NOTIFICATIONS_CONFIRMDIALOG-L119 (user, 2026-11-07, "ok all"): `Notifications_ConfirmDialog.tsx:119` keeps `color: #fff`. The compiled block has the same style on the Delete text (`migration/sources/survey/UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js:413`, fetched read-only). No capture shows the dialog.
+- TST sync 2026-11-07, flag `getHasNewNotifications` is now true on TST (probe 2026-11-07; `migration/sync/decisions-2026-11-07.md:23`). This screen does not read the flag (dev.md).
+- TST sync 2026-11-07, follow-up: the SentAs / MyEntertaining navigation branch is not ported (no capture shows it).
+- TST sync 2026-11-07, follow-up: the new block `ActionButtonGroup.mvc.js` is not captured (`tst-drift-2026-11-07.md:90`) and not ported.
 
 ## 17. Patterns used
 P-PARAMS, P-STATES, P-DIALOG, P-DATA, P-MOCKS, P-CALLS, P-BACK, P-OSUI, P-LIST.
@@ -166,3 +171,16 @@ Port Get_ElapsedTime_Notification, App_Notifications_AugmentDateRanges and App_N
 (`components/actions.ts`); scroll-threshold / scroll-end JS are no-ops here (target elements never rendered).
 
 - 2026-10-15: Q5 settled by the per-state mock latency (capture-plan `latencies`, default 600 ms): parity 0 in default, loading and offline, no new exemption.
+
+## Changes 2026-11-07 (TST sync)
+
+TST files that changed: `Notifications.mvc.js`, `NotificationsList.mvc.js`, `NotificationsListBreakpoints.mvc.js`, `Notifications_Header.mvc.js`, `Notification_ListItem.mvc.js`, `AvatarImage.mvc.js` (brief; sizes in `migration/knowledge/tst-drift-2026-11-07.md`).
+
+- **Capture.** The fresh capture shows 22 rows (old: 19). It has a skeleton list (SkeletonSection rows) in the header and list. The sender photos are fetched in bulk. 51 SkeletonSection blocks stay in the DOM after 8 s (`analysis/dom/default.html`, brief note).
+- **React.**
+  - The shared mock holds the 22 captured rows (`app/src/mocks/fictional/notifications.ts`).
+  - `createdByUserId` is mapped. The new `MessageImage` component fetches the sender photo, so GetSignedImagesInBulk runs as on TST (dev.md, Q2 a).
+  - `Get_ElapsedTime_Notification` follows the OutSystems Diff* rules: calendar days, hours without minutes (`migration/sources/runtime/OutSystems.js`, functions `Y`/`X`). The label shows "6w" where the old port showed "5w".
+  - The header blocks and skeleton rows follow the new compiled code.
+- **Calls.** Expected 11, actual 11 after the change (dev.md, parity). `python3 tools/route-check/check_route.py Notifications` was re-run: `migration/route-check/routes/Notifications.md`.
+- **Parity.** default, loading and offline show 0 differences after the exemptions below (master note in dev.md).

@@ -47,7 +47,7 @@ paths:
       x-os-kind: 'dataAction'
       x-os-owner: 'Assemble/AssembleEventDetail'
       x-os-paths: ['screenservices/Connect2_Assemble_MUI/Assemble/AssembleEventDetail/DataActionGetAssembleEvent']
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['AssembleDetail']
       x-review: 'inputs'
   '/api/Connect2_Assemble_MUI/AssembleSummary_List/DataActionGetAssembleEventTypes':
@@ -186,7 +186,7 @@ paths:
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetAllApplicationEvents']
       x-os-phase: ['load']
-      x-os-screens: ['EventDetail']
+      x-os-screens: ['EventDetail', 'LDM_MyEvents_V2']
   '/api/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2':
     post:
       operationId: 'Connect2_LegacyShared.ActionGetBulkSubdivisions_V2'
@@ -307,7 +307,7 @@ paths:
       x-mock-source: 'fictional'
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey']
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['AssembleDetail', 'HelpersDetail', 'MilestoneDetail']
   '/api/Connect2_LegacyShared/ActionGetNumberUnreadMessages':
     post:
@@ -339,6 +339,7 @@ paths:
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -445,7 +446,7 @@ paths:
       x-mock-source: 'fictional'
       x-os-kind: 'clientWrapper'
       x-os-paths: ['screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk']
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['AssembleDetail', 'AssembleEvents', 'LDM_MyEvents_V2', 'LegacyShareObject', 'MessageDetail']
   '/api/Connect2_LegacyShared/ActionGetTimezoneInformation':
     post:
@@ -2507,7 +2508,7 @@ paths:
       x-os-owner: 'Orbit_ScreenBlocks/ScreenBlock_GuestArrangements'
       x-os-paths:
         - 'screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_GuestArrangements/DataActionGetGuestArrangements'
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['GuestArrangements']
       x-review: 'inputs'
   '/api/Connect2_OrbitMobile_MUI/ScreenBlock_HelperDetails/DataActionGetHelperDetails':
@@ -3112,6 +3113,70 @@ paths:
         - 'screenservices/UBTConnect/Legacy_OrbitAdminFlow/OrbitAdminMilestones/ActionGetMilestoneScanFF'
       x-os-phase: []
       x-os-screens: ['OrbitAdminLanding', 'OrbitAdminMilestones']
+  '/api/UBTConnect/ActionGet_OrbitHostSurveyNotificationParameters':
+    post:
+      operationId: 'UBTConnect.ActionGet_OrbitHostSurveyNotificationParameters'
+      requestBody:
+        content:
+          'application/json':
+            schema:
+              '$ref': '#/components/schemas/UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Input'
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data:
+                    '$ref': '#/components/schemas/UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Output'
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Server action Get_OrbitHostSurveyNotificationParameters (UBTConnect)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serverAction'
+      x-os-paths:
+        - 'screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionGet_OrbitHostSurveyNotificationParameters'
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
+  '/api/UBTConnect/ActionGet_OrbitNotificationParameters':
+    post:
+      operationId: 'UBTConnect.ActionGet_OrbitNotificationParameters'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect__ActionGet_OrbitNotificationParameters__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBTConnect__ActionGet_OrbitNotificationParameters__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Server action Get_OrbitNotificationParameters (UBTConnect)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serverAction'
+      x-os-paths:
+        - 'screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionGet_OrbitNotificationParameters'
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
   '/api/UBTConnect/ActionGet_ShareDetails':
     post:
       operationId: 'UBTConnect.ActionGet_ShareDetails'
@@ -3268,6 +3333,37 @@ paths:
       x-os-phase: []
       x-os-screens: ['ContactByEmailOrbitHelpdesk', 'ContactByEmailOrbitHost']
       x-os-writes: true
+  '/api/UBTConnect/ActionStoreAdaptiveCardResponses':
+    post:
+      operationId: 'UBTConnect.ActionStoreAdaptiveCardResponses'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect__ActionStoreAdaptiveCardResponses__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBTConnect__ActionStoreAdaptiveCardResponses__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Server action StoreAdaptiveCardResponses (UBTConnect)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serverAction'
+      x-os-paths: ['screenservices/UBTConnect/App_Notifications/NotificationDetails/ActionStoreAdaptiveCardResponses']
+      x-os-phase: []
+      x-os-screens: ['NotificationDetails']
+      x-os-writes: true
   '/api/UBTConnect/ActionSync_Info_GetMain':
     post:
       operationId: 'UBTConnect.ActionSync_Info_GetMain'
@@ -3298,6 +3394,7 @@ paths:
       x-os-paths: ['screenservices/UBTConnect/ActionSync_Info_GetMain']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -3465,7 +3562,7 @@ paths:
       x-os-kind: 'dataAction'
       x-os-owner: 'Legacy_AssembleFlow/AssembleDetail'
       x-os-paths: ['screenservices/UBTConnect/Legacy_AssembleFlow/AssembleDetail/DataActionGetAssembleNotes']
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['AssembleDetail']
       x-review: 'inputs'
   '/api/UBTConnect/Bookmarks/DataActionGetBookmarks':
@@ -3834,41 +3931,6 @@ paths:
         - 'SupperMeeting_Carousel'
         - 'SupperMeeting_Details'
       x-review: 'inputs'
-  '/api/UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount':
-    post:
-      operationId: 'UBTConnect.FeedBlock_CommunityPopulation.DataActionFetchCount'
-      requestBody:
-        content:
-          'application/json':
-            schema:
-              '$ref': '#/components/schemas/UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input'
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data:
-                    '$ref': '#/components/schemas/UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Output'
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Data action DataActionFetchCount (UBTConnect, Home/FeedBlock_CommunityPopulation)'
-      tags: ['UBTConnect']
-      x-mock-source: 'recorded'
-      x-os-inputs: 'screen-variables'
-      x-os-kind: 'dataAction'
-      x-os-owner: 'Home/FeedBlock_CommunityPopulation'
-      x-os-paths: ['screenservices/UBTConnect/Home/FeedBlock_CommunityPopulation/DataActionFetchCount']
-      x-os-phase: ['load']
-      x-os-screens: ['CountryList', 'HomeFeed']
-      x-review: 'inputs'
   '/api/UBTConnect/FeedBlock_Services/DataActionGetServices':
     post:
       operationId: 'UBTConnect.FeedBlock_Services.DataActionGetServices'
@@ -4002,7 +4064,7 @@ paths:
       x-os-owner: 'Directory_Household/HouseholdDetails_Block'
       x-os-paths:
         - 'screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery'
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens:
         - 'HouseholdCarousel'
         - 'HouseholdDetails'
@@ -4162,14 +4224,14 @@ paths:
       x-os-phase: ['load']
       x-os-screens: ['Household_Relations']
       x-review: 'inputs'
-  '/api/UBTConnect/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails':
+  '/api/UBTConnect/HouseholdRelations_Block/DataActionGet_SibllingsRelations':
     post:
-      operationId: 'UBTConnect.HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails'
+      operationId: 'UBTConnect.HouseholdRelations_Block.DataActionGet_SibllingsRelations'
       requestBody:
         content:
           'application/json':
             schema:
-              '$ref': '#/components/schemas/UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Input'
+              '$ref': '#/components/schemas/UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Input'
         required: true
       responses:
         '200':
@@ -4178,7 +4240,7 @@ paths:
               schema:
                 properties:
                   data:
-                    '$ref': '#/components/schemas/UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Output'
+                    '$ref': '#/components/schemas/UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Output'
                 required: ['data']
                 type: 'object'
           description: 'The action outputs.'
@@ -4187,14 +4249,14 @@ paths:
             'application/json':
               schema: { '$ref': '#/components/schemas/Error' }
           description: 'Error.'
-      summary: 'Data action DataActionGet_ParentHouseholdDetails (UBTConnect, Directory_Household/HouseholdRelations_Block)'
+      summary: 'Data action DataActionGet_SibllingsRelations (UBTConnect, Directory_Household/HouseholdRelations_Block)'
       tags: ['UBTConnect']
       x-mock-source: 'fictional'
       x-os-inputs: 'screen-variables'
       x-os-kind: 'dataAction'
       x-os-owner: 'Directory_Household/HouseholdRelations_Block'
       x-os-paths:
-        - 'screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails'
+        - 'screenservices/UBTConnect/Directory_Household/HouseholdRelations_Block/DataActionGet_SibllingsRelations'
       x-os-phase: ['load']
       x-os-screens: ['Household_Relations']
       x-review: 'inputs'
@@ -4478,41 +4540,6 @@ paths:
       x-os-phase: ['load']
       x-os-screens: ['Notes']
       x-review: 'inputs'
-  '/api/UBTConnect/NotificationDetails/DataActionFetchMessageInstance':
-    post:
-      operationId: 'UBTConnect.NotificationDetails.DataActionFetchMessageInstance'
-      requestBody:
-        content:
-          'application/json':
-            schema:
-              '$ref': '#/components/schemas/UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Input'
-        required: true
-      responses:
-        '200':
-          content:
-            'application/json':
-              schema:
-                properties:
-                  data:
-                    '$ref': '#/components/schemas/UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output'
-                required: ['data']
-                type: 'object'
-          description: 'The action outputs.'
-        default:
-          content:
-            'application/json':
-              schema: { '$ref': '#/components/schemas/Error' }
-          description: 'Error.'
-      summary: 'Data action DataActionFetchMessageInstance (UBTConnect, App_Notifications/NotificationDetails)'
-      tags: ['UBTConnect']
-      x-mock-source: 'fictional'
-      x-os-inputs: 'screen-variables'
-      x-os-kind: 'dataAction'
-      x-os-owner: 'App_Notifications/NotificationDetails'
-      x-os-paths: ['screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionFetchMessageInstance']
-      x-os-phase: ['load']
-      x-os-screens: ['NotificationDetails']
-      x-review: 'inputs'
   '/api/UBTConnect/NotificationDetails/DataActionGetMessageInstance':
     post:
       operationId: 'UBTConnect.NotificationDetails.DataActionGetMessageInstance'
@@ -4545,7 +4572,7 @@ paths:
       x-os-kind: 'dataAction'
       x-os-owner: 'App_Notifications/NotificationDetails'
       x-os-paths: ['screenservices/UBTConnect/App_Notifications/NotificationDetails/DataActionGetMessageInstance']
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['NotificationDetails']
       x-review: 'inputs'
   '/api/UBTConnect/NotificationDetails/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId':
@@ -4789,7 +4816,7 @@ paths:
       x-os-owner: 'App_Policies/Policy_Custom_AcceptPendingPolicies'
       x-os-paths:
         - 'screenservices/UBTConnect/App_Policies/Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies'
-      x-os-phase: []
+      x-os-phase: ['load']
       x-os-screens: ['AcceptPendingPolicies']
       x-review: 'inputs'
   '/api/UBTConnect/Profile/DataActionGetCountryInfo':
@@ -5095,6 +5122,7 @@ paths:
       x-os-paths: ['screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -5166,6 +5194,7 @@ paths:
       x-os-paths: ['screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -5207,6 +5236,37 @@ paths:
         - 'SupperMeeting_Details'
         - 'TermsAndPoliciesMenu'
         - 'Updates_SingleList'
+  '/api/UBTConnect/ServiceAPIGetAllVisibleBookmarksByType':
+    post:
+      operationId: 'UBTConnect.ServiceAPIGetAllVisibleBookmarksByType'
+      requestBody:
+        content:
+          'application/json':
+            schema: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Input' }
+        required: true
+      responses:
+        '200':
+          content:
+            'application/json':
+              schema:
+                properties:
+                  data: { '$ref': '#/components/schemas/UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Output' }
+                required: ['data']
+                type: 'object'
+          description: 'The action outputs.'
+        default:
+          content:
+            'application/json':
+              schema: { '$ref': '#/components/schemas/Error' }
+          description: 'Error.'
+      summary: 'Service action GetAllVisibleBookmarksByType (UBTConnect)'
+      tags: ['UBTConnect']
+      x-mock-source: 'fictional'
+      x-os-kind: 'serviceAPI'
+      x-os-paths: ['screenservices/UBTConnect/Bookmarks/Bookmarks/ServiceAPIGetAllVisibleBookmarksByType']
+      x-os-phase: []
+      x-os-screens: ['Bookmarks']
+      x-os-writes: true
   '/api/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All':
     post:
       operationId: 'UBTConnect.ServiceAPIGet_UI_UpdateItems_UnreadCount_All'
@@ -5865,6 +5925,7 @@ paths:
         - 'Locality_Details'
         - 'MessageDetail'
         - 'MessageList'
+        - 'Notifications'
         - 'Photobook'
         - 'Profile'
         - 'SupperMeeting_Carousel'
@@ -5899,6 +5960,7 @@ paths:
       x-os-paths: ['screenservices/UBTConnect_Utils/ActionGetUserInformation']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -6553,6 +6615,7 @@ paths:
       x-os-paths: ['screenservices/UBT_AppManager/ActionAppManager_AfterInitialize']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -6656,6 +6719,7 @@ paths:
       x-os-paths: ['screenservices/UBT_AppManager/ActionAppManager_SynchAppContext']
       x-os-phase: ['load']
       x-os-screens:
+        - 'AcceptPendingPolicies'
         - 'AssembleEvents'
         - 'Assemble_BrowseByCountry'
         - 'Bookmarks'
@@ -12618,6 +12682,7 @@ components:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
+        EventFilter: { type: 'integer' }
         EventsSummary:
           properties:
             EmptyListItem: { '$ref': '#/components/schemas/Connect2_OrbitMobile_BL__GetAdminOrbitEvents_Screen' }
@@ -12628,8 +12693,21 @@ components:
           type: 'object'
           x-os-list: true
         IsFetchingData: { type: 'boolean' }
+        PopupMeasurements: { '$ref': '#/components/schemas/Connect2_OrbitMobile_MUI__IntegerIntegerIntegerRecord' }
+        Popup_FiltersOpened: { type: 'boolean' }
+        Popup_SortByOpened: { type: 'boolean' }
+        SortEventsASC: { type: 'boolean' }
         UserFirstName: { type: 'string' }
         UserMemberId: { type: 'string', x-os-type: 'LongInteger' }
+        YearsSelection:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect2_OrbitMobile_BL__YearItem' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect2_OrbitMobile_BL__YearItem' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
       type: 'object'
       x-os-input-of: 'Connect2_OrbitMobile_MUI.ScreenBlock_AdminLanding.DataActionGet_AdminEventsList'
     Connect2_OrbitMobile_MUI__ScreenBlock_AdminLanding__DataActionGet_AdminEventsList__Output:
@@ -12643,7 +12721,16 @@ components:
           required: ['List']
           type: 'object'
           x-os-list: true
-      required: ['Response']
+        YearFilter:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Connect2_OrbitMobile_BL__YearItem' }
+            List:
+              items: { '$ref': '#/components/schemas/Connect2_OrbitMobile_BL__YearItem' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+      required: ['Response', 'YearFilter']
       type: 'object'
       x-os-output-of: 'Connect2_OrbitMobile_MUI.ScreenBlock_AdminLanding.DataActionGet_AdminEventsList'
     Connect2_OrbitMobile_MUI__ScreenBlock_AdminMilestoneDetail__DataActionGet_MilestoneInformation__Input:
@@ -14425,13 +14512,6 @@ components:
       required: ['TimezoneName', 'TimezoneOffset']
       type: 'object'
       x-os-structure: 'Connect_Geography_CS.UI_LocalityTimezoneRec'
-    Connect_Geography_CS__UI_MembersStatistics:
-      properties:
-        TotalNumberOfHouseholds: { type: 'string', x-os-type: 'LongInteger' }
-        TotalNumberOfMembers: { type: 'string', x-os-type: 'LongInteger' }
-      required: ['TotalNumberOfHouseholds', 'TotalNumberOfMembers']
-      type: 'object'
-      x-os-structure: 'Connect_Geography_CS.UI_MembersStatisticsRec'
     Connect_Geography_CS__UI_StatisticsTexts:
       properties:
         Brothers: { type: 'string' }
@@ -15140,6 +15220,7 @@ components:
       x-os-structure: 'Leaflet.IconRec'
     Leaflet__Marker:
       properties:
+        Bookmarked: { type: 'boolean' }
         ExtraData: { type: 'string' }
         Id: { type: 'string' }
         Latlng:
@@ -15159,7 +15240,7 @@ components:
           x-os-list: true
         Options: { '$ref': '#/components/schemas/Leaflet__MarkerOptions' }
         Type: { type: 'string' }
-      required: ['ExtraData', 'Id', 'Latlng', 'Options', 'Type']
+      required: ['Bookmarked', 'ExtraData', 'Id', 'Latlng', 'Options', 'Type']
       type: 'object'
       x-os-structure: 'Leaflet.MarkerRec'
     Leaflet__MarkerOptions:
@@ -16305,6 +16386,53 @@ components:
       required: ['IsScanPerMilestone']
       type: 'object'
       x-os-output-of: 'UBTConnect.ActionGetMilestoneScanFF'
+    UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Input:
+      additionalProperties: false
+      properties:
+        ListOfMessageParameters:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Comms_CS__MessageParameter' }
+            List:
+              items: { '$ref': '#/components/schemas/Comms_CS__MessageParameter' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+      required: ['ListOfMessageParameters']
+      type: 'object'
+      x-os-input-of: 'UBTConnect.ActionGet_OrbitHostSurveyNotificationParameters'
+    UBTConnect__ActionGet_OrbitHostSurveyNotificationParameters__Output:
+      properties:
+        OrbitEndDate: { type: 'string', x-os-type: 'DateTime' }
+        OrbitEventId: { type: 'string' }
+        OrbitEventName: { type: 'string' }
+        OrbitStartDate: { type: 'string', x-os-type: 'DateTime' }
+      required: ['OrbitEndDate', 'OrbitEventId', 'OrbitEventName', 'OrbitStartDate']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.ActionGet_OrbitHostSurveyNotificationParameters'
+    UBTConnect__ActionGet_OrbitNotificationParameters__Input:
+      additionalProperties: false
+      properties:
+        ListOfMessageParameters:
+          properties:
+            EmptyListItem: { '$ref': '#/components/schemas/Comms_CS__MessageParameter' }
+            List:
+              items: { '$ref': '#/components/schemas/Comms_CS__MessageParameter' }
+              type: 'array'
+          required: ['List']
+          type: 'object'
+          x-os-list: true
+      required: ['ListOfMessageParameters']
+      type: 'object'
+      x-os-input-of: 'UBTConnect.ActionGet_OrbitNotificationParameters'
+    UBTConnect__ActionGet_OrbitNotificationParameters__Output:
+      properties:
+        OrbitEventId: { type: 'string' }
+        OrbitEventName: { type: 'string' }
+        OrbitMilestoneId: { type: 'string' }
+      required: ['OrbitEventId', 'OrbitEventName', 'OrbitMilestoneId']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.ActionGet_OrbitNotificationParameters'
     UBTConnect__ActionGet_ShareDetails__Input:
       additionalProperties: false
       properties:
@@ -16388,6 +16516,21 @@ components:
       required: ['IsSuccess']
       type: 'object'
       x-os-output-of: 'UBTConnect.ActionSendContactEmail'
+    UBTConnect__ActionStoreAdaptiveCardResponses__Input:
+      additionalProperties: false
+      properties:
+        ActionTaken: { type: 'string' }
+        AdaptiveCardPayloadJSON: { type: 'string' }
+        DeviceHardwareId: { type: 'string' }
+        FormDataJSON: { type: 'string' }
+        MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
+      required: ['ActionTaken', 'AdaptiveCardPayloadJSON', 'DeviceHardwareId', 'FormDataJSON', 'MessageInstanceId']
+      type: 'object'
+      x-os-input-of: 'UBTConnect.ActionStoreAdaptiveCardResponses'
+    UBTConnect__ActionStoreAdaptiveCardResponses__Output:
+      properties: {}
+      type: 'object'
+      x-os-output-of: 'UBTConnect.ActionStoreAdaptiveCardResponses'
     UBTConnect__ActionSync_Info_GetMain__Input:
       additionalProperties: false
       properties:
@@ -16497,6 +16640,7 @@ components:
         Filter_BottomSheetId: { type: 'string' }
         HasFiltersApplied: { type: 'boolean' }
         HeaderIsScrolled: { type: 'boolean' }
+        IsSearching: { type: 'boolean' }
         MaxRecords: { type: 'string', x-os-type: 'LongInteger' }
         PageNumber: { type: 'integer' }
         PageSize: { type: 'integer' }
@@ -16943,18 +17087,6 @@ components:
       required: ['Notes']
       type: 'object'
       x-os-output-of: 'UBTConnect.Directory_EntityDetailsActions.DataActionFetchNotes'
-    UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Input:
-      additionalProperties: true
-      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
-      properties: {}
-      type: 'object'
-      x-os-input-of: 'UBTConnect.FeedBlock_CommunityPopulation.DataActionFetchCount'
-    UBTConnect__FeedBlock_CommunityPopulation__DataActionFetchCount__Output:
-      properties:
-        UI_MembersStatistics: { '$ref': '#/components/schemas/Connect_Geography_CS__UI_MembersStatistics' }
-      required: ['UI_MembersStatistics']
-      type: 'object'
-      x-os-output-of: 'UBTConnect.FeedBlock_CommunityPopulation.DataActionFetchCount'
     UBTConnect__FeedBlock_Services__DataActionGetServices__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17279,7 +17411,7 @@ components:
         - 'ParentHouseholdId'
       type: 'object'
       x-os-output-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_MemberDetails'
-    UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Input:
+    UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
       properties:
@@ -17290,8 +17422,8 @@ components:
         UserAge_Visibility: { type: 'boolean' }
         isLoading: { type: 'boolean' }
       type: 'object'
-      x-os-input-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails'
-    UBTConnect__HouseholdRelations_Block__DataActionGet_ParentHouseholdDetails__Output:
+      x-os-input-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_SibllingsRelations'
+    UBTConnect__HouseholdRelations_Block__DataActionGet_SibllingsRelations__Output:
       properties:
         Out_siblingRelations:
           properties:
@@ -17304,7 +17436,7 @@ components:
           x-os-list: true
       required: ['Out_siblingRelations']
       type: 'object'
-      x-os-output-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_ParentHouseholdDetails'
+      x-os-output-of: 'UBTConnect.HouseholdRelations_Block.DataActionGet_SibllingsRelations'
     UBTConnect__Household_Card__DataActionGetMembers__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -17599,24 +17731,6 @@ components:
       required: ['Out_Notes']
       type: 'object'
       x-os-output-of: 'UBTConnect.Notes.DataActionGetNotes'
-    UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Input:
-      additionalProperties: true
-      description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
-      properties:
-        FeedItemId: { type: 'string' }
-        HardwareId: { type: 'string' }
-        IsLoading: { type: 'boolean' }
-        MessageInstanceId: { type: 'string', x-os-type: 'LongInteger' }
-        MessageTemplateId: { type: 'string', x-os-type: 'LongInteger' }
-        ShowAssembleAction: { type: 'boolean' }
-      type: 'object'
-      x-os-input-of: 'UBTConnect.NotificationDetails.DataActionFetchMessageInstance'
-    UBTConnect__NotificationDetails__DataActionFetchMessageInstance__Output:
-      properties:
-        UI_NotificationDetail: { '$ref': '#/components/schemas/Connect2_Notification_CS__MessageListItem' }
-      required: ['UI_NotificationDetail']
-      type: 'object'
-      x-os-output-of: 'UBTConnect.NotificationDetails.DataActionFetchMessageInstance'
     UBTConnect__NotificationDetails__DataActionGetMessageInstance__Input:
       additionalProperties: true
       description: 'Screen variables OutSystems sends with this call (screenData.variables). All optional; the backend spec decides which ones matter.'
@@ -18376,6 +18490,19 @@ components:
         - 'Localities_Markers'
       type: 'object'
       x-os-output-of: 'UBTConnect.ServiceAPIFetchData_CacheableMapEntities'
+    UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Input:
+      additionalProperties: false
+      properties:
+        BookmarkCategoryId: { type: 'string' }
+      required: ['BookmarkCategoryId']
+      type: 'object'
+      x-os-input-of: 'UBTConnect.ServiceAPIGetAllVisibleBookmarksByType'
+    UBTConnect__ServiceAPIGetAllVisibleBookmarksByType__Output:
+      properties:
+        BookmarkIds: { '$ref': '#/components/schemas/UBTConnect__TextRecordList' }
+      required: ['BookmarkIds']
+      type: 'object'
+      x-os-output-of: 'UBTConnect.ServiceAPIGetAllVisibleBookmarksByType'
     UBTConnect__ServiceAPIGet_UI_UpdateItems_UnreadCount_All__Input:
       additionalProperties: false
       properties: {}
@@ -18606,6 +18733,11 @@ components:
       required: ['LocalityId', 'LocalityName']
       type: 'object'
       x-os-structure: 'UBTConnect.TextLongIntegerRecord'
+    UBTConnect__TextRecordList:
+      description: 'structure UBTConnect.TextRecordList (module not in the downloaded code) never captured'
+      x-os-source: 'capture'
+      x-os-structure: 'UBTConnect.TextRecordList'
+      x-unknown: true
     UBTConnect__TextTextTextRecord:
       properties:
         Delimiter_Function: { type: 'string' }
@@ -18714,6 +18846,7 @@ components:
         IsHeaderScrolled: { type: 'boolean' }
         IsShareOpen: { type: 'boolean' }
         IsToggleSearch: { type: 'boolean' }
+        PillsLoaded: { type: 'boolean' }
         ShareableObjectId: { type: 'string' }
         ShareableUpdateItem: { '$ref': '#/components/schemas/Connect_Updates_CS__UI_UpdateItem' }
         ShowMarkAll: { type: 'boolean' }
@@ -18780,6 +18913,7 @@ components:
         IsHeaderScrolled: { type: 'boolean' }
         IsShareOpen: { type: 'boolean' }
         IsToggleSearch: { type: 'boolean' }
+        PillsLoaded: { type: 'boolean' }
         ShareableObjectId: { type: 'string' }
         ShareableUpdateItem: { '$ref': '#/components/schemas/Connect_Updates_CS__UI_UpdateItem' }
         ShowMarkAll: { type: 'boolean' }

@@ -220,11 +220,11 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3014 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 6275 ms
-- 3. `ActionSync_Info_GetMain` (200) at 6777 ms
-- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9501 ms
-- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12735 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2293 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 5091 ms
+- 3. `ActionSync_Info_GetMain` (200) at 5556 ms
+- 6. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8129 ms
+- 7. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12673 ms
 - plus 2 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)

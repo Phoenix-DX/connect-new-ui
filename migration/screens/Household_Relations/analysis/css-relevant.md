@@ -677,16 +677,6 @@ only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-bre
 */ .ubt-button .ubt-icon { font-size: var(--ubt-button-icon-size); color: inherit; }
 .unsupported-card .ubt-button { min-width: 250px }
 ```
-### .ubt-button--disabled  (2 rules)
-```css
-.ubt-button--disabled { pointer-events: none; }
-.ubt-button--disabled { --ubt-button-background-color: var(--color-neutral-3); --ubt-button-font-color: var(--color-neutral-7); --ubt-button-border-color: var(--color-neutral-5); }
-```
-### .ubt-button--primary  (2 rules)
-```css
-.ubt-button--primary { /*placeholder for defining primary button*/ }
-.ubt-button--primary:active, .ubt-button--primary.display-pressed { --ubt-button-background-color: var(--color-cyan-darker); }
-```
 ### .ubt-button--s  (1 rule)
 ```css
 .ubt-button--s { --ubt-button-width: var( --ubt-button-width-s); --ubt-button-height: var( --ubt-button-height-s); --ubt-button-padding: var(--space-xs) var(--space-s); --ubt-button-font-size: var(--font-size-base); --ubt-button-font-weight: var(--font-regular); --ubt-button-icon-size: var(--ubt-icon-size-medium); }

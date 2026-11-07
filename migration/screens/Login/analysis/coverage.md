@@ -43,10 +43,6 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - none
 
 ## Module-level server actions (called from client actions; check which ones this screen uses)
-- [ ] `AddBookmark` (UBTConnect.controller.js)
-- [ ] `AddBookmark2` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
-- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
 - [ ] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
 - [ ] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
 - [ ] `Get_ShareDetails` (UBTConnect.controller.js)
@@ -58,7 +54,9 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `AppManager_Login` (UBT_AppManager.controller.js)
 - [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
 - [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)
+- [ ] `AddBookmark2` (UBTConnect_Utils.controller.js)
 - [ ] `CS_CreateShareProfileLink` (UBTConnect_Utils.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect_Utils.controller.js)
 - [x] `Get_RuntimeVersion` (UBTConnect_Utils.controller.js)
 - [ ] `GetSignedImagesInBulk` (UBTConnect_Utils.controller.js)
 - [ ] `GetUserInformation` (UBTConnect_Utils.controller.js)

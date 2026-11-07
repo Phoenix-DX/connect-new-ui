@@ -1,4 +1,4 @@
-import { useId, useMemo } from 'react';
+import { useId, useMemo, type ReactNode } from 'react';
 import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
 import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
 import { OSBlock } from '@/components/ui/os/OSBlock';
@@ -60,6 +60,10 @@ interface OneSchoolGlobalDetailsContainerProps {
   /** IsRestoredFromCache of the block: the screen gives its own view cache flag (omitted: the hook reads it), the
       slide gives False. See useOneSchoolGlobalDetails. */
   isRestoredFromCache?: boolean;
+  /** Placeholder_CarouselTag of the block (TST 2026-11-07, OneSchoolGlobalDetails_Block.mvc@a2b7056a.js:284-294): in
+      the ImageCard's Placeholder_ImageTag. The screen OneSchoolGlobalDetails leaves it empty
+      (OneSchoolGlobalDetails.mvc@7e9e5342.js:210-211). */
+  placeholderCarouselTag?: ReactNode;
 }
 
 /** The school details with their data: SubLayout_DirectoryDetailScreen with the detail card (photo, name, areas
@@ -78,6 +82,7 @@ export function OneSchoolGlobalDetailsContainer({
   id,
   placement = 'screen',
   isRestoredFromCache,
+  placeholderCarouselTag,
 }: OneSchoolGlobalDetailsContainerProps) {
   const fallback = useId();
   const prefix = id?.replace('$', '') ?? `osg${fallback.replace(/:/g, '')}`;
@@ -111,6 +116,7 @@ export function OneSchoolGlobalDetailsContainer({
         id={cid('$b3')}
         inIsBookmarked={state.LocalIsBookmarked}
         inCardTypeId={UBT_ImageCardType.Detail}
+        placeholderImageTag={<div id={cid('Placeholder_CarouselTag')}>{placeholderCarouselTag}</div>}
         lazyImagePlaceholder={
           <EntityLazyImage
             id={cid('$b4')}

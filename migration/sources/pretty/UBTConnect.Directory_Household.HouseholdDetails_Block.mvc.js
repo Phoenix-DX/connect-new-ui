@@ -1,4 +1,4 @@
-define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTConnect.controller", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc$model", "UBTConnectLibrary.ConnectPatterns.SeeMoreSection.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc$model", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$model", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper"], function(OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTConnectController, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_ImageCard_LazyLoading_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_ImageCard__Content_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnectLibrary_ConnectCorePatterns_KebabButtonMenu_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_AddressPopup_Wrapper_mvcModel, UBTConnectLibrary_ConnectPatterns_SeeMoreSection_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvcModel, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvcModel, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvcModel, UBTConnect_Directory_Household_Blocks_HouseholdDetails_Members_Block_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel) {
+define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTConnect.controller", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc$model", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc$model", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$model", "UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc$model", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$model", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$model", "UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$model", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$model", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$model", "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc$model", "UBTConnectLibrary.ConnectPatterns.SeeMoreSection.mvc$model", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$model", "UBTConnectLibrary.BasePatterns.CustomText.mvc$model", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc$model", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$model", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$model", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc$model", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$model", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$model", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "APIDomain_Directory_IS.model$Directory_ImageDetailsRec", "UBTConnect.model$Directory_ImageDetailsList"], function(OutSystems, UBTConnectModel, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTConnectController, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_mvcModel, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvcModel, UBTConnectLibrary_ConnectCorePatterns_ImageCard_LazyLoading_mvcModel, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvcModel, UBTConnectLibrary_ConnectPatterns_ImageCard__Content_mvcModel, UBTConnectLibrary_BasePatterns_CustomContainer_mvcModel, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvcModel, UBTConnectLibrary_ConnectCorePatterns_KebabButtonMenu_mvcModel, UBTConnectLibrary_ConnectPatterns_IconText_mvcModel, UBTConnectLibrary_ConnectPatterns_Icon_mvcModel, UBTConnect_Utils_CW_CTA_PopUps_AddressPopup_Wrapper_mvcModel, UBTConnectLibrary_ConnectPatterns_SeeMoreSection_mvcModel, UBTConnectLibrary_BasePatterns_Columns_Two_mvcModel, UBTConnectLibrary_BasePatterns_CustomText_mvcModel, UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvcModel, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvcModel, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvcModel, UBTConnect_Directory_Household_Blocks_HouseholdDetails_Members_Block_mvcModel, UBTConnect_Utils_CW_Share_ShareSheet_mvcModel, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvcModel) {
     var OS = OutSystems.Internal;
 
     var GetHousehold_CoordinatesDataActRec = (function(_super) {
@@ -21,6 +21,27 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", ["OutS
         };
         GetHousehold_CoordinatesDataActRec.init();
         return GetHousehold_CoordinatesDataActRec;
+    })(OS.Model.DataSourceRecord);
+    var GetHouseHold_GalleryDataActRec = (function(_super) {
+        __extends(GetHouseHold_GalleryDataActRec, _super);
+
+        function GetHouseHold_GalleryDataActRec(defaults) {
+            _super.apply(this, arguments);
+        }
+        GetHouseHold_GalleryDataActRec.attributesToDeclare = function() {
+            return [
+                this.attr("Out_ImageDetails", "out_ImageDetailsOut", "Out_ImageDetails", true, false, OS.DataTypes.DataTypes.RecordList, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.Directory_ImageDetailsList());
+                }, true, UBTConnectModel.Directory_ImageDetailsList)
+            ].concat(_super.attributesToDeclare.call(this));
+        };
+        GetHouseHold_GalleryDataActRec.fromStructure = function(str) {
+            return new GetHouseHold_GalleryDataActRec(new GetHouseHold_GalleryDataActRec.RecordClass({
+                out_ImageDetailsOut: OS.DataTypes.ImmutableBase.getData(str)
+            }));
+        };
+        GetHouseHold_GalleryDataActRec.init();
+        return GetHouseHold_GalleryDataActRec;
     })(OS.Model.DataSourceRecord);
     var GetHouseholdDataActRec = (function(_super) {
         __extends(GetHouseholdDataActRec, _super);
@@ -131,6 +152,9 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", ["OutS
                 this.attr("GetHousehold_Coordinates", "getHousehold_CoordinatesDataAct", "getHousehold_CoordinatesDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetHousehold_CoordinatesDataActRec());
                 }, true, GetHousehold_CoordinatesDataActRec),
+                this.attr("GetHouseHold_Gallery", "getHouseHold_GalleryDataAct", "getHouseHold_GalleryDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
+                    return OS.DataTypes.ImmutableBase.getData(new GetHouseHold_GalleryDataActRec());
+                }, true, GetHouseHold_GalleryDataActRec),
                 this.attr("GetHousehold", "getHouseholdDataAct", "getHouseholdDataAct", true, true, OS.DataTypes.DataTypes.Record, function() {
                     return OS.DataTypes.ImmutableBase.getData(new GetHouseholdDataActRec());
                 }, true, GetHouseholdDataActRec)
@@ -238,7 +262,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", ["OutS
     })(OS.Model.BaseViewModel);
     return new OS.Model.ModelFactory(Model, "Directory_Household.HouseholdDetails_Block");
 });
-define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc$view", "UBTConnectLibrary.ConnectPatterns.SeeMoreSection.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc$view", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$view", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$view", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, React, OSView, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_model, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller, UBTConnectClientVariables, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_ImageCard_LazyLoading_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_ImageCard__Content_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnectLibrary_ConnectCorePatterns_KebabButtonMenu_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_AddressPopup_Wrapper_mvc_view, UBTConnectLibrary_ConnectPatterns_SeeMoreSection_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvc_view, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_view, UBTConnect_Directory_Household_Blocks_HouseholdDetails_Members_Block_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view) {
+define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "react", "OutSystems/ReactView/Main", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$model", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", "UBTConnect.clientVariables", "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.mvc$view", "OutSystems/ReactWidgets/Main", "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.mvc$view", "UBTConnect_Utils.CW_Image.UBT_LazyImage.mvc$view", "UBTConnectLibrary.ConnectPatterns.ImageCard__Content.mvc$view", "UBTConnectLibrary.BasePatterns.CustomContainer.mvc$view", "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc$view", "UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.mvc$view", "UBTConnectLibrary.ConnectPatterns.IconText.mvc$view", "UBTConnectLibrary.ConnectPatterns.Icon.mvc$view", "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc$view", "UBTConnectLibrary.ConnectPatterns.SeeMoreSection.mvc$view", "UBTConnectLibrary.BasePatterns.Columns_Two.mvc$view", "UBTConnectLibrary.BasePatterns.CustomText.mvc$view", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.mvc$view", "UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc$view", "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc$view", "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc$view", "UBTConnect_Utils.CW_Share.ShareSheet.mvc$view", "UBTConnect_Utils.CW_Share.ShareableObject_Generic.mvc$view", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "APIDomain_Directory_IS.model$Directory_ImageDetailsRec", "UBTConnect.model$Directory_ImageDetailsList"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, React, OSView, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_model, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller, UBTConnectClientVariables, UBTConnect_SubLayout_SubLayout_DirectoryDetailScreen_mvc_view, OSWidgets, UBTConnectLibrary_ConnectPatterns_SkeletonSection_mvc_view, UBTConnectLibrary_ConnectCorePatterns_ImageCard_LazyLoading_mvc_view, UBTConnect_Utils_CW_Image_UBT_LazyImage_mvc_view, UBTConnectLibrary_ConnectPatterns_ImageCard__Content_mvc_view, UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, UBTConnectLibrary_ConnectPatterns_HorizontalTagList_mvc_view, UBTConnectLibrary_ConnectCorePatterns_KebabButtonMenu_mvc_view, UBTConnectLibrary_ConnectPatterns_IconText_mvc_view, UBTConnectLibrary_ConnectPatterns_Icon_mvc_view, UBTConnect_Utils_CW_CTA_PopUps_AddressPopup_Wrapper_mvc_view, UBTConnectLibrary_ConnectPatterns_SeeMoreSection_mvc_view, UBTConnectLibrary_BasePatterns_Columns_Two_mvc_view, UBTConnectLibrary_BasePatterns_CustomText_mvc_view, UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvc_view, UBTConnectLibrary_ConnectPatterns_ComingSoon_mvc_view, UBTConnect_Directory_CommonBlocks_Directory_EntityDetailsActions_mvc_view, UBTConnect_Directory_Household_Blocks_HouseholdDetails_Members_Block_mvc_view, UBTConnect_Utils_CW_Share_ShareSheet_mvc_view, UBTConnect_Utils_CW_Share_ShareableObject_Generic_mvc_view) {
     var OS = OutSystems.Internal;
     var PlaceholderContent = OSView.Widget.PlaceholderContent;
     var IteratorPlaceholderContent = OSView.Widget.IteratorPlaceholderContent;
@@ -381,9 +405,11 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                         }),
                                                         EntityType: UBTConnectModel.staticEntities.connect_Entity.household,
                                                         EntityId: model.getCachedValue(idService.getId("O5yIa3QCCk2I__k+mNrypQ.EntityId"), function() {
-                                                            return ((((!(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isHiddenAttr) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr))) ? (OS.BuiltinFunctions.longIntegerToText(model.variables.householdIdIn)) : (""));
+                                                            return (((((model.variables.getHouseholdDataAct.isDataFetchedAttr && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr))) ? (OS.BuiltinFunctions.longIntegerToText(model.variables.householdIdIn)) : (""));
                                                         }, function() {
-                                                            return model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isHiddenAttr;
+                                                            return model.variables.getHouseholdDataAct.isDataFetchedAttr;
+                                                        }, function() {
+                                                            return model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr;
                                                         }, function() {
                                                             return model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr;
                                                         }, function() {
@@ -708,7 +734,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                                     align: /*Default*/ 0,
                                                                     animate: true,
                                                                     style: "householdAddress",
-                                                                    visible: (((!(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isHiddenAttr) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr)) && ((model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.addressAttr) !== (""))),
+                                                                    visible: (((!(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr)) && ((model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.addressAttr) !== (""))),
                                                                     _idProps: {
                                                                         service: idService,
                                                                         name: "AddressSection"
@@ -780,14 +806,15 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                                     _dependencies: [asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.householdCoordinatesOut), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.addressAttr), asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._isEnabledInDataFetchStatus), asPrimitiveValue(model.variables.isEnabledIn)]
                                                                 })), React.createElement(OSWidgets.Container, {
                                                                     align: /*Default*/ 0,
-                                                                    animate: false,
+                                                                    animate: true,
                                                                     style: "full-width padding-top-s",
-                                                                    visible: true,
+                                                                    visible: !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr),
                                                                     _idProps: {
                                                                         service: idService,
                                                                         name: "SeeMoreSection"
                                                                     },
-                                                                    _widgetRecordProvider: widgetsRecordProvider
+                                                                    _widgetRecordProvider: widgetsRecordProvider,
+                                                                    visible_dataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getHouseholdDataAct.dataFetchStatusAttr)
                                                                 }, React.createElement(UBTConnectLibrary_ConnectPatterns_SeeMoreSection_mvc_view, {
                                                                     inputs: {
                                                                         isEnabled: model.variables.isEnabledIn,
@@ -1253,52 +1280,60 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                             }, function() {
                                                                 return [];
                                                             }), $if((model.variables.tagsList_SelectedTagVar === model.variables.tagsList_Id_PhotosVar), false, this, function() {
-                                                                return [React.createElement(OSWidgets.Container, {
-                                                                    align: /*Default*/ 0,
-                                                                    animate: false,
-                                                                    visible: true,
-                                                                    _idProps: {
-                                                                        service: idService,
-                                                                        name: "Gallery"
-                                                                    },
-                                                                    _widgetRecordProvider: widgetsRecordProvider
-                                                                }, React.createElement(UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvc_view, {
-                                                                    inputs: {
-                                                                        In_HouseholdTimelineImages: model.variables.tEMP_TimelineImagesVar
-                                                                    },
-                                                                    events: {
-                                                                        _handleError: function(ex) {
-                                                                            controller.handleError(ex);
-                                                                        },
-                                                                        event_DateSelected$Action: function(dateIn) {
-                                                                            var eventHandlerContext = callContext.clone();
-                                                                            return OS.Flow.tryFinally(function() {
-                                                                                var varBag = {};
-                                                                                controller.pushDebuggerContext(eventHandlerContext);
-
-                                                                                OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Directory_Household_Blocks/HouseholdDetails_TimelinePhoto_List Event_DateSelected");
-                                                                                controller.handler_TimelinePhotoSelected$Action(dateIn, controller.callContext(eventHandlerContext));
-                                                                            }, function() {
-                                                                                controller.popDebuggerContext(eventHandlerContext);
-                                                                            });
-
-                                                                            ;
-                                                                        }
-                                                                    },
-                                                                    _validationProps: {
-                                                                        validationService: validationService
-                                                                    },
-                                                                    _idProps: {
-                                                                        service: idService,
-                                                                        uuid: "32",
-                                                                        alias: "27"
-                                                                    },
-                                                                    _widgetRecordProvider: widgetsRecordProvider,
-                                                                    _dependencies: []
-                                                                })), $if(OutSystemsDebugger.handleFunctionCall(function() {
+                                                                return [$if(OutSystemsDebugger.handleFunctionCall(function() {
                                                                     return UBTConnect_UtilsController.default.connect_LaunchDarkly_PermissionCheck$Action(UBTConnectModel.staticEntities.launchDarkly_FF.mobileDirectoryHouseholdGallery, callContext).hasAccessOut;
                                                                 }, OS.DataTypes.DataTypes.Boolean, callContext.id), false, this, function() {
-                                                                    return [];
+                                                                    return [React.createElement(OSWidgets.Container, {
+                                                                        align: /*Default*/ 0,
+                                                                        animate: false,
+                                                                        visible: true,
+                                                                        _idProps: {
+                                                                            service: idService,
+                                                                            name: "HouseholdGallery"
+                                                                        },
+                                                                        _widgetRecordProvider: widgetsRecordProvider
+                                                                    }, React.createElement(UBTConnect_Directory_Household_Blocks_HouseholdDetails_TimelinePhoto_List_mvc_view, {
+                                                                        inputs: {
+                                                                            In_HouseholdTimelineImages: model.getCachedValue(idService.getId("h5h4bqtxQkyxCOormix1+w.In_HouseholdTimelineImages"), function() {
+                                                                                return OS.DataConversion.JSConversions.typeConvertRecordList(model.variables.getHouseHold_GalleryDataAct.out_ImageDetailsOut, new UBTConnectModel.UI_HouseholdTimelineImagesList(), function(source, target) {
+                                                                                    target.signedURLAttr = source.signedUrlAttr;
+                                                                                    return target;
+                                                                                });
+                                                                            }, function() {
+                                                                                return model.variables.getHouseHold_GalleryDataAct.out_ImageDetailsOut;
+                                                                            }),
+                                                                            _in_HouseholdTimelineImagesInDataFetchStatus: OS.Model.calculateDataFetchStatus(model.variables.getHouseHold_GalleryDataAct.dataFetchStatusAttr)
+                                                                        },
+                                                                        events: {
+                                                                            _handleError: function(ex) {
+                                                                                controller.handleError(ex);
+                                                                            },
+                                                                            event_DateSelected$Action: function(dateIn) {
+                                                                                var eventHandlerContext = callContext.clone();
+                                                                                return OS.Flow.tryFinally(function() {
+                                                                                    var varBag = {};
+                                                                                    controller.pushDebuggerContext(eventHandlerContext);
+
+                                                                                    OutSystemsDebugger.setThreadStartName(eventHandlerContext.id, "Directory_Household_Blocks/HouseholdDetails_TimelinePhoto_List Event_DateSelected");
+                                                                                    controller.handler_TimelinePhotoSelected$Action(dateIn, controller.callContext(eventHandlerContext));
+                                                                                }, function() {
+                                                                                    controller.popDebuggerContext(eventHandlerContext);
+                                                                                });
+
+                                                                                ;
+                                                                            }
+                                                                        },
+                                                                        _validationProps: {
+                                                                            validationService: validationService
+                                                                        },
+                                                                        _idProps: {
+                                                                            service: idService,
+                                                                            uuid: "32",
+                                                                            alias: "27"
+                                                                        },
+                                                                        _widgetRecordProvider: widgetsRecordProvider,
+                                                                        _dependencies: []
+                                                                    }))];
                                                                 }, function() {
                                                                     return [React.createElement(UBTConnectLibrary_BasePatterns_CustomContainer_mvc_view, {
                                                                         inputs: {
@@ -1378,7 +1413,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
                                                             })];
                                                         })
                                                     },
-                                                    _dependencies: [asPrimitiveValue(model.variables.tEMP_TimelineImagesVar), asPrimitiveValue(model.variables.tagsList_Id_PhotosVar), asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.householdCoordinatesOut), asPrimitiveValue(model.variables.tagsList_Id_AboutVar), asPrimitiveValue(model.variables.tagsList_SelectedTagVar), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.supperMeetingNameAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.localityNameAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.addressAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isHiddenAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.isVisibleOut), asPrimitiveValue(model.variables.in_ShowKebabMenuIn), asPrimitiveValue(model.variables.tagsListVar), asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._in_ShowKebabMenuInDataFetchStatus), asPrimitiveValue(model.variables._isEnabledInDataFetchStatus), asPrimitiveValue(model.variables.isEnabledIn)]
+                                                    _dependencies: [asPrimitiveValue(model.variables.getHouseHold_GalleryDataAct.out_ImageDetailsOut), asPrimitiveValue(model.variables.tagsList_Id_PhotosVar), asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.householdCoordinatesOut), asPrimitiveValue(model.variables.tagsList_Id_AboutVar), asPrimitiveValue(model.variables.tagsList_SelectedTagVar), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.supperMeetingNameAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.localityNameAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.addressAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.isVisibleOut), asPrimitiveValue(model.variables.in_ShowKebabMenuIn), asPrimitiveValue(model.variables.tagsListVar), asPrimitiveValue(model.variables.getHouseHold_GalleryDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getHousehold_CoordinatesDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables.getHouseholdDataAct.dataFetchStatusAttr), asPrimitiveValue(model.variables._in_ShowKebabMenuInDataFetchStatus), asPrimitiveValue(model.variables._isEnabledInDataFetchStatus), asPrimitiveValue(model.variables.isEnabledIn)]
                                                 })];
                                             })
                                         }
@@ -1888,7 +1923,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$view", ["OutSy
 
     return View;
 });
-define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$debugger", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.RefreshesJS", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.CheckRestoredJS", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnParametersChanged.RefreshesJS", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_Debugger, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnReady_RefreshesJS, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnReady_CheckRestoredJS, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnParametersChanged_RefreshesJS) {
+define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", ["OutSystems/ClientRuntime/Main", "UBTConnect.model", "UBTConnect.controller", "UBTConnect_Utils.controller", "UBTConnectLibrary.model", "Connect_Household_CS.model", "APIDomain_Directory_IS.model", "UBTConnect_Utils.model", "Connect2_Sharing_CS.model", "UBTConnect.languageResources", "UBTConnect.clientVariables", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$debugger", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.RefreshesJS", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.CheckRestoredJS", "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnParametersChanged.RefreshesJS", "UBTConnect_Utils.controller$Connect_LaunchDarkly_PermissionCheck", "UBTConnect.referencesHealth", "UBTConnect.referencesHealth$UBTConnect_Utils", "UBTConnectLibrary.model$TagRec", "UBTConnect.referencesHealth$UBTConnectLibrary", "UBTConnect.model$TagList", "Connect_Household_CS.model$UI_HouseholdTimelineImagesRec", "UBTConnect.referencesHealth$Connect_Household_CS", "UBTConnect.model$UI_HouseholdTimelineImagesList", "UBTConnect.model$HouseholdPreviewStructureRec", "UBTConnectLibrary.model$LazyImageSizeRec", "UBTConnectLibrary.model$ContainerOptionsRec", "UBTConnectLibrary.model$BackgroundOptionsRec", "UBTConnectLibrary.model$BackgroundImageRec", "UBTConnectLibrary.model$SpacingOptionsRec", "UBTConnectLibrary.model$BorderOptionsRec", "UBTConnectLibrary.model$RadiusOptionsRec", "UBTConnectLibrary.model$TextOptionsRec", "UBTConnectLibrary.model$DisplayOptionsRec", "UBTConnectLibrary.model$SizeOptionsRec", "APIDomain_Directory_IS.model$Directory_CoordinatesRec", "UBTConnect.referencesHealth$APIDomain_Directory_IS", "UBTConnectLibrary.model$ColumnOptionsRec", "UBTConnect.model$IntegerIntegerIntegerRecord", "UBTConnectLibrary.model$InlineIconRec", "UBTConnect_Utils.model$ContactPopUp_OverrideOptionsRec", "UBTConnectLibrary.model$ActionsMenuEnableOptionsRec", "Connect_Household_CS.model$UI_HouseholdMemberRec", "UBTConnect.model$UI_HouseholdMemberList", "Connect2_Sharing_CS.model$UI_ShareableObject_GenericRec", "UBTConnect.referencesHealth$Connect2_Sharing_CS", "UBTConnect.model$Member_OptionalRec", "UBTConnect_Utils.controller$ShowComingSoonMessage", "UBTConnect_Utils.controller$GetHasExtendedShare", "UBTConnect_Utils.controller$GetHasPhotobookAccess", "Connect_Household_CS.model$UI_Screen_HouseholdDetailsRec", "UBTConnect.controller$GetSkeleton_UI_HouseholdDetails", "APIDomain_Directory_IS.model$Directory_UserCurrentRec", "UBTConnect.controller$GetUserInformation_Wrapper", "APIDomain_Directory_IS.model$Directory_ImageDetailsRec", "UBTConnect.model$Directory_ImageDetailsList"], function(OutSystems, UBTConnectModel, UBTConnectController, UBTConnect_UtilsController, UBTConnectLibraryModel, Connect_Household_CSModel, APIDomain_Directory_ISModel, UBTConnect_UtilsModel, Connect2_Sharing_CSModel, UBTConnectLanguageResources, UBTConnectClientVariables, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_Debugger, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnReady_RefreshesJS, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnReady_CheckRestoredJS, UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnParametersChanged_RefreshesJS) {
     var OS = OutSystems.Internal;
     var Controller = (function(_super) {
         __extends(Controller, _super);
@@ -1910,14 +1945,23 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                     }, function() {
                         return;
                     }, "Refresh_GetHouseholdCoordinates");
+                },
+                refresh_GetHouseHold_Gallery$Action: function() {
+                    return controller.executeActionInsideJSNode(controller._refresh_GetHouseHold_Gallery$Action.bind(controller), controller.callContext(), function(actionResults) {
+                        return {};
+                    }, function() {
+                        return;
+                    }, "Refresh_GetHouseHold_Gallery");
                 }
             };
             this.dataFetchDependenciesOriginal = {
                 getHousehold_Coordinates$DataActRefresh: -1,
+                getHouseHold_Gallery$DataActRefresh: -1,
                 getHousehold$DataActRefresh: -1
             };
             this.dataFetchDependentsGraph = {
                 getHousehold_Coordinates$DataActRefresh: [],
+                getHouseHold_Gallery$DataActRefresh: [],
                 getHousehold$DataActRefresh: []
             };
             this.shouldSendClientVarsToDataSources = false;
@@ -1949,6 +1993,34 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
 
             });
         };
+        Controller.prototype.getHouseHold_Gallery$DataActRefresh = function(callContext) {
+            var model = this.model;
+            var controller = this.controller;
+            var callContext = controller.callContext(callContext);
+            return OS.Flow.tryFinally(function() {
+                var varBag = {};
+                controller.pushDebuggerContext(callContext);
+
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:SeuFJeGXFEOaeVr84b6Xcg:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/DataActions.SeuFJeGXFEOaeVr84b6Xcg:6T5FYfunMsGwFIqbJkRVTw", "UBTConnect", "GetHouseHold_Gallery", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdDetails_Block/GetHouseHold_Gallery");
+                return controller.callDataAction("DataActionGetHouseHold_Gallery", "screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHouseHold_Gallery", "rj4I3Mtf1ekSxHNqsSH9qw", function(b) {
+                    model.variables.getHouseHold_GalleryDataAct.dataFetchStatusAttr = b;
+                }, function(json) {
+                    model.variables.getHouseHold_GalleryDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getHouseHold_GalleryDataAct.constructor));
+                }, undefined, OutSystemsDebugger.getRequestHeaders(callContext.id), function(json, headers) {
+                    OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
+                }, callContext, undefined, false).then(function() {
+                    OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdDetails_Block/GetHouseHold_Gallery On After Fetch");
+                    controller._getHouseHold_GalleryOnAfterFetch$Action(controller.callContext(callContext));
+
+                });
+
+            }, function() {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:SeuFJeGXFEOaeVr84b6Xcg", callContext.id);
+                controller.popDebuggerContext(callContext);
+
+            });
+        };
         Controller.prototype.getHousehold$DataActRefresh = function(callContext) {
             var model = this.model;
             var controller = this.controller;
@@ -1959,7 +2031,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
 
                 OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:1V6p6NFnVESlfNKzHj5D4A:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/DataActions.1V6p6NFnVESlfNKzHj5D4A:PxVXBSeAEUdd5+E_LldNOg", "UBTConnect", "GetHousehold", "NRFlows.DataScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdDetails_Block/GetHousehold");
-                return controller.callDataAction("DataActionGetHousehold", "screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold", "dzXxi49+2f0HuKY6DW0MgA", function(b) {
+                return controller.callDataAction("DataActionGetHousehold", "screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold", "PYHxVGsZUPpT79uGFZg+dg", function(b) {
                     model.variables.getHouseholdDataAct.dataFetchStatusAttr = b;
                 }, function(json) {
                     model.variables.getHouseholdDataAct.replaceWith(OS.DataConversion.ServerDataConverter.from(json, model.variables.getHouseholdDataAct.constructor));
@@ -1967,7 +2039,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                     OutSystemsDebugger.processResponseHeaders(callContext.id, headers);
                 }, callContext, undefined, false).then(function() {
                     OutSystemsDebugger.setThreadStartName(callContext.id, "Directory_Household/HouseholdDetails_Block/GetHousehold On After Fetch");
-                    return controller._onAfterFetch_GetHouseholdDetail$Action(controller.callContext(callContext));
+                    return controller._onAfterFetch_GetHousehold$Action(controller.callContext(callContext));
 
                 });
 
@@ -1978,7 +2050,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             });
         };
 
-        Controller.prototype.dataFetchActionNames = ["getHousehold_Coordinates$DataActRefresh", "getHousehold$DataActRefresh"];
+        Controller.prototype.dataFetchActionNames = ["getHousehold_Coordinates$DataActRefresh", "getHouseHold_Gallery$DataActRefresh", "getHousehold$DataActRefresh"];
         // Client Actions
         Controller.prototype._handler_OnClickMember$Action = function(meberIdIn, callContext) {
             var varBag = {};
@@ -1994,25 +2066,15 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             varBag.callContext = callContext;
             varBag.vars = vars;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UChjA1xDvkmZfzmTWcFpBg:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.UChjA1xDvkmZfzmTWcFpBg:0NmaJ9b2Bgg49kVc_VUcFg", "UBTConnect", "Handler_OnClickMember", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UChjA1xDvkmZfzmTWcFpBg:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.UChjA1xDvkmZfzmTWcFpBg:5Rlw8SRQVxQOywphVt1qvg", "UBTConnect", "Handler_OnClickMember", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:pfsIccmgG0qcAAqx1Wr1Bw", callContext.id);
                 if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:uk_RGUc0oUWnRwfCYlcbqw", callContext.id) && model.variables.isEnabledIn)) {
-                    if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Ez3EaNKvDEmIdOQKHClixg", callContext.id) && true)) {
-                        OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yQm8MV62pkmE0IeLguBnRw", callContext.id);
-                        // Destination: /UBTConnect/Household_Relations
-                        return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Household_Relations", {
-                            HouseholdId: OS.DataConversion.ServerDataConverter.asString(model.variables.householdIdIn, OS.DataTypes.DataTypes.LongInteger),
-                            MemberId: OS.DataConversion.ServerDataConverter.asString(vars.value.meberIdInLocal, OS.DataTypes.DataTypes.LongInteger)
-                        }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
-                    } else {
-                        if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:7Ck6RG1OoUuZV90au4HTpg", callContext.id) && vars.value.meberIdInLocal.equals(OS.BuiltinFunctions.integerToLongInteger(0)))) {
-                            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:1j5Z6TL6DEWYO54j_n1vkg", callContext.id);
-                        } else {
-                            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Zv0KR02DvkW2dIrJF1wdKA", callContext.id);
-                        }
-
-                    }
-
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:yQm8MV62pkmE0IeLguBnRw", callContext.id);
+                    // Destination: /UBTConnect/Household_Relations
+                    return OS.Navigation.navigateTo(OS.Navigation.generateScreenURL("/UBTConnect/Household_Relations", {
+                        HouseholdId: OS.DataConversion.ServerDataConverter.asString(model.variables.householdIdIn, OS.DataTypes.DataTypes.LongInteger),
+                        MemberId: OS.DataConversion.ServerDataConverter.asString(vars.value.meberIdInLocal, OS.DataTypes.DataTypes.LongInteger)
+                    }), OS.Transitions.createTransition(OS.Transitions.TransitionAnimation.Default), callContext, true);
                 } else {
                     OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Lr2x846Q+U6NodbTgB8kcg", callContext.id);
                 }
@@ -2444,6 +2506,37 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             },
             complexType: UBTConnectModel.TagList
         }]);
+        Controller.prototype._refresh_GetHouseHold_Gallery$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("Refresh_GetHouseHold_Gallery");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:KiI_VzX3zkO57dKxVUtvLw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.KiI_VzX3zkO57dKxVUtvLw:iIk6fcxVWK+ht_AKzIfPQQ", "UBTConnect", "Refresh_GetHouseHold_Gallery", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JciTam2eBUWOr0E4Oc3Muw", callContext.id);
+            return OS.Flow.executeAsyncFlow(function() {
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:FAKaco5sbkWNMT56pd9eNg", callContext.id);
+                // Refresh Query: GetHouseHold_Gallery
+                var result = controller.getHouseHold_Gallery$DataActRefresh(callContext);
+                model.flush();
+                return result.then(function() {
+                    OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:OACNtAlLq0i8qFfIOUybhQ", callContext.id);
+                });
+            }).then(function(res) {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KiI_VzX3zkO57dKxVUtvLw", callContext.id);
+                return res;
+
+            }).catch(function(ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:KiI_VzX3zkO57dKxVUtvLw", callContext.id);
+                throw ex;
+
+            });
+        };
         Controller.prototype._onClick_NavigateToSupperMeeting$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
@@ -2475,17 +2568,17 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             }
 
         };
-        Controller.prototype._onAfterFetch_GetHouseholdDetail$Action = function(callContext) {
+        Controller.prototype._onAfterFetch_GetHousehold$Action = function(callContext) {
             var varBag = {};
             var model = this.model;
             var controller = this.controller;
             var idService = this.idService;
             varBag.model = model;
             varBag.idService = idService;
-            controller.ensureControllerAlive("OnAfterFetch_GetHouseholdDetail");
+            controller.ensureControllerAlive("OnAfterFetch_GetHousehold");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:o4aGb6FqiUGvWXHy0vxE7w:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.o4aGb6FqiUGvWXHy0vxE7w:BpwrBLNaBTNNMfqZhovm8g", "UBTConnect", "OnAfterFetch_GetHouseholdDetail", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:o4aGb6FqiUGvWXHy0vxE7w:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.o4aGb6FqiUGvWXHy0vxE7w:tCRDD9vRdp7s52_tKgjhRA", "UBTConnect", "OnAfterFetch_GetHousehold", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:bggZQWFb1ECQ5UjQp6LZNA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:U56KREZVeU+7olj85kMjJQ", callContext.id);
@@ -2500,8 +2593,8 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                         tagsListIterator.currentRowNumber = tagsListIndex;
                         if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:GEzFiI8tlkmA4biDg1ZRvQ", callContext.id) && (model.variables.tagsListVar.getItem(tagsListIndex.valueOf()).identifierAttr === UBTConnectModel.staticEntities.householdDetailTags.photos))) {
                             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:wkv3ELhEHUCuKMSSwAseNQ", callContext.id);
-                            // TagsList.Current.Enabled = notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsDeceased and notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsAncestry and notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsHidden
-                            model.variables.tagsListVar.getItem(tagsListIndex.valueOf()).enabledAttr = ((!(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isHiddenAttr));
+                            // TagsList.Current.Enabled = notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsDeceased and notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsAncestry and notGetHousehold.Household.HouseholdCard.Household_Card_Content.DisplayOptions.IsAwayHousehold
+                            model.variables.tagsListVar.getItem(tagsListIndex.valueOf()).enabledAttr = ((!(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr)) && !(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr));
                         }
 
                         tagsListIndex++;
@@ -2513,7 +2606,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
 
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:AAwCC_G0m0eHE2aP8B8WEw", callContext.id);
                 // Trigger Event: HouseholdDataFetched
-                return controller.householdDataFetched$Action(model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.localityNameAttr, model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.countryNameAttr, (model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr || model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr), callContext).then(function() {
+                return controller.householdDataFetched$Action(((model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr) ? ("") : (model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.localityNameAttr)), ((model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAwayHouseholdAttr) ? ("") : (model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.countryNameAttr)), (model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr || model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr), callContext).then(function() {
                     OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:IK+jnCHIgUippQ3NGwNNeQ", callContext.id);
                 });
             }).then(function(res) {
@@ -2526,6 +2619,28 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                 throw ex;
 
             });
+        };
+        Controller.prototype._getHouseHold_GalleryOnAfterFetch$Action = function(callContext) {
+            var varBag = {};
+            var model = this.model;
+            var controller = this.controller;
+            var idService = this.idService;
+            varBag.model = model;
+            varBag.idService = idService;
+            controller.ensureControllerAlive("GetHouseHold_GalleryOnAfterFetch");
+            callContext = controller.callContext(callContext);
+            varBag.callContext = callContext;
+            try {
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:a2TliTkvq0yDFoDlf3zlKA:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.a2TliTkvq0yDFoDlf3zlKA:fHXbmdah4kLXuTiNeWWMSQ", "UBTConnect", "GetHouseHold_GalleryOnAfterFetch", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Cq49ATyacESvuWEvKayueA", callContext.id);
+                OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Yo6tvmO0IUOkt0zKE8deZg", callContext.id);
+            } catch (ex) {
+                OutSystemsDebugger.handleException(ex, callContext.id);
+                throw ex;
+            } finally {
+                OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:a2TliTkvq0yDFoDlf3zlKA", callContext.id);
+            }
+
         };
         Controller.prototype._refresh_GetHouseholdCoordinates$Action = function(callContext) {
             var varBag = {};
@@ -2618,7 +2733,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
             try {
-                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:TSBxzL6QZUaX_yaLsVwZGQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.TSBxzL6QZUaX_yaLsVwZGQ:AeNN+MzMAXUhqZODrlawwA", "UBTConnect", "OnClick_NavigateToLocality", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+                OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:TSBxzL6QZUaX_yaLsVwZGQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.TSBxzL6QZUaX_yaLsVwZGQ:JjlVJxvbr+TdDBJ+FbIwGw", "UBTConnect", "OnClick_NavigateToLocality", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:ArCY9rqA8EaTo+ofzQ7sbQ", callContext.id);
                 if ((OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:YpSBXc6N6Uezr7fi4FuYJw", callContext.id) && (model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isDeceasedAttr || model.variables.getHouseholdDataAct.householdOut.householdCardAttr.household_Card_ContentAttr.displayOptionsAttr.isAncestryAttr))) {
                     OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:TB2fv6_HO0uDNcANZOJ5YA", callContext.id);
@@ -2702,7 +2817,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             varBag.getSkeleton_UI_HouseholdDetailsVar = getSkeleton_UI_HouseholdDetailsVar;
             varBag.getUserInformation_WrapperVar = getUserInformation_WrapperVar;
             varBag.checkRestoredJSResult = checkRestoredJSResult;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YcOF5mU3tUuG69a4lsmUww:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.YcOF5mU3tUuG69a4lsmUww:kKt37gaU7HnkNvRxf8_hzQ", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:YcOF5mU3tUuG69a4lsmUww:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.YcOF5mU3tUuG69a4lsmUww:J4OiPW6ewqnIvF04nVIS5w", "UBTConnect", "ScreenEvent_OnReady", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:JP3dgNAzEkqVJyyRrX4_lA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:35sg6sfbT0S_R_sOWPq8jw", callContext.id);
@@ -2751,7 +2866,8 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:rERQJMk59kaOHpDMBQXI0w", callContext.id);
                         controller.safeExecuteJSNode(UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnReady_RefreshesJS, "Refreshes", "ScreenEvent_OnReady", null, function($parameters) {}, {
                             Refresh_GetHouseholdDetail: controller.clientActionProxies.refresh_GetHouseholdDetail$Action,
-                            Refresh_GetHouseholdCoordinates: controller.clientActionProxies.refresh_GetHouseholdCoordinates$Action
+                            Refresh_GetHouseholdCoordinates: controller.clientActionProxies.refresh_GetHouseholdCoordinates$Action,
+                            Refresh_GetHouseHold_Gallery: controller.clientActionProxies.refresh_GetHouseHold_Gallery$Action
                         }, {});
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:tKC9ScukWE+0eT0lj+7QAQ", callContext.id);
                     }
@@ -2795,7 +2911,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             controller.ensureControllerAlive("ScreenEvent_OnParametersChanged");
             callContext = controller.callContext(callContext);
             varBag.callContext = callContext;
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:v3+W7b9Xj02aWc4TJnFbLQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.v3+W7b9Xj02aWc4TJnFbLQ:cvneC6cvaYdzPlQWdRPh5Q", "UBTConnect", "ScreenEvent_OnParametersChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:v3+W7b9Xj02aWc4TJnFbLQ:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g/ClientActions.v3+W7b9Xj02aWc4TJnFbLQ:umURtVki5Ynu01iLubeOlQ", "UBTConnect", "ScreenEvent_OnParametersChanged", "NRFlows.ClientScreenActionFlow", callContext.id, varBag);
             OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:+KkwXf08DEe2QPjlNq0dLA", callContext.id);
             return OS.Flow.executeAsyncFlow(function() {
                 return OS.Flow.executeSequence(function() {
@@ -2818,7 +2934,8 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:DDUz8d_cAUyaUjkg3K_jQA", callContext.id);
                         controller.safeExecuteJSNode(UBTConnect_Directory_Household_HouseholdDetails_Block_mvc_controller_ScreenEvent_OnParametersChanged_RefreshesJS, "Refreshes", "ScreenEvent_OnParametersChanged", null, function($parameters) {}, {
                             Refresh_GetHouseholdDetail: controller.clientActionProxies.refresh_GetHouseholdDetail$Action,
-                            Refresh_GetHouseholdCoordinates: controller.clientActionProxies.refresh_GetHouseholdCoordinates$Action
+                            Refresh_GetHouseholdCoordinates: controller.clientActionProxies.refresh_GetHouseholdCoordinates$Action,
+                            Refresh_GetHouseHold_Gallery: controller.clientActionProxies.refresh_GetHouseHold_Gallery$Action
                         }, {});
                         OutSystemsDebugger.handleBreakpoint("ZK4RCP5OdEuntYI2VRpwBA:Aes073HDE06nfiOyBxiddA", callContext.id);
                     } else {
@@ -2941,14 +3058,24 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
             return controller.safeExecuteClientAction(controller._onChangeTag$Action, callContext, updatedTagListIn);
 
         };
+        Controller.prototype.refresh_GetHouseHold_Gallery$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._refresh_GetHouseHold_Gallery$Action, callContext);
+
+        };
         Controller.prototype.onClick_NavigateToSupperMeeting$Action = function(callContext) {
             var controller = this.controller;
             return controller.safeExecuteClientAction(controller._onClick_NavigateToSupperMeeting$Action, callContext);
 
         };
-        Controller.prototype.onAfterFetch_GetHouseholdDetail$Action = function(callContext) {
+        Controller.prototype.onAfterFetch_GetHousehold$Action = function(callContext) {
             var controller = this.controller;
-            return controller.safeExecuteClientAction(controller._onAfterFetch_GetHouseholdDetail$Action, callContext);
+            return controller.safeExecuteClientAction(controller._onAfterFetch_GetHousehold$Action, callContext);
+
+        };
+        Controller.prototype.getHouseHold_GalleryOnAfterFetch$Action = function(callContext) {
+            var controller = this.controller;
+            return controller.safeExecuteClientAction(controller._getHouseHold_GalleryOnAfterFetch$Action, callContext);
 
         };
         Controller.prototype.refresh_GetHouseholdCoordinates$Action = function(callContext) {
@@ -3004,7 +3131,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller", [
         Controller.prototype.pushDebuggerContext = function(callContext) {
             var varBag = {};
             OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:UzAQerKaHEuDhnx4QUJtIw:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw:t9nDzAZAuYZJViBgLBCv_w", "UBTConnect", "Directory_Household", "NRFlows.WebFlow", callContext.id, varBag);
-            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:pusb6o2QYEar2Lx3ksPB3g:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g:EofOVUael3M++ySBWKbxcQ", "UBTConnect", "HouseholdDetails_Block", "NRNodes.WebBlock", callContext.id, varBag);
+            OutSystemsDebugger.push("ZK4RCP5OdEuntYI2VRpwBA:pusb6o2QYEar2Lx3ksPB3g:/NRWebFlows.UzAQerKaHEuDhnx4QUJtIw/NodesShownInESpaceTree.pusb6o2QYEar2Lx3ksPB3g:hTpSPSJ3NeDat9vqpiElKw", "UBTConnect", "HouseholdDetails_Block", "NRNodes.WebBlock", callContext.id, varBag);
         };
         Controller.prototype.popDebuggerContext = function(callContext) {
             OutSystemsDebugger.pop("ZK4RCP5OdEuntYI2VRpwBA:pusb6o2QYEar2Lx3ksPB3g", callContext.id);
@@ -3064,6 +3191,7 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.Scr
     return function($actions, $roles, $public) {
         $actions.Refresh_GetHouseholdDetail();
         $actions.Refresh_GetHouseholdCoordinates();
+        $actions.Refresh_GetHouseHold_Gallery();
     };
 });
 define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.ScreenEvent_OnReady.CheckRestoredJS", [], function() {
@@ -3076,6 +3204,8 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$controller.Scr
     return function($actions, $roles, $public) {
         $actions.Refresh_GetHouseholdDetail();
         $actions.Refresh_GetHouseholdCoordinates();
+        $actions.Refresh_GetHouseHold_Gallery();
+
     };
 });
 
@@ -3271,6 +3401,11 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$debugger", ["e
         "CQcrIBm+H0WvE0PTl4Lsvg": {
             getter: function(varBag, idService) {
                 return varBag.model.variables.getHousehold_CoordinatesDataAct;
+            }
+        },
+        "SeuFJeGXFEOaeVr84b6Xcg": {
+            getter: function(varBag, idService) {
+                return varBag.model.variables.getHouseHold_GalleryDataAct;
             }
         },
         "1V6p6NFnVESlfNKzHj5D4A": {
@@ -3516,17 +3651,17 @@ define("UBTConnect.Directory_Household.HouseholdDetails_Block.mvc$debugger", ["e
                 })(varBag.model, idService);
             }
         },
-        "GWx2utApfUSzWgREr3BmRA": {
-            getter: function(varBag, idService) {
-                return (function(model, idService) {
-                    return model.widgets.get(idService.getId("Gallery"));
-                })(varBag.model, idService);
-            }
-        },
         "bPh8WQrPuUGqUgPEHlaSsw": {
             getter: function(varBag, idService) {
                 return (function(model, idService) {
                     return model.widgets.get(idService.getId("LD_Checks"));
+                })(varBag.model, idService);
+            }
+        },
+        "zhebNf1uGkKQQCYIaCKJfQ": {
+            getter: function(varBag, idService) {
+                return (function(model, idService) {
+                    return model.widgets.get(idService.getId("HouseholdGallery"));
                 })(varBag.model, idService);
             }
         },

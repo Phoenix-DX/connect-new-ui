@@ -191,8 +191,8 @@ describe('profileReducer', () => {
     expect(state.mainContainerId).toBe('b1-ContentWrapper');
     expect(profileReducer(state, { type: 'mainContainerReady', id: 'b1-ContentWrapper' })).toBe(state);
     expect(profileReducer(state, { type: 'submitFailed' })).toBe(state);
-    const sheet = profileReducer(state, { type: 'previewSheetInitialized', id: 'b60-$b1' });
-    expect(sheet.previewBottomSheetId).toBe('b60-$b1');
+    const sheet = profileReducer(state, { type: 'previewSheetInitialized', id: 'b62-$b1' });
+    expect(sheet.previewBottomSheetId).toBe('b62-$b1');
     const preview = withPersonal(EMPTY_ACCOUNT_FORM, { Email: 'p@example.org' });
     expect(profileReducer(sheet, { type: 'viewPreviewAssigned', accountForm: preview }).accountFormViewPreview).toBe(
       preview,
