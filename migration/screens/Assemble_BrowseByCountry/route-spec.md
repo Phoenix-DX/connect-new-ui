@@ -77,6 +77,13 @@ App-start calls (#1, #5-#9) belong to the shell [calls.json].
 - DIV_StickyBottom's show/hide animation (animate True) is not reproduced (as LocalityListDetail's header).
 - The no-results, localities and bottom-bar states were not captured: built from the compiled view, covered by `Assemble_BrowseByCountry.test.tsx`.
 - Exemption CALL-ORDER-APPSTART-RACE-ASSEMBLE-BROWSEBYCOUNTRY (proposed in `proposed-exemptions.json`, now in `migration/parity-exemptions.json`): app-start call order of GetCountriesBySubscription, once Q1/CR-1 lets it run.
+- TST sync 2026-11-07: the page mocks show 73 members (VC, TT) and 28 localities (US) as the fresh capture does. The shared `assemble.ts` still has 74 and 29, so AssembleEvents differs from this page until its own item changes it.
+
+## Changes 2026-11-07 (TST sync)
+- TST files changed: none (brief "Changed TST files: -"). Only the data of the fresh capture changed.
+- Fresh capture (default state): two country rows show the member count 73 (old capture: 74) and one row shows the locality count 28 (old: 29) [analysis/dom/default.html, diff of the brief]. Markup and calls are the same (calls: expected 9, actual 9).
+- React now: the page mocks override three counts of the shared fictional world: VC and TT members 73, US localities 28 [app/src/pages/Assemble_BrowseByCountry/mocks.ts, CAPTURED_COUNTS]. The shared `src/mocks/fictional/assemble.ts` is unchanged, so AssembleEvents keeps the old counts.
+- Evidence: parity default, loading, offline: all counts 0, pixels 0% [test.md].
 
 ## Change requests
 - CR-Assemble_BrowseByCountry-1: shell mock user SubscriptionRegionId non-empty (applied) [CR-Assemble_BrowseByCountry-1.md].

@@ -296,3 +296,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:36:10 AssembleEvents confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:36:10 AssembleEvents stage restamp
 - 2026-11-07T16:36:27 AssembleEvents stage commit
+- 2026-11-07T16:36:28 AssembleEvents done ace05c22: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:36:28 Assemble_BrowseByCountry confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:36:28 Assemble_BrowseByCountry stage restamp
+- 2026-11-07T16:36:45 Assemble_BrowseByCountry stage commit

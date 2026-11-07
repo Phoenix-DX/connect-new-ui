@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "AssembleEvents": {
+  "Assemble_BrowseByCountry": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:36:27",
-   "shared": [],
-   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
-  },
-  "Assemble_BrowseByCountry": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T07:37:38",
+   "since": "2026-11-07T16:36:45",
    "shared": [],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
@@ -289,16 +282,20 @@
    "finished": "2026-11-07T16:32:15"
   },
   "AssembleEvents": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:33:27",
    "tokens": {
     "dev": 33678,
     "test": 28328,
     "docs": 30299
-   }
+   },
+   "commit": "ace05c22",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:36:28"
   },
   "Assemble_BrowseByCountry": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:33:28",
    "tokens": {
     "dev": 28474,
@@ -605,6 +602,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:36:10"
+  },
+  "Assemble_BrowseByCountry": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:36:28"
   }
  }
 }
