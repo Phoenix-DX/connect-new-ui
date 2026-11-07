@@ -1,5 +1,6 @@
 import type { NoteCardItem, NotePill, NotePillTag, NotesVariables } from '@/api/note';
 import { LocalityMenu, longIntegerText, notes_InterchangeId_ExtractId } from '@/lib/ubtConnect/actions';
+import { OS_NULL_DATE_TIME } from '@/lib/osDateTime';
 import type { CarouselPreloadedHouseholds } from '@/lib/ubtConnect/structures';
 import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { NoteCategory2 } from '@/pages/Notes/components/staticEntities';
@@ -47,7 +48,7 @@ const skeletonNote = (title: string, subtitle: string): NoteCardItem => ({
   notes: { Total: 0, Note_Item_List: [] },
   channelName: '',
   channelLogo: '',
-  publishedAt: '1900-01-01T00:00:00',
+  publishedAt: OS_NULL_DATE_TIME,
 });
 
 /** SkeletonLoader_Notes: six placeholder cards, with the texts of the original. */

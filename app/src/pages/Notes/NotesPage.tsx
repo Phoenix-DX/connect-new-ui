@@ -74,7 +74,7 @@ export default function Notes() {
             id="Filter_Pills"
             extendedClasses="background-neutral-0"
             options={{
-              PaddingSize: { VerticalSizeId: UBT_Size.ExtraSmall, HorizontalSizeId: UBT_Size.Base },
+              PaddingSize: { VerticalSizeId: UBT_Size.ExtraSmall },
               MarginSize: { TopSizeId: UBT_Size.Base },
               DisplayOptions: {},
             }}

@@ -88,6 +88,8 @@ loading and offline).
 
 ## Decisions to confirm
 
+- TST sync 2026-11-07 (changed, confirm): the filter-tag container (Filter_Pills) no longer has `padding-x-base`.
+  FilterSheet shows the labels "Clear" and "Apply".
 - Default state data (Q1, decided): parity compares state default with `?mock=empty`; `?mock=real` shows 1 fictional
   card ("Fenwick Household", 3 notes) and a "2026" year option for manual testing.
 - DataActionGetNotes mock (Q2, decided): MOCK ASSUMPTION in mocks.ts:
@@ -116,3 +118,23 @@ loading and offline).
     The effects are a pills request with ["Household"] and "2026" in the year list of the filter sheet.
   - A reload or a fresh profile is exact.
   - Asked: scope or clear the local entities per mock scenario. There is no route workaround.
+
+## Changes 2026-11-07 (TST sync)
+
+Changed TST files (brief): `UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js`,
+`UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label.mvc.js`, `UBTConnect.Notes.NoteCard_List.mvc.js`,
+`UBTConnect.Notes.Notes.mvc.js`, `UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js`.
+
+- Filter_Pills container:
+  - The fresh capture shows the container `b8-Content` with `padding-y-xs margin-top-base` and without `padding-x-base`
+    (`analysis/dom/default.html`; the old capture had `padding-x-base`).
+  - TST sets only `verticalSizeIdAttr = extraSmall` for this container (`UBTConnect.Notes.Notes.mvc@7627c137.js:539-543`).
+  - React: `NotesPage.tsx` passes `PaddingSize: { VerticalSizeId: ExtraSmall }` and no `HorizontalSizeId`.
+- FilterSheet labels:
+  - The fresh capture shows the buttons "Clear" and "Apply" (`analysis/dom/default.raw.html:10`).
+  - React: the shared FilterSheet already shows these labels. `Notes.test.tsx` now clicks "Apply" (was "Apply filters").
+- Layout: the body style changed to `--header-size-content: 62px; --footer-height: 42px` (`analysis/dom/default.html`).
+  The block ids moved (`$b3` to `$b6`, `$b4` to `$b7`, `b5` to `b8`, `$b6` to `$b9`).
+- Skeleton card in `hooks/notesState.ts`: `publishedAt` uses `OS_NULL_DATE_TIME` (same value as before). No behaviour change.
+- Calls: only the timestamps changed in `analysis/calls.json` (default: 8 expected, 10 actual in the parity report; call diffs 0).
+- Parity after the change: default, loading and offline have 0 differences (`test.md`).
