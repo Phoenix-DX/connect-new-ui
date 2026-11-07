@@ -869,19 +869,44 @@ export interface EventQRCodeData {
 
 /* ---- Orbit admin (ScreenBlock_AdminLanding, ScreenBlock_AdminEventDetail) ---- */
 
-/** The variables of ScreenBlock_AdminLanding that its data action sends. */
+/** IntegerIntegerIntegerRecord (Connect2_OrbitMobile_MUI): the PopupMeasurements of ScreenBlock_AdminLanding. */
+export interface PopupMeasurements {
+  Top: number;
+  Left: number;
+  Bottom: number;
+}
+
+/** The variables of ScreenBlock_AdminLanding that its data action sends (TST publish of 2026-11: with the filter, sort
+    and popup variables). The repository sends YearsSelection as a wire list. */
 export type AdminEventsCallInputs = Required<
   Pick<
     ActionInputs<OrbitPath<'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>>,
-    'IsFetchingData' | 'UserFirstName' | 'UserMemberId'
+    | 'IsFetchingData'
+    | 'UserFirstName'
+    | 'UserMemberId'
+    | 'EventFilter'
+    | 'SortEventsASC'
+    | 'Popup_SortByOpened'
+    | 'Popup_FiltersOpened'
   >
->;
+> & {
+  YearsSelection: YearItem[];
+  PopupMeasurements: PopupMeasurements;
+};
 
-/** An event of the admin list: the record that Card_Event takes and the TypeFriendly of the row, which the card
-    click passes on. */
+/** An event of the admin list: the record that Card_Event takes, the TypeFriendly of the row, which the card
+    click passes on, and OrbitSummaryItem.DateTime (the key of SortEvents). */
 export interface AdminEventItem {
   event: Event_Screen;
   typeFriendly: string;
+  dateTime: string;
+}
+
+/** The outputs of DataActionGet_AdminEventsList: the events (Response) and the years of the Filters popup
+    (YearFilter). */
+export interface AdminEventsResult {
+  events: AdminEventItem[];
+  yearFilter: YearItem[];
 }
 
 /** The variables of ScreenBlock_AdminEventDetail that DataActionGet_EventInformation sends. */

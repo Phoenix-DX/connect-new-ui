@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "ContactByEmailMember": {
-   "stage": "commit",
-   "loop": 1,
-   "since": "2026-11-07T16:33:44",
-   "shared": [],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
   "OrbitAdminLanding": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T07:40:10",
+   "since": "2026-11-07T16:34:01",
    "shared": [
     "app/src/api/event/**"
    ],
@@ -230,16 +223,20 @@
    "finished": "2026-11-07T16:33:28"
   },
   "ContactByEmailMember": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 74082,
     "test": 67790,
     "docs": 30155
-   }
+   },
+   "commit": "bbed0cfe",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)",
+   "loops": 1,
+   "finished": "2026-11-07T16:33:45"
   },
   "OrbitAdminLanding": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 240744,
@@ -595,6 +592,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:33:28"
+  },
+  "OrbitAdminLanding": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:33:45"
   }
  }
 }

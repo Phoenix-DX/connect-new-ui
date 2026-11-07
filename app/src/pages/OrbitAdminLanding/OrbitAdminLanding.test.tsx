@@ -76,9 +76,28 @@ describe('OrbitAdminLanding page', () => {
     expect(cards().map((card) => card.querySelector('.orbit-card-title-cont')?.textContent)).toEqual(titles);
     expect(count(FETCH)).toBe(1);
     expect(calledActions()).not.toContain(SCAN_FF);
-    expect(bodies).toEqual([{ IsFetchingData: true, UserFirstName: 'Matías', UserMemberId: '20517' }]);
+    // The block variables after ResetFiltersAndSort; jsdom has no layout, so the header and footer measure 0
+    // (Left = 0 / 2 - 10).
+    expect(bodies).toEqual([
+      {
+        IsFetchingData: true,
+        UserFirstName: 'Matías',
+        UserMemberId: '20517',
+        EventFilter: 1,
+        SortEventsASC: true,
+        YearsSelection: { List: [] },
+        Popup_SortByOpened: false,
+        Popup_FiltersOpened: false,
+        PopupMeasurements: { Top: 0, Left: -10, Bottom: 0 },
+      },
+    ]);
     expect(document.getElementById('b1-BottomBar')?.firstElementChild?.id).toBe('$b2');
     expect(document.getElementById('$b3')).not.toBeNull();
+    // The filter and sort headers (TST publish of 2026-11) and the empty popup roots after the content.
+    const headers = [...document.querySelectorAll('.orbit-landing-filters-cont > .orbit-landing-filters')];
+    expect(headers.map((header) => header.textContent)).toEqual(['Upcoming Events', 'Sort By']);
+    expect(document.getElementById('b1-Root_Filters')?.children).toHaveLength(0);
+    expect(document.getElementById('b1-Root_Sort')?.children).toHaveLength(0);
   });
 
   it('a card opens OrbitAdminEventDetail with its inputs and records the audit event; back keeps the list', async () => {

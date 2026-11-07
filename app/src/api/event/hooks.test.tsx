@@ -108,6 +108,8 @@ const blockVariables: EventDetailCallInputs &
   SelectedMemberId: MOCK_USER_ID,
   EventFilter: 1,
   SortEventsASC: true,
+  YearsSelection: [],
+  PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
   Popup_SortByOpened: false,
   Popup_FiltersOpened: false,
   CurrentMemberId: MOCK_USER_ID,

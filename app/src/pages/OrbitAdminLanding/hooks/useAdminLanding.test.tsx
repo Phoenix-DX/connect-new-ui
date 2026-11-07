@@ -2,11 +2,12 @@ import { act, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchAdminEvents, type AdminEventItem } from '@/api/event';
+import { fetchAdminEvents, type AdminEventItem, type AdminEventsResult, type YearItem } from '@/api/event';
 import { CommunicationException } from '@/legacy/os/exceptions';
 import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { OrbitLandingFilter } from '@/pages/OrbitAdminLanding/staticEntities';
 import { adminLandingReducer } from './adminLandingState';
 import { onApplicationEvent_ClickEvent } from './applicationEvents';
 import { useAdminLanding, type AdminLandingEvents } from './useAdminLanding';
@@ -54,18 +55,40 @@ const EVENTS: AdminEventItem[] = [
       Type: 'Admin',
       Title: 'Weekend Bible Conferences',
       EventInfo: {
-        StartEventDate: '2026-11-07T09:00:00Z',
-        EndEventDate: '2026-11-08T17:00:00Z',
+        StartEventDate: '2099-11-07T09:00:00Z',
+        EndEventDate: '2099-11-08T17:00:00Z',
         EventLocation: 'Bahia Blanca Main Hall',
       },
     },
     typeFriendly: 'Weekend Conference Program',
+    dateTime: '2099-11-07T09:00:00Z',
   },
   {
-    event: { EventId: '7302', Type: 'Admin', Title: 'Youth Day', EventInfo: { EventLocation: 'Azul Hall' } },
+    event: {
+      EventId: '7302',
+      Type: 'Admin',
+      Title: 'Youth Day',
+      EventInfo: { EndEventDate: '2099-12-05T21:00:00Z', EventLocation: 'Azul Hall' },
+    },
     typeFriendly: 'Youth Day',
+    dateTime: '2099-12-05T13:00:00Z',
   },
 ];
+/** The Get_AdminEventsList answer: the events and an empty YearFilter (as captured). */
+const answerOf = (events: AdminEventItem[], yearFilter: YearItem[] = []): AdminEventsResult => ({ events, yearFilter });
+/** The block variables that Get_AdminEventsList sends after ResetFiltersAndSort (no header or footer in the test DOM:
+    PopupMeasurements 0). */
+const sentInputs = (userFirstName: string, userMemberId: string) => ({
+  IsFetchingData: true,
+  UserFirstName: userFirstName,
+  UserMemberId: userMemberId,
+  EventFilter: OrbitLandingFilter.UpcomingEvents,
+  SortEventsASC: true,
+  YearsSelection: [],
+  Popup_SortByOpened: false,
+  Popup_FiltersOpened: false,
+  PopupMeasurements: { Top: 0, Left: 0, Bottom: 0 },
+});
 
 const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
 const strictWrapper = ({ children }: { children: ReactNode }) => (
@@ -79,14 +102,17 @@ const settle = () =>
   });
 /** A Get_AdminEventsList answer that the test gives later. */
 function pendingEvents() {
-  let resolve: (rows: AdminEventItem[]) => void = () => undefined;
+  let resolveAnswer: (answer: AdminEventsResult) => void = () => undefined;
   let reject: (error: unknown) => void = () => undefined;
   vi.mocked(fetchAdminEvents).mockReturnValueOnce(
     new Promise((res, rej) => {
-      resolve = res;
+      resolveAnswer = res;
       reject = rej;
     }),
   );
+  const resolve = (rows: AdminEventItem[]) => {
+    resolveAnswer(answerOf(rows));
+  };
   return { resolve, reject };
 }
 /** A NavigateTo_EventDetail handler that the test ends later. */
@@ -118,7 +144,7 @@ function cachedUser(firstName: string, memberId: string) {
 beforeEach(() => {
   viewCache.restored = false;
   viewCache.saved = undefined;
-  vi.mocked(fetchAdminEvents).mockResolvedValue(EVENTS);
+  vi.mocked(fetchAdminEvents).mockResolvedValue(answerOf(EVENTS));
   cachedUser('Matías', '20517');
 });
 afterEach(() => {
@@ -136,13 +162,16 @@ describe('useAdminLanding', () => {
       userFirstName: 'Matías',
       userMemberId: '20517',
       isDataFetched: false,
+      // ResetFiltersAndSort before Get_AdminEventsList
+      eventFilter: OrbitLandingFilter.UpcomingEvents,
+      sortEventsASC: true,
+      yearsSelection: [],
+      popupFiltersOpened: false,
+      popupSortByOpened: false,
+      popupMeasurements: { Top: 0, Left: 0, Bottom: 0 },
     });
     // Get_AdminEventsList sends the block variables as they are when it starts.
-    expect(fetchAdminEvents).toHaveBeenCalledWith({
-      IsFetchingData: true,
-      UserFirstName: 'Matías',
-      UserMemberId: '20517',
-    });
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('Matías', '20517'));
     answer.resolve(EVENTS);
     await settle();
     expect(result.current.state).toMatchObject({ isFetchingData: false, isDataFetched: true, eventsSummary: EVENTS });
@@ -150,11 +179,86 @@ describe('useAdminLanding', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
+  it('OnAfterFetch: FilterEvents keeps the upcoming events; one that ended more than 22 days ago is not shown', async () => {
+    const ended: AdminEventItem = {
+      event: {
+        EventId: '7288',
+        Type: 'Admin',
+        Title: 'Gospel Meeting',
+        EventInfo: { EndEventDate: '2020-03-14T20:00:00Z', EventLocation: 'Azul Hall' },
+      },
+      typeFriendly: 'Gospel Meeting',
+      dateTime: '2020-03-14T18:00:00Z',
+    };
+    vi.mocked(fetchAdminEvents).mockResolvedValueOnce(answerOf([ended, ...EVENTS]));
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state.eventsSummary).toEqual(EVENTS);
+    expect(result.current.state.eventFilter).toBe(OrbitLandingFilter.UpcomingEvents);
+  });
+
+  it('OnAfterFetch: YearsSelection = Get_AdminEventsList.YearFilter', async () => {
+    const years: YearItem[] = [
+      { year: '2026', isSelected: false, count: 2 },
+      { year: '2025', isSelected: false, count: 4 },
+    ];
+    vi.mocked(fetchAdminEvents).mockResolvedValueOnce(answerOf(EVENTS, years));
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state.yearsSelection).toEqual(years);
+  });
+
+  it('GetPopupMeasurements: the header and footer sizes go with the block variables', async () => {
+    const header = document.createElement('header');
+    header.className = 'header';
+    const footer = document.createElement('div');
+    footer.className = 'footer';
+    Object.defineProperty(header, 'offsetHeight', { value: 86 });
+    Object.defineProperty(header, 'offsetWidth', { value: 390 });
+    Object.defineProperty(footer, 'offsetHeight', { value: 56 });
+    document.body.append(header, footer);
+    try {
+      const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+      await settle();
+      expect(result.current.state.popupMeasurements).toEqual({ Top: 86, Left: 185, Bottom: 56 });
+      expect(fetchAdminEvents).toHaveBeenCalledWith({
+        ...sentInputs('Matías', '20517'),
+        PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
+      });
+    } finally {
+      header.remove();
+      footer.remove();
+    }
+  });
+
+  it('the header clicks toggle the popups, only when no fetch runs', async () => {
+    const answer = pendingEvents();
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onToggleFilterPopup();
+      result.current.onToggleSortPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: false, popupSortByOpened: false });
+    answer.resolve(EVENTS);
+    await settle();
+    act(() => {
+      result.current.onToggleFilterPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: true, popupSortByOpened: false });
+    act(() => {
+      result.current.onToggleSortPopup();
+      result.current.onToggleFilterPopup();
+    });
+    expect(result.current.state).toMatchObject({ popupFiltersOpened: false, popupSortByOpened: true });
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+  });
+
   it('a MemberId that is not a whole number sends the null identifier', async () => {
     cachedUser('', 'not-a-number');
     renderHook(() => useAdminLanding(noEvents()), { wrapper });
     await settle();
-    expect(fetchAdminEvents).toHaveBeenCalledWith({ IsFetchingData: true, UserFirstName: '', UserMemberId: '0' });
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('', '0'));
   });
 
   it('StrictMode: OnReady runs once and the events come', async () => {
@@ -189,11 +293,7 @@ describe('useAdminLanding', () => {
     expect(result.current.state.isFetchingData).toBe(true);
     await settle();
     expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
-    expect(fetchAdminEvents).toHaveBeenCalledWith({
-      IsFetchingData: true,
-      UserFirstName: 'Matías',
-      UserMemberId: '20517',
-    });
+    expect(fetchAdminEvents).toHaveBeenCalledWith(sentInputs('Matías', '20517'));
     expect(result.current.state).toMatchObject({ isFetchingData: false, isDataFetched: true, eventsSummary: EVENTS });
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
@@ -227,8 +327,8 @@ describe('useAdminLanding', () => {
     expect(navigation.events.onNavigateToEventDetail).toHaveBeenCalledWith({
       eventId: '7301',
       eventName: 'Weekend Bible Conferences',
-      eventStartDate: '2026-11-07T09:00:00Z',
-      eventEndDate: '2026-11-08T17:00:00Z',
+      eventStartDate: '2099-11-07T09:00:00Z',
+      eventEndDate: '2099-11-08T17:00:00Z',
       eventLocation: 'Bahia Blanca Main Hall',
       eventTypeFriendly: 'Weekend Conference Program',
     });
@@ -241,8 +341,8 @@ describe('useAdminLanding', () => {
       EventId: '7301',
       EventTitle: 'Weekend Bible Conferences',
       EventLocation: 'Bahia Blanca Main Hall',
-      EventStartDate: '2026-11-07T09:00:00Z',
-      EventEndDate: '2026-11-08T17:00:00Z',
+      EventStartDate: '2099-11-07T09:00:00Z',
+      EventEndDate: '2099-11-08T17:00:00Z',
     });
   });
 

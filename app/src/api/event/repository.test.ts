@@ -255,6 +255,12 @@ const adminEventsInputs: AdminEventsCallInputs = {
   IsFetchingData: true,
   UserFirstName: 'Lucia',
   UserMemberId: MOCK_USER_ID,
+  EventFilter: 1,
+  SortEventsASC: true,
+  YearsSelection: [],
+  Popup_SortByOpened: false,
+  Popup_FiltersOpened: false,
+  PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
 };
 
 const adminEventInformationInputs: AdminEventInformationCallInputs = {

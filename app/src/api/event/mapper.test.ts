@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   toAccommodationHostResult,
-  toAdminEventItems,
+  toAdminEventsInputs,
+  toAdminEventsResult,
   toAssembleEventResult,
   toAssembleMeetingListInputs,
   toAssembleMeetings,
@@ -510,8 +511,9 @@ describe('event mapper: Orbit events', () => {
     expect(yearFilter).toEqual([{ year: '2026', isSelected: true, count: 2 }]);
   });
 
-  it('toAdminEventItems answers the card record of each event and its TypeFriendly', () => {
+  it('toAdminEventsResult answers the card record, the TypeFriendly and the DateTime of each event, and the years', () => {
     const wire: AdminEventsWire = {
+      YearFilter: { List: [{ Year: '2026', IsSelected: false, Count: 1 }] },
       Response: {
         List: [
           {
@@ -529,18 +531,48 @@ describe('event mapper: Orbit events', () => {
         ],
       },
     };
-    expect(toAdminEventItems(wire)).toEqual([
-      {
-        event: {
-          EventId: '7301',
-          Type: 'event-host',
-          Title: 'Weekend Bible Conferences - Bahia and Azul',
-          OrbitEventType: eventTypeWire,
-          EventInfo: { EndEventDate: NULL_DATE_TIME, EventLocation: 'Azul Hall', StartEventDate: NULL_DATE_TIME },
+    expect(toAdminEventsResult(wire)).toEqual({
+      events: [
+        {
+          event: {
+            EventId: '7301',
+            Type: 'event-host',
+            Title: 'Weekend Bible Conferences - Bahia and Azul',
+            OrbitEventType: eventTypeWire,
+            EventInfo: { EndEventDate: NULL_DATE_TIME, EventLocation: 'Azul Hall', StartEventDate: NULL_DATE_TIME },
+          },
+          typeFriendly: 'Conference',
+          dateTime: '2026-11-06T12:00:00Z',
         },
-        typeFriendly: 'Conference',
-      },
-    ]);
+      ],
+      yearFilter: [{ year: '2026', isSelected: false, count: 1 }],
+    });
+  });
+
+  it('toAdminEventsInputs sends the block variables with YearsSelection as a wire list', () => {
+    expect(
+      toAdminEventsInputs({
+        IsFetchingData: true,
+        UserFirstName: 'Matías',
+        UserMemberId: '20517',
+        EventFilter: 1,
+        SortEventsASC: true,
+        YearsSelection: [{ year: '2025', isSelected: true, count: 3 }],
+        Popup_SortByOpened: false,
+        Popup_FiltersOpened: false,
+        PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
+      }),
+    ).toEqual({
+      IsFetchingData: true,
+      UserFirstName: 'Matías',
+      UserMemberId: '20517',
+      EventFilter: 1,
+      SortEventsASC: true,
+      YearsSelection: { List: [{ Year: '2025', IsSelected: true, Count: 3 }] },
+      Popup_SortByOpened: false,
+      Popup_FiltersOpened: false,
+      PopupMeasurements: { Top: 86, Left: 185, Bottom: 56 },
+    });
   });
 });
 

@@ -41,9 +41,11 @@ const adminEventRow = (e: OrbitAdminEvent): AdminOrbitEventsWire => ({
   OrbitEventType: { ...e.EventType },
 });
 
+/** YearFilter: the capture of 2026-11-07 answers an empty list (analysis/calls.md § DataActionGet_AdminEventsList);
+    a non-empty one is not captured, so every scenario answers it empty. */
 export function adminEventsListAnswer(today: Date = new Date()): Get_AdminEventsListWire {
-  if (scenario() === 'noadminevents') return { Response: wireList([]) };
-  return { Response: wireList(orbitAdminEvents(today).map(adminEventRow)) };
+  if (scenario() === 'noadminevents') return { Response: wireList([]), YearFilter: wireList([]) };
+  return { Response: wireList(orbitAdminEvents(today).map(adminEventRow)), YearFilter: wireList([]) };
 }
 
 export const handlers: RequestHandler[] = [
