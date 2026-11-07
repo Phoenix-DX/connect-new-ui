@@ -133,9 +133,7 @@ export const toMessageListItemWire = (item: NotificationItem): NotificationItemW
 });
 
 /** The inputs of StoreAdaptiveCardResponses of the screen NotificationDetails, as the contract describes them. */
-export type NotificationAdaptiveCardResponseWire = ActionInputs<
-  PathOf<'UBTConnect', 'ActionStoreAdaptiveCardResponses'>
->;
+type NotificationAdaptiveCardResponseWire = ActionInputs<PathOf<'UBTConnect', 'ActionStoreAdaptiveCardResponses'>>;
 
 /** The card response of StoreAdaptiveCardResponses with its OutSystems input names. */
 export const toNotificationAdaptiveCardResponseWire = (

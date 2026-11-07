@@ -12,8 +12,8 @@ Every screen in scope, at its original OutSystems route.
 | PINUnlock | `/UBTConnect/PINUnlock` | `src/screens/PINUnlock/` | 1 | lite | built |  |
 | Splash | `/UBTConnect/Splash` | `src/screens/Splash/` | 1 | lite | built |  |
 | HomeFeed | `/UBTConnect/HomeFeed` | `src/screens/HomeFeed/` | 2 | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2EnableCustomServices, C2EnableFeed, C2ExtendedShare, C2NewLDM, C2NewNotifications |
-| FeedItemDetail | `/UBTConnect/FeedItemDetail` | `src/screens/FeedItemDetail/` | 3 | lite | built | C2EnableFeed, C2ExtendedShare |
-| MessageDetail | `/UBTConnect/MessageDetail` | `src/screens/MessageDetail/` | 3 | full | built | C2EnableC1DirectoryView, C2EnableFeed, C2ExtendedShare, C2NewLDM, C2NewNotifications, mobileAssemble, mobileDirectoryUpdateFeedDeceasedProfile, mobileOrbitAccess, mobileOrbitHostSurvey |
+| FeedItemDetail | `/UBTConnect/FeedItemDetail` | `src/screens/FeedItemDetail/` | 3 | lite | built |  |
+| MessageDetail | `/UBTConnect/MessageDetail` | `src/screens/MessageDetail/` | 3 | full | built | C2EnableC1DirectoryView, C2ExtendedShare, C2NewLDM, C2NewNotifications, mobileAssemble, mobileDirectoryUpdateFeedDeceasedProfile, mobileOrbitAccess, mobileOrbitHostSurvey |
 | MessageList | `/UBTConnect/MessageList` | `src/screens/MessageList/` | 3 | full | built | C2EnableC1DirectoryView |
 | MyEntertaining | `/UBTConnect/MyEntertaining` | `src/screens/MyEntertaining/` | 3 | lite | built |  |
 | Notes | `/UBTConnect/Notes` | `src/screens/Notes/` | 3 | full | built | C2EnableC1DirectoryView, C2NewNotifications |
@@ -26,13 +26,13 @@ Every screen in scope, at its original OutSystems route.
 | CommunityBusinessDetails_CoomingSoon | `/UBTConnect/CommunityBusinessDetails_CoomingSoon` | `src/screens/CommunityBusinessDetails_CoomingSoon/` | 4 | lite | built |  |
 | CountryDetails | `/UBTConnect/CountryDetails` | `src/screens/CountryDetails/` | 4 | lite | built | C2EnableC1DirectoryView |
 | CountryList | `/UBTConnect/CountryList` | `src/screens/CountryList/` | 4 | lite | built | C2EnableC1DirectoryView, C2NewNotifications |
-| HouseholdCarousel | `/UBTConnect/HouseholdCarousel` | `src/screens/HouseholdCarousel/` | 4 | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2ExtendedShare, mobileDirectoryHouseholdGallery, mobilePhotobook |
+| HouseholdCarousel | `/UBTConnect/HouseholdCarousel` | `src/screens/HouseholdCarousel/` | 4 | full | built | C2EnableC1DirectoryView, C2ExtendedShare, mobileDirectoryHouseholdGallery, mobilePhotobook |
 | HouseholdDetails | `/UBTConnect/HouseholdDetails` | `src/screens/HouseholdDetails/` | 4 | full | built | C2EnableC1DirectoryView, C2ExtendedShare, mobileDirectoryHouseholdGallery, mobilePhotobook |
 | Household_Relations | `/UBTConnect/Household_Relations` | `src/screens/Household_Relations/` | 4 | full | built | C2EnableC1DirectoryView |
-| Locality_Details | `/UBTConnect/Locality_Details` | `src/screens/Locality_Details/` | 4 | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2EnableMaps, C2ExtendedShare, C2NewBookmarks, mobileDirectoryHouseholdGallery, mobilePhotobook |
+| Locality_Details | `/UBTConnect/Locality_Details` | `src/screens/Locality_Details/` | 4 | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2EnableMaps, C2NewBookmarks, mobileDirectoryLocalityContacts |
 | OneSchoolGlobalDetails | `/UBTConnect/OneSchoolGlobalDetails` | `src/screens/OneSchoolGlobalDetails/` | 4 | full | built | C2EnableC1DirectoryView, C2ExtendedShare, mobileStudentInformation |
 | Photobook | `/UBTConnect/Photobook` | `src/screens/Photobook/` | 4 | full | built | C2EnableCarousel |
-| SupperMeeting_Carousel | `/UBTConnect/SupperMeeting_Carousel` | `src/screens/SupperMeeting_Carousel/` | 4 | full | built | C2EnableCarousel, C2ExtendedShare, mobileDirectoryHouseholdGallery, mobilePhotobook |
+| SupperMeeting_Carousel | `/UBTConnect/SupperMeeting_Carousel` | `src/screens/SupperMeeting_Carousel/` | 4 | full | built | C2EnableCarousel, C2ExtendedShare |
 | SupperMeeting_Details | `/UBTConnect/SupperMeeting_Details` | `src/screens/SupperMeeting_Details/` | 4 | full | built | C2EnableCarousel, C2ExtendedShare |
 | ContactByEmailMember | `/UBTConnect/ContactByEmailMember` | `src/screens/ContactByEmailMember/` | 5 | lite | built |  |
 | ContactByEmailOneSchoolGlobal | `/UBTConnect/ContactByEmailOneSchoolGlobal` | `src/screens/ContactByEmailOneSchoolGlobal/` | 5 | lite | built |  |
@@ -45,32 +45,32 @@ Every screen in scope, at its original OutSystems route.
 | TermsAndPoliciesMenu | `/UBTConnect/TermsAndPoliciesMenu` | `src/screens/TermsAndPoliciesMenu/` | 5 | lite | built |  |
 | ConnectShare | `/UBTConnect/ConnectShare` | `src/screens/ConnectShare/` | 7 | lite | built |  |
 | LegacyShareObject | `/UBTConnect/LegacyShareObject` | `src/screens/LegacyShareObject/` | 7 | full | built |  |
-| AssembleDetail | `/UBTConnect/AssembleDetail` | `src/screens/AssembleDetail/` |  | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2ExtendedShare, WalletAccess, mobileDirectoryBookmarkNote |
+| AssembleDetail | `/UBTConnect/AssembleDetail` | `src/screens/AssembleDetail/` |  | full | built |  |
 | AssembleEvents | `/UBTConnect/AssembleEvents` | `src/screens/AssembleEvents/` |  | full | built | C2EnableC1DirectoryView |
 | Assemble_BrowseByCountry | `/UBTConnect/Assemble_BrowseByCountry` | `src/screens/Assemble_BrowseByCountry/` |  | lite | built |  |
 | Bookmarks | `/UBTConnect/Bookmarks` | `src/screens/Bookmarks/` |  |  | built | C2EnableC1DirectoryView, C2NewNotifications |
 | ContactByEmailLDMCoordinator | `/UBTConnect/ContactByEmailLDMCoordinator` | `src/screens/ContactByEmailLDMCoordinator/` |  | lite | built |  |
 | ContactByEmailOrbitHelpdesk | `/UBTConnect/ContactByEmailOrbitHelpdesk` | `src/screens/ContactByEmailOrbitHelpdesk/` |  | lite | built |  |
 | ContactByEmailOrbitHost | `/UBTConnect/ContactByEmailOrbitHost` | `src/screens/ContactByEmailOrbitHost/` |  | lite | built |  |
-| EmailContact | `/UBTConnect/EmailContact` | `src/screens/EmailContact/` |  | lite | built | C2EnableC1DirectoryView, mobileOrbitAccess |
-| EmailTarget | `/UBTConnect/EmailTarget` | `src/screens/EmailTarget/` |  | lite | built | C2EnableC1DirectoryView |
+| EmailContact | `/UBTConnect/EmailContact` | `src/screens/EmailContact/` |  | lite | built |  |
+| EmailTarget | `/UBTConnect/EmailTarget` | `src/screens/EmailTarget/` |  | lite | built |  |
 | EventBooklet | `/UBTConnect/EventBooklet` | `src/screens/EventBooklet/` |  | full | built |  |
 | EventDetail | `/UBTConnect/EventDetail` | `src/screens/EventDetail/` |  | full | built | getHasOrbitEventBooklet, mobileOrbitAccess, mobileOrbitHostSurvey |
-| GuestArrangements | `/UBTConnect/GuestArrangements` | `src/screens/GuestArrangements/` |  | lite | built | mobileOrbitAccess |
+| GuestArrangements | `/UBTConnect/GuestArrangements` | `src/screens/GuestArrangements/` |  | lite | built |  |
 | HelpersDetail | `/UBTConnect/HelpersDetail` | `src/screens/HelpersDetail/` |  | lite | built | mobileOrbitAccess |
 | HostSurvey | `/UBTConnect/HostSurvey` | `src/screens/HostSurvey/` |  | full | built |  |
-| LDM_Email_V2 | `/UBTConnect/LDM_Email_V2` | `src/screens/LDM_Email_V2/` |  | lite | built | C2EnableC1DirectoryView |
+| LDM_Email_V2 | `/UBTConnect/LDM_Email_V2` | `src/screens/LDM_Email_V2/` |  | lite | built |  |
 | LDM_EventDetail_V2 | `/UBTConnect/LDM_EventDetail_V2` | `src/screens/LDM_EventDetail_V2/` |  | full | built | C2EnableC1DirectoryView, C2EnableCarousel |
 | LDM_MyEvents_V2 | `/UBTConnect/LDM_MyEvents_V2` | `src/screens/LDM_MyEvents_V2/` |  | full | built | C2EnableC1DirectoryView, C2EnableCarousel |
 | MilestoneDetail | `/UBTConnect/MilestoneDetail` | `src/screens/MilestoneDetail/` |  | full | built | mobileOrbitAccess |
 | NotificationDetails | `/UBTConnect/NotificationDetails` | `src/screens/NotificationDetails/` |  |  | built | C2EnableC1DirectoryView |
-| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` | `src/screens/OneSchoolGlobalCarousel/` |  |  | built | C2EnableC1DirectoryView, C2EnableCarousel, C2ExtendedShare, mobileDirectoryHouseholdGallery, mobilePhotobook, mobileStudentInformation |
-| OrbitAdminEventDetail | `/UBTConnect/OrbitAdminEventDetail` | `src/screens/OrbitAdminEventDetail/` |  | lite | built | C2EnableC1DirectoryView |
+| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` | `src/screens/OneSchoolGlobalCarousel/` |  |  | built | C2EnableC1DirectoryView, C2ExtendedShare, mobileStudentInformation |
+| OrbitAdminEventDetail | `/UBTConnect/OrbitAdminEventDetail` | `src/screens/OrbitAdminEventDetail/` |  | lite | built |  |
 | OrbitAdminLanding | `/UBTConnect/OrbitAdminLanding` | `src/screens/OrbitAdminLanding/` |  | lite | built | C2EnableC1DirectoryView |
-| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` | `src/screens/OrbitAdminMilestoneDetail/` |  |  | built | C2EnableC1DirectoryView |
-| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` | `src/screens/OrbitAdminMilestones/` |  |  | built | C2EnableC1DirectoryView |
+| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` | `src/screens/OrbitAdminMilestoneDetail/` |  |  | built |  |
+| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` | `src/screens/OrbitAdminMilestones/` |  |  | built |  |
 | OrbitLanding | `/UBTConnect/OrbitLanding` | `src/screens/OrbitLanding/` |  | full | built | C2EnableC1DirectoryView, mobileOrbitAccess |
 | PassportScan | `/UBTConnect/PassportScan` | `src/screens/PassportScan/` |  |  | built |  |
 | QRCodeGenerate | `/UBTConnect/QRCodeGenerate` | `src/screens/QRCodeGenerate/` |  | lite | built |  |
-| TransportDetail | `/UBTConnect/TransportDetail` | `src/screens/TransportDetail/` |  | lite | built | mobileOrbitAccess |
-| ViewDocuments | `/UBTConnect/ViewDocuments` | `src/screens/ViewDocuments/` |  | lite | built | mobileOrbitAccess |
+| TransportDetail | `/UBTConnect/TransportDetail` | `src/screens/TransportDetail/` |  | lite | built |  |
+| ViewDocuments | `/UBTConnect/ViewDocuments` | `src/screens/ViewDocuments/` |  | lite | built |  |

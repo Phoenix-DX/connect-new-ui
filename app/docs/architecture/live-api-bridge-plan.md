@@ -49,16 +49,16 @@ phases of the real integration (contract check and transport adapter), done befo
 
 ### 3.2 Status
 
-| Phase              | Status                | Approved by the user (words, date) |
-| ------------------ | --------------------- | ---------------------------------- |
-| B0                 | not begun             | -                                  |
-| B1                 | not begun             | -                                  |
-| B2                 | not begun             | -                                  |
-| B3                 | not begun             | -                                  |
-| B4                 | not begun             | -                                  |
-| B5                 | not begun             | -                                  |
-| B6                 | not begun             | -                                  |
-| B7 (writes, later) | not planned in detail | -                                  |
+| Phase              | Status                | Approved by the user (words, date)                                          |
+| ------------------ | --------------------- | --------------------------------------------------------------------------- |
+| B0                 | not begun             | - (the user, 2026-11-07: wait, the sync branch is merged into `main` first) |
+| B1                 | not begun             | -                                                                           |
+| B2                 | not begun             | -                                                                           |
+| B3                 | not begun             | -                                                                           |
+| B4                 | not begun             | -                                                                           |
+| B5                 | not begun             | -                                                                           |
+| B6                 | not begun             | -                                                                           |
+| B7 (writes, later) | not planned in detail | -                                                                           |
 
 ## 4. Phases
 

@@ -15,8 +15,7 @@ const CAPTURED_COUNTS: Record<string, Partial<{ members: number; localities: num
   US: { localities: 28 },
 };
 
-const countries = () =>
-  ASSEMBLE_COUNTRIES.map((c) => countryWithMapPositionWire({ ...c, ...CAPTURED_COUNTS[c.code] }));
+const countries = () => ASSEMBLE_COUNTRIES.map((c) => countryWithMapPositionWire({ ...c, ...CAPTURED_COUNTS[c.code] }));
 
 export const handlers: RequestHandler[] = [
   contractHandler('Connect2_LegacyShared', 'ActionGetCountriesBySubscription', () => ({

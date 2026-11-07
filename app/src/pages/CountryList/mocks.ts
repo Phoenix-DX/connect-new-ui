@@ -17,7 +17,8 @@ import { emptyLists, mockDelay, scenario } from '@/mocks/scenario';
    "•••", countries "17" as captured). Aggregate counts, no person data. Scenarios (contractHandler): real, error
    (HTTP 500, the block stays in its skeleton, as the offline capture), loading (never answers). */
 type CountriesStatisticsWire = ActionOutputs<PathOf<'UBTConnect', 'CountryList/DataActionGetCountriesStatistics'>>;
-type TypedStatisticsTexts = CountriesStatisticsWire['Out_CountriesStatistics']['List'][number]['UI_TypedStatisticsTexts'];
+type TypedStatisticsTexts =
+  CountriesStatisticsWire['Out_CountriesStatistics']['List'][number]['UI_TypedStatisticsTexts'];
 
 /** The captured texts of the counts that differ from the recording, by the country code. */
 const CAPTURED_COUNTS: Record<string, Partial<TypedStatisticsTexts>> = {

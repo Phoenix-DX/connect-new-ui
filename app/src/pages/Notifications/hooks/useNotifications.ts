@@ -118,7 +118,7 @@ export function useNotifications(): NotificationsFlows {
      Notifications.mvc.js:2117-2232): the breakpoints while the skeleton breakpoint is in place, ShowMarkAll, MaxRecords
      and Screen_NotificationItemList, ReadCount, isLoading False, DestroyEventListener (no listener: nothing) and the
      bottom bar count. */
-  const fetchAndAfterFetch = async () => {
+  const loadAndAfterFetch = async () => {
     const list = await flow.fetch(fetchNotifications(latest.current)); // R1
     dispatch({
       type: 'notificationsFetched',
@@ -136,7 +136,7 @@ export function useNotifications(): NotificationsFlows {
   /* RefreshNotifications (:2042-2075): isLoading True, then FetchNotifications. */
   const refreshNotifications = async () => {
     dispatch({ type: 'loadingStarted' });
-    await fetchAndAfterFetch();
+    await loadAndAfterFetch();
   };
 
   /* ScreenEvent_OnReady (live TST 2026-11-07, :1842-1889): isLoading, the skeleton list and its breakpoint
@@ -208,7 +208,7 @@ export function useNotifications(): NotificationsFlows {
     dispatch({ type: 'onlyShowUnreadSet', onlyShowUnread });
     dispatch({ type: 'loadingStarted' });
     dispatch({ type: 'notificationsReset' });
-    flow.run(fetchAndAfterFetch);
+    flow.run(loadAndAfterFetch);
   };
 
   const onUpdateReadCount = (addToCount: boolean, _isDelete: boolean, isRead: boolean) => {

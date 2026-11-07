@@ -50,7 +50,7 @@ describe('CacheControl_AllLocalities and CacheControl_AllSubdivisions of Profile
     const kept = { LocalityList: { List: [] } };
     putCacheableObject(localityCache.allLocalities(clientVar.uniqueCacheKey.get(), 7200), kept);
     const onResult = vi.fn();
-    render(<CacheControl_AllLocalities id="$b59"onResult={onResult} />);
+    render(<CacheControl_AllLocalities id="$b59" onResult={onResult} />);
     await waitFor(() => {
       expect(onResult).toHaveBeenCalledWith(kept);
     });

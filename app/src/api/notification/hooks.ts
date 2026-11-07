@@ -1,6 +1,5 @@
 import { useMutation, useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import { notificationKeys } from './keys';
-import { storeNotificationAdaptiveCardResponse } from './notificationDetail';
 import {
   fetchNotificationDateRanges,
   fetchNotifications,
@@ -56,13 +55,6 @@ export function useNotificationsQuery(
 /** Wrapper_NotificationOpened as a mutation: the variable is the message instance id. */
 export function useMarkNotificationOpenedMutation() {
   return useMutation({ mutationFn: markNotificationOpened });
-}
-
-/** StoreAdaptiveCardResponses of the screen NotificationDetails as a mutation: the variable is the card response. No
-    caller yet: the screen calls the repository function in its AdaptiveCardViewerOnExecuteAction flow (a server
-    action of a flow, R2). */
-export function useStoreNotificationAdaptiveCardResponseMutation() {
-  return useMutation({ mutationFn: storeNotificationAdaptiveCardResponse });
 }
 
 /** Wrapper_MarkAllAsReadNotifications as a mutation: the variable is the filter of the message list. */

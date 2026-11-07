@@ -56,7 +56,7 @@ function MyNotificationsAvatarImage({
   );
 }
 
-export interface MessageImageProps {
+interface MessageImageProps {
   /** OutSystems instance id of the block (`…-$b6`). */
   id: string;
   /** IconURL: the notification's ProfileIconURL. */

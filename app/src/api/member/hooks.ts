@@ -1,12 +1,7 @@
 import { useMutation, useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import { memberKeys } from './keys';
 import { editMemberDetails, fetchAvailableMembers, fetchMember } from './repository';
-import type {
-  AvailableMembersCallInputs,
-  Member,
-  MemberAccountForm,
-  MemberSearchResult,
-} from './types';
+import type { AvailableMembersCallInputs, Member, MemberAccountForm, MemberSearchResult } from './types';
 
 /** The query options that a caller can set. The key, the query function and the cache times are fixed. */
 export type MemberQueryOptions<T> = Omit<UseQueryOptions<T>, 'queryKey' | 'queryFn' | 'staleTime' | 'gcTime'>;

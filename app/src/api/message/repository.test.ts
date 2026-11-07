@@ -363,9 +363,10 @@ describe('message repository: message list', () => {
     const bodies = recordBodies('Connect2_LegacyShared/ScreenBlock_MessageList/DataActionGetMessages');
     const result = await fetchMessages(listVariables(), emptyList, false);
     expect(result.messages).toHaveLength(20);
-    expect(result.messages[0]).toMatchObject({ id: '81022', title: 'Test Noti 2', isRead: true });
+    // The fresh TST capture of 2026-11-07 (sync wave, MessageList): 8 unread rows, rows 1-3 and 15-19, the first row among them.
+    expect(result.messages[0]).toMatchObject({ id: '81022', title: 'Test Noti 2', isRead: false });
     expect(result.hasUnreadMessages).toBe(true);
-    expect(result.countUnreadMessages).toBe(2);
+    expect(result.countUnreadMessages).toBe(8);
     expect(bodies[0]).toMatchObject({
       TotalPrivate: '0',
       TotalPublic: '0',

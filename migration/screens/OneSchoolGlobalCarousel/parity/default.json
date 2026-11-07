@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "d1721c200ec4cd5b4c59",
+ "fingerprint": "0714257aa6e540bc5b09",
  "options": {
   "text": true,
   "style": true,
@@ -27,8 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:06:34.634Z",
- "counts": {},
+ "at": "2026-11-07T10:01:33.951Z",
+ "counts": {
+  "structure": 1
+ },
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "OSGCAROUSEL-ACTIVEDESCENDANT-LIST-KEY": 1,
@@ -75,5 +77,11 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": []
+ "diffs": [
+  {
+   "kind": "structure",
+   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#DetailPage.OSBlockWidget[Layouts.Layout_DetailPage] > div#b1-LayoutWrapper_Detail.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b3.OSBlockWidget[Directory_Caroussel.EntitiesCarousel] > div#b3-EntitiesCarousel.OSBlockWidget[Interaction.Carousel] > div.osui-carousel.ubt-entities-carousel > div#splide01.is-active.is-initialized.osui-carousel__track > div#b3-b1-CarouselItems.osui-carousel__content.splide__track.splide__track--draggable > div#splide01-list.OSFillParent.list.list-group > div#splide01-slide01.is-active.is-visible.splide__slide > div#b3-l1-146060_0-$b2.OSBlockWidget[Directory_Caroussel.EntitiesCarousel_Element] > div > div#b3-l1-146060_0-b2-$b1.OSBlockWidget[Directory_Caroussel.EntitiesCarousel_OneSchoolGlobal] > div#b3-l1-146060_0-b2-b1-$b1.OSBlockWidget[Directory_OneSchoolGlobal.OneSchoolGlobalDetails_Block] > div#b3-l1-146060_0-b2-b1-b1-$b1.OSBlockWidget[SubLayout.SubLayout_DirectoryDetailScreen] > div.directory-detail-screen > div#b3-l1-146060_0-b2-b1-b1-b1-Placeholder_DetailCard > div#b3-l1-146060_0-b2-b1-b1-$b2.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b3-l1-146060_0-b2-b1-b1-b2-Placeholder_LoadingSection > div#b3-l1-146060_0-b2-b1-b1-$b3.OSBlockWidget[ConnectCorePatterns.ImageCard_LazyLoading] > div#b3-l1-146060_0-b2-b1-b1-b3-$b1.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146060_0-b2-b1-b1-b3-b1-Content.background-neutral-0.font-semi-bold.font-size-base > div#b3-l1-146060_0-b2-b1-b1-b3-ImageWrapper.OSBlockWidget[BasePatterns.CustomContainer] > div#b3-l1-146060_0-b2-b1-b1-b3-b2-Content.align-items-flex-start.display-flex.justify-content-center > div#b3-l1-146060_0-b2-b1-b1-b3-Placeholder_ImageTag.absolute-bottom-right.padding-s.position-absolute > div#osg_r_3_-Placeholder_CarouselTag",
+   "detail": "extra in build"
+  }
+ ]
 }

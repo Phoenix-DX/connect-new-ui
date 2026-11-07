@@ -27,7 +27,13 @@ const COUNTRIES: CountrySummary[] = [
 /** Fictional community counts (aggregate numbers, no person data). */
 const COMMUNITY: CountryListCommunityStatistics = {
   isDataFetched: true,
-  out: { In_Change: 4, In_CountriesCount: 12, In_HouseholdCount: 9120, In_LocalitiesCount: 240, In_MembersCount: 52310 },
+  out: {
+    In_Change: 4,
+    In_CountriesCount: 12,
+    In_HouseholdCount: 9120,
+    In_LocalitiesCount: 240,
+    In_MembersCount: 52310,
+  },
 };
 
 function setup(props: Partial<CountryListContentProps> = {}) {

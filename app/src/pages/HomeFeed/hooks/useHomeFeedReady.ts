@@ -4,7 +4,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowScope, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 
 /** The screen data action GetCommunityStatistics (only on demand): IsDataFetched and Out_CommunityStatistics. */
-export interface HomeFeedCommunityStatistics {
+interface HomeFeedCommunityStatistics {
   isDataFetched: boolean;
   out: CommunityStatistics;
 }
@@ -14,7 +14,7 @@ const NOT_FETCHED: HomeFeedCommunityStatistics = {
   out: { In_Change: 0, In_CountriesCount: 0, In_HouseholdCount: 0, In_LocalitiesCount: 0, In_MembersCount: 0 },
 };
 
-export interface HomeFeedReady {
+interface HomeFeedReady {
   /** IsScreenInitialized: False in OnInitialize, True a microtask after the mount (the first paint has False). */
   isScreenInitialized: boolean;
   /** GetCommunityStatistics, read by Directory_CommunityNumbers $b7 (In_IsLoading = not IsDataFetched). */

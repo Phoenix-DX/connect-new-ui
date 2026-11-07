@@ -123,9 +123,10 @@ describe('update repository', () => {
         inputNames: SCREEN_VARIABLE_NAMES,
       }),
     ]);
+    // The fresh TST capture of 2026-11-07 (sync wave, Updates_SingleList): 88 rows, all unread, newest first.
     expect(list.items).toHaveLength(88);
-    expect(list.unreadCount).toBe(85);
-    expect(list.items[0]).toEqual(expect.objectContaining({ updateItemId: '980100', name: 'Penelope Ashworth' }));
+    expect(list.unreadCount).toBe(88);
+    expect(list.items[0]).toEqual(expect.objectContaining({ updateItemId: '980100', name: 'Emily Pearce' }));
     expect(list.items[0]?.date).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 

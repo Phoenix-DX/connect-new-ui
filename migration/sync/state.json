@@ -5,15 +5,7 @@
   "text": "ok (item 8 of the decision session, 2026-11-07: start the wave)",
   "at": "2026-11-07T07:11:34"
  },
- "active": {
-  "AssembleDetail": {
-   "stage": "commit",
-   "loop": 0,
-   "since": "2026-11-07T16:42:05",
-   "shared": [],
-   "baseCommit": "d186ee26e0faec9911ff7ac6b3e81a03ea84056a"
-  }
- },
+ "active": {},
  "items": {
   "MessageList": {
    "status": "done",
@@ -377,13 +369,17 @@
    "finished": "2026-11-07T16:41:48"
   },
   "AssembleDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T09:27:00",
    "tokens": {
     "dev": 161539,
     "test": 29091,
     "docs": 35726
-   }
+   },
+   "commit": "ca5b408f",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:42:05"
   }
  },
  "questions": [

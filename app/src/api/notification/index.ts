@@ -1,7 +1,6 @@
 export {
   useMarkAllNotificationsAsReadMutation,
   useMarkNotificationOpenedMutation,
-  useStoreNotificationAdaptiveCardResponseMutation,
   useNotificationDateRangesQuery,
   useNotificationsQuery,
   type NotificationQueryOptions,

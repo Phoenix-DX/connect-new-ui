@@ -14,7 +14,7 @@ export const getHasNewLDM = (): boolean => flagValue('C2NewLDM');
 
 /** AdaptiveCardActionSubmitData (Connect2_LegacyShared model): the JSON names `id` (EventHostId), `submitType` and
     `eventId`. The Long Integer ids are text; "0" is NullIdentifier. */
-export interface AdaptiveCardActionSubmitData {
+interface AdaptiveCardActionSubmitData {
   eventHostId: string;
   submitType: string;
   eventId: string;
