@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "8c5cbe795e049108e50e",
+ "fingerprint": "bd63c622613146771148",
  "options": {
   "text": true,
   "style": true,
@@ -27,27 +27,24 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:03:28.575Z",
- "counts": {
-  "structure": 3,
-  "class": 1,
-  "style": 2,
-  "layout": 1,
-  "pixel": 1
- },
+ "at": "2026-11-07T09:33:13.278Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER": 1,
+  "DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2": 5,
+  "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-HOSTNAME-WIDTH": 1,
   "CAPTURE-LINK-HREF-CURSOR-LDM-EVENTDETAIL-V2": 6,
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
-  "ignoreSubtrees": 1
+  "ignoreSubtrees": 1,
+  "DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2-PIXEL": 1
  },
  "pixel": {
-  "ratio": 0.15452,
-  "maxCell": 0.9125,
+  "ratio": 0.10615,
+  "maxCell": 0.9025,
   "maxCellRatio": 0.03,
-  "diffPixels": 37575,
-  "comparedPixels": 243168,
+  "diffPixels": 23342,
+  "comparedPixels": 219901,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -58,13 +55,13 @@
    390,
    844
   ],
-  "masks": 7,
+  "masks": 16,
   "hotspots": [
-   "40,560 (1460px)",
-   "320,360 (1382px)",
-   "280,360 (1366px)",
-   "40,640 (1358px)",
-   "40,280 (1232px)"
+   "40,560 (1444px)",
+   "40,280 (1222px)",
+   "40,640 (1204px)",
+   "0,560 (1200px)",
+   "40,680 (1132px)"
   ],
   "diffPng": "migration/screens/LDM_EventDetail_V2/parity/default.diff.png"
  },
@@ -84,46 +81,5 @@
    "ServiceAPIFetchData_CacheableMapEntities"
   ]
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-address",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-content > div.event-detail-hostcard-host > div.event-detail-hostcard-content-photo > div.event-detail-photo",
-   "detail": "missing .event-detail-photo extra .event-detail-photo-blank"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-content > div.event-detail-hostcard-host > div.event-detail-hostcard-content-photo > div.event-detail-photo",
-   "detail": "display block → flex; justify-content normal → center; align-items normal → center; min-width 100px → 0px; min-height 55px → 0px (+11)"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-content > div.event-detail-hostcard-host > div.event-detail-hostcard-content-photo > div.event-detail-photo > i.fa.fa-1x.fa-users",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-content > div.event-detail-hostcard-host > div.OSInline.event-detail-hostcard-content-info",
-   "detail": "border-bottom-width 1px → 0px; border-bottom-style solid → none; border-bottom-color rgb(233, 236, 239) → rgb(38, 50, 56)"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div.event-details-content-top > div#b1-b3-GuestView_Placeholder.event-detail-content-guestview > div#b1-$b5.OSBlockWidget[LDM_Blocks.EventDetail_HostCard] > div.event-detail-hostcard > div.event-detail-hostcard-content > div.event-detail-hostcard-host > div.OSInline.event-detail-hostcard-content-info > span.event-detail-hostcard-content-info-title",
-   "detail": "82×17 → 129×17"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2] > div#b1-$b1.OSBlockWidget[Layout.Layout] > div.backwards-compatibility.connect-theme > div#b1-b1-$b2.OSBlockWidget[Layout.BaseLayout_UpdatedOSUI] > div#b1-b1-b2-LayoutWrapper.aside-overlay.connect-theme.ios-bounce > div.main.screen > div#b1-b1-b2-ContentWrapper.content > div#b1-b1-b2-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-b1-b2-Content.content-middle > div#b1-b1-Content > div#b1-$b3.OSBlockWidget[LDM_Blocks.EventsDetail_Content] > div.event-details-content > div#b1-b3-Content_Placeholder.event-detail-content-content > div#b1-Detail_GuestsHouseholds.OSBlockWidget[LDM_Blocks.EventDetail_Section]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "15.45% pixels differ (max 0.20%), worst 40px tile 91.3% (max 3.0%), hotspots 40,560 (1460px); 320,360 (1382px); 280,360 (1366px); 40,640 (1358px); 40,280 (1232px); see migration/screens/LDM_EventDetail_V2/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

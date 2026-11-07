@@ -252,3 +252,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:32:40 MessageList confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:32:40 MessageList stage restamp
 - 2026-11-07T16:33:08 MessageList stage commit
+- 2026-11-07T16:33:08 MessageList done 9995a9bb: parity: default,filter,loading,offline,search/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:33:08 LDM_EventDetail_V2 confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:33:08 LDM_EventDetail_V2 stage restamp
+- 2026-11-07T16:33:27 LDM_EventDetail_V2 stage commit

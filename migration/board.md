@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2639
+Complexity left on build rows not yet built: 2544
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -67,7 +67,7 @@ Complexity left on build rows not yet built: 2639
 | LDM_Email | `/UBTConnect/LDM_Email` |  | 81 |  | skip | V1 not needed: TST uses the V2 screens (GetHasNewLDM on); V1 is not built (user, 2026-10-16) | - |  |
 | LDM_Email_V2 | `/UBTConnect/LDM_Email_V2` |  | 81 | lite | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-forms |
 | LDM_EventDetail | `/UBTConnect/LDM_EventDetail` |  | 95 |  | skip | V1 not needed: TST uses the V2 screens (GetHasNewLDM on); V1 is not built (user, 2026-10-16) | - |  |
-| LDM_EventDetail_V2 | `/UBTConnect/LDM_EventDetail_V2` |  | 95 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | review | route-ldm-eventdetail-v2 |
+| LDM_EventDetail_V2 | `/UBTConnect/LDM_EventDetail_V2` |  | 95 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-eventdetail-v2 |
 | LDM_MyEvents | `/UBTConnect/LDM_MyEvents` |  | 111 |  | skip | V1 not needed: TST uses the V2 screens (GetHasNewLDM on); V1 is not built (user, 2026-10-16) | - |  |
 | LDM_MyEvents_V2 | `/UBTConnect/LDM_MyEvents_V2` |  | 110 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | review | route-ldm-myevents-v2 |
 | Map | `/UBTConnect/Map` |  | 185 |  | skip | V4a · skip:variant · entry icon in Locality_Details shown only if C2EnableMaps (TST=false); revisit when enabled (user, 2026-10-14) | - |  |

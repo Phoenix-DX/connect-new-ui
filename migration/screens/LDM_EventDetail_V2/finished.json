@@ -1,7 +1,7 @@
 {
- "finishedAt": "2026-11-06T20:35:30",
+ "finishedAt": "2026-11-07T16:33:27",
  "files": {
-  "src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2.test.tsx": "dfae285cb66a245a",
+  "src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2.test.tsx": "bc0fc37cc1bacab8",
   "src/pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx": "39dcefde9f6972cc",
   "src/pages/LDM_EventDetail_V2/components/EventDetail_Banner.tsx": "1cb2363889a69d44",
   "src/pages/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx": "e76d6977c9f6c4b7",
@@ -17,6 +17,6 @@
   "src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.test.tsx": "157781a99597029e",
   "src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.ts": "ee52a01f56585e42",
   "src/pages/LDM_EventDetail_V2/inputs.ts": "ecb292b2ecd46569",
-  "src/pages/LDM_EventDetail_V2/mocks.ts": "3d59fadd2e83c52b"
+  "src/pages/LDM_EventDetail_V2/mocks.ts": "f5ced7e1e6fc00ed"
  }
 }
