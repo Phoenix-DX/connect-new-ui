@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "PINUnlock": {
+  "LegacyShareObject": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:41:31",
-   "shared": [],
-   "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
-  },
-  "LegacyShareObject": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T09:19:20",
+   "since": "2026-11-07T16:41:47",
    "shared": [],
    "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
   },
@@ -367,15 +360,19 @@
    "finished": "2026-11-07T16:41:15"
   },
   "PINUnlock": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T09:13:03",
    "tokens": {
     "test": 26697,
     "docs": 22770
-   }
+   },
+   "commit": "753c629d",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:41:32"
   },
   "LegacyShareObject": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T09:13:03",
    "tokens": {
     "test": 24823,
@@ -619,6 +616,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:41:15"
+  },
+  "LegacyShareObject": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:41:32"
   }
  }
 }
