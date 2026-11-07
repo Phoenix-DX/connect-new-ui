@@ -1176,3 +1176,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,LDM_EventDetail_V2,fix,72534,sync-dev,sonnet,sync LDM_EventDetail_V2
 2026-11-07,MessageDetail,verify,28848,sync-test,sonnet,sync MessageDetail
 2026-11-07,ContactByEmailMember,verify,34785,sync-test,sonnet,sync ContactByEmailMember
+2026-11-07,Menu,verify,27952,sync-test,sonnet,sync Menu
+2026-11-07,Household_Relations,fix,144917,sync-dev,opus,sync Household_Relations
+2026-11-07,LDM_MyEvents_V2,fix,120190,sync-dev,opus,sync LDM_MyEvents_V2
+2026-11-07,Menu,other,36534,sync-docs,sonnet,sync Menu
+2026-11-07,ContactByEmailMember,fix,24441,sync-dev,opus,sync ContactByEmailMember loop 1
+2026-11-07,OrbitAdminLanding,fix,167567,sync-dev,opus,sync OrbitAdminLanding
+2026-11-07,ContactByEmailMember,verify,33005,sync-test,sonnet,sync ContactByEmailMember loop 1

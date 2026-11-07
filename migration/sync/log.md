@@ -34,3 +34,21 @@ One line per event. Written by sync.py.
 - 2026-11-07T07:18:07 ContactByEmailMember stage test
 - 2026-11-07T07:19:04 Q1 (LDM_EventDetail_V2) asked: Exemptions: (1) photo background-image + pixel for the host and guest photos (signed CloudFront URLs in the capture, placeholder in the mock) as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 already does for LDM_MyEvents_V2; (2) host-name title width 82 vs 118 px (masked 21-char name) as masked-text data drift. a: add both (master edits exemptions) / b: leave the diffs (route cannot restamp) / c: other
 - 2026-11-07T07:19:04 Q2 (MessageList) asked: consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles
+- 2026-11-07T07:20:13 ContactByEmailMember test failed, fix loop 1
+- 2026-11-07T07:20:13 ContactByEmailMember brief written (loop 1)
+- 2026-11-07T07:20:13 Q3 (MessageDetail) asked: Same as MessageList Q2: consistency NO-INLINE-COLOR in components/NotificationDetailBlock.tsx:164,178,183 (inline styles ported from the compiled TST block, no capture shows the branch); Notifications has 1 more. Options as Q2 (a exclusion with citation / b NotCaptured / c remove)
+- 2026-11-07T07:20:26 Menu stage docs
+- 2026-11-07T07:21:10 Q4 (LDM_MyEvents_V2) asked: Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\.\d\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave
+- 2026-11-07T07:21:11 Q5 (Household_Relations) asked: Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift
+- 2026-11-07T07:21:11 NotificationDetails started
+- 2026-11-07T07:21:11 NotificationDetails brief written (loop 0)
+- 2026-11-07T07:21:11 NotificationDetails stage dev
+- 2026-11-07T07:21:11 Profile started
+- 2026-11-07T07:21:11 Profile brief written (loop 0)
+- 2026-11-07T07:21:11 Profile stage dev
+- 2026-11-07T07:21:56 ContactByEmailMember stage test
+- 2026-11-07T07:21:56 Menu stage spec
+- 2026-11-07T07:21:57 Menu stage review
+- 2026-11-07T07:24:05 OrbitAdminLanding granted shared paths: app/src/api/event/** ("YearFilter output of DataActionGet_AdminEventsList (contract regenerated 2026-11-07)")
+- 2026-11-07T07:24:05 Household_Relations granted shared paths: app/src/api/household/** ("DataActionGet_SibllingsRelations (contract regenerated 2026-11-07), AwayParents, NoDisplaySiblings, Description")
+- 2026-11-07T07:24:39 ContactByEmailMember stage docs

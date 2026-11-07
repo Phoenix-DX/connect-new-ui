@@ -46,7 +46,9 @@ COMMON_ALLOW = ("migration/sync/**", "app/docs/**", "migration/route-check/**", 
                 "migration/metrics/**", "migration/board.md", "migration/capture-plan.json",
                 # pipeline outputs of the master's captures and parity runs of other routes (not code)
                 "migration/screens/*/analysis/**", "migration/screens/*/parity/**", "migration/screens/*/capture/**",
-                "migration/screens/_capture-summary.json", "migration/survey/**", "migration/sources/**")
+                "migration/screens/_capture-summary.json", "migration/survey/**", "migration/sources/**",
+                # the master's own files: the tools, the agents, the contract regenerated from the fresh captures
+                "tools/**", ".claude/**", "app/src/api/openapi.yaml", "app/src/api/schema.d.ts")
 HANDOFF_TEMPLATE = Path(".claude/skills/tst-sync/references/handoff.md")
 AGENTS_MD = Path("migration/AGENTS.md")
 BRIEF_RULES = (3, 5, 9, 10, 11, 12, 13, 17, 21, 22, 23)
@@ -185,19 +187,25 @@ def allowed_paths(c: Ctx, rid: str) -> list[str]:
     return own_paths(rid) + list(a.get("shared", [])) + list(COMMON_ALLOW)
 
 
+def _prefix(p: str) -> str:
+    return p.split("*", 1)[0].rstrip("/")
+
+
 def shared_overlap(c: Ctx, rid: str, shared: list[str]) -> list[str]:
-    """Active items whose granted shared paths or own paths overlap `shared`, or that run with any shared grant."""
+    """Active items whose paths (own or granted) overlap a path of `shared`: the same folder, a parent or a child.
+    Two page-only items never overlap; two items with different shared folders may run together (2026-11-07: the
+    parity fingerprint goes stale for everybody anyway when a shared file changes, and the restamp re-runs parity)."""
     hits = []
+    mine = [_prefix(p) for p in shared]
     for other, a in c.state["active"].items():
         if other == rid:
             continue
-        if shared and a.get("shared"):
-            hits.append(f"{other} (shared grant {', '.join(a['shared'])})")
-        elif shared:
-            hits.append(f"{other} (a shared item runs alone)")
-        elif a.get("shared"):
-            hits.append(f"{other} (holds a shared grant: {', '.join(a['shared'])})")
-    return hits
+        theirs = [_prefix(p) for p in list(a.get("shared", [])) + own_paths(other)]
+        for m in mine:
+            for t in theirs:
+                if m == t or m.startswith(t + "/") or t.startswith(m + "/"):
+                    hits.append(f"{other} ({t})")
+    return sorted(set(hits))
 
 
 # ---------------------------------------------------------------- commands: catalog
@@ -391,6 +399,20 @@ def cmd_start(c: Ctx, a) -> int:
     c.save()
     c.log(f"{a.item} started" + (f" with shared {', '.join(shared)}" if shared else ""))
     print(f"{a.item} active, stage brief" + (f"; shared paths granted: {', '.join(shared)} (runs alone)" if shared else ""))
+    return 0
+
+
+def cmd_grant(c: Ctx, a) -> int:
+    """Grant shared paths to an active item (the user's rule of 2026-11-07: a grant replaces the change request)."""
+    act = c.active(a.item)
+    shared = [x for x in a.shared.split(",") if x]
+    hits = shared_overlap(c, a.item, shared)
+    if hits:
+        raise SyncError(f"{a.item}: the grant overlaps active items: " + "; ".join(hits))
+    act["shared"] = sorted(set(act.get("shared", [])) | set(shared))
+    c.save()
+    c.log(f"{a.item} granted shared paths: {', '.join(shared)}" + (f' ("{a.text}")' if a.text else ""))
+    print(f"{a.item} shared paths: {', '.join(act['shared'])}")
     return 0
 
 
@@ -729,6 +751,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sp.add_parser("begin"); p.add_argument("--by", required=True); p.add_argument("--text", required=True); p.set_defaults(f=cmd_begin)
     p = sp.add_parser("start"); p.add_argument("item"); p.add_argument("--shared"); p.set_defaults(f=cmd_start)
     p = sp.add_parser("brief"); p.add_argument("item"); p.add_argument("--app"); p.set_defaults(f=cmd_brief)
+    p = sp.add_parser("grant"); p.add_argument("item"); p.add_argument("--shared", required=True); p.add_argument("--text"); p.set_defaults(f=cmd_grant)
     p = sp.add_parser("stage"); p.add_argument("item"); p.add_argument("stage", choices=STAGES[1:]); p.set_defaults(f=cmd_stage)
     p = sp.add_parser("fail"); p.add_argument("item"); p.set_defaults(f=cmd_fail)
     p = sp.add_parser("block"); p.add_argument("item"); p.add_argument("--reason", required=True); p.add_argument("--stash"); p.set_defaults(f=cmd_block)

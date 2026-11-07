@@ -79,9 +79,12 @@ class Repo(unittest.TestCase):
     def test_shared_item_runs_alone(self):
         run("begin", "--by", "user", "--text", "start")
         self.assertEqual(run("start", "R1")[0], 0)
-        code, out = run("start", "R2")
+        code, out = run("start", "R2")          # R2's shared folder does not overlap R1's page: both run
+        self.assertEqual(code, 0, out)
+        run("ask", "R3", "--text", "exempt?"); run("answer", "Q1", "--by", "user", "--text", "yes")
+        code, out = run("start", "R3", "--shared", "app/src/components/S/Inner/**")   # inside R2's grant
         self.assertEqual(code, 1)
-        self.assertIn("shared", out)
+        self.assertIn("R2", out)
         code, out = run("scope", "R1", "--dry-run")
         self.assertIn("--allow migration/sync/**", out)
 

@@ -21,9 +21,9 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "ContactByEmailMember": {
-   "stage": "test",
-   "loop": 0,
-   "since": "2026-11-07T07:18:07",
+   "stage": "docs",
+   "loop": 1,
+   "since": "2026-11-07T07:24:39",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -31,14 +31,18 @@
    "stage": "dev",
    "loop": 0,
    "since": "2026-11-07T07:12:54",
-   "shared": [],
+   "shared": [
+    "app/src/api/event/**"
+   ],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "Household_Relations": {
    "stage": "dev",
    "loop": 0,
    "since": "2026-11-07T07:12:55",
-   "shared": [],
+   "shared": [
+    "app/src/api/household/**"
+   ],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "MessageDetail": {
@@ -49,9 +53,9 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "Menu": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:16:28",
+   "since": "2026-11-07T07:21:57",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -61,6 +65,20 @@
    "since": "2026-11-07T07:12:56",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
+  },
+  "NotificationDetails": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:21:11",
+   "shared": [],
+   "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
+  },
+  "Profile": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:21:11",
+   "shared": [],
+   "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
   }
  },
  "items": {
@@ -83,19 +101,23 @@
    "status": "active",
    "started": "2026-11-07T07:12:54",
    "tokens": {
-    "dev": 49641,
-    "test": 34785
+    "dev": 74082,
+    "test": 67790
    }
   },
   "OrbitAdminLanding": {
    "status": "active",
    "started": "2026-11-07T07:12:54",
-   "tokens": {}
+   "tokens": {
+    "dev": 167567
+   }
   },
   "Household_Relations": {
    "status": "active",
    "started": "2026-11-07T07:12:54",
-   "tokens": {}
+   "tokens": {
+    "dev": 144917
+   }
   },
   "MessageDetail": {
    "status": "active",
@@ -106,16 +128,29 @@
    }
   },
   "Menu": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 104178,
-    "test": 29855
+    "test": 57807,
+    "docs": 36534
    }
   },
   "LDM_MyEvents_V2": {
    "status": "active",
    "started": "2026-11-07T07:12:55",
+   "tokens": {
+    "dev": 120190
+   }
+  },
+  "NotificationDetails": {
+   "status": "active",
+   "started": "2026-11-07T07:21:11",
+   "tokens": {}
+  },
+  "Profile": {
+   "status": "active",
+   "started": "2026-11-07T07:21:11",
    "tokens": {}
   }
  },
@@ -133,6 +168,27 @@
    "text": "consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles",
    "status": "open",
    "at": "2026-11-07T07:19:04"
+  },
+  {
+   "id": "Q3",
+   "item": "MessageDetail",
+   "text": "Same as MessageList Q2: consistency NO-INLINE-COLOR in components/NotificationDetailBlock.tsx:164,178,183 (inline styles ported from the compiled TST block, no capture shows the branch); Notifications has 1 more. Options as Q2 (a exclusion with citation / b NotCaptured / c remove)",
+   "status": "open",
+   "at": "2026-11-07T07:20:13"
+  },
+  {
+   "id": "Q4",
+   "item": "LDM_MyEvents_V2",
+   "text": "Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\\.\\d\\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave",
+   "status": "open",
+   "at": "2026-11-07T07:21:10"
+  },
+  {
+   "id": "Q5",
+   "item": "Household_Relations",
+   "text": "Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift",
+   "status": "open",
+   "at": "2026-11-07T07:21:11"
   }
  ],
  "confirms": {}
