@@ -38,22 +38,27 @@ phases of the real integration (contract check and transport adapter), done befo
 - D3: a) the bridge reuses the storage state of the capture login ("D3: a)").
 - D5: a) real data is never stored ("D5: a)").
 - D6: a) mismatches go to a report and a question each ("D6: a").
-- D2 and D4: the user asked what "block all" means and what "per module" means; answered in the chat, decision open.
+- D2: b) now: the 40 write calls are blocked, the 6 calls of `allowActions` pass ("Trước mắt làm b)"). The user also
+  needs to test the write calls later ("tương lai tôi cũng cần test call API ghi"). Phase B7 "writes on a test
+  environment" comes after B6: DEV or a test account, one call at a time, each approved by the user. Not planned in
+  detail yet.
+- D4: a) per module, every module live by default ("D4: a").
 - Way of work (user, 2026-11-07: "chạy theo từng phần, done phần nào thì dừng lại chờ tôi duyệt tiếp"): the master
   runs one phase. It reports the result in 5 lines (counts, files, what needs a decision) and stops. The next phase starts
   only after the user approves in the chat. The approval words are recorded in the status table below.
 
 ### 3.2 Status
 
-| Phase | Status    | Approved by the user (words, date) |
-| ----- | --------- | ---------------------------------- |
-| B0    | not begun | -                                  |
-| B1    | not begun | -                                  |
-| B2    | not begun | -                                  |
-| B3    | not begun | -                                  |
-| B4    | not begun | -                                  |
-| B5    | not begun | -                                  |
-| B6    | not begun | -                                  |
+| Phase              | Status                | Approved by the user (words, date) |
+| ------------------ | --------------------- | ---------------------------------- |
+| B0                 | not begun             | -                                  |
+| B1                 | not begun             | -                                  |
+| B2                 | not begun             | -                                  |
+| B3                 | not begun             | -                                  |
+| B4                 | not begun             | -                                  |
+| B5                 | not begun             | -                                  |
+| B6                 | not begun             | -                                  |
+| B7 (writes, later) | not planned in detail | -                                  |
 
 ## 4. Phases
 
@@ -120,7 +125,7 @@ browser ──POST /api/M/A {inputs}──▶ bridge :5180 ──POST /UBTConnec
 ## 8. Out of scope
 
 A backend or BFF; authentication of end users in the React app (the bridge uses the test session); writes on
-production; offline sync; performance work. These come after the user chooses the target of the real integration
+production; offline sync; performance work. Writes on a test environment are phase B7, after B6 (D2). These come after the user chooses the target of the real integration
 (plan C in the chat of 2026-11-07: adapter first, BFF per module later).
 
 ## 9. Verification
