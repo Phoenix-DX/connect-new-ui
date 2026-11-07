@@ -1,11 +1,14 @@
 {
- "finishedAt": "2026-10-16T16:32:06",
+ "finishedAt": "2026-11-07T16:35:00",
  "files": {
-  "src/screens/Menu/api.ts": "5dcfc80f1bb71d72",
-  "src/screens/Menu/components/actions.ts": "a2c3a7cea7a5b2ab",
-  "src/screens/Menu/components/staticEntities.ts": "6dee51430317dba1",
-  "src/screens/Menu/index.tsx": "62ea5b2a8087fde4",
-  "src/screens/Menu/mocks.ts": "8b50ffb6b5b03628",
-  "src/screens/Menu/types.ts": "4c75b23aa4110773"
+  "src/pages/Menu/MenuPage.tsx": "e344831d884c9800",
+  "src/pages/Menu/components/MenuUserHeader.test.tsx": "0f91173b063bf059",
+  "src/pages/Menu/components/MenuUserHeader.tsx": "bf4d293e7213c5ab",
+  "src/pages/Menu/hooks/menuState.test.ts": "c22bedfd15cfef8b",
+  "src/pages/Menu/hooks/menuState.ts": "e6e12fc7ff6a0387",
+  "src/pages/Menu/hooks/useMenu.test.tsx": "46a35be7f6c8d3c1",
+  "src/pages/Menu/hooks/useMenu.ts": "4262ba3f07482fce",
+  "src/pages/Menu/mocks.ts": "d6fb24137a3e852c",
+  "src/pages/Menu/staticEntities.ts": "6dee51430317dba1"
  }
 }

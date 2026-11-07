@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "MessageDetail": {
+  "Menu": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:34:34",
-   "shared": [],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
-  "Menu": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T07:21:57",
+   "since": "2026-11-07T16:35:00",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -244,16 +237,20 @@
    "finished": "2026-11-07T16:34:18"
   },
   "MessageDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 141124,
     "test": 57356,
     "docs": 34097
-   }
+   },
+   "commit": "d9ec2e96",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:34"
   },
   "Menu": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 104178,
@@ -597,6 +594,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:34:18"
+  },
+  "Menu": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:44"
   }
  }
 }

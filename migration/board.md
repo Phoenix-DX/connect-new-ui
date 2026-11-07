@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2212
+Complexity left on build rows not yet built: 2134
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -38,7 +38,7 @@ Complexity left on build rows not yet built: 2212
 | ContactByEmailOneSchoolGlobal | `/UBTConnect/ContactByEmailOneSchoolGlobal` | 5 | 25 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactbyemailoneschoolglobal |
 | ContactUsDetails | `/UBTConnect/ContactUsDetails` | 5 | 77 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactusdetails |
 | ContactUsMenu | `/UBTConnect/ContactUsMenu` | 5 | 56 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactusmenu |
-| Menu | `/UBTConnect/Menu` | 5 | 78 | lite | build | V3d · bottom bar Menu tab; also from PINRegister, PINChange (user, 2026-10-14) | review | route-menu |
+| Menu | `/UBTConnect/Menu` | 5 | 78 | lite | build | V3d · bottom bar Menu tab; also from PINRegister, PINChange (user, 2026-10-14) | built | route-menu |
 | PINBiometricsMenu | `/UBTConnect/PINBiometricsMenu` | 5 | 17 | lite | build | V4c · D3 menu part, consistent with V1 (mock PIN); biometrics on web decided in Phase 4 (user, 2026-10-14) | built | route-pinbiometricsmenu |
 | PINChange | `/UBTConnect/PINChange` | 5 | 33 | lite | build | V4c · D3 menu part, consistent with V1 (mock PIN); biometrics on web decided in Phase 4 (user, 2026-10-14) | built | route-pinchange |
 | Profile | `/UBTConnect/Profile` | 5 | 151 | full | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | review | route-profile |
