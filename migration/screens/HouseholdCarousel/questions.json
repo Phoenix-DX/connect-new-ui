@@ -94,5 +94,71 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T06:57:53"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered, user 2026-10-15) [questions.md Q1]: `mocks.ts` holds a mock-only seed preload, as Locality_Details hands it over.; Q2 → A (answered, user 2026-10-15) [questions.md Q2]: CR-HouseholdCarousel-1 added ActionUpdateItem_MarkAsRead to the; CR-HouseholdCarousel-2 (applied): two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;; Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside; Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this; Parity tool: `parity_check.cjs` cannot compare the default state.; The DOM is 64 levels deep. Playwright's `page.evaluate` fails to return the serialized tree with \"Execution; A scratch copy that returns the tree as a JSON string ran. The route markup is identical. The remaining; The skill script needs that fix (orchestrator).; HouseholdDetails found differences in the shared blocks (CR-HouseholdDetails-1: actions-menu skeleton, skeleton; 2026-11-07 sync: TST moved the household slide block. The master renumbered two exemption paths from `-b2-b4-` to Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryHouseholdGallery → user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T08:50:56",
+  "items": [
+   "Q1 → A (answered, user 2026-10-15) [questions.md Q1]: `mocks.ts` holds a mock-only seed preload, as Locality_Details hands it over.",
+   "Q2 → A (answered, user 2026-10-15) [questions.md Q2]: CR-HouseholdCarousel-1 added ActionUpdateItem_MarkAsRead to the",
+   "CR-HouseholdCarousel-2 (applied): two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;",
+   "Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside",
+   "Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this",
+   "Parity tool: `parity_check.cjs` cannot compare the default state.",
+   "The DOM is 64 levels deep. Playwright's `page.evaluate` fails to return the serialized tree with \"Execution",
+   "A scratch copy that returns the tree as a JSON string ran. The route markup is identical. The remaining",
+   "The skill script needs that fix (orchestrator).",
+   "HouseholdDetails found differences in the shared blocks (CR-HouseholdDetails-1: actions-menu skeleton, skeleton",
+   "2026-11-07 sync: TST moved the household slide block. The master renumbered two exemption paths from `-b2-b4-` to"
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:40:55"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered, user 2026-10-15) [questions.md Q1]: `mocks.ts` holds a mock-only seed preload, as Locality_Details hands it over.; Q2 → A (answered, user 2026-10-15) [questions.md Q2]: CR-HouseholdCarousel-1 added ActionUpdateItem_MarkAsRead to the; CR-HouseholdCarousel-2 (applied): two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;; Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside; Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this; Parity tool: `parity_check.cjs` cannot compare the default state.; The DOM is 64 levels deep. Playwright's `page.evaluate` fails to return the serialized tree with \"Execution; A scratch copy that returns the tree as a JSON string ran. The route markup is identical. The remaining; The skill script needs that fix (orchestrator).; HouseholdDetails found differences in the shared blocks (CR-HouseholdDetails-1: actions-menu skeleton, skeleton; 2026-11-07 sync: TST moved the household slide block. The master renumbered two exemption paths from `-b2-b4-` to Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryHouseholdGallery → user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:40:55",
+  "items": [
+   "Q1 → A (answered, user 2026-10-15) [questions.md Q1]: `mocks.ts` holds a mock-only seed preload, as Locality_Details hands it over.",
+   "Q2 → A (answered, user 2026-10-15) [questions.md Q2]: CR-HouseholdCarousel-1 added ActionUpdateItem_MarkAsRead to the",
+   "CR-HouseholdCarousel-2 (applied): two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;",
+   "Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside",
+   "Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this",
+   "Parity tool: `parity_check.cjs` cannot compare the default state.",
+   "The DOM is 64 levels deep. Playwright's `page.evaluate` fails to return the serialized tree with \"Execution",
+   "A scratch copy that returns the tree as a JSON string ran. The route markup is identical. The remaining",
+   "The skill script needs that fix (orchestrator).",
+   "HouseholdDetails found differences in the shared blocks (CR-HouseholdDetails-1: actions-menu skeleton, skeleton",
+   "2026-11-07 sync: TST moved the household slide block. The master renumbered two exemption paths from `-b2-b4-` to"
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:40:55"
  }
 ]

@@ -234,6 +234,24 @@ the shared blocks and stay as they built them.
 - HouseholdDetails found differences in the shared blocks (CR-HouseholdDetails-1: actions-menu skeleton, skeleton
   chevron, OSList `list-loading`, `aria-hidden` with ShareSheet). The foundation owns them. This route does not work
   around them.
+- 2026-11-07 sync: TST moved the household slide block. The master renumbered two exemption paths from `-b2-b4-` to
+  `-b2-b5-`. Confirm that you accept the renumbered rules. No code change.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files that changed: `EntitiesCarousel_Element`, `Directory_EntityDetailsActions`, `HouseholdDetails_Block`,
+  `HorizontalTagList`, `TagContent`, `ContactByMessage_Wrapper`, `ShareSheet` (brief).
+- Fresh capture: TST added a widget to `EntitiesCarousel_Element`. The household slide block moved from alias `$b4`
+  to `$b5`, so the ids in the slide path changed from `-b2-b4-` to `-b2-b5-`
+  (`migration/sync/handoffs/HouseholdCarousel/dev.md`, Deviations).
+- React code: no change. The markup and the calls already matched the capture. The React app gives the carousel
+  elements no instance id (`app/src/components/directory/EntitiesCarouselElement/README.md:44`), so the move shows
+  no different id there.
+- Exemptions: the master renumbered two paths from `-b2-b4-` to `-b2-b5-` in `migration/parity-exemptions.json`
+  (`CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL` idRegex, line 123; `CAPTURE-MASKED-IMAGE-HOUSEHOLDCAROUSEL` pathRegex,
+  line 1141).
+- Evidence: `route.py parity HouseholdCarousel` gives 0 differences in default, loading and offline (`dev.md`,
+  `test.md`).
 
 ## 17. Patterns used
 - P-PARAMS: `In_StartingHouseholdId` from the query string (api.ts).

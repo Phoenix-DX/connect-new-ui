@@ -336,3 +336,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:40:20 Notes confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:40:21 Notes stage restamp
 - 2026-11-07T16:40:40 Notes stage commit
+- 2026-11-07T16:40:41 Notes done 9c32b66d: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 1); user: confirm (2026-11-07)
+- 2026-11-07T16:40:41 HouseholdCarousel confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:40:41 HouseholdCarousel stage restamp
+- 2026-11-07T16:40:58 HouseholdCarousel stage commit
