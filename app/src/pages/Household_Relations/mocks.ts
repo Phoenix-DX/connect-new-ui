@@ -1,6 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
+import { scenario } from '@/mocks/scenario';
 import { VITALE, VITALE_PARENTS } from '@/mocks/fictional/directory';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
 import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
@@ -12,7 +13,9 @@ import { NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
    spouse, 4 siblings (1 single, 3 married, every one with a link). Ids from 7101 (members); every relation links to
    his parents' household (Hugo & María Vitale, Puerto Madryn). Any MemberId answers the same member.
    Scenarios: `real`; `empty` (no previous spouse, no sibling); `loading` (never answers: skeleton, dom/loading.html);
-   `error` (calls fail: skeleton stays, dom/offline.html). */
+   `error` (calls fail: skeleton stays, dom/offline.html); two branches of the live TST block (2026-11-07) that no
+   capture shows, with fictional data (route-spec "Decisions to confirm"): `awayParents` (one away-parents row in
+   place of the father and the mother) and `noDisplaySiblings` (one more sibling in a second "Household" list). */
 
 /** UI_HouseholdMember with the structure defaults (Connect_Household_CS.model.js UI_HouseholdMemberRec). */
 const MEMBER_DEFAULTS = {
@@ -51,13 +54,15 @@ const MEMBER_DEFAULTS = {
 const PARENTS_HOUSEHOLD_ID = VITALE_PARENTS.id;
 const PARENTS_LOCALITY = { LocalityName: VITALE_PARENTS.localityName, CountryName: VITALE_PARENTS.countryName };
 
-/** Father and mother: name, a life-cycle text (not shown: not deceased) and a formatted locality (captured). */
-const parent = (id: string, title: string, lifeCycle: string) => ({
+/** Father and mother: name, the relation text in Description ("Father", "Mother": captured), a life-cycle text (not
+    shown: not deceased) and a formatted locality (captured). */
+const parent = (id: string, title: string, relation: string, lifeCycle: string) => ({
   ...MEMBER_DEFAULTS,
   ...PARENTS_LOCALITY,
   Id: id,
   HouseholdId: PARENTS_HOUSEHOLD_ID,
   Title: title,
+  Description: relation,
   LifeCycleText: lifeCycle,
   FormattedLocality: `${VITALE_PARENTS.localityName}, ${VITALE_PARENTS.countryName}`,
 });
@@ -92,15 +97,27 @@ export const handlers: RequestHandler[] = [
     MemberName: `${VITALE.householder} ${VITALE.surname}`,
     FamilyName: 'The Vitales',
     IsMemberDeceased: false,
-    Father: parent('7101', VITALE_PARENTS.householder, VITALE_PARENTS.members[0]?.born ?? ''),
-    Mother: parent('7102', 'María Ana Fernández', VITALE_PARENTS.members[1]?.born ?? ''),
+    Father: parent('7101', VITALE_PARENTS.householder, 'Father', VITALE_PARENTS.members[0]?.born ?? ''),
+    Mother: parent('7102', 'María Ana Fernández', 'Mother', VITALE_PARENTS.members[1]?.born ?? ''),
     FormerSpouses: wireList([]),
     ParentHouseholdId: PARENTS_HOUSEHOLD_ID,
-    // live TST of 2026-11-05: AwayParents (a structure never captured, empty here) and NoDisplaySiblings (a member list)
-    AwayParents: { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
-    NoDisplaySiblings: wireList([]),
+    // AwayParents and NoDisplaySiblings (live TST 2026-11-07): the capture of this member has neither (no away-parents
+    // row, one "Household" list), so the default scenario keeps them empty; the scenarios `awayParents` and
+    // `noDisplaySiblings` below show the two branches with fictional data (route-spec "Decisions to confirm").
+    AwayParents:
+      scenario() === 'awayParents'
+        ? {
+            CountryName: VITALE_PARENTS.countryName,
+            HouseholdId: PARENTS_HOUSEHOLD_ID,
+            LocalityName: VITALE_PARENTS.localityName,
+            Title: 'Hugo & María Vitale',
+          }
+        : { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
+    NoDisplaySiblings: wireList(
+      scenario() === 'noDisplaySiblings' ? [sibling('7107', 'Martina Vitale', 'Pablo Suárez', 'of Trelew')] : [],
+    ),
   })),
-  contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', () => ({
+  contractHandler('UBTConnect', 'HouseholdRelations_Block/DataActionGet_SibllingsRelations', () => ({
     Out_siblingRelations: wireList([
       sibling('7103', VITALE_PARENTS.children[0] ?? ''),
       sibling('7104', 'Valentina', 'Carlos Ríos', 'of Neuquén'),

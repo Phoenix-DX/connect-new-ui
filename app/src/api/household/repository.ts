@@ -87,19 +87,21 @@ export async function fetchHouseholdCaption(inputs: HouseholdCaptionCallInputs):
 }
 
 /* The two data actions of HouseholdRelations_Block (the relations of a member), on demand only: the block refreshes
-   Get_MemberDetails in its OnReady, then Get_ParentHouseholdDetails after it. Both send the same inputs. */
+   Get_MemberDetails in its OnReady, then Get_SibllingsRelations after it (live TST 2026-11-07,
+   HouseholdRelations_Block.mvc.js:1997-2019, 2093-2099). Both send the same inputs. */
 
-/** DataActionGet_MemberDetails: the member name, the family name, the father, the mother and the previous spouses. */
+/** DataActionGet_MemberDetails: the member name, the family name, the father, the mother, the previous spouses, the
+    away parents and the siblings that the household of the parents does not list. */
 export async function fetchMemberRelations(inputs: MemberRelationsCallInputs): Promise<MemberRelations> {
   return toMemberRelations(
     await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails', inputs),
   );
 }
 
-/** DataActionGet_ParentHouseholdDetails: the siblings of the member, from the household of his parents. */
+/** DataActionGet_SibllingsRelations (the OutSystems name, with its spelling): the siblings of the member. */
 export async function fetchSiblingRelations(inputs: MemberRelationsCallInputs): Promise<SiblingRelations> {
   return toSiblingRelations(
-    await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', inputs),
+    await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_SibllingsRelations', inputs),
   );
 }
 

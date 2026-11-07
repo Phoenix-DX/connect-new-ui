@@ -22,8 +22,14 @@ const relative = (patch: Partial<HouseholdMember>): HouseholdMember => ({
   FormattedLocality: 'Mendoza, Argentina',
   ...patch,
 });
-const FATHER = relative({ Id: '7301', Title: 'Rubén Acosta', LifeCycleText: 'Born 2 Mar 1950' });
-const MOTHER = relative({ Id: '7302', Title: 'Silvia Medina', LifeCycleText: 'Born 8 Sep 1953' });
+const FATHER = relative({ Id: '7301', Title: 'Rubén Acosta', Description: 'Father', LifeCycleText: 'Born 2 Mar 1950' });
+const MOTHER = relative({
+  Id: '7302',
+  Title: 'Silvia Medina',
+  Description: 'Mother',
+  LifeCycleText: 'Born 8 Sep 1953',
+});
+const NO_AWAY_PARENTS = { Title: '', HouseholdId: '0', LocalityName: '', CountryName: '' };
 const SIBLINGS = [
   relative({ Id: '7303', Title: 'Florencia' }),
   relative({
@@ -53,6 +59,9 @@ function renderView(props: Partial<HouseholdRelationsViewProps> = {}) {
     father: FATHER,
     mother: MOTHER,
     formerSpouses: [],
+    parentHouseholdId: '7300',
+    awayParents: NO_AWAY_PARENTS,
+    noDisplaySiblings: [],
     formerSpousesFetchStatus: DataFetchStatus.Fetched,
     siblings: SIBLINGS,
     siblingsFetchStatus: DataFetchStatus.Fetched,
@@ -101,8 +110,62 @@ describe('HouseholdRelationsView', () => {
     expect(household).toContain('Household');
     expect(household).toContain('Florencia');
     expect(household).toContain('Married to Paula Ibáñez of Córdoba');
-    expect(screen.queryByText('No relation or household information avaialble.')).toBeNull();
+    expect(screen.queryByText('No relation or household information available.')).toBeNull();
     expect(skeletons()).toHaveLength(0);
+  });
+
+  it('takes the relation text of a parent from its Description', () => {
+    renderView({ father: { ...FATHER, Description: 'Stepfather' } });
+    expect(sectionText('b3-Relations')).toContain('Rubén AcostaStepfather');
+  });
+
+  it('shows one away-parents row in place of the father and the mother; its name opens the away household', () => {
+    const { handlers } = renderView({
+      awayParents: {
+        Title: 'Rubén & Silvia Acosta',
+        HouseholdId: '7310',
+        LocalityName: 'Mendoza',
+        CountryName: 'Argentina',
+      },
+    });
+    const relations = sectionText('b3-Relations') ?? '';
+    expect(relations).toContain('Rubén & Silvia Acosta');
+    expect(relations).not.toContain('Silvia Medina');
+    expect(relations).not.toContain('Father');
+    // the chevron of the row is the one of the father (live TST)
+    expect(document.querySelectorAll('#b3-Relations .connect-icon-chevron_right')).toHaveLength(1);
+    fireEvent.click(screen.getByText('Rubén & Silvia Acosta'));
+    expect(handlers.onClickMember).toHaveBeenLastCalledWith(
+      expect.objectContaining({ HouseholdId: '7310', LocalityName: 'Mendoza', CountryName: 'Argentina' }),
+    );
+    const chevron = document.querySelector('#b3-Relations .connect-icon-chevron_right');
+    if (chevron) fireEvent.click(chevron);
+    expect(handlers.onClickMember).toHaveBeenLastCalledWith(FATHER);
+  });
+
+  it('shows the NoDisplaySiblings in a second list; its chevron is the one of the current sibling row', () => {
+    const extra = relative({ Id: '7307', Title: 'Lucía Acosta' });
+    const { handlers } = renderView({ noDisplaySiblings: [extra] });
+    expect(document.querySelectorAll('#b3-Household [data-list]')).toHaveLength(2);
+    expect(sectionText('b3-Household')).toContain('Lucía Acosta');
+    fireEvent.click(screen.getByText('Lucía Acosta'));
+    expect(handlers.onClickMember).toHaveBeenLastCalledWith(extra);
+    const chevrons = document.querySelectorAll('#b3-Household .connect-icon-chevron_right');
+    const last = chevrons[chevrons.length - 1];
+    if (last) fireEvent.click(last);
+    expect(handlers.onClickMember).toHaveBeenLastCalledWith(SIBLINGS[0]);
+  });
+
+  it('shows the household section with only NoDisplaySiblings', () => {
+    renderView({ siblings: [], noDisplaySiblings: [relative({ Id: '7307', Title: 'Lucía Acosta' })] });
+    expect(document.querySelectorAll('#b3-Household [data-list]')).toHaveLength(1);
+    expect(sectionText('b3-Household')).toContain('Lucía Acosta');
+  });
+
+  it('hides the relations section when ParentHouseholdId is "" (live TST); the household section stays', () => {
+    renderView({ parentHouseholdId: '' });
+    expect(document.getElementById('b3-Relations')).toBeNull();
+    expect(sectionText('b3-Household')).toContain('Florencia');
   });
 
   it('shows a chevron for each relative with navigation', () => {
@@ -123,7 +186,7 @@ describe('HouseholdRelationsView', () => {
       mother: MEMBER_DEFAULTS,
       siblings: [],
     });
-    expect(screen.getByText('No relation or household information avaialble.')).toBeTruthy();
+    expect(screen.getByText('No relation or household information available.')).toBeTruthy();
     expect(document.getElementById('b3-Relations')).toBeNull();
     expect(document.getElementById('b3-Household')).toBeNull();
   });
@@ -201,6 +264,9 @@ describe('HouseholdRelationsView', () => {
           father={FATHER}
           mother={MOTHER}
           formerSpouses={[]}
+          parentHouseholdId="7300"
+          awayParents={NO_AWAY_PARENTS}
+          noDisplaySiblings={[]}
           formerSpousesFetchStatus={DataFetchStatus.Fetched}
           siblings={SIBLINGS}
           siblingsFetchStatus={DataFetchStatus.Fetched}

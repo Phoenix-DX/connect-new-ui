@@ -6,19 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "OrbitAdminLanding": {
+  "Household_Relations": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:34:01",
-   "shared": [
-    "app/src/api/event/**"
-   ],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
-  "Household_Relations": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T07:40:31",
+   "since": "2026-11-07T16:34:17",
    "shared": [
     "app/src/api/household/**"
    ],
@@ -236,16 +227,20 @@
    "finished": "2026-11-07T16:33:45"
   },
   "OrbitAdminLanding": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 240744,
     "test": 39511,
     "docs": 42217
-   }
+   },
+   "commit": "f892a0a6",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:01"
   },
   "Household_Relations": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 222739,
@@ -597,6 +592,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:33:45"
+  },
+  "Household_Relations": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:01"
   }
  }
 }

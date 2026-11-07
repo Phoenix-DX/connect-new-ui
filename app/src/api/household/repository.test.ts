@@ -177,13 +177,13 @@ describe('household repository of the relations', () => {
     expect(relations.Father.HouseholdId).toBe(relations.ParentHouseholdId);
   });
 
-  it('fetchSiblingRelations calls DataActionGet_ParentHouseholdDetails with the same inputs', async () => {
+  it('fetchSiblingRelations calls DataActionGet_SibllingsRelations with the same inputs', async () => {
     const siblings = await fetchSiblingRelations(relationsInputs);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'UBTConnect',
         owner: 'HouseholdRelations_Block',
-        action: 'DataActionGet_ParentHouseholdDetails',
+        action: 'DataActionGet_SibllingsRelations',
         inputNames: Object.keys(relationsInputs).sort(),
       }),
     ]);

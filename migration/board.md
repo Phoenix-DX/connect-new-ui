@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2438
+Complexity left on build rows not yet built: 2337
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -28,7 +28,7 @@ Complexity left on build rows not yet built: 2438
 | CountryList | `/UBTConnect/CountryList` | 4 | 89 | lite | build | V3b · Directory tab on TST (C2EnableC1DirectoryView=true) (user, 2026-10-14) | built | route-countrylist |
 | HouseholdCarousel | `/UBTConnect/HouseholdCarousel` | 4 | 167 | full | build | V3b · C2EnableCarousel=true on TST; opened from 15 screens (user, 2026-10-14) | review | route-householdcarousel |
 | HouseholdDetails | `/UBTConnect/HouseholdDetails` | 4 | 144 | full | build | V3b · 28 nav sites, 16 not behind the carousel flag (user, 2026-10-14) | built | route-householddetails |
-| Household_Relations | `/UBTConnect/Household_Relations` | 4 | 101 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | review | route-household-relations |
+| Household_Relations | `/UBTConnect/Household_Relations` | 4 | 101 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-household-relations |
 | Locality_Details | `/UBTConnect/Locality_Details` | 4 | 185 | full | build | V3b · opened from 13 screens; Directory tab when C1DirectoryView=false (user, 2026-10-14) | review | route-locality-details |
 | OneSchoolGlobalDetails | `/UBTConnect/OneSchoolGlobalDetails` | 4 | 127 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | review | route-oneschoolglobaldetails |
 | Photobook | `/UBTConnect/Photobook` | 4 | 74 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-photobook |

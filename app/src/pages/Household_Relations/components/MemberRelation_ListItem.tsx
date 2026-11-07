@@ -35,7 +35,8 @@ export interface MemberRelation_ListItemProps {
 /** Relation row (MemberRelation_ListItem.mvc.js view :150-490, controller :495-586): Columns_Three (expand middle, base
     gutter, centered). Left: the avatar placeholder in a container whose OnClick raises OnClickPerson when isEnabled.
     Middle: a container that raises OnClickPerson directly (no isEnabled check) with the title (neutral-9, base,
-    semi-bold), the relation (neutral-7, xs), the deceased caption (italic) when In_IsDeceased, else the formatted
+    semi-bold), the relation (neutral-7, xs) only when In_Relation is not "" (live TST MemberRelation_ListItem.mvc.js:341-350; a hidden
+    OSWidgets.Container renders nothing, OutSystemsReactWidgets.js Container.render), the deceased caption (italic) when In_IsDeceased, else the formatted
     locality with the home-pin icon when not empty. Right: the Actions placeholder. */
 export function MemberRelation_ListItem({
   id,
@@ -78,12 +79,14 @@ export function MemberRelation_ListItem({
                 inText={inTitle}
               />
             </div>
-            <div data-container="">
-              <CustomText
-                inText={inRelation}
-                inTextOptions={{ Color: UBT_Color.Neutral7, FontSize: UBT_FontSize.ExtraSmall }}
-              />
-            </div>
+            {inRelation !== '' && (
+              <div data-container="">
+                <CustomText
+                  inText={inRelation}
+                  inTextOptions={{ Color: UBT_Color.Neutral7, FontSize: UBT_FontSize.ExtraSmall }}
+                />
+              </div>
+            )}
             {inIsDeceased && (
               <div data-container="">
                 <CustomText

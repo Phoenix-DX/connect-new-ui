@@ -264,3 +264,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:33:45 OrbitAdminLanding confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:33:45 OrbitAdminLanding stage restamp
 - 2026-11-07T16:34:01 OrbitAdminLanding stage commit
+- 2026-11-07T16:34:01 OrbitAdminLanding done f892a0a6: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:34:01 Household_Relations confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:34:01 Household_Relations stage restamp
+- 2026-11-07T16:34:17 Household_Relations stage commit

@@ -296,19 +296,26 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
     Email: 'owen@example.org',
   });
 
-  it('toMemberRelations keeps the fields that the relations UI reads and unwraps the previous spouses', () => {
+  it('toMemberRelations keeps the fields that the relations UI reads and unwraps the lists', () => {
     const relations = toMemberRelations({
       MemberName: 'Ada Harlow',
       IsMemberDeceased: false,
       FamilyName: 'The Harlows',
-      Father: father,
+      Father: { ...father, Description: 'Father' },
       Mother: memberWire({ Id: '32', HouseholdId: '7010', Title: 'Ruth Lane', IsDeceased: true }),
       FormerSpouses: { List: [memberWire({ Id: '33', Title: 'Tom Reed', MarriageText: 'Divorced' })] },
       ParentHouseholdId: '7010',
-      // live TST of 2026-11-05: two more outputs (AwayParents, a structure never captured; NoDisplaySiblings)
-      AwayParents: { CountryName: '', HouseholdId: '0', LocalityName: '', Title: '' },
-      NoDisplaySiblings: { List: [] },
+      // live TST of 2026-11-07: AwayParents (UI_HouseholdRelations_AwayParents) and NoDisplaySiblings
+      AwayParents: { CountryName: 'New Zealand', HouseholdId: '7011', LocalityName: 'Napier', Title: 'Owen & Ruth' },
+      NoDisplaySiblings: { List: [memberWire({ Id: '34', Title: 'Iris Harlow' })] },
     });
+    expect(relations.AwayParents).toEqual({
+      Title: 'Owen & Ruth',
+      HouseholdId: '7011',
+      LocalityName: 'Napier',
+      CountryName: 'New Zealand',
+    });
+    expect(relations.NoDisplaySiblings).toEqual([expect.objectContaining({ Id: '34', Title: 'Iris Harlow' })]);
     expect(relations.MemberName).toBe('Ada Harlow');
     expect(relations.FamilyName).toBe('The Harlows');
     expect(relations.ParentHouseholdId).toBe('7010');
@@ -323,6 +330,7 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
       LocalityName: 'Napier',
       CountryName: 'New Zealand',
       FormattedLocality: 'Napier, New Zealand',
+      Description: 'Father',
       MarriageText: '',
       MarriageHighlightText: '',
       MarriagePartnerTakenText: '',
