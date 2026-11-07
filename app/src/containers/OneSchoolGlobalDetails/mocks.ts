@@ -35,6 +35,46 @@ const PLACEHOLDER_LANDSCAPE = `${import.meta.env.BASE_URL}mock-images/placeholde
 
 const schoolName = (id: string): string => CAROUSEL_SCHOOLS.find((s) => s.id === id)?.name ?? DEFAULT_NAME;
 
+/** School 132: the route id of the capture of OneSchoolGlobalDetails since 2026-11-07 (school 1430 answers empty data
+    on TST; route_discovery from Locality_Details 252 gives 132). Fictional values of the captured lengths
+    (migration/screens/OneSchoolGlobalDetails/analysis/dom/default.html): name 9 5 6, areas served 5 7 10, address
+    7 9 3 6, one business link with the captured text "OneSchool Argentina" (calls.md: Phone and Email empty, a photo
+    URL). The link URL stays the recorded one. School 1430 keeps its data for the other routes. */
+const CAPTURED_SCHOOL_132 = {
+  id: '132',
+  name: 'OneSchool Monte Grande',
+  areasServed: 'Monte Hermoso Villalonga',
+  address: 'Avenida Sarmiento 412 Centro',
+  linkText: 'OneSchool Argentina',
+} as const;
+
+/** The answer of school 132 (CAPTURED_SCHOOL_132) built on the recording. */
+function school132Answer(data: GetDetailsOutput): GetDetailsOutput {
+  const school = data.Out_OneSchoolGlobal;
+  const card = school.OneSchoolGlobal_DetailCard;
+  const content = card.OneSchoolGlobal__DetailCard_Content;
+  return {
+    ...data,
+    Out_OneSchoolGlobal: {
+      ...school,
+      OneSchoolGlobal_DetailCard: {
+        ...card,
+        SignedURL: PLACEHOLDER_LANDSCAPE,
+        UI_OneSchool_Card_Content: { ...card.UI_OneSchool_Card_Content, Name: CAPTURED_SCHOOL_132.name },
+        OneSchoolGlobal__DetailCard_Content: {
+          ...content,
+          Address: CAPTURED_SCHOOL_132.address,
+          AreasServed: CAPTURED_SCHOOL_132.areasServed,
+          BusinesLinks: {
+            ...content.BusinesLinks,
+            List: content.BusinesLinks.List.map((link) => ({ ...link, Text: CAPTURED_SCHOOL_132.linkText })),
+          },
+        },
+      },
+    },
+  };
+}
+
 /** The `captured` scenario (OneSchoolGlobalCarousel Q3, user 2026-10-29): the answer of the block's data action in
     the carousel capture of 2026-10-29 (migration/screens/OneSchoolGlobalCarousel/analysis/calls.md,
     DataActionGetOneSchoolGlobalDetails): every text empty (no name, areas served, address, photo URL, phone or
@@ -81,6 +121,7 @@ export const handlers: RequestHandler[] = [
     const card = data.Out_OneSchoolGlobal.OneSchoolGlobal_DetailCard;
     const asked = (inputs as Record<string, unknown>).In_OneSchoolGlobalId;
     const id = typeof asked === 'string' || typeof asked === 'number' ? String(asked) : '';
+    if (id === CAPTURED_SCHOOL_132.id) return school132Answer(data);
     return {
       ...data,
       Out_OneSchoolGlobal: {

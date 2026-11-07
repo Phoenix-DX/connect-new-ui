@@ -24,10 +24,6 @@ Layouts.Layout_DetailPage
                   ConnectPatterns.LazyImage
                     ConnectPatterns.SkeletonSection
                       BasePatterns.CustomContainer
-                      BasePatterns.CustomContainer
-                        ConnectPatterns.Icon
-                        BasePatterns.CustomText
-                          ConnectPatterns.IconInline_Internal
             BasePatterns.CustomContainer
               ConnectPatterns.ImageCard__Content
                 BasePatterns.CustomText
@@ -38,13 +34,37 @@ Layouts.Layout_DetailPage
                   CW_CTA_PopUps.AddressPopup_Wrapper
                     BasePatterns.CustomText
                       ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.Icon
                     CW_CTA_PopUps.AddressPopup
                       CW_CTA_PopUps.ContactPopup
+                  App_Common_Blocks.External_Link
+                    ConnectPatterns.IconText
+                      BasePatterns.Columns_Two
+                        Adaptive.Columns2
+                          ConnectPatterns.Icon
+                          BasePatterns.CustomText
+                            ConnectPatterns.IconInline_Internal
       BasePatterns.CustomContainer
         Directory_CommonBlocks.Directory_EntityDetailsActions
           ConnectPatterns.SkeletonSection
             ConnectCorePatterns.ActionsMenu
               BasePatterns.CustomContainer
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                ConnectPatterns.CircleButton_IconPrimary
+                  ConnectPatterns.CircleButton_WithLabel
+                    ConnectPatterns.CircleButton
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.Icon
+                    BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
                 ConnectPatterns.CircleButton_IconPrimary
                   ConnectPatterns.CircleButton_WithLabel
                     ConnectPatterns.CircleButton
@@ -384,6 +404,48 @@ CW_Share.ShareSheet
 - Client actions / event handlers: `action_UpdateTargetTimeLabel`, `screenEvent_OnParametersChanged`, `screenEvent_OnInitialize`, `event_Clicked`, `event_Cancel`
 - Static entities / flags: `uBT_ImageSize.extraLarge_100`, `uBT_Size.small`, `uBT_Size.base`, `uBT_Color.neutral10`, `uBT_FontSize.heading6`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_ImageSize.square`, `uBT_Shape.circle`, `uBT_Icons.imageGallery`, `uBT_Shape.none`, `uBT_Size.medium`, `uBT_ButtonSize.medium`, `uBT_ButtonType.primary`, `uBT_ButtonType.scondary`, `uBT_FlexBehavior.grow`, `uBT_IconSize.medium_20`, `uBT_ButtonType.tertiary`, `uBT_Icons.callFill`
 
+## `UBTConnect.App_Common_Blocks.External_Link.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| FontSize | local | Text | `UBTConnectModel.staticEntities.uBT_FontSize.small` |
+| In_Link | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.BusinessLinkItemRec())` |
+| IsEnabled | input | Boolean | `true` |
+| IconVisible | input | Boolean | `true` |
+- Client actions / event handlers: `linkClicked`
+- Static entities / flags: `uBT_FontSize.small`, `uBT_Size.extraSmall`, `uBT_Color.primary`, `uBT_Color.neutral7`, `uBT_FontWeight.regular`, `uBT_IconsSize.nonStandard_16`, `uBT_Icons2.openNew`
+
+## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsIconOnRight | input | Boolean | `false` |
+| Text | input | Text | `""` |
+| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
+| ExtendedClasses | input | Text | `""` |
+| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_Subtext | input | Text | `""` |
+| In_JustifyText | input | Boolean | `false` |
+- Client actions / event handlers: `clicked`
+- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
+
+## `UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-columns"` |
+| ColumnOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())` |
+| ExtendedClasses | input | Text | `""` |
+- Lifecycle handlers: Ready
+- Client actions / event handlers: `onReady`
+
+## `OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| GutterSize | input | Text | `OutSystemsUI_2_23Model.staticEntities.gutterSize.base` |
+| TabletBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| PhoneBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
+| ExtendedClass | input | Text | `""` |
+- Static entities / flags: `gutterSize.base`, `breakColumns.none`
+
 ## `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
@@ -540,38 +602,6 @@ CW_Share.ShareSheet
 - Lifecycle handlers: Ready
 - Client actions / event handlers: `action_IconOnClick`, `event_OnReady`
 - Static entities / flags: `uBT_Size.medium`, `uBT_Size.base`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Size.extraSmall`, `uBT_VerticalAlign.center`, `uBT_Icons.expandMore`, `uBT_Size.small`
-
-## `UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-columns"` |
-| ColumnOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())` |
-| ExtendedClasses | input | Text | `""` |
-- Lifecycle handlers: Ready
-- Client actions / event handlers: `onReady`
-
-## `OutSystemsUI_2_23.Adaptive.Columns2.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| GutterSize | input | Text | `OutSystemsUI_2_23Model.staticEntities.gutterSize.base` |
-| TabletBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
-| PhoneBehavior | input | Text | `OutSystemsUI_2_23Model.staticEntities.breakColumns.none` |
-| ExtendedClass | input | Text | `""` |
-- Static entities / flags: `gutterSize.base`, `breakColumns.none`
-
-## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
-| variable | kind | type | default |
-|---|---|---|---|
-| IsIconOnRight | input | Boolean | `false` |
-| Text | input | Text | `""` |
-| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
-| ExtendedClasses | input | Text | `""` |
-| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
-| In_Subtext | input | Text | `""` |
-| In_JustifyText | input | Boolean | `false` |
-- Client actions / event handlers: `clicked`
-- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
 
 ## `UBTConnectLibrary.ConnectPatterns.ComingSoon.mvc.js`
 | variable | kind | type | default |
@@ -904,22 +934,21 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2368 ms
-- 2. `ActionAppManager_AfterInitialize` (200) at 4753 ms
-- 3. `DataActionFetchContactDetails` (200) at 4789 ms
-- 4. `DataActionFetchContactDetails` (200) at 4794 ms
-- 5. `DataActionGetOneSchoolGlobalDetails` (200) at 4804 ms
-- 6. `DataActionFetchNotes` (200) at 4982 ms
-- 7. `DataActionFetchContactDetails` (200) at 5071 ms
-- 8. `ActionSync_Info_GetMain` (200) at 5202 ms
-- 9. `ActionGetUserInformation` (200) at 5488 ms
-- 10. `ActionGetNumberUnreadMessages` (200) at 5714 ms
-- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 7924 ms
-- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 9707 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2816 ms
+- 2. `ActionAppManager_AfterInitialize` (200) at 5410 ms
+- 3. `DataActionGetOneSchoolGlobalDetails` (200) at 5451 ms
+- 4. `DataActionFetchContactDetails` (200) at 5452 ms
+- 5. `DataActionFetchContactDetails` (200) at 5455 ms
+- 6. `DataActionFetchNotes` (200) at 5669 ms
+- 7. `DataActionFetchContactDetails` (200) at 5773 ms
+- 8. `ActionSync_Info_GetMain` (200) at 5851 ms
+- 9. `ActionGetUserInformation` (200) at 6217 ms
+- 10. `ActionGetNumberUnreadMessages` (200) at 6481 ms
+- 11. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8693 ms
+- 12. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11332 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
-- `App_Common_Blocks.External_Link`
 - `App_Policies.Policy_Checker`
 - `CW_Common.Button`
 - `CW_Notes.NoteListActions`

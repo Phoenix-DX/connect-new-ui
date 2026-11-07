@@ -165,5 +165,65 @@
   "answer": "Deferred (user scope decision, 2026-10-29, option (a)): this wave closes items 9 and 10; this TST drift of a shared block goes to the separate drift wave (re-capture of all routes, triage per shared block).",
   "answeredBy": "user",
   "answeredAt": "2026-10-29T12:13:33"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → App_Common flow handler (fact, answered by code [questions.md Q1]).; Q2 → A: serve the one recording for every In_OneSchoolGlobalId (answered [questions.md Q2]).; Q3 → A: ButtonGroup ported in the route's components (answered [questions.md Q3]).; Q4 → A (answered [questions.md Q4]): add the two exemptions of `proposed-exemptions.json` (the permission system refused the write of the route agent). Both are in migration/parity-exemptions.json (CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS, CAPTURE-LOADING-FETCH-TIMEOUT-ONESCHOOLGLOBALDETAILS-ACTIONS).; CR-OneSchoolGlobalDetails-1 (= CR-HouseholdDetails-1 #1 and #4): actions menu skeleton in default; aria-hidden /; Mock photo: neutral landscape placeholder for SignedURL (rule Q-W2C-1, user 2026-10-14).; TST sync 2026-11-07: the EntityDetailsActions logic changes (reopen of the notes sheet, Action_UpdateBookmarksAndNotes, bookmark toggle in UBTConnect_Utils) stay with the owner of that container (follow-up). This route does not port them [dev.md \"Deviations\", Q-OSGD-3].; TST sync 2026-11-07: OneSchoolGlobalCarousel needs a re-capture. The shared container now renders the empty Placeholder_CarouselTag on every slide. The kept capture of the carousel has no such div. Its sweep shows structure 1 in default and offline [test.md]. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileStudentInformation → default-only: TST value on (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T08:18:23",
+  "items": [
+   "Q1 → App_Common flow handler (fact, answered by code [questions.md Q1]).",
+   "Q2 → A: serve the one recording for every In_OneSchoolGlobalId (answered [questions.md Q2]).",
+   "Q3 → A: ButtonGroup ported in the route's components (answered [questions.md Q3]).",
+   "Q4 → A (answered [questions.md Q4]): add the two exemptions of `proposed-exemptions.json` (the permission system refused the write of the route agent). Both are in migration/parity-exemptions.json (CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS, CAPTURE-LOADING-FETCH-TIMEOUT-ONESCHOOLGLOBALDETAILS-ACTIONS).",
+   "CR-OneSchoolGlobalDetails-1 (= CR-HouseholdDetails-1 #1 and #4): actions menu skeleton in default; aria-hidden /",
+   "Mock photo: neutral landscape placeholder for SignedURL (rule Q-W2C-1, user 2026-10-14).",
+   "TST sync 2026-11-07: the EntityDetailsActions logic changes (reopen of the notes sheet, Action_UpdateBookmarksAndNotes, bookmark toggle in UBTConnect_Utils) stay with the owner of that container (follow-up). This route does not port them [dev.md \"Deviations\", Q-OSGD-3].",
+   "TST sync 2026-11-07: OneSchoolGlobalCarousel needs a re-capture. The shared container now renders the empty Placeholder_CarouselTag on every slide. The kept capture of the carousel has no such div. Its sweep shows structure 1 in default and offline [test.md]."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:38:14"
+ },
+ {
+  "id": "Q10",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → App_Common flow handler (fact, answered by code [questions.md Q1]).; Q2 → A: serve the one recording for every In_OneSchoolGlobalId (answered [questions.md Q2]).; Q3 → A: ButtonGroup ported in the route's components (answered [questions.md Q3]).; Q4 → A (answered [questions.md Q4]): add the two exemptions of `proposed-exemptions.json` (the permission system refused the write of the route agent). Both are in migration/parity-exemptions.json (CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS, CAPTURE-LOADING-FETCH-TIMEOUT-ONESCHOOLGLOBALDETAILS-ACTIONS).; CR-OneSchoolGlobalDetails-1 (= CR-HouseholdDetails-1 #1 and #4): actions menu skeleton in default; aria-hidden /; Mock photo: neutral landscape placeholder for SignedURL (rule Q-W2C-1, user 2026-10-14).; TST sync 2026-11-07: the EntityDetailsActions logic changes (reopen of the notes sheet, Action_UpdateBookmarksAndNotes, bookmark toggle in UBTConnect_Utils) stay with the owner of that container (follow-up). This route does not port them [dev.md \"Deviations\", Q-OSGD-3].; TST sync 2026-11-07: OneSchoolGlobalCarousel needs a re-capture. The shared container now renders the empty Placeholder_CarouselTag on every slide. The kept capture of the carousel has no such div. Its sweep shows structure 1 in default and offline [test.md]. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileStudentInformation → default-only: TST value on (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:38:14",
+  "items": [
+   "Q1 → App_Common flow handler (fact, answered by code [questions.md Q1]).",
+   "Q2 → A: serve the one recording for every In_OneSchoolGlobalId (answered [questions.md Q2]).",
+   "Q3 → A: ButtonGroup ported in the route's components (answered [questions.md Q3]).",
+   "Q4 → A (answered [questions.md Q4]): add the two exemptions of `proposed-exemptions.json` (the permission system refused the write of the route agent). Both are in migration/parity-exemptions.json (CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS, CAPTURE-LOADING-FETCH-TIMEOUT-ONESCHOOLGLOBALDETAILS-ACTIONS).",
+   "CR-OneSchoolGlobalDetails-1 (= CR-HouseholdDetails-1 #1 and #4): actions menu skeleton in default; aria-hidden /",
+   "Mock photo: neutral landscape placeholder for SignedURL (rule Q-W2C-1, user 2026-10-14).",
+   "TST sync 2026-11-07: the EntityDetailsActions logic changes (reopen of the notes sheet, Action_UpdateBookmarksAndNotes, bookmark toggle in UBTConnect_Utils) stay with the owner of that container (follow-up). This route does not port them [dev.md \"Deviations\", Q-OSGD-3].",
+   "TST sync 2026-11-07: OneSchoolGlobalCarousel needs a re-capture. The shared container now renders the empty Placeholder_CarouselTag on every slide. The kept capture of the carousel has no such div. Its sweep shows structure 1 in default and offline [test.md]."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:38:14"
  }
 ]

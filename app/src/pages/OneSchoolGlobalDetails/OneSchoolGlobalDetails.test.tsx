@@ -79,6 +79,20 @@ describe('OneSchoolGlobalDetails page', () => {
     expect(detailsCalls()).toHaveLength(1);
   });
 
+  it('shows school 132 of the capture of 2026-11-07 and the empty Placeholder_CarouselTag in the image tag', async () => {
+    const { container } = await open('?In_OneSchoolGlobalId=132');
+    expect(cardTitle()).toBe('OneSchool Monte Grande');
+    expect(container.textContent).toContain('Monte Hermoso Villalonga');
+    expect(container.querySelector('.school-address')?.textContent).toContain('Avenida Sarmiento 412 Centro');
+    expect([...container.querySelectorAll('.school-link-item')].map((item) => item.textContent)).toEqual([
+      'OneSchool Argentina',
+    ]);
+    const tag = document.getElementById('b3-Placeholder_CarouselTag');
+    // Placeholder_ImageTag of the ImageCard (its id is b3-b3-Placeholder_ImageTag in the browser).
+    expect(tag?.parentElement?.className).toBe('position-absolute absolute-bottom-right padding-s');
+    expect(tag?.childElementCount).toBe(0);
+  });
+
   it('sends the screen variables in the recorded order', async () => {
     const bodies = recordBodies(`UBTConnect/${GET_DETAILS}`);
     await open();

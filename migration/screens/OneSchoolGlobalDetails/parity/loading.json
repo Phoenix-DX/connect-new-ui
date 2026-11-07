@@ -1,11 +1,11 @@
 {
  "state": "loading",
- "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430&mocksession=unlocked",
+ "route": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=132&mocksession=unlocked",
  "mock": "loading",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "9674cac987929675f10f",
+ "fingerprint": "0cb99f256fe184d685eb",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:06:48.852Z",
+ "at": "2026-11-07T09:38:05.930Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 1

@@ -54,40 +54,6 @@ export interface AppManager_AfterInitializeResponse {
   isNotRegistered: boolean;
 }
 
-export interface ContactPopupData {
-  ImageURL: string /* "" in capture */;
-  EntityTypeId: string;
-  EntityId: string /* Long Integer as string */;
-  IsAvatarImage: boolean;
-  ActionName: string /* "" in capture */;
-  Name: string /* "" in capture */;
-  Locality: string /* "" in capture */;
-  TimezoneName: string /* "" in capture */;
-  TimezoneOffset: number /* 0 in capture */;
-  ShowPopup: boolean;
-  DisplayContactNumber: string /* "" in capture */;
-  IsFetchingTimezone: boolean;
-  IsLoading: boolean;
-  ShowTimezone: boolean;
-  ShowImage: boolean;
-  CountryName: string /* "" in capture */;
-  TitleTerminator: string;
-}
-
-export interface FetchContactDetailsResponse {
-  ContactPopupData: ContactPopupData;
-  Phone: string /* "" in capture */;
-  MobilePhone: string /* "" in capture */;
-  HomePhone: string /* "" in capture */;
-  WorkPhone: string /* "" in capture */;
-  Email: string /* "" in capture */;
-  CountryName: string /* "" in capture */;
-  LocalityId: string /* Long Integer as string */;
-  LocalityName: string /* "" in capture */;
-  EntitySubtitle: string /* "" in capture */;
-  EntityName: string /* "" in capture */;
-}
-
 export interface EmptyListItem {
   LocalityName: string /* "" in capture */;
   LocalityId: string /* Long Integer as string */;
@@ -99,7 +65,7 @@ export interface OneSchoolGlobal_LocalitiesList {
 }
 
 export interface UI_OneSchool_Card_Content {
-  Name: string /* "" in capture */;
+  Name: string;
   LocalityName: string /* "" in capture */;
   LocalityId: string /* Long Integer as string */;
   CountryName: string /* "" in capture */;
@@ -108,20 +74,21 @@ export interface UI_OneSchool_Card_Content {
   Email: string /* "" in capture */;
 }
 
-export interface BusinesLinks {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface BusinesLinksItem {
+  Text: string;
+  Link: string;
+  ID: string /* Long Integer as string */;
 }
 
 export interface OneSchoolGlobal__DetailCard_Content {
-  Address: string /* "" in capture */;
-  AreasServed: string /* "" in capture */;
-  BusinesLinks: BusinesLinks;
+  Address: string;
+  AreasServed: string;
+  BusinesLinks: BusinesLinksItem[] /* wire: { List: [...] } */;
 }
 
 export interface OneSchoolGlobal_DetailCard {
   CommunityBusinessId: string /* Long Integer as string */;
-  SignedURL: string /* "" in capture */;
+  SignedURL: string;
   UI_OneSchool_Card_Content: UI_OneSchool_Card_Content;
   OneSchoolGlobal__DetailCard_Content: OneSchoolGlobal__DetailCard_Content;
 }
@@ -147,6 +114,40 @@ export interface GetOneSchoolGlobalDetailsResponse {
   Out_OneSchoolGlobal: Out_OneSchoolGlobal;
   HouseholdCoordinates: HouseholdCoordinates;
   UI_Timezone: UI_Timezone;
+}
+
+export interface ContactPopupData {
+  ImageURL: string /* "" in capture */;
+  EntityTypeId: string;
+  EntityId: string /* Long Integer as string */;
+  IsAvatarImage: boolean;
+  ActionName: string /* "" in capture */;
+  Name: string;
+  Locality: string;
+  TimezoneName: string;
+  TimezoneOffset: number;
+  ShowPopup: boolean;
+  DisplayContactNumber: string /* Long Integer as string */;
+  IsFetchingTimezone: boolean;
+  IsLoading: boolean;
+  ShowTimezone: boolean;
+  ShowImage: boolean;
+  CountryName: string;
+  TitleTerminator: string;
+}
+
+export interface FetchContactDetailsResponse {
+  ContactPopupData: ContactPopupData;
+  Phone: string /* Long Integer as string */;
+  MobilePhone: string /* "" in capture */;
+  HomePhone: string /* "" in capture */;
+  WorkPhone: string /* "" in capture */;
+  Email: string;
+  CountryName: string;
+  LocalityId: string /* Long Integer as string */;
+  LocalityName: string;
+  EntitySubtitle: string /* "" in capture */;
+  EntityName: string;
 }
 
 export interface Note_Item_List {

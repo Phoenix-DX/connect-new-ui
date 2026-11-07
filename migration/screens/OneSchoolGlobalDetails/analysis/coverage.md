@@ -2,14 +2,13 @@
 
 - UI states captured: default, loading, offline
 - Runtime captures: 1 file(s), 12 call(s)
-- Masked text nodes: 1, user images removed: 0
+- Masked text nodes: 4, user images removed: 1
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
 Each one is a UI state (loading, empty, error, popup...) that still needs a capture, or a branch that never runs for this user.
 
 - [ ] `App_Common.UnsupportedVersion_Wrapper`
-- [ ] `App_Common_Blocks.External_Link`
 - [ ] `App_Policies.Policy_Checker`
 - [ ] `CW_Common.Button`
 - [ ] `CW_Notes.NoteListActions`

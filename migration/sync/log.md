@@ -308,3 +308,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:37:04 Locality_Details confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:37:04 Locality_Details stage restamp
 - 2026-11-07T16:37:58 Locality_Details stage commit
+- 2026-11-07T16:37:58 Locality_Details done 5081c990: parity: default,loading,offline,tag-interchange,tag-oneschoolglobal,tag-suppermeetings/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:37:58 OneSchoolGlobalDetails confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:37:58 OneSchoolGlobalDetails stage restamp
+- 2026-11-07T16:38:18 OneSchoolGlobalDetails stage commit

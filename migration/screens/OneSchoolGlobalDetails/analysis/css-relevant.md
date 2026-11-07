@@ -306,6 +306,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-calendar:before { content: "\f08e"; }
 ```
+### .connect-icon-call  (1 rule)
+```css
+.connect-icon-call:before { content: "\f08b"; }
+```
 ### .connect-icon-contacts  (1 rule)
 ```css
 .connect-icon-contacts:before { content: "\f04c"; }
@@ -318,17 +322,25 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ```css
 .connect-icon-home:before { content: "\f052"; }
 ```
+### .connect-icon-letter  (1 rule)
+```css
+.connect-icon-letter:before { content: "\f071"; }
+```
 ### .connect-icon-list_alt  (1 rule)
 ```css
 .connect-icon-list_alt:before { content: "\f041"; }
 ```
+### .connect-icon-location_on_fill  (1 rule)
+```css
+.connect-icon-location_on_fill:before { content: "\f03f"; }
+```
+### .connect-icon-open_new  (1 rule)
+```css
+.connect-icon-open_new:before { content: "\f02d"; }
+```
 ### .connect-icon-school  (1 rule)
 ```css
 .connect-icon-school:before { content: "\f01c"; }
-```
-### .connect-icon-school_fill  (1 rule)
-```css
-.connect-icon-school_fill:before { content: "\f01d"; }
 ```
 ### .connect-icon-share  (1 rule)
 ```css
@@ -353,6 +365,10 @@ tive .header-right, .ubt-layout-main.layout-native .header-right, .phone .ubt-la
 ### .icon-medium  (1 rule)
 ```css
 .icon-medium { --ubt-icon-size: var(--ubt-icon-size-medium); }
+```
+### .icon-non-standard-16  (1 rule)
+```css
+.icon-non-standard-16 { --ubt-icon-size: var(--ubt-icon-size-non-standard-16); }
 ```
 ### .ignore-loading  (2 rules)
 ```css
@@ -390,6 +406,11 @@ an, .ubt-skeleton-section .ubt-skeleton-section__element, .ubt-skeleton-section 
 ### .text-neutral-9  (1 rule)
 ```css
 .text-neutral-9 { color:var(--text-color-neutral-9, var(--color-neutral-9)); }
+```
+### .text-primary  (2 rules)
+```css
+.text-primary, .text-primary-darker { color:var(--text-color-primary, var(--color-primary)); }
+.leaflet-bar a.text-primary { color: var(--color-primary); }
 ```
 ### .ubt-icon  (15 rules)
 ```css
@@ -435,10 +456,6 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .font-size-xxs { font-size: var(--font-size-xxs); }
 ```
-### .padding-top-base  (1 rule)
-```css
-.padding-top-base { padding-top:var(--space-base); }
-```
 ### .text-neutral-10  (1 rule)
 ```css
 .text-neutral-10 { color:var(--text-color-neutral-10, var(--color-neutral-10)); }
@@ -451,11 +468,6 @@ div:has(div > div.ubt-icon.header-filter-enabled) { position: relative; }
 ```css
 .text-neutral-8 { color:var(--text-color-neutral-8, var(--color-neutral-8)); }
 .leaflet-bar a.text-neutral-8 { color: var(--color-neutral-8); }
-```
-### .text-primary  (2 rules)
-```css
-.text-primary, .text-primary-darker { color:var(--text-color-primary, var(--color-primary)); }
-.leaflet-bar a.text-primary { color: var(--color-primary); }
 ```
 ### .text-underline  (1 rule)
 ```css
@@ -507,10 +519,6 @@ input.OSFillParent.calendar-input { display:none; }
 ### .border-color-neutral-3  (1 rule)
 ```css
 .border-color-neutral-3 { border-color: var(--color-neutral-3); --border-color: var(--color-neutral-3); }
-```
-### .border-none  (1 rule)
-```css
-.border-size-none, .border-none { border-width: var(--border-size-none); }
 ```
 ### .border-radius-circle  (1 rule)
 ```css
@@ -575,23 +583,6 @@ input.OSFillParent.calendar-input { display:none; }
 ### .display-flex  (1 rule)
 ```css
 .display-flex { display:-webkit-box; display:-ms-flexbox; display:flex; }
-```
-### .font-size-display  (5 rules)
-```css
-h1, .heading1, h2, .heading2, h3, .heading3, h4, .heading4, h5, .heading5, h6, .heading6, .font-size-display { font-weight:var(--font-semi-bold); line-height:1.25; margin:0; }
-.font-size-display { font-size:var(--font-size-display); }
-.tablet .font-size-display { font-size:calc(var(--font-size-display) - 2px); }
-.phone .font-size-display { font-size:calc(var(--font-size-display) - 4px); }
-h1, .heading1, h2, .heading2, h3, .heading3, h4, .heading4, h5, .heading5, h6, .heading6, .font-size-display { line-height: 1.5; }
-```
-### .hidden  (6 rules)
-```css
-.flatpickr-day.hidden { visibility:hidden; }
-.chat-message-status.hidden { display:none; }
-.carousel .carousel-navigation.hidden { display:none; }
-.hidden { display:none; }
-.ubt-avatar-image.hidden { display:none; }
-.ubt-lazy-image.hidden { --avatar-image-size: 0px; --lazy-image-width: 0px; }
 ```
 ### .justify-content-center  (1 rule)
 ```css
@@ -691,6 +682,10 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```css
 .school-address { background-color: #EDF6F8; padding: var(--space-s); border-radius: var(--space-xs); margin-top: var(--space-s); margin-bottom: var(--space-xs); }
 ```
+### .school-link-item  (1 rule)
+```css
+.school-link-item { background-color: #EDF6F8; padding: var(--space-s); border-radius: var(--space-xs); }
+```
 ### .ubt-actions-menu  (2 rules)
 ```css
 .ubt-actions-menu > div .ubt-icon-button { width: var(--ubt-actions-menu-width); }
@@ -757,14 +752,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 .photobook-carousel .photobook-gallery--item .ubt-lazy-image img { object-fit: cover; }
 .shareable-object-generic .ubt-lazy-image:not(.ubt-lazy-image--no-image) img { aspect-ratio: 100/58; object-fit: cover; }
 ```
-### .ubt-lazy-image--no-image  (5 rules)
-```css
-/* .ubt-lazy-image--no-image .ubt-icon { font-size: inherit; }
-.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-height { min-height: var(--_ubt-background-image-size); height: var(--_ubt-background-image-size); }
-.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-width { min-width: var(--_ubt-background-image-size); width: var(--_ubt-background-image-size); }
-.shareable-object-generic .ubt-lazy-image--no-image { aspect-ratio: 100/58; }
-.shareable-object-generic .ubt-lazy-image:not(.ubt-lazy-image--no-image) img { aspect-ratio: 100/58; object-fit: cover; }
-```
 ### .ubt-lazy-image--width-max-width  (2 rules)
 ```css
 .ubt-lazy-image--width-max-width { --lazy-image-width: 100vw; }
@@ -786,32 +773,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 ```css
 .image-card-content { display: flex; flex-direction: column; gap:var(--space-xs); }
 .image-card-content > div:empty { display: none; }
-```
-## ConnectPatterns.CircleButton_WithLabel
-
-### .ubt-avatar-image-s  (2 rules)
-```css
-.ubt-avatar-image-s, .ubt-lazy-image-s { --avatar-image-size: 40px; }
-.ubt-avatar-image-s, .ubt-lazy-image-s, .ubt-lazy-image--width-s { --avatar-initials-font-size: var(--font-size-s); }
-```
-### .ubt-icon-button  (4 rules)
-```css
-.ubt-icon-button { display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; width: fit-content; /* Ensures width only grows as needed by content */ }
-.ubt-icon-button > [data-block]:has(.ubt-icon-button__text-container:empty) { display: none; }
-.ubt-actions-menu > div .ubt-icon-button { width: var(--ubt-actions-menu-width); }
-.connect-share-sheet__content .connect-share-sheet__horizontal-list .ubt-icon-button { width: min-content; }
-```
-## ConnectPatterns.ExpandableSection
-
-### .closed  (1 rule)
-```css
-.vscomp-wrapper.closed .vscomp-dropbox-container, .vscomp-wrapper.closed.vscomp-dropbox-wrapper { display:none; }
-```
-### .ubt-expandable-section  (3 rules)
-```css
-.ubt-expandable-section { transition: all var(--animation-duration) var(--animation-easing); overflow: hidden; }
-.ubt-expandable-section.expanded .ubt-expandable-section--content { max-height: 100vh; /* We use a large max-height here instead of 'unset' or 'none' because CSS cannot animate transitions between numeric values and 'auto' or 'none'. This is a known workaround to enable smooth expansion with max-height animations. */ }
-.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
 ```
 ## Adaptive.Columns2
 
@@ -890,6 +851,32 @@ only-child > .columns-item:not(:last-child), .phone .columns.gutter-xs.phone-bre
 ### .ubt-expandable-section--title-text  (1 rule)
 ```css
 .ubt-expandable-section--title-text { font-weight: bold; }
+```
+## ConnectPatterns.CircleButton_WithLabel
+
+### .ubt-avatar-image-s  (2 rules)
+```css
+.ubt-avatar-image-s, .ubt-lazy-image-s { --avatar-image-size: 40px; }
+.ubt-avatar-image-s, .ubt-lazy-image-s, .ubt-lazy-image--width-s { --avatar-initials-font-size: var(--font-size-s); }
+```
+### .ubt-icon-button  (4 rules)
+```css
+.ubt-icon-button { display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; text-align: center; width: fit-content; /* Ensures width only grows as needed by content */ }
+.ubt-icon-button > [data-block]:has(.ubt-icon-button__text-container:empty) { display: none; }
+.ubt-actions-menu > div .ubt-icon-button { width: var(--ubt-actions-menu-width); }
+.connect-share-sheet__content .connect-share-sheet__horizontal-list .ubt-icon-button { width: min-content; }
+```
+## ConnectPatterns.ExpandableSection
+
+### .closed  (1 rule)
+```css
+.vscomp-wrapper.closed .vscomp-dropbox-container, .vscomp-wrapper.closed.vscomp-dropbox-wrapper { display:none; }
+```
+### .ubt-expandable-section  (3 rules)
+```css
+.ubt-expandable-section { transition: all var(--animation-duration) var(--animation-easing); overflow: hidden; }
+.ubt-expandable-section.expanded .ubt-expandable-section--content { max-height: 100vh; /* We use a large max-height here instead of 'unset' or 'none' because CSS cannot animate transitions between numeric values and 'auto' or 'none'. This is a known workaround to enable smooth expansion with max-height animations. */ }
+.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon, .ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon { transform: rotate(180deg); }
 ```
 ## App_Common.BottomBarContent
 
@@ -1236,7 +1223,6 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--font-regular`: `400` (in `@charset "UTF-8";    :root`)
 - `--font-semi-bold`: `600` (in `@charset "UTF-8";    :root`)
 - `--font-size-base`: `16px` (in `@charset "UTF-8";    :root`); `1rem` (in `:root, .connect-legacy-compatibily-containter`)
-- `--font-size-display`: `36px` (in `@charset "UTF-8";    :root`); `2.25rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h0`: `3.625rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h2`: `28px` (in `@charset "UTF-8";    :root`); `1.75rem` (in `:root, .connect-legacy-compatibily-containter`)
 - `--font-size-h4`: `22px` (in `@charset "UTF-8";    :root`); `1.375rem` (in `:root, .connect-legacy-compatibily-containter`)
@@ -1283,6 +1269,7 @@ keleton-section *::before, .active-screen.screen-container .ubt-skeleton-section
 - `--ubt-icon-size`: `var(--ubt-icon-size-base)` (in `:root`); `var(--ubt-icon-size-base)` (in `.ubt-avatar-image-base, .ubt-lazy-image-base, .ubt-lazy-image--width-base`); `var(--ubt-icon-size-non-standard-32)` (in `.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base`); `var(--ubt-icon-size-medium)` (in `.ubt-avatar-image-xxs, .ubt-lazy-image-xxs`)
 - `--ubt-icon-size-base`: `24px` (in `:root`)
 - `--ubt-icon-size-medium`: `20px` (in `:root`)
+- `--ubt-icon-size-non-standard-16`: `16px` (in `:root`)
 - `--ubt-icon-size-non-standard-32`: `32px` (in `:root`)
 - `--ubt-layout-login-padding`: `var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base))` (in `:root`)
 - `--ubt-login-screen-padding-top`: `calc(var(--ubt-layout-login-padding-top) + 80px)` (in `:root`)

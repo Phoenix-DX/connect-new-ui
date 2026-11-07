@@ -174,6 +174,8 @@ capture-artifact exemptions (Q4; in migration/parity-exemptions.json).
 - CR-OneSchoolGlobalDetails-1 (= CR-HouseholdDetails-1 #1 and #4): actions menu skeleton in default; aria-hidden /
   popup-disable-scroll of the ShareSheet popup (Status: applied).
 - Mock photo: neutral landscape placeholder for SignedURL (rule Q-W2C-1, user 2026-10-14).
+- TST sync 2026-11-07: the EntityDetailsActions logic changes (reopen of the notes sheet, Action_UpdateBookmarksAndNotes, bookmark toggle in UBTConnect_Utils) stay with the owner of that container (follow-up). This route does not port them [dev.md "Deviations", Q-OSGD-3].
+- TST sync 2026-11-07: OneSchoolGlobalCarousel needs a re-capture. The shared container now renders the empty Placeholder_CarouselTag on every slide. The kept capture of the carousel has no such div. Its sweep shows structure 1 in default and offline [test.md].
 
 ## 17. Patterns used
 - P-PARAMS (`readOneSchoolGlobalDetailsInputs`).
@@ -189,3 +191,11 @@ capture-artifact exemptions (Q4; in migration/parity-exemptions.json).
 - First frame: the model defaults (empty lookup and card) are not rendered; state starts from the OnReady values.
 - ButtonGroup: executeWithActiveClassOn (transient click class) not ported; aria-activedescendant left out when no
   item matches (runtime keeps the previous id).
+
+## Changes 2026-11-07 (TST sync)
+TST files that changed: `Directory_EntityDetailsActions`, `OneSchoolGlobalDetails`, `OneSchoolGlobalDetails_Block`, `ContactByMessage_Wrapper`, `ShareSheet` [brief.md].
+
+- Plan route: the fresh capture uses school 132. School 1430 answers empty data on TST and locality 252 no longer links to it. The mock answers school 132 with fictional values of the captured lengths; school 1430 keeps its data [dev.md; mocks.ts `school132Answer`].
+- New element: the live block has an empty `Placeholder_CarouselTag` inside `Placeholder_ImageTag` of the image card. React renders an empty `div` with that id in `placeholderImageTag` [OneSchoolGlobalDetails_Block.mvc@a2b7056a.js:290; OneSchoolGlobalDetailsContainer.tsx].
+- Result: parity of this route is 0 in default, loading and offline [test.md].
+- Not ported: EntityDetailsActions controller changes (see "Decisions to confirm"). `ContactByMessage_Wrapper` needs no change; the plugin checks are False in a browser. The capture has no share state.

@@ -1,15 +1,17 @@
 {
- "at": "2026-10-21T11:14:40",
- "spec": "4bb71fed2410964d",
+ "at": "2026-11-07T08:18:10",
+ "spec": "8cce5d4ed8b5cd9c",
  "inputs": {
-  "analysis": "7982b8149d6f0e15",
-  "flags": "6e923cecdfec89b7",
-  "pack": "b194eaf74940005f"
+  "analysis": "57483730667887a4",
+  "flags": "1a4304884388cc3e",
+  "pack": "e945b4049c0edda8"
  },
  "answered": [
   "Q1",
   "Q2",
   "Q3",
-  "Q4"
+  "Q4",
+  "Q7",
+  "Q8"
  ]
 }

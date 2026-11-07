@@ -23,14 +23,14 @@ flowchart TB
       B9["CW_CTA_PopUps.AddressPopup_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
       B10["CW_CTA_PopUps.AddressPopup<br/>UBTConnect_Utils<br/>lifecycle"]
       B11["CW_CTA_PopUps.ContactPopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B12["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
-      B13["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
-      B14["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
-      B15["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
-      B16["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
-      B17["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
-      B18["ConnectPatterns.ExpandableSection<br/>UBTConnectLibrary<br/>lifecycle"]
-      B19["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B12["BasePatterns.Columns_Two<br/>UBTConnectLibrary<br/>lifecycle"]
+      B13["Directory_CommonBlocks.Directory_EntityDetailsActions<br/>UBTConnect<br/>fetch, navigation, lifecycle"]
+      B14["ConnectCorePatterns.ActionsMenu<br/>UBTConnectLibrary<br/>lifecycle"]
+      B15["CW_CTA_PopUps.ContactByMessage_Wrapper<br/>UBTConnect_Utils<br/>lifecycle"]
+      B16["CW_CTA_PopUps.ContactPopup_ByMessage<br/>UBTConnect_Utils<br/>lifecycle"]
+      B17["CW_CTA_PopUps.ContactPopup_ByPhone<br/>UBTConnect_Utils<br/>lifecycle"]
+      B18["CW_CTA_PopUps.SharePopup<br/>UBTConnect_Utils<br/>lifecycle"]
+      B19["ConnectPatterns.ExpandableSection<br/>UBTConnectLibrary<br/>lifecycle"]
       B20["App_Common.BottomBarMenu<br/>UBTConnect<br/>navigation, lifecycle"]
       B21["App_Common.BottomBarContent<br/>UBTConnect<br/>markup"]
       B22["Navigation.BottomBarItem<br/>OutSystemsUI_2_23<br/>markup"]
@@ -74,8 +74,8 @@ flowchart TB
   end
   Backend["Backend<br/>not visible from the browser"]
   B2 --> S0
-  B12 --> S1
-  B12 --> S2
+  B13 --> S1
+  B13 --> S2
   Content -.-> S3
   Content -.-> S4
   Content -.-> S5
