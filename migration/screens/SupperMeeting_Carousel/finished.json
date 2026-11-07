@@ -1,10 +1,13 @@
 {
- "finishedAt": "2026-10-15T23:14:59",
+ "finishedAt": "2026-11-07T16:38:44",
  "files": {
-  "src/screens/SupperMeeting_Carousel/api.ts": "f365e38c3dbc13ca",
-  "src/screens/SupperMeeting_Carousel/components/logic.ts": "9a821964b7bfb50f",
-  "src/screens/SupperMeeting_Carousel/index.tsx": "5e5b68256123866d",
-  "src/screens/SupperMeeting_Carousel/mocks.ts": "41c09b757951b044",
-  "src/screens/SupperMeeting_Carousel/types.ts": "405eb0c02bc02511"
+  "src/pages/SupperMeeting_Carousel/SupperMeeting_Carousel.test.tsx": "fedbef1edf073542",
+  "src/pages/SupperMeeting_Carousel/SupperMeeting_CarouselPage.tsx": "dca5a02004b0d2e9",
+  "src/pages/SupperMeeting_Carousel/hooks/supperMeetingCarouselActions.test.ts": "c37b40a8293978bd",
+  "src/pages/SupperMeeting_Carousel/hooks/supperMeetingCarouselActions.ts": "c2b65dd2d04c4eca",
+  "src/pages/SupperMeeting_Carousel/hooks/useSupperMeetingCarousel.test.tsx": "36d9183770a2d092",
+  "src/pages/SupperMeeting_Carousel/hooks/useSupperMeetingCarousel.ts": "9c341b1a69f6c9cd",
+  "src/pages/SupperMeeting_Carousel/inputs.ts": "26b3a51ef27d63cd",
+  "src/pages/SupperMeeting_Carousel/mocks.ts": "35919ad0e33e6fd7"
  }
 }

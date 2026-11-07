@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 1215
+Complexity left on build rows not yet built: 1060
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -32,7 +32,7 @@ Complexity left on build rows not yet built: 1215
 | Locality_Details | `/UBTConnect/Locality_Details` | 4 | 185 | full | build | V3b · opened from 13 screens; Directory tab when C1DirectoryView=false (user, 2026-10-14) | built | route-locality-details |
 | OneSchoolGlobalDetails | `/UBTConnect/OneSchoolGlobalDetails` | 4 | 127 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-oneschoolglobaldetails |
 | Photobook | `/UBTConnect/Photobook` | 4 | 74 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-photobook |
-| SupperMeeting_Carousel | `/UBTConnect/SupperMeeting_Carousel` | 4 | 155 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | review | route-suppermeeting-carousel |
+| SupperMeeting_Carousel | `/UBTConnect/SupperMeeting_Carousel` | 4 | 155 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-suppermeeting-carousel |
 | SupperMeeting_Details | `/UBTConnect/SupperMeeting_Details` | 4 | 127 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-suppermeeting-details |
 | ContactByEmailMember | `/UBTConnect/ContactByEmailMember` | 5 | 31 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactbyemailmember |
 | ContactByEmailOneSchoolGlobal | `/UBTConnect/ContactByEmailOneSchoolGlobal` | 5 | 25 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactbyemailoneschoolglobal |

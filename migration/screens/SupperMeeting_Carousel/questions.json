@@ -61,5 +61,73 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-15T23:14:58"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A [questions.md Q1]: mock-phase fictional preload of 3 supper meetings (start id first, then fictional; Q2 (fact, answered: capture timing artifact [questions.md Q2]): off-screen slides 2-3 kept as loaded by the shared block; accepted exemption; CR-SupperMeeting_Carousel-1: household list mock by subdivision id (captured 11 / 7 / 5 households on the three slides).; Accepted exemptions (capture artifacts, [parity-exemptions.json]):; masked subdivision and household photos (layout/position);; gallery rows of slide 1 that those photos size;; masked CarouselTag text that shifts the tag by 0.34 px.; Event_SetHeader / Event_Moved of EntitiesCarousel are not handled, as in the original (header stays \"Supper Meeting\").; Foundation issues not worked around:; CR-HouseholdDetails-1: actions-menu skeleton, `aria-hidden` / `popup-disable-scroll` with dialogs, OSList `list-loading`.; CR-SupperMeeting_Details-1: UBT_LazyImage OnParametersChanged, contact-details mock per entity.; TST sync 2026-11-07: the user accepts the renumbered exemption rules CAPTURE-MASKED-IMAGE-SMCAROUSEL and Feature flags: action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T08:11:50",
+  "items": [
+   "Q1 → A [questions.md Q1]: mock-phase fictional preload of 3 supper meetings (start id first, then fictional",
+   "Q2 (fact, answered: capture timing artifact [questions.md Q2]): off-screen slides 2-3 kept as loaded by the shared block; accepted exemption",
+   "CR-SupperMeeting_Carousel-1: household list mock by subdivision id (captured 11 / 7 / 5 households on the three slides).",
+   "Accepted exemptions (capture artifacts, [parity-exemptions.json]):",
+   "masked subdivision and household photos (layout/position);",
+   "gallery rows of slide 1 that those photos size;",
+   "masked CarouselTag text that shifts the tag by 0.34 px.",
+   "Event_SetHeader / Event_Moved of EntitiesCarousel are not handled, as in the original (header stays \"Supper Meeting\").",
+   "Foundation issues not worked around:",
+   "CR-HouseholdDetails-1: actions-menu skeleton, `aria-hidden` / `popup-disable-scroll` with dialogs, OSList `list-loading`.",
+   "CR-SupperMeeting_Details-1: UBT_LazyImage OnParametersChanged, contact-details mock per entity.",
+   "TST sync 2026-11-07: the user accepts the renumbered exemption rules CAPTURE-MASKED-IMAGE-SMCAROUSEL and"
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:38:41"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A [questions.md Q1]: mock-phase fictional preload of 3 supper meetings (start id first, then fictional; Q2 (fact, answered: capture timing artifact [questions.md Q2]): off-screen slides 2-3 kept as loaded by the shared block; accepted exemption; CR-SupperMeeting_Carousel-1: household list mock by subdivision id (captured 11 / 7 / 5 households on the three slides).; Accepted exemptions (capture artifacts, [parity-exemptions.json]):; masked subdivision and household photos (layout/position);; gallery rows of slide 1 that those photos size;; masked CarouselTag text that shifts the tag by 0.34 px.; Event_SetHeader / Event_Moved of EntitiesCarousel are not handled, as in the original (header stays \"Supper Meeting\").; Foundation issues not worked around:; CR-HouseholdDetails-1: actions-menu skeleton, `aria-hidden` / `popup-disable-scroll` with dialogs, OSList `list-loading`.; CR-SupperMeeting_Details-1: UBT_LazyImage OnParametersChanged, contact-details mock per entity.; TST sync 2026-11-07: the user accepts the renumbered exemption rules CAPTURE-MASKED-IMAGE-SMCAROUSEL and Feature flags: action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:38:41",
+  "items": [
+   "Q1 → A [questions.md Q1]: mock-phase fictional preload of 3 supper meetings (start id first, then fictional",
+   "Q2 (fact, answered: capture timing artifact [questions.md Q2]): off-screen slides 2-3 kept as loaded by the shared block; accepted exemption",
+   "CR-SupperMeeting_Carousel-1: household list mock by subdivision id (captured 11 / 7 / 5 households on the three slides).",
+   "Accepted exemptions (capture artifacts, [parity-exemptions.json]):",
+   "masked subdivision and household photos (layout/position);",
+   "gallery rows of slide 1 that those photos size;",
+   "masked CarouselTag text that shifts the tag by 0.34 px.",
+   "Event_SetHeader / Event_Moved of EntitiesCarousel are not handled, as in the original (header stays \"Supper Meeting\").",
+   "Foundation issues not worked around:",
+   "CR-HouseholdDetails-1: actions-menu skeleton, `aria-hidden` / `popup-disable-scroll` with dialogs, OSList `list-loading`.",
+   "CR-SupperMeeting_Details-1: UBT_LazyImage OnParametersChanged, contact-details mock per entity.",
+   "TST sync 2026-11-07: the user accepts the renumbered exemption rules CAPTURE-MASKED-IMAGE-SMCAROUSEL and"
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:38:41"
  }
 ]

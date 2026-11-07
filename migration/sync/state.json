@@ -6,20 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "OneSchoolGlobalDetails": {
+  "SupperMeeting_Carousel": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:38:18",
-   "shared": [
-    "app/src/containers/EntityDetailsActions/mocks.ts",
-    "app/src/containers/OneSchoolGlobalDetails/**"
-   ],
-   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
-  },
-  "SupperMeeting_Carousel": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:11:35",
+   "since": "2026-11-07T16:38:44",
    "shared": [],
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
@@ -309,16 +299,20 @@
    "finished": "2026-11-07T16:37:58"
   },
   "OneSchoolGlobalDetails": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 145711,
     "test": 39614,
     "docs": 31608
-   }
+   },
+   "commit": "6200a677",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:38:18"
   },
   "SupperMeeting_Carousel": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 64062,
@@ -609,6 +603,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:37:58"
+  },
+  "SupperMeeting_Carousel": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:38:26"
   }
  }
 }
