@@ -149,6 +149,7 @@ handlers built. The other pack flags belong to BottomBarMenu / CommonUI (shared)
 - An event card opens `/UBTConnect/EventDetail?In_EventId=7301&In_MemberId=…&In_FromNotification=False&In_EventName=…`.
 
 ## 16. Decisions to confirm
+- Reference capture (2026-11-07): the capture of account global#2 is the reference of this route. Account global#1 has no event in the 8-day "Upcoming" window. The user accepts it.
 - Q1 → A, Q2 → A, Q3 → A (answered by the orchestrator); Q4 → A (answered) [questions.md Q4].
 - Popup widget port: the Popup's componentDidUpdate setState re-render is ported in `OrbitLandingPopup` (keeps
   `popup-disable-scroll` with the Filters popup open); a candidate for the shared `usePopupWidget`.
@@ -170,3 +171,11 @@ writes: statefulHandler only to answer per member).
 Files: `app/src/screens/OrbitLanding/{index.tsx,types.ts,api.ts,mocks.ts,components/{ScreenBlock_OrbitLanding,
 Household_Members_Selection,OrbitLandingPopup,Popup_OrbitLanding_Filters,Popup_OrbitLanding_Sort}.tsx,
 components/{actions,staticEntities}.ts}`, shared mock `app/src/mocks/fictional/orbit.ts`.
+
+## Changes 2026-11-07 (TST sync)
+
+- TST files that changed (brief): none. The route was re-captured only.
+- Fresh capture, account global#1: the screen showed `NoInformation_Orbit`. The event of that account is older than the "Upcoming" window of 8 days (`migration/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js:1798-1800`, `ListFilter_Last8DaysAndFuture`).
+- Fresh capture, account global#2: the screen shows one `Orbit_Blocks.Card_Event` (`analysis/facts.json:487`). Parity of the React route is clean in all 6 states (default, loading, offline, popup-filters, popup-filters-closed, popup-sort; `test.md`).
+- React code: no change. The route already matched the live screen (`dev.md`).
+- Capture base: `migration/screens/OrbitLanding/capture` and `analysis` are now from global#2, 2026-11-07.

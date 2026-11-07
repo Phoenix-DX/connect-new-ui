@@ -50,6 +50,21 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```
 ## Layout.BaseLayout_UpdatedOSUI
 
+### .OSFillParent  (12 rules)
+```css
+.OSFillParent { display: block; width: 100%; }
+table.OSFillParent { display: table; }
+input.OSFillParent, button.OSFillParent, select.OSFillParent, textarea.OSFillParent { display: inline-block; box-sizing: border-box; }
+.form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid ~ span.validation-message { left:22px; }
+.phone .layout-native .form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid + span.validation-message { left:6px; }
+ion-message, .phone .form span.input-text .form-control[class*=ThemeGrid_Width].not-valid.ThemeGrid_MarginGutter + span.validation-message, .phone .form-control[class*=ThemeGrid_Width].not-valid + span.validation-message { left:0; }
+.is-rtl form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid ~ span.validation-message { left:initial; right:22px; }
+[data-radio-button]:not(.OSFillParent):not([class*=ThemeGrid_Width]) {  }
+button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; }
+.carousel .carousel-container-content .OSFillParent { display:inline-block; }
+.carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
+input.OSFillParent.calendar-input { display:none; }
+```
 ### .OSInline  (4 rules)
 ```css
 .OSInline { display: inline-block; vertical-align: top; }
@@ -178,10 +193,6 @@ body.media-hub-theme , .media-hub-theme .content { background-color: var(--backg
 .fa.pull-right { margin-left:.3em }
 :where(.backwards-compatibility) .back-icon-cont .fa { position: relative; top: -0.8px; }
 ```
-### .fa-2x  (1 rule)
-```css
-.fa-2x { font-size:2em }
-```
 ### .fa-caret-down  (1 rule)
 ```css
 .fa-caret-down:before { content:"\f0d7" }
@@ -194,10 +205,6 @@ body.media-hub-theme , .media-hub-theme .content { background-color: var(--backg
 ### .fa-flag  (1 rule)
 ```css
 .fa-flag:before { content:"\f024" }
-```
-### .font-size-1-5em  (1 rule)
-```css
-:where(.backwards-compatibility) .font-size-1-5em { font-size: 1.5em; }
 ```
 ### .footer  (12 rules)
 ```css
@@ -473,9 +480,14 @@ e-from-left-leave-active .content.browse-country-screen > .main-content::after, 
 ```css
 .menu-icon-Orbit:before { content: "\e926"; }
 ```
-### .menu-icon-my-calendar  (1 rule)
+### .orbit-card-list  (1 rule)
 ```css
-.menu-icon-my-calendar:before { content: "\e927"; }
+.list.list-group.orbit-card-list { background-color: transparent; padding: var(--space-m); }
+```
+### .orbit-card-list-cont  (2 rules)
+```css
+.orbit-card-list-cont { margin-top: var(--space-m); }
+.orbit-card-list-cont:first-of-type { margin-top: 0px; }
 ```
 ### .orbit-icon-arrow  (1 rule)
 ```css
@@ -542,21 +554,6 @@ list-group, .osui-tabs__content > .ph > .OSBlockWidget, .osui-tabs__content > .p
 ```
 ## Orbit_Blocks.Household_Members_Selection
 
-### .OSFillParent  (12 rules)
-```css
-.OSFillParent { display: block; width: 100%; }
-table.OSFillParent { display: table; }
-input.OSFillParent, button.OSFillParent, select.OSFillParent, textarea.OSFillParent { display: inline-block; box-sizing: border-box; }
-.form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid ~ span.validation-message { left:22px; }
-.phone .layout-native .form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid + span.validation-message { left:6px; }
-ion-message, .phone .form span.input-text .form-control[class*=ThemeGrid_Width].not-valid.ThemeGrid_MarginGutter + span.validation-message, .phone .form-control[class*=ThemeGrid_Width].not-valid + span.validation-message { left:0; }
-.is-rtl form.OSFillParent .form-control[class*=ThemeGrid_Width].not-valid ~ span.validation-message { left:initial; right:22px; }
-[data-radio-button]:not(.OSFillParent):not([class*=ThemeGrid_Width]) {  }
-button.OSFillParent { display:-webkit-inline-box; display:-ms-inline-flexbox; display:inline-flex; }
-.carousel .carousel-container-content .OSFillParent { display:inline-block; }
-.carousel .carousel-container-content .grid-gallery .OSFillParent { display:inherit; }
-input.OSFillParent.calendar-input { display:none; }
-```
 ### .orbit-household-member-list  (1 rule)
 ```css
 .list.list-group.orbit-household-member-list { background-color: transparent; display: flex; overflow-x: auto; overflow-y: hidden; /*scroll-snap-type: x mandatory;*/ }
@@ -575,15 +572,59 @@ input.OSFillParent.calendar-input { display:none; }
 ```css
 .orbit-household-member-list-item-text { opacity: 0.5; padding: var(--space-xs) var(--space-s); }
 ```
-## Orbit_Generic_Blocks.NoInformation_Orbit
+## Orbit_Blocks.Card_Template
 
-### .padding-x-m  (1 rule)
+### .margin-bottom-m  (1 rule)
 ```css
-.padding-x-m { padding-left:var(--space-m); padding-right:var(--space-m); }
+.margin-bottom-m { margin-bottom:var(--space-m); }
 ```
-### .padding-y-m  (1 rule)
+### .orbit-card-cont  (1 rule)
 ```css
-.padding-y-m { padding-bottom:var(--space-m); padding-top:var(--space-m); }
+.orbit-card-cont { width: 100%; display: flex; flex-flow: row nowrap; justify-content: left; align-items: baseline; padding: var(--space-m); border-radius: var(--space-base); }
+```
+### .orbit-card-content  (1 rule)
+```css
+.orbit-card-content { width: 100%; display: flex; flex-flow: column nowrap; justify-content: left; }
+```
+### .orbit-card-content-info  (1 rule)
+```css
+.orbit-card-content-info { width: 100%; display: flex; flex-flow: row nowrap; align-items: baseline; }
+```
+### .orbit-card-content-info-icon  (1 rule)
+```css
+.orbit-card-content-info-icon { margin-right: var(--space-base); }
+```
+### .orbit-card-icon  (1 rule)
+```css
+.orbit-card-icon { font-size: 1.2em; }
+```
+### .orbit-card-icon-cont  (1 rule)
+```css
+.orbit-card-icon-cont { display: flex; justify-content: center; align-items: center; padding: var(--space-s) var(--space-base); border-radius: var(--space-m); }
+```
+### .orbit-card-left-cont  (1 rule)
+```css
+.orbit-card-left-cont { margin-right: var(--space-m); }
+```
+### .orbit-card-right-cont  (1 rule)
+```css
+.orbit-card-right-cont { width: 100%; display: flex; flex-flow: column nowrap; justify-content: flex-start; }
+```
+### .orbit-card-title-cont  (1 rule)
+```css
+.orbit-card-title-cont { font-size: 1.3em; font-weight: bold; margin-bottom: var(--space-m); }
+```
+### .orbit-icon-date-time  (1 rule)
+```css
+.orbit-icon-date-time:before { content: "\e917"; }
+```
+### .orbit-icon-location  (1 rule)
+```css
+.orbit-icon-location:before { content: "\e918"; }
+```
+### .orbit-icon-meeting  (1 rule)
+```css
+.orbit-icon-meeting:before { content: "\e916"; }
 ```
 ## App_Common.BottomBarContent
 

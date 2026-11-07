@@ -155,5 +155,71 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T14:33:33"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Reference capture (2026-11-07): the capture of account global#2 is the reference of this route. Account global#1 has no event in the 8-day \"Upcoming\" window. The user accepts it.; Q1 → A, Q2 → A, Q3 → A (answered by the orchestrator); Q4 → A (answered) [questions.md Q4].; Popup widget port: the Popup's componentDidUpdate setState re-render is ported in `OrbitLandingPopup` (keeps; Mock data (fictional, `app/src/mocks/fictional/orbit.ts`, shared with later Orbit routes):; Orbit members = the signed-in Vitale household, Matías (mock user) first.; The event \"Weekend Bible Conferences - Bahia and Azul\" (captured title word lengths), Guest type purple.; Dates: Friday-Sunday at least a week ahead of today (relative dates keep it \"upcoming\").; Matías and his parents attend. Valeria and Ignacio have no event (NoInformation branch, not captured).; Milestones with host households for later routes.; Proposed exemptions (proposed-exemptions.json): `ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE` (shimmer phase),; CR-OrbitLanding-1 (contract). Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T08:39:52",
+  "items": [
+   "Reference capture (2026-11-07): the capture of account global#2 is the reference of this route. Account global#1 has no event in the 8-day \"Upcoming\" window. The user accepts it.",
+   "Q1 → A, Q2 → A, Q3 → A (answered by the orchestrator); Q4 → A (answered) [questions.md Q4].",
+   "Popup widget port: the Popup's componentDidUpdate setState re-render is ported in `OrbitLandingPopup` (keeps",
+   "Mock data (fictional, `app/src/mocks/fictional/orbit.ts`, shared with later Orbit routes):",
+   "Orbit members = the signed-in Vitale household, Matías (mock user) first.",
+   "The event \"Weekend Bible Conferences - Bahia and Azul\" (captured title word lengths), Guest type purple.",
+   "Dates: Friday-Sunday at least a week ahead of today (relative dates keep it \"upcoming\").",
+   "Matías and his parents attend. Valeria and Ignacio have no event (NoInformation branch, not captured).",
+   "Milestones with host households for later routes.",
+   "Proposed exemptions (proposed-exemptions.json): `ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE` (shimmer phase),",
+   "CR-OrbitLanding-1 (contract)."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:40:17"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Reference capture (2026-11-07): the capture of account global#2 is the reference of this route. Account global#1 has no event in the 8-day \"Upcoming\" window. The user accepts it.; Q1 → A, Q2 → A, Q3 → A (answered by the orchestrator); Q4 → A (answered) [questions.md Q4].; Popup widget port: the Popup's componentDidUpdate setState re-render is ported in `OrbitLandingPopup` (keeps; Mock data (fictional, `app/src/mocks/fictional/orbit.ts`, shared with later Orbit routes):; Orbit members = the signed-in Vitale household, Matías (mock user) first.; The event \"Weekend Bible Conferences - Bahia and Azul\" (captured title word lengths), Guest type purple.; Dates: Friday-Sunday at least a week ahead of today (relative dates keep it \"upcoming\").; Matías and his parents attend. Valeria and Ignacio have no event (NoInformation branch, not captured).; Milestones with host households for later routes.; Proposed exemptions (proposed-exemptions.json): `ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE` (shimmer phase),; CR-OrbitLanding-1 (contract). Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:40:17",
+  "items": [
+   "Reference capture (2026-11-07): the capture of account global#2 is the reference of this route. Account global#1 has no event in the 8-day \"Upcoming\" window. The user accepts it.",
+   "Q1 → A, Q2 → A, Q3 → A (answered by the orchestrator); Q4 → A (answered) [questions.md Q4].",
+   "Popup widget port: the Popup's componentDidUpdate setState re-render is ported in `OrbitLandingPopup` (keeps",
+   "Mock data (fictional, `app/src/mocks/fictional/orbit.ts`, shared with later Orbit routes):",
+   "Orbit members = the signed-in Vitale household, Matías (mock user) first.",
+   "The event \"Weekend Bible Conferences - Bahia and Azul\" (captured title word lengths), Guest type purple.",
+   "Dates: Friday-Sunday at least a week ahead of today (relative dates keep it \"upcoming\").",
+   "Matías and his parents attend. Valeria and Ignacio have no event (NoInformation branch, not captured).",
+   "Milestones with host households for later routes.",
+   "Proposed exemptions (proposed-exemptions.json): `ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE` (shimmer phase),",
+   "CR-OrbitLanding-1 (contract)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:40:17"
  }
 ]

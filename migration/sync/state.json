@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Updates_SingleList": {
+  "OrbitLanding": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:39:44",
-   "shared": [],
-   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
-  },
-  "OrbitLanding": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:33:07",
+   "since": "2026-11-07T16:40:20",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
@@ -338,16 +331,20 @@
    "finished": "2026-11-07T16:39:24"
   },
   "Updates_SingleList": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:29:29",
    "tokens": {
     "dev": 219263,
     "test": 29992,
     "docs": 31567
-   }
+   },
+   "commit": "1dfdceac",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:44"
   },
   "OrbitLanding": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T08:30:02",
    "tokens": {
     "test": 26287,
@@ -609,6 +606,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:39:24"
+  },
+  "OrbitLanding": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:44"
   }
  }
 }

@@ -10,7 +10,7 @@
   "auto": null,
   "htmlClass": "",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "loading": {
@@ -64,7 +64,7 @@
   "phase": "popup-filters-closed",
   "htmlClass": "",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "popup-filters": {
@@ -85,7 +85,7 @@
   "phase": "popup-filters",
   "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  },
  "popup-sort": {
@@ -116,7 +116,7 @@
   "phase": "popup-sort",
   "htmlClass": "popup-disable-scroll",
   "bodyClass": "phone portrait orbit-theme osx is-ltr",
-  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;",
+  "bodyStyle": "--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;",
   "dpr": 1
  }
 }

@@ -206,18 +206,24 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
+}
+
 export interface EmptyListItem {
   Id: string /* Long Integer as string */;
   UserId: number /* 0 in capture */;
-  BookmarkId: string /* Long Integer as string */;
-  BookmarkCategoryId: string /* "" in capture */;
+  NoteId: string /* Long Integer as string */;
+  NoteCategoryId: string /* "" in capture */;
   ItemId: string /* "" in capture */;
-  CreatedAtDateUtc: string /* "1900-01-01..." = no value */;
-}
-
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
+  NotesTotalCount: string /* Long Integer as string */;
 }
 
 export interface LocalNotes {
@@ -227,7 +233,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -318,15 +324,15 @@ export interface Directory_UserCurrent_Member {
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string;
+  Email: string /* "" in capture */;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string;
-  MobileNumber: string;
+  HomeNumber: string /* "" in capture */;
+  MobileNumber: string /* "" in capture */;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;

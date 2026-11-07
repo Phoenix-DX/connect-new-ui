@@ -2,7 +2,7 @@
 
 - UI states captured: default, loading, offline, popup-filters-closed, popup-filters, popup-sort
 - Runtime captures: 1 file(s), 9 call(s)
-- Masked text nodes: 4, user images removed: 0
+- Masked text nodes: 9, user images removed: 0
 - Fetch failures during snapshot: 0
 
 ## Blocks referenced in code but not rendered in any captured state
@@ -17,10 +17,10 @@ Each one is a UI state (loading, empty, error, popup...) that still needs a capt
 - [ ] `ConnectPatterns.IconSVG`
 - [ ] `Fingerprint.FingerprintScanner`
 - [ ] `NavigationHandler.PreventBackNavigation`
-- [ ] `Orbit_Blocks.Card_Event`
 - [ ] `Orbit_Blocks.Card_Milestone`
 - [ ] `Orbit_Blocks.Popup_OrbitLanding_Filters`
 - [ ] `Orbit_Blocks.Popup_OrbitLanding_Sort`
+- [ ] `Orbit_Generic_Blocks.NoInformation_Orbit`
 - [ ] `Orbit_Generic_Blocks.Skeleton_Loading`
 - [ ] `PIN.PinCode`
 - [ ] `Private.PullToRefresh`

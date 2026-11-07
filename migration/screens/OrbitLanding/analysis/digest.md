@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/OrbitLanding`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait orbit-theme osx is-ltr`; body style: `--header-size-content: 128.625px; --footer-height: 46.875px; --viewport-height: 844px;`
+- body class: `phone portrait orbit-theme osx is-ltr`; body style: `--header-size-content: 128.625px; --footer-height: 56px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js`
 
@@ -14,7 +14,8 @@ Orbit_ScreenBlocks.ScreenBlock_OrbitLanding
     Layout.BaseLayout_UpdatedOSUI
       Layout.MenuIcon__UpdatedOSUI
       Orbit_Blocks.Household_Members_Selection
-      Orbit_Generic_Blocks.NoInformation_Orbit
+      Orbit_Blocks.Card_Event
+        Orbit_Blocks.Card_Template
       App_Common.BottomBarMenu
         App_Common.BottomBarContent
           Navigation.BottomBarItem
@@ -146,11 +147,20 @@ App_Common.CommonUI_InsideLayout
 - Client actions / event handlers: `onClick_HouseholdMember`, `onInitialize`, `onRender`, `scrollToSelectMember`, `setIsItemFound`, `clickedHouseholdMember`
 - JavaScript nodes: `Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection.mvc$controller.ScrollToSelectMember.ScrollToNewPositionJS`, `Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection.mvc$controller.SetIsItemFound.IsItemAvailableJS`
 
-## `Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.mvc.js`
+## `Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| Message | input | Text | `""` |
-| IsUrgent | input | Boolean | `false` |
+| In_EventSummary | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect2_OrbitMobile_BLModel.Event_ScreenRec())` |
+- Client actions / event handlers: `clickedEvent`
+- Static entities / flags: `orbitColorShade.color2`, `orbitColorShade.color7`
+
+## `Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| In_MainColorVar | input | Text | `""` |
+| In_MilestoneTypeId | input | Text | `""` |
+- Client actions / event handlers: `onClick`
+- Static entities / flags: `orbitColorShade.color2`, `orbitColorShade.color1`, `orbitColorShade.color10`, `orbitMilestoneType.break`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -454,15 +464,15 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 2879 ms
-- 2. `DataActionGet_HouseholdMembers` (200) at 3692 ms
-- 3. `DataActionGet_EventsByMemberId` (200) at 3991 ms
-- 4. `ActionAppManager_AfterInitialize` (200) at 5598 ms
-- 5. `ActionSync_Info_GetMain` (200) at 6004 ms
-- 6. `ActionGetUserInformation` (200) at 6297 ms
-- 7. `ActionGetNumberUnreadMessages` (200) at 6523 ms
-- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8016 ms
-- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10584 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2795 ms
+- 2. `DataActionGet_HouseholdMembers` (200) at 3411 ms
+- 3. `DataActionGet_EventsByMemberId` (200) at 3733 ms
+- 4. `ActionAppManager_AfterInitialize` (200) at 4926 ms
+- 5. `ActionSync_Info_GetMain` (200) at 5428 ms
+- 6. `ActionGetUserInformation` (200) at 5823 ms
+- 7. `ActionGetNumberUnreadMessages` (200) at 6086 ms
+- 8. `ServiceAPIFetchData_CacheableMapEntities` (200) at 8737 ms
+- 9. `ServiceAPIFetchData_CacheableHouseholds` (200) at 10067 ms
 
 ## Not yet captured (see coverage.md)
 - `App_Common.UnsupportedVersion_Wrapper`
@@ -474,10 +484,10 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `ConnectPatterns.IconSVG`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`
-- `Orbit_Blocks.Card_Event`
 - `Orbit_Blocks.Card_Milestone`
 - `Orbit_Blocks.Popup_OrbitLanding_Filters`
 - `Orbit_Blocks.Popup_OrbitLanding_Sort`
+- `Orbit_Generic_Blocks.NoInformation_Orbit`
 - `Orbit_Generic_Blocks.Skeleton_Loading`
 - `PIN.PinCode`
 - `Private.PullToRefresh`
