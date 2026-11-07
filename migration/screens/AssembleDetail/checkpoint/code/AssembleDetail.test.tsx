@@ -213,8 +213,9 @@ describe('AssembleDetail', () => {
     });
   });
 
-  it('the ids of the TST capture (the capture plan) answer the online prayer meeting of the world', async () => {
-    // migration/capture-plan.json AssembleDetail: EventId, SeriesId and Start of the capture of 2026-11-06.
+  it('the ids of the TST capture (the capture plan) answer the in-person meeting of the capture of 2026-11-07', async () => {
+    // migration/capture-plan.json AssembleDetail: EventId, SeriesId and Start of the capture plan; the fresh capture of
+    // 2026-11-07 (analysis/dom/default.html, analysis/calls.json) is the reference.
     const { container, router } = renderScreen();
     await act(() =>
       router.navigate(
@@ -224,8 +225,54 @@ describe('AssembleDetail', () => {
     await waitFor(() => {
       expect(byId('b2-b4-b14-Header')).toHaveTextContent('Host Locality');
     });
+    // The title and the header of the meeting type, the hall photo, the address row (no virtual-meeting row), one host
+    // locality, one interchange locality, no note.
+    expect(title(container)).toBe('Reading');
+    expect(container.querySelector('[data-block="Assemble.AssembleSummaryCard__Header"]')).toHaveTextContent(
+      'Reading - Saturday',
+    );
+    expect(
+      container
+        .querySelector('[data-block="NewConnect_Utilities.NC_Card_Item_Visual"] img[data-image]')
+        ?.getAttribute('src'),
+    ).toContain('placeholder-landscape.svg');
+    expect(container.querySelector('[data-block="Assemble.AssembleCommon_VirtualMeetingURL"]')).toBeNull();
+    expect(container.querySelector('.connect-icon-place')).not.toBeNull();
+    expect(byId('b2-b4-b15-Header')).toHaveTextContent('Interchange Meetings');
+    expect(
+      container.querySelectorAll('[data-block="Assemble.AssembleEventDetail_LocalitySubdivisionList"]'),
+    ).toHaveLength(2);
+    expect(byId('b2-MeetingNotes')).toHaveTextContent('Your notes will appear here.');
+    // One GMS local contact: GetMemberContactByCacheKey, then GetSignedPhotosInBulk signs its avatar (the captured
+    // order). The three popup blocks are inside the contact's container, as captured.
+    await waitFor(() => {
+      expect(byId('b2-b4-b18-b1-0-Block_HostContact')).toHaveTextContent('Ruth Hadley');
+    });
+    expect(container.querySelectorAll('[data-block="Assemble.AssembleEventDetail_Contact"]')).toHaveLength(1);
+    await waitFor(() => {
+      expect(calls('ActionGetSignedPhotosInBulk')).toBe(1);
+    });
+    const order = (window.__osCalls ?? []).map((c) => c.action);
+    expect(calls('ActionGetMemberContactByCacheKey')).toBe(1);
+    expect(order.indexOf('ActionGetMemberContactByCacheKey')).toBeLessThan(
+      order.indexOf('ActionGetSignedPhotosInBulk'),
+    );
+    const hostContact = byId('b2-b4-b18-b1-0-Div_EventContacts__Content__HostContact');
+    expect(hostContact?.querySelector('#b2-b4-b18-b1-0-FreeSubscriptionAlert')).not.toBeNull();
+    expect(hostContact?.querySelector('[data-block="CW_CTA_PopUps.ContactPopup_ByPhone"]')).not.toBeNull();
+    expect(hostContact?.querySelector('[data-block="CW_CTA_PopUps.ContactByMessage_Wrapper"]')).not.toBeNull();
+  });
+
+  it('the online prayer meeting of the world: the virtual-meeting branch', async () => {
+    const m = ASSEMBLE_MEETINGS.find((x) => x.EventId.endsWith('-online'));
+    if (!m) throw new Error('no online meeting');
+    const { container, router } = renderScreen();
+    await act(() => router.navigate(urlOf(m)));
+    await waitFor(() => {
+      expect(byId('b2-b4-b14-Header')).toHaveTextContent('Host Locality');
+    });
     // The card of a virtual meeting without link, the title from the meeting type, no interchange locality, no GMS
-    // contact, no note (the captured structure).
+    // contact, no note.
     expect(title(container)).toBe('Prayer Meeting');
     expect(
       container

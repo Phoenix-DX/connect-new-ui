@@ -127,6 +127,17 @@ Inline styles come from the compiled views cited here (LegacySharedBlocks: ShowM
     by URL without the preload object that the AssembleEvents list sets. The capture went through the list (`via` in
     `analysis/states.json`), so TST shows the preloaded meeting type title.
 - Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).
+- Sync 2026-11-07, extended exemption: CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE now also covers the kinds text, layout and position, and the rule CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL covers the pixels of the header title tile (user, Q9 a). The new capture shows the title "Reading" unmasked. TST keeps it offline from the AssembleEvents preload; the parity opens the route by URL, so React shows an empty title [parity-exemptions.json].
+- Sync 2026-11-07, mock override (follow-up): `mocks.ts` of the screen overrides the shared `mocks/fictional/assemble.ts` for the EventId of the capture plan and for the contact CacheKey 880901. The shared file is unchanged. A follow-up must decide whether the shared world takes this meeting.
+- Sync 2026-11-07, known limit: an opened hall shows no households, because the shared GetBulkSubdivisions_V2 mock does not know the hall ids of the new meeting. The capture shows the halls collapsed, so their households and their count (mock: 2 + 1) are not captured.
+
+## Changes 2026-11-07 (TST sync)
+- TST files changed: none (brief "Changed TST files: -"). The fresh capture shows another event.
+- New reference: the in-person event of account global#10, captured 2026-11-07. User decision Q7-old "c then a": the 20 cards of the test accounts have no virtual meeting. It shows the title "Reading", the address row (Link_Address) and an "Interchange Meetings" locality list, and no virtual-meeting row [analysis/dom/default.html, diff of the brief].
+- New calls in the capture: ActionGetMemberContactByCacheKey, then ActionGetSignedPhotosInBulk (expected 4 calls, actual 9) [analysis/calls.json]. React made no code change for them: the OnReady of AssembleEventDetail_ContactList and the photo load already call them [hooks/useAssembleEventContactList.ts, components/ui/ResultItemImage/useLoadPhotoAsync.ts]. The old mock meeting was virtual and had no contact, so they did not run. Call parity: 0.
+- Contact-block markup fix: FreeSubscriptionAlert, ContactPopup_ByPhone and ContactByMessage_Wrapper are now inside Div_EventContacts__Content__HostContact, as captured [analysis/dom/default.html; AssembleEventDetail_Contact.mvc.js view :163-378; app/src/pages/AssembleDetail/components/AssembleEventDetail_Contact.tsx]. The old capture did not show it.
+- React mocks: the page mock answers the EventId of the capture plan with this in-person meeting (fictional values of the captured lengths). Every other EventId still answers the world's meeting, including the virtual one [app/src/pages/AssembleDetail/mocks.ts].
+- Evidence: parity default, loading, offline: all counts 0 (offline uses the exemptions below) [test.md].
 
 ## Change requests
 - CR-AssembleDetail-1: GetCacheableSubdivision_V2 / ActionGetBulkSubdivisions_V2 (contract + shared lib + mock).

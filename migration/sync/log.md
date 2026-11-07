@@ -352,3 +352,7 @@ One line per event. Written by sync.py.
 - 2026-11-07T16:41:32 LegacyShareObject confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
 - 2026-11-07T16:41:32 LegacyShareObject stage restamp
 - 2026-11-07T16:41:47 LegacyShareObject stage commit
+- 2026-11-07T16:41:48 LegacyShareObject done a73f0506: parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)
+- 2026-11-07T16:41:48 AssembleDetail confirmed by the user: "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)"
+- 2026-11-07T16:41:48 AssembleDetail stage restamp
+- 2026-11-07T16:42:05 AssembleDetail stage commit

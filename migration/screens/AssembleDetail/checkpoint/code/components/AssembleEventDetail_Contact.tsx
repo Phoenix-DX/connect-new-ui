@@ -20,9 +20,10 @@ export interface AssembleEventDetail_ContactProps extends AssembleEventContactEv
 }
 
 /** Div_EventContacts__Content__HostContact (`padding-y-s`) > Block_HostContact NC_Result_Item__Image (round, loading
-    until the list is fetched; the name, the location, and Person_Contact_Options with the phone and the e-mail), then
+    until the list is fetched; the name, the location, and Person_Contact_Options with the phone and the e-mail),
     FreeSubscriptionAlert, ContactPopup_ByPhone (CallPopup) and ContactByMessage_Wrapper (the e-mail, the mobile phone
-    and ContactPopupData). The flows are in useAssembleEventContact.
+    and ContactPopupData), all four inside the container (AssembleEventDetail_Contact.mvc.js view :170-378; capture of
+    2026-11-07, analysis/dom/default.html). The flows are in useAssembleEventContact.
     @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact */
 export function AssembleEventDetail_Contact({
   id,
@@ -58,20 +59,20 @@ export function AssembleEventDetail_Contact({
             />
           }
         />
+        <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b3`} />
+        <ContactPopupByPhone
+          id={`${scope}-$b4`}
+          inCallPopupData={flows.callPopup}
+          onEventCall={flows.onCloseCallPopup}
+          onEventCancel={flows.onCloseCallPopup}
+        />
+        <ContactByMessage
+          id={`${scope}-$b5`}
+          inContactPopupData={{ Email: c.Email, Phone: c.MobilePhoneNumber, ContactPopupData: flows.contactPopupData }}
+          onEventCancel={flows.onCancelContactByMessage}
+          onEventEmail={flows.onContactByEmail}
+        />
       </div>
-      <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b3`} />
-      <ContactPopupByPhone
-        id={`${scope}-$b4`}
-        inCallPopupData={flows.callPopup}
-        onEventCall={flows.onCloseCallPopup}
-        onEventCancel={flows.onCloseCallPopup}
-      />
-      <ContactByMessage
-        id={`${scope}-$b5`}
-        inContactPopupData={{ Email: c.Email, Phone: c.MobilePhoneNumber, ContactPopupData: flows.contactPopupData }}
-        onEventCancel={flows.onCancelContactByMessage}
-        onEventEmail={flows.onContactByEmail}
-      />
     </OSBlock>
   );
 }

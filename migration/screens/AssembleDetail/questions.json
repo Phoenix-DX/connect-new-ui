@@ -93,5 +93,75 @@
   "answer": "confirm (user, 2026-11-06: 'ok làm tiếp đi tôi accept' for AssembleDetail)",
   "answeredBy": "user",
   "answeredAt": "2026-11-06T20:40:05"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.; Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:; the invited halls of the locality; the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only); two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none); one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids; Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):; default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the; offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route; Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).; Sync 2026-11-07, extended exemption: CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE now also covers the kinds text, layout and position, and the rule CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL covers the pixels of the header title tile (user, Q9 a). The new capture shows the title \"Reading\" unmasked. TST keeps it offline from the AssembleEvents preload; the parity opens the route by URL, so React shows an empty title [parity-exemptions.json].; Sync 2026-11-07, mock override (follow-up): `mocks.ts` of the screen overrides the shared `mocks/fictional/assemble.ts` for the EventId of the capture plan and for the contact CacheKey 880901. The shared file is unchanged. A follow-up must decide whether the shared world takes this meeting.; Sync 2026-11-07, known limit: an opened hall shows no households, because the shared GetBulkSubdivisions_V2 mock does not know the hall ids of the new meeting. The capture shows the halls collapsed, so their households and their count (mock: 2 + 1) are not captured.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T09:41:30",
+  "items": [
+   "Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.",
+   "Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:",
+   "the invited halls of the locality",
+   "the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only)",
+   "two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none)",
+   "one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids",
+   "Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):",
+   "default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the",
+   "offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route",
+   "Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).",
+   "Sync 2026-11-07, extended exemption: CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE now also covers the kinds text, layout and position, and the rule CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL covers the pixels of the header title tile (user, Q9 a). The new capture shows the title \"Reading\" unmasked. TST keeps it offline from the AssembleEvents preload; the parity opens the route by URL, so React shows an empty title [parity-exemptions.json].",
+   "Sync 2026-11-07, mock override (follow-up): `mocks.ts` of the screen overrides the shared `mocks/fictional/assemble.ts` for the EventId of the capture plan and for the contact CacheKey 880901. The shared file is unchanged. A follow-up must decide whether the shared world takes this meeting.",
+   "Sync 2026-11-07, known limit: an opened hall shows no households, because the shared GetBulkSubdivisions_V2 mock does not know the hall ids of the new meeting. The capture shows the halls collapsed, so their households and their count (mock: 2 + 1) are not captured."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:42:01"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.; Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:; the invited halls of the locality; the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only); two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none); one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids; Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):; default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the; offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route; Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).; Sync 2026-11-07, extended exemption: CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE now also covers the kinds text, layout and position, and the rule CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL covers the pixels of the header title tile (user, Q9 a). The new capture shows the title \"Reading\" unmasked. TST keeps it offline from the AssembleEvents preload; the parity opens the route by URL, so React shows an empty title [parity-exemptions.json].; Sync 2026-11-07, mock override (follow-up): `mocks.ts` of the screen overrides the shared `mocks/fictional/assemble.ts` for the EventId of the capture plan and for the contact CacheKey 880901. The shared file is unchanged. A follow-up must decide whether the shared world takes this meeting.; Sync 2026-11-07, known limit: an opened hall shows no households, because the shared GetBulkSubdivisions_V2 mock does not know the hall ids of the new meeting. The capture shows the halls collapsed, so their households and their count (mock: 2 + 1) are not captured.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:42:01",
+  "items": [
+   "Built from the compiled code (no-capture, 2026-10-16); captured and checked by parity since 2026-11-06.",
+   "Mock world: `mocks/fictional/assemble.ts` extended with meeting details. The details are:",
+   "the invited halls of the locality",
+   "the interchange locality for Gospel Preaching / Ministry Meeting (hall meetings only)",
+   "two GMS contacts of the Orbit cast for the Bahia Blanca hall meetings (a virtual meeting has none)",
+   "one one-off online prayer meeting of the Bahia Blanca halls (the shape of the capture of 2026-11-06). The ids",
+   "Parity differences exempted on 2026-11-06 (rules `CAPTURE-2026-11-06-ASSEMBLEDETAIL-*`, masked-text family):",
+   "default: the `margin-left` of the three `Placeholder_Icon_Right` of the summary card rows, and the width of the",
+   "offline: the header title is empty in the build (`::after` of the empty expression). The parity opens the route",
+   "Q1 → A, Q2 → A (answered, auto-accepted 2026-10-16 [questions.md Q1, Q2]).",
+   "Sync 2026-11-07, extended exemption: CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE now also covers the kinds text, layout and position, and the rule CAPTURE-2026-11-06-ASSEMBLEDETAIL-OFFLINE-EMPTY-TITLE-PIXEL covers the pixels of the header title tile (user, Q9 a). The new capture shows the title \"Reading\" unmasked. TST keeps it offline from the AssembleEvents preload; the parity opens the route by URL, so React shows an empty title [parity-exemptions.json].",
+   "Sync 2026-11-07, mock override (follow-up): `mocks.ts` of the screen overrides the shared `mocks/fictional/assemble.ts` for the EventId of the capture plan and for the contact CacheKey 880901. The shared file is unchanged. A follow-up must decide whether the shared world takes this meeting.",
+   "Sync 2026-11-07, known limit: an opened hall shows no households, because the shared GetBulkSubdivisions_V2 mock does not know the hall ids of the new meeting. The capture shows the halls collapsed, so their households and their count (mock: 2 + 1) are not captured."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:42:02"
  }
 ]
