@@ -194,3 +194,6 @@ Fetched (2026-11-07, static GET, read-only, standing approval; sync wave HomeFee
 block `Directory_CommunityNumbers` (`UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js`, `SVG_Community*`):
 `UBTConnectLibrary.CommunityMembers.svg`, `CommunityHouseholds.svg`, `CommunityLocalities.svg`, `CommunityCountries.svg`
 from `/UBTConnect/img/`, stored in `app/public/os-assets/UBTConnect/img/`.
+
+Fetched (2026-11-07, static GET, read-only, standing approval; decision review Q3): `UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js`
+from the live manifest, stored in `migration/sources/survey/` (the survey does not hold it); it has `style: "color: #fff;"` on the Delete label.
