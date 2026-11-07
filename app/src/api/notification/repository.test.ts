@@ -12,7 +12,7 @@ import {
 import type { NotificationReadFilter, NotificationsVariables } from './types';
 
 /* The MSW mocks of the test setup: the screen Notifications (the recorded date ranges Today, Last 7 Days, Last 30 Days
-   and Older; 19 fictional notifications, 16 unread), and the blocks ScreenBlock_MessageDetail and
+   and Older; the 22 fictional notifications of the 2026-11-07 capture, 7 unread), and the blocks ScreenBlock_MessageDetail and
    ScreenBlock_MessageList (19 fictional messages in the collection MessageList.messages, 16 unread). The wrappers
    change this collection, so the tests run in order. */
 const messages = () => collection('MessageList.messages', () => [], 'Id');
@@ -102,10 +102,11 @@ describe('notification repository: the screen Notifications', () => {
       }),
     ]);
     expect(bodies).toEqual([toNotificationsVariablesWire(variables)]);
-    expect(list.items).toHaveLength(68);
+    expect(list.items).toHaveLength(22);
     const first = list.items.find((i) => i.id === '910019');
     expect(first && Object.keys(first).sort()).toEqual([
       'createdByMemberId',
+      'createdByUserId',
       'dateTimeCreated',
       'id',
       'isRead',
@@ -120,16 +121,20 @@ describe('notification repository: the screen Notifications', () => {
       profileIconURL: '/UBT_CW/img/UBT_CW.directory_entity_logo.png',
       messageTemplateId: '48187',
       createdByMemberId: '900103',
+      // A notification with a logo: the null user.
+      createdByUserId: 0,
     });
-    expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:23$/);
-    // The TST capture of 2026-10-29: 2 unread notifications.
-    expect(list.items.filter((n) => !n.isRead)).toHaveLength(2);
-    expect(list.unreadNotificationsCount).toBe(2);
+    expect(first?.dateTimeCreated).toMatch(/^\d{4}-\d{2}-\d{2}T10:50:25$/);
+    // A notification without a logo has its author's user (MessageImage fetches the photo).
+    expect(list.items.find((i) => i.title === 'Test Noti 2')?.createdByUserId).not.toBe(0);
+    // The TST capture of 2026-11-07: 7 unread notifications.
+    expect(list.items.filter((n) => !n.isRead)).toHaveLength(7);
+    expect(list.unreadNotificationsCount).toBe(7);
   });
 
   it('fetchNotifications with Local_OnlyShowUnread: the unread rows, and no count (MCP on DEV, 2026-10-29)', async () => {
     const list = await fetchNotifications({ ...variables, local_OnlyShowUnread: true });
-    expect(list.items).toHaveLength(2);
+    expect(list.items).toHaveLength(7);
     expect(list.items.every((n) => !n.isRead)).toBe(true);
     expect(list.unreadNotificationsCount).toBe(0);
   });
@@ -144,9 +149,10 @@ describe('notification repository: the screen Notifications', () => {
 
 describe('notification repository: the wrappers of Connect2_LegacyShared', () => {
   it('markNotificationOpened calls Wrapper_NotificationOpened with the message and answers IsRetracted', async () => {
-    // The MessageList capture of 2026-10-29 has 2 unread messages (the MessageList mock); the first one is opened.
+    // The MessageList capture of the sync wave (2026-11-06) has 8 unread messages (the MessageList mock: rows 1-3 and
+    // 15-19); the first one is opened.
     const before = unreadIds();
-    expect(before).toHaveLength(2);
+    expect(before).toHaveLength(8);
     const id = String(before[0]);
     await expect(markNotificationOpened(id)).resolves.toBe(false);
     expect(window.__osCalls).toEqual([
@@ -158,13 +164,14 @@ describe('notification repository: the wrappers of Connect2_LegacyShared', () =>
       }),
     ]);
     expect(unreadIds()).not.toContain(id);
-    expect(unreadIds()).toHaveLength(1);
+    expect(unreadIds()).toHaveLength(7);
   });
 
   it('markAllNotificationsAsRead sends the filter of the message list and answers TotalChange', async () => {
     const bodies = recordBodies('Connect2_LegacyShared/ActionWrapper_MarkAllAsReadNotifications');
-    // The MessageList capture of 2026-10-29 has 2 unread messages; the test above opened one (the store is shared).
-    await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(1);
+    // The MessageList capture of the sync wave (2026-11-06) has 8 unread messages; the test above opened one (the store
+    // is shared).
+    await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(7);
     await expect(markAllNotificationsAsRead(allMessages)).resolves.toBe(0);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({

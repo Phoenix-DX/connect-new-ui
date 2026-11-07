@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "e5ea31e4e1409d4ca8a3",
+ "fingerprint": "72b93bc62defc615f5ec",
  "options": {
   "text": true,
   "style": true,
@@ -27,25 +27,19 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:06:10.678Z",
- "counts": {
-  "structure": 8,
-  "position": 1,
-  "class": 1,
-  "style": 3,
-  "pixel": 1
- },
+ "at": "2026-11-07T09:35:22.590Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.16528,
-  "maxCell": 1,
+  "ratio": 0.00026,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 53345,
-  "comparedPixels": 322760,
+  "diffPixels": 60,
+  "comparedPixels": 234109,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -56,13 +50,10 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 4,
   "hotspots": [
-   "200,520 (1600px)",
-   "240,520 (1600px)",
-   "280,520 (1600px)",
-   "320,520 (1600px)",
-   "160,520 (1489px)"
+   "200,800 (35px)",
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/NotificationDetails/parity/default.diff.png"
  },
@@ -73,76 +64,5 @@
   "expected": 8,
   "actual": 8
  },
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > header#b1-Header.header > div.header-top-title.upgrade-header-top > div.header-content > div.ubt-layout-detail__left > div#b1-Placeholder_Header_Title.OSInline.header-title-upgrade.text-align-center > div#Notifications.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > header#b1-Header.header > div.header-top-title.upgrade-header-top > div.header-content > div.ubt-layout-detail__left > div#b1-Placeholder_Header_Title.OSInline.header-title-upgrade.text-align-center > span",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Title.padding-left-m.padding-right-m",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b6.OSBlockWidget[App_Common_Blocks.SectionSeparator]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Content.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "offset in parent 0,68 → 0,0"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b9-Content.background-neutral-0.padding-s.ubt-custom-container > div#ContentDetail",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Content.OSBlockWidget[BasePatterns.CustomContainer] > div#b9-Content.background-neutral-0.padding-s.ubt-custom-container > div#$b3.OSBlockWidget[ConnectPatterns.IconText]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer] > div#b12-Content.background-neutral-0.padding-s.ubt-custom-container > div.margin-top-base",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "class",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer] > div#b12-Content.background-neutral-0.padding-s.ubt-custom-container > div#$b13.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-5",
-   "detail": "missing .font-size-s .text-neutral-5 extra .text-neutral-10"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer] > div#b12-Content.background-neutral-0.padding-s.ubt-custom-container > div#$b13.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-5",
-   "detail": "color rgb(206, 212, 218) → rgb(16, 18, 19); font-size 14px → 16px; line-height 21px → 24px; border-top-color rgb(206, 212, 218) → rgb(16, 18, 19); border-right-color rgb(206, 212, 218) → rgb(16, 18, 19) (+2)"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer] > div#b12-Content.background-neutral-0.padding-s.ubt-custom-container > div#$b13.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-5 > div#b13-$b2.OSBlockWidget[ConnectPatterns.IconInline_Internal]",
-   "detail": "color rgb(206, 212, 218) → rgb(16, 18, 19); font-size 14px → 16px; line-height 21px → 24px; border-top-color rgb(206, 212, 218) → rgb(16, 18, 19); border-right-color rgb(206, 212, 218) → rgb(16, 18, 19) (+2)"
-  },
-  {
-   "kind": "style",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#Notification_Date.OSBlockWidget[BasePatterns.CustomContainer] > div#b12-Content.background-neutral-0.padding-s.ubt-custom-container > div#$b13.OSBlockWidget[BasePatterns.CustomText] > div.font-size-s.text-neutral-5 > span",
-   "detail": "color rgb(206, 212, 218) → rgb(16, 18, 19); font-size 14px → 16px; line-height 21px → 24px; border-top-color rgb(206, 212, 218) → rgb(16, 18, 19); border-right-color rgb(206, 212, 218) → rgb(16, 18, 19) (+2)"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "16.53% pixels differ (max 0.20%), worst 40px tile 100.0% (max 3.0%), hotspots 200,520 (1600px); 240,520 (1600px); 280,520 (1600px); 320,520 (1600px); 160,520 (1489px); see migration/screens/NotificationDetails/parity/default.diff.png"
-  }
- ]
+ "diffs": []
 }

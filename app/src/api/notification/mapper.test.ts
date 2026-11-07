@@ -90,6 +90,7 @@ describe('notification mapper: outputs', () => {
       profileIconURL: '/UBT_CW/img/UBT_CW.logo_assemble.svg',
       messageTemplateId: '48120',
       createdByMemberId: '900108',
+      createdByUserId: 0,
     });
   });
 
@@ -110,6 +111,7 @@ describe('notification mapper: outputs', () => {
           profileIconURL: '',
           messageTemplateId: '0',
           createdByMemberId: '0',
+          createdByUserId: 0,
         },
       ],
       unreadNotificationsCount: 1,

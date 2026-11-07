@@ -12,7 +12,7 @@
   - `Notification_Date`: CustomContainer > CustomText (FormatDateTime(DateTimeCreated, "ddd dd/MM/yyyy HH:mm tt"), Neutral5, FontSize Small) (:389-459).
   - Bottom: BottomBarMenu (ActiveItem NullTextIdentifier) (:462-485); CommonUI_InsideLayout (:486-505).
 - Loading state: the same markup; Title text empty (diff of `dom/loading.html` and `dom/default.html`: only line 42). The date shows the format of the null date (masked in the capture).
-- Entry (Notifications, live survey copy of TST 2026-10-28): the list item Container `onClick` raises `OnClick_NotificationDetail(Id, IsRead)` (`NotificationsList.mvc.js:329-341, 822-846`) → event `NotificationDetail` → `Handler_NotificationDetail` (`Notifications.mvc.js:2986-3003`): when not IsRead, the server action `MarkAsRead(MessageInstanceId)`, then always `navigateTo /UBTConnect/NotificationDetails?MessageInstanceId=<Id>`, transition Default.
+- Entry (Notifications, live survey copy of TST 2026-10-28): the list item Container `onClick` raises `OnClick_NotificationDetail(Id, IsRead)` (`NotificationsList.mvc.js:329-341, 822-846`) → event `NotificationDetail` → `Handler_NotificationDetail` (`Notifications.mvc.js:2986-3003`). When not IsRead, the server action `MarkAsRead(MessageInstanceId)`, then always `navigateTo /UBTConnect/NotificationDetails?MessageInstanceId=<Id>`, transition Default.
 
 ## Patterns used
 
@@ -48,6 +48,20 @@
   service action `Get_UI_NotificationDetails` of `Connect2_Notification_CS` (module not open).
 - The mock answers the empty record for an unknown id. It matches TST.
 
+## Changes 2026-11-07 (TST sync)
+
+- TST file changed: `UBTConnect.App_Notifications.NotificationDetails.mvc.js` (110368 → 136580 bytes, `tst-drift-2026-11-07.md`).
+  Compiled code read: `migration/sources/pretty/UBTConnect.App_Notifications.NotificationDetails.mvc@6445b6d0.js` (ND7).
+- Fresh capture: the title block, the separator and the border differ from the old build (brief: default 14, offline 18 diffs).
+  Parity after the change is 0 in default, loading and offline (`parity/*.json`).
+- New user action: AdaptiveCardViewerOnExecuteAction (ND7:1990-2100) with the audit handlers
+  Handler_AddAuditAndNavigateTo_EventEmail and _EventDetail (ND7:2196-2320). React ports them in
+  `pages/NotificationDetails/actions.ts` and `hooks/useNotificationDetail.ts`.
+- New call: `ActionStoreAdaptiveCardResponses` (`api/notification/notificationDetail.ts:25`). Source: ND7 flow of the card
+  submit. The page does not call `DataActionFetchMessageInstance` at load: the route-check reports no widget or action
+  that reads it (`migration/route-check/routes/NotificationDetails.md`, table of data actions).
+- ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) is `<NotCaptured>`.
+
 ## Decisions to confirm
 
 
@@ -57,3 +71,14 @@
 - Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.
 - Mock data: the captured record (Id 5496739, Title "Your Host on Wednesday", Summary empty, read) is served for the
   captured id. The 19 notifications of the Notifications mock open their own record.
+- Sync wave 2026-11-07 (TST re-capture, `NotificationDetails.mvc@6445b6d0.js` = ND7): AdaptiveCardViewerOnExecuteAction
+  (ND7:1990-2100) and Handler_AddAuditAndNavigateTo_EventEmail / _EventDetail (ND7:2196-2320) are ported (user answer
+  Q2 (a) of the wave). No capture shows a card submit (a user write). The mock answers StoreAdaptiveCardResponses with
+  the contract shape (no outputs). It keeps each response in the store `UBTConnect.notificationAdaptiveCardResponses`
+  (P-MUTATION); the audits go to the log (decision U17). To confirm with a capture when one is possible.
+- Sync wave 2026-11-07: ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) renders `<NotCaptured>`
+  until a capture of the block (user answer Q1 (b) of the wave). The new sender-target constants stay local in the page
+  (Q3 (b)).
+- Follow-up 1 (sync 2026-11-07, user answer Q1 b): ActionButtonGroup stays `<NotCaptured>` until a capture of the block.
+- Follow-up 2 (sync 2026-11-07, user answer Q3 b): the page-local constants move to the shared static entities in a later
+  item: MessageSenderTarget (RRT 12, CommunityHub 17), uBT_Icons2 (orbitText, assemble), uBT_FontWeight (light).

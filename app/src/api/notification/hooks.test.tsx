@@ -117,9 +117,9 @@ describe('useNotificationsQuery', () => {
     await waitFor(() => {
       expect(first.result.current.isSuccess).toBe(true);
     });
-    expect(first.result.current.data?.items).toHaveLength(68);
-    // The TST capture of 2026-10-29: 2 unread notifications.
-    expect(first.result.current.data?.unreadNotificationsCount).toBe(2);
+    expect(first.result.current.data?.items).toHaveLength(22);
+    // The TST capture of 2026-11-07: 7 unread notifications.
+    expect(first.result.current.data?.unreadNotificationsCount).toBe(7);
     first.unmount();
     await waitFor(() => {
       expect(client.getQueryCache().find({ queryKey: notificationKeys.list(variables) })).toBeUndefined();
@@ -157,8 +157,9 @@ describe('notification mutation hooks', () => {
     const { result } = renderHook(() => useMarkAllNotificationsAsReadMutation(), {
       wrapper: providerOf(new QueryClient()),
     });
-    // The 2 unread messages of the MessageList capture of 2026-10-29 (the MessageList mock).
-    await expect(act(() => result.current.mutateAsync(allMessages))).resolves.toBe(2);
+    // The 8 unread messages of the MessageList capture of the sync wave, 2026-11-06 (the MessageList mock: rows 1-3
+    // and 15-19).
+    await expect(act(() => result.current.mutateAsync(allMessages))).resolves.toBe(8);
     expect(calls()).toEqual(['ActionWrapper_MarkAllAsReadNotifications']);
     sessionStorage.setItem('mock:mock', 'error');
     await expect(act(() => result.current.mutateAsync(allMessages))).rejects.toThrow('Request failed with status 500');

@@ -1,6 +1,7 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList, osNumber, wireList } from '@/lib/os-wire';
 import type {
+  NotificationAdaptiveCardResponse,
   NotificationBreakpoint,
   NotificationDateRange,
   NotificationDateRangeRecord,
@@ -38,6 +39,7 @@ export const toNotificationItem = (w: NotificationItemWire): NotificationItem =>
   profileIconURL: w.ProfileIconURL,
   messageTemplateId: w.MessageTemplateId,
   createdByMemberId: w.CreatedByMemberId,
+  createdByUserId: w.CreatedByUserId,
 });
 
 /** The notifications with the list unwrapped and the unread count (a Long Integer) as a number. */
@@ -115,7 +117,7 @@ export const toNotificationsVariablesWire = (v: NotificationsVariables): Notific
     only the fields it reads: the other fields go with their default values (the mock store reads Id only). */
 export const toMessageListItemWire = (item: NotificationItem): NotificationItemWire => ({
   CreatedByMemberId: item.createdByMemberId,
-  CreatedByUserId: 0,
+  CreatedByUserId: item.createdByUserId,
   DateTimeCreated: item.dateTimeCreated,
   Id: item.id,
   IsClear: false,
@@ -128,6 +130,22 @@ export const toMessageListItemWire = (item: NotificationItem): NotificationItemW
   ProfileIconURL: item.profileIconURL,
   Summary: '',
   Title: item.title,
+});
+
+/** The inputs of StoreAdaptiveCardResponses of the screen NotificationDetails, as the contract describes them. */
+export type NotificationAdaptiveCardResponseWire = ActionInputs<
+  PathOf<'UBTConnect', 'ActionStoreAdaptiveCardResponses'>
+>;
+
+/** The card response of StoreAdaptiveCardResponses with its OutSystems input names. */
+export const toNotificationAdaptiveCardResponseWire = (
+  r: NotificationAdaptiveCardResponse,
+): NotificationAdaptiveCardResponseWire => ({
+  DeviceHardwareId: r.deviceHardwareId,
+  AdaptiveCardPayloadJSON: r.adaptiveCardPayloadJSON,
+  ActionTaken: r.actionTaken,
+  FormDataJSON: r.formDataJSON,
+  MessageInstanceId: r.messageInstanceId,
 });
 
 /** The filter of Wrapper_MarkAllAsReadNotifications with its OutSystems input names. */

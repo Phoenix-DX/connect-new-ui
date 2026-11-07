@@ -20,6 +20,9 @@ export interface NotificationItem {
   profileIconURL: string;
   messageTemplateId: LongId;
   createdByMemberId: string;
+  /** CreatedByUserId (0 = the null identifier). MyNotifications.MessageImage of the list fetches the author's photo
+      only for a notification without an icon whose user is set (live TST 2026-11-07, Q2 (a), user 2026-11-07). */
+  createdByUserId: number;
 }
 
 /** UBTConnect UI_Updates_DateRange: Range (an Updates_DateRanges identifier) and the dates From and To "yyyy-MM-dd"
@@ -108,4 +111,17 @@ export interface NotificationReadFilter {
   isPrivate: boolean;
   deviceHardwareId: string;
   searchTerm: string;
+}
+
+/* ---- The screen NotificationDetails ---- */
+
+/** The inputs of the server action StoreAdaptiveCardResponses of the screen NotificationDetails (TST re-capture
+    2026-11-07, NotificationDetails.mvc@6445b6d0.js:910-919, 2078): the device, the card, the action, the form data and
+    the message. */
+export interface NotificationAdaptiveCardResponse {
+  deviceHardwareId: string;
+  adaptiveCardPayloadJSON: string;
+  actionTaken: string;
+  formDataJSON: string;
+  messageInstanceId: LongId;
 }

@@ -10,7 +10,7 @@ import {
   CAPTURED_DETAIL_CARD,
 } from '@/mocks/fictional/notifications';
 import { scenario } from '@/mocks/scenario';
-import { statefulHandler } from '@/mocks/store';
+import { collection, statefulHandler } from '@/mocks/store';
 
 /* Mocks of NotificationDetails (live TST 2026-11-05, UBTConnect.App_Notifications.NotificationDetails.mvc.js = ND).
    Messages are person data and the calls were never recorded: fictional values with the structure of the
@@ -26,7 +26,13 @@ import { statefulHandler } from '@/mocks/store';
    - ScreenDataSetGetMessageTemplateParametersByMessageTemplateId (ND:748-775): the Assemble event parameters
      (fictional ids, the TST ParameterName ids 18, 17, 14) for a message sent as Assemble; empty for the others.
    - ActionWrapper_NotificationOpened (ND:724-737): IsRead True in the shared collection; IsRetracted False.
+   - ActionStoreAdaptiveCardResponses (re-capture 2026-11-07, NotificationDetails.mvc@6445b6d0.js:910-919): no
+     outputs (the contract shape); the response is kept in adaptiveCardResponses. Never captured (a user write).
    Scenarios: real, empty (not found), error (HTTP 500), loading (never answers). */
+
+/** The card responses that StoreAdaptiveCardResponses stored (P-MUTATION). No screen reads them back: the server keeps
+    them for the card owner. */
+export const adaptiveCardResponses = () => collection('UBTConnect.notificationAdaptiveCardResponses', () => [], 'Id');
 
 const DELIMITERS = { Delimiters: { Delimiter_Function: '@@', Delimiter_Parameter: '%%', Delimiter_Placeholder: '##' } };
 const ASSEMBLE = 21;
@@ -106,6 +112,10 @@ export const handlers: RequestHandler[] = [
       return { List: { List: rows }, Count: rows.length };
     },
   ),
+  statefulHandler('UBTConnect', 'ActionStoreAdaptiveCardResponses', (inputs) => {
+    adaptiveCardResponses().upsert({ Id: '', ...inputs });
+    return {};
+  }),
   statefulHandler('UBTConnect', 'ActionWrapper_NotificationOpened', ({ MessageInstanceId }) => {
     const rows = notificationRows();
     const row = rows.get(MessageInstanceId);

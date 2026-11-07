@@ -105,5 +105,65 @@
   "answer": "confirm (user, 2026-11-06: 'confirm' for Bookmarks, NotificationDetails, OrbitAdminMilestoneDetail, Search)",
   "answeredBy": "user",
   "answeredAt": "2026-11-06T10:54:06"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the; Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.; Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.; Mock data: the captured record (Id 5496739, Title \"Your Host on Wednesday\", Summary empty, read) is served for the; Sync wave 2026-11-07 (TST re-capture, `NotificationDetails.mvc@6445b6d0.js` = ND7): AdaptiveCardViewerOnExecuteAction; Sync wave 2026-11-07: ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) renders `<NotCaptured>`; Follow-up 1 (sync 2026-11-07, user answer Q1 b): ActionButtonGroup stays `<NotCaptured>` until a capture of the block.; Follow-up 2 (sync 2026-11-07, user answer Q3 b): the page-local constants move to the shared static entities in a later Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T07:52:37",
+  "items": [
+   "Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the",
+   "Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.",
+   "Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.",
+   "Mock data: the captured record (Id 5496739, Title \"Your Host on Wednesday\", Summary empty, read) is served for the",
+   "Sync wave 2026-11-07 (TST re-capture, `NotificationDetails.mvc@6445b6d0.js` = ND7): AdaptiveCardViewerOnExecuteAction",
+   "Sync wave 2026-11-07: ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) renders `<NotCaptured>`",
+   "Follow-up 1 (sync 2026-11-07, user answer Q1 b): ActionButtonGroup stays `<NotCaptured>` until a capture of the block.",
+   "Follow-up 2 (sync 2026-11-07, user answer Q3 b): the page-local constants move to the shared static entities in a later"
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:35:31"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the; Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.; Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.; Mock data: the captured record (Id 5496739, Title \"Your Host on Wednesday\", Summary empty, read) is served for the; Sync wave 2026-11-07 (TST re-capture, `NotificationDetails.mvc@6445b6d0.js` = ND7): AdaptiveCardViewerOnExecuteAction; Sync wave 2026-11-07: ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) renders `<NotCaptured>`; Follow-up 1 (sync 2026-11-07, user answer Q1 b): ActionButtonGroup stays `<NotCaptured>` until a capture of the block.; Follow-up 2 (sync 2026-11-07, user answer Q3 b): the page-local constants move to the shared static entities in a later Feature flags: action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:35:31",
+  "items": [
+   "Q1 (a), user 2026-10-29: the contract comes from the live TST code, with the MyBookmarks retirement. The diff of the",
+   "Q2 (a), user 2026-10-29: only the screen and route list of `migration/survey` is refreshed from the live TST survey.",
+   "Q3 (fact, code 2026-10-29): the empty-record mock matches TST. No decision needed.",
+   "Mock data: the captured record (Id 5496739, Title \"Your Host on Wednesday\", Summary empty, read) is served for the",
+   "Sync wave 2026-11-07 (TST re-capture, `NotificationDetails.mvc@6445b6d0.js` = ND7): AdaptiveCardViewerOnExecuteAction",
+   "Sync wave 2026-11-07: ActionButtonGroup (ND7:651-717, visible when ShowAssembleAction) renders `<NotCaptured>`",
+   "Follow-up 1 (sync 2026-11-07, user answer Q1 b): ActionButtonGroup stays `<NotCaptured>` until a capture of the block.",
+   "Follow-up 2 (sync 2026-11-07, user answer Q3 b): the page-local constants move to the shared static entities in a later"
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:35:31"
  }
 ]
