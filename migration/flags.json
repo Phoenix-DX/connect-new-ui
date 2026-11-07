@@ -964,11 +964,11 @@
    "candidate": false,
    "variantGroups": [],
    "mcp": {
-    "status": "open",
+    "status": "unavailable",
     "answer": "",
     "values": "",
-    "source": "",
-    "at": null
+    "source": "LaunchDarkly flag, not an OutSystems element: no MCP answer; TST value true from the read-only probe tools/tst/flag_probe.cjs (2026-10-29 and 2026-11-07); decision on (user, 2026-10-29)",
+    "at": "2026-11-07T07:35:53"
    },
    "decision": {
     "status": "decided",

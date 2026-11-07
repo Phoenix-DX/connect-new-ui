@@ -189,3 +189,8 @@ names, and the route check reads them from `runtime/`. The live `moduleinfo.json
 Read (2026-11-07, static GET of the live `moduleinfo`, read-only, no session, no file stored): the live manifest has
 `versionSequence` 15765 (token `2Y9W_lIJ_vQJWhlCcUWixg`); the stored copy of 2026-11-05 has 15749. TST was published
 again after the captures of 2026-11-06. The sync wave of 2026-11 (`migration/sync/`) re-captures every captured route.
+
+Fetched (2026-11-07, static GET, read-only, standing approval; sync wave HomeFeed item): the four icons of the new
+block `Directory_CommunityNumbers` (`UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js`, `SVG_Community*`):
+`UBTConnectLibrary.CommunityMembers.svg`, `CommunityHouseholds.svg`, `CommunityLocalities.svg`, `CommunityCountries.svg`
+from `/UBTConnect/img/`, stored in `app/public/os-assets/UBTConnect/img/`.

@@ -49,7 +49,8 @@ COMMON_ALLOW = ("migration/sync/**", "app/docs/**", "migration/route-check/**", 
                 "migration/screens/_capture-summary.json", "migration/survey/**", "migration/sources/**",
                 # the master's own files: the tools, the agents, the contract regenerated from the fresh captures
                 "tools/**", ".claude/**", "app/src/api/openapi.yaml", "app/src/api/schema.d.ts",
-                "migration/parity-exemptions.json", "app/src/platform/**")
+                "migration/parity-exemptions.json", "app/src/platform/**", "migration/flags.json", "migration/flags.md",
+                "app/public/os-assets/**")
 HANDOFF_TEMPLATE = Path(".claude/skills/tst-sync/references/handoff.md")
 AGENTS_MD = Path("migration/AGENTS.md")
 BRIEF_RULES = (3, 5, 9, 10, 11, 12, 13, 17, 21, 22, 23)
@@ -199,8 +200,8 @@ def shared_overlap(c: Ctx, rid: str, shared: list[str]) -> list[str]:
     hits = []
     mine = [_prefix(p) for p in shared]
     for other, a in c.state["active"].items():
-        if other == rid:
-            continue
+        if other == rid or a.get("stage") in ("review", "restamp", "commit"):
+            continue  # an item at review or later has frozen code: the next item's tester sweeps it
         theirs = [_prefix(p) for p in list(a.get("shared", [])) + own_paths(other)]
         for m in mine:
             for t in theirs:

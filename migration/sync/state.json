@@ -28,18 +28,18 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "OrbitAdminLanding": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:12:54",
+   "since": "2026-11-07T07:40:10",
    "shared": [
     "app/src/api/event/**"
    ],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "Household_Relations": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:12:55",
+   "since": "2026-11-07T07:40:31",
    "shared": [
     "app/src/api/household/**"
    ],
@@ -67,38 +67,88 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "NotificationDetails": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:21:11",
+   "since": "2026-11-07T07:52:24",
    "shared": [
     "app/src/api/notification/**"
    ],
    "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
   },
   "Profile": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:32:26",
+   "since": "2026-11-07T07:35:19",
    "shared": [],
    "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
   },
   "BrowseCountries": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:30:37",
+   "since": "2026-11-07T07:34:49",
    "shared": [
     "app/src/api/member/**"
    ],
    "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
   },
   "HomeFeed": {
-   "stage": "dev",
+   "stage": "docs",
    "loop": 0,
-   "since": "2026-11-07T07:30:38",
+   "since": "2026-11-07T07:58:30",
    "shared": [
-    "app/src/components/feed/CommunityPopulation/**"
+    "app/src/components/feed/CommunityPopulation/**",
+    "app/src/components/ui/IconSvg/**",
+    "app/src/lib/os-assets.manifest.json",
+    "app/src/lib/ubtConnectLibrary/staticEntities.ts",
+    "app/src/mocks/modules/UBTConnect/Directory_Updates/**"
    ],
    "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
+  },
+  "AssembleEvents": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T07:38:20",
+   "shared": [],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "Assemble_BrowseByCountry": {
+   "stage": "review",
+   "loop": 0,
+   "since": "2026-11-07T07:37:38",
+   "shared": [],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "CountryDetails": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:59:01",
+   "shared": [
+    "app/src/components/filter/FilterSheet/**"
+   ],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "Locality_Details": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:59:01",
+   "shared": [
+    "app/src/components/ui/HorizontalTagList/**"
+   ],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "OneSchoolGlobalDetails": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:59:02",
+   "shared": [],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
+  },
+  "SupperMeeting_Carousel": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:59:02",
+   "shared": [],
+   "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   }
  },
  "items": {
@@ -127,17 +177,21 @@
    }
   },
   "OrbitAdminLanding": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:54",
    "tokens": {
-    "dev": 167567
+    "dev": 240744,
+    "test": 39511,
+    "docs": 42217
    }
   },
   "Household_Relations": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:54",
    "tokens": {
-    "dev": 144917
+    "dev": 222739,
+    "test": 32703,
+    "docs": 40779
    }
   },
   "MessageDetail": {
@@ -165,30 +219,76 @@
    }
   },
   "NotificationDetails": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:21:11",
    "tokens": {
-    "dev": 125355
+    "dev": 217904,
+    "test": 39484,
+    "docs": 30781
    }
   },
   "Profile": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:21:11",
    "tokens": {
-    "dev": 261206
+    "dev": 261206,
+    "test": 36152,
+    "docs": 34342
    }
   },
   "BrowseCountries": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:24:59",
    "tokens": {
     "dev": 89414,
-    "test": 36171
+    "test": 36171,
+    "docs": 35264
    }
   },
   "HomeFeed": {
    "status": "active",
    "started": "2026-11-07T07:30:37",
+   "tokens": {
+    "dev": 238268,
+    "test": 34661
+   }
+  },
+  "AssembleEvents": {
+   "status": "waiting_user",
+   "started": "2026-11-07T07:33:27",
+   "tokens": {
+    "dev": 33678,
+    "test": 28328,
+    "docs": 30299
+   }
+  },
+  "Assemble_BrowseByCountry": {
+   "status": "waiting_user",
+   "started": "2026-11-07T07:33:28",
+   "tokens": {
+    "dev": 28474,
+    "test": 25905,
+    "docs": 28038
+   }
+  },
+  "CountryDetails": {
+   "status": "active",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {}
+  },
+  "Locality_Details": {
+   "status": "active",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {}
+  },
+  "OneSchoolGlobalDetails": {
+   "status": "active",
+   "started": "2026-11-07T07:59:00",
+   "tokens": {}
+  },
+  "SupperMeeting_Carousel": {
+   "status": "active",
+   "started": "2026-11-07T07:59:00",
    "tokens": {}
   }
  },
