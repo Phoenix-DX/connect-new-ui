@@ -1,5 +1,5 @@
 ## Result
-status: question
+status: pass
 summary: Resume with the master's grants. Q1 (a): the shared mock now holds the 22 rows of the 2026-11-07 capture. Q2 (a): `createdByUserId` is mapped, so the sender photo is fetched and GetSignedImagesInBulk runs as on TST. I also ported the OutSystems Diff* rules into the elapsed-time label. loading and offline have 0 differences. default has 0 structure, class, text, style and call differences. What is left in default is the known masked-image artifact on the 12 rows that show a sender photo, which needs an exemption decision (question 1). NotificationDetails parity is still OK, but one NotificationDetails unit test now fails because its row is gone, and that test file is outside my paths (question 2).
 
 ## Files changed
@@ -92,3 +92,7 @@ The rows left in default, exactly:
      - (a) The master opens the captured record instead: `await open('?MessageInstanceId=5496739')`. That record (Lord's Day Meal logo) is already in the mock, and its header is "Meal Allocation".
      - (b) Grant me that file and I make the same one-line change.
    - **Recommendation:** (a). The NotificationDetails parity sweep stays OK in either case.
+
+
+## Master note (2026-11-07)
+Q1 (masked sender photos): the user decided a; rules CAPTURE-MASKED-IMAGE-NOTIFICATIONS and -PIXEL added by the master; `route.py parity Notifications` re-run by the master: default, loading, offline all 0. Q2: the NotificationDetails test now opens the captured record (master). Status set to pass.

@@ -1,5 +1,5 @@
 ## Result
-status: question
+status: pass
 summary: The mock of the captured ids (EventId 88271) now answers a published guest meal (host photo, three-line address, four guest households); markup was already correct (0 structure/class diffs). Remaining default diffs: 4 photo background-image styles + 1 pixel (no exemption for this route) and 1 layout (host title span width).
 
 ## Files changed
@@ -22,3 +22,7 @@ The shared alias (88271 -> pending meal 70415) lives in app/src/mocks/fictional/
 1. Photo background-image (4 style rows: host photo and 3 guests... all 4 guests + host, plus the pixel row): the capture keeps TST signed CloudFront URLs, the mock answers the neutral placeholder. An exemption exists only for LDM_MyEvents_V2 (DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 and its -PIXEL). Options: (a) add the same pair of exemptions for ^/UBTConnect/LDM_EventDetail_V2 (background-image style on .event-detail-photo, and pixel); (b) leave as is. I did not add any exemption.
 2. Layout: `span.event-detail-hostcard-content-info-title` is 82x17 in TST and 118x17 in the build; its width follows the width of the host name, whose real glyphs the capture masks (21 chars, 7+4+1+6). Three name attempts gave 110 to 161 px. Options: (a) exempt as data drift (masked text width); (b) the user supplies a name or width that gives 82 px.
 Note: the typecheck failure in Household_Relations is another item's change; the tester should expect it.
+
+
+## Master note (2026-11-07)
+Q1 (photo pair + host-name width): the user decided a; rules DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2, -PIXEL and CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-HOSTNAME-WIDTH added by the master; parity re-run by the master: default, loading, offline all 0. Status set to pass.

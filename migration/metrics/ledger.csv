@@ -1262,3 +1262,23 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,Updates_SingleList,fix,10648,sync-dev,opus,sync Updates_SingleList
 2026-11-07,Updates_SingleList,fix,3293,sync-dev,opus,sync Updates_SingleList
 2026-11-07,LegacyShareObject,verify,24823,sync-test,sonnet,sync LegacyShareObject
+2026-11-07,PINUnlock,verify,26697,sync-test,sonnet,sync PINUnlock
+2026-11-07,Updates_SingleList,verify,29992,sync-test,sonnet,sync Updates_SingleList
+2026-11-07,LegacyShareObject,other,27168,sync-docs,sonnet,sync LegacyShareObject
+2026-11-07,PINUnlock,other,22770,sync-docs,sonnet,sync PINUnlock
+2026-11-07,Updates_SingleList,other,0,sync-docs,sonnet,sync Updates_SingleList
+2026-11-07,Updates_SingleList,other,31567,sync-docs,sonnet,sync Updates_SingleList
+2026-11-07,LDM_EventDetail_V2,verify,28083,sync-test,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,verify,28508,sync-test,sonnet,sync MessageDetail
+2026-11-07,MessageList,verify,30407,sync-test,sonnet,sync MessageList
+2026-11-07,LDM_MyEvents_V2,verify,33368,sync-test,sonnet,sync LDM_MyEvents_V2
+2026-11-07,Notifications,verify,35616,sync-test,sonnet,sync Notifications
+2026-11-07,MessageList,other,34108,sync-docs,sonnet,sync MessageList
+2026-11-07,LDM_EventDetail_V2,other,34460,sync-docs,sonnet,sync LDM_EventDetail_V2
+2026-11-07,MessageDetail,other,34097,sync-docs,sonnet,sync MessageDetail
+2026-11-07,Notifications,other,35995,sync-docs,sonnet,sync Notifications
+2026-11-07,LDM_MyEvents_V2,fix,26545,sync-dev,opus,sync LDM_MyEvents_V2 loop 1
+2026-11-07,Updates_SingleList,fix,2417,sync-dev,opus,sync Updates_SingleList
+2026-11-07,LDM_MyEvents_V2,verify,0,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,verify,31214,sync-test,sonnet,sync LDM_MyEvents_V2 loop 1
+2026-11-07,LDM_MyEvents_V2,other,0,sync-docs,sonnet,sync LDM_MyEvents_V2 loop 1

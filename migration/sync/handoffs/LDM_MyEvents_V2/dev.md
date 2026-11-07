@@ -1,5 +1,5 @@
 ## Result
-status: question
+status: pass
 summary: The route mock now mirrors the TST capture of 2026-11-06: four month groups, guest lines 13/13/16/16 with 4/5/5/6 guest households, the sixth household shown as "+1", and published host names. Parity: loading and offline are clean. Default has 0 DOM differences, but 2 differences remain that need a user decision: the call `ActionGetAllApplicationEvents` x2, which TST sends from the image-error chain, and the guest-photo pixels (1.48%), which are now above the range of the existing pixel exemption.
 
 ## Files changed
@@ -46,3 +46,32 @@ python3 tools/pipeline/consistency_check.py --screen LDM_MyEvents_V2 → 2 probl
      - a) Keep the data local to this route (done now).
      - b) Move the new guest lists into `ldm.ts`. That path is outside the allowed paths, and it would affect LDM_EventDetail_V2 and its tests.
    - Recommendation: a for this item, and b as a later item together with LDM_EventDetail_V2. Non-blocking.
+
+
+## Master note (2026-11-07)
+Q1/Q2: the user decided a; rule CALL-IMAGE-ERROR-APPEVENTS-LDM-MYEVENTS-V2 added and DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL re-pinned by the master; parity re-run by the master: default, loading, offline all 0. Q3: a now (data local to the route), follow-up recorded. Status set to pass.
+
+## Fix loop 1 (2026-11-07)
+
+### Result
+status: pass
+summary: The two NO-WIRE-IN-COMPONENTS problems are fixed with `OS_NULL_DATE` of `@/lib/osDateTime` (same value "1900-01-01", same behaviour). `consistency_check.py --screen LDM_MyEvents_V2` is OK; parity is 0 in every state.
+
+### Files changed
+app/src/pages/LDM_MyEvents_V2/hooks/myTimelineFiltersState.ts (`NULL_DATE = OS_NULL_DATE`, import added)
+app/src/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts (MyTimelineClearFilter audit uses `OS_NULL_DATE` for FromDate/ToDate, import added)
+migration/screens/LDM_MyEvents_V2/parity/*.json and *.png (written by route.py parity)
+
+### Commands run
+npm --prefix app run typecheck → exit 0
+cd app && npx vitest run src/pages/LDM_MyEvents_V2 → 6 files, 74 tests passed
+cd app && npx eslint hooks/useLdmMyEvents.ts hooks/myTimelineFiltersState.ts → exit 0
+npm --prefix app run arch → no dependency violations (139 known ignored)
+python3 tools/pipeline/consistency_check.py --screen LDM_MyEvents_V2 → OK
+python3 tools/pipeline/route.py parity LDM_MyEvents_V2 --app http://localhost:5173 → parity clean
+  default: structure 0, class 0, attr 0, text 0, style 0, pseudo 0, layout 0, position 0, pixel 0, call 0; pixels 1.73% (exempted)
+  loading: all 0; pixels 0.00%
+  offline: all 0; pixels 0.01%
+
+### Questions for the user
+None.

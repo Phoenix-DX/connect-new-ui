@@ -7,16 +7,16 @@
  },
  "active": {
   "MessageList": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:15:25",
+   "since": "2026-11-07T09:22:20",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "LDM_EventDetail_V2": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:12:53",
+   "since": "2026-11-07T09:23:15",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -46,9 +46,9 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "MessageDetail": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T07:18:07",
+   "since": "2026-11-07T09:23:02",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -60,9 +60,9 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "LDM_MyEvents_V2": {
-   "stage": "dev",
-   "loop": 0,
-   "since": "2026-11-07T07:12:56",
+   "stage": "review",
+   "loop": 1,
+   "since": "2026-11-07T09:26:02",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -165,9 +165,9 @@
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
   "Notifications": {
-   "stage": "dev",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T08:10:11",
+   "since": "2026-11-07T09:23:40",
    "shared": [
     "app/src/api/notification/**",
     "app/src/mocks/fictional/notifications.ts"
@@ -184,9 +184,9 @@
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
   "Updates_SingleList": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T09:15:41",
+   "since": "2026-11-07T09:20:13",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
@@ -219,34 +219,37 @@
    "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
   },
   "PINUnlock": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T09:13:03",
+   "since": "2026-11-07T09:19:35",
    "shared": [],
    "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
   },
   "LegacyShareObject": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T09:13:04",
+   "since": "2026-11-07T09:19:20",
    "shared": [],
    "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
   }
  },
  "items": {
   "MessageList": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:53",
    "tokens": {
     "dev": 38722,
-    "test": 33093
+    "test": 63500,
+    "docs": 34108
    }
   },
   "LDM_EventDetail_V2": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:53",
    "tokens": {
-    "dev": 72534
+    "dev": 72534,
+    "test": 28083,
+    "docs": 34460
    }
   },
   "ContactByEmailMember": {
@@ -277,11 +280,12 @@
    }
   },
   "MessageDetail": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 141124,
-    "test": 28848
+    "test": 57356,
+    "docs": 34097
    }
   },
   "Menu": {
@@ -294,10 +298,12 @@
    }
   },
   "LDM_MyEvents_V2": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:55",
    "tokens": {
-    "dev": 120190
+    "dev": 146735,
+    "test": 64582,
+    "docs": 0
    }
   },
   "NotificationDetails": {
@@ -400,10 +406,12 @@
    }
   },
   "Notifications": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T08:10:10",
    "tokens": {
-    "dev": 406213
+    "dev": 406213,
+    "test": 35616,
+    "docs": 35995
    }
   },
   "Search": {
@@ -416,10 +424,12 @@
    }
   },
   "Updates_SingleList": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T08:29:29",
    "tokens": {
-    "dev": 216846
+    "dev": 219263,
+    "test": 29992,
+    "docs": 31567
    }
   },
   "OrbitLanding": {
@@ -458,15 +468,19 @@
    }
   },
   "PINUnlock": {
-   "status": "active",
-   "started": "2026-11-07T09:13:03",
-   "tokens": {}
-  },
-  "LegacyShareObject": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T09:13:03",
    "tokens": {
-    "test": 24823
+    "test": 26697,
+    "docs": 22770
+   }
+  },
+  "LegacyShareObject": {
+   "status": "waiting_user",
+   "started": "2026-11-07T09:13:03",
+   "tokens": {
+    "test": 24823,
+    "docs": 27168
    }
   }
  },

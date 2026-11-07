@@ -1,4 +1,4 @@
-# Brief: LDM_MyEvents_V2 (class B: mock data drift: fix the fictional data or mocks; loop 0/2)
+# Brief: LDM_MyEvents_V2 (class B: mock data drift: fix the fictional data or mocks; loop 1/2)
 
 | Field | Value |
 |---|---|
@@ -15,30 +15,9 @@
 
 ## What changed in TST (parity reports of the fresh capture)
 
-- `default.json` (2026-11-06T20:03:39.053Z): structure 7, layout 12, text 3, position 7, style 3, pixel 1, call 1; pixels 2.01%, worst tile 59.4%; calls expected 11 actual 9; exemptions used 4
-  - kind=structure; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=missing in build
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=101×24 → 92×24
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=72×23 → 63×23
-  - kind=text; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail="13 Guests" → "4 Guests"
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=72×19 → 63×19
-  - kind=position; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=offset in parent 215,0 → 305,0
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=151×42 → 61×42
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=120×30 → 30×30
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=120×30 → 30×30
-  - kind=structure; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=missing in build
-  - kind=structure; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=missing in build
-  - kind=structure; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=missing in build
-  - kind=position; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=offset in parent 36,0 → 0,0
-  - kind=style; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=transform matrix(1, 0, 0, 1, 36, 0) → matrix(1, 0, 0, 1, 0, 0)
-  - kind=position; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=offset in parent 120,0 → 30,0
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=101×24 → 92×24
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=72×23 → 63×23
-  - kind=text; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail="13 Guests" → "6 Guests"
-  - kind=layout; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=72×19 → 63×19
-  - kind=position; path=div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[LDM_ScreenBloc; detail=offset in parent 185,0 → 275,0
-  - ... 14 more in the file
-- `loading.json` (2026-11-06T20:03:41.601Z): no counts; pixels 0%, worst tile 0%; exemptions used 1
-- `offline.json` (2026-11-06T20:03:45.103Z): no counts; pixels 0.01%, worst tile 0.7%; exemptions used 5
+- `default.json` (2026-11-07T02:19:26.774Z): no counts; pixels 1.73%, worst tile 58.5%; calls expected 11 actual 9; exemptions used 6
+- `loading.json` (2026-11-07T02:19:29.690Z): no counts; pixels 0%, worst tile 0%; exemptions used 1
+- `offline.json` (2026-11-07T02:19:33.556Z): no counts; pixels 0.01%, worst tile 0.7%; exemptions used 5
 
 ## DOM diff per state (old capture → new capture)
 
@@ -116,7 +95,7 @@
 
 ## Decisions for this item
 
-- none
+- Q4: Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\.\d\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave → **ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)** (user, 2026-11-07T09:10:29)
 
 ## Allowed write paths
 
@@ -157,12 +136,18 @@ python3 tools/pipeline/route.py parity LDM_MyEvents_V2 --app http://localhost:51
 
 ```
 curl -s -o /dev/null -w '%{http_code}' http://localhost:5173/UBTConnect/HomeFeed   # 200, and lsof -p <pid> -a -d cwd = <root>/app
-/Library/Developer/CommandLineTools/usr/bin/python3 tools/pipeline/scope_guard.py --screen LDM_MyEvents_V2 --base 343a04aa1ad3e633274ebce518fc1351f1b71900 --allow migration/sync/** --allow app/docs/** --allow migration/route-check/** --allow migration/knowledge/** --allow migration/metrics/** --allow migration/board.md --allow app/src/pages/MessageList/** --allow migration/screens/MessageList/** --allow app/src/pages/LDM_EventDetail_V2/** --allow migration/screens/LDM_EventDetail_V2/** --allow app/src/pages/ContactByEmailMember/** --allow migration/screens/ContactByEmailMember/** --allow app/src/pages/OrbitAdminLanding/** --allow migration/screens/OrbitAdminLanding/** --allow app/src/pages/Household_Relations/** --allow migration/screens/Household_Relations/** --allow app/src/pages/MessageDetail/** --allow migration/screens/MessageDetail/** --allow app/src/pages/Menu/** --allow migration/screens/Menu/**
+python3 tools/sync/sync.py scope LDM_MyEvents_V2      # computes --base and the --allow list of the items active NOW
 python3 tools/pipeline/route.py parity LDM_MyEvents_V2 --app http://localhost:5173
 python3 tools/pipeline/consistency_check.py --screen LDM_MyEvents_V2
 npm --prefix app run typecheck && npm --prefix app run arch && (cd app && npx eslint <changed files> && npx vitest run <changed tests>)
 ```
 Diff review: no edit of `migration/parity-exemptions.json`, `app/src/mocks/fixtures/**`, `app/src/api/openapi.yaml`, `app/public/UBTConnect/css/**`, `app/package.json`; no deleted test; nothing outside the allowed paths; `@origin` kept; no secrets.
+
+## Fix loop 1: the last test result
+
+## Result
+status: fail
+summary: Scope, parity (all states 0), typecheck, arch, eslint and vitest pass. consistency_check does not print OK: 2 NO-WIRE-IN-COMPONENTS problems in hooks/useLdmMyEvents.ts:189 and hooks/myTimelineFiltersState.ts:9. Neither file is in the diff of this item (no entry in git status); the gate still requires OK.
 
 ## Report
 
