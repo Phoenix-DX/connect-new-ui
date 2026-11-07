@@ -19,9 +19,9 @@ test('every decided flag is in the registry, with its default and its routes', (
   }
 });
 
-test('the registry adds one flag only, default off: mobileDirectoryLocalityContacts', () => {
+test('the registry adds one flag only, default on since 2026-11-07: mobileDirectoryLocalityContacts', () => {
   expect(FLAG_KEYS.filter((key) => !Object.hasOwn(decided, key))).toEqual(['mobileDirectoryLocalityContacts']);
-  expect(FLAGS.mobileDirectoryLocalityContacts.default).toBe(false);
+  expect(FLAGS.mobileDirectoryLocalityContacts.default).toBe(true);
 });
 
 test('every flag is a server flag, except the constant GetHasWalletAccess; kind, owner and removeBy are not set yet', () => {

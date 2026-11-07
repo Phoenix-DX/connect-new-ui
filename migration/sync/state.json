@@ -184,9 +184,9 @@
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
   "Updates_SingleList": {
-   "stage": "dev",
+   "stage": "test",
    "loop": 0,
-   "since": "2026-11-07T08:29:29",
+   "since": "2026-11-07T09:15:41",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
@@ -217,6 +217,20 @@
    "since": "2026-11-07T08:53:33",
    "shared": [],
    "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
+  },
+  "PINUnlock": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T09:13:03",
+   "shared": [],
+   "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
+  },
+  "LegacyShareObject": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T09:13:04",
+   "shared": [],
+   "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
   }
  },
  "items": {
@@ -405,7 +419,7 @@
    "status": "active",
    "started": "2026-11-07T08:29:29",
    "tokens": {
-    "dev": 202905
+    "dev": 216846
    }
   },
   "OrbitLanding": {
@@ -440,7 +454,19 @@
    "tokens": {
     "dev": 88970,
     "test": 34406,
-    "docs": 0
+    "docs": 45262
+   }
+  },
+  "PINUnlock": {
+   "status": "active",
+   "started": "2026-11-07T09:13:03",
+   "tokens": {}
+  },
+  "LegacyShareObject": {
+   "status": "active",
+   "started": "2026-11-07T09:13:03",
+   "tokens": {
+    "test": 24823
    }
   }
  },
@@ -449,57 +475,81 @@
    "id": "Q1",
    "item": "LDM_EventDetail_V2",
    "text": "Exemptions: (1) photo background-image + pixel for the host and guest photos (signed CloudFront URLs in the capture, placeholder in the mock) as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2 already does for LDM_MyEvents_V2; (2) host-name title width 82 vs 118 px (masked 21-char name) as masked-text data drift. a: add both (master edits exemptions) / b: leave the diffs (route cannot restamp) / c: other",
-   "status": "open",
-   "at": "2026-11-07T07:19:04"
+   "status": "answered",
+   "at": "2026-11-07T07:19:04",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q2",
    "item": "MessageList",
    "text": "consistency NO-INLINE-COLOR on MessageListItem.tsx:124,129 (urgent icon inline styles from the compiled TST block; no capture, old or new, has an urgent message). a: keep the code and record a consistency exclusion for these lines with the compiled-code citation / b: render the urgent branch as NotCaptured / c: remove the inline styles",
-   "status": "open",
-   "at": "2026-11-07T07:19:04"
+   "status": "answered",
+   "at": "2026-11-07T07:19:04",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q3",
    "item": "MessageDetail",
    "text": "Same as MessageList Q2: consistency NO-INLINE-COLOR in components/NotificationDetailBlock.tsx:164,178,183 (inline styles ported from the compiled TST block, no capture shows the branch); Notifications has 1 more. Options as Q2 (a exclusion with citation / b NotCaptured / c remove)",
-   "status": "open",
-   "at": "2026-11-07T07:20:13"
+   "status": "answered",
+   "at": "2026-11-07T07:20:13",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q4",
    "item": "LDM_MyEvents_V2",
    "text": "Exemptions: (1) call ActionGetAllApplicationEvents x2 at load from TST's image-error chain (precedent CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL) scoped to this route; (2) widen DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL regex to ^[01]\\.\\d\\d% (19 guest photos now, 1.48%). a: add both (master) / b: leave",
-   "status": "open",
-   "at": "2026-11-07T07:21:10"
+   "status": "answered",
+   "at": "2026-11-07T07:21:10",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q5",
    "item": "Household_Relations",
    "text": "Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift",
-   "status": "open",
-   "at": "2026-11-07T07:21:11"
+   "status": "answered",
+   "at": "2026-11-07T07:21:11",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q6",
    "item": "Notifications",
    "text": "New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open",
-   "status": "open",
-   "at": "2026-11-07T08:38:03"
+   "status": "answered",
+   "at": "2026-11-07T08:38:03",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q7",
    "item": "Locality_Details",
    "text": "Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other",
-   "status": "open",
-   "at": "2026-11-07T08:41:57"
+   "status": "answered",
+   "at": "2026-11-07T08:41:57",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:29"
   },
   {
    "id": "Q8",
    "item": "Updates_SingleList",
    "text": "Pre-existing consistency NO-BROWSER-STORAGE: actions.ts:15-24 keeps scrollAnchorId/scrollAnchorDelta in localStorage as the TST JS nodes CaptureScrollPosition/ScrollFix do (no token, no personal data). a: keep as the original and record a consistency exclusion with the citation / b: move the two keys to an in-memory store in platform/navigation (platform change by the master) / c: sessionStorage",
-   "status": "open",
-   "at": "2026-11-07T08:42:51"
+   "status": "answered",
+   "at": "2026-11-07T08:42:51",
+   "answer": "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)",
+   "by": "user",
+   "answeredAt": "2026-11-07T09:10:30"
   }
  ],
  "confirms": {}

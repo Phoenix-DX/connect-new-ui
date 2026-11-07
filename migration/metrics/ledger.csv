@@ -1259,3 +1259,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-11-07,Bookmarks,other,0,sync-docs,sonnet,sync Bookmarks
 2026-11-07,Bookmarks,other,45262,sync-docs,sonnet,sync Bookmarks
 2026-11-07,sync,other,85458,opus-decision-review,opus,review of the 9 open decisions 2026-11-07
+2026-11-07,Updates_SingleList,fix,10648,sync-dev,opus,sync Updates_SingleList
+2026-11-07,Updates_SingleList,fix,3293,sync-dev,opus,sync Updates_SingleList
+2026-11-07,LegacyShareObject,verify,24823,sync-test,sonnet,sync LegacyShareObject

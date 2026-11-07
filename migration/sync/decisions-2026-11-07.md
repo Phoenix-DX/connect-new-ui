@@ -39,3 +39,16 @@ Q4 result for OrbitLanding (Fable, 2026-11-07, option c applied as recommended):
 (the account sweep shows its Orbit event card) followed at once by the capture gives one `Orbit_Blocks.Card_Event`;
 `route.py parity OrbitLanding` is clean in all six states with no code change. The item is at review. PINUnlock and
 LegacyShareObject still wait for the user's answer (recommended b: restore the analysis from commit `2fe9efaf`).
+
+## Decision review (Opus independent review + Fable challenge, 2026-11-07) — user: "ok all"
+
+| Q | Choice | Reason (short) |
+|---|---|---|
+| Q1 LDM_EventDetail_V2 | a with conditions | photo pair as the MyEvents precedent; masked-text width rule for one span; pixel pinned near 8 % after the diff image is checked |
+| Q2/Q3 inline styles (MessageList, MessageDetail, Notifications) | a | styles cited in the compiled blocks (`MessageListItem.mvc.js:370,380`, `NotificationDetailBlock.mvc.js:453,463,481`, `Notifications_ConfirmDialog.mvc.js` "color: #fff"); the exclusion mechanism verifies the citation |
+| Q4 LDM_MyEvents_V2 | (1) a, (2) a pinned `^1\.[0-6]\d%` | real image-error chain, EventDetail precedent; 19 photos |
+| Q6 Notifications | a | masked sender photos, CAPTURE-MASKED-IMAGE family; pathRegex limited to the 12 rows |
+| Q7 flag mobileDirectoryLocalityContacts | a + registry default on | probe true; gallery-flag precedent |
+| Q8 Updates_SingleList | d: shell storage wrapper (`platform/storage/storage.ts`) | TST uses localStorage (`Updates_SingleList.mvc.js:3419-3420,3487`); no exclusion needed |
+| Q4-old PINUnlock, LegacyShareObject | b now, c optional | code unchanged; old analysis in `2fe9efaf` |
+| Q7-old AssembleDetail | c then a | one discovery run over the 20 cards, stop at the first virtual meeting |

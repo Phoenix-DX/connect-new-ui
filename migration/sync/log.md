@@ -185,3 +185,20 @@ One line per event. Written by sync.py.
 - 2026-11-07T08:52:26 Notes stage review
 - 2026-11-07T08:53:32 Bookmarks stage spec
 - 2026-11-07T08:53:33 Bookmarks stage review
+- 2026-11-07T09:10:29 Q1 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q2 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q3 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q4 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q5 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q6 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:29 Q7 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:10:30 Q8 answered by the user: "ok all (2026-11-07, the decision table of the Opus + Fable review: Q1 a with conditions, Q2/Q3 a, Q4 a with a pinned regex, Q6 a, Q7 a + registry default on, Q8 d storage wrapper, Q4-old b, Q7-old c then a)"
+- 2026-11-07T09:13:03 PINUnlock started
+- 2026-11-07T09:13:03 PINUnlock brief written (loop 0)
+- 2026-11-07T09:13:03 PINUnlock stage dev
+- 2026-11-07T09:13:03 PINUnlock stage test
+- 2026-11-07T09:13:03 LegacyShareObject started
+- 2026-11-07T09:13:03 LegacyShareObject brief written (loop 0)
+- 2026-11-07T09:13:03 LegacyShareObject stage dev
+- 2026-11-07T09:13:04 LegacyShareObject stage test
+- 2026-11-07T09:15:41 Updates_SingleList stage test

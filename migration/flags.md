@@ -72,7 +72,6 @@ Scanned: 2026-11-06T10:04:27
 | `action:toggle_IsShowList` (gone) (candidate) | flag check action | LDM_MyEvents, LDM_MyEvents_V2 | ldm_myevents | open | - | **open** |
 | `launchDarkly_FF.mobileAssemble` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileDirectoryListVirtualization` | static entity record |  | - | open | - | **open** |
-| `launchDarkly_FF.mobileDirectoryLocalityContacts` | static entity record | Locality_Details | - | unavailable | - | **open** |
 | `launchDarkly_FF.mobileDirectoryUpdateFeedDeceasedProfile` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileHasHiddenMembersAccess` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileHouseholdAncestry4thGen` | static entity record |  | - | open | - | **open** |
@@ -115,6 +114,7 @@ Scanned: 2026-11-06T10:04:27
 | `key:LeafletMap` (candidate) | key passed to map_GeoJSON_Feature_Add | BrowseDirectory, CountryDetails | - | unavailable: not a feature flag: Leaflet map widget key passed to map_GeoJSON_Feature_Add | - | not a flag (false positive): Leaflet map widget key passed to map_GeoJSON_Feature_Add; behaviour built as in the original (user, 2026-10-14) |
 | `launchDarkly_FF.mobileDirectoryBookmarkNote` | static entity record |  | - | unavailable: mobileDirectoryBookmarkNote: bookmark note branch, read directly by the bottom bar (D2) | tst=off, prod=? | default-only: TST value off (user, 2026-10-14) |
 | `launchDarkly_FF.mobileDirectoryHouseholdGallery` | static entity record | HouseholdCarousel, HouseholdDetails, Profile | - | unavailable | - | user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md |
+| `launchDarkly_FF.mobileDirectoryLocalityContacts` | static entity record | Locality_Details | - | unavailable | - | ok all (2026-11-07): default-only, value true as the read-only probe of 2026-11-07 (as the gallery flag on 2026-10-29) |
 | `launchDarkly_FF.mobileStudentInformation` | static entity record | OneSchoolGlobalCarousel, OneSchoolGlobalDetails | - | unavailable: mobileStudentInformation: student information section in OneSchoolGlobalDetails | tst=on, prod=? | default-only: TST value on (user, 2026-10-14) |
 | `outSystems_FF.c2EnableSearchByBirthday` | static entity record | Search | - | unavailable: C2EnableSearchByBirthday: birthday search inside Search | tst=on, prod=? | default-only: TST value on (user, 2026-10-14) |
 | `registeredCallbackEvents.onToggle` (candidate) | static entity record | AssembleEvents, Bookmarks, CountryDetails, CountryList, HostSurvey, Notes, Notifications, Profile … | - | unavailable: not a feature flag: bottom sheet toggle event | - | not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14) |

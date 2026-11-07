@@ -6,7 +6,7 @@
    "action": "ActionAppManager_SynchAppContext",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
    "phase": "load",
-   "ts": 3868,
+   "ts": 4178,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -19,7 +19,7 @@
    "action": "ActionAppManager_AfterInitialize",
    "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
    "phase": "load",
-   "ts": 7605,
+   "ts": 7849,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -34,7 +34,7 @@
    "action": "ActionSync_Info_GetMain",
    "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
    "phase": "load",
-   "ts": 7844,
+   "ts": 8091,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -47,7 +47,7 @@
    "action": "ActionGetUserInformation",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
    "phase": "load",
-   "ts": 8296,
+   "ts": 10084,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -58,7 +58,7 @@
    "action": "ActionGetNumberUnreadMessages",
    "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
    "phase": "load",
-   "ts": 8604,
+   "ts": 10411,
    "status": 200,
    "kind": "server",
    "inputNames": [
@@ -71,7 +71,18 @@
    "action": "ServiceAPIFetchData_CacheableMapEntities",
    "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
    "phase": "load",
-   "ts": 8857,
+   "ts": 10666,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "phase": "load",
+   "ts": 10666,
    "status": 200,
    "kind": "server",
    "inputNames": [],
@@ -82,21 +93,10 @@
    "action": "DataActionGetCacheInfo",
    "path": "/UBTConnect/screenservices/UBTConnect_Utils/CacheControl/CacheControl_Policies/DataActionGetCacheInfo",
    "phase": "load",
-   "ts": 15014,
+   "ts": 17020,
    "status": 200,
    "kind": "data",
    "inputNames": null,
-   "scope": "this screen"
-  },
-  {
-   "module": "UBTConnect",
-   "action": "ServiceAPIFetchData_CacheableHouseholds",
-   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
-   "phase": "load",
-   "ts": 8857,
-   "status": 200,
-   "kind": "server",
-   "inputNames": [],
    "scope": "this screen"
   }
  ],

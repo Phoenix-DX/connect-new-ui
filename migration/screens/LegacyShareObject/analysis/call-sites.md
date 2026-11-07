@@ -15,6 +15,9 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `ScreenBlock_ShareObject.OnParametersChanged` → `ScreenBlock_ShareObject.onParametersChanged` → `ScreenBlock_ShareObject.ScreenDataSetGetShareObjectTypeById`
 - `ScreenBlock_ShareObject fetch at start` → `ScreenBlock_ShareObject.ScreenDataSetGetShareObjectTypeById`
 
+### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
+- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
+
 ### `Connect2_LegacyShared/Share_UI/ScreenBlock_ShareObject/ServiceAPIGetHouseholdDetails`
 - `ScreenBlock_ShareObject.OnReady` → `ScreenBlock_ShareObject.onReady` → `server GetHouseholdDetails`
 
@@ -22,9 +25,6 @@ For every service call: the chains of code that lead to it, from a root (user ev
 - `onChange in ProfileList` → `ProfileList.input_SearchFilterOnChange` → `ProfileList.DataActionGetAvailableUsers`
 - `ProfileList.searchProfile` → `ProfileList.DataActionGetAvailableUsers`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 - `ProfileList fetch at start` → `ProfileList.DataActionGetAvailableUsers`
-
-### `UBTConnect_Utils/ActionGetSignedImagesInBulk`
-- `UBTConnect_Utils.cache_SignedImageURL_GetCallback` → `server GetSignedImagesInBulk`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)
 
 ### `UBT_AppManager/ActionAppManager_AfterInitialize`
 - `UBT_AppManager.appManager_OnAppReady_Web` → `UBT_AppManager.appManager_InitializeWebComponents` → `UBT_AppManager.appManager_AfterInitialize` → `server AppManager_AfterInitialize`  ⚠ chain stops: no caller in captured code (JavaScript node, runtime callback or uncaptured module)

@@ -1033,10 +1033,18 @@
     "at": "2026-11-07T08:41:56"
    },
    "decision": {
-    "status": "open",
-    "value": "",
-    "by": null,
-    "at": null
+    "status": "decided",
+    "value": "ok all (2026-11-07): default-only, value true as the read-only probe of 2026-11-07 (as the gallery flag on 2026-10-29)",
+    "by": "user",
+    "at": "2026-11-07T09:11:35",
+    "key": "mobileDirectoryLocalityContacts",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
    }
   },
   "launchDarkly_FF.mobileDirectoryUpdateFeedDeceasedProfile": {

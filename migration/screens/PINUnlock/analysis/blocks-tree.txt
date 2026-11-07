@@ -17,6 +17,8 @@ App_PIN.Block_PINUnlock
                 Adaptive.Columns2
                   BasePatterns.CustomText
                     ConnectPatterns.IconInline_Internal
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
             CacheControl.CacheControl_Policies
               CacheControl.CacheControl
             NavigationHandler.PreventBackNavigation

@@ -1,5 +1,5 @@
 {
- "_comment": "2026-11-07 sync wave (master): CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD pathRegex b60 → b6[0-9] (TST added 2 Email blocks before the preview, same masked-photo artefact). Accepted parity differences, decided by the user. Every entry has an id, a reason and evidence; the parity report counts how often each fires. Login entries: Q6 answered by the user (2026-10-14), migration/screens/Login/questions.json. PINUnlock entries (*-PINCODE): Q3 answered by the user (2026-10-14), migration/screens/PINUnlock/questions.json. PINRegister entry (*-PINREGISTER): same capture-replay artifact as the Login/PINUnlock link-cursor entries (accepted in kind). HomeFeed entries (*-HOMEFEED, CAPTURE-LOADING-FETCH-TIMEOUT, CAPTURE-SKELETON-SHIMMER-PHASE, FEED-CMS-D8B-IFRAME): accepted by the user 2026-10-15. 2026-10-15: CAPTURE-LINK-HREF-CURSOR* narrowed to the cursor property (`props`), as their reasons state; parity_check honours `props`. 2026-10-15: HomeFeed CAPTURE-BADGE-MASKED-TEXT-HOMEFEED, CAPTURE-LOGO-REPLAY-HOMEFEED-PIXEL, CAPTURE-LOADING-FETCH-TIMEOUT-PIXEL (ignoreSubtrees with states), SLIDER-APPEAR-TIMING, SLIDER-LOADING-TIMEOUT accepted by the user. 2026-10-15: MYENT-D8B-IFRAME and CAPTURE-UNFOCUSED-SEARCH-INPUT accepted by the user. 2026-10-15: CALL-ORDER-APPSTART-RACE (callOrderFree) and PULL-TO-REFRESH-FADEIN-PHASE accepted by the user; Notes masked-digit pixel entry follows once its selector is known.",
+ "_comment": "2026-11-07 (user \"ok all\", decision review): rules for LDM_EventDetail_V2 (photo pair + host-name width), LDM_MyEvents_V2 (image-error calls, pixel re-pinned), Notifications (masked sender photos). 2026-11-07 sync wave (master): CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD pathRegex b60 → b6[0-9] (TST added 2 Email blocks before the preview, same masked-photo artefact). Accepted parity differences, decided by the user. Every entry has an id, a reason and evidence; the parity report counts how often each fires. Login entries: Q6 answered by the user (2026-10-14), migration/screens/Login/questions.json. PINUnlock entries (*-PINCODE): Q3 answered by the user (2026-10-14), migration/screens/PINUnlock/questions.json. PINRegister entry (*-PINREGISTER): same capture-replay artifact as the Login/PINUnlock link-cursor entries (accepted in kind). HomeFeed entries (*-HOMEFEED, CAPTURE-LOADING-FETCH-TIMEOUT, CAPTURE-SKELETON-SHIMMER-PHASE, FEED-CMS-D8B-IFRAME): accepted by the user 2026-10-15. 2026-10-15: CAPTURE-LINK-HREF-CURSOR* narrowed to the cursor property (`props`), as their reasons state; parity_check honours `props`. 2026-10-15: HomeFeed CAPTURE-BADGE-MASKED-TEXT-HOMEFEED, CAPTURE-LOGO-REPLAY-HOMEFEED-PIXEL, CAPTURE-LOADING-FETCH-TIMEOUT-PIXEL (ignoreSubtrees with states), SLIDER-APPEAR-TIMING, SLIDER-LOADING-TIMEOUT accepted by the user. 2026-10-15: MYENT-D8B-IFRAME and CAPTURE-UNFOCUSED-SEARCH-INPUT accepted by the user. 2026-10-15: CALL-ORDER-APPSTART-RACE (callOrderFree) and PULL-TO-REFRESH-FADEIN-PHASE accepted by the user; Notes masked-digit pixel entry follows once its selector is known.",
  "ignoreSubtrees": [
   {
    "id": "CAPTURE-SVG-PRESERVEASPECTRATIO",
@@ -120,10 +120,10 @@
   },
   {
    "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL",
-   "idRegex": "^b3-l1-\\d+_\\d-b2-b4-\\$b1$",
+   "idRegex": "^b3-l1-\\d+_\\d-b2-b5-\\$b1$",
    "states": "^(loading|offline)$",
    "reason": "The loading and offline states were captured via Locality_Details (states.json `via`), so on TST the app start had finished and the user-info cache was filled: HouseholdDetails_Block's OnReady passed GetUserInformation_Wrapper (mvc.js:2700-2710), set the skeleton household ('Example & Example', About/Photos tags appended after OnReady, mvc.js:2216-2240) and started GetHousehold, which then timed out / failed (0 members, list-error). Parity opens the route by URL under the never-answering / failing mock scenario, so the clone's app-start GetUserInformation is pending or failed and the block waits before OnReady's skeleton, as the original does when opened directly (TST HouseholdDetails loading/offline: 'Household gallery', no tags; that route's parity is 0 for the same block). Every difference inside the four slides' HouseholdDetails_Block (14 structure per slide: 5 skeleton Member_ListItem, 2 TagToggle, Block_Subtitle, AddressSection, SeeMoreSection, Directory_EntityDetailsActions and its margin, hero skeleton; texts 'Example & Example'/'Actions' vs 'Household gallery'/'Photobook'; VisibleAboutTab; bookmark state) follows from that path difference. Masked in DOM and pixel comparison for these two states only; the default state compares the block in full. Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
-   "evidence": "migration/screens/HouseholdCarousel/analysis/states.json (loading/offline via /UBTConnect/Locality_Details); migration/screens/HouseholdCarousel/parity/loading.json, offline.json (structure 56 = 14 x 4 slides, all under b3-l1-1152_N-b2-b3-$b1 / b3-l1-1154_N-b2-b3-$b1); UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2202-2240, :2700-2710; app/src/shell/userInfo.ts getUserInformation; migration/screens/HouseholdDetails/analysis/dom/loading.html:146"
+   "evidence": "migration/screens/HouseholdCarousel/analysis/states.json (loading/offline via /UBTConnect/Locality_Details); migration/screens/HouseholdCarousel/parity/loading.json, offline.json (structure 56 = 14 x 4 slides, all under b3-l1-1152_N-b2-b3-$b1 / b3-l1-1154_N-b2-b3-$b1); UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2202-2240, :2700-2710; app/src/shell/userInfo.ts getUserInformation; migration/screens/HouseholdDetails/analysis/dom/loading.html:146 2026-11-07 sync wave (master): idRegex renumbered b2-b4 to b2-b5, same via-capture artefact."
   },
   {
    "id": "TAGS-TIME-LABEL-LOCALITYDETAILS",
@@ -1138,9 +1138,9 @@
     "position"
    ],
    "states": "^default$",
-   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b4-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "pathRegex": "div#b3-l1-\\d+_\\d-b2-b5-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
    "reason": "The household photo of every rendered slide was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259 on all four slides); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS (same block, carousel instance ids). Ids updated 2026-10-29 (drift wave H-Q5 a): TST added EntitiesCarousel_OneSchoolGlobal before the other carousel blocks, so the block indexes after it moved by one, and the list key is a runtime record key (now \\d+); drift-triage-household.md R8-R10.",
-   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/default.html (img b3-l1-1152_0..3-b2-b3-b1-b4-b2-Image: data-masked-src=\"user-image\", data-rendered-size=\"390x259\"); migration/screens/HouseholdCarousel/parity/default.json (40 layout diffs, 10 per slide, all 390x26 -> 390x260 under LazyImage_Placeholder)",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/default.html (img b3-l1-1152_0..3-b2-b3-b1-b4-b2-Image: data-masked-src=\"user-image\", data-rendered-size=\"390x259\"); migration/screens/HouseholdCarousel/parity/default.json (40 layout diffs, 10 per slide, all 390x26 -> 390x260 under LazyImage_Placeholder) 2026-11-07 sync wave (master): TST added a widget to EntitiesCarousel_Element, the household slide moved b2-b4 to b2-b5; pathRegex renumbered, same artefact.",
    "routeRegex": "^/UBTConnect/HouseholdCarousel(\\?|$)"
   },
   {
@@ -1324,8 +1324,8 @@
    "states": "^default$",
    "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
    "pathRegex": "^screenshot$",
-   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/LDM_MyEvents_V2/parity/default\\.diff\\.png$",
-   "reason": "Pixel side of DATA-GUEST-PHOTO-LDM-MYEVENTS-V2: the only differing areas are the 16 overlapping guest photos (TST photos vs the neutral placeholder; diff.png shows nothing else, 0.73 % of the page). auto-accepted in the user's auto mode 2026-10-15",
+   "detailRegex": "^1\\.\\d\\d% pixels differ .*migration/screens/LDM_MyEvents_V2/parity/default\\.diff\\.png$",
+   "reason": "Pixel side of DATA-GUEST-PHOTO-LDM-MYEVENTS-V2: the only differing areas are the overlapping guest photos (19 on 2026-11-07, 14 in the viewport) (TST photos vs the neutral placeholder; diff.png shows nothing else, 0.73 % of the page). auto-accepted in the user's auto mode 2026-10-15 Re-pinned to 1.0-1.99 % on 2026-11-07 (fresh capture, 1.48-1.73 % over two runs), decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
    "evidence": "migration/screens/LDM_MyEvents_V2/parity/default.diff.png (hotspots 280-320,280-560 = the photo stacks)"
   },
   {
@@ -1814,6 +1814,80 @@
    "detailRegex": "^390×758 → 390×742$",
    "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 16 px taller and the content wrapper 16 px shorter (758 → 742). Text-mask capture artifact (as CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER); auto-accepted in the user's auto mode 2026-10-15 Copied for GuestArrangements on 2026-11-06 (same capture path and artifact).",
    "evidence": "parity/default.expected.png vs default.build.png (one line of bullets vs two lines); parity/*.json layout 390×758 → 390×742; GuestArrangements parity 2026-11-06 (captured via MilestoneDetail, same header ids)"
+  },
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-image"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "(div\\.event-detail-hostcard-content-photo|div\\.event-detail-list-item-main) > div\\.event-detail-photo$",
+   "reason": "Person photos of the host and the four guest households: the capture keeps the signed CloudFront URLs in the background-image (a style, not an img, so not masked); the mock answers the neutral placeholder (Person images in mocks). Same artefact as DATA-GUEST-PHOTO-LDM-MYEVENTS-V2. decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/LDM_EventDetail_V2/parity/default.json (5 style rows), migration/sync/handoffs/LDM_EventDetail_V2/dev.md"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-HOSTNAME-WIDTH",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "span\\.event-detail-hostcard-content-info-title$",
+   "detailRegex": "^82×17 → \\d+×17$",
+   "reason": "The host name is masked by the capture (21 characters, 7+4+1+6); the span width follows the real glyphs (82 px on TST, 110-161 px with fictional names of the same length), the height stays 17 px. Width only. Same artefact as CAPTURE-MASKED-PILL-TEXT-NOTES-WIDTH. decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/LDM_EventDetail_V2/parity/default.json (layout row), analysis/dom/default.raw.html (masked host name)"
+  },
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(?:[5-9]|1[01])\\.\\d\\d% pixels differ .*migration/screens/LDM_EventDetail_V2/parity/default\\.diff\\.png$",
+   "reason": "Pixel side of DATA-GUEST-PHOTO-LDM-EVENTDETAIL-V2: default.diff.png differs only at the host photo and the four guest photos (8.18 % of the page on 2026-11-07, 8.18-10.62 % over two runs; pinned to 5-11.99 %). decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/LDM_EventDetail_V2/parity/default.diff.png (checked by the master 2026-11-07)"
+  },
+  {
+   "id": "CALL-IMAGE-ERROR-APPEVENTS-LDM-MYEVENTS-V2",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "kinds": [
+    "call"
+   ],
+   "pathRegex": "^calls:load$",
+   "states": "^default$",
+   "detailRegex": "^server actions ActionAppManager_SynchAppContext → \\{ActionGetAllApplicationEvents \\+ ActionGetAllApplicationEvents\\} → ActionAppManager_AfterInitialize .*",
+   "reason": "ActionGetAllApplicationEvents (twice) was raised on TST by the shell chain HandleImageLoadError → zOnApplicationEvent_Wrapper → GetAppEventName → CacheLocalApplicationEvents for guest photos that failed to load while the local app-event cache was empty; the screen itself never calls it, and the mock photos never fail. Same artefact as CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL. decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/LDM_MyEvents_V2/analysis/call-sites.md:24-25, parity/default.json (call row), migration/sources/runtime/Connect2_LegacyShared.controller@31dffc28.js (~offset 150257)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-NOTIFICATIONS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/Notifications(\\?|$)",
+   "pathRegex": "(div#b15-l1-183_\\d-b2-l1-19[46]_\\d+-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.SkeletonSection\\]( > .*)?$|div#b15-l1-183_\\d-(\\$b2\\.OSBlockWidget\\[App_Notifications\\.NotificationsList\\]|b2-List_Notifications\\.OSFillParent\\.background-neutral-0\\.list)$|div#\\$b15\\.OSBlockWidget\\[App_Notifications\\.NotificationsList\\]$|div#\\$b1[89]\\.OSBlockWidget\\[App_Notifications\\.Notifications_(SortSheet|MoreActionSheet)\\]( > .*)?$)",
+   "reason": "The 12 rows with a sender photo: the capture removed the photo src (data-masked-src=\"user-image\"), so the reference lays out a broken image 52x52 while the app shows the 52x57 placeholder (row 84 to 89 px); the sections, the list block and the two bottom sheets below move with them. The 10 logo rows (not masked) match exactly. Same artefact as the CAPTURE-MASKED-IMAGE-* rules. decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/Notifications/parity/default.json (layout 125, position 45), analysis/dom/default.html:249-262, migration/sync/handoffs/Notifications/dev.md"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-NOTIFICATIONS-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/Notifications(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[2-4]\\.\\d\\d% pixels differ .*migration/screens/Notifications/parity/default\\.diff\\.png$",
+   "reason": "Pixel side of CAPTURE-MASKED-IMAGE-NOTIFICATIONS (3.97 % on 2026-11-07, pinned to 2-4.99 %). decided by the user 2026-11-07 (\"ok all\", decision review Opus + Fable)",
+   "evidence": "migration/screens/Notifications/parity/default.diff.png"
   }
  ],
  "ignoreClasses": [
