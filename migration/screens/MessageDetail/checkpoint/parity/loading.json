@@ -1,0 +1,57 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/MessageDetail?MessageInstanceId=5981096&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "48d1d9fb6429ed6203ee",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 157,
+  "texts": 16,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-07T09:34:25.104Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [],
+  "diffPng": "migration/screens/MessageDetail/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

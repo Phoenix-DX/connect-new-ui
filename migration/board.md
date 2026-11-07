@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2337
+Complexity left on build rows not yet built: 2212
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -13,7 +13,7 @@ Complexity left on build rows not yet built: 2337
 | Splash | `/UBTConnect/Splash` | 1 | 18 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | built | route-splash |
 | HomeFeed | `/UBTConnect/HomeFeed` | 2 | 139 | full | build | V2 · default screen · D8(b): Feed CMS iframe = same-size mock page, real URL pluggable later (Phase 4) (user, 2026-10-14) | built | route-homefeed |
 | FeedItemDetail | `/UBTConnect/FeedItemDetail` | 3 | 80 | lite | build | V4b · from MessageDetail (and ConnectShare); Feed CMS = mock (D8 b) (user, 2026-10-14) | built | route-feeditemdetail |
-| MessageDetail | `/UBTConnect/MessageDetail` | 3 | 125 | full | build | V4b · target of MessageList, deep links, push; Feed CMS = mock (D8 b); Orbit/Assemble/LDM targets are in-app UBTConnect screens, now in scope (user, 2026-10-16) | review | route-messagedetail |
+| MessageDetail | `/UBTConnect/MessageDetail` | 3 | 125 | full | build | V4b · target of MessageList, deep links, push; Feed CMS = mock (D8 b); Orbit/Assemble/LDM targets are in-app UBTConnect screens, now in scope (user, 2026-10-16) | built | route-messagedetail |
 | MessageList | `/UBTConnect/MessageList` | 3 | 93 | full | build | V3a · D11(c): build both, bell picks by flag C2NewNotifications (true → Notifications) (user, 2026-10-14) | built | route-messagelist |
 | MyEntertaining | `/UBTConnect/MyEntertaining` | 3 | 57 | lite | build | V3a · D8(b): embed-entertaining.js = same-size mock, real embed pluggable later (user, 2026-10-14) | built | route-myentertaining |
 | Notes | `/UBTConnect/Notes` | 3 | 119 | full | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | review | route-notes |

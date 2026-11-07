@@ -1,0 +1,69 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/MessageDetail?MessageInstanceId=5981096&mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "a6c20e88aeba07e4d4b5",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 171,
+  "texts": 20,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-07T09:34:22.589Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
+  "maxCellRatio": 0.03,
+  "diffPixels": 20,
+  "comparedPixels": 323305,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 5,
+  "hotspots": [
+   "200,800 (11px)",
+   "200,760 (9px)"
+  ],
+  "diffPng": "migration/screens/MessageDetail/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 9,
+  "actual": 9
+ },
+ "diffs": []
+}

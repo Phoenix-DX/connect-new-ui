@@ -6,19 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Household_Relations": {
+  "MessageDetail": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:34:17",
-   "shared": [
-    "app/src/api/household/**"
-   ],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
-  "MessageDetail": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T09:23:02",
+   "since": "2026-11-07T16:34:34",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -240,16 +231,20 @@
    "finished": "2026-11-07T16:34:01"
   },
   "Household_Relations": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 222739,
     "test": 32703,
     "docs": 40779
-   }
+   },
+   "commit": "1819a3b9",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:34:18"
   },
   "MessageDetail": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 141124,
@@ -597,6 +592,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:34:01"
+  },
+  "MessageDetail": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:34:18"
   }
  }
 }

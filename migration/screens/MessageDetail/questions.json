@@ -146,5 +146,71 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T06:56:23"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id. The mock builds other ids from the MessageList mock rows (shared store `MessageList.messages`). Unknown ids answer \"not found\" (P-MUTATION).; Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.; Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` (calls and flow built). Q1 answered A (user, 2026-10-15): they stay so until the kinds are captured on TST [questions.md Q1].; DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1 (applied): the shell has the variable, and the What's New branch decrements it [CR-MessageDetail-1.md].; Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured. Q2 answered A (user, 2026-10-15): navigate to the original path with the original parameters, and the React app shows its NotMigrated screen [questions.md Q2].; Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).; Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15). The spinner rotation phase has the exemption SPINNER-ROTATION-PHASE (Q3 answered A, user, 2026-10-15) [questions.md Q3].; Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank).; Consistency exclusions for `components/NotificationDetailBlock.tsx:164,178,183` (user decision Q3 a, 2026-11-07, `migration/consistency-exclusions.json`). The inline styles are in branches that no capture shows. User citation: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:417,453,463`.; Line check of that citation: the declarations of :178 are at line 453 and those of :183 at line 463. The declarations of :164 are at line 417. Line 481 holds a border style.; Mock: the capture plan uses message id 5981096 now. The old id 5982748 redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The mock has a fictional seed for 5981096. Its title and body are the captured literal text \"test\" (`dom/default.html:74,86`). A user sent it and it is read (`app/src/pages/MessageDetail/mocks.ts`). Feature flags: action:getHasAssemble → default-only: TST value on (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasDeceasedProfileAccess → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewLDM → default-only: TST value on (user, 2026-10-14); action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T09:23:15",
+  "items": [
+   "Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id. The mock builds other ids from the MessageList mock rows (shared store `MessageList.messages`). Unknown ids answer \"not found\" (P-MUTATION).",
+   "Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.",
+   "Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` (calls and flow built). Q1 answered A (user, 2026-10-15): they stay so until the kinds are captured on TST [questions.md Q1].",
+   "DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1 (applied): the shell has the variable, and the What's New branch decrements it [CR-MessageDetail-1.md].",
+   "Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured. Q2 answered A (user, 2026-10-15): navigate to the original path with the original parameters, and the React app shows its NotMigrated screen [questions.md Q2].",
+   "Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).",
+   "Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15). The spinner rotation phase has the exemption SPINNER-ROTATION-PHASE (Q3 answered A, user, 2026-10-15) [questions.md Q3].",
+   "Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank).",
+   "Consistency exclusions for `components/NotificationDetailBlock.tsx:164,178,183` (user decision Q3 a, 2026-11-07, `migration/consistency-exclusions.json`). The inline styles are in branches that no capture shows. User citation: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:417,453,463`.",
+   "Line check of that citation: the declarations of :178 are at line 453 and those of :183 at line 463. The declarations of :164 are at line 417. Line 481 holds a border style.",
+   "Mock: the capture plan uses message id 5981096 now. The old id 5982748 redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The mock has a fictional seed for 5981096. Its title and body are the captured literal text \"test\" (`dom/default.html:74,86`). A user sent it and it is read (`app/src/pages/MessageDetail/mocks.ts`)."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:34:31"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id. The mock builds other ids from the MessageList mock rows (shared store `MessageList.messages`). Unknown ids answer \"not found\" (P-MUTATION).; Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.; Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` (calls and flow built). Q1 answered A (user, 2026-10-15): they stay so until the kinds are captured on TST [questions.md Q1].; DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1 (applied): the shell has the variable, and the What's New branch decrements it [CR-MessageDetail-1.md].; Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured. Q2 answered A (user, 2026-10-15): navigate to the original path with the original parameters, and the React app shows its NotMigrated screen [questions.md Q2].; Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).; Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15). The spinner rotation phase has the exemption SPINNER-ROTATION-PHASE (Q3 answered A, user, 2026-10-15) [questions.md Q3].; Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank).; Consistency exclusions for `components/NotificationDetailBlock.tsx:164,178,183` (user decision Q3 a, 2026-11-07, `migration/consistency-exclusions.json`). The inline styles are in branches that no capture shows. User citation: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:417,453,463`.; Line check of that citation: the declarations of :178 are at line 453 and those of :183 at line 463. The declarations of :164 are at line 417. Line 481 holds a border style.; Mock: the capture plan uses message id 5981096 now. The old id 5982748 redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The mock has a fictional seed for 5981096. Its title and body are the captured literal text \"test\" (`dom/default.html:74,86`). A user sent it and it is read (`app/src/pages/MessageDetail/mocks.ts`). Feature flags: action:getHasAssemble → default-only: TST value on (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasDeceasedProfileAccess → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewLDM → default-only: TST value on (user, 2026-10-14); action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:34:31",
+  "items": [
+   "Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id. The mock builds other ids from the MessageList mock rows (shared store `MessageList.messages`). Unknown ids answer \"not found\" (P-MUTATION).",
+   "Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.",
+   "Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` (calls and flow built). Q1 answered A (user, 2026-10-15): they stay so until the kinds are captured on TST [questions.md Q1].",
+   "DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1 (applied): the shell has the variable, and the What's New branch decrements it [CR-MessageDetail-1.md].",
+   "Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured. Q2 answered A (user, 2026-10-15): navigate to the original path with the original parameters, and the React app shows its NotMigrated screen [questions.md Q2].",
+   "Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).",
+   "Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15). The spinner rotation phase has the exemption SPINNER-ROTATION-PHASE (Q3 answered A, user, 2026-10-15) [questions.md Q3].",
+   "Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank).",
+   "Consistency exclusions for `components/NotificationDetailBlock.tsx:164,178,183` (user decision Q3 a, 2026-11-07, `migration/consistency-exclusions.json`). The inline styles are in branches that no capture shows. User citation: `Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:417,453,463`.",
+   "Line check of that citation: the declarations of :178 are at line 453 and those of :183 at line 463. The declarations of :164 are at line 417. Line 481 holds a border style.",
+   "Mock: the capture plan uses message id 5981096 now. The old id 5982748 redirected to Notifications on TST (`migration/capture-plan.json` `_routeNote`). The mock has a fictional seed for 5981096. Its title and body are the captured literal text \"test\" (`dom/default.html:74,86`). A user sent it and it is read (`app/src/pages/MessageDetail/mocks.ts`)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:34:31"
  }
 ]
