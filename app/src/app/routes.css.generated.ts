@@ -2,12 +2,17 @@
 // Route screen -> the original stylesheets in document order (public/UBTConnect/css/<file>).
 // capture = markers of the capture's styles bundle (migration/sources/styles, by the route manifest); compiled = getCssDependencies of the
 // screen and its block closure, sorted by the order merged from all captures.
-// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
-// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
-// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Note_Item.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
-// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Note_Item.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
-// conflict kept in compiled order: UBTConnect_Utils.CW_Notes.NotesSheet.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
-// conflict kept in compiled order: UBTConnect_Utils.CW_Notes.NotesSheet.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css / UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css: before in HouseholdCarousel, SupperMeeting_Carousel; after in HouseholdDetails, Locality_Details, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Note_Item.css / UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css: before in HouseholdCarousel, SupperMeeting_Carousel; after in HouseholdDetails, Locality_Details, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Note_Item.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Note_Item.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css / UBTConnect_Utils.CW_Notes.NotesSheet.css: before in HouseholdDetails, Locality_Details, Profile; after in HouseholdCarousel, SupperMeeting_Carousel
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css / UBT_AppManager.PIN.PinCode.css: before in HouseholdCarousel, HouseholdDetails, Locality_Details, SupperMeeting_Carousel; after in Profile
+// conflict kept in compiled order: UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in HouseholdCarousel, HouseholdDetails, Locality_Details, SupperMeeting_Carousel; after in Profile
+// conflict kept in compiled order: UBTConnect_Utils.CW_Notes.NotesSheet.css / UBT_AppManager.PIN.PinCode.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
+// conflict kept in compiled order: UBTConnect_Utils.CW_Notes.NotesSheet.css / UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: before in Bookmarks, EventDetail, HouseholdCarousel, HouseholdDetails, Household_Relations, LDM_EventDetail_V2, Locality_Details, Notes, OneSchoolGlobalCarousel, OneSchoolGlobalDetails, SupperMeeting_Carousel, SupperMeeting_Details; after in AssembleDetail, Profile
 export type CssSetOrigin = 'capture' | 'compiled';
 export const DEFAULT_CSS_SCREEN = 'HomeFeed';
 export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
@@ -248,6 +253,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   CountryList: [
     '_Basic.css',
     'OutSystemsReactWidgets.css',
+    'UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
     'UBTConnect.Directory_Locality.Directory_LegendBottomSheet.css',
@@ -379,6 +385,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   HomeFeed: [
     '_Basic.css',
     'OutSystemsReactWidgets.css',
+    'UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css',
     'UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
@@ -413,6 +420,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
     'UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css',
     'UBTConnectLibrary.ConnectPatterns.Note_Item.css',
     'UBTConnect_Utils.CW_Notes.NotesSheet.css',
+    'UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css',
     'UBTConnect.Directory_Caroussel.EntitiesCarousel.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
@@ -425,6 +433,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   HouseholdDetails: [
     '_Basic.css',
     'OutSystemsReactWidgets.css',
+    'UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css',
     'UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css',
     'UBTConnectLibrary.ConnectPatterns.Note_Item.css',
     'UBTConnect_Utils.CW_Notes.NotesSheet.css',
@@ -601,6 +610,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   Locality_Details: [
     '_Basic.css',
     'OutSystemsReactWidgets.css',
+    'UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css',
     'UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css',
     'UBTConnectLibrary.ConnectPatterns.Note_Item.css',
     'UBTConnect_Utils.CW_Notes.NotesSheet.css',
@@ -745,12 +755,14 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   NotificationDetails: [
     '_Basic.css',
     'OutSystemsReactWidgets.css',
+    'Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
     'OutSystemsUI_2_23.OutSystemsUI.css',
     'UBTConnectLibrary.UBTConnectBase.css',
     'UBTConnectLibrary.UBTConnectLibrary.css',
     'Connect2_LegacyShared.UBTConnect.css',
+    'UBTConnect.App_Notifications.NotificationDetails.css',
     'OutSystemsUI_2_23.OutSystemsUI.extra.css',
   ],
   Notifications: [
@@ -989,6 +1001,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
     'OutSystemsReactWidgets.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
+    'UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css',
     'UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css',
     'UBTConnectLibrary.ConnectPatterns.Note_Item.css',
     'UBTConnect_Utils.CW_Notes.NotesSheet.css',
@@ -1085,6 +1098,7 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
     'UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css',
     'UBTConnectLibrary.ConnectPatterns.Note_Item.css',
     'UBTConnect_Utils.CW_Notes.NotesSheet.css',
+    'UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css',
     'UBTConnect.Directory_Caroussel.EntitiesCarousel.css',
     'UBT_AppManager.PIN.PinCode.css',
     'UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css',
@@ -1185,8 +1199,8 @@ export const ROUTE_CSS: Readonly<Record<string, readonly string[]>> = {
   ],
 };
 export const ROUTE_CSS_ORIGIN: Readonly<Record<string, CssSetOrigin>> = {
-  AcceptPendingPolicies: 'compiled',
-  AssembleDetail: 'compiled',
+  AcceptPendingPolicies: 'capture',
+  AssembleDetail: 'capture',
   AssembleEvents: 'capture',
   Assemble_BrowseByCountry: 'capture',
   Bookmarks: 'capture',
@@ -1196,7 +1210,7 @@ export const ROUTE_CSS_ORIGIN: Readonly<Record<string, CssSetOrigin>> = {
   CommunityBusinessDetails_CoomingSoon: 'capture',
   ConnectShare: 'capture',
   ContactByEmailContacts: 'compiled',
-  ContactByEmailLDMCoordinator: 'compiled',
+  ContactByEmailLDMCoordinator: 'capture',
   ContactByEmailMember: 'capture',
   ContactByEmailOneSchoolGlobal: 'capture',
   ContactByEmailOrbitHelpdesk: 'capture',
@@ -1210,7 +1224,7 @@ export const ROUTE_CSS_ORIGIN: Readonly<Record<string, CssSetOrigin>> = {
   EventBooklet: 'compiled',
   EventDetail: 'capture',
   FeedItemDetail: 'compiled',
-  GuestArrangements: 'compiled',
+  GuestArrangements: 'capture',
   HelpersDetail: 'capture',
   HomeFeed: 'capture',
   HostSurvey: 'capture',

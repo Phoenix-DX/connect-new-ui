@@ -62,9 +62,13 @@ export function SanitizedHtml({
     allowedCssStyles,
     disallowedCssStyles,
   ]);
+  // Captured: the expression span carries the block id without its "$" plus "-SanitizedHtml" (v1: block "b1-b4-$b3",
+  // span "b1-b4-b3-SanitizedHtml"); UBTConnect.App_Notifications.NotificationDetails.css selects it by `[id$="-SanitizedHtml"]`.
+  const spanId = id ? `${id.replace('$', '')}-SanitizedHtml` : undefined;
   return (
     <OSBlock name="HtmlSanitizer.SanitizedHtml" id={id}>
       <span
+        id={spanId}
         className="OSFillParent"
         data-expression=""
         style={{ marginLeft: 0 }}

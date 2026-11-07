@@ -53,6 +53,11 @@ Use `--by user` only for words that the user wrote in this conversation. Never c
 2. `sync.py verify`. When it fails, stop. Show the problems and `git status --short`. Never discard changes.
 3. Dev server (§4). The URL goes into every brief (`sync.py brief <Route> --app <url>`).
 4. `sync.py next`: the items that can start now (class C and D need an answered question first).
+5. `python3 tools/generate/css_sets.py --check` (exit 0). A fresh capture can bring a stylesheet that the app does not
+   have: the parity reference renders with the app's own stylesheets, so parity never shows it (HomeFeed,
+   2026-11-07). When the check fails, the master fetches the missing or changed stylesheets (static GET, read-only,
+   logged in `migration/knowledge/runtime-sources.md`), re-runs `css_sets.py` and the parity of the routes whose set
+   changed, before any item starts.
 
 ## 3. The loop of one item
 

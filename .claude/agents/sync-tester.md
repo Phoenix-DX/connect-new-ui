@@ -50,6 +50,7 @@ Run the commands of "Gate (tester)" in the brief, in order. A gate passes when:
 | scope guard (`sync.py scope <Route>`)        | exit 0: every changed file is inside the allowed paths of this item (siblings and grants are passed by the command)                 |
 | `route.py parity <Route> --app <url>`        | every captured state (default, loading, offline, steps, viewports, flag variants) reports 0 in every count: structure, class, attr, text, style, pseudo, layout, position, pixel, call; every report is current and full (`options.full`) |
 | `consistency_check.py --screen <Route>`      | `OK`                                                                                                                               |
+| `python3 tools/generate/css_sets.py --check` | exit 0 (the app has every stylesheet of the route's capture; a failure is a master task, status `blocked`)                         |
 | typecheck, `npm run arch`                    | exit 0                                                                                                                             |
 | eslint and vitest of the changed files       | exit 0; no test deleted                                                                                                            |
 | sweep of the routes that share a block       | (only with shared paths) `parity_sweep.py --app <url> <routes>` prints `WITH DIFFS 0`                                               |

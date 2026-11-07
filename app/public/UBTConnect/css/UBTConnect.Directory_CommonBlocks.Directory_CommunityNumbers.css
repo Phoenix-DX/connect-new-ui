@@ -1,0 +1,61 @@
+﻿.directory-numbers-card {
+    display: flex;
+    padding: var(--space-base);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+    border-radius: var(--Radius---border-radius-l, 16px);
+    border: 1px solid #63A9BA;
+    background: var(--color-neutral-0);
+}
+
+.directory-numbers-card__content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: var(--border-radius-large);
+}
+
+
+.directory-numbers-card__left {
+    display: flex;
+    width: 160px;
+    padding: var(--space-base);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--space-s);
+    align-self: stretch;
+    background: linear-gradient(180deg, rgba(237, 246, 248, 0.10) 0%, rgba(0, 129, 156, 0.10) 100%);
+    border-radius: var(--border-radius-large);
+}
+
+.directory-numbers-card__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.directory-numbers-card__number{
+    display: flex;
+    padding: var(--space-s);
+    align-items: center;
+    gap: var(--space-s);
+    align-self: stretch;
+}
+
+.directory-numbers-card__number--border-top{
+    border-top: 1px solid rgba(0, 129, 156, 0.10);
+}
+
+.directory-numbers-card__variation{
+    display: flex;
+    min-height: 16px;
+    align-items: center;
+    gap: var(--space-xs);
+    align-self: stretch;
+}

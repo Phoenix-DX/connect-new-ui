@@ -197,3 +197,16 @@ from `/UBTConnect/img/`, stored in `app/public/os-assets/UBTConnect/img/`.
 
 Fetched (2026-11-07, static GET, read-only, standing approval; decision review Q3): `UBTConnect.App_Notifications.Notifications_ConfirmDialog.mvc.js`
 from the live manifest, stored in `migration/sources/survey/` (the survey does not hold it); it has `style: "color: #fff;"` on the Delete label.
+
+Fetched (2026-11-07, static GET `/UBTConnect/css/<file>`, read-only, standing approval; the user's HomeFeed review
+feedback "COMMUNITY BY THE NUMBERS block wrong"): five stylesheets, each equal to the version in the fresh capture
+bundles (`url()` rewrites aside), saved to `app/public/UBTConnect/css/`: new `UBTConnect.Directory_CommonBlocks.Directory_CommunityNumbers.css`
+(HomeFeed, CountryList) and `UBTConnect.App_Notifications.NotificationDetails.css` (NotificationDetails); refreshed
+`Connect2_LegacyShared.UBTConnect.css` (share sheet rules), `UBTConnect.App_Notifications.Notifications.css` (avatar
+rules) and `UBTConnectLibrary.UBTConnectBase.css` (`connect-icon-circle_fill`). Then `css_sets.py` re-run: 8 route
+sets gain a stylesheet (HomeFeed, CountryList: CommunityNumbers; HouseholdCarousel, HouseholdDetails, Locality_Details,
+Profile, SupperMeeting_Carousel: `Unavailable_Image.css`; NotificationDetails: `AdaptiveCardViewer.css` and
+`NotificationDetails.css`). Cause of the gap: the sync developers do not edit CSS (rule), and the CSS sets were not
+regenerated after the re-capture of 2026-11-07. The parity reference renders the captured DOM with the app's own
+stylesheets (`parity_check.cjs`, head of the expected page), so a missing stylesheet never shows as a difference:
+`css_sets.py --check` is now part of the sync gate.
