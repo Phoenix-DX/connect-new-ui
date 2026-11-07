@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 1801
+Complexity left on build rows not yet built: 1680
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -48,7 +48,7 @@ Complexity left on build rows not yet built: 1801
 | ConnectShare | `/UBTConnect/ConnectShare` | 7 | 62 | lite | build | V6 · D10(a): entry for external share links (ConnectSharing/Details → UBTConnect/ConnectShare, TST controller); routes to built screens (user, 2026-10-14) | built | route-connectshare |
 | LegacyShareObject | `/UBTConnect/LegacyShareObject` | 7 | 71 | full | build | V3e · share button target of 12 in-scope screens; ShareObject (write) mocked (user, 2026-10-14) | review | route-legacyshareobject |
 | AssembleDetail | `/UBTConnect/AssembleDetail` |  | 139 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | review | route-assembledetail |
-| AssembleEvents | `/UBTConnect/AssembleEvents` |  | 121 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | review | route-assemble |
+| AssembleEvents | `/UBTConnect/AssembleEvents` |  | 121 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assemble |
 | Assemble_BrowseByCountry | `/UBTConnect/Assemble_BrowseByCountry` |  | 64 | lite | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | review | route-assemble |
 | Bookmarks | `/UBTConnect/Bookmarks` |  | 117 |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | review |  |
 | CommunityBusinessDetails | `/UBTConnect/CommunityBusinessDetails` |  | 64 |  | skip | V7 · skip:dead · zDEV flow; live links open CoomingSoon; revisit if TST links the real screen (user, 2026-10-14) | - |  |
