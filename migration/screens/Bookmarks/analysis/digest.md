@@ -2,7 +2,7 @@
 
 - Path: `/UBTConnect/Bookmarks`
 - Viewport at capture: {'width': 390, 'height': 844, 'dpr': 1}
-- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 47px; --footer-height: 56px; --viewport-height: 844px;`
+- body class: `phone portrait osx is-ltr`; body style: `--header-size-content: 62px; --footer-height: 42px; --viewport-height: 844px;`
 - PWA: manifest `/UBTConnect/moduleservices/pwa/manifest`, service workers []
 - Screen file: `UBTConnect.Bookmarks.Bookmarks.mvc.js`
 
@@ -60,17 +60,139 @@ Layouts.Layout_MainPages_FixedTitle
   Bookmarks.Bookmarks_Card_List
     BasePatterns.CustomContainer
       ConnectPatterns.SkeletonSection
-        ConnectPatterns.EmptyListBorderless
-          BasePatterns.CustomContainer
-            ConnectPatterns.CircleButton
+        Bookmarks.Bookmarks_Card_Item
+          ConnectPatterns.ItemCard_WithNotes
+            BasePatterns.CustomContainer
               BasePatterns.CustomContainer
-                ConnectPatterns.Icon
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
-            BasePatterns.CustomText
-              ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.AvatarImage
+                        BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.IconText
+                        BasePatterns.Columns_Two
+                          Adaptive.Columns2
+                            ConnectPatterns.Icon
+                            BasePatterns.CustomText
+                              ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+              BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                App_Common_Blocks.ItemCardActions
+                  BasePatterns.CustomContainer
+                    ConnectCorePatterns.ItemCard_ActionBar
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+          CW_Notes.NotesSheet
+        Bookmarks.Bookmarks_Card_Item
+          ConnectPatterns.ItemCard_WithNotes
+            BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.AvatarImage
+                        BasePatterns.CustomContainer
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.IconText
+                        BasePatterns.Columns_Two
+                          Adaptive.Columns2
+                            ConnectPatterns.Icon
+                            BasePatterns.CustomText
+                              ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+              BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                App_Common_Blocks.ItemCardActions
+                  BasePatterns.CustomContainer
+                    ConnectCorePatterns.ItemCard_ActionBar
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+          CW_Notes.NotesSheet
+        Bookmarks.Bookmarks_Card_Item
+          ConnectPatterns.ItemCard_WithNotes
+            BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomContainer
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.AvatarImage
+                        BasePatterns.CustomContainer
+                          ConnectPatterns.Icon
+                      BasePatterns.CustomText
+                        ConnectPatterns.IconInline_Internal
+                    BasePatterns.CustomContainer
+                      ConnectPatterns.IconText
+                        BasePatterns.Columns_Two
+                          Adaptive.Columns2
+                            ConnectPatterns.Icon
+                            BasePatterns.CustomText
+                              ConnectPatterns.IconInline_Internal
+                BasePatterns.CustomContainer
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+                  BasePatterns.CustomText
+                    ConnectPatterns.IconInline_Internal
+              BasePatterns.CustomContainer
+              BasePatterns.CustomContainer
+                App_Common_Blocks.ItemCardActions
+                  BasePatterns.CustomContainer
+                    ConnectCorePatterns.ItemCard_ActionBar
+                      BasePatterns.CustomContainer
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+                        ConnectPatterns.IconText
+                          BasePatterns.Columns_Two
+                            Adaptive.Columns2
+                              ConnectPatterns.Icon
+                              BasePatterns.CustomText
+                                ConnectPatterns.IconInline_Internal
+          CW_Notes.NotesSheet
   App_Common.BottomBarMenu
     App_Common.BottomBarContent
       Navigation.BottomBarItem
@@ -419,24 +541,89 @@ Bookmarks.Bookmarks_FilterSheet
 - Client actions / event handlers: `bookmarksCardList_OnScrollEnding`, `onReady`, `handler_OnCardNotesChanged`, `onInitialize`, `item_Unbookmarked`, `onClick_BookmarkCardItem`, `on_NotesChanged`, `onLoadMore`
 - Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Icons2.bookmark`, `uBT_Color.neutral9`, `uBT_FontSize.base`, `uBT_FontWeight.semiBold`, `uBT_Color.neutral10`, `uBT_FontSize.small`
 
-## `UBTConnectLibrary.ConnectPatterns.EmptyListBorderless.mvc.js`
+## `UBTConnect.Bookmarks.Bookmarks_Card_Item.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| IconId | input | Text | `""` |
-- Static entities / flags: `uBT_Size.small`, `uBT_Shape.large`, `uBT_Display.flex`, `uBT_AlignItems.center`, `uBT_JustifyContent.center`, `uBT_AvatarSize.small_40`, `uBT_Color.cyanLightest`, `uBT_Color.primary`, `uBT_IconSize.base_24`
+| IsAddNote | local | Boolean | `false` |
+| Bookmark_CardItem | input | Record | `OS.DataTypes.ImmutableBase.getData(new Connect_Bookmarks_CSModel.UI_Bookmark_CardItemRec())` |
+| In_SearchString | input | Text | `""` |
+- Client actions / event handlers: `handler_NoteSheet_Closed`, `handler_OnNoteDeleted`, `handler_OnNotesChanged`, `openNoteSheet`, `onClickCardItem`, `item_Unbookmarked`, `on_NotesChanged`
 
-## `UBTConnectLibrary.ConnectPatterns.CircleButton.mvc.js`
+## `UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes.mvc.js`
 | variable | kind | type | default |
 |---|---|---|---|
-| MainContainerClass | local | Text | `"ubt-icon-button"` |
+| In_Title | input | Text | `""` |
+| In_Subtitle | input | Text | `""` |
+| In_TotalNotes | input | Text | `""` |
+| In_Label | input | Text | `""` |
+| AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
+| In_SearchString | input | Text | `""` |
+| In_ChannelName | input | Text | `""` |
+| In_ChannelLogo | input | Text | `""` |
+| In_PublishedAt | input | DateTime | `OS.DataTypes.DateTime.defaultValue` |
+- Client actions / event handlers: `onClickTotalNotesIcon`, `onClickItemCard`
+- Static entities / flags: `uBT_Color.neutral0`, `uBT_Size.base`, `uBT_Size.small`, `uBT_Color.neutral3`, `uBT_Shape.medium`, `uBT_Display.flex`, `uBT_FlexDirection.column`, `uBT_AlignItems.center`, `uBT_JustifyContent.spaceBetween`, `uBT_ColumnBehaviour.reduceLast`, `uBT_Display.inlineFlex`, `uBT_AvatarSize.doubleExtraSmall_20`, `uBT_Shape.circle`, `uBT_Color.cyanDark`, `uBT_Color.neutral10`, `uBT_Color.neutral5`, `uBT_Color.primary`, `uBT_FontWeight.semiBold`, `uBT_FontSize.extraSmall`, `uBT_Size.extraSmall`, `uBT_AlignItems.flexEnd`, `uBT_FlexDirection.row`, `uBT_Color.neutral7`, `uBT_FontSize.doubleExtraSmall`, `uBT_IconSize.nonStandard_16`, `uBT_Icons.listAltFill`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_VerticalAlign.center`, `uBT_ImageSize.base_52`, `uBT_ImageSize.fullHeight_100_Percent`
+
+## `UBTConnectLibrary.ConnectPatterns.AvatarImage.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-avatar-image"` |
+| In_AvatarImage | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.AvatarImageRec())` |
+| In_SizeId | input | Text | `""` |
+| In_BorderRadius | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Shape.circle` |
+- Static entities / flags: `uBT_Shape.circle`, `uBT_Color.neutral5`, `uBT_Size.small`, `uBT_FontWeight.semiBold`
+
+## `UBTConnectLibrary.ConnectPatterns.IconText.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| IsIconOnRight | input | Boolean | `false` |
+| Text | input | Text | `""` |
+| TextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| SpacingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.extraSmall` |
 | ExtendedClasses | input | Text | `""` |
-| BackgroundColorId | input | Text | `""` |
-| BorderColorId | input | Text | `""` |
-| SizeId | input | Text | `""` |
-| IsProcessing | input | Boolean | `false` |
-| PaddingSize | input | Text | `UBTConnectLibraryModel.staticEntities.uBT_Size.small` |
-- Client actions / event handlers: `action_OnClick`, `onClick`
-- Static entities / flags: `uBT_Size.small`, `uBT_Shape.circle`, `uBT_Color.cyanDarker`
+| SubtextOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())` |
+| In_Subtext | input | Text | `""` |
+| In_JustifyText | input | Boolean | `false` |
+- Client actions / event handlers: `clicked`
+- Static entities / flags: `uBT_Size.extraSmall`, `uBT_ColumnBehaviour.reduceFirst`, `uBT_ColumnBehaviour.reduceLast`, `uBT_VerticalAlign.center`, `uBT_FlexDirection.rowReverse`
+
+## `UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+| ObjectId | input | Text | `""` |
+| BookmarkType | input | Text | `""` |
+- Client actions / event handlers: `handler_OnClickShare`, `handler_OnClickUnmark`, `handler_OnClickAddNote`, `event_AddNote`, `event_ItemUnbookmarked`
+- Static entities / flags: `uBT_Size.small`, `uBT_Color.neutral2`
+
+## `UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| MainContainerClass | local | Text | `"ubt-action-bar"` |
+| ActionBarOptions | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ActionBarOptionsRec())` |
+- Client actions / event handlers: `onClickAddNote`, `onClickUnbookmark`, `onClickShare`
+- Static entities / flags: `uBT_Display.flex`, `uBT_JustifyContent.flexStart`, `uBT_Size.extraSmall`, `uBT_Color.primary`, `uBT_FontSize.doubleExtraSmall`, `uBT_FontWeight.semiBold`, `uBT_Icons.check`, `uBT_IconSize.nonStandard_18`, `uBT_Color.neutral7`, `uBT_Icons.borderColor`, `uBT_Icons.share`
+
+## `UBTConnect_Utils.CW_Notes.NotesSheet.mvc.js`
+| variable | kind | type | default |
+|---|---|---|---|
+| BottomSheetId | local | Text | `""` |
+| IsEditing | local | Boolean | `false` |
+| IsSheetOpen | local | Boolean | `false` |
+| NoteText | local | Text | `""` |
+| IsSubmittingNote | local | Boolean | `false` |
+| In_IsOpen | input | Boolean | `false` |
+| ExtendedClasses | input | Text | `""` |
+| In_ItemId | input | Text | `""` |
+| In_NoteCategoryId | input | Text | `""` |
+| In_Notes | input | Record | `OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.NotesRec())` |
+- Server actions: `AddNote` → `screenservices/UBTConnect_Utils/CW_Notes/NotesSheet/ServiceAPIAddNote`
+- Lifecycle handlers: ParametersChanged
+- Client actions / event handlers: `handler_OnSubmitNote`, `backNavigationHandlerBackNavigation`, `bottomSheetOnToggle`, `bottomSheet_Initialized`, `onParametersChanged`, `handler_OnEditingStateChanged`, `handler_OnSaveEditNote`, `action_SetBottomSheetOpen`, `handler_OnNoteSheet_Closed`, `on_NotesChanged`, `on_NoteSheet_Closed`, `on_NoteDeleted`
+- JavaScript nodes: `UBTConnect_Utils.CW_Notes.NotesSheet.mvc$controller.OnParametersChanged.DelaySetIsOpenJS`
+- Exceptions handled: CommunicationException, UserException
+- Static entities / flags: `noteActionType.add`
+- Candidate static strings: `Action_SetBottomSheetOpen`
 
 ## `UBTConnect.App_Common.BottomBarMenu.mvc.js`
 | variable | kind | type | default |
@@ -790,14 +977,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 
 
 ## Captured calls
-- 1. `ActionAppManager_SynchAppContext` (200) at 3530 ms
-- 3. `DataActionGetBookmarks` (200) at 5707 ms
-- 5. `ActionAppManager_AfterInitialize` (200) at 6560 ms
-- 6. `ActionSync_Info_GetMain` (200) at 7157 ms
-- 7. `ActionGetUserInformation` (200) at 7505 ms
-- 8. `ActionGetNumberUnreadMessages` (200) at 7796 ms
-- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9834 ms
-- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 12780 ms
+- 1. `ActionAppManager_SynchAppContext` (200) at 2980 ms
+- 3. `DataActionGetBookmarks` (200) at 4896 ms
+- 5. `ActionAppManager_AfterInitialize` (200) at 5702 ms
+- 6. `ActionSync_Info_GetMain` (200) at 6165 ms
+- 7. `ActionGetUserInformation` (200) at 6511 ms
+- 8. `ActionGetNumberUnreadMessages` (200) at 6796 ms
+- 9. `ServiceAPIFetchData_CacheableMapEntities` (200) at 9248 ms
+- 10. `ServiceAPIFetchData_CacheableHouseholds` (200) at 11491 ms
 - plus 2 call(s) outside this screen, listed in calls.md
 
 ## Not yet captured (see coverage.md)
@@ -805,13 +992,14 @@ These come from referenced blocks or from earlier captures. Use them to describe
 - `App_Common.UnsupportedVersion_Wrapper`
 - `App_CommonBlocks_Filter.FilterSheet_OptionList_Item`
 - `App_Policies.Policy_Checker`
-- `Bookmarks.Bookmarks_Card_Item`
+- `CW_Notes.NoteListActions`
 - `CacheControl.CacheControl_AllCountries`
 - `CacheControl.CacheControl_AllLocalities`
 - `CacheControl.CacheControl_Policies`
+- `ConnectPatterns.AddNote`
+- `ConnectPatterns.EmptyListBorderless`
 - `ConnectPatterns.HighlightSearch`
 - `ConnectPatterns.IconSVG`
-- `ConnectPatterns.IconText`
 - `ConnectPatterns.LazyImage`
 - `Fingerprint.FingerprintScanner`
 - `NavigationHandler.PreventBackNavigation`

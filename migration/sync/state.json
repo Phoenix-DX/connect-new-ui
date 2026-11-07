@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "HouseholdCarousel": {
+  "Bookmarks": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:40:58",
-   "shared": [],
-   "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
-  },
-  "Bookmarks": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:53:33",
+   "since": "2026-11-07T16:41:15",
    "shared": [],
    "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
   },
@@ -355,16 +348,20 @@
    "finished": "2026-11-07T16:40:41"
   },
   "HouseholdCarousel": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:43:24",
    "tokens": {
     "dev": 102942,
     "test": 33671,
     "docs": 28572
-   }
+   },
+   "commit": "4b3b12ee",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:40:58"
   },
   "Bookmarks": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T08:45:06",
    "tokens": {
     "dev": 88970,
@@ -615,6 +612,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:40:41"
+  },
+  "Bookmarks": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:40:59"
   }
  }
 }

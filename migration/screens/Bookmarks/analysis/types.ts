@@ -53,8 +53,15 @@ export interface AppManager_SynchAppContextResponse {
 export interface SourceHeader {
   ImageURL: string /* "" in capture */;
   IconId: string /* "" in capture */;
-  Initials: string /* "" in capture */;
-  Label: string /* "" in capture */;
+  Initials: string;
+  Label: string;
+}
+
+export interface EmptyListItem {
+  Id: string /* Long Integer as string */;
+  Note: string /* "" in capture */;
+  DateCreatedUtc: string /* "1900-01-01..." = no value */;
+  DateEditedUtc: string /* "1900-01-01..." = no value */;
 }
 
 export interface Note_Item_List {
@@ -69,16 +76,16 @@ export interface Notes {
 
 export interface Bookmark_Card_Content {
   SourceHeader: SourceHeader;
-  Title: string /* "" in capture */;
-  Subtitle: string /* "" in capture */;
+  Title: string;
+  Subtitle: string;
   Notes: Notes;
 }
 
-export interface EmptyListItem {
+export interface BookmarkCardItemListItem {
   Id: string /* Long Integer as string */;
-  ItemId: string /* "" in capture */;
-  ItemId2: string /* "" in capture */;
-  BookmarkCategoryId: string /* "" in capture */;
+  ItemId: string /* Long Integer as string */;
+  ItemId2: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
   PublishedAt: string /* "1900-01-01..." = no value */;
   ChannelLogo: string /* "" in capture */;
   ChannelName: string /* "" in capture */;
@@ -87,14 +94,9 @@ export interface EmptyListItem {
   IsHidden: boolean;
 }
 
-export interface BookmarkCardItemList {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
-}
-
 export interface Out_Bookmarks {
   Total: string /* Long Integer as string */;
-  BookmarkCardItemList: BookmarkCardItemList;
+  BookmarkCardItemList: BookmarkCardItemListItem[] /* wire: { List: [...] } */;
 }
 
 export interface GetBookmarksResponse {
@@ -236,9 +238,13 @@ export interface LocalBookmarkItem {
   Note: string /* "" in capture */;
 }
 
-export interface LocalBookmarksC2 {
-  List: unknown[] /* empty in capture */;
-  EmptyListItem: EmptyListItem;
+export interface LocalBookmarksC2Item {
+  Id: string /* Long Integer as string */;
+  UserId: number;
+  BookmarkId: string /* Long Integer as string */;
+  BookmarkCategoryId: string;
+  ItemId: string /* Long Integer as string */;
+  CreatedAtDateUtc: string /* ISO DateTime */;
 }
 
 export interface LocalNotes {
@@ -248,7 +254,7 @@ export interface LocalNotes {
 
 export interface LocalEntities_App {
   LocalBookmark: LocalBookmarkItem[] /* wire: { List: [...] } */;
-  LocalBookmarksC2: LocalBookmarksC2;
+  LocalBookmarksC2: LocalBookmarksC2Item[] /* wire: { List: [...] } */;
   LocalNotes: LocalNotes;
 }
 
@@ -339,15 +345,15 @@ export interface Directory_UserCurrent_Member {
 export interface Directory_UserCurrent {
   Id: string;
   UserName: string;
-  Email: string;
+  Email: string /* "" in capture */;
   AccountEmail: string;
   FirstName: string;
   LastName: string;
   FullName: string;
   MemberID: string /* Long Integer as string */;
   AccountNumber: string;
-  HomeNumber: string;
-  MobileNumber: string;
+  HomeNumber: string /* "" in capture */;
+  MobileNumber: string /* "" in capture */;
   WorkNumber: string /* "" in capture */;
   Directory_UserCurrent_Visibility: Directory_UserCurrent_Visibility;
   Directory_UserCurrent_Geography: Directory_UserCurrent_Geography;

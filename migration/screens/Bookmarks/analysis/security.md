@@ -19,7 +19,7 @@ Names and categories only; no values were captured. Inferences are marked as suc
 - `permissions-policy`: **missing**
 
 ## Third-party hosts contacted
-- `www.googleapis.com`
+- (not recorded)
 
 ## Client storage by category
 ### token/secret (4)

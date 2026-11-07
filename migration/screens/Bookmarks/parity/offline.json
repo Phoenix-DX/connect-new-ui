@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "9f9878ecc1d430fd7d7a",
+ "fingerprint": "a8178e603e37fb14e634",
  "options": {
   "text": true,
   "style": true,
@@ -19,31 +19,29 @@
  },
  "replay": {
   "mode": "builder",
-  "elements": 997,
-  "texts": 60,
+  "elements": 991,
+  "texts": 58,
   "comments": 0,
   "dropped": 0,
   "endTagMismatch": 0,
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:00:00.126Z",
- "counts": {
-  "text": 2
- },
+ "at": "2026-11-07T09:41:09.806Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 54,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 2,
   "CAPTURE-SKELETON-SHIMMER-PHASE": 77,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1,
   "SLIDER-APPEAR-TIMING": 1
  },
  "pixel": {
-  "ratio": 0.00018,
+  "ratio": 0.00025,
   "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 60,
-  "comparedPixels": 328728,
+  "diffPixels": 81,
+  "comparedPixels": 328680,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -57,21 +55,11 @@
   "masks": 6,
   "hotspots": [
    "200,800 (35px)",
-   "200,760 (25px)"
+   "200,760 (25px)",
+   "360,0 (21px)"
   ],
   "diffPng": "migration/screens/Bookmarks/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b14.OSBlockWidget[Bookmarks.Bookmarks_FilterSheet] > div#b14-$b1.OSBlockWidget[App_CommonBlocks_Filter.FilterSheet] > div#b14-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b14-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b14-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet > div#b14-b1-b1-b1-Content.osui-bottom-sheet__content > div#b14-b1-b1-Footer.ubt-bottom-sheet--footer > div#b14-b1-$b14.OSBlockWidget[BasePatterns.CustomContainer] > div#b14-b1-b14-Content.background-neutral-0.padding-base.shadow-xs > div#b14-b1-$b15.OSBlockWidget[BasePatterns.Columns_Two] > div#b14-b1-b15-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.gutter-s > div#b14-b1-b15-b1-Column1.columns-item > div#b14-b1-b15-Left.ubt-columns--column.ubt-columns--left > div#b14-b1-$b16.OSBlockWidget[ConnectPatterns.Button] > button.btn.flex-grow.ubt-button > div#b14-b1-b16-Content.ubt-button__content",
-   "detail": "\"Clear\" → \"Clear filters\""
-  },
-  {
-   "kind": "text",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b14.OSBlockWidget[Bookmarks.Bookmarks_FilterSheet] > div#b14-$b1.OSBlockWidget[App_CommonBlocks_Filter.FilterSheet] > div#b14-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b14-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b14-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet > div#b14-b1-b1-b1-Content.osui-bottom-sheet__content > div#b14-b1-b1-Footer.ubt-bottom-sheet--footer > div#b14-b1-$b14.OSBlockWidget[BasePatterns.CustomContainer] > div#b14-b1-b14-Content.background-neutral-0.padding-base.shadow-xs > div#b14-b1-$b15.OSBlockWidget[BasePatterns.Columns_Two] > div#b14-b1-b15-$b1.OSBlockWidget[Adaptive.Columns2] > div.columns.columns2.gutter-s > div#b14-b1-b15-b1-Column2.columns-item > div#b14-b1-b15-Right.ubt-columns--column.ubt-columns--right > div#b14-b1-$b17.OSBlockWidget[ConnectPatterns.Button] > button.btn.flex-grow.ubt-button > div#b14-b1-b17-Content.ubt-button__content",
-   "detail": "\"Apply\" → \"Apply filters\""
-  }
- ]
+ "diffs": []
 }
