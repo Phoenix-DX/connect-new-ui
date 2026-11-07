@@ -13,3 +13,15 @@ Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and 
 - Evidence: route-spec.md, parity reports, feedback.md
 - Options: confirm | change (say what)
 - Answer (user, 2026-10-15T17:13:16): confirm (auto-confirmed: user instruction 2026-10-15 16:59)
+
+## Q3 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: The no-access branch calls the shell's `showUpgradePopUp` (Q1, auto-accepted).; The mock user's plan is Global (app/src/shell/mockUser.ts:62), so every country card navigates to BrowseDirectory. Feature flags: action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-07T16:36:06): superseded by a newer review
+
+## Q4 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: The no-access branch calls the shell's `showUpgradePopUp` (Q1, auto-accepted).; The mock user's plan is Global (app/src/shell/mockUser.ts:62), so every country card navigates to BrowseDirectory. Feature flags: action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-11-07T16:36:06): confirm (user, 2026-11-07: confirm ok, all 29 routes at review)

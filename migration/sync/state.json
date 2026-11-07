@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Profile": {
+  "BrowseCountries": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:35:52",
-   "shared": [],
-   "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
-  },
-  "BrowseCountries": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T07:34:49",
+   "since": "2026-11-07T16:36:09",
    "shared": [
     "app/src/api/member/**"
    ],
@@ -266,16 +259,20 @@
    "finished": "2026-11-07T16:35:34"
   },
   "Profile": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:21:11",
    "tokens": {
     "dev": 261206,
     "test": 36152,
     "docs": 34342
-   }
+   },
+   "commit": "bd7b4206",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:52"
   },
   "BrowseCountries": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:24:59",
    "tokens": {
     "dev": 89414,
@@ -603,6 +600,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:35:35"
+  },
+  "BrowseCountries": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:52"
   }
  }
 }
