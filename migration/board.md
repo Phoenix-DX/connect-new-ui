@@ -2,14 +2,14 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 260
+Complexity left on build rows not yet built: 210
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
 | AcceptPendingPolicies | `/UBTConnect/AcceptPendingPolicies` | 1 | 56 | lite | build | V1 · policy checker on 67 screens leads here; AcceptPolicies (write) mocked (user, 2026-10-14) | built | route-acceptpolicies |
 | Login | `/UBTConnect/Login` | 1 | 57 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | built | route-login |
 | PINRegister | `/UBTConnect/PINRegister` | 1 | 53 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | built | route-pinregister |
-| PINUnlock | `/UBTConnect/PINUnlock` | 1 | 50 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | review | route-pinunlock |
+| PINUnlock | `/UBTConnect/PINUnlock` | 1 | 50 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | built | route-pinunlock |
 | Splash | `/UBTConnect/Splash` | 1 | 18 | lite | build | V1 · D3(a) · build with mock sign-in + PIN; real B2C not migrated (user, 2026-10-14) | built | route-splash |
 | HomeFeed | `/UBTConnect/HomeFeed` | 2 | 139 | full | build | V2 · default screen · D8(b): Feed CMS iframe = same-size mock page, real URL pluggable later (Phase 4) (user, 2026-10-14) | built | route-homefeed |
 | FeedItemDetail | `/UBTConnect/FeedItemDetail` | 3 | 80 | lite | build | V4b · from MessageDetail (and ConnectShare); Feed CMS = mock (D8 b) (user, 2026-10-14) | built | route-feeditemdetail |

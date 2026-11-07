@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Bookmarks": {
+  "PINUnlock": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:41:15",
-   "shared": [],
-   "baseCommit": "f13c03f26f9935867fa6dfd72bce5cddac409819"
-  },
-  "PINUnlock": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T09:19:35",
+   "since": "2026-11-07T16:41:31",
    "shared": [],
    "baseCommit": "7dc96900350d1587244620f75cf39b78adc79f0b"
   },
@@ -361,16 +354,20 @@
    "finished": "2026-11-07T16:40:58"
   },
   "Bookmarks": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:45:06",
    "tokens": {
     "dev": 88970,
     "test": 34406,
     "docs": 45262
-   }
+   },
+   "commit": "7fd54a58",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:41:15"
   },
   "PINUnlock": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T09:13:03",
    "tokens": {
     "test": 26697,
@@ -617,6 +614,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:40:59"
+  },
+  "PINUnlock": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:41:15"
   }
  }
 }

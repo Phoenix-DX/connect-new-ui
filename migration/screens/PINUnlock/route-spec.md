@@ -76,6 +76,15 @@ The screen itself makes no call [PINUnlock.mvc.js:210 `dataFetchActionNames = []
   - transition/device classes of the loading/offline captures;
   - masked digits.
 
+## Changes 2026-11-07 (TST sync)
+- TST files changed: none for this route [migration/sync/drift-2026-11-07.json].
+- Fresh capture (2026-11-07, account global#1): the Terms & Conditions link is absent.
+  - The link renders only when the policies cache has a non-empty Terms and Conditions `policy_Url`.
+  - The account of the capture has none: this is account data, not a flag and not a wait.
+  - Evidence: `migration/sources/pretty/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js:584`; `migration/sync/decisions-2026-11-07.md` ("Q4 investigation").
+- React code: not changed [dev.md]. It still shows the link, as the capture of 2026-10-14.
+- The user chose to restore `analysis/` from commit `2fe9efaf` (decision Q4-old b). Parity is clean in default, loading and offline [test.md].
+
 ## Decisions to confirm
 - Q1 (user: B) applied:
   - The shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1 applied).
@@ -94,6 +103,7 @@ The screen itself makes no call [PINUnlock.mvc.js:210 `dataFetchActionNames = []
   - It is a replace navigation inside the SPA.
   - A same-origin href in LastURL becomes its path + search + hash (Splash stores the href).
 - Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README).
+- Sync 2026-11-07 (Q4-old b, user): the analysis of the capture of 2026-10-14 is restored. The Terms & Conditions link stays, because the fresh capture lacks it only through account data. Confirm.
 
 ## Change requests
 - CR-PINUnlock-1: shell PIN redirect also writes `UBTConnect.LastURL` (applied by the foundation owner, Q1)
