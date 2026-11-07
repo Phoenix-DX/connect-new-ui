@@ -1,4 +1,5 @@
 import type { EventCalendarFiltersAsText, TimelineLocalityFilter } from '@/api/event';
+import { OS_NULL_DATE } from '@/lib/osDateTime';
 import { addDays, addMonths, toOsDate } from './ldmMyEventsState';
 
 /* The state and the client actions of the timeline filter popup (Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters,
@@ -6,7 +7,7 @@ import { addDays, addMonths, toOsDate } from './ldmMyEventsState';
    call. Dates are OutSystems Dates as "YYYY-MM-DD" text. */
 
 /** NullDate() and the DateTime default of a Date attribute. */
-export const NULL_DATE = '1900-01-01';
+export const NULL_DATE = OS_NULL_DATE;
 
 /** The block variable AllLocalities: an EventLocalitiesFilter record with its defaults (Connect2_OrbitMobile_BL.model.js
     :1084-1090). No action assigns it: the "All Localities" choice of the list has this IdAsText. */

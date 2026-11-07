@@ -6,6 +6,7 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { useFlowState } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
+import { OS_NULL_DATE } from '@/lib/osDateTime';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import {
   canFetchOlderEvents,
@@ -186,7 +187,7 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
   async function onHandleResetFilters(resetFilters: EventCalendarFiltersAsText): Promise<void> {
     dispatch({ type: 'filtersReset', filters: resetFilters });
     await getMyTimelineData();
-    addAuditEventFilterEvent('MyTimelineClearFilter', { FromDate: '1900-01-01', ToDate: '1900-01-01', Localities: [] });
+    addAuditEventFilterEvent('MyTimelineClearFilter', { FromDate: OS_NULL_DATE, ToDate: OS_NULL_DATE, Localities: [] });
   }
 
   async function onHandleHouseholdClicked(click: HouseholdClick): Promise<void> {

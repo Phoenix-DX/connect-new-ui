@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Menu": {
-   "stage": "commit",
-   "loop": 0,
-   "since": "2026-11-07T16:35:00",
-   "shared": [],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
   "LDM_MyEvents_V2": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 1,
-   "since": "2026-11-07T09:26:02",
+   "since": "2026-11-07T16:35:17",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -250,16 +243,20 @@
    "finished": "2026-11-07T16:34:34"
   },
   "Menu": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 104178,
     "test": 57807,
     "docs": 36534
-   }
+   },
+   "commit": "30c8b29d",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:00"
   },
   "LDM_MyEvents_V2": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:55",
    "tokens": {
     "dev": 146735,
@@ -599,6 +596,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:34:44"
+  },
+  "LDM_MyEvents_V2": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:00"
   }
  }
 }

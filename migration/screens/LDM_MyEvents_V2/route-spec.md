@@ -137,3 +137,22 @@ Route files: `app/src/screens/LDM_MyEvents_V2/{index.tsx,types.ts,api.ts,mocks.t
 MyEvents_MyTimelineFilterButton, MyTimeline_V2, EventCard_V2, EventCard_Box, EventCard_Info_V2, EventCard_Guests,
 OverlappingImages, actions.ts). Shared mock module: `app/src/mocks/fictional/ldm.ts` (reused by LDM_EventDetail_V2 and
 LDM_Email_V2).
+
+## Changes 2026-11-07 (TST sync)
+
+TST file that changed (brief): `UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.mvc.js`. The diff shows no markup change in this block. The fresh capture of 2026-11-06 differs in the data of the timeline and in one call.
+
+- Fresh capture (`analysis/dom/default.html`, diff against 2fe9efaf): one more group of past events with 13 guests on two cards. The page has 19 guest photos (14 in the viewport; before 8). The "Allocation Pending" host text is replaced by masked host names.
+- Fresh capture (`analysis/calls.json`, ts 3585): `Connect2_LegacyShared/ActionGetAllApplicationEvents` twice at load. The chain is in `analysis/call-sites.md:24-25`: `HandleImageLoadError.applicationEvent_ImageError` → `zOnApplicationEvent_Wrapper` → `getAppEventName` → `cacheLocalApplicationEvents`. `migration/sources/runtime/Connect2_LegacyShared.controller@31dffc28.js` (about offset 150257) calls the server only when the local app-event cache is empty.
+- React code now: `pages/LDM_MyEvents_V2/mocks.ts` has `TIMELINE_MEALS` and `timelineGroups`, which give four month groups with guest lines 13/13/16/16 and the captured guest-household counts. The screen does not send `ActionGetAllApplicationEvents`.
+- Fix loop 1: `hooks/myTimelineFiltersState.ts` and `hooks/useLdmMyEvents.ts` use `OS_NULL_DATE` of `@/lib/osDateTime` (value "1900-01-01", same behaviour) instead of a literal. This clears two NO-WIRE-IN-COMPONENTS problems of `consistency_check`.
+- Evidence of the result: `test.md` (parity 0 in default, loading and offline; `consistency_check` OK; 74 tests pass).
+
+### Decisions to confirm
+
+- CALL-IMAGE-ERROR-APPEVENTS-LDM-MYEVENTS-V2 (rule added, user "ok all", 2026-11-07): the call `ActionGetAllApplicationEvents` x2 at load is an exempted artefact. It comes from the TST image-error chain. The screen does not call it, and the mock photos never fail. Same as CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL (`migration/parity-exemptions.json:1857`).
+- DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL (re-pinned to 1.0-1.99 %, user "ok all", 2026-11-07): the guest photos differ in 1.48-1.73 % of the pixels (`migration/parity-exemptions.json:1320-1329`; `parity/default.diff.png` shows only the photo stacks).
+- NO-WIRE fix 1: `NULL_DATE = OS_NULL_DATE` in `hooks/myTimelineFiltersState.ts` (same value, no behaviour change).
+- NO-WIRE fix 2: the MyTimelineClearFilter audit uses `OS_NULL_DATE` for FromDate and ToDate in `hooks/useLdmMyEvents.ts` (same value, no behaviour change).
+- Follow-up: the new timeline data lives in the page mocks (`pages/LDM_MyEvents_V2/mocks.ts`), not in `app/src/mocks/fictional/ldm.ts`. Guest counts and host status of the same meals now differ from LDM_EventDetail_V2 (for example meal 70415: 4 guests, "Allocation Pending" there). Merge both into `ldm.ts` with the LDM_EventDetail_V2 sync.
+- Note, production gap: React has no image-error chain of the shell (`HandleImageLoadError` → `getAppEventName` → `cacheLocalApplicationEvents`). A production build that must load the app-event cache after a failed image needs this chain.

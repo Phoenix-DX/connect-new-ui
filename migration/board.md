@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2134
+Complexity left on build rows not yet built: 2024
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -69,7 +69,7 @@ Complexity left on build rows not yet built: 2134
 | LDM_EventDetail | `/UBTConnect/LDM_EventDetail` |  | 95 |  | skip | V1 not needed: TST uses the V2 screens (GetHasNewLDM on); V1 is not built (user, 2026-10-16) | - |  |
 | LDM_EventDetail_V2 | `/UBTConnect/LDM_EventDetail_V2` |  | 95 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-eventdetail-v2 |
 | LDM_MyEvents | `/UBTConnect/LDM_MyEvents` |  | 111 |  | skip | V1 not needed: TST uses the V2 screens (GetHasNewLDM on); V1 is not built (user, 2026-10-16) | - |  |
-| LDM_MyEvents_V2 | `/UBTConnect/LDM_MyEvents_V2` |  | 110 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | review | route-ldm-myevents-v2 |
+| LDM_MyEvents_V2 | `/UBTConnect/LDM_MyEvents_V2` |  | 110 | full | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-myevents-v2 |
 | Map | `/UBTConnect/Map` |  | 185 |  | skip | V4a · skip:variant · entry icon in Locality_Details shown only if C2EnableMaps (TST=false); revisit when enabled (user, 2026-10-14) | - |  |
 | MilestoneDetail | `/UBTConnect/MilestoneDetail` |  | 107 | full | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-milestonedetail |
 | MyCalendar | `/UBTConnect/MyCalendar` |  | 85 |  | skip | V7 · skip:dead · replaced by MyEntertaining; revisit if a link to MyCalendar appears (user, 2026-10-14) | - |  |
