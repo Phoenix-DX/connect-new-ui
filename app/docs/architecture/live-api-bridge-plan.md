@@ -32,6 +32,14 @@ phases of the real integration (contract check and transport adapter), done befo
 | D5  | Real data on screen              | a) never stored (no fixture, no screenshot in git, no note) b) screenshots allowed in the scratchpad only         | a). The parity tool is not run against live data.                                           |
 | D6  | Where the contract mismatches go | a) `migration/knowledge/contract-conformance-<date>.md` + a question per mismatch b) fixed by an agent at once    | a): a mismatch can be a contract error, a mapper error or TST drift; the user decides each. |
 
+### 3.1 Decisions taken (user, 2026-11-07)
+
+- D1: TST ("D1: TST").
+- D3: a) the bridge reuses the storage state of the capture login ("D3: a)").
+- D5: a) real data is never stored ("D5: a)").
+- D6: a) mismatches go to a report and a question each ("D6: a").
+- D2 and D4: the user asked what "block all" means and what "per module" means; answered in the chat, decision open.
+
 ## 4. Phases
 
 | #   | Phase          | Output                                                                                                                                                                                                                                                                                                                 | Gate                                                                                                                      | Estimate                           |
