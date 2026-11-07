@@ -26,7 +26,7 @@ import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from './
 const SHARE = { In_ShareObjectTypeId: 'Update', In_ShareableObjectId: '1', In_UpdateType: '', In_UpdateDate: '' };
 
 const CASES: [id: string, hook: () => unknown][] = [
-  ['D4 FeedBlock_CommunityPopulation DataActionFetchCount', () => useCommunityPopulationQuery()],
+  ['D4 HomeFeed DataActionGetCommunityStatistics', () => useCommunityPopulationQuery('HomeFeed')],
   ['D5 Embedded_FeedCMS DataActionGetFeedConfig', () => useFeedConfigQuery({ FeedItemId: '', B2CTenant: 'tenant' })],
   [
     'D6 FeedBlock_Services DataActionGetServices',

@@ -21,9 +21,9 @@
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
   "ContactByEmailMember": {
-   "stage": "docs",
+   "stage": "review",
    "loop": 1,
-   "since": "2026-11-07T07:24:39",
+   "since": "2026-11-07T07:25:29",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -70,15 +70,35 @@
    "stage": "dev",
    "loop": 0,
    "since": "2026-11-07T07:21:11",
-   "shared": [],
+   "shared": [
+    "app/src/api/notification/**"
+   ],
    "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
   },
   "Profile": {
-   "stage": "dev",
+   "stage": "test",
    "loop": 0,
-   "since": "2026-11-07T07:21:11",
+   "since": "2026-11-07T07:32:26",
    "shared": [],
    "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
+  },
+  "BrowseCountries": {
+   "stage": "test",
+   "loop": 0,
+   "since": "2026-11-07T07:30:37",
+   "shared": [
+    "app/src/api/member/**"
+   ],
+   "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
+  },
+  "HomeFeed": {
+   "stage": "dev",
+   "loop": 0,
+   "since": "2026-11-07T07:30:38",
+   "shared": [
+    "app/src/components/feed/CommunityPopulation/**"
+   ],
+   "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
   }
  },
  "items": {
@@ -98,11 +118,12 @@
    }
   },
   "ContactByEmailMember": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 74082,
-    "test": 67790
+    "test": 67790,
+    "docs": 30155
    }
   },
   "OrbitAdminLanding": {
@@ -146,11 +167,28 @@
   "NotificationDetails": {
    "status": "active",
    "started": "2026-11-07T07:21:11",
-   "tokens": {}
+   "tokens": {
+    "dev": 125355
+   }
   },
   "Profile": {
    "status": "active",
    "started": "2026-11-07T07:21:11",
+   "tokens": {
+    "dev": 261206
+   }
+  },
+  "BrowseCountries": {
+   "status": "active",
+   "started": "2026-11-07T07:24:59",
+   "tokens": {
+    "dev": 89414,
+    "test": 36171
+   }
+  },
+  "HomeFeed": {
+   "status": "active",
+   "started": "2026-11-07T07:30:37",
    "tokens": {}
   }
  },

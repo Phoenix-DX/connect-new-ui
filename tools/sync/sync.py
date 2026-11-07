@@ -48,7 +48,8 @@ COMMON_ALLOW = ("migration/sync/**", "app/docs/**", "migration/route-check/**", 
                 "migration/screens/*/analysis/**", "migration/screens/*/parity/**", "migration/screens/*/capture/**",
                 "migration/screens/_capture-summary.json", "migration/survey/**", "migration/sources/**",
                 # the master's own files: the tools, the agents, the contract regenerated from the fresh captures
-                "tools/**", ".claude/**", "app/src/api/openapi.yaml", "app/src/api/schema.d.ts")
+                "tools/**", ".claude/**", "app/src/api/openapi.yaml", "app/src/api/schema.d.ts",
+                "migration/parity-exemptions.json", "app/src/platform/**")
 HANDOFF_TEMPLATE = Path(".claude/skills/tst-sync/references/handoff.md")
 AGENTS_MD = Path("migration/AGENTS.md")
 BRIEF_RULES = (3, 5, 9, 10, 11, 12, 13, 17, 21, 22, 23)
