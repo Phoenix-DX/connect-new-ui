@@ -9,7 +9,7 @@ import { useContactByEmailMemberSubmit } from './hooks/useContactByEmailMemberSu
 import { readContactByEmailMemberInputs } from './inputs';
 
 /** @origin UBTConnect.ContactFlow.ContactByEmailMember
-    The route of the member e-mail: Layout_DetailPage (title left, the title and colour of `config.ts`) with the shared
+    The route of the member e-mail: Layout_DetailPage (title centred, In_AlignTitleLeft False in TST 2026-11; the title and colour of `config.ts`) with the shared
     ContactEmailForm (the form inputs of `config.ts`, the props of the submit hook) whose Placeholder_ContactCard holds
     the person card (the member avatar, "<name> <surname>" and the locality line). Placeholder_CommonUI_Inside_Layout
     is empty: no CommonUI, so `useNoCommonUi()` (shell guide). The flows are in hooks/useContactByEmailMemberSubmit.ts. */
@@ -23,7 +23,7 @@ export default function ContactByEmailMember() {
   return (
     <DetailLayoutContainer
       id="$b1"
-      inAlignTitleLeft
+      inAlignTitleLeft={false}
       inIsPrimaryColor={config.isPrimaryColor}
       placeholderHeaderTitle={<span data-expression="">{config.title}</span>}
       content={

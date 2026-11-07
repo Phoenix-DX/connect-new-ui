@@ -95,8 +95,11 @@ describe('ContactByEmailMember (ContactByEmailMember.mvc.js)', () => {
   });
 
   it('renders the title, the form inputs and the contact card (view :299-596)', () => {
-    renderScreen(CAPTURE);
+    const { container } = renderScreen(CAPTURE);
     expect(screen.getByText('Contact Member')).toBeInTheDocument();
+    // Layout_DetailPage In_IsPrimaryColor True, In_AlignTitleLeft False (TST 2026-11 re-capture, :299-303).
+    expect(container.querySelector('#b1-LayoutWrapper_Detail')).toHaveClass('ubt-layout-detail--primary');
+    expect(screen.getByText('Contact Member').closest('.header-title')).toHaveClass('text-align-center');
     expect(screen.getByText('Test Member')).toBeInTheDocument();
     expect(screen.getByText('Test Locality, Test Country')).toBeInTheDocument();
     expect(spy.form).toMatchObject({

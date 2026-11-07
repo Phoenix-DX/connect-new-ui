@@ -6,17 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "LDM_EventDetail_V2": {
-   "stage": "commit",
-   "loop": 0,
-   "since": "2026-11-07T16:33:27",
-   "shared": [],
-   "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
-  },
   "ContactByEmailMember": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 1,
-   "since": "2026-11-07T07:25:29",
+   "since": "2026-11-07T16:33:44",
    "shared": [],
    "baseCommit": "343a04aa1ad3e633274ebce518fc1351f1b71900"
   },
@@ -224,16 +217,20 @@
    "finished": "2026-11-07T16:33:08"
   },
   "LDM_EventDetail_V2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:12:53",
    "tokens": {
     "dev": 72534,
     "test": 28083,
     "docs": 34460
-   }
+   },
+   "commit": "836a31b2",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:33:28"
   },
   "ContactByEmailMember": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:12:54",
    "tokens": {
     "dev": 74082,
@@ -593,6 +590,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:33:08"
+  },
+  "ContactByEmailMember": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:33:28"
   }
  }
 }

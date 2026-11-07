@@ -1,0 +1,63 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/ContactByEmailMember?In_AvatarURL=&In_ContactName=Test&In_ContactSurname=Member&In_ContactLocality=Test%20Locality&In_ContactCountry=Test%20Country&In_EmailTo=member%40example.test&In_IsHousehold=False&mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "ae9c0bc7fd00db9ccd72",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "visibleOnly": false,
+  "full": true,
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 126,
+  "texts": 11,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-11-07T09:33:32.790Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 328289,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [],
+  "diffPng": "migration/screens/ContactByEmailMember/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 4,
+  "actual": 7
+ },
+ "diffs": []
+}

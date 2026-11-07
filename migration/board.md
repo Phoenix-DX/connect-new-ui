@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2544
+Complexity left on build rows not yet built: 2513
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@ Complexity left on build rows not yet built: 2544
 | Photobook | `/UBTConnect/Photobook` | 4 | 74 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-photobook |
 | SupperMeeting_Carousel | `/UBTConnect/SupperMeeting_Carousel` | 4 | 155 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | review | route-suppermeeting-carousel |
 | SupperMeeting_Details | `/UBTConnect/SupperMeeting_Details` | 4 | 127 | full | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-suppermeeting-details |
-| ContactByEmailMember | `/UBTConnect/ContactByEmailMember` | 5 | 31 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | review | route-contactbyemailmember |
+| ContactByEmailMember | `/UBTConnect/ContactByEmailMember` | 5 | 31 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactbyemailmember |
 | ContactByEmailOneSchoolGlobal | `/UBTConnect/ContactByEmailOneSchoolGlobal` | 5 | 25 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactbyemailoneschoolglobal |
 | ContactUsDetails | `/UBTConnect/ContactUsDetails` | 5 | 77 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactusdetails |
 | ContactUsMenu | `/UBTConnect/ContactUsMenu` | 5 | 56 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-contactusmenu |

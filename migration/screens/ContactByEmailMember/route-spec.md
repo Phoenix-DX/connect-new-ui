@@ -13,7 +13,7 @@ Source abbreviations: `mvc.js` = `migration/sources/pretty/UBTConnect.ContactFlo
 
 ## Specification
 ### Structure
-- Layout_DetailPage `$b1` (In_AlignTitleLeft True, In_IsPrimaryColor False) [mvc.js:299-303].
+- Layout_DetailPage `$b1` (In_AlignTitleLeft False, In_IsPrimaryColor True; TST changed both, re-capture 2026-11-06: `ubt-layout-detail--primary`, `text-align-center`) [mvc.js:299-303].
 - The title is a `<span data-expression>` with the value If(In_IsHousehold, "Contact the " + In_HouseholdHeaderName + " household", "Contact Member") [mvc.js:319-321; dom/default.html header].
 - Content: shared ContactByEmailForm `$b2` (In_MessagePlaceholder "Add a message", In_SubjectPlaceholder "Add a subject", IsLoading) [mvc.js:338-343].
 - The screen builds the Placeholder_ContactCard of the form [mvc.js:381-596; dom/default.html:43-136]. It contains:
@@ -66,7 +66,17 @@ No data action [mvc.js:640].
 - ContactFlow flow handleError; `UBTConnect.ContactFlow.controller.js` not local → Q3 (fact, answered by code, 2026-10-15; built as raiseToFlowHandler; the fetched controller matches the build) [questions.md Q3]
 - Remaining parity difference is the shared form's text area rows → Q4 (decision, answered 2026-10-15: not the recommended A. CR-ContactByEmailMember-2 is rejected. The difference is a capture artifact, exempted by CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL*) [questions.md Q4]
 
+## Changes 2026-11-07 (TST sync)
+- TST file changed: `UBTConnect.ContactFlow.ContactByEmailMember.mvc.js` (brief; drift report 2026-11-07).
+- Fresh capture: `#b1-LayoutWrapper_Detail` has the class `ubt-layout-detail--primary`; `#b1-Placeholder_Header_Title` has `text-align-center` (before: `text-align-left`) [analysis/dom/default.html, loading.html, offline.html].
+- Compiled code: Layout_DetailPage gets In_AlignTitleLeft False and In_IsPrimaryColor True [mvc.js:299-303].
+- React now: the page passes `inAlignTitleLeft={false}` [ContactByEmailMemberPage.tsx]; `config.ts` sets `isPrimaryColor: true`.
+- Calls: no change. Only the timestamps of `analysis/calls.json` moved (dev.md).
+- Parity after the change: 0 differences in default, loading and offline (test.md).
+- `inputs.ts` reads the null date with `osDate()` from `@/lib/os-wire`; output is the same for every input (dev.md, fix loop 1).
+
 ## Decisions to confirm
+- TST sync 2026-11-07: the page layout is now primary and the title is centred. The fresh capture and mvc.js:299-303 show this (before: not primary, title left).
 - Q1 → A (answered by the user, 2026-10-15) [questions.md Q1]: Send built from the compiled code; SendContactMemberEmail mocked in `mocks.ts` with collection `ContactByEmailMember.sentEmails`, empty output; never the real server.
 - Q2 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q2]: OnApplicationEvent_EmailHost and AddAuditEventDetailEvent write a log entry only; the EmailHost branch ends without message or navigation and leaves IsLoading True, as compiled.
 - Q3 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q3]: errors of Send go to `raiseToFlowHandler` (App_Common behaviour).

@@ -124,5 +124,63 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-15T23:37:28"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: TST sync 2026-11-07: the page layout is now primary and the title is centred. The fresh capture and mvc.js:299-303 show this (before: not primary, title left).; Q1 → A (answered by the user, 2026-10-15) [questions.md Q1]: Send built from the compiled code; SendContactMemberEmail mocked in `mocks.ts` with collection `ContactByEmailMember.sentEmails`, empty output; never the real server.; Q2 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q2]: OnApplicationEvent_EmailHost and AddAuditEventDetailEvent write a log entry only; the EmailHost branch ends without message or navigation and leaves IsLoading True, as compiled.; Q3 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q3]: errors of Send go to `raiseToFlowHandler` (App_Common behaviour).; Q4 (answered 2026-10-15, not the recommended A) [questions.md Q4]: CR-ContactByEmailMember-2 is rejected. The shared form keeps `rows`. The remaining difference is a capture artifact, exempted by CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL*.; zOnApplicationEvent_Wrapper goes to the log (decision U17, no telemetry in the mock phase); the e-mail and sender name are not logged (privacy).; In_LDMEventDate: \"\" or 1900-01-01 counts as NullDate (OutSystems null date) (`api.ts`).",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T07:25:42",
+  "items": [
+   "TST sync 2026-11-07: the page layout is now primary and the title is centred. The fresh capture and mvc.js:299-303 show this (before: not primary, title left).",
+   "Q1 → A (answered by the user, 2026-10-15) [questions.md Q1]: Send built from the compiled code; SendContactMemberEmail mocked in `mocks.ts` with collection `ContactByEmailMember.sentEmails`, empty output; never the real server.",
+   "Q2 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q2]: OnApplicationEvent_EmailHost and AddAuditEventDetailEvent write a log entry only; the EmailHost branch ends without message or navigation and leaves IsLoading True, as compiled.",
+   "Q3 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q3]: errors of Send go to `raiseToFlowHandler` (App_Common behaviour).",
+   "Q4 (answered 2026-10-15, not the recommended A) [questions.md Q4]: CR-ContactByEmailMember-2 is rejected. The shared form keeps `rows`. The remaining difference is a capture artifact, exempted by CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL*.",
+   "zOnApplicationEvent_Wrapper goes to the log (decision U17, no telemetry in the mock phase); the e-mail and sender name are not logged (privacy).",
+   "In_LDMEventDate: \"\" or 1900-01-01 counts as NullDate (OutSystems null date) (`api.ts`)."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:33:41"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: TST sync 2026-11-07: the page layout is now primary and the title is centred. The fresh capture and mvc.js:299-303 show this (before: not primary, title left).; Q1 → A (answered by the user, 2026-10-15) [questions.md Q1]: Send built from the compiled code; SendContactMemberEmail mocked in `mocks.ts` with collection `ContactByEmailMember.sentEmails`, empty output; never the real server.; Q2 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q2]: OnApplicationEvent_EmailHost and AddAuditEventDetailEvent write a log entry only; the EmailHost branch ends without message or navigation and leaves IsLoading True, as compiled.; Q3 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q3]: errors of Send go to `raiseToFlowHandler` (App_Common behaviour).; Q4 (answered 2026-10-15, not the recommended A) [questions.md Q4]: CR-ContactByEmailMember-2 is rejected. The shared form keeps `rows`. The remaining difference is a capture artifact, exempted by CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL*.; zOnApplicationEvent_Wrapper goes to the log (decision U17, no telemetry in the mock phase); the e-mail and sender name are not logged (privacy).; In_LDMEventDate: \"\" or 1900-01-01 counts as NullDate (OutSystems null date) (`api.ts`).",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:33:41",
+  "items": [
+   "TST sync 2026-11-07: the page layout is now primary and the title is centred. The fresh capture and mvc.js:299-303 show this (before: not primary, title left).",
+   "Q1 → A (answered by the user, 2026-10-15) [questions.md Q1]: Send built from the compiled code; SendContactMemberEmail mocked in `mocks.ts` with collection `ContactByEmailMember.sentEmails`, empty output; never the real server.",
+   "Q2 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q2]: OnApplicationEvent_EmailHost and AddAuditEventDetailEvent write a log entry only; the EmailHost branch ends without message or navigation and leaves IsLoading True, as compiled.",
+   "Q3 (fact, answered by code, 2026-10-15; the build matches) [questions.md Q3]: errors of Send go to `raiseToFlowHandler` (App_Common behaviour).",
+   "Q4 (answered 2026-10-15, not the recommended A) [questions.md Q4]: CR-ContactByEmailMember-2 is rejected. The shared form keeps `rows`. The remaining difference is a capture artifact, exempted by CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL*.",
+   "zOnApplicationEvent_Wrapper goes to the log (decision U17, no telemetry in the mock phase); the e-mail and sender name are not logged (privacy).",
+   "In_LDMEventDate: \"\" or 1900-01-01 counts as NullDate (OutSystems null date) (`api.ts`)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:33:42"
  }
 ]
