@@ -6,6 +6,7 @@ import {
   getSkeletonList_UI_CountryStatistics,
   INITIAL_COUNTRY_LIST_STATE,
   longIntegerTextOf,
+  NO_COMMUNITY_STATISTICS,
   NO_USER_GEOGRAPHY,
   userGeographyOf,
 } from './countryListState';
@@ -13,6 +14,7 @@ import {
 describe('countryListState', () => {
   it('starts with no country, nothing fetched, no user and no sheet id', () => {
     expect(INITIAL_COUNTRY_LIST_STATE).toEqual({
+      communityStatistics: NO_COMMUNITY_STATISTICS,
       countries: [],
       fetchStatus: 'notFetched',
       isDataFetched: false,

@@ -1,4 +1,5 @@
-import { fetchCountryListCommunityStatistics, fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
+import { fetchCommunityStatistics } from '@/api/member';
 import {
   exceptionMessage,
   isCommunicationException,
@@ -33,8 +34,6 @@ export interface CountryListFlows {
   onMyLocalityClicked: () => void;
   /** OnClick_MyCountry: the "MY COUNTRY" card. */
   onMyCountryClicked: () => void;
-  /** OnClick_Block of FeedBlock_CommunityPopulation. */
-  onCommunityPopulationClicked: () => void;
   /** OnClick_LegendInfo: the info icon of "Browse by Country". */
   onLegendInfoClicked: () => void;
   /** Handler_StatisticsList_Clicked(Event_Id): a country row, with its country code. */
@@ -47,8 +46,9 @@ export interface CountryListFlows {
 
 /** The flows of the screen CountryList (the screen controller).
     - OnReady: a back navigation that the view cache restored with the data fetched does nothing; otherwise
-      JavaScript1 starts Action_RefreshData_CommunityStatistics (GetCommunityStatistics, not awaited, no widget reads
-      it; live TST of 2026-10-27), then Action_RefreshData. Both data actions are refresh-only.
+      JavaScript1 starts Action_RefreshData_CommunityStatistics (GetCommunityStatistics, not awaited; its answer is the
+      data of Directory_CommunityNumbers; fresh TST capture of 2026-11-07), then Action_RefreshData. Both data actions
+      are refresh-only.
     - Action_RefreshData: 10 skeleton rows, the refresh of GetCountriesStatistics, then
       OnAfterFetch_GetCountriesStatistics (every row's AvatarURL = GetFlagURLByCountryCode(CountryCode)). The exception
       handlers clear the list and bubble the error up (BubbleCommunicationException, BubbleGenericException);
@@ -106,14 +106,17 @@ export function useCountryList(): CountryListFlows {
     }
   };
 
-  /** Action_RefreshData_CommunityStatistics: the refresh of GetCommunityStatistics (R1). No widget reads the answer. */
+  /** Action_RefreshData_CommunityStatistics: the refresh of GetCommunityStatistics (R1, CountryList.mvc.js:1186-1208,
+      1683-1700). The answer and IsDataFetched go to the screen data action that Directory_CommunityNumbers reads; a
+      failure leaves it not fetched (the block stays in its skeleton). */
   const refreshCommunityStatistics = async () => {
-    await flow.fetch(fetchCountryListCommunityStatistics());
+    const out = await flow.fetch(fetchCommunityStatistics('CountryList'));
+    set({ communityStatistics: { isDataFetched: true, out } });
   };
 
-  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. JavaScript1 (live TST of 2026-10-27,
-      CountryList.mvc.js:1312-1318, 1831-1835) calls Action_RefreshData_CommunityStatistics and does not wait for it:
-      its error goes to the flow handler on its own (`flow.run`). */
+  /** ScreenEvent_OnReady. useFlowState sends a rejection to the flow handler. JavaScript1 (fresh TST capture of
+      2026-11-07, CountryList.mvc.js:1300-1316, 1819-1823) calls Action_RefreshData_CommunityStatistics and does not
+      wait for it: its error goes to the flow handler on its own (`flow.run`). */
   const onReady = async (restored: boolean) => {
     if (restored && latest.current.isDataFetched) return;
     flow.run(refreshCommunityStatistics);
@@ -143,9 +146,6 @@ export function useCountryList(): CountryListFlows {
     },
     onMyCountryClicked: () => {
       navigate(`/${APP_ID}/CountryDetails`, { CountryCode: state.user.countryCode });
-    },
-    onCommunityPopulationClicked: () => {
-      navigate(`/${APP_ID}/Updates_SingleList`);
     },
     onLegendInfoClicked: () => {
       bottomSheetOpen(latest.current.bottomSheetId);

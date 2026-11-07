@@ -34,7 +34,7 @@ Layout_MainPages (AddHeaderGap False, isGrayBackground True) [CountryList.mvc.js
 | Call | Kind | Trigger (call-sites root) | Inputs | Outputs used | Server side (MCP / cache) | Mock scenarios |
 |---|---|---|---|---|---|---|
 | `UBTConnect/CountryList/DataActionGetCountriesStatistics` | data action, refresh only [ctrl :1139-1179] | OnReady → Action_RefreshData [call-sites.md] | none (screen variables only, calls.json inputNames null) | Out_CountriesStatistics (CountryCode, Statistics.Title, Statistics.AvatarURL, UI_TypedStatisticsTexts) | read-only aggregate statistics | recorded fixture `UBTConnect/DataActionGetCountriesStatistics/02-93a3ea9f.json` (17 countries, no person data); `empty`, `error`, `loading` (never answers) |
-| `FeedBlock_CommunityPopulation/DataActionFetchCount` | shared block | block fetch at start | none | shared | shared | shared mock |
+| `UBTConnect/CountryList/DataActionGetCommunityStatistics` | data action, refresh only (fresh TST capture of 2026-11-07; replaces `FeedBlock_CommunityPopulation/DataActionFetchCount`) | OnReady → JavaScript1 → Action_RefreshData_CommunityStatistics, not awaited [CountryList.mvc.js:1280-1316, 1683-1700] | none | Out_CommunityStatistics → Directory_CommunityNumbers $b18 (In_IsLoading = not IsDataFetched) | read-only aggregate statistics | not recorded: fictional counts with the captured lengths (`pages/CountryList/mocks.ts`); `error`, `loading` |
 | `CacheControl_UserInfo/DataActionGetCacheInfo` | shell/shared block | CacheControl OnInitialize | shared | Directory_UserCurrent (Result) | shell mock user | shell mock |
 
 ### Behaviour
@@ -91,6 +91,15 @@ ExtendedClass "country-flag" [view :572-593]; locality card image: EntityType Lo
 - Loading state: the TST capture held requests until the OutSystems timeout (list-error, no skeleton).
   The mock loading scenario never answers, so the build shows the 10 skeleton rows (capture timing artifact).
   Exemptions CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYLIST and -SHEET proposed (Q2 → A, answered, auto-accepted 2026-10-15 [questions.md Q2]; entries in proposed-exemptions.json).
+
+## Changes 2026-11-07 (TST sync)
+- TST files that changed: `UBTConnect.Directory_Locality.CountryList.mvc.js` and `UBTConnect_Utils.CacheControl.CacheControl_UserInfo.mvc.js` (brief.md). CacheControl_UserInfo has no logic change (the live and old copies are the same after formatting).
+- Directory_CommunityNumbers (CustomContainer `$b17`, MarginSize.TopSizeId Base, no events) replaces the "Population" container and FeedBlock_CommunityPopulation (its click to Updates_SingleList is gone). The block reads GetCommunityStatistics of the screen. Evidence: `analysis/dom/default.html`, `loading.html`, `offline.html`; CountryList.mvc.js:744-790.
+- Calls: DataActionFetchCount is gone; DataActionGetCommunityStatistics stays (`analysis/calls.json`).
+- The fresh capture shows country counts one lower than the recording: Saint Vincent 73 members and 36 sisters, Trinidad 73 members and 37 sisters, United States 28 localities (`analysis/dom/default.html`). The React mock serves the recorded fixture with these counts (`app/src/pages/CountryList/mocks.ts`). The fixture is not edited.
+
+## Decisions to confirm (TST sync)
+- The mock patches the counts on top of the recorded fixture of DataActionGetCountriesStatistics, because a fixture is never edited (the same patch as BrowseCountries). Confirm that this is acceptable until the fixture is recorded again.
 
 ## Change requests
 - none

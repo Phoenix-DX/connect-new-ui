@@ -63,6 +63,22 @@ afterEach(() => {
 });
 
 describe('CountryList page', () => {
+  it('OnReady calls GetCommunityStatistics of CountryList once and Directory_CommunityNumbers shows it (no FetchCount)', async () => {
+    renderRoutes(routes, PATH);
+    const numbers = () => document.getElementById('$b18');
+    expect(numbers()?.querySelector('.ubt-skeleton-section')).not.toBeNull();
+    await waitFor(() => {
+      expect(numbers()?.querySelector('.ubt-skeleton-section')).toBeNull();
+    });
+    await listLoaded();
+    // The fictional counts of components/feed/CommunityPopulation/mocks.ts.
+    expect(numbers()?.textContent).toContain('48,215');
+    expect(numbers()?.textContent).toContain('+6');
+    expect(numbers()?.textContent).toContain('Countries');
+    expect(calledActions().filter((a) => a === 'CountryList/DataActionGetCommunityStatistics')).toHaveLength(1);
+    expect(calledActions()).not.toContain('FeedBlock_CommunityPopulation/DataActionFetchCount');
+  });
+
   it('OnReady: GetCountriesStatistics once; the cards show the user geography and the list the countries', async () => {
     renderRoutes(routes, PATH);
     expect(list()?.className).toBe('list list-group list-loading OSFillParent');

@@ -1,11 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { http, HttpResponse } from 'msw';
+import { server } from '@/test/setup';
 import { ORBIT_MEMBERS } from '@/mocks/fictional/orbit';
 import { orbitAdminMember } from '@/mocks/fictional/orbitAdmin';
 import { collection } from '@/mocks/store';
 import {
   editMemberDetails,
   fetchAvailableMembers,
-  fetchCommunityPopulation,
+  fetchCommunityStatistics,
   fetchMember,
   requestPhotoUpdate,
 } from './repository';
@@ -14,8 +16,20 @@ import type { AvailableMembersCallInputs, MemberAccountForm } from './types';
 
 /* The MSW mocks of the test setup: ShareSheet/mocks.ts (six fictional members, filtered by the search term),
    OrbitAdminEventDetail/mocks.ts (the members that an admin can scan), Profile/mocks.ts (the save is kept in the
-   collection Profile.editRequests), Menu/mocks.ts (the answer to the photo update request) and
-   CommunityPopulation/mocks.ts (the recorded member count). */
+   collection Profile.editRequests) and Menu/mocks.ts (the answer to the photo update request). The community
+   statistics are answered by the test itself, with its own counts (the page mocks of HomeFeed and CountryList have
+   other fictional counts). */
+const COMMUNITY_STATISTICS = {
+  In_Change: 12,
+  In_CountriesCount: 17,
+  In_HouseholdCount: 18640,
+  In_LocalitiesCount: 412,
+  In_MembersCount: 54460,
+};
+const communityStatisticsHandler = (owner: 'HomeFeed' | 'CountryList') =>
+  http.post(`/api/UBTConnect/${owner}/DataActionGetCommunityStatistics`, () =>
+    HttpResponse.json({ data: { Out_CommunityStatistics: COMMUNITY_STATISTICS } }),
+  );
 const searchInputs: AvailableMembersCallInputs = {
   In_ShareObjectTypeId: 'Household',
   In_ShareableObjectId: '7001',
@@ -92,17 +106,29 @@ describe('member repository', () => {
     expect(member.FirstName).not.toBe('');
   });
 
-  it('fetchCommunityPopulation calls DataActionFetchCount of FeedBlock_CommunityPopulation and answers the count', async () => {
-    const total = await fetchCommunityPopulation();
+  it('fetchCommunityStatistics calls DataActionGetCommunityStatistics of the owner screen with no input', async () => {
+    server.use(communityStatisticsHandler('HomeFeed'), communityStatisticsHandler('CountryList'));
+    expect((await fetchCommunityStatistics('HomeFeed')).In_MembersCount).toBe(54460);
+    expect((await fetchCommunityStatistics('CountryList')).In_MembersCount).toBe(54460);
     expect(window.__osCalls).toEqual([
       expect.objectContaining({
         module: 'UBTConnect',
-        owner: 'FeedBlock_CommunityPopulation',
-        action: 'DataActionFetchCount',
+        owner: 'HomeFeed',
+        action: 'DataActionGetCommunityStatistics',
+        inputNames: [],
+      }),
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'CountryList',
+        action: 'DataActionGetCommunityStatistics',
         inputNames: [],
       }),
     ]);
-    expect(total).toBe('54461'); // the recorded aggregate count (no person data)
+  });
+
+  it('fetchCommunityStatistics maps Out_CommunityStatistics', async () => {
+    server.use(communityStatisticsHandler('HomeFeed'));
+    expect(await fetchCommunityStatistics('HomeFeed')).toEqual(COMMUNITY_STATISTICS);
   });
 
   it('editMemberDetails calls Member_EditDetails_Service with the form as it is', async () => {

@@ -91,19 +91,6 @@
    ],
    "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
   },
-  "HomeFeed": {
-   "stage": "commit",
-   "loop": 0,
-   "since": "2026-11-07T16:32:15",
-   "shared": [
-    "app/src/components/feed/CommunityPopulation/**",
-    "app/src/components/ui/IconSvg/**",
-    "app/src/lib/os-assets.manifest.json",
-    "app/src/lib/ubtConnectLibrary/staticEntities.ts",
-    "app/src/mocks/modules/UBTConnect/Directory_Updates/**"
-   ],
-   "baseCommit": "29b9ab9150a2b9c42239716a69ea7326b7125fee"
-  },
   "AssembleEvents": {
    "stage": "review",
    "loop": 0,
@@ -154,9 +141,9 @@
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "CountryList": {
-   "stage": "review",
+   "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T08:33:19",
+   "since": "2026-11-07T16:32:40",
    "shared": [
     "app/src/api/country/**",
     "app/src/api/member/**",
@@ -341,13 +328,17 @@
    }
   },
   "HomeFeed": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:30:37",
    "tokens": {
     "dev": 238268,
     "test": 34661,
     "docs": 45570
-   }
+   },
+   "commit": "be210823",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:32:15"
   },
   "AssembleEvents": {
    "status": "waiting_user",
@@ -404,7 +395,7 @@
    }
   },
   "CountryList": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T08:04:45",
    "tokens": {
     "dev": 183128,
@@ -597,6 +588,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:31:55"
+  },
+  "CountryList": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:32:23"
   }
  }
 }

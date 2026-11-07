@@ -1,6 +1,13 @@
 import { callAction } from '@/api/client/callAction';
-import { toEditMemberDetailsInputs, toMember, toMemberSearchResults } from './mapper';
-import type { AvailableMembersCallInputs, Member, MemberAccountForm, MemberSearchResult } from './types';
+import { toCommunityStatistics, toEditMemberDetailsInputs, toMember, toMemberSearchResults } from './mapper';
+import type {
+  AvailableMembersCallInputs,
+  CommunityStatistics,
+  CommunityStatisticsOwner,
+  Member,
+  MemberAccountForm,
+  MemberSearchResult,
+} from './types';
 
 /* The member calls, with their OutSystems names. Each caller decides when it calls: none of them runs at a screen
    start on its own. */
@@ -19,11 +26,12 @@ export async function fetchMember(memberId: string): Promise<Member> {
   return toMember(await callAction('Connect2_OrbitMobile_MUI', 'ActionGetMemberByMemberId', { MemberId: memberId }));
 }
 
-/** DataActionFetchCount of FeedBlock_CommunityPopulation (UBTConnect): the number of members of the community
-    (UI_MembersStatistics.TotalNumberOfMembers, a Long Integer as text). No screen variables. */
-export async function fetchCommunityPopulation(): Promise<string> {
-  const out = await callAction('UBTConnect', 'FeedBlock_CommunityPopulation/DataActionFetchCount', {});
-  return out.UI_MembersStatistics.TotalNumberOfMembers;
+/** DataActionGetCommunityStatistics of HomeFeed or CountryList (UBTConnect, fresh capture of 2026-11-07): the community
+    counts. The screen defines the action, so the caller names it. No screen variables. */
+export async function fetchCommunityStatistics(owner: CommunityStatisticsOwner): Promise<CommunityStatistics> {
+  const path =
+    owner === 'HomeFeed' ? 'HomeFeed/DataActionGetCommunityStatistics' : 'CountryList/DataActionGetCommunityStatistics';
+  return toCommunityStatistics(await callAction('UBTConnect', path, {}));
 }
 
 /** Member_EditDetails_Service (service action of UBTConnect): saves the account form of the Profile screen. No

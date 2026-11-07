@@ -1,6 +1,5 @@
 export {
   useAvailableMembersQuery,
-  useCommunityPopulationQuery,
   useEditMemberDetailsMutation,
   useMemberQuery,
   type EditMemberDetailsVariables,
@@ -10,7 +9,7 @@ export { memberCache, memberKeys } from './keys';
 export {
   editMemberDetails,
   fetchAvailableMembers,
-  fetchCommunityPopulation,
+  fetchCommunityStatistics,
   fetchMember,
   requestPhotoUpdate,
 } from './repository';
