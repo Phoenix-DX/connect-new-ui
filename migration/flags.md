@@ -72,7 +72,7 @@ Scanned: 2026-11-06T10:04:27
 | `action:toggle_IsShowList` (gone) (candidate) | flag check action | LDM_MyEvents, LDM_MyEvents_V2 | ldm_myevents | open | - | **open** |
 | `launchDarkly_FF.mobileAssemble` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileDirectoryListVirtualization` | static entity record |  | - | open | - | **open** |
-| `launchDarkly_FF.mobileDirectoryLocalityContacts` | static entity record | Locality_Details | - | open | - | **open** |
+| `launchDarkly_FF.mobileDirectoryLocalityContacts` | static entity record | Locality_Details | - | unavailable | - | **open** |
 | `launchDarkly_FF.mobileDirectoryUpdateFeedDeceasedProfile` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileHasHiddenMembersAccess` | static entity record |  | - | open | - | **open** |
 | `launchDarkly_FF.mobileHouseholdAncestry4thGen` | static entity record |  | - | open | - | **open** |

@@ -1026,11 +1026,11 @@
    "candidate": false,
    "variantGroups": [],
    "mcp": {
-    "status": "open",
+    "status": "unavailable",
     "answer": "",
     "values": "",
-    "source": "",
-    "at": null
+    "source": "LaunchDarkly flag, not an OutSystems element: no MCP answer; TST value true from the read-only probe tools/tst/flag_probe.cjs (2026-11-07); gates the locality-contacts branch of Locality_Details (Locality_Details.mvc.js:993-1004)",
+    "at": "2026-11-07T08:41:56"
    },
    "decision": {
     "status": "open",

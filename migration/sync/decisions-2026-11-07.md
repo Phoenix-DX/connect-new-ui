@@ -34,3 +34,8 @@ routes did not change); c) re-capture with data: OrbitLanding through the "Past 
 has the popup-filters step) or with an account that has an upcoming event (the sweep of the accounts is running);
 PINUnlock with an account that has a Terms & Conditions policy; LegacyShareObject with the account of October (unknown).
 Recommendation: **b** for PINUnlock and LegacyShareObject (high), **c then b** for OrbitLanding (medium).
+
+Q4 result for OrbitLanding (Fable, 2026-11-07, option c applied as recommended): a fresh sign-in of account global#2
+(the account sweep shows its Orbit event card) followed at once by the capture gives one `Orbit_Blocks.Card_Event`;
+`route.py parity OrbitLanding` is clean in all six states with no code change. The item is at review. PINUnlock and
+LegacyShareObject still wait for the user's answer (recommended b: restore the analysis from commit `2fe9efaf`).

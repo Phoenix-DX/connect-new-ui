@@ -128,9 +128,9 @@
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "Locality_Details": {
-   "stage": "docs",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T08:28:39",
+   "since": "2026-11-07T08:30:41",
    "shared": [
     "app/src/components/ui/HorizontalTagList/**"
    ],
@@ -154,9 +154,9 @@
    "baseCommit": "34398169a33efbc2f6c4eff40e427154e7d47c29"
   },
   "CountryList": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T08:28:39",
+   "since": "2026-11-07T08:33:19",
    "shared": [
     "app/src/api/country/**",
     "app/src/api/member/**",
@@ -193,9 +193,9 @@
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   },
   "OrbitLanding": {
-   "stage": "test",
+   "stage": "review",
    "loop": 0,
-   "since": "2026-11-07T08:30:02",
+   "since": "2026-11-07T08:33:07",
    "shared": [],
    "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
   }
@@ -331,11 +331,12 @@
    }
   },
   "Locality_Details": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T07:59:00",
    "tokens": {
     "dev": 233109,
-    "test": 34354
+    "test": 34354,
+    "docs": 39395
    }
   },
   "OneSchoolGlobalDetails": {
@@ -357,17 +358,19 @@
    }
   },
   "CountryList": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T08:04:45",
    "tokens": {
-    "dev": 183128
+    "dev": 183128,
+    "test": 36113,
+    "docs": 28294
    }
   },
   "Notifications": {
    "status": "active",
    "started": "2026-11-07T08:10:10",
    "tokens": {
-    "dev": 334076
+    "dev": 406213
    }
   },
   "Search": {
@@ -385,9 +388,12 @@
    "tokens": {}
   },
   "OrbitLanding": {
-   "status": "active",
+   "status": "waiting_user",
    "started": "2026-11-07T08:30:02",
-   "tokens": {}
+   "tokens": {
+    "test": 26287,
+    "docs": 30510
+   }
   }
  },
  "questions": [
@@ -425,6 +431,20 @@
    "text": "Live TST calls DataActionGet_SibllingsRelations (not in the contract) instead of DataActionGet_ParentHouseholdDetails; and maps AwayParents, NoDisplaySiblings, Description. a: regenerate the contract from the live module files (contract_gen.py), grant app/src/api/household/** and port the three parts (two branches without a capture get fictional data + a Decisions line) / b: keep the old call as known drift",
    "status": "open",
    "at": "2026-11-07T07:21:11"
+  },
+  {
+   "id": "Q6",
+   "item": "Notifications",
+   "text": "New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open",
+   "status": "open",
+   "at": "2026-11-07T08:38:03"
+  },
+  {
+   "id": "Q7",
+   "item": "Locality_Details",
+   "text": "Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other",
+   "status": "open",
+   "at": "2026-11-07T08:41:57"
   }
  ],
  "confirms": {}

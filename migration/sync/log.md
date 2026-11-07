@@ -150,3 +150,13 @@ One line per event. Written by sync.py.
 - 2026-11-07T08:30:02 OrbitLanding brief written (loop 0)
 - 2026-11-07T08:30:02 OrbitLanding stage dev
 - 2026-11-07T08:30:02 OrbitLanding stage test
+- 2026-11-07T08:30:40 Locality_Details stage spec
+- 2026-11-07T08:30:41 Locality_Details stage review
+- 2026-11-07T08:31:53 OrbitLanding stage docs
+- 2026-11-07T08:31:54 CountryList stage docs
+- 2026-11-07T08:33:06 OrbitLanding stage spec
+- 2026-11-07T08:33:07 OrbitLanding stage review
+- 2026-11-07T08:33:18 CountryList stage spec
+- 2026-11-07T08:33:19 CountryList stage review
+- 2026-11-07T08:38:03 Q6 (Notifications) asked: New exemption CAPTURE-MASKED-IMAGE-NOTIFICATIONS: 12 rows with a masked sender photo (52x57 build vs 52x52 reference: layout 125, position 45, pixel 3.97 pct in default), same artefact as the accepted CAPTURE-MASKED-IMAGE-* rules. a: add (master) / b: re-capture with photos kept / c: leave open
+- 2026-11-07T08:41:57 Q7 (Locality_Details) asked: Flag launchDarkly_FF.mobileDirectoryLocalityContacts (new in the route, TST probe 2026-11-07 = true; gates the locality-contacts tag branch, Locality_Details.mvc.js:993-1004): a: default-only, value true as the probe (flags.py decide, as the gallery flag on 2026-10-29) / b: build both branches with a captured reference (needs a capture with the flag off: none) / c: other

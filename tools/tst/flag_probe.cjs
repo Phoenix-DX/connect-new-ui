@@ -15,7 +15,8 @@ const HELPERS = ['getHasNewLDM', 'getHasNewBookmarks', 'getHasBookmarNote', 'get
 // flags checked directly with a permission-check wrapper and a static entity record (not through a GetHas… helper)
 const RECORDS = [['connect_OutSystems_PermissionCheck', 'outSystems_FF', 'c2EnableSearchByBirthday'],
                  ['connect_LaunchDarkly_PermissionCheck', 'launchDarkly_FF', 'mobileStudentInformation'],
-                 ['connect_LaunchDarkly_PermissionCheck', 'launchDarkly_FF', 'mobileDirectoryHouseholdGallery']];
+                 ['connect_LaunchDarkly_PermissionCheck', 'launchDarkly_FF', 'mobileDirectoryHouseholdGallery'],
+                 ['connect_LaunchDarkly_PermissionCheck', 'launchDarkly_FF', 'mobileDirectoryLocalityContacts']];
 const STORAGE = '.auth/state.json';
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const log = m => console.log(`  [auth] ${m}`);

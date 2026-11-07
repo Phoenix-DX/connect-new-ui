@@ -50,7 +50,8 @@ COMMON_ALLOW = ("migration/sync/**", "app/docs/**", "migration/route-check/**", 
                 # the master's own files: the tools, the agents, the contract regenerated from the fresh captures
                 "tools/**", ".claude/**", "app/src/api/openapi.yaml", "app/src/api/schema.d.ts",
                 "migration/parity-exemptions.json", "app/src/platform/**", "migration/flags.json", "migration/flags.md",
-                "app/public/os-assets/**")
+                "app/public/os-assets/**", "app/.knip-known-unused.json", "app/.dependency-cruiser-known-violations.json",
+                "app/docs/refactor/arch-baseline.csv")
 HANDOFF_TEMPLATE = Path(".claude/skills/tst-sync/references/handoff.md")
 AGENTS_MD = Path("migration/AGENTS.md")
 BRIEF_RULES = (3, 5, 9, 10, 11, 12, 13, 17, 21, 22, 23)
