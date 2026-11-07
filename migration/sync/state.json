@@ -6,19 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "NotificationDetails": {
+  "Profile": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:35:34",
-   "shared": [
-    "app/src/api/notification/**"
-   ],
-   "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
-  },
-  "Profile": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T07:35:19",
+   "since": "2026-11-07T16:35:52",
    "shared": [],
    "baseCommit": "1788a7b81dc93b9b01b839058d00a971cd7941c3"
   },
@@ -262,16 +253,20 @@
    "finished": "2026-11-07T16:35:18"
   },
   "NotificationDetails": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T07:21:11",
    "tokens": {
     "dev": 217904,
     "test": 39484,
     "docs": 30781
-   }
+   },
+   "commit": "ede0deac",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:35:34"
   },
   "Profile": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T07:21:11",
    "tokens": {
     "dev": 261206,
@@ -603,6 +598,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:35:18"
+  },
+  "Profile": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:35:35"
   }
  }
 }

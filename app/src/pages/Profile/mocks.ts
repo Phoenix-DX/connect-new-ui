@@ -17,7 +17,7 @@ import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from '@/containers/Househo
      request in the collection `Profile.editRequests`; the profile data does not change (the original says changes may
      take up to 48 hours; dom/default.html:206) (Q4 → A, pending).
    - Scenario `spouse` (?mock=spouse, Q2 → A, pending): the TST account captured on Profile is a householder's spouse
-     (Switch2 / Switch3 and both "Display … on your profile." notes, dom/default.html:362-440; fixture inputs isSpouse
+     (Switch2 / Switch3 and both "Display … on your profile." notes, dom/default.html:390-453; fixture inputs isSpouse
      True, isHouseholder False, CurrentCountryCode US). This scenario answers the shared CacheControl_UserInfo
      GetCacheInfo with the shell's mock user as that spouse: household 9002 (HouseholdDetails_Block mockData, 3
      members as captured: the cast's Ward household), mobile and work numbers shown, country US, the full name of the
@@ -27,8 +27,11 @@ import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from '@/containers/Househo
      profile." notes: App_Profile.Profile.mvc.js:1974, :2053), and its household has 5 members (2 more than before).
      This scenario answers the shared GetCacheInfo with the shell's mock user as is (Matías Vitale, a son of the
      household) with the Vitale household (HouseholdDetails_Block mockData: 5 members, the parents with actions, three
-     children without), country US as captured. The capture default of Profile (capture-plan `scenarios.default`);
-     `spouse` stays as a review scenario.
+     children without), country US as captured. A review scenario since the sync of 2026-11-07.
+   - Capture default (capture-plan `scenarios.default`): `spouse` since the sync of 2026-11-07 (user, Q1 a). The
+     re-capture of 2026-11-07 shows the spouse account again: Switch2 / Switch3 with both "Display … on your profile."
+     notes (dom/default.html:390-453), the name 6 / 4 (:128), no address section, 3 members each with
+     Directory_EntityDetailsActions (:1283-1687).
    - Scenario `address` (?mock=address, App_Profile Q1 a): the shell's mock user as the householder, with five
      fictional address items (the line of MOCK_USER.address, Bahia Blanca, Buenos Aires, 8000). TST has no capture of
      the address section (the captured account is a spouse), so the labels and the Required values are fictional.

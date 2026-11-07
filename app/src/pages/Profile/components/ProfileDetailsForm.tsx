@@ -53,11 +53,11 @@ export function ProfileDetailsForm({
       />
       {isHouseholder && (
         <>
-          <SectionSeparator id="$b28" />
+          <SectionSeparator id="$b30" />
           {addressSection}
         </>
       )}
-      <SectionSeparator id="$b37" />
+      <SectionSeparator id="$b39" />
       <ContactInformationSection
         contact={accountForm.AccountForm_ContactInformation}
         isHouseholder={isHouseholder}

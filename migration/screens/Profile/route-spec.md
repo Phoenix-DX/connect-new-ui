@@ -202,6 +202,7 @@ useFlag; `App_PIN_BiometricEnabled` and `onToggle` are not flags (user, 2026-10-
   - The capture masks the name offset.
   - The masked avatar causes a pixel shift.
   - The input values are not serialized.
+- TST sync 2026-11-07: Email row now has a switch-style label row and a disabled input (see Changes 2026-11-07 below); confirm the disabled email is intended.
 
 ## 17. Patterns used
 
@@ -217,3 +218,21 @@ useFlag; `App_PIN_BiometricEnabled` and `onToggle` are not flags (user, 2026-10-
 ## 18. Builder notes
 
 Inner generated ids of shared blocks are not rendered (convention); only the screen's named / alias ids are.
+
+## Changes 2026-11-07 (TST sync)
+
+TST files changed (brief): `UBTConnect.App_Profile.Profile.mvc.js`, `Directory_EntityDetailsActions.mvc.js`,
+`HouseholdDetails_Block.mvc.js`, `HorizontalTagList.mvc.js`, `ContactByMessage_Wrapper.mvc.js`, `ShareSheet.mvc.js`,
+`CacheControl_UserInfo.mvc.js`.
+
+What the fresh capture shows:
+- The Email row is now `BasePatterns.CustomContainer` `Email_Container` > `BasePatterns.Columns_Two` `Email` > `BasePatterns.CustomText` `EmailLabel` with the text "Email", and an empty right column (`dom/default.html:265-293`).
+- `Input_Email` has the `disabled` attribute (`dom/default.html:293`).
+- The block ids after this row move up by 2 (for example `$b37` becomes `$b39`).
+
+What the React code does now:
+- `PersonalInformationSection.tsx`, `ProfileDetailsForm.tsx` and the other Profile components render the new Email markup and the disabled input; the later block ids follow the capture.
+- `hooks/useProfile.ts` reads the locality and subdivision lists with `osList` (no `{ List }` wire shape in the hook).
+- Calls: no change (call parity 0 in all states; `test.md`). Parity is clean in default, loading and offline.
+
+Evidence: `migration/sync/handoffs/Profile/dev.md`, `test.md`; `git diff -M --stat -- app/src/pages/Profile` (14 files).

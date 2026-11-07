@@ -7,12 +7,12 @@ describe('ProfileHouseholdPreview', () => {
     const renderHousehold = vi.fn((id: string) => <p>household {id}</p>);
     const onOnInitialized = vi.fn();
     const { container } = render(
-      <ProfileHouseholdPreview id="$b60" onOnInitialized={onOnInitialized} renderHousehold={renderHousehold} />,
+      <ProfileHouseholdPreview id="$b62" onOnInitialized={onOnInitialized} renderHousehold={renderHousehold} />,
     );
     const block = container.querySelector('[data-block="App_Profile.Profile_HouseholdPreview"]');
     expect(block).not.toBeNull();
-    expect(renderHousehold).toHaveBeenCalledWith('b60-$b2');
-    const content = screen.getByText('household b60-$b2').parentElement;
+    expect(renderHousehold).toHaveBeenCalledWith('b62-$b2');
+    const content = screen.getByText('household b62-$b2').parentElement;
     expect(content).toHaveAttribute('inert');
     expect(content).toHaveAttribute('data-container');
     expect(content).toHaveStyle({ textAlign: 'left' });

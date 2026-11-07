@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "13a125f543ae8f48717f",
+ "fingerprint": "a517e11e63d1a0b3c27c",
  "options": {
   "text": true,
   "style": true,
@@ -27,12 +27,8 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:08:36.977Z",
- "counts": {
-  "layout": 12,
-  "structure": 2,
-  "position": 7
- },
+ "at": "2026-11-07T09:35:45.944Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
   "ignoreSubtrees": 2,
@@ -59,111 +55,5 @@
   "diffPng": "migration/screens/Profile/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage]",
-   "detail": "390×1417 → 390×1421"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native",
-   "detail": "390×1417 → 390×1421"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main",
-   "detail": "390×1417 → 390×1421"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection]",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section",
-   "detail": "390×1287 → 390×1291"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\"",
-   "detail": "390×969 → 390×973"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "390×446 → 390×450"
-  },
-  {
-   "kind": "layout",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base",
-   "detail": "390×446 → 390×450"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > div#Email_Container.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > div#Email.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "extra in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > span.input-email",
-   "detail": "offset in parent 16,228 → 16,232"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > div#PleaseNote2.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "offset in parent 16,257 → 16,261"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > div#BirthDateandAge.OSBlockWidget[BasePatterns.Columns_Two]",
-   "detail": "offset in parent 16,352 → 16,356"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#PersonalInfo.OSBlockWidget[BasePatterns.CustomContainer] > div#b19-Content.padding-bottom-base.padding-top-s.padding-x-base > div#BirthDateandAgeNote.OSBlockWidget[BasePatterns.CustomText]",
-   "detail": "offset in parent 16,378 → 16,382"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#$b39.OSBlockWidget[App_Common_Blocks.SectionSeparator]",
-   "detail": "offset in parent 0,654 → 0,658"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#Content.OSBlockWidget[ConnectPatterns.SkeletonSection] > div#b4-Placeholder_LoadingSection.ubt-skeleton-section > form#DetailsForm.\"form.OSFillParent.card\" > div#ContactInfo.OSBlockWidget[BasePatterns.CustomContainer]",
-   "detail": "offset in parent 0,658 → 0,662"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_HomePage] > div#b1-LayoutWrapper_Home.ios-bounce.layout.layout-native > div.main > div#b1-ContentWrapper.background-neutral-0.content.ubt-fixed-footer--content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div.content-middle > div#b1-Content.ubt-zindex-2 > div#$b51.OSBlockWidget[ConnectPatterns.FixedFooter] > div.ubt-fixed-footer.ubt-fixed-footer--no-bottom-bar",
-   "detail": "offset in parent 0,-573 → 0,-577"
-  }
- ]
+ "diffs": []
 }

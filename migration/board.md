@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 2024
+Complexity left on build rows not yet built: 1873
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -41,7 +41,7 @@ Complexity left on build rows not yet built: 2024
 | Menu | `/UBTConnect/Menu` | 5 | 78 | lite | build | V3d · bottom bar Menu tab; also from PINRegister, PINChange (user, 2026-10-14) | built | route-menu |
 | PINBiometricsMenu | `/UBTConnect/PINBiometricsMenu` | 5 | 17 | lite | build | V4c · D3 menu part, consistent with V1 (mock PIN); biometrics on web decided in Phase 4 (user, 2026-10-14) | built | route-pinbiometricsmenu |
 | PINChange | `/UBTConnect/PINChange` | 5 | 33 | lite | build | V4c · D3 menu part, consistent with V1 (mock PIN); biometrics on web decided in Phase 4 (user, 2026-10-14) | built | route-pinchange |
-| Profile | `/UBTConnect/Profile` | 5 | 151 | full | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | review | route-profile |
+| Profile | `/UBTConnect/Profile` | 5 | 151 | full | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-profile |
 | TermsAndPoliciesMenu | `/UBTConnect/TermsAndPoliciesMenu` | 5 | 55 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-termsandpoliciesmenu |
 | BookmarksByGroup | `/UBTConnect/BookmarksByGroup` | 6 | 115 | full | skip | removed on TST 2026-10-27 (HTTP 404); replaced by Bookmarks; React route to be removed (user, 2026-10-28) | - | route-bookmarksbygroup |
 | MyBookmarks | `/UBTConnect/MyBookmarks` | 6 | 85 | full | skip | removed on TST 2026-10-27 (HTTP 404); replaced by Bookmarks; React route to be removed (user, 2026-10-28) | - | route-mybookmarks |

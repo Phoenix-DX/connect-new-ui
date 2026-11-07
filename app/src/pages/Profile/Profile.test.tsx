@@ -89,7 +89,7 @@ describe('Profile: address of the householder', () => {
     // The skeleton of the section ends when both caches answered.
     await waitFor(
       () => {
-        expect(container.querySelector('#\\$b29 > div')?.className.trim()).toBe('');
+        expect(container.querySelector('#\\$b31 > div')?.className.trim()).toBe('');
       },
       { timeout: 4000 },
     );

@@ -129,5 +129,75 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T06:59:33"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered [questions.md Q1]): NotCaptured for the householder address section and the CacheControl_All*; Q2 → A (answered [questions.md Q2]): `?mock=spouse` scenario (Profile mocks.ts) for the captured account; capture plan: Profile default; Q4 → A (answered [questions.md Q4]): GetCountryInfo serves the recording for any country; Save success stored in `Profile.editRequests`.; Q3 (fact, answered by code [questions.md Q3]): the runtime built-in validation applies ('Required Value!', 'Invalid Value!'). CR-Profile-2 (Status: applied).; Capture plan (orchestrator): Profile `scenarios: {\"default\": \"spouse\"}` (Q2 → A), as Menu's `householder`.; CR-Profile-1 (Status: applied): HouseholdDetails_Block mock household 9002, third member with CTAs (dom/default.html:1675).; Exemptions (proposed in `migration/screens/Profile/proposed-exemptions.json`; in migration/parity-exemptions.json: CAPTURE-SWITCH-CHECKED-PROFILE, CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD, CAPTURE-MASKED-TEXT-PROFILE-NAME, CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT; capture artifacts):; The checked property of the switches is not serialized (notes say \"Display\").; The capture masks the household photo.; The capture masks the name offset.; The masked avatar causes a pixel shift.; The input values are not serialized.; TST sync 2026-11-07: Email row now has a switch-style label row and a disabled input (see Changes 2026-11-07 below); confirm the disabled email is intended. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryHouseholdGallery → user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md; registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T07:35:57",
+  "items": [
+   "Q1 → A (answered [questions.md Q1]): NotCaptured for the householder address section and the CacheControl_All*",
+   "Q2 → A (answered [questions.md Q2]): `?mock=spouse` scenario (Profile mocks.ts) for the captured account; capture plan: Profile default",
+   "Q4 → A (answered [questions.md Q4]): GetCountryInfo serves the recording for any country; Save success stored in `Profile.editRequests`.",
+   "Q3 (fact, answered by code [questions.md Q3]): the runtime built-in validation applies ('Required Value!', 'Invalid Value!'). CR-Profile-2 (Status: applied).",
+   "Capture plan (orchestrator): Profile `scenarios: {\"default\": \"spouse\"}` (Q2 → A), as Menu's `householder`.",
+   "CR-Profile-1 (Status: applied): HouseholdDetails_Block mock household 9002, third member with CTAs (dom/default.html:1675).",
+   "Exemptions (proposed in `migration/screens/Profile/proposed-exemptions.json`; in migration/parity-exemptions.json: CAPTURE-SWITCH-CHECKED-PROFILE, CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD, CAPTURE-MASKED-TEXT-PROFILE-NAME, CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT; capture artifacts):",
+   "The checked property of the switches is not serialized (notes say \"Display\").",
+   "The capture masks the household photo.",
+   "The capture masks the name offset.",
+   "The masked avatar causes a pixel shift.",
+   "The input values are not serialized.",
+   "TST sync 2026-11-07: Email row now has a switch-style label row and a disabled input (see Changes 2026-11-07 below); confirm the disabled email is intended."
+  ],
+  "fixed": [],
+  "answer": "superseded by a newer review",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:35:48"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered [questions.md Q1]): NotCaptured for the householder address section and the CacheControl_All*; Q2 → A (answered [questions.md Q2]): `?mock=spouse` scenario (Profile mocks.ts) for the captured account; capture plan: Profile default; Q4 → A (answered [questions.md Q4]): GetCountryInfo serves the recording for any country; Save success stored in `Profile.editRequests`.; Q3 (fact, answered by code [questions.md Q3]): the runtime built-in validation applies ('Required Value!', 'Invalid Value!'). CR-Profile-2 (Status: applied).; Capture plan (orchestrator): Profile `scenarios: {\"default\": \"spouse\"}` (Q2 → A), as Menu's `householder`.; CR-Profile-1 (Status: applied): HouseholdDetails_Block mock household 9002, third member with CTAs (dom/default.html:1675).; Exemptions (proposed in `migration/screens/Profile/proposed-exemptions.json`; in migration/parity-exemptions.json: CAPTURE-SWITCH-CHECKED-PROFILE, CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD, CAPTURE-MASKED-TEXT-PROFILE-NAME, CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT; capture artifacts):; The checked property of the switches is not serialized (notes say \"Display\").; The capture masks the household photo.; The capture masks the name offset.; The masked avatar causes a pixel shift.; The input values are not serialized.; TST sync 2026-11-07: Email row now has a switch-style label row and a disabled input (see Changes 2026-11-07 below); confirm the disabled email is intended. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryHouseholdGallery → user decision (a) 'probe then record', drift wave round 2, 2026-10-29: on as TST (read-only probe migration/tools/flag_probe.cjs, 2026-10-29: true). HouseholdDetails_Block.mvc.js:1298-1301: on hides the Coming Soon box of the Photos tag. The off branch stays in the code with unit tests (HouseholdDetailsView.test.tsx); same record shape as getHasMapsEnabled (H-Q3). migration/clarify/review/drift-decisions-2026-10-29.md; registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-11-07T16:35:48",
+  "items": [
+   "Q1 → A (answered [questions.md Q1]): NotCaptured for the householder address section and the CacheControl_All*",
+   "Q2 → A (answered [questions.md Q2]): `?mock=spouse` scenario (Profile mocks.ts) for the captured account; capture plan: Profile default",
+   "Q4 → A (answered [questions.md Q4]): GetCountryInfo serves the recording for any country; Save success stored in `Profile.editRequests`.",
+   "Q3 (fact, answered by code [questions.md Q3]): the runtime built-in validation applies ('Required Value!', 'Invalid Value!'). CR-Profile-2 (Status: applied).",
+   "Capture plan (orchestrator): Profile `scenarios: {\"default\": \"spouse\"}` (Q2 → A), as Menu's `householder`.",
+   "CR-Profile-1 (Status: applied): HouseholdDetails_Block mock household 9002, third member with CTAs (dom/default.html:1675).",
+   "Exemptions (proposed in `migration/screens/Profile/proposed-exemptions.json`; in migration/parity-exemptions.json: CAPTURE-SWITCH-CHECKED-PROFILE, CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD, CAPTURE-MASKED-TEXT-PROFILE-NAME, CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT; capture artifacts):",
+   "The checked property of the switches is not serialized (notes say \"Display\").",
+   "The capture masks the household photo.",
+   "The capture masks the name offset.",
+   "The masked avatar causes a pixel shift.",
+   "The input values are not serialized.",
+   "TST sync 2026-11-07: Email row now has a switch-style label row and a disabled input (see Changes 2026-11-07 below); confirm the disabled email is intended."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-11-07: confirm ok, all 29 routes at review)",
+  "answeredBy": "user",
+  "answeredAt": "2026-11-07T16:35:49"
  }
 ]

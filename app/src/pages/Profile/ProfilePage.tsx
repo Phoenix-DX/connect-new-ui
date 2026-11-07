@@ -120,19 +120,19 @@ export default function Profile() {
             )}
           </>
         }
-        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b55" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b57" />}
       />
-      <UserInfoCache id="$b56" onResult={onUserInformation} />
+      <UserInfoCache id="$b58" onResult={onUserInformation} />
       {state.isHouseholder && (
         <>
-          <CacheControl_AllLocalities id="$b57" onResult={onAllLocalities} onError={onCacheControlError} />
-          <CacheControl_AllSubdivisions id="$b58" onResult={onAllSubdivisions} onError={onCacheControlError} />
+          <CacheControl_AllLocalities id="$b59" onResult={onAllLocalities} onError={onCacheControlError} />
+          <CacheControl_AllSubdivisions id="$b60" onResult={onAllSubdivisions} onError={onCacheControlError} />
         </>
       )}
       {state.hasChanges && (
         <NavigationDialog
           variant="connect"
-          id="$b59"
+          id="$b61"
           // Event_OnBackNavigation_ConfirmDiscard: PreventNavigation, so the dialog asks.
           onNavigation={preventNavigation}
           header={<span data-expression="">Confirm</span>}
@@ -141,7 +141,7 @@ export default function Profile() {
       )}
       {user !== null && (
         <ProfileHouseholdPreview
-          id="$b60"
+          id="$b62"
           onOnInitialized={onPreviewSheetInitialized}
           renderHousehold={(id) => (
             <HouseholdDetailsContainer
@@ -156,7 +156,7 @@ export default function Profile() {
       )}
       <ChoiceDialog
         id="AgeConfirmation_PopUp"
-        scope="b61"
+        scope="b63"
         body={
           <span data-expression="">
             {accountForm.AccountForm_PersonalInformation.ShowLifeCycleDates

@@ -26,7 +26,7 @@ describe('CacheControl_AllLocalities and CacheControl_AllSubdivisions of Profile
   it('a miss calls GetCacheInfo with UniqueCacheKey, the cache type and 7200 s, keeps the answer and raises Result', async () => {
     vi.mocked(fetchAllSubdivisions).mockResolvedValue(subdivisions);
     const onResult = vi.fn();
-    const { container } = render(<CacheControl_AllSubdivisions id="$b58" onResult={onResult} />);
+    const { container } = render(<CacheControl_AllSubdivisions id="$b60" onResult={onResult} />);
     await waitFor(() => {
       expect(onResult).toHaveBeenCalledWith(subdivisions);
     });
@@ -35,7 +35,7 @@ describe('CacheControl_AllLocalities and CacheControl_AllSubdivisions of Profile
       CacheTypeId: 'AllSubdivisions',
       TimeToLiveSeconds: 7200,
     });
-    expect(container.querySelector('#\\$b58')).not.toBeNull();
+    expect(container.querySelector('#\\$b60')).not.toBeNull();
 
     // A second block of the same key is a hit: Result with the kept object, no call.
     const second = vi.fn();
@@ -50,7 +50,7 @@ describe('CacheControl_AllLocalities and CacheControl_AllSubdivisions of Profile
     const kept = { LocalityList: { List: [] } };
     putCacheableObject(localityCache.allLocalities(clientVar.uniqueCacheKey.get(), 7200), kept);
     const onResult = vi.fn();
-    render(<CacheControl_AllLocalities id="$b57" onResult={onResult} />);
+    render(<CacheControl_AllLocalities id="$b59"onResult={onResult} />);
     await waitFor(() => {
       expect(onResult).toHaveBeenCalledWith(kept);
     });
