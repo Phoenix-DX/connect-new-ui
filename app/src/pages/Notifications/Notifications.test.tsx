@@ -7,8 +7,8 @@ import { freshPage } from '@/test/testSupport';
 import Notifications from './NotificationsPage';
 
 /* The page with its flows (useNotifications) in the app frame on a memory router, with the MSW mocks of the test
-   setup (pages/Notifications/mocks.ts: the recorded date ranges and 19 notifications, 9 of the last 30 days and 10
-   older, 16 unread). */
+   setup (pages/Notifications/mocks.ts: the recorded date ranges and the 22 notifications of the TST capture of
+   2026-11-07, 3 of the last 30 days and 19 older, 7 unread). */
 const PATH = '/UBTConnect/Notifications';
 const routes = {
   [PATH]: <Notifications />,
@@ -45,10 +45,31 @@ describe('Notifications page', () => {
     expect(screen.getByText('Only show unread')).toBeInTheDocument();
     expect(await screen.findByText('Test Noti 56')).toBeInTheDocument();
     // The badge comes before the title in the DOM (IconText with the icon on the right).
-    expect(sectionTitles()).toEqual(['2Last 7 Days', 'Last 30 Days', 'Older']);
-    expect(container.querySelectorAll('[data-block="ConnectCorePatterns.Notification_ListItem"]')).toHaveLength(68);
-    expect(container.querySelector('[data-block="App_Notifications.Notifications_SortSheet"]')?.id).toBe('$b21');
-    expect(container.querySelector('[data-block="App_Notifications.Notifications_MoreActionSheet"]')?.id).toBe('$b22');
+    // The TST capture of 2026-11-07: 3 notifications of the last 30 days (2 unread) and 19 older (5 unread).
+    expect(sectionTitles()).toEqual(['2Last 30 Days', '5Older']);
+    expect(container.querySelectorAll('[data-block="ConnectCorePatterns.Notification_ListItem"]')).toHaveLength(22);
+    // The block ids of the TST capture of 2026-11-07.
+    expect(container.querySelector('[data-block="App_Notifications.Notifications_SortSheet"]')?.id).toBe('$b18');
+    expect(container.querySelector('[data-block="App_Notifications.Notifications_MoreActionSheet"]')?.id).toBe('$b19');
+    // Live TST 2026-11-07: a SkeletonSection wraps each header and each row; a row with an icon URL shows its
+    // AvatarImage, one without shows the placeholder FetchingImage (MyNotifications.MessageImage).
+    const header = container.querySelector('[data-block="App_Notifications.Notifications_Header"]');
+    expect(header?.firstElementChild?.getAttribute('data-block')).toBe('ConnectPatterns.SkeletonSection');
+    const list = container.querySelector('[data-block="App_Notifications.NotificationsList"] > .updates-list');
+    expect(list?.firstElementChild?.getAttribute('data-block')).toBe('ConnectPatterns.SkeletonSection');
+    expect(container.querySelectorAll('[data-block="MyNotifications.MessageImage"]').length).toBeGreaterThan(0);
+    expect(container.querySelectorAll('[data-block="ConnectPatterns.AvatarImage"]').length).toBeGreaterThan(0);
+  });
+
+  it('OnReady shows the skeleton list of GetSkeletonList_UI_Notification under one Today header', async () => {
+    sessionStorage.setItem('mock:mock', 'loading');
+    const { container } = renderRoutes(routes, PATH);
+    await waitFor(() => {
+      expect(sectionTitles()).toEqual(['9+Today']);
+    });
+    expect(container.querySelectorAll('[data-block="ConnectCorePatterns.Notification_ListItem"]')).toHaveLength(10);
+    expect(screen.getAllByText('Example & Example')).toHaveLength(10);
+    expect(container.querySelectorAll('#\\$b15 .ubt-skeleton-section').length).toBeGreaterThan(0);
   });
 
   it('a search refreshes the list once; a back navigation keeps the search text and fetches again', async () => {
@@ -81,7 +102,7 @@ describe('Notifications page', () => {
     sessionStorage.setItem('mock:mock', 'olderread');
     renderRoutes(routes, PATH);
     await waitFor(() => {
-      expect(sectionTitles()).toEqual(['2Last 7 Days', 'Last 30 Days', 'Older']);
+      expect(sectionTitles()).toEqual(['2Last 30 Days', 'Older']);
     });
     const headers = document.querySelectorAll('[data-block="App_Notifications.Notifications_Header"]');
     expect(headers[0]?.querySelector('[data-block="OutSystemsUIOverrides.Badge"]')).not.toBeNull();

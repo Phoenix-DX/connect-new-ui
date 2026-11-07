@@ -21,6 +21,7 @@ const ITEMS: NotificationItem[] = [
     profileIconURL: '',
     messageTemplateId: '0',
     createdByMemberId: '0',
+    createdByUserId: 0,
   },
   {
     id: '8',
@@ -30,6 +31,7 @@ const ITEMS: NotificationItem[] = [
     profileIconURL: '',
     messageTemplateId: '0',
     createdByMemberId: '0',
+    createdByUserId: 0,
   },
   {
     id: '7',
@@ -39,6 +41,7 @@ const ITEMS: NotificationItem[] = [
     profileIconURL: '',
     messageTemplateId: '0',
     createdByMemberId: '0',
+    createdByUserId: 0,
   },
 ];
 

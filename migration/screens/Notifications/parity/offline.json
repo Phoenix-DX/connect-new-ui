@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "06ca9dec6fd28c22cddb",
+ "fingerprint": "c58890e63f83bf9ac494",
  "options": {
   "text": true,
   "style": true,
@@ -27,23 +27,20 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-11-06T20:39:00.558Z",
- "counts": {
-  "structure": 1,
-  "position": 8,
-  "pixel": 1
- },
+ "at": "2026-11-07T09:38:58.627Z",
+ "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 33,
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
   "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.03109,
-  "maxCell": 0.55,
+  "ratio": 0.00018,
+  "maxCell": 0.0219,
   "maxCellRatio": 0.03,
-  "diffPixels": 10223,
-  "comparedPixels": 328784,
+  "diffPixels": 60,
+  "comparedPixels": 328589,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -54,67 +51,13 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 4,
   "hotspots": [
-   "80,160 (880px)",
-   "120,160 (880px)",
-   "160,160 (880px)",
-   "200,160 (880px)",
-   "240,160 (880px)"
+   "200,800 (35px)",
+   "200,760 (25px)"
   ],
   "diffPng": "migration/screens/Notifications/parity/offline.diff.png"
  },
  "calls": null,
- "diffs": [
-  {
-   "kind": "structure",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b1.OSBlockWidget[Layouts.Layout_MainPages_Upgrade] > div#b1-LayoutWrapper_Main.ios-bounce.layout.layout-gray-background > div.main > div#b1-ContentWrapper.content > div#b1-MainContentWrapper.ThemeGrid_Container.main-content > div#b1-Content.content-middle > div#$b15.OSBlockWidget[App_Notifications.NotificationsListBreakpoints] > div.OSFillParent.list.list-group > div",
-   "detail": "missing in build"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-top.wcag-hide-text",
-   "detail": "offset in parent -1,-1079 → -1,-845"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b18-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet",
-   "detail": "offset in parent 0,-234 → 0,0"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div.osui-bottom-sheet-overlay",
-   "detail": "offset in parent 0,-1078 → 0,-844"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b18.OSBlockWidget[App_Notifications.Notifications_SortSheet] > div#b18-$b1.OSBlockWidget[App_CommonBlocks_Filter.SortSheet] > div#b18-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b18-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-bottom.wcag-hide-text",
-   "detail": "offset in parent -1,-234 → -1,0"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-top.wcag-hide-text",
-   "detail": "offset in parent -1,-1079 → -1,-845"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div#b19-b1-b1-b1-BottomSheet.background-neutral-2.custom-padding.osui-bottom-sheet",
-   "detail": "offset in parent 0,-234 → 0,0"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > div.osui-bottom-sheet-overlay",
-   "detail": "offset in parent 0,-1078 → 0,-844"
-  },
-  {
-   "kind": "position",
-   "path": "div#reactContainer > div#transitionContainer > div.active-screen.screen-container > div#$b19.OSBlockWidget[App_Notifications.Notifications_MoreActionSheet] > div#b19-$b1.OSBlockWidget[App_CommonBlocks_Filter.MoreActionSheet] > div.moreActionContainer > div#b19-b1-$b1.OSBlockWidget[ConnectPatterns.BottomSheet] > div#b19-b1-b1-BottomSheet_Internal.OSBlockWidget[Interaction.BottomSheet] > span.focus-trap-bottom.wcag-hide-text",
-   "detail": "offset in parent -1,-234 → -1,0"
-  },
-  {
-   "kind": "pixel",
-   "path": "screenshot",
-   "detail": "3.11% pixels differ (max 0.20%), worst 40px tile 55.0% (max 3.0%), hotspots 80,160 (880px); 120,160 (880px); 160,160 (880px); 200,160 (880px); 240,160 (880px); see migration/screens/Notifications/parity/offline.diff.png"
-  }
- ]
+ "diffs": []
 }

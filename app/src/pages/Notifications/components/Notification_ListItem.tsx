@@ -1,4 +1,5 @@
 /** @origin UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem */
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/lib/os-assets';
 import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
@@ -21,27 +22,36 @@ import { get_ElapsedTime_Notification } from './actions';
 export interface Notification_ListItemProps {
   id: string;
   inIsRead?: boolean;
+  /** IsIconURLDefined (live TST 2026-11-07): the AvatarImage of In_AvatarImage_Left when True, else the placeholder
+      FetchingImage. */
+  isIconURLDefined?: boolean;
   inDescription?: string;
   inNotificationDate?: string;
   inAvatarImageLeftURL?: string;
+  /** The placeholder FetchingImage. */
+  fetchingImage?: ReactNode;
 }
 
-/** UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem (p:…Notification_ListItem.mvc.js view :204-540):
-    CustomContainer (MainContainerClass "ubt-notification-item", background GetBackgroundColor_IsRead, padding base) >
-    Columns_Three (expand middle, small, centred): AvatarImage 52 (In_IsDoubleAvatar False here), the description through
-    SanitizedHtml (ResetWhitelist) and the elapsed time, the unread dot when not read. No events. */
+/** UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem (live TST 2026-11-07, Notification_ListItem.mvc.js view
+    :218-540): CustomContainer (MainContainerClass "ubt-notification-item", background GetBackgroundColor_IsRead,
+    padding base) > Columns_Three (expand middle, small, centred). Left: the empty container Notification_Visual, then
+    If IsIconURLDefined: AvatarImage 52 (In_IsDoubleAvatar False here), else the placeholder FetchingImage. Middle: the
+    description through SanitizedHtml (ResetWhitelist) and the elapsed time. Right: the unread dot when not read. No
+    events. */
 export function Notification_ListItem({
   id,
   inIsRead = false,
+  isIconURLDefined = false,
   inDescription = '',
   inNotificationDate = '',
   inAvatarImageLeftURL = '',
+  fetchingImage,
 }: Notification_ListItemProps) {
   const p = id.replace(/-NotificationItem$/, '');
   return (
     <OSBlock name="ConnectCorePatterns.Notification_ListItem" id={id}>
       <CustomContainer
-        id={`${p}-b2-$b1`}
+        id={`${p}-b5-$b1`}
         extendedClasses="ubt-notification-item"
         options={{
           Background: { BackgroundColor: getBackgroundColor_IsRead(inIsRead) },
@@ -50,7 +60,7 @@ export function Notification_ListItem({
         }}
       >
         <ColumnsThree
-          id={`${p}-b2-$b2`}
+          id={`${p}-b5-$b2`}
           extendedClasses="ubt-notification-item__columns"
           columnOptions={{
             ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle,
@@ -58,25 +68,31 @@ export function Notification_ListItem({
             VerticalAlign: UBT_VerticalAlign.Center,
           }}
           left={
-            <div data-container="" id={`${p}-b2-Notification_Visual`}>
-              <AvatarImage
-                id={`${p}-b2-$b4`}
-                inAvatarImage={{ URL: inAvatarImageLeftURL }}
-                inSizeId={UBT_AvatarSize.Base_52}
-              />
-            </div>
+            <>
+              <div data-container="" id={`${p}-b5-Notification_Visual`} />
+              {isIconURLDefined ? (
+                // In_IsDoubleAvatar is False in the only caller (NotificationsList): the AvatarDouble branch is not used.
+                <AvatarImage
+                  id={`${p}-b5-$b4`}
+                  inAvatarImage={{ URL: inAvatarImageLeftURL }}
+                  inSizeId={UBT_AvatarSize.Base_52}
+                />
+              ) : (
+                <div id={`${p}-b5-FetchingImage`}>{fetchingImage}</div>
+              )}
+            </>
           }
           middle={
             <>
-              <div data-container="" id={`${p}-b2-Notification_Description`}>
-                <CustomContainer id={`${p}-b2-$b5`} options={{ TextOptions: { FontSize: UBT_FontSize.ExtraSmall } }}>
-                  <SanitizedHtml id={`${p}-b2-$b6`} resetWhitelist value={inDescription} />
+              <div data-container="" id={`${p}-b5-Notification_Description`}>
+                <CustomContainer id={`${p}-b5-$b5`} options={{ TextOptions: { FontSize: UBT_FontSize.ExtraSmall } }}>
+                  <SanitizedHtml id={`${p}-b5-$b6`} resetWhitelist value={inDescription} />
                 </CustomContainer>
               </div>
-              <div data-container="" id={`${p}-b2-Notification_Elapsed`}>
-                <CustomContainer id={`${p}-b2-$b7`} options={{ PaddingSize: { TopSizeId: UBT_Size.Small } }}>
+              <div data-container="" id={`${p}-b5-Notification_Elapsed`}>
+                <CustomContainer id={`${p}-b5-$b7`} options={{ PaddingSize: { TopSizeId: UBT_Size.Small } }}>
                   <CustomText
-                    id={`${p}-b2-$b8`}
+                    id={`${p}-b5-$b8`}
                     inText={get_ElapsedTime_Notification(inNotificationDate)}
                     inTextOptions={{
                       Color: UBT_Color.Neutral7,

@@ -8,6 +8,7 @@ import type {
 import { isInRange } from '@/pages/Notifications/components/actions';
 import { Updates_DateRanges } from '@/pages/Notifications/components/staticEntities';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
+import { currDateTime } from '@/lib/osDateTime';
 
 /** The state of the Notifications screen and its reducer, with the client actions of the screen as pure functions.
     @origin UBTConnect.App_Notifications.Notifications */
@@ -54,6 +55,13 @@ export const INITIAL_CACHED_VARIABLES: NotificationsCachedVariables = {
 export interface NotificationsState extends NotificationsVariables {
   /** [FetchNotifications.UI_NotificationItemList] */
   items: NotificationItem[];
+  /** [Screen_NotificationItemList] The list that the screen renders (live TST 2026-11-07): the skeleton list of OnReady,
+      then the fetched list. */
+  screenItems: NotificationItem[];
+  /** [StartIndex] Set by ResetNotifications only (live TST 2026-11-07). */
+  startIndex: number;
+  /** [PageNumber] Set by ResetNotifications only: OnLoadMore of the screen is empty, so it stays 1. */
+  pageNumber: number;
   /** [FetchNotifications.IsDataFetched] */
   isDataFetched: boolean;
   /** [FetchNotifications.UnreadNotificationsCount] */
@@ -68,11 +76,17 @@ export type NotificationsAction =
   | { type: 'loadingEnded' }
   /** OnAfterFetch_GetDateRanges: DateRanges = App_Notifications_AugmentDateRanges, then SetDefaultFilters. */
   | { type: 'dateRangesAugmented'; dateRanges: NotificationDateRange[] }
+  /** ScreenEvent_OnReady: isLoading True, then Screen_NotificationItemList and Breakpoints from
+      GetSkeletonList_UI_Notification(10). */
+  | { type: 'skeletonSet' }
+  /** ResetNotifications: StartIndex 0, PageNumber 1, ListClear(Screen_NotificationItemList). */
+  | { type: 'notificationsReset' }
   /** The outputs of FetchNotifications. */
   | { type: 'notificationsFetched'; items: NotificationItem[]; unreadNotificationsCount: number }
-  /** OnAfterFetch_FetchNotifications: Breakpoints, CurrentBreakpoint (the first one), ShowMarkAll and isLoading
-      False. */
-  | { type: 'breakpointsSet'; breakpoints: NotificationBreakpoint[] }
+  /** OnAfterFetch_FetchNotifications (live TST 2026-11-07): the breakpoints only while the skeleton breakpoint is in
+      place (Breakpoints[0].Position = -1), ShowMarkAll, MaxRecords and Screen_NotificationItemList (PageNumber 1),
+      ReadCount and isLoading False. */
+  | { type: 'afterFetch' }
   /** Handler_FilterSearchText: CurrentSearchString. */
   | { type: 'searchStringSet'; text: string }
   /** Handler_FilterSearchText with a new text: Filter_Updates.SearchText, SelectedHistorySearch and ShowMarkAll False. */
@@ -84,7 +98,7 @@ export type NotificationsAction =
   /** Handler_ApplyFilters(Event_HasFiltersApplied, IsNewestToOldest): HasFiltersApplied (the screen passes the value it
       has), ShowMarkAll False, isLoading True and OrderByIsAscending = not IsNewestToOldest. */
   | { type: 'filtersApplied'; isNewestToOldest: boolean }
-  /** Handler_OnlyShowUnread: Local_OnlyShowUnread. */
+  /** Handler_OnlyShowUnread: Local_OnlyShowUnread (then isLoading True and ResetNotifications, live TST 2026-11-07). */
   | { type: 'onlyShowUnreadSet'; onlyShowUnread: boolean }
   /** Handler_UpdateReadCount(AddToCount, IsDelete, IsRead): ReadCount + 1, or - 1 when the item was not read. */
   | { type: 'readCountUpdated'; addToCount: boolean; isRead: boolean }
@@ -134,6 +148,9 @@ export function initialNotificationsState(cached: NotificationsCachedVariables):
     local_OnlyShowUnread: false,
     readCount: 0,
     items: [],
+    screenItems: [],
+    startIndex: 0,
+    pageNumber: 1,
     isDataFetched: false,
     unreadNotificationsCount: 0,
   };
@@ -158,6 +175,12 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
         dateRanges: action.dateRanges,
         filter_Updates: setDefaultFilters(state.filter_Updates, action.dateRanges),
       };
+    case 'skeletonSet': {
+      const skeleton = getSkeletonList_UI_Notification(10);
+      return { ...state, isLoading: true, screenItems: skeleton.items, breakpoints: skeleton.breakpoints };
+    }
+    case 'notificationsReset':
+      return { ...state, startIndex: 0, pageNumber: 1, screenItems: [] };
     case 'notificationsFetched':
       return {
         ...state,
@@ -165,15 +188,27 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
         unreadNotificationsCount: action.unreadNotificationsCount,
         isDataFetched: true,
       };
-    case 'breakpointsSet':
-      return {
-        ...state,
-        breakpoints: action.breakpoints,
-        currentBreakpoint: action.breakpoints[0] ?? EMPTY_BREAKPOINT,
-        showMarkAll: state.unreadNotificationsCount > 0,
-        readCount: state.unreadNotificationsCount,
-        isLoading: false,
-      };
+    case 'afterFetch': {
+      const next = { ...state };
+      /* "Is have breakpoint yet?": Breakpoints[0].Position = -1 (the skeleton breakpoint). The breakpoints of a later
+         fetch stay as they are, as compiled. An empty Breakpoints list (a first fetch without notifications) is not
+         captured: it counts as no skeleton breakpoint here. */
+      if (state.breakpoints[0]?.position === -1) {
+        const breakpoints = app_Notifications_GetBreakpoints(state.items, state.dateRanges);
+        next.breakpoints = breakpoints;
+        next.currentBreakpoint = breakpoints[0] ?? EMPTY_BREAKPOINT;
+      }
+      next.showMarkAll = state.unreadNotificationsCount > 0;
+      if (state.pageNumber === 1) {
+        next.maxRecords = state.items.length;
+        next.screenItems = state.items;
+      } else {
+        next.screenItems = [...state.screenItems, ...state.items];
+      }
+      next.readCount = state.unreadNotificationsCount;
+      next.isLoading = false;
+      return next;
+    }
     case 'searchStringSet':
       return { ...state, currentSearchString: action.text };
     case 'searchTextFiltered':
@@ -224,6 +259,38 @@ export function notificationsReducer(state: NotificationsState, action: Notifica
 export function updatedReadCount(readCount: number, addToCount: boolean, isRead: boolean): number {
   if (addToCount) return readCount + 1;
   return isRead ? readCount : readCount - 1;
+}
+
+/** GetSkeletonList_UI_Notification(ListLength) (UBTConnect.controller@029189b7.js, live TST 2026-11-07): one dummy
+    breakpoint (Position -1, SectionName Today, BadgeCount 10, the Today range CurrDate to CurrDate) and ListLength
+    copies of GetSkeleton_UI_NotificationContent (Title "Example & Example", Summary "Example, Example", DateTimeCreated
+    CurrDateTime; the other fields keep their defaults: unread, no icon, null ids). */
+export function getSkeletonList_UI_Notification(
+  listLength: number,
+  now = new Date(),
+): { items: NotificationItem[]; breakpoints: NotificationBreakpoint[] } {
+  const today = osDateOf(now);
+  const item: NotificationItem = {
+    id: '0',
+    title: 'Example & Example',
+    dateTimeCreated: currDateTime(now),
+    isRead: false,
+    profileIconURL: '',
+    messageTemplateId: '0',
+    createdByMemberId: '',
+    createdByUserId: 0,
+  };
+  return {
+    items: Array.from({ length: Math.max(listLength, 0) }, () => ({ ...item })),
+    breakpoints: [
+      {
+        position: -1,
+        sectionName: Updates_DateRanges.Today,
+        badgeCount: 10,
+        dateRange: { range: Updates_DateRanges.Today, from: today, to: today },
+      },
+    ],
+  };
 }
 
 const pad = (n: number) => String(n).padStart(2, '0');

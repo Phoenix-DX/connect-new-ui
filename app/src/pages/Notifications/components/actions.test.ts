@@ -1,6 +1,19 @@
 import { describe, expect, it } from 'vitest';
 import type { NotificationBreakpoint, NotificationItem } from '@/api/notification';
-import { applyReadCountUpdate, toggleItemRead } from './actions';
+import { applyReadCountUpdate, get_ElapsedTime_Notification, toggleItemRead } from './actions';
+
+describe('Get_ElapsedTime_Notification', () => {
+  it('uses the OutSystems Diff functions: DiffDays counts calendar days, DiffHours drops minutes', () => {
+    const now = new Date(2026, 10, 7, 7, 44, 0);
+    // 39 calendar days (38.9 x 24 h): DiffDays 39, Round(39 / 7) = 6, as on TST (capture of 2026-11-07).
+    expect(get_ElapsedTime_Notification('2026-09-29T10:50:25', now)).toBe('6w');
+    expect(get_ElapsedTime_Notification('2026-11-01T23:59:00', now)).toBe('6d');
+    // 05:59:30 to 07:01 is DiffMinutes 62, DiffHours 2 (7 - 5).
+    expect(get_ElapsedTime_Notification('2026-11-07T05:59:30', new Date(2026, 10, 7, 7, 1, 0))).toBe('2h');
+    expect(get_ElapsedTime_Notification('2026-11-07T07:43:10', now)).toBe('50s');
+    expect(get_ElapsedTime_Notification('2026-11-07T07:30:59', now)).toBe('14m');
+  });
+});
 
 const item = (id: string, isRead: boolean): NotificationItem => ({
   id,
@@ -10,6 +23,7 @@ const item = (id: string, isRead: boolean): NotificationItem => ({
   profileIconURL: '',
   messageTemplateId: '0',
   createdByMemberId: '0',
+  createdByUserId: 0,
 });
 const range = { range: 'Last 7 Days', from: '2026-10-19', to: '2026-10-25' };
 const bp = (sectionName: string, badgeCount: number): NotificationBreakpoint => ({
