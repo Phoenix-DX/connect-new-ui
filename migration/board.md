@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 964
+Complexity left on build rows not yet built: 869
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -18,7 +18,7 @@ Complexity left on build rows not yet built: 964
 | MyEntertaining | `/UBTConnect/MyEntertaining` | 3 | 57 | lite | build | V3a · D8(b): embed-entertaining.js = same-size mock, real embed pluggable later (user, 2026-10-14) | built | route-myentertaining |
 | Notes | `/UBTConnect/Notes` | 3 | 119 | full | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | review | route-notes |
 | Notifications | `/UBTConnect/Notifications` | 3 | 96 | full | build | V3a · D11(c): build both, bell picks by flag C2NewNotifications (true → Notifications) (user, 2026-10-14) | built | route-notifications |
-| Search | `/UBTConnect/Search` | 3 | 95 | lite | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | review | route-search |
+| Search | `/UBTConnect/Search` | 3 | 95 | lite | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | built | route-search |
 | Services | `/UBTConnect/Services` | 3 | 24 | lite | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | built | route-services |
 | Updates_SingleList | `/UBTConnect/Updates_SingleList` | 3 | 123 | full | build | V3a · opened from HomeFeed / bottom bar; writes mocked (user, 2026-10-14) | review | route-updates-singlelist |
 | BrowseCountries | `/UBTConnect/BrowseCountries` | 4 | 72 | lite | build | V4a · directory detail, reachable on TST; writes mocked (user, 2026-10-14) | built | route-browsecountries |

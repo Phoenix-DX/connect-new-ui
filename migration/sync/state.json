@@ -6,20 +6,10 @@
   "at": "2026-11-07T07:11:34"
  },
  "active": {
-  "Notifications": {
+  "Search": {
    "stage": "commit",
    "loop": 0,
-   "since": "2026-11-07T16:39:05",
-   "shared": [
-    "app/src/api/notification/**",
-    "app/src/mocks/fictional/notifications.ts"
-   ],
-   "baseCommit": "a71b8fbdbf243c49682a603d3b5b8d9059e8212f"
-  },
-  "Search": {
-   "stage": "review",
-   "loop": 0,
-   "since": "2026-11-07T08:29:16",
+   "since": "2026-11-07T16:39:23",
    "shared": [
     "app/src/components/filter/FilterSheet/**"
    ],
@@ -331,16 +321,20 @@
    "finished": "2026-11-07T16:32:40"
   },
   "Notifications": {
-   "status": "active",
+   "status": "done",
    "started": "2026-11-07T08:10:10",
    "tokens": {
     "dev": 406213,
     "test": 35616,
     "docs": 35995
-   }
+   },
+   "commit": "6fc084e3",
+   "gate": "parity: default,loading,offline/0 (restamp.py http://localhost:5173, every state current); tester: pass (loops 0); user: confirm (2026-11-07)",
+   "loops": 0,
+   "finished": "2026-11-07T16:39:06"
   },
   "Search": {
-   "status": "waiting_user",
+   "status": "active",
    "started": "2026-11-07T08:13:08",
    "tokens": {
     "dev": 29587,
@@ -610,6 +604,11 @@
    "by": "user",
    "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
    "at": "2026-11-07T16:38:44"
+  },
+  "Search": {
+   "by": "user",
+   "text": "confirm ok (1. confirm ok, 2026-11-07, all 29 routes at review)",
+   "at": "2026-11-07T16:39:06"
   }
  }
 }
